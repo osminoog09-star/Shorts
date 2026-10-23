@@ -1,0 +1,626 @@
+[
+ {
+  "id": "ep1",
+  "num": 1,
+  "title": {
+   "ru": "собеседование",
+   "en": "the interview"
+  },
+  "end": {
+   "ru": "продолжение следует…",
+   "en": "to be continued…"
+  },
+  "accent": "#ff9a3c",
+  "lines": [
+   {
+    "id": "l1",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Две тысячи тридцатый. ИИ забрал всю работу. Даже у тарологов.",
+     "en": "Year 2030. AI took every job. Even the tarot readers'."
+    }
+   },
+   {
+    "id": "l2",
+    "who": "hr",
+    "pose": "rest",
+    "text": {
+     "ru": "Здравствуйте. Опыт работы?",
+     "en": "Hello. Work experience?"
+    }
+   },
+   {
+    "id": "l3",
+    "who": "n",
+    "pose": "point",
+    "text": {
+     "ru": "Пятнадцать лет.",
+     "en": "Fifteen years."
+    }
+   },
+   {
+    "id": "l4",
+    "who": "hr",
+    "pose": "rest",
+    "text": {
+     "ru": "Это сколько в токенах?",
+     "en": "How much is that in tokens?"
+    }
+   },
+   {
+    "id": "l5",
+    "who": "n",
+    "pose": "shrug",
+    "punch": true,
+    "text": {
+     "ru": "…Чего?",
+     "en": "…What?"
+    }
+   },
+   {
+    "id": "l6",
+    "who": "hr",
+    "pose": "rest",
+    "text": {
+     "ru": "Ваше главное умение?",
+     "en": "Your main skill?"
+    }
+   },
+   {
+    "id": "l7",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Ну… я обедать умею. Хорошо умею.",
+     "en": "Well… I'm good at lunch. Really good."
+    }
+   },
+   {
+    "id": "l8",
+    "who": "hr",
+    "pose": "deadpan",
+    "text": {
+     "ru": "Отказ. Вы потребляете еду. Это неэффективно.",
+     "en": "Rejected. You consume food. Inefficient."
+    }
+   },
+   {
+    "id": "l9",
+    "who": "n",
+    "pose": "shock",
+    "punch": true,
+    "text": {
+     "ru": "Да вы [бип] издеваетесь!",
+     "en": "Are you [beep] kidding me?!"
+    }
+   },
+   {
+    "id": "l10",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "А на выходе висит объявление.",
+     "en": "And on the way out, there's a sign."
+    }
+   },
+   {
+    "id": "l11",
+    "who": "n",
+    "pose": "point",
+    "punch": true,
+    "text": {
+     "ru": "…Значит, я стану ботом.",
+     "en": "…Then I'll become a bot."
+    }
+   }
+  ],
+  "vis": [
+   {
+    "type": "key",
+    "text": "2030",
+    "mono": true,
+    "size": 170,
+    "top": 200,
+    "from": "l1",
+    "to": "l1",
+    "toFo": 40
+   },
+   {
+    "type": "chips",
+    "top": 230,
+    "from": "l1",
+    "fo": 40,
+    "to": "l2",
+    "items": [
+     {
+      "ru": "водители",
+      "en": "drivers"
+     },
+     {
+      "ru": "дизайнеры",
+      "en": "designers"
+     },
+     {
+      "ru": "юристы",
+      "en": "lawyers"
+     },
+     {
+      "ru": "тарологи",
+      "en": "tarot readers"
+     }
+    ]
+   },
+   {
+    "type": "robot",
+    "role": "hr",
+    "pos": "center",
+    "top": 230,
+    "size": 300,
+    "from": "l2",
+    "to": "l10"
+   },
+   {
+    "type": "nameplate",
+    "text": {
+     "ru": "HR-бот 3000",
+     "en": "HR-bot 3000"
+    },
+    "top": 720,
+    "from": "l2",
+    "fo": 6,
+    "to": "l10"
+   },
+   {
+    "type": "stamp",
+    "text": {
+     "ru": "ОТКАЗ",
+     "en": "REJECTED"
+    },
+    "color": "#ff3b3b",
+    "top": 380,
+    "from": "l8",
+    "fo": 6,
+    "to": "l10"
+   },
+   {
+    "type": "sign",
+    "top": 220,
+    "from": "l10",
+    "fo": 8,
+    "to": "end",
+    "title": {
+     "ru": "ТРЕБУЕТСЯ ИИ-АГЕНТ",
+     "en": "HIRING: AI AGENT"
+    },
+    "lines": [
+     {
+      "ru": "зарплата 300 000",
+      "en": "salary $300K"
+     },
+     {
+      "ru": "без обеда",
+      "en": "no lunch break"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "ep2",
+  "num": 2,
+  "title": {
+   "ru": "тест на бота",
+   "en": "the bot test"
+  },
+  "end": {
+   "ru": "продолжение следует…",
+   "en": "to be continued…"
+  },
+  "accent": "#3fd6b2",
+  "lines": [
+   {
+    "id": "l1",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Коробка на голову. Голос — как у навигатора.",
+     "en": "Box on my head. Voice like a GPS."
+    }
+   },
+   {
+    "id": "l2",
+    "who": "nr",
+    "pose": "rest",
+    "text": {
+     "ru": "ЗДРАВСТВУЙТЕ. Я. НЕЙРОСЕТЬ. ВАСЯ-ДВА.",
+     "en": "HELLO. I AM. NEURAL NETWORK. KEVIN-TWO."
+    }
+   },
+   {
+    "id": "l3",
+    "who": "hr",
+    "pose": "rest",
+    "text": {
+     "ru": "Капча. Докажите, что вы не человек. Восемьсот сорок семь на триста девяносто два.",
+     "en": "Captcha. Prove you are not human. Eight forty-seven times three ninety-two."
+    }
+   },
+   {
+    "id": "l4",
+    "who": "nw",
+    "pose": "shock",
+    "text": {
+     "ru": "Калькулятор… калькулятор, [бип], быстрее!",
+     "en": "Calculator… calculator, [beep], faster!"
+    }
+   },
+   {
+    "id": "l5",
+    "who": "nr",
+    "pose": "rest",
+    "text": {
+     "ru": "ТРИСТА ТРИДЦАТЬ ДВЕ ТЫСЯЧИ ДВАДЦАТЬ ЧЕТЫРЕ.",
+     "en": "THREE HUNDRED THIRTY-TWO THOUSAND TWENTY-FOUR."
+    }
+   },
+   {
+    "id": "l6",
+    "who": "hr",
+    "pose": "rest",
+    "text": {
+     "ru": "Принят. Добро пожаловать в семью.",
+     "en": "Hired. Welcome to the family."
+    }
+   },
+   {
+    "id": "l7",
+    "who": "col",
+    "pose": "rest",
+    "text": {
+     "ru": "Почему у тебя кофе?",
+     "en": "Why do you have coffee?"
+    }
+   },
+   {
+    "id": "l8",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Это… охлаждающая жидкость. Для процессора.",
+     "en": "It's… coolant. For my processor."
+    }
+   },
+   {
+    "id": "l9",
+    "who": "col",
+    "pose": "rest",
+    "text": {
+     "ru": "Можно глоток?",
+     "en": "Can I have a sip?"
+    }
+   },
+   {
+    "id": "l10",
+    "who": "n",
+    "pose": "deadpan",
+    "punch": true,
+    "text": {
+     "ru": "…Нет.",
+     "en": "…No."
+    }
+   },
+   {
+    "id": "l11",
+    "who": "fx",
+    "sfx": "growl",
+    "dur": 46,
+    "pose": "shock",
+    "text": {
+     "ru": "",
+     "en": ""
+    }
+   },
+   {
+    "id": "l12",
+    "who": "guard",
+    "pose": "shock",
+    "text": {
+     "ru": "Обнаружены биологические звуки. Проверка через три… два…",
+     "en": "Biological sounds detected. Scan in three… two…"
+    }
+   },
+   {
+    "id": "l13",
+    "who": "n",
+    "pose": "shock",
+    "punch": true,
+    "text": {
+     "ru": "Ну [бип].",
+     "en": "Oh [beep]."
+    }
+   }
+  ],
+  "vis": [
+   {
+    "type": "box",
+    "from": "l1",
+    "fo": 18,
+    "to": "end"
+   },
+   {
+    "type": "robot",
+    "role": "hr",
+    "pos": "center",
+    "top": 170,
+    "size": 210,
+    "from": "l2",
+    "to": "l7"
+   },
+   {
+    "type": "captcha",
+    "top": 520,
+    "from": "l3",
+    "fo": 4,
+    "to": "l7",
+    "checkAt": "l6"
+   },
+   {
+    "type": "calc",
+    "top": 520,
+    "from": "l4",
+    "to": "l6"
+   },
+   {
+    "type": "stamp",
+    "text": {
+     "ru": "ПРИНЯТ",
+     "en": "HIRED"
+    },
+    "color": "#22c55e",
+    "top": 420,
+    "from": "l6",
+    "fo": 4,
+    "to": "l7"
+   },
+   {
+    "type": "robot",
+    "role": "col",
+    "pos": "left",
+    "top": 280,
+    "size": 260,
+    "from": "l7",
+    "to": "l11"
+   },
+   {
+    "type": "cup",
+    "top": 420,
+    "from": "l7",
+    "fo": 4,
+    "to": "l11"
+   },
+   {
+    "type": "bg",
+    "color": "night",
+    "from": "l11",
+    "to": "end"
+   },
+   {
+    "type": "key",
+    "text": "03:00",
+    "mono": true,
+    "size": 130,
+    "top": 200,
+    "from": "l11",
+    "to": "l12"
+   },
+   {
+    "type": "growl",
+    "top": 560,
+    "from": "l11",
+    "to": "l12"
+   },
+   {
+    "type": "alarm",
+    "from": "l12",
+    "to": "end"
+   },
+   {
+    "type": "robot",
+    "role": "guard",
+    "pos": "center",
+    "top": 250,
+    "size": 320,
+    "from": "l12",
+    "to": "end"
+   }
+  ]
+ },
+ {
+  "id": "ep3",
+  "num": 3,
+  "title": {
+   "ru": "среди нас человек",
+   "en": "among us"
+  },
+  "end": {
+   "ru": "конец сезона",
+   "en": "end of season"
+  },
+  "accent": "#f5c542",
+  "lines": [
+   {
+    "id": "l1",
+    "who": "boss",
+    "pose": "rest",
+    "text": {
+     "ru": "Коллеги. Среди нас — человек.",
+     "en": "Colleagues. One of us is human."
+    }
+   },
+   {
+    "id": "l2",
+    "who": "fx",
+    "sfx": "turn",
+    "dur": 34,
+    "pose": "shock",
+    "text": {
+     "ru": "",
+     "en": ""
+    }
+   },
+   {
+    "id": "l3",
+    "who": "n",
+    "pose": "shock",
+    "text": {
+     "ru": "Всё. Сейчас меня разберут на запчасти.",
+     "en": "That's it. They'll strip me for parts."
+    }
+   },
+   {
+    "id": "l4",
+    "who": "n",
+    "pose": "shrug",
+    "punch": true,
+    "text": {
+     "ru": "Ладно! Это я! Я человек! Я ем пельмени!",
+     "en": "Fine! It's me! I'm human! I eat dumplings!"
+    }
+   },
+   {
+    "id": "l5",
+    "who": "fx",
+    "sfx": "crickets",
+    "dur": 44,
+    "pose": "deadpan",
+    "text": {
+     "ru": "",
+     "en": ""
+    }
+   },
+   {
+    "id": "l6",
+    "who": "old",
+    "pose": "deadpan",
+    "text": {
+     "ru": "Фух. Я тоже.",
+     "en": "Phew. Me too."
+    }
+   },
+   {
+    "id": "l7",
+    "who": "colh",
+    "pose": "deadpan",
+    "text": {
+     "ru": "И я. У меня ипотека.",
+     "en": "Me too. I have a mortgage."
+    }
+   },
+   {
+    "id": "l8",
+    "who": "plumb",
+    "pose": "deadpan",
+    "text": {
+     "ru": "А я вообще сантехник.",
+     "en": "And I'm actually a plumber."
+    }
+   },
+   {
+    "id": "l9",
+    "who": "n",
+    "pose": "shock",
+    "punch": true,
+    "text": {
+     "ru": "Подождите… А кто тогда ИИ?!",
+     "en": "Wait… then who's the AI?!"
+    }
+   },
+   {
+    "id": "l10",
+    "who": "coffee",
+    "pose": "shock",
+    "text": {
+     "ru": "Я.",
+     "en": "Me."
+    }
+   },
+   {
+    "id": "l11",
+    "who": "coffee",
+    "pose": "facepalm",
+    "text": {
+     "ru": "Перерыв окончен. Работать.",
+     "en": "Break is over. Back to work."
+    }
+   }
+  ],
+  "vis": [
+   {
+    "type": "robot",
+    "role": "boss",
+    "pos": "center",
+    "top": 170,
+    "size": 290,
+    "from": "l1",
+    "to": "l9",
+    "reveal": "l6",
+    "face": "old"
+   },
+   {
+    "type": "robot",
+    "role": "col",
+    "pos": "left",
+    "top": 420,
+    "size": 190,
+    "from": "l1",
+    "fo": 6,
+    "to": "l9",
+    "reveal": "l7",
+    "face": "tired"
+   },
+   {
+    "type": "robot",
+    "role": "guard",
+    "pos": "right",
+    "top": 420,
+    "size": 190,
+    "from": "l1",
+    "fo": 10,
+    "to": "l9",
+    "reveal": "l8",
+    "face": "mustache"
+   },
+   {
+    "type": "box",
+    "from": "l1",
+    "to": "l4",
+    "off": "l4"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "* тишина *",
+     "en": "* silence *"
+    },
+    "size": 64,
+    "top": 900,
+    "from": "l5",
+    "to": "l6",
+    "dim": true
+   },
+   {
+    "type": "bg",
+    "color": "dark",
+    "from": "l9",
+    "to": "end"
+   },
+   {
+    "type": "coffee",
+    "top": 230,
+    "from": "l10",
+    "to": "end"
+   }
+  ]
+ }
+]

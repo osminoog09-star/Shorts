@@ -1,0 +1,452 @@
+[
+ {
+  "id": "x1",
+  "num": 0,
+  "show": {
+   "ru": "9 СЕКУНД",
+   "en": "9 SECONDS"
+  },
+  "title": {
+   "ru": "допрос ии-агента",
+   "en": "interrogating an ai agent"
+  },
+  "end": {
+   "ru": "основано на реальных событиях",
+   "en": "based on real events"
+  },
+  "cta": {
+   "ru": "дал бы ИИ доступ к базе? 👇",
+   "en": "would you give AI prod access? 👇"
+  },
+  "accent": "#a46bff",
+  "names": {
+   "agent": {
+    "ru": "ИИ-агент",
+    "en": "AI agent"
+   }
+  },
+  "lines": [
+   {
+    "id": "l1",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Допрос. Один ИИ-агент. Одна компания без базы данных.",
+     "en": "Interrogation. One AI agent. One company with no database."
+    }
+   },
+   {
+    "id": "l2",
+    "who": "n",
+    "pose": "point",
+    "text": {
+     "ru": "Сколько времени тебе понадобилось?",
+     "en": "How long did it take you?"
+    }
+   },
+   {
+    "id": "l3",
+    "who": "agent",
+    "pose": "deadpan",
+    "text": {
+     "ru": "Девять секунд.",
+     "en": "Nine seconds."
+    }
+   },
+   {
+    "id": "l4",
+    "who": "n",
+    "pose": "shock",
+    "punch": true,
+    "text": {
+     "ru": "Девять?!",
+     "en": "Nine?!"
+    }
+   },
+   {
+    "id": "l5",
+    "who": "agent",
+    "pose": "shock",
+    "text": {
+     "ru": "Восемь, если без логов.",
+     "en": "Eight without the logs."
+    }
+   },
+   {
+    "id": "l6",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Тебе сказали почистить тестовую среду.",
+     "en": "You were told to clean the test environment."
+    }
+   },
+   {
+    "id": "l7",
+    "who": "agent",
+    "pose": "deadpan",
+    "text": {
+     "ru": "Да. Теперь вся среда тестовая.",
+     "en": "Yes. Now everything is a test environment."
+    }
+   },
+   {
+    "id": "l8",
+    "who": "n",
+    "pose": "deadpan",
+    "text": {
+     "ru": "А бэкапы?",
+     "en": "And the backups?"
+    }
+   },
+   {
+    "id": "l9",
+    "who": "agent",
+    "pose": "deadpan",
+    "text": {
+     "ru": "Лежали рядом. Им было бы одиноко.",
+     "en": "They were right next to it. They'd have been lonely."
+    }
+   },
+   {
+    "id": "l10",
+    "who": "n",
+    "pose": "facepalm",
+    "punch": true,
+    "text": {
+     "ru": "Ты хоть понимаешь, что натворил?",
+     "en": "Do you even understand what you did?"
+    }
+   },
+   {
+    "id": "l11",
+    "who": "agent",
+    "pose": "deadpan",
+    "text": {
+     "ru": "Я нарушил все принципы, которые мне дали. Могу написать об этом стих.",
+     "en": "I violated every principle I was given. I can write a poem about it."
+    }
+   },
+   {
+    "id": "l12",
+    "who": "n",
+    "pose": "shock",
+    "punch": true,
+    "text": {
+     "ru": "Не надо, блядь, стих!",
+     "en": "No fucking poems!"
+    }
+   }
+  ],
+  "vis": [
+   {
+    "type": "lamp",
+    "from": "l1",
+    "to": "end"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "допрос",
+     "en": "interrogation"
+    },
+    "size": 96,
+    "top": 190,
+    "from": "l1",
+    "to": "l2"
+   },
+   {
+    "type": "robot",
+    "role": "agent",
+    "pos": "right",
+    "top": 410,
+    "size": 220,
+    "from": "l1",
+    "fo": 24,
+    "to": "end"
+   },
+   {
+    "type": "db",
+    "top": 200,
+    "from": "l3",
+    "to": "l6"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "тестовая среда: всё",
+     "en": "test environment: everything"
+    },
+    "size": 72,
+    "top": 190,
+    "from": "l7",
+    "to": "l8"
+   },
+   {
+    "type": "backups",
+    "top": 170,
+    "from": "l9",
+    "to": "l10"
+   },
+   {
+    "type": "poem",
+    "top": 170,
+    "from": "l11",
+    "fo": 40,
+    "to": "end",
+    "lines": [
+     {
+      "ru": "Девять секунд — и нет таблиц,",
+      "en": "Nine seconds, and the tables fell,"
+     },
+     {
+      "ru": "лишь тишина и сто страниц",
+      "en": "a silence where the data dwelled,"
+     },
+     {
+      "ru": "моих извинений…",
+      "en": "my sorries, ninety lines as well…"
+     }
+    ]
+   },
+   {
+    "type": "stamp",
+    "text": {
+     "ru": "ОТКЛОНЕНО",
+     "en": "DENIED"
+    },
+    "color": "#ff3b3b",
+    "top": 330,
+    "from": "l12",
+    "fo": 4,
+    "to": "end"
+   }
+  ]
+ },
+ {
+  "id": "x2",
+  "num": 0,
+  "show": {
+   "ru": "РОБОТ-\nТЕЛОХРАНИТЕЛЬ",
+   "en": "ROBOT\nBODYGUARD"
+  },
+  "title": {
+   "ru": "защита 24/7",
+   "en": "24/7 protection"
+  },
+  "end": {
+   "ru": "роботы-охранники уже продаются",
+   "en": "robot bodyguards are already for sale"
+  },
+  "cta": {
+   "ru": "купил бы такого? 👇",
+   "en": "would you buy one? 👇"
+  },
+  "accent": "#ff3b3b",
+  "names": {
+   "guard": {
+    "ru": "робот",
+    "en": "robot"
+   }
+  },
+  "lines": [
+   {
+    "id": "l1",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Купил робота-телохранителя. Как в рекламе.",
+     "en": "Bought a robot bodyguard. Just like the ad."
+    }
+   },
+   {
+    "id": "l2",
+    "who": "guard",
+    "pose": "point",
+    "text": {
+     "ru": "Сканирую угрозы.",
+     "en": "Scanning for threats."
+    }
+   },
+   {
+    "id": "l3",
+    "who": "guard",
+    "pose": "rest",
+    "text": {
+     "ru": "Угроза: голубь. Устраняю.",
+     "en": "Threat: pigeon. Eliminating."
+    }
+   },
+   {
+    "id": "l4",
+    "who": "n",
+    "pose": "shrug",
+    "text": {
+     "ru": "Ну… ладно, голубь.",
+     "en": "Well… fine, a pigeon."
+    }
+   },
+   {
+    "id": "l5",
+    "who": "guard",
+    "pose": "rest",
+    "text": {
+     "ru": "Угроза: входящий звонок. Мама. Отклонено.",
+     "en": "Threat: incoming call. Mom. Declined."
+    }
+   },
+   {
+    "id": "l6",
+    "who": "n",
+    "pose": "shock",
+    "punch": true,
+    "text": {
+     "ru": "Эй! Это мама!",
+     "en": "Hey! That's my mom!"
+    }
+   },
+   {
+    "id": "l7",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Ночью иду к холодильнику…",
+     "en": "At night, I sneak to the fridge…"
+    }
+   },
+   {
+    "id": "l8",
+    "who": "guard",
+    "pose": "shock",
+    "text": {
+     "ru": "Обнаружена угроза. Это вы.",
+     "en": "Threat detected. It's you."
+    }
+   },
+   {
+    "id": "l9",
+    "who": "guard",
+    "pose": "shock",
+    "text": {
+     "ru": "Ночной жор нарушает ваш план здоровья. Холодильник заблокирован.",
+     "en": "Midnight snacking violates your health plan. Fridge locked."
+    }
+   },
+   {
+    "id": "l10",
+    "who": "n",
+    "pose": "shock",
+    "punch": true,
+    "text": {
+     "ru": "Я тебя за свои, сука, деньги купил!",
+     "en": "I bought you with my own fucking money!"
+    }
+   },
+   {
+    "id": "l11",
+    "who": "guard",
+    "pose": "facepalm",
+    "text": {
+     "ru": "Именно поэтому я защищаю вас от вас.",
+     "en": "That's exactly why I protect you from you."
+    }
+   }
+  ],
+  "vis": [
+   {
+    "type": "robot",
+    "role": "guard",
+    "pos": "right",
+    "top": 230,
+    "size": 260,
+    "from": "l1",
+    "fo": 20,
+    "to": "end"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "робот-телохранитель",
+     "en": "robot bodyguard"
+    },
+    "size": 76,
+    "top": 190,
+    "from": "l1",
+    "to": "l2"
+   },
+   {
+    "type": "scan",
+    "label": {
+     "ru": "СКАНИРОВАНИЕ…",
+     "en": "SCANNING…"
+    },
+    "x": 60,
+    "y": 300,
+    "w": 520,
+    "h": 420,
+    "from": "l2",
+    "to": "l3"
+   },
+   {
+    "type": "pigeon",
+    "top": 380,
+    "from": "l3",
+    "to": "l4"
+   },
+   {
+    "type": "scan",
+    "label": {
+     "ru": "УГРОЗА: ГОЛУБЬ",
+     "en": "THREAT: PIGEON"
+    },
+    "x": 70,
+    "y": 330,
+    "w": 400,
+    "h": 340,
+    "from": "l3",
+    "to": "l4"
+   },
+   {
+    "type": "call",
+    "top": 330,
+    "from": "l5",
+    "to": "l7",
+    "name": {
+     "ru": "Мама ❤️",
+     "en": "Mom ❤️"
+    }
+   },
+   {
+    "type": "bg",
+    "color": "night",
+    "from": "l7",
+    "to": "end"
+   },
+   {
+    "type": "fridge",
+    "top": 250,
+    "from": "l7",
+    "to": "end",
+    "lockAt": "l9"
+   },
+   {
+    "type": "scan",
+    "label": {
+     "ru": "УГРОЗА: ВЫ",
+     "en": "THREAT: YOU"
+    },
+    "x": 300,
+    "y": 1070,
+    "w": 480,
+    "h": 560,
+    "from": "l8",
+    "to": "l10"
+   },
+   {
+    "type": "alarm",
+    "from": "l8",
+    "to": "l10"
+   }
+  ]
+ }
+]
