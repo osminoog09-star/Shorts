@@ -196,7 +196,7 @@ export const BotEpisode: React.FC<{ep: string; lang: Lang}> = ({ep, lang}) => {
         const o = interpolate(f, [out, out + 8], [1, 0], cl);
         return (
           <div key={i} style={{position: 'absolute', top: v.top, left: 0, right: 0, display: 'flex', justifyContent: 'center', opacity: p * o}}>
-            <div style={{transform: `rotate(-12deg) scale(${3 - 2 * p})`, fontFamily: FONT, fontWeight: 900, fontSize: 130, color: v.color, border: `12px solid ${v.color}`, borderRadius: 26, padding: '0 40px', letterSpacing: 4, background: 'rgba(0,0,0,0.25)', boxShadow: `0 0 60px ${v.color}55`}}>
+            <div style={{transform: `rotate(-12deg) scale(${3 - 2 * p})`, fontFamily: FONT, fontWeight: 900, fontSize: tx(v.text, lang).length > 9 ? 80 : 130, color: v.color, border: `12px solid ${v.color}`, borderRadius: 26, padding: '0 40px', letterSpacing: 4, background: 'rgba(0,0,0,0.25)', boxShadow: `0 0 60px ${v.color}55`}}>
               {tx(v.text, lang)}
             </div>
           </div>
@@ -422,6 +422,113 @@ export const BotEpisode: React.FC<{ep: string; lang: Lang}> = ({ep, lang}) => {
           </Appear>
         );
       }
+      case 'newsdesk': {
+        const txt = tx(v.ticker, lang);
+        const w = txt.length * 26 + 200;
+        const off = (f * 6) % w;
+        return (
+          <AbsoluteFill key={i} style={{pointerEvents: 'none'}}>
+            <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(10,30,80,0.55), rgba(5,8,20,0.2) 50%, rgba(5,8,20,0.6))'}} />
+            {/* экран-студия */}
+            <div style={{position: 'absolute', left: 60, right: 60, top: 150, height: 700, borderRadius: 30, border: '2px solid rgba(80,160,255,0.25)', background: 'radial-gradient(ellipse at 50% 40%, rgba(40,110,255,0.18), rgba(0,0,0,0) 70%)'}} />
+            {[0, 1, 2, 3].map((k2) => (
+              <div key={k2} style={{position: 'absolute', left: 60 + k2 * 240, top: 150, width: 2, height: 700, background: 'rgba(80,160,255,0.08)'}} />
+            ))}
+            {/* бегущая строка */}
+            <div style={{position: 'absolute', left: 0, right: 0, top: 96, height: 52, background: '#d7202f', overflow: 'hidden', display: 'flex', alignItems: 'center'}}>
+              <div style={{position: 'absolute', left: 0, zIndex: 2, height: 52, padding: '0 22px', background: '#111', color: '#fff', fontFamily: FONT, fontWeight: 900, fontSize: 30, display: 'flex', alignItems: 'center', letterSpacing: 2}}>
+                {lang === 'ru' ? 'СРОЧНО' : 'BREAKING'}
+              </div>
+              <div style={{position: 'absolute', left: 220 - off, whiteSpace: 'nowrap', color: '#fff', fontFamily: FONT, fontWeight: 700, fontSize: 32}}>
+                {txt}&nbsp;&nbsp;•&nbsp;&nbsp;{txt}&nbsp;&nbsp;•&nbsp;&nbsp;{txt}
+              </div>
+            </div>
+            <div style={{position: 'absolute', right: 70, top: 168, display: 'flex', alignItems: 'center', gap: 10, fontFamily: FONT, fontWeight: 800, fontSize: 26, color: '#fff', opacity: 0.85}}>
+              <span style={{width: 14, height: 14, borderRadius: 7, background: '#ff3b3b', opacity: Math.floor(f / 15) % 2 ? 1 : 0.3}} /> LIVE
+            </div>
+          </AbsoluteFill>
+        );
+      }
+      case 'headline': {
+        const tagC = v.tagColor || '#2f7bff';
+        return (
+          <Appear key={i} at={a} out={out} style={{top: v.top || 230, left: 70, right: 70}}>
+            <div style={{background: 'linear-gradient(180deg,#ffffff,#eef1f7)', borderRadius: 26, padding: '26px 32px 22px', boxShadow: '0 30px 70px rgba(0,0,0,0.5)', borderLeft: `10px solid ${tagC}`}}>
+              <div style={{display: 'inline-block', background: tagC, color: '#fff', fontFamily: FONT, fontWeight: 800, fontSize: 26, letterSpacing: 2, padding: '6px 16px', borderRadius: 8, marginBottom: 14}}>{tx(v.tag, lang)}</div>
+              <div style={{fontFamily: FONT, fontWeight: 800, fontSize: 50, lineHeight: 1.12, color: '#111'}}>{tx(v.text, lang)}</div>
+              <div style={{fontFamily: FONT, fontWeight: 600, fontSize: 26, color: '#6b6b76', marginTop: 14}}>{lang === 'ru' ? 'источник: ' : 'source: '}{v.source}</div>
+            </div>
+          </Appear>
+        );
+      }
+      case 'rank':
+        return (
+          <Appear key={i} at={a} out={out} style={{top: v.top || 170, left: 70}}>
+            <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 120, color: '#ffd23f', textShadow: '0 0 40px rgba(255,210,63,0.5)', lineHeight: 1}}>#{v.n}</div>
+          </Appear>
+        );
+      case 'rocket': {
+        const rain = !!v.rain;
+        const shake = rain ? Math.sin(f * 1.7) * 3 : 0;
+        return (
+          <Appear key={i} at={a} out={out} style={{top: v.top || 260, left: 0, right: 0, display: 'flex', justifyContent: 'center'}}>
+            <svg width={520} height={560} viewBox="-260 -300 520 560" style={{overflow: 'visible'}}>
+              <defs>
+                <linearGradient id="rk" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stopColor="#c9ced8" />
+                  <stop offset="0.45" stopColor="#ffffff" />
+                  <stop offset="1" stopColor="#8f97a8" />
+                </linearGradient>
+              </defs>
+              <rect x={-240} y={220} width={480} height={30} rx={8} fill="#2a2d38" />
+              <rect x={-150} y={-140} width={24} height={360} fill="#3a3d48" />
+              <rect x={-150} y={-40} width={110} height={12} fill="#3a3d48" />
+              <g transform={`translate(${shake},0)`}>
+                <path d="M0,-260 C40,-220 50,-150 50,-80 L50,190 L-50,190 L-50,-80 C-50,-150 -40,-220 0,-260 Z" fill="url(#rk)" stroke="#6b7385" strokeWidth={4} />
+                <circle cx={0} cy={-110} r={22} fill="#2f7bff" stroke="#1a3d80" strokeWidth={5} />
+                <path d="M-50,120 L-95,200 L-50,190 Z M50,120 L95,200 L50,190 Z" fill="#d7202f" />
+                <text x={0} y={60} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={22} fill="#1a1a1a" transform="rotate(-90,0,60)">STARLINK</text>
+              </g>
+              {rain && (
+                <g>
+                  {[-150, 0, 150].map((cx) => (
+                    <g key={cx} transform={`translate(${cx + Math.sin(f * 0.05 + cx) * 10},-250)`}>
+                      <ellipse cx={0} cy={0} rx={90} ry={40} fill="#5a6378" />
+                      <ellipse cx={-50} cy={10} rx={50} ry={30} fill="#4a5266" />
+                      <ellipse cx={55} cy={8} rx={55} ry={30} fill="#4a5266" />
+                    </g>
+                  ))}
+                  {Array.from({length: 26}).map((_, j) => {
+                    const x = ((j * 97) % 480) - 240;
+                    const y = ((f * 14 + j * 53) % 460) - 210;
+                    return <path key={j} d={`M${x},${y} l-6,22`} stroke="#9fd0ff" strokeWidth={4} strokeLinecap="round" opacity={0.8} />;
+                  })}
+                </g>
+              )}
+            </svg>
+          </Appear>
+        );
+      }
+      case 'tv': {
+        const clean = v.cleanAt && f >= st(v.cleanAt);
+        return (
+          <Appear key={i} at={a} out={out} style={{top: v.top || 300, left: 0, right: 0, display: 'flex', justifyContent: 'center'}}>
+            <div style={{position: 'relative', width: 640, height: 400, borderRadius: 18, background: '#0b0b10', border: '14px solid #1e2028', boxShadow: '0 30px 60px rgba(0,0,0,0.6)', overflow: 'hidden'}}>
+              {!clean ? (
+                <div style={{position: 'absolute', inset: 0, display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10, padding: 14}}>
+                  {Array.from({length: 12}).map((_, j) => (
+                    <div key={j} style={{borderRadius: 10, background: ['#ff6a2b', '#ffd23f', '#2f7bff', '#ff3bd0'][j % 4], display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT, fontWeight: 900, fontSize: 26, color: '#fff', transform: `scale(${1 + Math.sin(f * 0.6 + j) * 0.04})`}}>AD</div>
+                  ))}
+                </div>
+              ) : (
+                <div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'radial-gradient(ellipse, #1a2a50, #05070f)', fontFamily: FONT, fontWeight: 800, fontSize: 44, color: '#7fe3ff'}}>
+                  {lang === 'ru' ? '✓ реклама удалена' : '✓ ads removed'}
+                </div>
+              )}
+            </div>
+          </Appear>
+        );
+      }
       default:
         return null;
     }
@@ -475,6 +582,17 @@ export const BotEpisode: React.FC<{ep: string; lang: Lang}> = ({ep, lang}) => {
             <Narrator2 t={f} x={540} y={1995} pose={pose} prev={prevPose} k={pk} mouth={mouth} box={box} />
           </g>
         </svg>
+        {(() => {
+          const nd = E.vis.find((v: any) => v.type === 'newsdesk');
+          if (!nd || f < st(nd.from) - 4) return null;
+          return (
+            <div style={{position: 'absolute', left: -20, right: -20, top: 1690, height: 260, background: 'linear-gradient(180deg,#1b2a55,#0b1230)', borderTop: '6px solid #2f7bff', boxShadow: '0 -20px 40px rgba(0,0,0,0.5)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: 34}}>
+              <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 54, color: '#fff', letterSpacing: 4}}>
+                M1<span style={{color: '#ff3b3b'}}>●</span>{lang === 'ru' ? 'НОВОСТИ ИИ' : 'AI NEWS'}
+              </div>
+            </div>
+          );
+        })()}
         {E.lines.map((l: any) =>
           l.who === 'fx' ? null : <Sub key={l.id} who={l.who} text={l.text[lang]} lang={lang} at={st(l.id)} out={ln(l.id).end + 4} names={E.names} />,
         )}

@@ -73,6 +73,38 @@ EPS = [
             {"type": "alarm", "from": "l8", "to": "l10"},
         ],
     },
+    {
+        "id": "n1", "num": 0, "format": "news", "show": T("НОВОСТИ ИИ", "AI NEWS"), "title": T("23 октября 2026", "October 23, 2026"),
+        "end": T("это были новости ИИ", "that was AI news"),
+        "cta": T("какую новость разобрать завтра? 👇", "which story should we cover tomorrow? 👇"),
+        "accent": "#2f7bff",
+        "names": {"n": T("ведущий", "host")},
+        "sources": ["TechCrunch", "Spaceflight Now", "OpenAI"],
+        "lines": [
+            {"id": "l1", "who": "n", "pose": "talk", "text": T("Новости ИИ за минуту. Поехали.", "AI news in one minute. Let's go.")},
+            {"id": "l2", "who": "n", "pose": "talk", "text": T("Разработчик дал ИИ-агенту модель своего телевизора.", "A developer gave an AI agent his TV's model number.")},
+            {"id": "l3", "who": "n", "pose": "point", "text": T("Агент сам нашёл телик в Wi-Fi, снёс двадцать пять приложений и написал новый лаунчер.", "The agent found the TV on Wi-Fi, deleted twenty-five apps and wrote a new launcher.")},
+            {"id": "l4", "who": "n", "pose": "deadpan", "punch": True, "text": T("Рекламы больше нет. Зато телевизор теперь называет ИИ папой.", "No more ads. But now the TV calls the AI dad.")},
+            {"id": "l5", "who": "n", "pose": "talk", "text": T("Космос. Запуск спутников Starlink отменили из-за погоды.", "Space. A Starlink launch got scrubbed because of weather.")},
+            {"id": "l6", "who": "n", "pose": "shock", "punch": True, "text": T("Третий день подряд.", "Three days in a row.")},
+            {"id": "l7", "who": "n", "pose": "shrug", "text": T("Ракета, которая летает в космос, проиграла дождику.", "A rocket built for orbit, defeated by drizzle.")},
+            {"id": "l8", "who": "n", "pose": "talk", "text": T("И напоследок: OpenAI отправляет GPT-4o на пенсию. Из API его уберут в январе.", "And finally: OpenAI is retiring GPT-4o. It leaves the API in January.")},
+            {"id": "l9", "who": "n", "pose": "deadpan", "text": T("Модели два с половиной года. Пенсия в два с половиной года.", "The model is two and a half years old. Retired at two and a half.")},
+            {"id": "l10", "who": "n", "pose": "facepalm", "punch": True, "text": T("А мне, блядь, до шестидесяти пяти пахать.", "And I have to work till sixty-five. Fuck.")},
+            {"id": "l11", "who": "n", "pose": "point", "text": T("Подписывайся — завтра новые новости.", "Subscribe — more news tomorrow.")},
+        ],
+        "vis": [
+            {"type": "newsdesk", "from": "l1", "to": "end", "ticker": T("ИИ-агент удалил рекламу с телевизора • Starlink снова не полетел • GPT-4o уходит на пенсию", "AI agent removes TV ads • Starlink grounded by weather again • GPT-4o retires")},
+            {"type": "key", "text": T("новости ИИ за минуту", "ai news in a minute"), "size": 80, "top": 380, "from": "l1", "to": "l2"},
+            {"type": "headline", "tag": T("ИИ", "AI"), "text": T("ИИ-агент сам удалил рекламу со смарт-телевизора", "AI agent strips ads from a smart TV on its own"), "source": "TechCrunch", "top": 190, "from": "l2", "to": "l5"},
+            {"type": "tv", "top": 470, "from": "l3", "to": "l5", "cleanAt": "l4"},
+            {"type": "headline", "tag": T("КОСМОС", "SPACE"), "tagColor": "#7b4dff", "text": T("Запуск Starlink отменили из-за погоды", "Starlink launch scrubbed by weather"), "source": "Spaceflight Now", "top": 190, "from": "l5", "to": "l8"},
+            {"type": "rocket", "rain": True, "top": 420, "from": "l5", "fo": 6, "to": "l8"},
+            {"type": "stamp", "text": T("3 ДНЯ ПОДРЯД", "3 DAYS IN A ROW"), "color": "#ff3b3b", "top": 640, "from": "l6", "to": "l8"},
+            {"type": "headline", "tag": T("ИИ", "AI"), "text": T("GPT-4o уберут из API 14 января 2027", "GPT-4o leaves the API on January 14, 2027"), "source": "OpenAI", "top": 190, "from": "l8", "to": "l11"},
+            {"type": "key", "text": T("пенсия в 2,5 года", "retired at 2.5"), "size": 92, "top": 560, "from": "l9", "to": "l11"},
+        ],
+    },
 ]
 json.dump(EPS, open(_os.path.join(ROOT_DIR, "src") + "/extra_series.json", "w"), ensure_ascii=False, indent=1)
 print("ok")
