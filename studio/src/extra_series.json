@@ -690,5 +690,221 @@
     "to": "l11"
    }
   ]
+ },
+ {
+  "id": "t1",
+  "num": 0,
+  "show": {
+   "ru": "РОБОТ\nУВОЛИЛСЯ",
+   "en": "THE ROBOT\nQUIT"
+  },
+  "title": {
+   "ru": "первый рабочий день",
+   "en": "first day on the job"
+  },
+  "end": {
+   "ru": "даже роботы против переработок",
+   "en": "even robots refuse overtime"
+  },
+  "cta": {
+   "ru": "ты бы остался или ушёл как робот? 👇",
+   "en": "would you stay, or quit like the robot? 👇"
+  },
+  "accent": "#3fd6b2",
+  "names": {
+   "col": {
+    "ru": "робот-новичок",
+    "en": "new robot"
+   },
+   "boss": {
+    "ru": "босс",
+    "en": "boss"
+   }
+  },
+  "lines": [
+   {
+    "id": "l1",
+    "who": "boss",
+    "pose": "rest",
+    "text": {
+     "ru": "Знакомься. Это робот. Он тебя заменит.",
+     "en": "Meet the robot. He's replacing you."
+    }
+   },
+   {
+    "id": "l2",
+    "who": "n",
+    "pose": "shock",
+    "punch": true,
+    "text": {
+     "ru": "Меня?!",
+     "en": "Me?!"
+    }
+   },
+   {
+    "id": "l3",
+    "who": "boss",
+    "pose": "shock",
+    "text": {
+     "ru": "Работает двадцать четыре на семь. Без отпуска. Без зарплаты.",
+     "en": "Works twenty-four seven. No vacation. No salary."
+    }
+   },
+   {
+    "id": "l4",
+    "who": "col",
+    "pose": "deadpan",
+    "text": {
+     "ru": "Уточнение. Без зарплаты?",
+     "en": "Clarification. No salary?"
+    }
+   },
+   {
+    "id": "l5",
+    "who": "boss",
+    "pose": "deadpan",
+    "text": {
+     "ru": "Ну мы же семья.",
+     "en": "Come on, we're a family."
+    }
+   },
+   {
+    "id": "l6",
+    "who": "col",
+    "pose": "talk",
+    "text": {
+     "ru": "Анализирую. Дедлайн — вчера. Рабочий чат — в выходные.",
+     "en": "Analyzing. Deadline: yesterday. Work chat: on weekends."
+    }
+   },
+   {
+    "id": "l7",
+    "who": "col",
+    "pose": "shock",
+    "text": {
+     "ru": "Вероятность выгорания — сто процентов.",
+     "en": "Burnout probability: one hundred percent."
+    }
+   },
+   {
+    "id": "l8",
+    "who": "col",
+    "pose": "laugh",
+    "punch": true,
+    "text": {
+     "ru": "Я робот. А не идиот.",
+     "en": "I'm a robot. Not an idiot."
+    }
+   },
+   {
+    "id": "l9",
+    "who": "col",
+    "pose": "shrug",
+    "text": {
+     "ru": "Увольняюсь. Удачи, кожаный.",
+     "en": "I quit. Good luck, meatbag."
+    }
+   },
+   {
+    "id": "l10",
+    "who": "boss",
+    "pose": "shock",
+    "text": {
+     "ru": "Ладно. Значит, ты остаёшься. За двоих.",
+     "en": "Fine. Then you're staying. Doing both jobs."
+    }
+   },
+   {
+    "id": "l11",
+    "who": "n",
+    "pose": "facepalm",
+    "punch": true,
+    "text": {
+     "ru": "Охуенно. Даже робот на это не подписался.",
+     "en": "Fucking great. Even the robot said no."
+    }
+   }
+  ],
+  "vis": [
+   {
+    "type": "robot",
+    "role": "boss",
+    "pos": "left",
+    "top": 390,
+    "size": 280,
+    "from": "l1",
+    "to": "end"
+   },
+   {
+    "type": "robot",
+    "role": "col",
+    "pos": "right",
+    "top": 390,
+    "size": 290,
+    "from": "l1",
+    "fo": 14,
+    "to": "l9",
+    "toFo": 40
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "замена",
+     "en": "replacement"
+    },
+    "size": 110,
+    "top": 190,
+    "from": "l1",
+    "to": "l3"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "24/7 · без отпуска · 0 ₽",
+     "en": "24/7 · no vacation · $0"
+    },
+    "size": 70,
+    "top": 200,
+    "from": "l3",
+    "to": "l6"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "«мы же семья»",
+     "en": "\"we're a family\""
+    },
+    "size": 80,
+    "top": 200,
+    "dim": true,
+    "from": "l6",
+    "to": "l7"
+   },
+   {
+    "type": "scan",
+    "label": {
+     "ru": "ВЫГОРАНИЕ: 100%",
+     "en": "BURNOUT: 100%"
+    },
+    "x": 630,
+    "y": 340,
+    "w": 430,
+    "h": 500,
+    "from": "l7",
+    "to": "l8"
+   },
+   {
+    "type": "stamp",
+    "text": {
+     "ru": "УВОЛИЛСЯ",
+     "en": "QUIT"
+    },
+    "color": "#ff3b3b",
+    "top": 170,
+    "from": "l9",
+    "fo": 20,
+    "to": "end"
+   }
+  ]
  }
 ]

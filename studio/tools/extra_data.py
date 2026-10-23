@@ -105,6 +105,35 @@ EPS = [
             {"type": "key", "text": T("пенсия в 2,5 года", "retired at 2.5"), "size": 92, "top": 560, "from": "l9", "to": "l11"},
         ],
     },
+    {
+        "id": "t1", "num": 0, "show": T("РОБОТ\nУВОЛИЛСЯ", "THE ROBOT\nQUIT"), "title": T("первый рабочий день", "first day on the job"),
+        "end": T("даже роботы против переработок", "even robots refuse overtime"),
+        "cta": T("ты бы остался или ушёл как робот? 👇", "would you stay, or quit like the robot? 👇"),
+        "accent": "#3fd6b2",
+        "names": {"col": T("робот-новичок", "new robot"), "boss": T("босс", "boss")},
+        "lines": [
+            {"id": "l1", "who": "boss", "pose": "rest", "text": T("Знакомься. Это робот. Он тебя заменит.", "Meet the robot. He's replacing you.")},
+            {"id": "l2", "who": "n", "pose": "shock", "punch": True, "text": T("Меня?!", "Me?!")},
+            {"id": "l3", "who": "boss", "pose": "shock", "text": T("Работает двадцать четыре на семь. Без отпуска. Без зарплаты.", "Works twenty-four seven. No vacation. No salary.")},
+            {"id": "l4", "who": "col", "pose": "deadpan", "text": T("Уточнение. Без зарплаты?", "Clarification. No salary?")},
+            {"id": "l5", "who": "boss", "pose": "deadpan", "text": T("Ну мы же семья.", "Come on, we're a family.")},
+            {"id": "l6", "who": "col", "pose": "talk", "text": T("Анализирую. Дедлайн — вчера. Рабочий чат — в выходные.", "Analyzing. Deadline: yesterday. Work chat: on weekends.")},
+            {"id": "l7", "who": "col", "pose": "shock", "text": T("Вероятность выгорания — сто процентов.", "Burnout probability: one hundred percent.")},
+            {"id": "l8", "who": "col", "pose": "laugh", "punch": True, "text": T("Я робот. А не идиот.", "I'm a robot. Not an idiot.")},
+            {"id": "l9", "who": "col", "pose": "shrug", "text": T("Увольняюсь. Удачи, кожаный.", "I quit. Good luck, meatbag.")},
+            {"id": "l10", "who": "boss", "pose": "shock", "text": T("Ладно. Значит, ты остаёшься. За двоих.", "Fine. Then you're staying. Doing both jobs.")},
+            {"id": "l11", "who": "n", "pose": "facepalm", "punch": True, "text": T("Охуенно. Даже робот на это не подписался.", "Fucking great. Even the robot said no.")},
+        ],
+        "vis": [
+            {"type": "robot", "role": "boss", "pos": "left", "top": 390, "size": 280, "from": "l1", "to": "end"},
+            {"type": "robot", "role": "col", "pos": "right", "top": 390, "size": 290, "from": "l1", "fo": 14, "to": "l9", "toFo": 40},
+            {"type": "key", "text": T("замена", "replacement"), "size": 110, "top": 190, "from": "l1", "to": "l3"},
+            {"type": "key", "text": T("24/7 · без отпуска · 0 ₽", "24/7 · no vacation · $0"), "size": 70, "top": 200, "from": "l3", "to": "l6"},
+            {"type": "key", "text": T("«мы же семья»", "\"we're a family\""), "size": 80, "top": 200, "dim": True, "from": "l6", "to": "l7"},
+            {"type": "scan", "label": T("ВЫГОРАНИЕ: 100%", "BURNOUT: 100%"), "x": 630, "y": 340, "w": 430, "h": 500, "from": "l7", "to": "l8"},
+            {"type": "stamp", "text": T("УВОЛИЛСЯ", "QUIT"), "color": "#ff3b3b", "top": 170, "from": "l9", "fo": 20, "to": "end"},
+        ],
+    },
 ]
 json.dump(EPS, open(_os.path.join(ROOT_DIR, "src") + "/extra_series.json", "w"), ensure_ascii=False, indent=1)
 print("ok")
