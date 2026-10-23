@@ -1,0 +1,64 @@
+name: Whop clips
+
+# Режет исходник кампании на вертикальные клипы и кладёт их в clips/<campaign>/<дата>/
+# Запуск: Actions → Whop clips → Run workflow (url, campaign, n).
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Ссылка на исходник (Google Drive / Dropbox / YouTube / прямая mp4)"
+        required: true
+      campaign:
+        description: "Короткое имя кампании латиницей (папка)"
+        required: true
+      n:
+        description: "Сколько клипов"
+        default: "6"
+      lang:
+        description: "Язык речи (en/ru, пусто = авто)"
+        default: ""
+      niche:
+        description: "Контекст для отбора моментов"
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: clips
+  cancel-in-progress: false
+
+jobs:
+  clip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q ffmpeg >/dev/null
+          mkdir -p ~/.fonts
+          curl -sSfL -o ~/.fonts/Montserrat.ttf "https://github.com/google/fonts/raw/main/ofl/montserrat/Montserrat%5Bwght%5D.ttf"
+          fc-cache -f >/dev/null
+          pip install -q -r clipper/requirements.txt
+      - name: Clip
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          D=clips/${{ inputs.campaign }}/$(date -u +%Y-%m-%d_%H%M)
+          echo "D=$D" >> $GITHUB_ENV
+          ARGS=(-n "${{ inputs.n }}" --min 15 --max 45 --font "Montserrat" -o work)
+          [ -n "${{ inputs.lang }}" ] && ARGS+=(--lang "${{ inputs.lang }}")
+          [ -n "${{ inputs.niche }}" ] && ARGS+=(--niche "${{ inputs.niche }}")
+          python clipper/clipforge.py "${{ inputs.url }}" "${ARGS[@]}"
+          mkdir -p "$D" && cp work/clip_*.mp4 work/clips.json "$D"/
+          printf '%s\n' "${{ inputs.url }}" > "$D/source.txt"
+      - name: Commit
+        run: |
+          git config user.name "clip-bot"
+          git config user.email "clip-bot@users.noreply.github.com"
+          git add clips
+          git commit -m "clips: ${{ inputs.campaign }} ($D)"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done
+          echo "### Клипы готовы: $D" >> $GITHUB_STEP_SUMMARY
+          ls "$D" >> $GITHUB_STEP_SUMMARY
