@@ -1,0 +1,18 @@
+name: Playlist sync
+on:
+  schedule:
+    - cron: "17 */2 * * *"
+  workflow_dispatch:
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Разложить ролики по плейлистам
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          PLAYLIST_RU: ${{ secrets.PLAYLIST_RU }}
+          PLAYLIST_EN: ${{ secrets.PLAYLIST_EN }}
+        run: python3 scripts/playlist_sync.py
