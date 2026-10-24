@@ -1,5 +1,5 @@
 {
- "duration": 312.8,
+ "duration": 595.45,
  "voice": [
   {
    "file": "../../media/tts/antikythera/s01.mp3",
@@ -10,44 +10,80 @@
    "at": 18.3
   },
   {
+   "file": "../../media/tts/antikythera/n1.mp3",
+   "at": 45.78
+  },
+  {
    "file": "../../media/tts/antikythera/s03.mp3",
-   "at": 45.8
+   "at": 81.37
   },
   {
    "file": "../../media/tts/antikythera/s04.mp3",
-   "at": 65.6
+   "at": 101.19
+  },
+  {
+   "file": "../../media/tts/antikythera/n2.mp3",
+   "at": 118.49
   },
   {
    "file": "../../media/tts/antikythera/s05.mp3",
-   "at": 82.9
+   "at": 144.48
   },
   {
    "file": "../../media/tts/antikythera/s06.mp3",
-   "at": 109.5
+   "at": 171.09
+  },
+  {
+   "file": "../../media/tts/antikythera/n3.mp3",
+   "at": 203.53
   },
   {
    "file": "../../media/tts/antikythera/s07.mp3",
-   "at": 141.9
+   "at": 235.57
+  },
+  {
+   "file": "../../media/tts/antikythera/n4.mp3",
+   "at": 273.27
   },
   {
    "file": "../../media/tts/antikythera/s08.mp3",
-   "at": 179.6
+   "at": 305.93
   },
   {
    "file": "../../media/tts/antikythera/s09.mp3",
-   "at": 205.9
+   "at": 332.25
+  },
+  {
+   "file": "../../media/tts/antikythera/n5.mp3",
+   "at": 362.58
   },
   {
    "file": "../../media/tts/antikythera/s10.mp3",
-   "at": 236.2
+   "at": 399.15
   },
   {
    "file": "../../media/tts/antikythera/s11.mp3",
-   "at": 256.8
+   "at": 419.71
+  },
+  {
+   "file": "../../media/tts/antikythera/n6.mp3",
+   "at": 444.28
+  },
+  {
+   "file": "../../media/tts/antikythera/n7.mp3",
+   "at": 478.74
+  },
+  {
+   "file": "../../media/tts/antikythera/n8.mp3",
+   "at": 501.73
+  },
+  {
+   "file": "../../media/tts/antikythera/n9.mp3",
+   "at": 535.85
   },
   {
    "file": "../../media/tts/antikythera/s12.mp3",
-   "at": 281.4
+   "at": 563.45
   }
  ],
  "music": {
@@ -71,59 +107,95 @@
     "style": "mystery"
    },
    {
-    "at": 45.2,
+    "at": 80.77,
     "style": "intro"
    },
    {
-    "at": 65.0,
+    "at": 100.59,
     "style": "groove"
    },
    {
-    "at": 82.3,
+    "at": 143.88,
     "style": "mystery"
    },
    {
-    "at": 108.9,
+    "at": 170.49,
     "style": "groove"
    },
    {
-    "at": 141.3,
+    "at": 234.97,
     "style": "groove"
    },
    {
-    "at": 179.0,
+    "at": 305.33,
     "style": "intro"
    },
    {
-    "at": 205.3,
+    "at": 331.65,
     "style": "mystery"
    },
    {
-    "at": 224.3,
+    "at": 350.65,
     "style": "big"
    },
    {
-    "at": 235.6,
+    "at": 398.55,
     "style": "tense"
    },
    {
-    "at": 256.2,
+    "at": 419.11,
     "style": "groove"
    },
    {
-    "at": 265.4,
+    "at": 428.31,
     "style": "tense"
    },
    {
-    "at": 270.2,
+    "at": 433.11,
     "style": "intro"
    },
    {
-    "at": 280.8,
+    "at": 45.18,
+    "style": "intro"
+   },
+   {
+    "at": 117.89,
     "style": "mystery"
    },
    {
-    "at": 299.6,
+    "at": 202.93,
+    "style": "groove"
+   },
+   {
+    "at": 272.67,
+    "style": "intro"
+   },
+   {
+    "at": 361.98,
+    "style": "groove"
+   },
+   {
+    "at": 443.68,
+    "style": "mystery"
+   },
+   {
+    "at": 478.14,
+    "style": "tense"
+   },
+   {
+    "at": 501.13,
+    "style": "groove"
+   },
+   {
+    "at": 535.25,
+    "style": "intro"
+   },
+   {
+    "at": 562.85,
+    "style": "mystery"
+   },
+   {
+    "at": 581.65,
     "style": "big"
    }
   ]
@@ -201,383 +273,648 @@
   },
   {
    "name": "boing",
-   "at": 46.9,
+   "at": 82.47,
    "gain": 0.35
   },
   {
    "name": "boing",
-   "at": 47.6,
+   "at": 83.17,
    "gain": 0.35
   },
   {
    "name": "boing",
-   "at": 48.3,
+   "at": 83.87,
    "gain": 0.35
   },
   {
    "name": "bam",
-   "at": 51.0,
+   "at": 86.57,
    "gain": 0.35
   },
   {
    "name": "pop",
-   "at": 52.7,
+   "at": 88.27,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 57.4,
+   "at": 92.97,
    "gain": 0.5
   },
   {
    "name": "crunch",
-   "at": 61.2,
+   "at": 96.77,
    "gain": 0.4
   },
   {
    "name": "ding",
-   "at": 62.3,
+   "at": 97.87,
    "gain": 0.6
   },
   {
    "name": "whoosh",
-   "at": 69.0,
+   "at": 104.59,
    "gain": 0.6
   },
   {
    "name": "whoosh",
-   "at": 74.9,
+   "at": 110.49,
    "gain": 0.6
   },
   {
    "name": "bam",
-   "at": 75.6,
+   "at": 111.19,
    "gain": 0.35
   },
   {
    "name": "pop",
-   "at": 86.0,
+   "at": 147.58,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 89.1,
+   "at": 150.68,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 92.7,
+   "at": 154.28,
    "gain": 0.5
   },
   {
    "name": "scan",
-   "at": 94.7,
+   "at": 156.28,
    "gain": 0.7
   },
   {
    "name": "crank",
-   "at": 97.3,
+   "at": 158.88,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 99.6,
+   "at": 161.18,
    "gain": 0.5
   },
   {
    "name": "whoosh",
-   "at": 101.7,
+   "at": 163.28,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 110.8,
+   "at": 172.39,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 113.4,
+   "at": 174.99,
    "gain": 0.5
   },
   {
    "name": "scan",
-   "at": 117.9,
+   "at": 179.49,
    "gain": 0.8
   },
   {
    "name": "scan",
-   "at": 119.6,
+   "at": 181.19,
    "gain": 0.6
   },
   {
    "name": "beep",
-   "at": 121.3,
+   "at": 182.89,
    "gain": 0.6
   },
   {
    "name": "riser",
-   "at": 121.7,
+   "at": 183.29,
    "gain": 0.4
   },
   {
    "name": "ding",
-   "at": 123.7,
+   "at": 185.29,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 128.5,
+   "at": 190.09,
    "gain": 0.35
   },
   {
    "name": "pop",
-   "at": 128.85,
+   "at": 190.44,
    "gain": 0.35
   },
   {
    "name": "pop",
-   "at": 129.2,
+   "at": 190.79,
    "gain": 0.35
   },
   {
    "name": "pop",
-   "at": 129.55,
+   "at": 191.14,
    "gain": 0.35
   },
   {
    "name": "pop",
-   "at": 129.9,
+   "at": 191.49,
    "gain": 0.35
   },
   {
    "name": "pop",
-   "at": 130.25,
+   "at": 191.84,
    "gain": 0.35
   },
   {
    "name": "tick",
-   "at": 136.3,
+   "at": 197.89,
    "gain": 0.5
   },
   {
    "name": "ding",
-   "at": 138.7,
+   "at": 200.29,
    "gain": 0.5
   },
   {
    "name": "crank",
-   "at": 146.1,
+   "at": 239.77,
    "gain": 0.6
   },
   {
    "name": "crank",
-   "at": 146.7,
+   "at": 240.37,
    "gain": 0.5
   },
   {
    "name": "whoosh",
-   "at": 155.1,
+   "at": 248.77,
    "gain": 0.6
   },
   {
    "name": "ding",
-   "at": 164.0,
+   "at": 257.67,
    "gain": 0.4
   },
   {
    "name": "pop",
-   "at": 167.9,
+   "at": 261.57,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 173.7,
+   "at": 267.37,
    "gain": 0.5
   },
   {
    "name": "crank",
-   "at": 187.6,
+   "at": 313.93,
    "gain": 0.4
   },
   {
    "name": "tick",
-   "at": 189.8,
+   "at": 316.13,
    "gain": 0.6
   },
   {
    "name": "ding",
-   "at": 196.6,
+   "at": 322.93,
    "gain": 0.4
   },
   {
    "name": "pop",
-   "at": 211.3,
+   "at": 337.65,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 220.1,
+   "at": 346.45,
    "gain": 0.6
   },
   {
    "name": "pop",
-   "at": 221.5,
+   "at": 347.85,
    "gain": 0.6
   },
   {
    "name": "whoosh",
-   "at": 225.5,
+   "at": 351.85,
    "gain": 0.5
   },
   {
    "name": "riser",
-   "at": 224.3,
+   "at": 350.65,
    "gain": 0.35
   },
   {
    "name": "chord",
-   "at": 227.5,
+   "at": 353.85,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 236.5,
+   "at": 399.45,
    "gain": 0.5
   },
   {
    "name": "whoosh",
-   "at": 245.2,
+   "at": 408.15,
    "gain": 0.6
   },
   {
    "name": "tick",
-   "at": 248.2,
+   "at": 411.15,
    "gain": 0.35
   },
   {
    "name": "tick",
-   "at": 248.4,
+   "at": 411.35,
    "gain": 0.35
   },
   {
    "name": "tick",
-   "at": 248.6,
+   "at": 411.55,
    "gain": 0.35
   },
   {
    "name": "tick",
-   "at": 248.8,
+   "at": 411.75,
    "gain": 0.35
   },
   {
    "name": "tick",
-   "at": 249.0,
+   "at": 411.95,
    "gain": 0.35
   },
   {
    "name": "tick",
-   "at": 249.2,
+   "at": 412.15,
    "gain": 0.35
   },
   {
    "name": "tick",
-   "at": 249.4,
+   "at": 412.35,
    "gain": 0.35
   },
   {
    "name": "tick",
-   "at": 249.6,
+   "at": 412.55,
    "gain": 0.35
   },
   {
    "name": "tick",
-   "at": 249.8,
+   "at": 412.75,
    "gain": 0.35
   },
   {
    "name": "tick",
-   "at": 250.0,
+   "at": 412.95,
    "gain": 0.35
   },
   {
    "name": "tick",
-   "at": 250.2,
+   "at": 413.15,
    "gain": 0.35
   },
   {
    "name": "tick",
-   "at": 250.4,
+   "at": 413.35,
    "gain": 0.35
   },
   {
    "name": "ding",
-   "at": 250.6,
+   "at": 413.55,
    "gain": 0.6
   },
   {
    "name": "pop",
-   "at": 257.1,
+   "at": 420.01,
    "gain": 0.5
   },
   {
    "name": "crunch",
-   "at": 265.4,
+   "at": 428.31,
    "gain": 0.9
   },
   {
    "name": "bam",
-   "at": 265.4,
+   "at": 428.31,
    "gain": 0.3
   },
   {
    "name": "beep",
-   "at": 268.8,
+   "at": 431.71,
    "gain": 0.6
   },
   {
    "name": "ding",
-   "at": 273.4,
+   "at": 436.31,
    "gain": 0.4
   },
   {
    "name": "pop",
-   "at": 281.6,
+   "at": 563.65,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 281.85,
+   "at": 563.9,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 282.1,
+   "at": 564.15,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 292.6,
+   "at": 574.65,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 296.4,
+   "at": 578.45,
    "gain": 0.5
   },
   {
    "name": "pop",
-   "at": 297.4,
+   "at": 579.45,
    "gain": 0.5
   },
   {
    "name": "chord",
-   "at": 299.6,
+   "at": 581.65,
    "gain": 0.6
   },
   {
    "name": "chord",
-   "at": 307.4,
+   "at": 589.45,
    "gain": 0.7
+  },
+  {
+   "name": "pop",
+   "at": 50.299,
+   "gain": 0.5
+  },
+  {
+   "name": "tick",
+   "at": 60.488,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 65.7,
+   "gain": 0.5
+  },
+  {
+   "name": "whoosh",
+   "at": 69.422,
+   "gain": 0.6
+  },
+  {
+   "name": "ding",
+   "at": 71.856,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 73.13,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 74.568,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 74.748,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 74.928,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 75.108,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 75.288,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 75.468,
+   "gain": 0.3
+  },
+  {
+   "name": "crunch",
+   "at": 124.023,
+   "gain": 0.6
+  },
+  {
+   "name": "tick",
+   "at": 127.066,
+   "gain": 0.5
+  },
+  {
+   "name": "ding",
+   "at": 136.276,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 209.122,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 213.533,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 218.214,
+   "gain": 0.5
+  },
+  {
+   "name": "whoosh",
+   "at": 222.921,
+   "gain": 0.5
+  },
+  {
+   "name": "crank",
+   "at": 230.361,
+   "gain": 0.6
+  },
+  {
+   "name": "whoosh",
+   "at": 282.094,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 289.806,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 294.582,
+   "gain": 0.4
+  },
+  {
+   "name": "ding",
+   "at": 298.296,
+   "gain": 0.4
+  },
+  {
+   "name": "pop",
+   "at": 367.253,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 375.814,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 381.262,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 391.663,
+   "gain": 0.5
+  },
+  {
+   "name": "whoosh",
+   "at": 394.317,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 447.986,
+   "gain": 0.5
+  },
+  {
+   "name": "ding",
+   "at": 451.476,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 457.196,
+   "gain": 0.4
+  },
+  {
+   "name": "pop",
+   "at": 466.288,
+   "gain": 0.4
+  },
+  {
+   "name": "pop",
+   "at": 470.155,
+   "gain": 0.4
+  },
+  {
+   "name": "whoosh",
+   "at": 492.016,
+   "gain": 0.5
+  },
+  {
+   "name": "bubbles",
+   "at": 494.946,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 506.061,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 512.735,
+   "gain": 0.4
+  },
+  {
+   "name": "pop",
+   "at": 517.252,
+   "gain": 0.4
+  },
+  {
+   "name": "pop",
+   "at": 522.098,
+   "gain": 0.4
+  },
+  {
+   "name": "riser",
+   "at": 528.928,
+   "gain": 0.4
+  },
+  {
+   "name": "bubbles",
+   "at": 530.128,
+   "gain": 0.6
+  },
+  {
+   "name": "tick",
+   "at": 539.567,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 539.687,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 539.807,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 539.927,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 540.047,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 540.167,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 540.287,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 540.407,
+   "gain": 0.3
+  },
+  {
+   "name": "bam",
+   "at": 546.655,
+   "gain": 0.3
+  },
+  {
+   "name": "whoosh",
+   "at": 550.293,
+   "gain": 0.5
+  },
+  {
+   "name": "chord",
+   "at": 555.806,
+   "gain": 0.4
   }
  ]
 }

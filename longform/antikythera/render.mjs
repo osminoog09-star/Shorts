@@ -10,7 +10,8 @@ const fps = +(args.fps || 30);
 const root = path.dirname(new URL(import.meta.url).pathname);
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.woff2': 'font/woff2', '.woff': 'font/woff', '.png': 'image/png', '.json': 'application/json' };
 const srv = http.createServer((req, res) => {
-  const p = path.join(root, decodeURIComponent(req.url.split('?')[0]));
+  const u = decodeURIComponent(req.url.split('?')[0]);
+  const p = u.startsWith('/media/') ? path.join(root, '../..', u) : path.join(root, u);
   fs.readFile(p, (e, d) => { if (e) { res.writeHead(404); res.end(); return; } res.writeHead(200, { 'content-type': types[path.extname(p)] || 'application/octet-stream' }); res.end(d); });
 }).listen(0);
 const port = srv.address().port;
