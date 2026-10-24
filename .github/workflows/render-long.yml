@@ -18,6 +18,9 @@ on:
       only:
         description: "Перерендерить только эти куски (через запятую), остальные взять из base_run"
         default: ""
+      short:
+        description: "Имя вертикальной нарезки из shorts.json (пусто = основной фильм)"
+        default: ""
       base_run:
         description: "ID прошлого запуска, откуда взять неизменённые куски"
         default: ""
@@ -61,12 +64,13 @@ jobs:
           echo "BROWSER=$B" >> $GITHUB_ENV; echo "browser: $B"
       - name: Render chunk
         run: |
-          DUR=$(python3 -c "import json;print(json.load(open('audio/cues.json'))['duration'])")
+          SH="${{ inputs.short }}"
+          if [ -n "$SH" ]; then DUR=$(python3 -c "import json;print(json.load(open('shorts/$SH.json'))['duration'])"); EXTRA="--short $SH"; else DUR=$(python3 -c "import json;print(json.load(open('audio/cues.json'))['duration'])"); EXTRA=""; fi
           FPS=${{ inputs.fps }}; N=${{ inputs.chunks }}; I=${{ matrix.i }}
           TOT=$(python3 -c "print(round($DUR*$FPS))")
           F0=$(python3 -c "print($TOT*$I//$N)"); F1=$(python3 -c "print($TOT*($I+1)//$N)")
           echo "frames $F0..$F1 of $TOT"
-          node render.mjs --fps $FPS --f0 $F0 --f1 $F1 --out out/chunk_$(printf %03d $I).mp4
+          node render.mjs $EXTRA --fps $FPS --f0 $F0 --f1 $F1 --out out/chunk_$(printf %03d $I).mp4
       - uses: actions/upload-artifact@v4
         with:
           name: chunk-${{ matrix.i }}
@@ -98,16 +102,19 @@ jobs:
           ls chunks | sort | sed "s#^#file '$PWD/chunks/#; s#\$#'#" > list.txt
           P=longform/${{ inputs.project }}
           mkdir -p videos/long
-          OUT=videos/long/${{ inputs.project }}.mp4
-          ffmpeg -v error -y -f concat -safe 0 -i list.txt -i $P/${{ inputs.audio }} -map 0:v -map 1:a \
+          OUT=videos/long/${{ inputs.project }}.mp4; AUD=$P/${{ inputs.audio }}
+          if [ -n "${{ inputs.short }}" ]; then OUT=videos/long/${{ inputs.project }}_short_${{ inputs.short }}.mp4; AUD=$P/audio/short_${{ inputs.short }}.m4a; fi
+          ffmpeg -v error -y -f concat -safe 0 -i list.txt -i $AUD -map 0:v -map 1:a -shortest \
             -c:v libx264 -preset slow -crf 22 -maxrate 2600k -bufsize 5200k -pix_fmt yuv420p -r ${{ inputs.fps }} \
             -c:a aac -b:a 192k -movflags +faststart $OUT
-          ffprobe -v error -show_entries format=duration,size -of default=nw=1 $OUT | tee $P/out_info.txt
-          ffmpeg -v error -y -i $OUT -vf "fps=1/10,scale=480:-1,tile=6x6" -frames:v 1 $P/contact.jpg
+          if [ -z "${{ inputs.short }}" ]; then
+            ffprobe -v error -show_entries format=duration,size -of default=nw=1 $OUT | tee $P/out_info.txt
+            ffmpeg -v error -y -i $OUT -vf "fps=1/10,scale=480:-1,tile=6x6" -frames:v 1 $P/contact.jpg
+          else ffprobe -v error -show_entries format=duration,size -of default=nw=1 $OUT; fi
       - name: Commit
         run: |
           git config user.name "render-bot"
           git config user.email "render-bot@users.noreply.github.com"
           git add videos/long longform/${{ inputs.project }}/out_info.txt longform/${{ inputs.project }}/contact.jpg
-          git commit -m "render: ${{ inputs.project }}"
+          git commit -m "render: ${{ inputs.project }} ${{ inputs.short }}"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done

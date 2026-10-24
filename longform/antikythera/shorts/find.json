@@ -1,0 +1,40 @@
+{
+ "name": "find",
+ "duration": 51.742,
+ "parts": [
+  {
+   "type": "scene",
+   "id": "s01",
+   "start": 0.0,
+   "dur": 17.7,
+   "local": 0.0,
+   "src": 0.0
+  },
+  {
+   "type": "vo",
+   "vo": "f_bridge",
+   "scene": "s02",
+   "from": 0.2,
+   "start": 17.7,
+   "dur": 7.822,
+   "local": 0.2,
+   "vfile": "f_bridge.mp3"
+  },
+  {
+   "type": "scene",
+   "id": "s03",
+   "start": 25.522,
+   "dur": 19.82,
+   "local": 0.0,
+   "src": 80.77
+  },
+  {
+   "type": "outro",
+   "scene": "s03",
+   "start": 45.342,
+   "dur": 6.4,
+   "local": 19.82,
+   "vfile": "outro.mp3"
+  }
+ ]
+}

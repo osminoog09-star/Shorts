@@ -1,0 +1,45 @@
+{
+ "name": "jam",
+ "duration": 58.512,
+ "parts": [
+  {
+   "type": "vo",
+   "vo": "j_hook",
+   "scene": "s11",
+   "from": 9.0,
+   "clear": true,
+   "text": [
+    "заклинило",
+    "через 4 месяца?"
+   ],
+   "start": 0.0,
+   "dur": 6.982,
+   "local": 9.0,
+   "vfile": "j_hook.mp3"
+  },
+  {
+   "type": "scene",
+   "id": "s10",
+   "start": 6.982,
+   "dur": 20.56,
+   "local": 0.0,
+   "src": 398.55
+  },
+  {
+   "type": "scene",
+   "id": "s11",
+   "start": 27.541999999999998,
+   "dur": 24.57,
+   "local": 0.0,
+   "src": 419.11
+  },
+  {
+   "type": "outro",
+   "scene": "s11",
+   "start": 52.111999999999995,
+   "dur": 6.4,
+   "local": 24.57,
+   "vfile": "outro.mp3"
+  }
+ ]
+}

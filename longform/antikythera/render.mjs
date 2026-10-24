@@ -17,10 +17,11 @@ const srv = http.createServer((req, res) => {
 const port = srv.address().port;
 const exe = args.browser || process.env.BROWSER || fs.readFileSync(path.join(root, '../../studio/.browser'), 'utf8').trim();
 const browser = await chromium.launch({ executablePath: exe, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
-const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
+const SH = args.short;
+const page = await browser.newPage({ viewport: SH ? { width: 1080, height: 1920 } : { width: 1920, height: 1080 } });
 page.on('console', (m) => { if (m.type() === 'error') console.error('[page]', m.text()); });
 page.on('pageerror', (e) => console.error('[pageerror]', e.message));
-await page.goto(`http://127.0.0.1:${port}/index.html`);
+await page.goto(`http://127.0.0.1:${port}/index.html` + (SH ? `?portrait&short=${SH}` : ''));
 await page.waitForFunction('window.READY === true', null, { timeout: 60000 });
 const dur = await page.evaluate('window.DURATION');
 const stage = await page.$('#stage');
@@ -38,7 +39,7 @@ if (args.thumb) {
   fs.mkdirSync(path.join(root, 'out'), { recursive: true });
   for (const s of args.stills.split(',')) {
     const t0 = Date.now(); const buf = await frameAt(+s);
-    fs.writeFileSync(path.join(root, `out/still_${s}.jpg`), buf); console.log('still', s, Date.now() - t0, 'ms');
+    fs.writeFileSync(path.join(root, `out/${SH ? SH + '_' : ''}still_${s}.jpg`), buf); console.log('still', s, Date.now() - t0, 'ms');
   }
 } else {
   const from = +(args.from || 0), to = +(args.to || dur);

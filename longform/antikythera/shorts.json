@@ -1,0 +1,28 @@
+{
+ "find": {
+  "title": "Компьютеру 2000 лет — и нашли его ловцы губок 🐚 #shorts",
+  "bed": "Investigations.mp3",
+  "parts": [
+   {"type": "scene", "id": "s01"},
+   {"type": "vo", "vo": "f_bridge", "scene": "s02", "from": 0.2},
+   {"type": "scene", "id": "s03"}
+  ]
+ },
+ "moon": {
+  "title": "Как древние греки посчитали Луну шестерёнками ⚙️ #shorts",
+  "bed": "Clean Soul.mp3",
+  "parts": [
+   {"type": "vo", "vo": "m_hook", "scene": "s07", "from": 9.0, "clear": true, "text": ["компьютер", "из бронзы"]},
+   {"type": "scene", "id": "s08"}
+  ]
+ },
+ "jam": {
+  "title": "Древний механизм заклинивал через 4 месяца? 🤔 #shorts",
+  "bed": "Mesmerize.mp3",
+  "parts": [
+   {"type": "vo", "vo": "j_hook", "scene": "s11", "from": 9.0, "clear": true, "text": ["заклинило", "через 4 месяца?"]},
+   {"type": "scene", "id": "s10"},
+   {"type": "scene", "id": "s11"}
+  ]
+ }
+}

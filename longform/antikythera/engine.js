@@ -10,7 +10,12 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 export { THREE, RoundedBoxGeometry };
 
-export const W = 1920, H = 1080;
+export const PORTRAIT = typeof location !== 'undefined' && new URLSearchParams(location.search).has('portrait');
+export const W = PORTRAIT ? 1080 : 1920, H = PORTRAIT ? 1920 : 1080;
+// Вертикальный режим (Shorts): сцены пишут подписи в координатах 1920×1080, здесь они переносятся в 1080×1920
+export function PX(x) { return PORTRAIT ? (x - 960) * 0.5 + 540 : x; }
+export function PY(y) { return PORTRAIT ? (y < 540 ? 170 + y * 0.95 : H - 360 - (1080 - y) * 0.95) : y; }
+const PSZ = (sz, k = 0.84) => (PORTRAIT ? sz * k : sz);
 // пастель
 export const C = {
   cream: 0xf3e9dd, sand: 0xe9d6bf, lav: 0xb5a2ff, mint: 0x86dcbc, peach: 0xffb48a, pink: 0xff98b1, butter: 0xffdc7a,
@@ -61,9 +66,9 @@ const grade = new ShaderPass({
   vertexShader: `varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
   fragmentShader: `uniform sampler2D tDiffuse; uniform float time, vig, flash, fade; varying vec2 vUv;
     float h(vec2 p){ return fract(sin(dot(p, vec2(12.9898,78.233)))*43758.5453); }
-    void main(){ vec4 c=texture2D(tDiffuse,vUv); vec2 d=vUv-.5; d.x*=1.6;
+    void main(){ vec4 c=texture2D(tDiffuse,vUv); vec2 d=vUv-.5; d.x*=${(W / H * 0.9).toFixed(3)};
       c.rgb*=1.-vig*smoothstep(.35,1.05,length(d));
-      c.rgb+=(h(vUv*vec2(1920.,1080.)+fract(time*7.))-.5)*.022;
+      c.rgb+=(h(vUv*vec2(${W}.,${H}.)+fract(time*7.))-.5)*.022;
       c.rgb=mix(c.rgb, vec3(1.), flash); c.rgb=mix(c.rgb, vec3(0.965,0.937,0.902), fade);
       gl_FragColor=c; }`,
 });
@@ -73,6 +78,11 @@ composer.addPass(new OutputPass());
 composer.addPass(grade);
 
 export function render(scene, camera, opts = {}) {
+  if (PORTRAIT && camera.isPerspectiveCamera && camera.aspect !== W / H) {
+    const f0 = camera.userData.f0 ?? camera.fov; camera.userData.f0 = f0;
+    const hf = 2 * Math.atan(Math.tan((f0 * Math.PI) / 360) * (16 / 9)); // горизонтальный угол как в 16:9
+    camera.aspect = W / H; camera.fov = Math.min(100, (2 * Math.atan(Math.tan(hf * 0.62) / camera.aspect) * 180) / Math.PI); camera.updateProjectionMatrix();
+  }
   renderPass.scene = scene; renderPass.camera = camera;
   bokeh.scene = scene; bokeh.camera = camera;
   const u = bokeh.uniforms;
@@ -153,6 +163,7 @@ export function gear(teeth, r, mat, opts = {}) {
 
 // ───────── 2D-слой: премиальные подписи ─────────
 const oc = document.getElementById('ov');
+if (PORTRAIT) { oc.width = W; oc.height = H; const st = document.getElementById('stage'); st.style.width = W + 'px'; st.style.height = H + 'px'; for (const c of st.querySelectorAll('canvas')) { c.style.width = W + 'px'; c.style.height = H + 'px'; } }
 export const ctx = oc.getContext('2d');
 export function clear2d() { ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, W, H); }
 export function project(v, camera) { const p = v.clone().project(camera); return { x: (p.x * 0.5 + 0.5) * W, y: (-p.y * 0.5 + 0.5) * H, z: p.z }; }
@@ -161,6 +172,24 @@ function rr(x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
 // Крупный заголовок, слова выезжают снизу из маски с пружиной
 export function title(text, x, y, t, t0, { size = 120, color = CSS.ink, weight = 900, align = 'center', stagger = 0.07, dur = 0.7, out = null, letter = -2, font = 'Rubik' } = {}) {
   if (t < t0) return;
+  if (PORTRAIT && !arguments[5]?._sub) {
+    x = PX(x); y = PY(y); size = PSZ(size);
+    const maxW = align === 'center' ? W - 120 : W - x - 70;
+    ctx.save(); ctx.font = `${weight} ${size}px "${font}"`; const tw = ctx.measureText(text).width; ctx.restore();
+    const ws = text.split(' ');
+    if (tw > maxW && tw * 0.68 > maxW && ws.length > 1) { // перенос на 2 строки (если ужать сильно)
+      let best = 1, bd = 1e9;
+      for (let i = 1; i < ws.length; i++) { const d = Math.abs(ws.slice(0, i).join(' ').length - ws.slice(i).join(' ').length); if (d < bd) { bd = d; best = i; } }
+      const a = ws.slice(0, best).join(' '), b = ws.slice(best).join(' ');
+      ctx.save(); ctx.font = `${weight} ${size}px "${font}"`; const m = Math.max(ctx.measureText(a).width, ctx.measureText(b).width); ctx.restore();
+      const sz = m > maxW ? size * maxW / m : size;
+      const o = { size: sz, color, weight, align, stagger, dur, out, letter, font, _sub: 1 };
+      const up = y > H / 2 ? sz * 1.08 : 0;
+      title(a, x, y - up, t, t0, o); title(b, x, y - up + sz * 1.08, t, t0 + 0.12, o);
+      return;
+    }
+    if (tw > maxW) size *= maxW / tw;
+  }
   const words = text.split(' ');
   ctx.save(); ctx.font = `${weight} ${size}px "${font}"`; ctx.textBaseline = 'alphabetic';
   if ('letterSpacing' in ctx) ctx.letterSpacing = `${letter}px`;
@@ -186,6 +215,12 @@ export function title(text, x, y, t, t0, { size = 120, color = CSS.ink, weight =
 // Плашка-пилюля
 export function pill(text, x, y, t, t0, { size = 40, bg = CSS.white, color = CSS.ink, dot = null, out = null, align = 'center', weight = 700, padX = 34, padY = 18 } = {}) {
   if (t < t0) return;
+  if (PORTRAIT) {
+    x = PX(x); y = PY(y); size = PSZ(size, 0.92); padX *= 0.85; padY *= 0.85;
+    ctx.save(); ctx.font = `${weight} ${size}px "Rubik"`; const tw = ctx.measureText(text).width + (dot ? size * 0.9 : 0) + padX * 2; ctx.restore();
+    const maxW = align === 'center' ? W - 80 : W - x - 50;
+    if (tw > maxW) size *= maxW / tw;
+  }
   const k = spring(seg(t, t0, t0 + 0.9) * 1.25, 8, 6);
   const fo = out != null ? easeIn(seg(t, out, out + 0.4)) : 0;
   if (k <= 0.001 || fo >= 1) return;
@@ -206,6 +241,7 @@ export function pill(text, x, y, t, t0, { size = 40, bg = CSS.white, color = CSS
 
 export function counter(value, x, y, { size = 200, color = CSS.ink, alpha = 1, suffix = '', align = 'center', font = 'Rubik', weight = 900 } = {}) {
   if (alpha <= 0) return;
+  if (PORTRAIT) { x = PX(x); y = PY(y); size = PSZ(size, 0.8); }
   ctx.save(); ctx.globalAlpha = alpha; ctx.font = `${weight} ${size}px "${font}"`; ctx.textAlign = align; ctx.textBaseline = 'alphabetic';
   if ('letterSpacing' in ctx) ctx.letterSpacing = '-4px';
   ctx.fillStyle = color; ctx.fillText(String(value) + suffix, x, y); ctx.restore();
@@ -213,6 +249,7 @@ export function counter(value, x, y, { size = 200, color = CSS.ink, alpha = 1, s
 
 export function leader(p, x, y, t, t0, { color = CSS.ink, width = 3 } = {}) {
   const k = easeOut(seg(t, t0, t0 + 0.6)); if (k <= 0) return;
+  if (PORTRAIT) { x = PX(x); y = PY(y); }
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.globalAlpha = 0.85; ctx.lineCap = 'round';
   ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(lerp(p.x, x, k), lerp(p.y, y, k)); ctx.stroke();
   ctx.beginPath(); ctx.arc(p.x, p.y, 7, 0, Math.PI * 2); ctx.fillStyle = color; ctx.fill();
@@ -221,6 +258,7 @@ export function leader(p, x, y, t, t0, { color = CSS.ink, width = 3 } = {}) {
 
 // Субтитр закадра
 export function subtitle(words, t, { y = 1000, size = 40 } = {}) {
+  if (PORTRAIT) { y = PY(y); size = PSZ(size, 0.9); }
   const cur = words.filter((w) => w.start <= t + 0.05);
   if (!cur.length) return;
   let i = cur.length - 1; const line = [cur[i]];
@@ -231,14 +269,15 @@ export function subtitle(words, t, { y = 1000, size = 40 } = {}) {
   ctx.save(); ctx.font = `600 ${size}px "Rubik"`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   const w = ctx.measureText(txt).width + 60;
   ctx.globalAlpha = clamp((last.end + 0.6 - t) / 0.3);
-  rr(960 - w / 2, y - size * 0.85, w, size * 1.7, size * 0.85); ctx.fillStyle = 'rgba(43,42,58,0.62)'; ctx.fill();
-  ctx.fillStyle = '#fff'; ctx.fillText(txt, 960, y + 2);
+  rr(W / 2 - w / 2, y - size * 0.85, w, size * 1.7, size * 0.85); ctx.fillStyle = 'rgba(43,42,58,0.62)'; ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.fillText(txt, W / 2, y + 2);
   ctx.restore();
 }
 
 // Переход: мягкий круг цвета фона
 export function iris(p, x = 960, y = 540, color = CSS.cream) {
   if (p <= 0 || p >= 2) return;
+  if (PORTRAIT) { x = PX(x); y = PY(y) ; }
   const R = Math.hypot(W, H);
   ctx.save(); ctx.fillStyle = color;
   if (p < 1) { const r = easeInOut(p) * R; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); }

@@ -1,0 +1,37 @@
+{
+ "name": "moon",
+ "duration": 39.414,
+ "parts": [
+  {
+   "type": "vo",
+   "vo": "m_hook",
+   "scene": "s07",
+   "from": 9.0,
+   "clear": true,
+   "text": [
+    "компьютер",
+    "из бронзы"
+   ],
+   "start": 0.0,
+   "dur": 6.694,
+   "local": 9.0,
+   "vfile": "m_hook.mp3"
+  },
+  {
+   "type": "scene",
+   "id": "s08",
+   "start": 6.694,
+   "dur": 26.32,
+   "local": 0.0,
+   "src": 305.33
+  },
+  {
+   "type": "outro",
+   "scene": "s08",
+   "start": 33.014,
+   "dur": 6.4,
+   "local": 26.32,
+   "vfile": "outro.mp3"
+  }
+ ]
+}

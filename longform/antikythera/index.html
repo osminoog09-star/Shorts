@@ -17,10 +17,10 @@ html,body{margin:0;background:#000}
 <script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
 <script type="module">
 await Promise.all(['900 40px Rubik','700 40px Rubik','600 40px Rubik','40px RMono','40px Neucha','700 40px NSerif'].map(f=>document.fonts.load(f,'АБВabcΗΛΙΟΣ')));
-const F = await import('./film.js');
-window.renderThumb = F.thumb;
-window.DURATION = await F.init();
-const renderAt = F.renderAt;
+const Q = new URLSearchParams(location.search);
+let F, renderAt;
+if (Q.get('short')) { F = await import('./shorts.js'); window.DURATION = await F.init(Q.get('short')); renderAt = F.renderAt; }
+else { F = await import('./film.js'); window.renderThumb = F.thumb; window.DURATION = await F.init(); renderAt = F.renderAt; }
 window.renderAt = renderAt;
 window.READY = true;
 </script></body></html>
