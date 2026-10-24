@@ -127,8 +127,8 @@ const HS = (() => {
 export function hostShot(t, { pose = 'talk', prev = 'rest', k = 1, mouth = 0, push = 0 } = {}) {
   animateHost(HS.host, t, { pose, prev, k, mouth, look: [Math.sin(t * 0.4) * 0.3, 0] });
   ['g64', 'g32', 'g48'].forEach((n, i) => { const g = HS.host.userData[n]; if (g) g.rotation.z = t * (i % 2 ? -0.2 : 0.15); });
-  const tg = v3(0, -0.2 + push * 0.4, 0);
-  orbit(HS.cam, tg, lerp(9.5, 7.8, push), Math.sin(t * 0.3) * 0.12, 0.05);
+  const tg = v3(0, 0.9 - push * 0.2, 0);
+  orbit(HS.cam, tg, lerp(12.5, 10.5, push), Math.sin(t * 0.3) * 0.08, 0.06);
   render(HS.scene, HS.cam, { time: t, focus: HS.cam.position.distanceTo(v3(0, 0.6, 0.8)), aperture: 0.004, maxblur: 0.014, vig: 0.4 });
   clear2d();
 }
