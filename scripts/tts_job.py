@@ -39,9 +39,15 @@ async def main(job_path: str):
         meta = out / f"{ln['id']}.json"
         if mp3.exists() and meta.exists() and json.loads(meta.read_text(encoding="utf-8")).get("text") == ln["text"]:
             continue
-        await one(ln["text"], ln.get("voice", job["voice"]), ln.get("rate", job.get("rate", "+0%")),
-                  ln.get("pitch", job.get("pitch", "+0Hz")), mp3, meta)
-        print("ok", ln["id"])
+        for attempt in range(5):
+            try:
+                await one(ln["text"], ln.get("voice", job["voice"]), ln.get("rate", job.get("rate", "+0%")),
+                          ln.get("pitch", job.get("pitch", "+0Hz")), mp3, meta)
+                print("ok", ln["id"]); break
+            except Exception as ex:  # noqa: BLE001
+                print("retry", ln["id"], attempt, repr(ex)); mp3.unlink(missing_ok=True)
+                await asyncio.sleep(4 + attempt * 6)
+        await asyncio.sleep(1.5)
 
 
 if __name__ == "__main__":
