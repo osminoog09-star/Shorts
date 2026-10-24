@@ -125,22 +125,27 @@ def verify_channel(token,expected):
     items=r.json().get('items',[])
     if not expected or expected not in {i['id'] for i in items}:raise RuntimeError('OAuth account does not match configured channel; upload blocked')
 
+def next_slot(config,lang):
+    from zoneinfo import ZoneInfo
+    zone=ZoneInfo(config.get('timezone','Europe/Tallinn'))
+    history=read(DATA/'production.json',{'runs':[]})
+    used={r.get('videos',{}).get(lang,{}).get('scheduled_at') for r in history.get('runs',[])}
+    slots=[]
+    for date in config.get('release_dates',[]):
+        slot=dt.datetime.fromisoformat(date+'T19:00:00').replace(tzinfo=zone).astimezone(UTC)
+        value=slot.isoformat()
+        if slot>now()+dt.timedelta(hours=2) and value not in used:slots.append(slot)
+    if not slots:raise RuntimeError('No unused allowed future publication date; public upload blocked')
+    return min(slots).isoformat()
+
 def upload(video,project,config,lang):
     channel=config['channels'][lang];token=refresh_access(lang);verify_channel(token,channel['id'])
     sources=sorted({u for f in project.get('facts',[]) for u in f.get('sources',[])})
     desc=str(project.get('description',''))+'\n\n'+ ('Источники:\n' if lang=='ru' else 'Sources:\n')+'\n'.join(sources)+'\n\n'+('Анимация создана кодом. Озвучка синтезирована.' if lang=='ru' else 'Code-generated animation. Synthetic narration.')
     privacy=config.get('privacy','private')
     if privacy not in ('private','unlisted','public'):raise ValueError('Invalid privacy')
-    publish_at=None
-    if privacy=='public':
-        from zoneinfo import ZoneInfo
-        zone=ZoneInfo(config.get('timezone','Europe/Tallinn'))
-        slots=[]
-        for date in config.get('release_dates',[]):
-            slot=dt.datetime.fromisoformat(date+'T19:00:00').replace(tzinfo=zone)
-            if slot.astimezone(UTC)>now()+dt.timedelta(hours=2):slots.append(slot)
-        if not slots:raise RuntimeError('No allowed future publication date; public upload blocked')
-        publish_at=min(slots).astimezone(UTC).isoformat()
+    publish_at=project.get('_scheduled_at')
+    if privacy=='public' and not publish_at:raise RuntimeError('No reserved release slot; public upload blocked')
     metadata={'snippet':{'title':project['title'][:100],'description':desc[:5000],'defaultLanguage':lang,'categoryId':'27','tags':project.get('tags',[])[:12]},'status':{'privacyStatus':privacy,'selfDeclaredMadeForKids':False}}
     if publish_at:metadata['status'].update(privacyStatus='private',publishAt=publish_at)
     r=requests.post('https://www.googleapis.com/upload/youtube/v3/videos',params={'uploadType':'resumable','part':'snippet,status'},headers={'Authorization':'Bearer '+token,'Content-Type':'application/json','X-Upload-Content-Type':'video/mp4','X-Upload-Content-Length':str(Path(video).stat().st_size)},json=metadata,timeout=60)
@@ -152,12 +157,14 @@ def upload(video,project,config,lang):
     return result.json()['id']
 
 def produce(config,trends,out):
+    global GOOGLE_CALLS
     from render import render
     if not config.get('enabled'):print('Autopilot disabled; trends only');return
     # Existing channel calendar is authoritative; do not create a competing RU series.
     for lang,channel in config.get('channels',{}).items():
         if channel.get('id') and channel['id']==config.get('channels',{}).get('en' if lang=='ru' else 'ru',{}).get('id'):raise RuntimeError('RU and EN must target different channels')
     history=read(DATA/'production.json',{'runs':[]});stamp=now().date().isoformat()
+    if any(v.get('status')=='uploading' for r in history['runs'] for v in r.get('videos',{}).values()):raise RuntimeError('Previous upload outcome is uncertain; inspect channel and journal before continuing')
     recent=[r for r in history['runs'] if r.get('status') in ('rendered','uploaded','partial','producing')]
     if recent:
         last=max(dt.datetime.fromisoformat(r['started_at']) for r in recent)
@@ -185,10 +192,13 @@ def produce(config,trends,out):
             if not first:first=project
             job={'id':run['id']+'-'+lang,'project':project,'voice':'ru-RU-DmitryNeural' if lang=='ru' else 'en-US-GuyNeural','tts_provider':config.get('tts_provider','edge'),'tts_model':config.get('tts_model','gemini-3.8-flash-tts'),'google_voice':config.get('google_voice',{}).get(lang,'Kore')}
             if job['tts_provider']=='google' and len(project['scenes'])+GOOGLE_CALLS>config.get('max_google_requests_per_run',8):raise RuntimeError('Google TTS exceeds configured request budget; raise it explicitly or select edge')
-            path=Path(out)/(job['id']+'.json');write(path,job);video=asyncio.run(render(path,out));run['videos'][lang]={'file':video.name,'status':'rendered'};run['status']='partial';write(DATA/'production.json',history)
+            path=Path(out)/(job['id']+'.json');write(path,job);video=asyncio.run(render(path,out));GOOGLE_CALLS+=sum(bool(s.get('text','').strip()) for s in project['scenes']) if job['tts_provider']=='google' else 0;run['videos'][lang]={'file':video.name,'status':'rendered'};run['status']='partial';write(DATA/'production.json',history)
             channel=config.get('channels',{}).get(lang,{})
             if channel.get('upload'):
                 # Record pending first: never automatically retry an upload with an uncertain outcome.
+                if config.get('privacy')=='public':
+                    project['_scheduled_at']=next_slot(config,lang)
+                    run['videos'][lang]['scheduled_at']=project['_scheduled_at']
                 run['videos'][lang]['status']='uploading';write(DATA/'production.json',history)
                 video_id=upload(video,project,config,lang);run['videos'][lang].update(status='uploaded',id=video_id,url='https://youtu.be/'+video_id);write(DATA/'production.json',history)
         run['status']='uploaded' if all(v['status']=='uploaded' for v in run['videos'].values()) else 'rendered'
