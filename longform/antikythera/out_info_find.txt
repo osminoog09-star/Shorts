@@ -1,0 +1,4 @@
+width=1080
+height=1920
+duration=51.733333
+size=11713940
