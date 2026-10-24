@@ -1,0 +1,26 @@
+name: TTS Heron repair
+on:
+  push:
+    paths: ['longform/heron-codex/repair_trigger.txt']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q "edge-tts>=7"
+      - run: python -u scripts/tts_job.py jobs/tts/heron_codex.json
+      - name: Save only Heron speech
+        run: |
+          test -f media/tts/heron_codex/s16.mp3
+          test -f media/tts/heron_codex/s16.json
+          git config user.name "heron-tts"
+          git config user.email "heron-tts@users.noreply.github.com"
+          git add media/tts/heron_codex
+          git diff --cached --quiet && exit 0
+          git commit -m "Restore missing Heron narration fragment"
+          git pull --rebase origin main
+          git push origin HEAD:main
