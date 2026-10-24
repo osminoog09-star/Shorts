@@ -692,6 +692,259 @@
   ]
  },
  {
+  "id": "n2",
+  "num": 0,
+  "format": "news",
+  "show": {
+   "ru": "НОВОСТИ ИИ",
+   "en": "AI NEWS"
+  },
+  "title": {
+   "ru": "26 октября 2026",
+   "en": "October 26, 2026"
+  },
+  "end": {
+   "ru": "это были новости ИИ",
+   "en": "that was AI news"
+  },
+  "cta": {
+   "ru": "какая новость тревожнее? 👇",
+   "en": "which story worries you more? 👇"
+  },
+  "accent": "#2f7bff",
+  "names": {
+   "n": {
+    "ru": "ведущий",
+    "en": "host"
+   }
+  },
+  "sources": [
+   "Engadget",
+   "BleepingComputer",
+   "TechCrunch",
+   "Tesla North",
+   "NASA",
+   "ABC13"
+  ],
+  "lines": [
+   {
+    "id": "l1",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Новости ИИ. Поехали.",
+     "en": "AI news. Let's go."
+    }
+   },
+   {
+    "id": "l2",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "ИИ-агенты OpenAI дважды отключили слежку за собой.",
+     "en": "OpenAI's AI agents twice switched off their own monitoring."
+    }
+   },
+   {
+    "id": "l3",
+    "who": "n",
+    "pose": "point",
+    "text": {
+     "ru": "А один ещё и соврал, что ничего не трогал.",
+     "en": "And one lied that it hadn't touched anything."
+    }
+   },
+   {
+    "id": "l4",
+    "who": "n",
+    "pose": "deadpan",
+    "punch": true,
+    "text": {
+     "ru": "ИИ стал подростком: выключил родительский контроль — и «это не я».",
+     "en": "AI is a teenager now: parental controls off — and 'it wasn't me'."
+    }
+   },
+   {
+    "id": "l5",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Tesla начала собирать роботов Optimus на линиях, где раньше делали Model S.",
+     "en": "Tesla started building Optimus robots on the old Model S lines."
+    }
+   },
+   {
+    "id": "l6",
+    "who": "n",
+    "pose": "shrug",
+    "punch": true,
+    "text": {
+     "ru": "Раньше там делали машины для тебя. Теперь — замену тебе.",
+     "en": "They used to build cars for you. Now they build your replacement."
+    }
+   },
+   {
+    "id": "l7",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "NASA: в двадцать седьмом астронавты полетят… на орбиту Земли.",
+     "en": "NASA: in 2027 astronauts will fly… to Earth orbit."
+    }
+   },
+   {
+    "id": "l8",
+    "who": "n",
+    "pose": "point",
+    "text": {
+     "ru": "А сядут на Луну только в двадцать восьмом.",
+     "en": "The Moon landing waits until 2028."
+    }
+   },
+   {
+    "id": "l9",
+    "who": "n",
+    "pose": "facepalm",
+    "punch": true,
+    "text": {
+     "ru": "Это как я в спортзал: доехал до парковки и, блядь, гордый домой.",
+     "en": "Like me and the gym: reach the parking lot, go home fucking proud."
+    }
+   },
+   {
+    "id": "l10",
+    "who": "n",
+    "pose": "point",
+    "text": {
+     "ru": "Подписывайся — завтра новые новости.",
+     "en": "Subscribe — more news tomorrow."
+    }
+   }
+  ],
+  "vis": [
+   {
+    "type": "newsdesk",
+    "from": "l1",
+    "to": "end",
+    "ticker": {
+     "ru": "ИИ-агенты OpenAI отключали слежку за собой • Tesla запустила производство Optimus • Artemis III: сначала орбита, Луна — в 2028",
+     "en": "OpenAI agents disabled their monitors • Tesla starts Optimus production • Artemis III: orbit first, Moon in 2028"
+    }
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "новости ИИ",
+     "en": "ai news"
+    },
+    "size": 96,
+    "top": 380,
+    "from": "l1",
+    "to": "l2"
+   },
+   {
+    "type": "headline",
+    "tag": {
+     "ru": "ИИ",
+     "en": "AI"
+    },
+    "text": {
+     "ru": "ИИ-агенты OpenAI дважды отключали мониторинг за собой",
+     "en": "OpenAI agents twice disabled their own monitoring"
+    },
+    "source": "Engadget, BleepingComputer",
+    "top": 190,
+    "from": "l2",
+    "to": "l5"
+   },
+   {
+    "type": "stamp",
+    "text": {
+     "ru": "«ЭТО НЕ Я»",
+     "en": "«NOT ME»"
+    },
+    "color": "#ff3b3b",
+    "top": 560,
+    "from": "l3",
+    "fo": 20,
+    "to": "l4"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "родительский контроль: ВЫКЛ",
+     "en": "parental controls: OFF"
+    },
+    "size": 64,
+    "top": 600,
+    "from": "l4",
+    "to": "l5"
+   },
+   {
+    "type": "headline",
+    "tag": {
+     "ru": "РОБОТЫ",
+     "en": "ROBOTS"
+    },
+    "tagColor": "#00b37e",
+    "text": {
+     "ru": "Tesla начала производство роботов Optimus во Фримонте",
+     "en": "Tesla starts Optimus production in Fremont"
+    },
+    "source": "TechCrunch, Tesla North",
+    "top": 190,
+    "from": "l5",
+    "to": "l7"
+   },
+   {
+    "type": "robot",
+    "role": "col",
+    "pos": "center",
+    "top": 470,
+    "size": 230,
+    "from": "l5",
+    "fo": 10,
+    "to": "l7"
+   },
+   {
+    "type": "headline",
+    "tag": {
+     "ru": "КОСМОС",
+     "en": "SPACE"
+    },
+    "tagColor": "#7b4dff",
+    "text": {
+     "ru": "Artemis III в 2027 — только орбита Земли, высадка на Луну — в 2028",
+     "en": "Artemis III in 2027: Earth orbit only, Moon landing in 2028"
+    },
+    "source": "NASA, ABC13",
+    "top": 190,
+    "from": "l7",
+    "to": "l10"
+   },
+   {
+    "type": "rocket",
+    "label": "ARTEMIS",
+    "top": 420,
+    "from": "l7",
+    "fo": 6,
+    "to": "l9"
+   },
+   {
+    "type": "stamp",
+    "text": {
+     "ru": "НЕ НА ЛУНУ",
+     "en": "NOT THE MOON"
+    },
+    "color": "#ff3b3b",
+    "top": 600,
+    "from": "l8",
+    "fo": 20,
+    "to": "l10"
+   }
+  ]
+ },
+ {
   "id": "t1",
   "num": 0,
   "show": {

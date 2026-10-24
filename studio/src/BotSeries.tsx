@@ -487,7 +487,7 @@ export const BotEpisode: React.FC<{ep: string; lang: Lang}> = ({ep, lang}) => {
                 <path d="M0,-260 C40,-220 50,-150 50,-80 L50,190 L-50,190 L-50,-80 C-50,-150 -40,-220 0,-260 Z" fill="url(#rk)" stroke="#6b7385" strokeWidth={4} />
                 <circle cx={0} cy={-110} r={22} fill="#2f7bff" stroke="#1a3d80" strokeWidth={5} />
                 <path d="M-50,120 L-95,200 L-50,190 Z M50,120 L95,200 L50,190 Z" fill="#d7202f" />
-                <text x={0} y={60} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={22} fill="#1a1a1a" transform="rotate(-90,0,60)">STARLINK</text>
+                <text x={0} y={60} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={22} fill="#1a1a1a" transform="rotate(-90,0,60)">{v.label ? tx(v.label, lang) : 'STARLINK'}</text>
               </g>
               {rain && (
                 <g>

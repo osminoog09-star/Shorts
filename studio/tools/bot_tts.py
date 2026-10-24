@@ -96,11 +96,12 @@ try:
     res = json.load(open(f"{ROOT}/src/{TLN}.json"))
 except Exception:
     res = {}
+LANGS = os.environ.get("LANGS", "ru,en").split(",")
 for ep in EPS:
     if ONLY and ep["id"] not in ONLY:
         continue
     res[ep["id"]] = {}
-    for lang in ("ru", "en"):
+    for lang in LANGS:
         d = f"{ROOT}/public/bot/{ep['id']}/{lang}"
         os.makedirs(d, exist_ok=True)
         cur, lines, mouth = TITLE, {}, []
@@ -125,6 +126,8 @@ for ep in EPS:
         res[ep["id"]][lang] = {"lines": lines, "total": total, "mouth": mouth[:total]}
         subprocess.run(["python3", f"{ROOT}/tools/music.py", f"{ROOT}/public", str(total / FPS + 0.5), "999", "999", f"music_bot_{ep['id']}_{lang}"], check=True, capture_output=True)
         print(ep["id"], lang, round(total / FPS, 1), "s")
+    for lang in ("ru", "en"):
+        res[ep["id"]].setdefault(lang, res[ep["id"]][LANGS[0]])  # заглушка для неозвученного языка
 json.dump(res, open(f"{ROOT}/src/{TLN}.json", "w"))
 
 # доп. звуки
