@@ -15,9 +15,16 @@ on:
       audio:
         description: "Аудиофайл внутри проекта"
         default: "audio/antikythera_mix.m4a"
+      only:
+        description: "Перерендерить только эти куски (через запятую), остальные взять из base_run"
+        default: ""
+      base_run:
+        description: "ID прошлого запуска, откуда взять неизменённые куски"
+        default: ""
 
 permissions:
   contents: write
+  actions: read
 
 jobs:
   plan:
@@ -27,7 +34,7 @@ jobs:
     steps:
       - id: p
         run: |
-          python3 -c "import json;print('idx='+json.dumps(list(range(int('${{ inputs.chunks }}')))))" >> $GITHUB_OUTPUT
+          python3 -c "import json;o='${{ inputs.only }}'.strip();print('idx='+json.dumps([int(x) for x in o.split(',')] if o else list(range(int('${{ inputs.chunks }}')))))" >> $GITHUB_OUTPUT
 
   chunk:
     needs: plan
@@ -71,8 +78,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Wait for base run
+        if: inputs.base_run != ''
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          for k in $(seq 1 120); do st=$(gh api repos/${{ github.repository }}/actions/runs/${{ inputs.base_run }} -q .status); echo "$st"; [ "$st" = completed ] && break; sleep 60; done
+      - uses: actions/download-artifact@v4
+        if: inputs.base_run != ''
+        with: { path: base, pattern: chunk-*, merge-multiple: true, run-id: "${{ inputs.base_run }}", github-token: "${{ github.token }}" }
       - uses: actions/download-artifact@v4
         with: { path: chunks, pattern: chunk-*, merge-multiple: true }
+      - name: Fill unchanged chunks from base
+        if: inputs.base_run != ''
+        run: |
+          ls chunks; cp -n base/*.mp4 chunks/; ls chunks | wc -l
       - name: Join + audio
         run: |
           sudo apt-get update -q && sudo apt-get install -y -q ffmpeg >/dev/null

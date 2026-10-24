@@ -160,7 +160,7 @@ const N4 = (() => {
   // «карта»: плоскость-остров с булавками
   const mapG = new THREE.Group(); mapG.position.set(9, -1.5, 0); S.scene.add(mapG);
   const land = sphere(3.2, matte(C.sage), 32); land.scale.set(1.3, 0.12, 1.0); mapG.add(land);
-  const pins = [['Сиракузы', -2.6, 2.0, C.coral, false], ['Эпир · Додона', -1.2, -1.6, C.mint, true], ['Коринф', 0.6, 0.2, C.lav, true], ['Олимпия', -0.6, 0.9, C.butter, true], ['Родос', 3.0, 1.6, C.sky, true]];
+  const pins = [['Сиракузы', -2.6, 2.0, C.coral, false], ['Эпир · Додона', -1.6, -0.6, C.mint, true], ['Коринф', 0.6, 0.2, C.lav, true], ['Олимпия', -0.6, 0.9, C.butter, true], ['Родос', 3.0, 1.6, C.sky, true]];
   const pinObjs = pins.map(([n, x, z, c]) => { const g = new THREE.Group(); const stem = cyl(0.04, 0.8, gloss(C.white), 10); stem.position.y = 0.4; g.add(stem); const head = sphere(0.18, gloss(c)); head.position.y = 0.85; g.add(head); g.position.set(x, 0.35, z); mapG.add(g); const l = textSprite(n, { size: 44, scale: 0.8 }); l.position.set(x, 1.6, z); mapG.add(l); return { g, l }; });
   return { ...S, ringG, tabs, mapG, pinObjs };
 })();
@@ -168,6 +168,7 @@ export function n4(t) {
   const S = N4, id = 'n4';
   S.ringG.rotation.z = t * 0.12;
   const toMap = easeIO2(seg(t, cue(id, 'исследование') - 0.2, cue(id, 'исследование') + 2.0));
+  S.ringG.visible = toMap < 0.9;
   const pinT = [cue(id, 'сиракуз'), cue(id, 'эпира'), cue(id, 'коринфские'), cue(id, 'олимпийскими'), cue(id, 'родос')];
   S.pinObjs.forEach((p, i) => { popScale(p.g, t, pinT[i] < 9000 ? Math.max(pinT[i], cue(id, 'исследование')) : 9999, 0.8, v3(1, 1, 1)); popScale(p.l, t, pinT[i] < 9000 ? Math.max(pinT[i], cue(id, 'исследование')) + 0.1 : 9999); });
   const tg = v3(lerp(0.6, 9, toMap), lerp(0.4, -1.0, toMap), 0);
@@ -192,7 +193,7 @@ const N5 = (() => {
   const yl = [200, 150, 100, 50].map((y) => { const s = textSprite(`${y} до н. э.`, { size: 44, scale: 1.1, bg: null, color: CSS.deep, weight: 700 }); s.position.set(X(y), -0.1, 1.2); S.scene.add(s); return s; });
   const band = rbox(Math.abs(X(67) - X(76)), 0.1, 1.5, gloss(C.gold, { transparent: true, opacity: 0.8 }), 0.04); band.position.set((X(76) + X(67)) / 2, -0.24, 0); S.scene.add(band);
   const mk = (y, c, txt, ly = 2.2) => { const g = new THREE.Group(); const stem = cyl(0.05, 1.6, gloss(C.white), 12); stem.position.y = 0.8; g.add(stem); const head = sphere(0.25, gloss(c)); head.position.y = 1.7; g.add(head); g.position.set(X(y), -0.3, 0); S.scene.add(g); const l = textSprite(txt, { size: 52, scale: 1.1 }); l.position.set(X(y), ly, 0); S.scene.add(l); return { g, l }; };
-  const m87 = mk(87, C.sky, 'Прайс: ≈ 87'), m205 = mk(205, C.coral, '2014: 205 · новолуние'), m178 = mk(178, C.mint, '2022: 178 · настройка', 2.9), coins = mk(71.5, C.gold, 'монеты 76–67');
+  const m87 = mk(87, C.sky, 'Прайс: ≈ 87', 3.1), m205 = mk(205, C.coral, '2014: 205 · новолуние'), m178 = mk(178, C.mint, '2022: 178 · настройка', 2.9), coins = mk(71.5, C.gold, 'монеты 76–67');
   return { ...S, X, band, m87, m205, m178, coins };
 })();
 export function n5(t) {

@@ -253,8 +253,8 @@ export function s05(t) {
   pill('1951', 140, 150, t, 3.7, { dot: CSS.gold, align: 'left', size: 46, out: 16.5 });
   pill('Дерек де Солла Прайс · историк науки', 140, 245, t, 6.8, { align: 'left', out: 16.5 });
   pill('Хараламбос Каракалос · физик', 140, 335, t, 10.4, { align: 'left', out: 16.5 });
-  title('рентген и гамма-лучи', 140, 1000, t, 12.4, { size: 76, align: 'left', out: 16.6 });
-  title('внутри — десятки колёс', 140, 1000, t, 15.0, { size: 76, align: 'left', out: 21.0, color: '#7a63e6' });
+  title('рентген и гамма-лучи', 140, 1000, t, 12.4, { size: 76, align: 'left', out: 14.6 });
+  title('внутри — десятки колёс', 140, 1000, t, 15.3, { size: 76, align: 'left', out: 21.0, color: '#7a63e6' });
   pill('1974', 140, 150, t, 17.3, { dot: CSS.gold, align: 'left', size: 46, out: 25.8 });
   title('но до конца — не успел', 140, 1000, t, 22.0, { size: 76, align: 'left', out: 25.8 });
 }
