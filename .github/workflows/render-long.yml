@@ -115,6 +115,6 @@ jobs:
         run: |
           git config user.name "render-bot"
           git config user.email "render-bot@users.noreply.github.com"
-          git add videos/long longform/${{ inputs.project }}/out_info.txt longform/${{ inputs.project }}/contact.jpg
+          git add -A videos/long longform/${{ inputs.project }}
           git commit -m "render: ${{ inputs.project }} ${{ inputs.short }}"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done

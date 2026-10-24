@@ -9,6 +9,7 @@ on:
       patch_run: { description: "Запуск с исправленными кусками (перекрывают базовые)", default: "" }
       audio: { default: "audio/antikythera_mix.m4a" }
       fps: { default: "30" }
+      short: { description: "Имя вертикальной нарезки (пусто = полный фильм)", default: "" }
 
 permissions:
   contents: write
@@ -31,23 +32,29 @@ jobs:
           ls chunks | wc -l
           ls chunks | sort | sed "s#^#file '$PWD/chunks/#; s#\$#'#" > list.txt
           P=longform/${{ inputs.project }}; mkdir -p rel
-          OUT=rel/${{ inputs.project }}.mp4
-          ffmpeg -v error -y -f concat -safe 0 -i list.txt -i $P/${{ inputs.audio }} -map 0:v -map 1:a -shortest \
+          OUT=rel/${{ inputs.project }}.mp4; AUD=$P/${{ inputs.audio }}
+          if [ -n "${{ inputs.short }}" ]; then OUT=rel/${{ inputs.project }}_short_${{ inputs.short }}.mp4; AUD=$P/audio/short_${{ inputs.short }}.m4a; fi
+          ffmpeg -v error -y -f concat -safe 0 -i list.txt -i $AUD -map 0:v -map 1:a -shortest \
             -c:v libx264 -preset slow -crf 22 -maxrate 2600k -bufsize 5200k -pix_fmt yuv420p -r ${{ inputs.fps }} \
             -c:a aac -b:a 192k -movflags +faststart $OUT
-          ffprobe -v error -show_entries format=duration,size:stream=width,height,r_frame_rate,codec_name -of default=nw=1 $OUT | tee $P/out_info.txt
-          ffmpeg -v error -y -i $OUT -vf "fps=1/10,scale=480:-1,tile=6x6" -frames:v 1 $P/contact.jpg
-          for t in 5 160 290 380 590; do ffmpeg -v error -y -ss $t -i $OUT -frames:v 1 -vf scale=960:-1 $P/check_$t.jpg; done
+          if [ -n "${{ inputs.short }}" ]; then
+            mkdir -p videos/long; cp $OUT videos/long/
+            ffprobe -v error -show_entries format=duration,size:stream=width,height -of default=nw=1 $OUT | tee $P/out_info_${{ inputs.short }}.txt
+          else
+            ffprobe -v error -show_entries format=duration,size:stream=width,height,r_frame_rate,codec_name -of default=nw=1 $OUT | tee $P/out_info.txt
+            ffmpeg -v error -y -i $OUT -vf "fps=1/10,scale=480:-1,tile=6x6" -frames:v 1 $P/contact.jpg
+            for t in 5 160 290 380 590; do ffmpeg -v error -y -ss $t -i $OUT -frames:v 1 -vf scale=960:-1 $P/check_$t.jpg; done
+          fi
       - name: Release upload
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           TAG=long-${{ inputs.project }}
           gh release view $TAG >/dev/null 2>&1 || gh release create $TAG --title "$TAG" --notes "Длинное видео ${{ inputs.project }}"
-          gh release upload $TAG rel/${{ inputs.project }}.mp4 --clobber
-          echo "https://github.com/${{ github.repository }}/releases/download/$TAG/${{ inputs.project }}.mp4" > longform/${{ inputs.project }}/release_url.txt
+          F=$(ls rel/*.mp4); gh release upload $TAG $F --clobber
+          [ -z "${{ inputs.short }}" ] && echo "https://github.com/${{ github.repository }}/releases/download/$TAG/${{ inputs.project }}.mp4" > longform/${{ inputs.project }}/release_url.txt || true
       - name: Commit info
         run: |
           git config user.name "render-bot"; git config user.email "render-bot@users.noreply.github.com"
-          git add longform/${{ inputs.project }}/out_info.txt longform/${{ inputs.project }}/contact.jpg longform/${{ inputs.project }}/check_*.jpg longform/${{ inputs.project }}/release_url.txt
-          git commit -m "join: ${{ inputs.project }}"
+          git add -A longform/${{ inputs.project }} videos/long
+          git commit -m "join: ${{ inputs.project }} ${{ inputs.short }}"
           for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && exit 0; sleep 7; done; exit 1
