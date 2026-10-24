@@ -221,7 +221,25 @@ def mix(cfg, out):
     for v in cfg.get('voice', []):
         put(voice, load_audio(v['file']) * v.get('gain', 1.0), v['at'])
     m = cfg.get('music')
-    mus = music(D, m.get('bpm', 112), m['sections']) if m else np.zeros(n)
+    if m and m.get('beds'):
+        mus = np.zeros(n)
+        xf = int(SR * 2.5)
+        for bd in m['beds']:
+            src = load_audio(bd['file'])
+            a0, a1 = int(bd['from'] * SR), min(n, int(bd['to'] * SR))
+            L = a1 - a0
+            if L <= 0: continue
+            reps = int(np.ceil(L / max(1, len(src) - xf))) + 1
+            seq = src.copy()
+            for _ in range(reps - 1):  # петля с кроссфейдом
+                fade = np.linspace(0, 1, xf)
+                seq = np.concatenate([seq[:-xf], seq[-xf:] * (1 - fade) + src[:xf] * fade, src[xf:]])
+            seq = seq[:L + xf] * bd.get('gain', 1.0)
+            env = np.ones(len(seq)); env[:xf] = np.linspace(0, 1, xf); env[-xf:] = np.linspace(1, 0, xf)
+            put(mus, seq * env, max(0, bd['from'] - (1.25 if bd['from'] > 0 else 0)))
+        mus = mus[:n]
+    else:
+        mus = music(D, m.get('bpm', 112), m['sections']) if m else np.zeros(n)
     # дакинг музыки под голос
     envv = np.abs(voice)
     k = int(SR * 0.25)

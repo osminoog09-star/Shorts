@@ -82,5 +82,15 @@ music = {"bpm": 100, "gain": 0.32, "sections": [
   {"at": S("n7", 0), "style": "tense"}, {"at": S("n8", 0), "style": "groove"}, {"at": S("n9", 0), "style": "intro"},
   {"at": S(11, 0), "style": "mystery"}, {"at": S(11, 18.8), "style": "big"},
 ]}
+# Лицензированные подложки: Kevin MacLeod (incompetech.com), CC BY 4.0 — атрибуция в PUBLISH.md
+MM = "../../media/music/"
+music["gain"] = 0.2
+music["beds"] = [
+  {"file": MM + "Investigations.mp3", "from": 0, "to": S("s03", 0), "gain": 0.85},
+  {"file": MM + "Lightless Dawn.mp3", "from": S("s03", 0), "to": S("s07", 0), "gain": 2.6},
+  {"file": MM + "Clean Soul.mp3", "from": S("s07", 0), "to": S("s10", 0), "gain": 2.6},
+  {"file": MM + "Mesmerize.mp3", "from": S("s10", 0), "to": S("n9", 0), "gain": 2.2},
+  {"file": MM + "Inspired.mp3", "from": S("n9", 0), "to": total, "gain": 0.5},
+]
 json.dump({"duration": round(total, 3), "voice": voice, "music": music, "sfx": sfx}, open("cues.json", "w"), ensure_ascii=False, indent=1)
 print("total", total, "sfx", len(sfx))

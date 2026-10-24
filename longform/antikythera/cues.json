@@ -88,7 +88,7 @@
  ],
  "music": {
   "bpm": 100,
-  "gain": 0.32,
+  "gain": 0.2,
   "sections": [
    {
     "at": 0,
@@ -197,6 +197,38 @@
    {
     "at": 581.65,
     "style": "big"
+   }
+  ],
+  "beds": [
+   {
+    "file": "../../media/music/Investigations.mp3",
+    "from": 0,
+    "to": 80.77,
+    "gain": 0.85
+   },
+   {
+    "file": "../../media/music/Lightless Dawn.mp3",
+    "from": 80.77,
+    "to": 234.97,
+    "gain": 2.6
+   },
+   {
+    "file": "../../media/music/Clean Soul.mp3",
+    "from": 234.97,
+    "to": 398.55,
+    "gain": 2.6
+   },
+   {
+    "file": "../../media/music/Mesmerize.mp3",
+    "from": 398.55,
+    "to": 535.25,
+    "gain": 2.2
+   },
+   {
+    "file": "../../media/music/Inspired.mp3",
+    "from": 535.25,
+    "to": 595.45,
+    "gain": 0.5
    }
   ]
  },

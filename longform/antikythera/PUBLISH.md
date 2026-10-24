@@ -36,6 +36,15 @@
 • Antikythera wreck — Wikipedia (экспедиции 1900–1901, Кусто 1976, «Возвращение на Антикитеру» 2012–2022)
 • Carman & Evans, 2014 (датировка по шкале Сарос)
 
+Музыка:
+"Investigations" Kevin MacLeod (incompetech.com)
+"Lightless Dawn" Kevin MacLeod (incompetech.com)
+"Clean Soul" Kevin MacLeod (incompetech.com)
+"Mesmerize" Kevin MacLeod (incompetech.com)
+"Inspired" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
 Пиши в комментариях: что через 2000 лет найдут от наших компьютеров?
 
 #история #археология #древниетехнологии #антикитерскиймеханизм #наука
