@@ -106,7 +106,7 @@ EPS = [
         ],
     },
     {
-        "id": "n2", "num": 0, "format": "news", "show": T("НОВОСТИ ИИ", "AI NEWS"), "title": T("26 октября 2026", "October 26, 2026"),
+        "id": "n2", "num": 0, "format": "news", "show": T("НОВОСТИ ИИ", "AI NEWS"), "title": T("24 октября 2026", "October 24, 2026"),
         "end": T("это были новости ИИ", "that was AI news"),
         "cta": T("какая новость тревожнее? 👇", "which story worries you more? 👇"),
         "accent": "#2f7bff",
