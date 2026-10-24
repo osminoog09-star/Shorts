@@ -3,3 +3,12 @@ out/
 audio/
 __pycache__/
 shards/
+
+native_*.wav
+native_shards/
+native.json
+native_matrix.json
+timeline-*.json
+
+v2_shards/
+v2_matrix.json
