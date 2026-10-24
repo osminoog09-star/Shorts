@@ -2,3 +2,4 @@ node_modules/
 voices/
 out/
 *.raw.wav
+package-lock.json
