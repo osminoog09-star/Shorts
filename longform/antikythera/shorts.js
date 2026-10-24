@@ -1,11 +1,14 @@
 // Вертикальные нарезки (Shorts) из сцен основного фильма. Запуск: index.html?portrait&short=<name>
 import { iris, seg, clear2d, ctx, title, pill, W, H, CSS, easeOut, clamp } from './engine.js';
-import { init as filmInit, FN, BG } from './film.js';
+import { init as filmInit, FN as FN0, BG } from './film.js';
+import { host1 } from './scenes_host.js';
+const FN = { ...FN0, host1 };
 
 let TL = null;
 export async function init(name) {
   await filmInit(); // слова и сцены основного фильма
   TL = await (await fetch(`./shorts/${name}.json`)).json();
+  if (TL.beats) window.HOSTBEATS = TL.beats;
   return TL.duration;
 }
 
@@ -32,7 +35,7 @@ export function renderAt(t) {
   const sid = p.id || p.scene;
   if (p.type === 'scene') FN[sid](p.local + lt);
   else if (p.type === 'vo') { FN[sid](p.local + lt * 0.6); if (p.clear) { clear2d(); hookText(p.text, lt); } }
-  else { FN[sid](p.local + lt * 0.5); clear2d(); outro(lt, p.dur); }
+  else if (p.type === 'outro') { FN[sid](p.local + lt * 0.5); clear2d(); outro(lt, p.dur); }
   if (i === 0 && p.type !== 'scene') iris(1 + seg(lt, 0, 0.5), 960, 540, BG[sid] || CSS.cream);
   const nx = P[i + 1];
   if (nx && nx.type !== 'outro') { const ns = nx.id || nx.scene; iris(seg(lt, p.dur - 0.6, p.dur), 960, 540, BG[ns] || CSS.cream); }
