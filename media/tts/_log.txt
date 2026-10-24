@@ -1,11 +1,6 @@
 Name: edge-tts
 Version: 7.3.1
-retry coin 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry coin 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok coin
-retry steam 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry steam 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry steam 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry steam 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok steam
-ok ending
+ok h1
+ok h2
+ok h3
+ok h4
