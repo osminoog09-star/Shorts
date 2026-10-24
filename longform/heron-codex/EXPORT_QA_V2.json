@@ -28,6 +28,12 @@
       "decoded": true
     }
   ],
-  "visual_review": "pending agent inspection of decoded frames",
-  "full_audio_listen": "not performed by this automated script"
+  "visual_review": {
+    "date": "2026-10-24",
+    "scope": "Decoded final MP4 frames: 23 scene midpoints, 44 samples bracketing all 22 scene boundaries, 3 beginning/end samples, 8 portrait samples.",
+    "result": "No text overlap or missing scenes found in inspected samples; fade around scene boundaries is intentional.",
+    "limitation": "Frame inspection does not establish complete continuous motion/audio perception.",
+    "user_preview_approval": "Denis approved the 28.433-second V2 first-scene preview: «Все хорошо. Давай делай полный»."
+  },
+  "full_audio_listen": "Not performed by the agent. Automated full decode and audio peak/RMS checks passed. User approved first-scene preview."
 }
