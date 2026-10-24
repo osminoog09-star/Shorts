@@ -1,11 +1,13 @@
 Name: edge-tts
 Version: 7.3.1
-ok n1
-ok n2
-ok n3
-ok n4
-ok n5
-ok n6
-ok n7
-ok n8
-ok n9
+ok f_bridge
+retry m_hook 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+ok m_hook
+retry j_hook 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry j_hook 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+ok j_hook
+retry outro 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry outro 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry outro 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry outro 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+ok outro
