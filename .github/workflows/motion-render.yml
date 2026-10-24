@@ -1,0 +1,51 @@
+name: Motion Studio · render MP4
+on:
+  push:
+    paths: ['jobs/motion/*.json']
+  workflow_dispatch:
+    inputs:
+      job:
+        description: 'Job JSON path inside jobs/motion/'
+        required: true
+        default: 'jobs/motion/demo.json'
+permissions:
+  contents: read
+concurrency:
+  group: motion-render
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install 'edge-tts>=7,<8' 'playwright>=1.48,<2' 'requests>=2.32,<3'
+      - run: python -m playwright install --with-deps chromium
+      - name: Render requested jobs
+        env:
+          REQUESTED_JOB: ${{ inputs.job }}
+          BEFORE: ${{ github.event.before }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python - <<'PY'
+          import os,subprocess
+          from pathlib import Path
+          if os.environ.get('REQUESTED_JOB'):
+              jobs=[os.environ['REQUESTED_JOB']]
+          else:
+              subprocess.run(['git','fetch','--depth=2','origin','main'],check=True)
+              jobs=subprocess.check_output(['git','diff','--name-only',os.environ['BEFORE'],'HEAD','--','jobs/motion/']).decode().splitlines()
+          for job in jobs[:2]:
+              p=Path(job)
+              if p.parent.as_posix()!='jobs/motion' or p.suffix!='.json' or not p.is_file():raise ValueError('Invalid job path')
+              subprocess.run(['python','motion-studio/automation/render.py',str(p),'motion-output'],check=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: motion-videos-${{ github.run_id }}
+          path: motion-output/
+          retention-days: 14

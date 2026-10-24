@@ -1,0 +1,32 @@
+name: Motion Studio · smoke test
+on:
+  push:
+    paths: ['motion-studio/app.js', 'motion-studio/automation/render.py', '.github/workflows/motion-smoke.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install 'playwright>=1.48,<2' 'edge-tts>=7,<8' 'requests>=2.32,<3'
+      - run: python -m playwright install --with-deps chromium
+      - name: Render two silent scenes and verify stream
+        run: |
+          python - <<'PY'
+          import json
+          p={'id':'smoke','project':{'title':'Smoke check','format':'landscape','theme':'atlas','resolution':720,'scenes':[{'title':'MOTION CHECK','text':'','duration':2,'type':'dialogue','items':['CODEX','M1LASH'],'country':''},{'title':'NEXT SCENE','text':'','duration':2,'type':'compare','items':['BEFORE','AFTER'],'country':''}]}}
+          open('/tmp/motion-smoke.json','w').write(json.dumps(p))
+          PY
+          python motion-studio/automation/render.py /tmp/motion-smoke.json motion-output
+          ffprobe -v error -show_entries stream=codec_name,width,height -show_entries format=duration -of json motion-output/smoke.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: motion-smoke-proof
+          path: motion-output/
+          retention-days: 7

@@ -1,0 +1,48 @@
+name: Motion Studio · trends
+on:
+  schedule:
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+  push:
+    paths: ['motion-studio/automation/config.json', '.github/workflows/motion-trends.yml']
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: motion-trends
+  cancel-in-progress: false
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install 'requests>=2.32,<3'
+      - name: Scan public YouTube signals
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python motion-studio/automation/pipeline.py scan
+      - name: Commit measured data only
+        run: |
+          git config user.name motion-studio-bot
+          git config user.email motion-studio-bot@users.noreply.github.com
+          git add motion-studio/data/
+          git diff --cached --quiet && exit 0
+          git commit -m 'motion: update trend radar measurements'
+          git pull --rebase origin main
+          git push
+      - name: Prepare browser assets
+        run: |
+          mkdir -p _site
+          cp motion-studio/index.html motion-studio/app.js motion-studio/style.css motion-studio/world.json _site/
+          cp -r motion-studio/data _site/data
+          touch _site/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - uses: actions/deploy-pages@v4

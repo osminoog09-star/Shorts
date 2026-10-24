@@ -1,0 +1,46 @@
+{
+  "enabled": false,
+  "timezone": "Europe/Tallinn",
+  "languages": [
+    "ru",
+    "en"
+  ],
+  "niches": [
+    "инженерия древности",
+    "география и история брендов",
+    "ИИ и технологии"
+  ],
+  "queries": [
+    "ancient engineering explained",
+    "geography animated map",
+    "AI agents explained"
+  ],
+  "scan_days": 7,
+  "duration_seconds": 480,
+  "min_days_between_videos": 3,
+  "max_generated_per_run": 1,
+  "google_model": "gemini-flash-latest",
+  "tts_model": "gemini-3.8-flash-tts",
+  "tts_provider": "edge",
+  "google_voice": {
+    "ru": "Kore",
+    "en": "Charon"
+  },
+  "channels": {
+    "ru": {
+      "id": "",
+      "name": "M1lash",
+      "upload": false
+    },
+    "en": {
+      "id": "",
+      "name": "English channel",
+      "upload": false
+    }
+  },
+  "privacy": "private",
+  "require_fact_gate": true,
+  "max_google_requests_per_run": 8,
+  "notes": "Автопилот активируется после настройки секретов и каналов. Сканирование трендов работает отдельно. Календарь M1lash в AGENTS.md важнее этого расписания.",
+  "release_dates": []
+}

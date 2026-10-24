@@ -1,0 +1,60 @@
+name: Motion Studio · autopilot RU + EN
+on:
+  schedule:
+    - cron: '47 6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: motion-autopilot
+  cancel-in-progress: false
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check activation
+        id: config
+        run: |
+          python - <<'PY'
+          import json,os
+          c=json.load(open('motion-studio/automation/config.json'))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('enabled='+str(bool(c.get('enabled'))).lower()+'\n')
+          PY
+      - uses: actions/setup-python@v5
+        if: steps.config.outputs.enabled == 'true'
+        with:
+          python-version: '3.12'
+      - if: steps.config.outputs.enabled == 'true'
+        run: pip install 'requests>=2.32,<3' 'edge-tts>=7,<8' 'playwright>=1.48,<2'
+      - if: steps.config.outputs.enabled == 'true'
+        run: python -m playwright install --with-deps chromium
+      - name: Produce bilingual release
+        if: steps.config.outputs.enabled == 'true'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YOUTUBE_REFRESH_TOKEN_EN: ${{ secrets.YOUTUBE_REFRESH_TOKEN_EN }}
+        run: |
+          python motion-studio/automation/pipeline.py scan
+          python motion-studio/automation/pipeline.py produce
+      - name: Save production journal
+        if: always() && steps.config.outputs.enabled == 'true'
+        run: |
+          git config user.name motion-studio-bot
+          git config user.email motion-studio-bot@users.noreply.github.com
+          git add motion-studio/data/
+          git diff --cached --quiet && exit 0
+          git commit -m 'motion: production journal'
+          git pull --rebase origin main
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.config.outputs.enabled == 'true'
+        with:
+          name: bilingual-videos-${{ github.run_id }}
+          path: motion-output/
+          retention-days: 14

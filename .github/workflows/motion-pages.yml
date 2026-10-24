@@ -1,0 +1,35 @@
+name: Motion Studio · GitHub Pages
+on:
+  push:
+    branches: [main]
+    paths: ['motion-studio/**', '.github/workflows/motion-pages.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: motion-pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JavaScript
+        run: node --check motion-studio/app.js
+      - uses: actions/configure-pages@v5
+      - name: Prepare only browser assets
+        run: |
+          mkdir -p _site
+          cp motion-studio/index.html motion-studio/app.js motion-studio/style.css motion-studio/world.json _site/
+          cp -r motion-studio/data _site/data
+          touch _site/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - uses: actions/deploy-pages@v4
+        id: deployment
