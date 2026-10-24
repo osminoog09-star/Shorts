@@ -1,5 +1,5 @@
 {
-  "status": "not_configured",
+  "status": "success",
   "updated_at": "2026-10-24T08:49:47.601Z",
   "items": [
     {
@@ -163,6 +163,10 @@
       "source": "vidIQ public YouTube search"
     }
   ],
-  "message": "Добавь YOUTUBE_API_KEY в GitHub Secrets для регулярного мониторинга. Последние данные, если есть, сохранены.",
-  "last_attempt": "2026-10-24T08:54:17.654829+00:00"
+  "message": "Первый замер через vidIQ. Ежедневное обновление радара настроено на утро по Таллину. VPH — средняя скорость с публикации; для текущей нужен второй замер. Выборка 2 запросов за неделю, не рейтинг всего YouTube.",
+  "monitoring": {
+    "provider": "ChatGPT automation + vidIQ",
+    "schedule": "Ежедневно утром, Europe/Tallinn",
+    "active": true
+  }
 }

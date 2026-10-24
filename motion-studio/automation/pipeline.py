@@ -26,7 +26,7 @@ def yt_get(resource,params,key):
 def scan(config):
     key=os.environ.get('YOUTUBE_API_KEY','')
     if not key:
-        existing=read(DATA/'trends.json',{});existing.update(status='not_configured',last_attempt=now().isoformat(),message='Добавь YOUTUBE_API_KEY в GitHub Secrets для регулярного мониторинга. Последние данные, если есть, сохранены.')
+        existing=read(DATA/'trends.json',{});existing.update(status='not_configured',last_attempt=now().isoformat(),message='Дополнительный YouTube API-сканер не настроен. Последние измерения сохранены; основной ежедневный радар обновляется отдельной задачей ChatGPT через vidIQ.')
         write(DATA/'trends.json',existing);return existing
     after=(now()-dt.timedelta(days=min(30,max(1,int(config.get('scan_days',7)))))).isoformat()
     videos={};queries=config.get('queries',[])[:6]
