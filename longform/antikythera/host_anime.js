@@ -16,7 +16,7 @@ const FW = 2048, FH = 1024;
 const fc = document.createElement('canvas'); fc.width = FW; fc.height = FH; const g = fc.getContext('2d');
 const faceTex = new THREE.CanvasTexture(fc); faceTex.colorSpace = THREE.SRGBColorSpace; faceTex.anisotropy = 8;
 const U = (u) => u * FW, V = (v) => v * FH;
-function drawFace({ blink = 0, mouth = 0, smile = 0, brow = 0, look = 0, laugh = false }) {
+function drawFace({ blink = 0, mouth = 0, smile = 0, brow = 0, look = 0, laugh = false, viseme = null }) {
   g.setTransform(1, 0, 0, 1, 0, 0); g.fillStyle = '#f3cdb4'; g.fillRect(0, 0, FW, FH);
   g.setTransform(1.85, 0, 0, 1.85, U(0.25) * (1 - 1.85), V(0.55) * (1 - 1.85));
   const cx = U(0.25);
@@ -53,13 +53,37 @@ function drawFace({ blink = 0, mouth = 0, smile = 0, brow = 0, look = 0, laugh =
   // нос
   g.strokeStyle = 'rgba(170,110,90,0.7)'; g.lineWidth = 3; g.beginPath(); g.moveTo(cx + 4, V(0.565)); g.quadraticCurveTo(cx + 9, V(0.588), cx, V(0.596)); g.stroke();
   g.fillStyle = 'rgba(255,255,255,0.5)'; g.beginPath(); g.arc(cx - 3, V(0.588), 3, 0, 7); g.fill();
-  // рот
-  const my = V(0.625), mw = 40 + smile * 12 + mouth * 4, mo = clamp(mouth) * 30 + (laugh ? 22 : 0);
-  if (mo < 3) { g.strokeStyle = '#7a2e30'; g.lineWidth = 5; g.lineCap = 'round'; g.beginPath(); g.moveTo(cx - mw * 0.6, my - smile * 4); g.quadraticCurveTo(cx, my + 6 + smile * 8, cx + mw * 0.6, my - smile * 4); g.stroke(); }
-  else {
-    g.fillStyle = '#5a1c22'; g.beginPath(); g.moveTo(cx - mw * 0.6, my - smile * 4); g.quadraticCurveTo(cx, my - 6, cx + mw * 0.6, my - smile * 4); g.quadraticCurveTo(cx, my + mo + 6, cx - mw * 0.6, my - smile * 4); g.fill();
-    g.fillStyle = '#ffffff'; g.fillRect(cx - mw * 0.4, my - 4, mw * 0.8, Math.min(8, mo * 0.3));
-    if (mo > 14) { g.fillStyle = '#d0626a'; g.beginPath(); g.ellipse(cx, my + mo * 0.7, mw * 0.3, mo * 0.18, 0, 0, 7); g.fill(); }
+  // рот: виземы Rhubarb (A–H, X) если есть, иначе по громкости
+  const my = V(0.625);
+  const LIPC = '#7a2e30', INSIDE = '#5a1c22', TEETH = '#ffffff', TONGUE = '#d0626a';
+  const MS = 1.6;
+  const lineMouth = (w0, curve, th = 5) => { const w = w0 * MS; g.strokeStyle = LIPC; g.lineWidth = th; g.lineCap = 'round'; g.beginPath(); g.moveTo(cx - w, my - curve); g.quadraticCurveTo(cx, my + 6 + curve * 2, cx + w, my - curve); g.stroke(); };
+  const openMouth = (w0, h0, { teeth = true, tongue = false, round = false } = {}) => { const w = w0 * MS, h = h0 * MS;
+    g.fillStyle = INSIDE; g.beginPath();
+    if (round) g.ellipse(cx, my + h * 0.35, w, h * 0.6, 0, 0, 7);
+    else { g.moveTo(cx - w, my); g.quadraticCurveTo(cx, my - 5 - smile * 4, cx + w, my); g.quadraticCurveTo(cx, my + h * 1.25, cx - w, my); }
+    g.fill();
+    if (teeth) { g.fillStyle = TEETH; g.fillRect(cx - w * 0.62, my - 3, w * 1.24, Math.min(10, h * 0.3)); }
+    if (tongue) { g.fillStyle = TONGUE; g.beginPath(); g.ellipse(cx, my + h * 0.8, w * 0.55, h * 0.25, 0, 0, 7); g.fill(); }
+    g.strokeStyle = LIPC; g.lineWidth = 3; g.stroke();
+  };
+  const vz = laugh ? 'LAUGH' : viseme;
+  if (vz === 'LAUGH') openMouth(42, 30, { tongue: true });
+  else if (vz) {
+    switch (vz) {
+      case 'A': lineMouth(22, 0, 6); break;                       // м/б/п — губы сомкнуты
+      case 'B': openMouth(26, 9); break;                          // согласные — чуть приоткрыт, зубы
+      case 'C': openMouth(32, 17); break;                         // э/е
+      case 'D': openMouth(34, 28, { tongue: true }); break;       // а — широко
+      case 'E': openMouth(20, 22, { teeth: false, round: true }); break; // о — округлый
+      case 'F': openMouth(11, 13, { teeth: false, round: true }); break; // у/в — трубочкой
+      case 'G': openMouth(26, 8); g.strokeStyle = LIPC; g.lineWidth = 4; g.beginPath(); g.moveTo(cx - 20, my + 7); g.lineTo(cx + 20, my + 7); g.stroke(); break; // ф/в
+      case 'H': openMouth(28, 18, { tongue: true }); break;       // л
+      default: lineMouth(20 + smile * 8, smile * 4, 5);            // X — покой
+    }
+  } else {
+    const mw = 40 + smile * 12 + mouth * 4, mo = clamp(mouth) * 30;
+    if (mo < 3) lineMouth(mw * 0.6, smile * 4); else openMouth(mw * 0.6, mo);
   }
   g.setTransform(1, 0, 0, 1, 0, 0);
   faceTex.needsUpdate = true;
@@ -133,7 +157,7 @@ const POSE = {
   wave: { L: [0.05, 0.1, 0.1], R: [0.3, 2.3, 0.85], head: [0, 0.1, 0.06], wave: 1 },
 };
 
-export function animateAnimeHost(H, t, { pose = 'talk', prev = 'rest', k = 1, mouth = 0, look = 0 } = {}) {
+export function animateAnimeHost(H, t, { pose = 'talk', prev = 'rest', k = 1, mouth = 0, look = 0, viseme = null } = {}) {
   const Ud = H.userData; const A = POSE[prev] || POSE.rest, B = POSE[pose] || POSE.rest; const e = smooth(clamp(k));
   const mix = (a, b) => a.map((v, i) => lerp(v, b[i], e));
   const L = mix(A.L, B.L), R = mix(A.R, B.R), hd = mix(A.head, B.head);
@@ -144,5 +168,5 @@ export function animateAnimeHost(H, t, { pose = 'talk', prev = 'rest', k = 1, mo
   Ud.head.rotation.set(hd[0] + mouth * 0.04 + Math.sin(t * 1.3) * 0.02, hd[1] + Math.sin(t * 0.6) * 0.05, hd[2] + Math.sin(t * 0.9) * 0.025 + (pose === 'laugh' ? Math.sin(t * 14) * 0.03 : 0));
   Ud.torso.scale.y = 1 + Math.sin(t * 2) * 0.01;
   const ph = (t * 0.31 + 0.2) % 1; const blink = ph < 0.04 ? 1 - Math.abs(ph - 0.02) / 0.02 : 0;
-  drawFace({ blink: pose === 'facepalm' ? 0.5 : blink, mouth, smile: pose === 'laugh' || pose === 'wave' ? 1 : pose === 'point' ? 0.4 : 0.1, brow: pose === 'facepalm' ? -0.6 : pose === 'point' ? 0.5 : mouth * 0.3, look, laugh: pose === 'laugh' });
+  drawFace({ blink: pose === 'facepalm' ? 0.5 : blink, mouth, smile: pose === 'laugh' || pose === 'wave' ? 1 : pose === 'point' ? 0.4 : 0.1, brow: pose === 'facepalm' ? -0.6 : pose === 'point' ? 0.5 : mouth * 0.3, look, laugh: pose === 'laugh', viseme });
 }

@@ -81,7 +81,7 @@ function renderHostPiP(t) {
   const prevOf = { point: 'rest', talk: 'point', facepalm: 'talk', laugh: 'facepalm', wave: 'laugh' };
   const big = t > 17.2 && t < 20.0 ? 1.3 : 1;
   const bw = 360 * big, bh = 440 * big;
-  hostPiP(t, { pose, prev: prevOf[pose], k: (t - starts[pose]) / 0.35, mouth: pose === 'laugh' ? Math.max(mouth, 0.3) : mouth, pop: easeOut(seg(t, 0.15, 0.6)), box: { x: 40, y: 1530 - bh, w: bw, h: bh } });
+  hostPiP(t, { pose, prev: prevOf[pose], k: (t - starts[pose]) / 0.35, mouth: pose === 'laugh' ? Math.max(mouth, 0.3) : mouth, viseme: TL.visemes ? (TL.visemes[f] || 'X') : null, pop: easeOut(seg(t, 0.15, 0.6)), box: { x: 40, y: 1530 - bh, w: bw, h: bh } });
   if (p.text) title(p.text[0], 960, 230, lt, 0.1, { size: p.text[0].length > 16 ? 96 : 130, color: p.text[1] });
   if (p.cta) { pill('ПОДПИСАТЬСЯ', 960, 360, lt, 0.4, { size: 72, bg: '#ff2d3d', color: '#ffffff', weight: 900 }); title('спасибо за просмотр и лайк', 960, 520, lt, 0.9, { size: 64, color: '#ffffff' }); }
   if (lt < 0.08 && i > 0 && P[i - 1].type === 'scene' && p.type === 'scene') { ctx.save(); ctx.fillStyle = 'rgba(255,255,255,0.25)'; ctx.fillRect(0, 0, W, H); ctx.restore(); }

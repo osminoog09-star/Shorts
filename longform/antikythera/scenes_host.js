@@ -135,9 +135,9 @@ export function hostShot(t, { pose = 'talk', prev = 'rest', k = 1, mouth = 0, pu
 }
 
 // Ведущий маленьким окном в углу (рассказчик за кадром «в окошке»). box: {x,y,w,h} в пикселях кадра; pop 0..1 — появление
-export function hostPiP(t, { pose = 'talk', prev = 'rest', k = 1, mouth = 0, box, pop = 1, accent = '#58c8ff' } = {}) {
+export function hostPiP(t, { pose = 'talk', prev = 'rest', k = 1, mouth = 0, box, pop = 1, accent = '#58c8ff', viseme = null } = {}) {
   if (pop <= 0.01) return;
-  animateAnimeHost(HS.host, t, { pose, prev, k, mouth, look: 0.15 });
+  animateAnimeHost(HS.host, t, { pose, prev, k, mouth, look: 0.15, viseme });
   ['g64', 'g32', 'g48'].forEach((n, i) => { const g = HS.host.userData[n]; if (g) g.rotation.z = t * (i % 2 ? -0.2 : 0.15); });
   const s = 0.6 + 0.4 * pop; const w = Math.round(box.w * s), h = Math.round(box.h * s);
   const x = Math.round(box.x + (box.w - w) / 2), y = Math.round(box.y + (box.h - h));
