@@ -1,46 +1,11 @@
 Name: edge-tts
 Version: 7.3.1
-ok s00
-retry s01 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok s01
-retry s02 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s02 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s02 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s02 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok s02
-ok s03
-ok s04
-retry s05 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s05 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok s05
-retry s06 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok s06
-ok s07
-ok s08
-retry s09 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok s09
-ok s10
-ok s11
-retry s12 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok s12
-ok s13
-retry s14 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok s14
-ok s15
-retry s16 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s16 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s16 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s16 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s16 4 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s17 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s17 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s17 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s17 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok s17
-retry s18 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok s18
-retry s19 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok s19
-ok s20
-retry s21 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok s21
+ok n1
+ok n2
+ok n3
+ok n4
+ok n5
+ok n6
+ok n7
+ok n8
+ok n9
