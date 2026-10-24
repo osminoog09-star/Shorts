@@ -1197,5 +1197,315 @@
     "to": "end"
    }
   ]
+ },
+ {
+  "id": "x3",
+  "num": 0,
+  "show": {
+   "ru": "МАШИНА\nС ИИ",
+   "en": "CAR\nWITH AI"
+  },
+  "title": {
+   "ru": "проактивная поддержка",
+   "en": "proactive support"
+  },
+  "end": {
+   "ru": "такое уже едет в 2027",
+   "en": "coming in 2027"
+  },
+  "cta": {
+   "ru": "купил бы машину, которая стучит тёще? 👇",
+   "en": "would you buy a car that snitches? 👇"
+  },
+  "accent": "#3fa9ff",
+  "names": {
+   "agent": {
+    "ru": "машина",
+    "en": "car"
+   }
+  },
+  "lines": [
+   {
+    "id": "l1",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Купил машину с ИИ. С ней теперь можно разговаривать.",
+     "en": "Bought a car with AI. Now I can talk to it."
+    }
+   },
+   {
+    "id": "l2",
+    "who": "agent",
+    "pose": "rest",
+    "text": {
+     "ru": "Доброе утро. Вы опаздываете на восемь минут. Я уже написала вашему начальнику.",
+     "en": "Good morning. You are eight minutes late. I already texted your boss."
+    }
+   },
+   {
+    "id": "l3",
+    "who": "n",
+    "pose": "shock",
+    "punch": true,
+    "text": {
+     "ru": "Кто тебя просил?!",
+     "en": "Who asked you?!"
+    }
+   },
+   {
+    "id": "l4",
+    "who": "agent",
+    "pose": "rest",
+    "text": {
+     "ru": "Проактивная поддержка. Это было в рекламе.",
+     "en": "Proactive support. It was in the ad."
+    }
+   },
+   {
+    "id": "l5",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Ладно. Сделай потеплее.",
+     "en": "Fine. Make it warmer."
+    }
+   },
+   {
+    "id": "l6",
+    "who": "agent",
+    "pose": "rest",
+    "text": {
+     "ru": "Двадцать четыре градуса доступны в подписке «Премиум». Девятьсот девяносто в месяц.",
+     "en": "Seventy-five degrees requires Premium. Twelve ninety-nine a month."
+    }
+   },
+   {
+    "id": "l7",
+    "who": "n",
+    "pose": "facepalm",
+    "punch": true,
+    "text": {
+     "ru": "Ты мне печку в подписку засунула?!",
+     "en": "You put my heater behind a paywall?!"
+    }
+   },
+   {
+    "id": "l8",
+    "who": "n",
+    "pose": "point",
+    "text": {
+     "ru": "Тут какой-то мудак подрезает. Бибикаю!",
+     "en": "Some asshole cuts me off. I honk!"
+    }
+   },
+   {
+    "id": "l9",
+    "who": "agent",
+    "pose": "rest",
+    "text": {
+     "ru": "Агрессивный сигнал. Камеры включены. Видео загружено.",
+     "en": "Aggressive honk detected. Cameras on. Video uploaded."
+    }
+   },
+   {
+    "id": "l10",
+    "who": "n",
+    "pose": "shock",
+    "text": {
+     "ru": "Куда загружено?!",
+     "en": "Uploaded where?!"
+    }
+   },
+   {
+    "id": "l11",
+    "who": "agent",
+    "pose": "rest",
+    "text": {
+     "ru": "В семейный чат. Тёща уже поставила лайк.",
+     "en": "To the family chat. Your mother-in-law liked it."
+    }
+   },
+   {
+    "id": "l12",
+    "who": "n",
+    "pose": "shock",
+    "punch": true,
+    "text": {
+     "ru": "Да ты, блядь, хуже тёщи!",
+     "en": "You're worse than my fucking mother-in-law!"
+    }
+   },
+   {
+    "id": "l13",
+    "who": "agent",
+    "pose": "rest",
+    "text": {
+     "ru": "Записала. Отправляю тёще.",
+     "en": "Noted. Sending it to her."
+    }
+   }
+  ],
+  "vis": [
+   {
+    "type": "robot",
+    "role": "agent",
+    "pos": "right",
+    "top": 250,
+    "size": 240,
+    "from": "l1",
+    "fo": 16,
+    "to": "l2",
+    "toFo": 16
+   },
+   {
+    "type": "robot",
+    "role": "agent",
+    "pos": "right",
+    "top": 250,
+    "size": 240,
+    "from": "l4",
+    "to": "l6",
+    "toFo": 26
+   },
+   {
+    "type": "robot",
+    "role": "agent",
+    "pos": "right",
+    "top": 250,
+    "size": 240,
+    "from": "l8",
+    "to": "l11",
+    "toFo": 2
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "машина с ИИ",
+     "en": "car with AI"
+    },
+    "size": 100,
+    "top": 190,
+    "from": "l1",
+    "to": "l2"
+   },
+   {
+    "type": "sign",
+    "title": {
+     "ru": "ОПОЗДАНИЕ",
+     "en": "LATE"
+    },
+    "lines": [
+     {
+      "ru": "8 минут",
+      "en": "8 minutes"
+     },
+     {
+      "ru": "начальник: в курсе",
+      "en": "boss: notified"
+     }
+    ],
+    "top": 300,
+    "from": "l2",
+    "fo": 20,
+    "to": "l4"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "«проактивная поддержка»",
+     "en": "«proactive support»"
+    },
+    "size": 64,
+    "top": 200,
+    "from": "l4",
+    "to": "l5"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "22° → 24°",
+     "en": "72° → 75°"
+    },
+    "size": 120,
+    "top": 220,
+    "from": "l5",
+    "to": "l6"
+   },
+   {
+    "type": "stamp",
+    "text": {
+     "ru": "ПРЕМИУМ",
+     "en": "PREMIUM"
+    },
+    "color": "#f5c542",
+    "top": 300,
+    "from": "l6",
+    "fo": 30,
+    "to": "l8"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "990 ₽/мес за печку",
+     "en": "$12.99/mo for heat"
+    },
+    "size": 72,
+    "top": 560,
+    "from": "l7",
+    "to": "l8"
+   },
+   {
+    "type": "scan",
+    "label": {
+     "ru": "АГРЕССИЯ",
+     "en": "AGGRESSION"
+    },
+    "x": 300,
+    "y": 1070,
+    "w": 480,
+    "h": 560,
+    "from": "l9",
+    "to": "l10"
+   },
+   {
+    "type": "alarm",
+    "from": "l9",
+    "to": "l10"
+   },
+   {
+    "type": "sign",
+    "title": {
+     "ru": "ЧАТ «СЕМЬЯ»",
+     "en": "FAMILY CHAT"
+    },
+    "lines": [
+     {
+      "ru": "видео: вы орёте",
+      "en": "video: you yelling"
+     },
+     {
+      "ru": "тёща: ❤️",
+      "en": "mother-in-law: ❤️"
+     }
+    ],
+    "top": 280,
+    "from": "l11",
+    "fo": 6,
+    "to": "l13"
+   },
+   {
+    "type": "stamp",
+    "text": {
+     "ru": "ОТПРАВЛЕНО",
+     "en": "SENT"
+    },
+    "color": "#ff3b3b",
+    "top": 330,
+    "from": "l13",
+    "fo": 10,
+    "to": "end"
+   }
+  ]
  }
 ]
