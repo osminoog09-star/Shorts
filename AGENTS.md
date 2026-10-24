@@ -143,7 +143,7 @@ cd studio && ./setup.sh
 - Видео передаётся **публичной ссылкой** из `videos/` (raw.githubusercontent.com).
 - **YouTube** (`providers: [{"network":"youtube"}]`): `youtubeData.type = "short"`, `privacy = "public"`,
   `category = "COMEDY"`, `madeForKids = false`, `isAiGeneratedContent = false`, 10 тегов.
-  Название: `🇷🇺 …  #shorts`. Описание: 1–2 строки + вопрос в комменты + 7 хештегов.
+  Название: `… #shorts` — **без флагов стран** (решение Дениса 24.10). Описание: 1–2 строки + вопрос в комменты + 7 хештегов.
 - **Instagram**: наш контент туда НЕ публикуется (аккаунт только под Whop-клипы).
 - Время (по Таллину) — сначала спроси `getBestTimeToPostByNetwork`, по умолчанию:
   - YouTube RU: 10:00 / 16:00 / 22:00. EN не публикуем.

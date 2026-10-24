@@ -278,3 +278,17 @@ export function s12(t) {
   title('пиши в комментариях', 960, 500, t, 26.6, { size: 110 });
   pill('M1lash · инженерия древности', 960, 640, t, 27.6, { size: 44, dot: CSS.gold });
 }
+
+// ───────── Обложка ─────────
+export function thumb() {
+  const S = S7, M = S.M;
+  S.ecl.visible = false; S.wreath.visible = false;
+  M.crank.rotation.x = -1.2; M.sunP.rotation.z = -0.6; M.moonP.rotation.z = -2.2; M.moonBall.rotation.y = 0.6;
+  const tg = v3(-1.7, 0.3, 0);
+  orbit(S.cam, tg, 8.6, 0.55, 0.16);
+  render(S.scene, S.cam, { time: 1, focus: S.cam.position.distanceTo(v3(0, 0.3, 0)), aperture: 0.0016, maxblur: 0.012, vig: 0.3 });
+  clear2d();
+  title('компьютер', 110, 330, 10, 0, { size: 190, align: 'left' });
+  title('2000 лет', 110, 560, 10, 0, { size: 230, align: 'left', color: '#7a63e6' });
+  pill('как его разгадали', 110, 700, 10, 0, { size: 64, align: 'left', dot: CSS.coral, padX: 44, padY: 26 });
+}

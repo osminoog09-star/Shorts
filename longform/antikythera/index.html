@@ -17,7 +17,8 @@ html,body{margin:0;background:#000}
 <script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
 <script type="module">
 await Promise.all(['900 40px Rubik','700 40px Rubik','600 40px Rubik','40px RMono','40px Neucha','700 40px NSerif'].map(f=>document.fonts.load(f,'АБВabcΗΛΙΟΣ')));
-const { renderAt, DURATION } = await import('./film.js');
+const { renderAt, DURATION, thumb } = await import('./film.js');
+window.renderThumb = thumb;
 window.DURATION = DURATION;
 window.renderAt = renderAt;
 window.READY = true;

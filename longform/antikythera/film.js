@@ -1,6 +1,7 @@
 import { iris, seg } from './engine.js';
 import { s01, s02, s03, s04, s05, s06 } from './scenes_a.js';
-import { s07, s08, s09, s10, s11, s12 } from './scenes_b.js';
+import { s07, s08, s09, s10, s11, s12, thumb } from './scenes_b.js';
+export { thumb };
 
 // Длительности = 0.6 (вход) + длина реплики + 1.1 (хвост), реплика начинается в 0.6
 export const SCENES = [

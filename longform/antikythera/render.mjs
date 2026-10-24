@@ -29,7 +29,11 @@ async function frameAt(t) {
   return stage.screenshot({ type: 'jpeg', quality: 93 });
 }
 
-if (args.stills) {
+if (args.thumb) {
+  await page.evaluate(() => window.renderThumb());
+  const buf = await stage.screenshot({ type: 'png' });
+  fs.mkdirSync(path.join(root, 'out'), { recursive: true }); fs.writeFileSync(path.join(root, 'out/thumb_full.png'), buf); console.log('thumb ok');
+} else if (args.stills) {
   fs.mkdirSync(path.join(root, 'out'), { recursive: true });
   for (const s of args.stills.split(',')) {
     const t0 = Date.now(); const buf = await frameAt(+s);
