@@ -1,13 +1,11 @@
 Name: edge-tts
 Version: 7.3.1
-ok f_bridge
-retry m_hook 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok m_hook
-retry j_hook 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry j_hook 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok j_hook
-retry outro 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry outro 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry outro 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry outro 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok outro
+retry coin 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry coin 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+ok coin
+retry steam 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry steam 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry steam 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry steam 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+ok steam
+ok ending
