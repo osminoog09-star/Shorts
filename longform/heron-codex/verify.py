@@ -15,7 +15,7 @@ for f in sorted(O.glob('heron_*.mp4')):
 # One frame per scene plus dense samples around several transition boundaries.
 imgs=[]
 for i,s in enumerate(T):
- p=O/f'qa_scene_{i:02}.jpg';subprocess.run(['ffmpeg','-y','-v','error','-ss',str(s['start']+s['dur']*.52),'-i',str(O/'heron_ancient_automation_ru.mp4'),'-frames:v','1',str(p)],check=True)
+ p=O/f'qa_scene_{i:02}.jpg';subprocess.run(['ffmpeg','-y','-v','error','-ss',str(s['start']+s['dur']*.52),'-i',str(O/'heron_ancient_automation_v2_ru.mp4'),'-frames:v','1',str(p)],check=True)
  im=Image.open(p).resize((480,270));imgs.append(im)
 sheet=Image.new('RGB',(1920,6*300),'#eee9e1');q=ImageDraw.Draw(sheet)
 for i,im in enumerate(imgs):x=(i%4)*480;y=(i//4)*300;sheet.paste(im,(x,y+25));q.text((x+12,y+5),f'{i+1:02} / {T[i]["title"]}',fill='#26363a',font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',16))

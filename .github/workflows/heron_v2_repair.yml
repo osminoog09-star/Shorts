@@ -1,0 +1,64 @@
+name: Heron v2 repair export
+on:
+  push:
+    paths: ['.github/workflows/heron_v2_repair.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  finish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: heron-v2-assets
+          github-token: ${{ github.token }}
+          run-id: 40097316135
+          path: longform/heron-codex
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: heron-v2-part-*
+          github-token: ${{ github.token }}
+          run-id: 40097316135
+          merge-multiple: true
+          path: longform/heron-codex/v2_shards
+      - run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg fonts-dejavu-core
+          pip install numpy pillow
+          python3 longform/heron-codex/finish_v2.py
+          python3 longform/heron-codex/verify.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: heron-v2-final
+          path: longform/heron-codex/out/heron_*
+          retention-days: 7
+      - name: Release preview and store deliveries
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="heron-v2-40097316135"
+          gh release create "$TAG" longform/heron-codex/out/heron_*.mp4 longform/heron-codex/out/heron_thumbnail.jpg longform/heron-codex/out/heron_qa* longform/heron-codex/out/heron_metadata.json --title 'Heron v2: slower narration, detailed 3D, 10–15 minutes' --notes 'Revision requested by Denis. Actual 10–15 minute narration, detailed metal/wood/stone reconstructions, native portrait Shorts. Technical checks passed; human perception review is separate.'
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil,json,os
+          out=Path('longform/heron-codex/out');manifest=[];base='https://github.com/osminoog09-star/Shorts/releases/download/heron-v2-'+'40097316135'+'/'
+          Path('videos').mkdir(exist_ok=True)
+          for p in out.glob('heron_*.mp4'):
+              small=p.stat().st_size<95_000_000
+              if small:shutil.copy2(p,Path('videos')/p.name)
+              manifest.append({'file':p.name,'bytes':p.stat().st_size,'release_url':base+p.name,'committed_to_videos':small})
+          shutil.copy2(out/'heron_thumbnail.jpg','videos/heron_thumbnail_v2.jpg')
+          Path('videos/heron_v2_release.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
+          shutil.copy2(out/'heron_qa.json','longform/heron-codex/EXPORT_QA_V2.json');shutil.copy2(out/'heron_metadata.json','longform/heron-codex/EXPORT_METADATA_V2.json')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add videos/heron*_*v2* videos/heron_v2_release.json longform/heron-codex/EXPORT_QA_V2.json longform/heron-codex/EXPORT_METADATA_V2.json longform/heron-codex/timeline.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Deliver Heron v2: detailed exhibits, slower voice and 10–15 minute master'
+          for I in 1 2 3; do git pull --rebase origin main; if git push origin HEAD:main; then exit 0; fi; done
+          exit 1
