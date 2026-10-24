@@ -1,5 +1,5 @@
 {
-  "status": "success",
+  "status": "not_configured",
   "updated_at": "2026-10-24T08:49:47.601Z",
   "items": [
     {
@@ -163,5 +163,6 @@
       "source": "vidIQ public YouTube search"
     }
   ],
-  "message": "Первый замер через vidIQ. Средняя скорость рассчитана с публикации; VPH поставщика хранится отдельно. Это выборка 2 запросов за неделю, не рейтинг всего YouTube."
+  "message": "Добавь YOUTUBE_API_KEY в GitHub Secrets для регулярного мониторинга. Последние данные, если есть, сохранены.",
+  "last_attempt": "2026-10-24T08:54:17.654829+00:00"
 }
