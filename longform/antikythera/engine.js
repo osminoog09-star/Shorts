@@ -284,3 +284,18 @@ export function iris(p, x = 960, y = 540, color = CSS.cream) {
   else { const r = easeInOut(p - 1) * R; ctx.beginPath(); ctx.rect(0, 0, W, H); ctx.arc(x, y, r, 0, Math.PI * 2, true); ctx.fill('evenodd'); }
   ctx.restore();
 }
+
+// Картинка-в-картинке: дорисовать сцену в прямоугольник (пиксели холста, x,y — левый верх) поверх уже отрендеренного кадра
+export function renderPiP(scene, camera, x, y, w, h) {
+  const prevBg = scene.background;
+  renderer.setRenderTarget(null);
+  renderer.autoClear = false;
+  renderer.setScissorTest(true);
+  const yy = H - y - h;
+  renderer.setViewport(x, yy, w, h); renderer.setScissor(x, yy, w, h);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+  renderer.clear(true, true, true);
+  renderer.render(scene, camera);
+  renderer.setScissorTest(false); renderer.setViewport(0, 0, W, H); renderer.autoClear = true;
+  scene.background = prevBg;
+}

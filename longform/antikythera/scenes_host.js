@@ -1,6 +1,6 @@
 // Фон для Shorts «ведущий рассказывает» (вертикаль 1080×1920): детализированный 3D-предмет в тёмной студии.
 // Ведущий и титры накладываются отдельным слоем (Remotion, прозрачный фон) — здесь только 3D.
-import { THREE, C, render, clear2d, seg, smooth, easeIO2, lerp, matte, gloss, metal, studio, gear } from './engine.js';
+import { THREE, C, render, renderPiP, ctx, W, H, clear2d, seg, smooth, easeIO2, lerp, matte, gloss, metal, studio, gear } from './engine.js';
 import { v3, orbit, newScene, rbox, sphere, cyl, puck, textSprite } from './kit.js';
 
 // ── процедурные текстуры (детали вместо «пластилина») ──
@@ -132,4 +132,21 @@ export function hostShot(t, { pose = 'talk', prev = 'rest', k = 1, mouth = 0, pu
   orbit(HS.cam, tg, lerp(12.5, 10.5, push), Math.sin(t * 0.3) * 0.08, 0.06);
   render(HS.scene, HS.cam, { time: t, focus: HS.cam.position.distanceTo(v3(0, 0.6, 0.8)), aperture: 0.004, maxblur: 0.014, vig: 0.4 });
   clear2d();
+}
+
+// Ведущий маленьким окном в углу (рассказчик за кадром «в окошке»). box: {x,y,w,h} в пикселях кадра; pop 0..1 — появление
+export function hostPiP(t, { pose = 'talk', prev = 'rest', k = 1, mouth = 0, box, pop = 1, accent = '#58c8ff' } = {}) {
+  if (pop <= 0.01) return;
+  animateAnimeHost(HS.host, t, { pose, prev, k, mouth, look: 0.15 });
+  ['g64', 'g32', 'g48'].forEach((n, i) => { const g = HS.host.userData[n]; if (g) g.rotation.z = t * (i % 2 ? -0.2 : 0.15); });
+  const s = 0.6 + 0.4 * pop; const w = Math.round(box.w * s), h = Math.round(box.h * s);
+  const x = Math.round(box.x + (box.w - w) / 2), y = Math.round(box.y + (box.h - h));
+  orbit(HS.cam, v3(0, 0.45, 0), 8.6, 0.18 + Math.sin(t * 0.3) * 0.05, 0.04);
+  renderPiP(HS.scene, HS.cam, x, y, w, h);
+  // рамка карточки на 2D-слое
+  ctx.save(); ctx.globalAlpha = Math.min(1, pop * 1.5);
+  ctx.lineWidth = 8; const gr = ctx.createLinearGradient(x, y, x + w, y + h); gr.addColorStop(0, '#58c8ff'); gr.addColorStop(1, '#ff5fb0'); ctx.strokeStyle = gr;
+  ctx.beginPath(); ctx.roundRect(x, y, w, h, 12); ctx.stroke();
+  // скругление углов: замаскировать уголки цветом фона рамки
+  ctx.restore();
 }
