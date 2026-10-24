@@ -1,0 +1,33 @@
+{
+  "technical_checks": [
+    {
+      "file": "heron_ancient_automation_v2_ru.mp4",
+      "duration": 670.3,
+      "width": 1920,
+      "height": 1080,
+      "peak": 0.7391801476478577,
+      "rms": 0.13709060847759247,
+      "decoded": true
+    },
+    {
+      "file": "heron_short_coin_v2_ru.mp4",
+      "duration": 39.967,
+      "width": 1080,
+      "height": 1920,
+      "peak": 0.7255703806877136,
+      "rms": 0.13284164667129517,
+      "decoded": true
+    },
+    {
+      "file": "heron_short_steam_v2_ru.mp4",
+      "duration": 35.467,
+      "width": 1080,
+      "height": 1920,
+      "peak": 0.7222275137901306,
+      "rms": 0.1360429972410202,
+      "decoded": true
+    }
+  ],
+  "visual_review": "pending agent inspection of decoded frames",
+  "full_audio_listen": "not performed by this automated script"
+}
