@@ -1,0 +1,53 @@
+name: Join long video
+
+# Склейка уже отрендеренных кусков (из артефактов прошлых запусков) + звук → GitHub Release (файлы > 100 МБ в git не влезают)
+on:
+  workflow_dispatch:
+    inputs:
+      project: { default: "antikythera" }
+      base_run: { description: "Запуск со всеми кусками" }
+      patch_run: { description: "Запуск с исправленными кусками (перекрывают базовые)", default: "" }
+      audio: { default: "audio/antikythera_mix.m4a" }
+      fps: { default: "30" }
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  join:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: chunks, pattern: chunk-*, merge-multiple: true, run-id: "${{ inputs.base_run }}", github-token: "${{ github.token }}" }
+      - uses: actions/download-artifact@v4
+        if: inputs.patch_run != ''
+        with: { path: patch, pattern: chunk-*, merge-multiple: true, run-id: "${{ inputs.patch_run }}", github-token: "${{ github.token }}" }
+      - name: Join + audio
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q ffmpeg >/dev/null
+          [ -d patch ] && { ls patch; cp -f patch/*.mp4 chunks/; }
+          ls chunks | wc -l
+          ls chunks | sort | sed "s#^#file '$PWD/chunks/#; s#\$#'#" > list.txt
+          P=longform/${{ inputs.project }}; mkdir -p rel
+          OUT=rel/${{ inputs.project }}.mp4
+          ffmpeg -v error -y -f concat -safe 0 -i list.txt -i $P/${{ inputs.audio }} -map 0:v -map 1:a -shortest \
+            -c:v libx264 -preset slow -crf 22 -maxrate 2600k -bufsize 5200k -pix_fmt yuv420p -r ${{ inputs.fps }} \
+            -c:a aac -b:a 192k -movflags +faststart $OUT
+          ffprobe -v error -show_entries format=duration,size:stream=width,height,r_frame_rate,codec_name -of default=nw=1 $OUT | tee $P/out_info.txt
+          ffmpeg -v error -y -i $OUT -vf "fps=1/10,scale=480:-1,tile=6x6" -frames:v 1 $P/contact.jpg
+          for t in 5 160 290 380 590; do ffmpeg -v error -y -ss $t -i $OUT -frames:v 1 -vf scale=960:-1 $P/check_$t.jpg; done
+      - name: Release upload
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          TAG=long-${{ inputs.project }}
+          gh release view $TAG >/dev/null 2>&1 || gh release create $TAG --title "$TAG" --notes "Длинное видео ${{ inputs.project }}"
+          gh release upload $TAG rel/${{ inputs.project }}.mp4 --clobber
+          echo "https://github.com/${{ github.repository }}/releases/download/$TAG/${{ inputs.project }}.mp4" > longform/${{ inputs.project }}/release_url.txt
+      - name: Commit info
+        run: |
+          git config user.name "render-bot"; git config user.email "render-bot@users.noreply.github.com"
+          git add longform/${{ inputs.project }}/out_info.txt longform/${{ inputs.project }}/contact.jpg longform/${{ inputs.project }}/check_*.jpg longform/${{ inputs.project }}/release_url.txt
+          git commit -m "join: ${{ inputs.project }}"
+          for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && exit 0; sleep 7; done; exit 1
