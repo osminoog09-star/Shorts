@@ -110,3 +110,25 @@ export function host1(t) {
   render(S.scene, S.cam, { time: t, focus: S.cam.position.distanceTo(focusP), aperture: k2 > 0.3 && k3 < 0.5 ? 0.0028 : 0.0012, maxblur: 0.012, vig: 0.35 });
   clear2d();
 }
+
+// ── студия ведущего (крупный план, фон в боке) ──
+import { makeHost, animateHost } from './host3d.js';
+const HS = (() => {
+  const S = newScene({ bg: 0x141a33, floorY: -4.5, key: [3, 6, 8], shadowSize: 8, keyI: 2.2, fill: 0.3 });
+  S.scene.background = new THREE.Color(0x141a33); S.scene.fog = new THREE.Fog(0x141a33, 12, 30);
+  const c1 = new THREE.PointLight(0x58c8ff, 22, 14); c1.position.set(-4, 2, -2); S.scene.add(c1);
+  const c2 = new THREE.PointLight(0xff5fb0, 20, 14); c2.position.set(4, 1.5, -2); S.scene.add(c2);
+  const host = makeHost(); S.scene.add(host);
+  // фон: шестерни и огни (в расфокусе)
+  [[64, 1.6, -3.2, 2.2, -6], [32, 0.9, 3.4, 3.0, -7], [48, 1.2, 2.8, -0.8, -6.5]].forEach(([n, r, x, y, z]) => { const g = gear(n, r, BRONZE, { thick: 0.12, spokes: 4 }); g.position.set(x, y, z); S.scene.add(g); host.userData['g' + n] = g; });
+  for (let i = 0; i < 30; i++) { const m = sphere(0.12, new THREE.MeshBasicMaterial({ color: rnd() < 0.5 ? 0x58c8ff : 0xff7fc0, transparent: true, opacity: 0.8 }), 10); m.position.set((rnd() - 0.5) * 16, -2 + rnd() * 9, -8 - rnd() * 6); m.scale.setScalar(2); S.scene.add(m); }
+  return { ...S, host };
+})();
+export function hostShot(t, { pose = 'talk', prev = 'rest', k = 1, mouth = 0, push = 0 } = {}) {
+  animateHost(HS.host, t, { pose, prev, k, mouth, look: [Math.sin(t * 0.4) * 0.3, 0] });
+  ['g64', 'g32', 'g48'].forEach((n, i) => { const g = HS.host.userData[n]; if (g) g.rotation.z = t * (i % 2 ? -0.2 : 0.15); });
+  const tg = v3(0, -0.2 + push * 0.4, 0);
+  orbit(HS.cam, tg, lerp(9.5, 7.8, push), Math.sin(t * 0.3) * 0.12, 0.05);
+  render(HS.scene, HS.cam, { time: t, focus: HS.cam.position.distanceTo(v3(0, 0.6, 0.8)), aperture: 0.004, maxblur: 0.014, vig: 0.4 });
+  clear2d();
+}

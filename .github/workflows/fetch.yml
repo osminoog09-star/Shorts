@@ -1,0 +1,26 @@
+name: Fetch file
+# Скачать файл по ссылке (из сред, где наружный интернет закрыт) и закоммитить в репо
+on:
+  workflow_dispatch:
+    inputs:
+      url: { description: "Ссылка" }
+      out: { description: "Путь в репо, например media/tts/x/voice.mp3" }
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download
+        env: { URL: "${{ inputs.url }}", OUT: "${{ inputs.out }}" }
+        run: |
+          mkdir -p "$(dirname "$OUT")"
+          curl -fsSL -o "$OUT" "$URL"
+          ls -la "$OUT"
+      - name: Commit
+        env: { OUT: "${{ inputs.out }}" }
+        run: |
+          git config user.name "fetch-bot"; git config user.email "fetch-bot@users.noreply.github.com"
+          git add "$OUT"; git commit -m "fetch: $OUT"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && exit 0; sleep 5; done; exit 1

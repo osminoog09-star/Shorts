@@ -1,8 +1,8 @@
 // Вертикальные нарезки (Shorts) из сцен основного фильма. Запуск: index.html?portrait&short=<name>
 import { iris, seg, clear2d, ctx, title, pill, W, H, CSS, easeOut, clamp } from './engine.js';
 import { init as filmInit, FN as FN0, BG } from './film.js';
-import { host1 } from './scenes_host.js';
-const FN = { ...FN0, host1 };
+import { host1, hostShot } from './scenes_host.js';
+const FN = { ...FN0, host1, hostTest: (t) => hostShot(t, { pose: ['talk','point','facepalm','laugh','wave'][Math.floor(t / 2) % 5], prev: 'rest', k: (t % 2) / 0.5, mouth: Math.abs(Math.sin(t * 9)) * 0.8 }) };
 
 let TL = null;
 export async function init(name) {
