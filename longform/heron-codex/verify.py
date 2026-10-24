@@ -23,3 +23,8 @@ sheet.save(O/'heron_qa_contact.jpg',quality=90)
 # Original thumbnail using our own render, not another creator's media.
 im=Image.open(O/'qa_scene_04.jpg').resize((1280,720));q=ImageDraw.Draw(im);q.rounded_rectangle((30,35,685,245),radius=30,fill='#f8f3e9');font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',67);q.text((55,55),'АВТОМАТ',font=font,fill='#26363a');q.text((55,135),'2000 ЛЕТ НАЗАД',font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',43),fill='#5c7780');im.save(O/'heron_thumbnail.jpg',quality=95)
 (O/'heron_qa.json').write_text(json.dumps({'technical_checks':checks,'visual_review':'pending agent inspection of decoded frames','full_audio_listen':'not performed by this automated script'},ensure_ascii=False,indent=2));print(json.dumps(checks,ensure_ascii=False))
+
+chapters=[]
+for i in [0,3,8,14,18,21]:
+ sec=int(T[i]['start']);chapters.append({'time':f'{sec//60}:{sec%60:02d}','title':T[i]['title']})
+(O/'heron_metadata.json').write_text(json.dumps({'duration':D,'chapters':chapters,'voice':'ru-RU-DmitryNeural','language':'ru','planned_longform':'2026-10-27T19:00:00+02:00','planned_shorts':['2026-10-28T10:00:00+02:00','2026-10-29T10:00:00+02:00','2026-10-30T10:00:00+02:00']},ensure_ascii=False,indent=2))

@@ -1,5 +1,7 @@
 name: Heron Codex Film
 on:
+  push:
+    paths: ['.github/workflows/heron_codex.yml']
   workflow_dispatch:
 permissions:
   contents: write
