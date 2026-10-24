@@ -1,0 +1,59 @@
+name: Store Heron final media
+on:
+  push:
+    paths: ['.github/workflows/heron_export_media.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: heron-export-media
+  cancel-in-progress: false
+jobs:
+  store:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Wait for the reviewed-export build and download only its films
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG=heron-codex-40074892695
+          for I in $(seq 1 150); do
+            if gh release view "$TAG" >/dev/null 2>&1; then break; fi
+            STATUS=$(gh run view 40074892695 --json status,conclusion --jq '.status+"/"+.conclusion')
+            if [ "$STATUS" = completed/failure ] || [ "$STATUS" = completed/cancelled ]; then
+              echo "Render failed; no media was stored" >&2
+              exit 1
+            fi
+            sleep 10
+          done
+          mkdir -p /tmp/heron-final
+          gh release download "$TAG" --pattern 'heron_*.mp4' --pattern heron_thumbnail.jpg --dir /tmp/heron-final
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil
+          root=Path('/tmp/heron-final')
+          names=['heron_ancient_automation_ru.mp4','heron_short_coin_ru.mp4','heron_short_doors_ru.mp4','heron_short_steam_ru.mp4','heron_thumbnail.jpg']
+          for name in names:
+              p=root/name
+              assert p.is_file() and 10000<p.stat().st_size<95_000_000,(name,'missing or too large')
+          Path('videos').mkdir(exist_ok=True)
+          for name in names:shutil.copy2(root/name,Path('videos')/name)
+          PY
+      - name: Commit only Heron delivery files, preserving concurrent work
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add videos/heron_ancient_automation_ru.mp4 videos/heron_short_coin_ru.mp4 videos/heron_short_doors_ru.mp4 videos/heron_short_steam_ru.mp4 videos/heron_thumbnail.jpg
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Deliver original Heron film, three Shorts and thumbnail'
+          for I in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
