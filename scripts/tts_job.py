@@ -15,7 +15,10 @@ import edge_tts
 
 
 async def one(text, voice, rate, pitch, mp3, meta):
-    com = edge_tts.Communicate(text, voice, rate=rate, pitch=pitch, boundary="WordBoundary")
+    try:
+        com = edge_tts.Communicate(text, voice, rate=rate, pitch=pitch, boundary="WordBoundary")
+    except TypeError:
+        com = edge_tts.Communicate(text, voice, rate=rate, pitch=pitch)
     words = []
     with open(mp3, "wb") as f:
         async for ch in com.stream():
