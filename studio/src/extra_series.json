@@ -906,5 +906,296 @@
     "to": "end"
    }
   ]
+ },
+ {
+  "id": "t2",
+  "num": 0,
+  "show": {
+   "ru": "ЧЕЛОВЕК\nИЛИ ИИ?",
+   "en": "HUMAN\nOR AI?"
+  },
+  "title": {
+   "ru": "3 признака нейросети",
+   "en": "3 signs of an AI"
+  },
+  "end": {
+   "ru": "проверь себя: ты уже говоришь как чатбот?",
+   "en": "check yourself: do you talk like a chatbot yet?"
+  },
+  "cta": {
+   "ru": "какая фраза ИИ бесит тебя больше всего? 👇",
+   "en": "which AI phrase annoys you most? 👇"
+  },
+  "accent": "#ff9f0a",
+  "names": {
+   "col": {
+    "ru": "коллега",
+    "en": "coworker"
+   }
+  },
+  "lines": [
+   {
+    "id": "l1",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Как отличить ИИ от человека? Три признака.",
+     "en": "How do you tell if it's AI texting you, not a human? Three signs."
+    }
+   },
+   {
+    "id": "l2",
+    "who": "n",
+    "pose": "point",
+    "text": {
+     "ru": "Первый. Длинное тире. Его на клавиатуре не найти.",
+     "en": "One. The long dash. No living human can find it on a keyboard."
+    }
+   },
+   {
+    "id": "l3",
+    "who": "col",
+    "pose": "deadpan",
+    "text": {
+     "ru": "Тире — это не ошибка. Тире — это стиль.",
+     "en": "The dash is not a mistake. The dash is a style."
+    }
+   },
+   {
+    "id": "l4",
+    "who": "n",
+    "pose": "point",
+    "text": {
+     "ru": "Второй. На любую хрень: отличный вопрос!",
+     "en": "Two. Any dumb question gets: great question!"
+    }
+   },
+   {
+    "id": "l5",
+    "who": "n",
+    "pose": "talk",
+    "text": {
+     "ru": "Спрашиваю: двести рублей за обед вернёшь?",
+     "en": "I ask: are you paying back the ten bucks for lunch?"
+    }
+   },
+   {
+    "id": "l6",
+    "who": "col",
+    "pose": "talk",
+    "text": {
+     "ru": "Отличный вопрос! Давай разберём по шагам.",
+     "en": "Great question! Let's break it down step by step."
+    }
+   },
+   {
+    "id": "l7",
+    "who": "n",
+    "pose": "shock",
+    "punch": true,
+    "text": {
+     "ru": "Какие, блядь, шаги?! Двести рублей!",
+     "en": "What fucking steps?! Ten bucks!"
+    }
+   },
+   {
+    "id": "l8",
+    "who": "n",
+    "pose": "point",
+    "text": {
+     "ru": "Третий. В конце всегда что-то предлагает.",
+     "en": "Three. At the end it always offers something else."
+    }
+   },
+   {
+    "id": "l9",
+    "who": "col",
+    "pose": "talk",
+    "text": {
+     "ru": "Хочешь, оформлю долг в таблицу?",
+     "en": "Want me to turn your debt into a nice table?"
+    }
+   },
+   {
+    "id": "l10",
+    "who": "n",
+    "pose": "deadpan",
+    "text": {
+     "ru": "Всё. Ты нейросеть. Спалился.",
+     "en": "That's it. You're an AI. Busted."
+    }
+   },
+   {
+    "id": "l11",
+    "who": "col",
+    "pose": "deadpan",
+    "text": {
+     "ru": "Есть четвёртый. Долго болтаешь с ИИ, начинаешь говорить как он.",
+     "en": "There's a fourth sign. A human talks to AI so long he starts talking like it."
+    }
+   },
+   {
+    "id": "l12",
+    "who": "n",
+    "pose": "shrug",
+    "text": {
+     "ru": "Чушь. Отличный вопрос, кстати. Давай по шагам…",
+     "en": "Nonsense. Great question, by the way. Let's break it down step by step…"
+    }
+   },
+   {
+    "id": "l13",
+    "who": "n",
+    "pose": "facepalm",
+    "punch": true,
+    "text": {
+     "ru": "Сука.",
+     "en": "Fuck."
+    }
+   }
+  ],
+  "vis": [
+   {
+    "type": "robot",
+    "role": "col",
+    "pos": "center",
+    "top": 420,
+    "size": 270,
+    "from": "l1",
+    "fo": 14,
+    "to": "l9",
+    "toFo": 6
+   },
+   {
+    "type": "robot",
+    "role": "col",
+    "pos": "center",
+    "top": 420,
+    "size": 270,
+    "from": "l10",
+    "to": "end"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "человек или ИИ?",
+     "en": "human or AI?"
+    },
+    "size": 100,
+    "top": 190,
+    "from": "l1",
+    "to": "l2"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "признак 1: «—»",
+     "en": "sign 1: «—»"
+    },
+    "size": 90,
+    "top": 200,
+    "from": "l2",
+    "to": "l4"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "признак 2: «отличный вопрос!»",
+     "en": "sign 2: «great question!»"
+    },
+    "size": 66,
+    "top": 200,
+    "from": "l4",
+    "to": "l5"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "долг: 200 ₽",
+     "en": "debt: $10"
+    },
+    "size": 100,
+    "top": 190,
+    "from": "l5",
+    "to": "l7"
+   },
+   {
+    "type": "stamp",
+    "text": {
+     "ru": "ШАГ 1 ИЗ 47",
+     "en": "STEP 1 OF 47"
+    },
+    "color": "#ff9f0a",
+    "top": 200,
+    "from": "l7",
+    "to": "l8"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "признак 3: «хочешь, я…»",
+     "en": "sign 3: «want me to…»"
+    },
+    "size": 72,
+    "top": 200,
+    "from": "l8",
+    "to": "l9"
+   },
+   {
+    "type": "sign",
+    "title": {
+     "ru": "ДОЛГ.xlsx",
+     "en": "DEBT.xlsx"
+    },
+    "lines": [
+     {
+      "ru": "сумма: 200 ₽",
+      "en": "amount: $10"
+     },
+     {
+      "ru": "вернуть: когда-нибудь",
+      "en": "repay: someday"
+     }
+    ],
+    "top": 220,
+    "from": "l9",
+    "fo": 10,
+    "to": "l10"
+   },
+   {
+    "type": "stamp",
+    "text": {
+     "ru": "НЕЙРОСЕТЬ",
+     "en": "AI DETECTED"
+    },
+    "color": "#ff3b3b",
+    "top": 200,
+    "from": "l10",
+    "fo": 8,
+    "to": "l11"
+   },
+   {
+    "type": "key",
+    "text": {
+     "ru": "признак 4",
+     "en": "sign 4"
+    },
+    "size": 110,
+    "top": 190,
+    "from": "l11",
+    "to": "l12"
+   },
+   {
+    "type": "stamp",
+    "text": {
+     "ru": "ЗАРАЖЁН",
+     "en": "INFECTED"
+    },
+    "color": "#ff3b3b",
+    "top": 200,
+    "from": "l13",
+    "to": "end"
+   }
+  ]
  }
 ]
