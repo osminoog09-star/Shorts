@@ -1,0 +1,94 @@
+name: Render long video
+
+# Параллельный рендер длинного ролика: N кусков по кадрам → склейка → mp4 с аудио → коммит в videos/long/
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: "Папка в longform/"
+        default: "antikythera"
+      chunks:
+        description: "Число параллельных кусков"
+        default: "20"
+      fps:
+        default: "30"
+      audio:
+        description: "Аудиофайл внутри проекта"
+        default: "audio/antikythera_mix.m4a"
+
+permissions:
+  contents: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      idx: ${{ steps.p.outputs.idx }}
+    steps:
+      - id: p
+        run: |
+          python3 -c "import json;print('idx='+json.dumps(list(range(int('${{ inputs.chunks }}')))))" >> $GITHUB_OUTPUT
+
+  chunk:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        i: ${{ fromJson(needs.plan.outputs.idx) }}
+    defaults:
+      run:
+        working-directory: longform/${{ inputs.project }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Install
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q ffmpeg >/dev/null
+          npm ci --no-audit --no-fund --silent
+          npx -y playwright@1.48.2 install --with-deps chromium >/dev/null
+          B=$(find ~/.cache/ms-playwright -type f \( -name chrome-headless-shell -o -name chrome \) | sort | head -1)
+          echo "BROWSER=$B" >> $GITHUB_ENV; echo "browser: $B"
+      - name: Render chunk
+        run: |
+          DUR=$(python3 -c "import json;print(json.load(open('audio/cues.json'))['duration'])")
+          FPS=${{ inputs.fps }}; N=${{ inputs.chunks }}; I=${{ matrix.i }}
+          TOT=$(python3 -c "print(round($DUR*$FPS))")
+          F0=$(python3 -c "print($TOT*$I//$N)"); F1=$(python3 -c "print($TOT*($I+1)//$N)")
+          echo "frames $F0..$F1 of $TOT"
+          node render.mjs --fps $FPS --f0 $F0 --f1 $F1 --out out/chunk_$(printf %03d $I).mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chunk-${{ matrix.i }}
+          path: longform/${{ inputs.project }}/out/chunk_*.mp4
+          retention-days: 3
+
+  join:
+    needs: chunk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: chunks, pattern: chunk-*, merge-multiple: true }
+      - name: Join + audio
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q ffmpeg >/dev/null
+          ls chunks | sort | sed "s#^#file '$PWD/chunks/#; s#\$#'#" > list.txt
+          P=longform/${{ inputs.project }}
+          mkdir -p videos/long
+          OUT=videos/long/${{ inputs.project }}.mp4
+          ffmpeg -v error -y -f concat -safe 0 -i list.txt -i $P/${{ inputs.audio }} -map 0:v -map 1:a \
+            -c:v libx264 -preset slow -crf 22 -maxrate 2600k -bufsize 5200k -pix_fmt yuv420p -r ${{ inputs.fps }} \
+            -c:a aac -b:a 192k -movflags +faststart $OUT
+          ffprobe -v error -show_entries format=duration,size -of default=nw=1 $OUT | tee $P/out_info.txt
+          ffmpeg -v error -y -i $OUT -vf "fps=1/10,scale=480:-1,tile=6x6" -frames:v 1 $P/contact.jpg
+      - name: Commit
+        run: |
+          git config user.name "render-bot"
+          git config user.email "render-bot@users.noreply.github.com"
+          git add videos/long longform/${{ inputs.project }}/out_info.txt longform/${{ inputs.project }}/contact.jpg
+          git commit -m "render: ${{ inputs.project }}"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done

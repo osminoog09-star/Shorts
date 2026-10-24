@@ -8,6 +8,7 @@
 @font-face{font-family:"RMono";src:url(node_modules/@fontsource/rubik-mono-one/files/rubik-mono-one-cyrillic-400-normal.woff2)}
 @font-face{font-family:"RMono";src:url(node_modules/@fontsource/rubik-mono-one/files/rubik-mono-one-latin-400-normal.woff2);unicode-range:U+0000-00FF}
 @font-face{font-family:"Neucha";src:url(node_modules/@fontsource/neucha/files/neucha-cyrillic-400-normal.woff2)}
+@font-face{font-family:"NSerif";font-weight:700;src:url(node_modules/@fontsource/noto-serif/files/noto-serif-greek-700-normal.woff2)}
 html,body{margin:0;background:#000}
 #stage{position:relative;width:1920px;height:1080px;overflow:hidden}
 #stage canvas{position:absolute;left:0;top:0;width:1920px;height:1080px}
@@ -15,9 +16,9 @@ html,body{margin:0;background:#000}
 <div id="stage"><canvas id="gl" width="1920" height="1080"></canvas><canvas id="ov" width="1920" height="1080"></canvas></div>
 <script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
 <script type="module">
-import { renderAt, DURATION } from './film.js';
+await Promise.all(['900 40px Rubik','700 40px Rubik','600 40px Rubik','40px RMono','40px Neucha','700 40px NSerif'].map(f=>document.fonts.load(f,'АБВabcΗΛΙΟΣ')));
+const { renderAt, DURATION } = await import('./film.js');
 window.DURATION = DURATION;
-await Promise.all(['900 40px Rubik','700 40px Rubik','600 40px Rubik','40px RMono','40px Neucha'].map(f=>document.fonts.load(f,'АБВabc')));
 window.renderAt = renderAt;
 window.READY = true;
 </script></body></html>

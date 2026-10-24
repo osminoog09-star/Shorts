@@ -13,8 +13,8 @@ export { THREE, RoundedBoxGeometry };
 export const W = 1920, H = 1080;
 // пастель
 export const C = {
-  cream: 0xf6efe6, sand: 0xeedfcc, lav: 0xc6b8ff, mint: 0xa9e6cf, peach: 0xffc9a8, pink: 0xffaec0, butter: 0xffe7a3,
-  sky: 0xa9d6ff, sage: 0xc5dcb8, gold: 0xe9b97f, bronze: 0xd9a06b, patina: 0x9fd6c2, coral: 0xff8f87, ink: 0x2b2a3a,
+  cream: 0xf3e9dd, sand: 0xe9d6bf, lav: 0xb5a2ff, mint: 0x86dcbc, peach: 0xffb48a, pink: 0xff98b1, butter: 0xffdc7a,
+  sky: 0x8cc8ff, sage: 0xc5dcb8, gold: 0xe9b97f, bronze: 0xd9a06b, patina: 0x9fd6c2, coral: 0xff8f87, ink: 0x2b2a3a,
   deep: 0x3d3a5c, white: 0xffffff, sea: 0x8fd0e6, night: 0x2c2f4f,
 };
 export const CSS = {
@@ -44,9 +44,10 @@ renderer.setPixelRatio(1);
 renderer.setSize(W, H, false);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.05;
+renderer.toneMappingExposure = 0.95;
 renderer.shadowMap.enabled = !(window.DBG || {}).noShadow;
 renderer.shadowMap.type = THREE.VSMShadowMap;
+renderer.localClippingEnabled = true;
 
 const pmrem = new THREE.PMREMGenerator(renderer);
 export const envMap = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
@@ -87,18 +88,18 @@ export function render(scene, camera, opts = {}) {
 }
 
 // ───────── материалы ─────────
-export const matte = (color, extra = {}) => new THREE.MeshStandardMaterial({ color, roughness: 0.62, metalness: 0.0, envMapIntensity: 0.9, ...extra });
-export const gloss = (color, extra = {}) => new THREE.MeshPhysicalMaterial({ color, roughness: 0.22, metalness: 0.0, clearcoat: 1, clearcoatRoughness: 0.12, envMapIntensity: 1.1, ...extra });
+export const matte = (color, extra = {}) => new THREE.MeshStandardMaterial({ color, roughness: 0.7, metalness: 0.0, envMapIntensity: 0.6, ...extra });
+export const gloss = (color, extra = {}) => new THREE.MeshPhysicalMaterial({ color, roughness: 0.28, metalness: 0.0, clearcoat: 0.8, clearcoatRoughness: 0.15, envMapIntensity: 0.7, ...extra });
 export const metal = (color, extra = {}) => new THREE.MeshStandardMaterial({ color, roughness: 0.32, metalness: 0.75, envMapIntensity: 1.2, ...extra });
 
 // Студийная сцена: фон-циклорама, мягкий ключ с тенью, заполняющий и контровой
-export function studio(scene, { bg = C.cream, floor = true, floorY = -2, key = [4, 9, 6], shadowSize = 14, keyI = 2.3, fill = 0.55 } = {}) {
+export function studio(scene, { bg = C.cream, floor = true, floorY = -2, key = [4, 9, 6], shadowSize = 14, keyI = 2.9, fill = 0.32 } = {}) {
   scene.environment = envMap;
   scene.background = new THREE.Color(bg);
   scene.fog = new THREE.Fog(bg, 30, 70);
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xe8dccf, fill));
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xd9cbbb, fill));
   const k = new THREE.DirectionalLight(0xfff4e8, keyI); k.position.set(...key); k.castShadow = true;
-  k.shadow.mapSize.set(1024, 1024); k.shadow.radius = 14; k.shadow.blurSamples = 16; k.shadow.bias = -0.0004;
+  k.shadow.mapSize.set(1024, 1024); k.shadow.radius = 9; k.shadow.blurSamples = 16; k.shadow.bias = -0.0004;
   const s = k.shadow.camera; s.left = -shadowSize; s.right = shadowSize; s.top = shadowSize; s.bottom = -shadowSize; s.near = 0.5; s.far = 40;
   scene.add(k); scene.add(k.target);
   const rim = new THREE.DirectionalLight(0xd8e4ff, 0.8); rim.position.set(-6, 4, -8); scene.add(rim);

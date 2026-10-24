@@ -1,0 +1,583 @@
+{
+ "duration": 312.8,
+ "voice": [
+  {
+   "file": "../../media/tts/antikythera/s01.mp3",
+   "at": 0.6
+  },
+  {
+   "file": "../../media/tts/antikythera/s02.mp3",
+   "at": 18.3
+  },
+  {
+   "file": "../../media/tts/antikythera/s03.mp3",
+   "at": 45.8
+  },
+  {
+   "file": "../../media/tts/antikythera/s04.mp3",
+   "at": 65.6
+  },
+  {
+   "file": "../../media/tts/antikythera/s05.mp3",
+   "at": 82.9
+  },
+  {
+   "file": "../../media/tts/antikythera/s06.mp3",
+   "at": 109.5
+  },
+  {
+   "file": "../../media/tts/antikythera/s07.mp3",
+   "at": 141.9
+  },
+  {
+   "file": "../../media/tts/antikythera/s08.mp3",
+   "at": 179.6
+  },
+  {
+   "file": "../../media/tts/antikythera/s09.mp3",
+   "at": 205.9
+  },
+  {
+   "file": "../../media/tts/antikythera/s10.mp3",
+   "at": 236.2
+  },
+  {
+   "file": "../../media/tts/antikythera/s11.mp3",
+   "at": 256.8
+  },
+  {
+   "file": "../../media/tts/antikythera/s12.mp3",
+   "at": 281.4
+  }
+ ],
+ "music": {
+  "bpm": 100,
+  "gain": 0.32,
+  "sections": [
+   {
+    "at": 0,
+    "style": "intro"
+   },
+   {
+    "at": 8.8,
+    "style": "groove"
+   },
+   {
+    "at": 20.9,
+    "style": "tense"
+   },
+   {
+    "at": 28.0,
+    "style": "mystery"
+   },
+   {
+    "at": 45.2,
+    "style": "intro"
+   },
+   {
+    "at": 65.0,
+    "style": "groove"
+   },
+   {
+    "at": 82.3,
+    "style": "mystery"
+   },
+   {
+    "at": 108.9,
+    "style": "groove"
+   },
+   {
+    "at": 141.3,
+    "style": "groove"
+   },
+   {
+    "at": 179.0,
+    "style": "intro"
+   },
+   {
+    "at": 205.3,
+    "style": "mystery"
+   },
+   {
+    "at": 224.3,
+    "style": "big"
+   },
+   {
+    "at": 235.6,
+    "style": "tense"
+   },
+   {
+    "at": 256.2,
+    "style": "groove"
+   },
+   {
+    "at": 265.4,
+    "style": "tense"
+   },
+   {
+    "at": 270.2,
+    "style": "intro"
+   },
+   {
+    "at": 280.8,
+    "style": "mystery"
+   },
+   {
+    "at": 299.6,
+    "style": "big"
+   }
+  ]
+ },
+ "sfx": [
+  {
+   "name": "pop",
+   "at": 1.5,
+   "gain": 0.6
+  },
+  {
+   "name": "pop",
+   "at": 4.3,
+   "gain": 0.6
+  },
+  {
+   "name": "pop",
+   "at": 5.1,
+   "gain": 0.6
+  },
+  {
+   "name": "pop",
+   "at": 6.8,
+   "gain": 0.6
+  },
+  {
+   "name": "ding",
+   "at": 9.4,
+   "gain": 0.5
+  },
+  {
+   "name": "whoosh",
+   "at": 16.9,
+   "gain": 0.7
+  },
+  {
+   "name": "thunder",
+   "at": 21.8,
+   "gain": 0.8
+  },
+  {
+   "name": "pop",
+   "at": 18.4,
+   "gain": 0.5
+  },
+  {
+   "name": "whoosh",
+   "at": 27.4,
+   "gain": 0.8
+  },
+  {
+   "name": "splash",
+   "at": 27.8,
+   "gain": 0.7
+  },
+  {
+   "name": "bubbles",
+   "at": 28.7,
+   "gain": 0.6
+  },
+  {
+   "name": "bubbles",
+   "at": 32.1,
+   "gain": 0.8
+  },
+  {
+   "name": "ding",
+   "at": 35.9,
+   "gain": 0.45
+  },
+  {
+   "name": "pop",
+   "at": 38.7,
+   "gain": 0.5
+  },
+  {
+   "name": "boing",
+   "at": 46.9,
+   "gain": 0.35
+  },
+  {
+   "name": "boing",
+   "at": 47.6,
+   "gain": 0.35
+  },
+  {
+   "name": "boing",
+   "at": 48.3,
+   "gain": 0.35
+  },
+  {
+   "name": "bam",
+   "at": 51.0,
+   "gain": 0.35
+  },
+  {
+   "name": "pop",
+   "at": 52.7,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 57.4,
+   "gain": 0.5
+  },
+  {
+   "name": "crunch",
+   "at": 61.2,
+   "gain": 0.4
+  },
+  {
+   "name": "ding",
+   "at": 62.3,
+   "gain": 0.6
+  },
+  {
+   "name": "whoosh",
+   "at": 69.0,
+   "gain": 0.6
+  },
+  {
+   "name": "whoosh",
+   "at": 74.9,
+   "gain": 0.6
+  },
+  {
+   "name": "bam",
+   "at": 75.6,
+   "gain": 0.35
+  },
+  {
+   "name": "pop",
+   "at": 86.0,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 89.1,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 92.7,
+   "gain": 0.5
+  },
+  {
+   "name": "scan",
+   "at": 94.7,
+   "gain": 0.7
+  },
+  {
+   "name": "crank",
+   "at": 97.3,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 99.6,
+   "gain": 0.5
+  },
+  {
+   "name": "whoosh",
+   "at": 101.7,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 110.8,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 113.4,
+   "gain": 0.5
+  },
+  {
+   "name": "scan",
+   "at": 117.9,
+   "gain": 0.8
+  },
+  {
+   "name": "scan",
+   "at": 119.6,
+   "gain": 0.6
+  },
+  {
+   "name": "beep",
+   "at": 121.3,
+   "gain": 0.6
+  },
+  {
+   "name": "riser",
+   "at": 121.7,
+   "gain": 0.4
+  },
+  {
+   "name": "ding",
+   "at": 123.7,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 128.5,
+   "gain": 0.35
+  },
+  {
+   "name": "pop",
+   "at": 128.85,
+   "gain": 0.35
+  },
+  {
+   "name": "pop",
+   "at": 129.2,
+   "gain": 0.35
+  },
+  {
+   "name": "pop",
+   "at": 129.55,
+   "gain": 0.35
+  },
+  {
+   "name": "pop",
+   "at": 129.9,
+   "gain": 0.35
+  },
+  {
+   "name": "pop",
+   "at": 130.25,
+   "gain": 0.35
+  },
+  {
+   "name": "tick",
+   "at": 136.3,
+   "gain": 0.5
+  },
+  {
+   "name": "ding",
+   "at": 138.7,
+   "gain": 0.5
+  },
+  {
+   "name": "crank",
+   "at": 146.1,
+   "gain": 0.6
+  },
+  {
+   "name": "crank",
+   "at": 146.7,
+   "gain": 0.5
+  },
+  {
+   "name": "whoosh",
+   "at": 155.1,
+   "gain": 0.6
+  },
+  {
+   "name": "ding",
+   "at": 164.0,
+   "gain": 0.4
+  },
+  {
+   "name": "pop",
+   "at": 167.9,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 173.7,
+   "gain": 0.5
+  },
+  {
+   "name": "crank",
+   "at": 187.6,
+   "gain": 0.4
+  },
+  {
+   "name": "tick",
+   "at": 189.8,
+   "gain": 0.6
+  },
+  {
+   "name": "ding",
+   "at": 196.6,
+   "gain": 0.4
+  },
+  {
+   "name": "pop",
+   "at": 211.3,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 220.1,
+   "gain": 0.6
+  },
+  {
+   "name": "pop",
+   "at": 221.5,
+   "gain": 0.6
+  },
+  {
+   "name": "whoosh",
+   "at": 225.5,
+   "gain": 0.5
+  },
+  {
+   "name": "riser",
+   "at": 224.3,
+   "gain": 0.35
+  },
+  {
+   "name": "chord",
+   "at": 227.5,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 236.5,
+   "gain": 0.5
+  },
+  {
+   "name": "whoosh",
+   "at": 245.2,
+   "gain": 0.6
+  },
+  {
+   "name": "tick",
+   "at": 248.2,
+   "gain": 0.35
+  },
+  {
+   "name": "tick",
+   "at": 248.4,
+   "gain": 0.35
+  },
+  {
+   "name": "tick",
+   "at": 248.6,
+   "gain": 0.35
+  },
+  {
+   "name": "tick",
+   "at": 248.8,
+   "gain": 0.35
+  },
+  {
+   "name": "tick",
+   "at": 249.0,
+   "gain": 0.35
+  },
+  {
+   "name": "tick",
+   "at": 249.2,
+   "gain": 0.35
+  },
+  {
+   "name": "tick",
+   "at": 249.4,
+   "gain": 0.35
+  },
+  {
+   "name": "tick",
+   "at": 249.6,
+   "gain": 0.35
+  },
+  {
+   "name": "tick",
+   "at": 249.8,
+   "gain": 0.35
+  },
+  {
+   "name": "tick",
+   "at": 250.0,
+   "gain": 0.35
+  },
+  {
+   "name": "tick",
+   "at": 250.2,
+   "gain": 0.35
+  },
+  {
+   "name": "tick",
+   "at": 250.4,
+   "gain": 0.35
+  },
+  {
+   "name": "ding",
+   "at": 250.6,
+   "gain": 0.6
+  },
+  {
+   "name": "pop",
+   "at": 257.1,
+   "gain": 0.5
+  },
+  {
+   "name": "crunch",
+   "at": 265.4,
+   "gain": 0.9
+  },
+  {
+   "name": "bam",
+   "at": 265.4,
+   "gain": 0.3
+  },
+  {
+   "name": "beep",
+   "at": 268.8,
+   "gain": 0.6
+  },
+  {
+   "name": "ding",
+   "at": 273.4,
+   "gain": 0.4
+  },
+  {
+   "name": "pop",
+   "at": 281.6,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 281.85,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 282.1,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 292.6,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 296.4,
+   "gain": 0.5
+  },
+  {
+   "name": "pop",
+   "at": 297.4,
+   "gain": 0.5
+  },
+  {
+   "name": "chord",
+   "at": 299.6,
+   "gain": 0.6
+  },
+  {
+   "name": "chord",
+   "at": 307.4,
+   "gain": 0.7
+  }
+ ]
+}

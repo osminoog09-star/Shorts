@@ -14,7 +14,7 @@ const srv = http.createServer((req, res) => {
   fs.readFile(p, (e, d) => { if (e) { res.writeHead(404); res.end(); return; } res.writeHead(200, { 'content-type': types[path.extname(p)] || 'application/octet-stream' }); res.end(d); });
 }).listen(0);
 const port = srv.address().port;
-const exe = args.browser || fs.readFileSync(path.join(root, '../../studio/.browser'), 'utf8').trim();
+const exe = args.browser || process.env.BROWSER || fs.readFileSync(path.join(root, '../../studio/.browser'), 'utf8').trim();
 const browser = await chromium.launch({ executablePath: exe, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
 const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
 page.on('console', (m) => { if (m.type() === 'error') console.error('[page]', m.text()); });
@@ -37,11 +37,11 @@ if (args.stills) {
   }
 } else {
   const from = +(args.from || 0), to = +(args.to || dur);
-  const n0 = Math.round(from * fps), n1 = Math.round(to * fps);
+  const n0 = args.f0 != null ? +args.f0 : Math.round(from * fps), n1 = args.f1 != null ? Math.min(+args.f1, Math.round(dur * fps)) : Math.round(to * fps);
   const out = args.out || 'out/video.mp4';
   fs.mkdirSync(path.dirname(path.join(root, out)), { recursive: true });
   const ff = spawn('ffmpeg', ['-v', 'error', '-y', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'mjpeg', '-i', '-',
-    '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', '-r', String(fps), path.join(root, out)], { stdio: ['pipe', 'inherit', 'inherit'] });
+    '-c:v', 'libx264', '-preset', 'medium', '-crf', '16', '-pix_fmt', 'yuv420p', '-r', String(fps), path.join(root, out)], { stdio: ['pipe', 'inherit', 'inherit'] });
   const t0 = Date.now();
   for (let i = n0; i < n1; i++) {
     const buf = await frameAt(i / fps);
