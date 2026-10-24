@@ -28,7 +28,7 @@ for s in S:
    u=np.arange(int(.18*SR))/SR;add(at+k,.05*np.sin(2*np.pi*1300*u)*np.exp(-u*38))
  if s['model']=='steam':
   a=rng.normal(0,.004,int(s['dur']*SR));add(at,a)
-x*=np.minimum(1,t/1.2)*np.minimum(1,np.maximum(0,(D-t)/2))
+x*=np.minimum(1,t/.12)*np.minimum(1,np.maximum(0,(D-t)/2))
 peak=np.max(np.abs(x));
 if peak>.85:x*=.85/peak
 with wave.open(str(out/'mix.wav'),'wb') as w:w.setnchannels(1);w.setsampwidth(2);w.setframerate(SR);w.writeframes((np.clip(x,-1,1)*32767).astype(np.int16).tobytes())

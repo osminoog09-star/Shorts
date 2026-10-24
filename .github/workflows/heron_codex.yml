@@ -1,7 +1,5 @@
 name: Heron Codex Film
 on:
-  push:
-    paths: ['longform/heron-codex/**', '.github/workflows/heron_codex.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -100,17 +98,18 @@ jobs:
       - run: |
           sudo apt-get update -q
           sudo apt-get install -y -q ffmpeg fonts-dejavu-core
-          python3 -m pip install numpy
+          python3 -m pip install numpy pillow
           python3 longform/heron-codex/compose.py
+          python3 longform/heron-codex/verify.py
           for F in longform/heron-codex/out/heron_*.mp4; do ffprobe -v error -show_entries format=duration -show_entries stream=codec_name,width,height,r_frame_rate -of json "$F"; done
       - uses: actions/upload-artifact@v4
         with:
           name: heron-final-films
-          path: longform/heron-codex/out/heron_*.mp4
+          path: longform/heron-codex/out/heron_*
           retention-days: 3
       - name: Publish downloadable review files
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="heron-codex-${GITHUB_RUN_ID}"
-          gh release create "$TAG" longform/heron-codex/out/heron_*.mp4 --title "Heron: film and three Shorts (review export)" --notes "Original RU 3D educational reconstruction. Automated encode complete; human/agent visual and sound review remains separate. No YouTube post is created by this workflow."
+          gh release create "$TAG" longform/heron-codex/out/heron_*.mp4 longform/heron-codex/out/heron_qa* longform/heron-codex/out/heron_thumbnail.jpg --title "Heron: film and three Shorts (review export)" --notes "Original RU 3D educational reconstruction. Automated encode complete; human/agent visual and sound review remains separate. No YouTube post is created by this workflow."
