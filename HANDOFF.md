@@ -4,8 +4,8 @@
 
 | Клетка | Автор | Статус | Файлы | Осталось |
 |---|---|---|---|---|
-| сб 24.10 19:00 длинное «Антикитера» | Claude | ✅ в Metricool | longform/antikythera, Release long-antikythera | после выхода: ссылка в нарезках + обложка (задача 19:35) |
-| вс 25 / пн 26.10 16:00 нарезки Антикитеры (find, moon) | Claude | ✅ в Metricool | videos/long/antikythera_short_*.mp4 | ссылка на длинное — после 19:00 |
+| сб 24.10 19:00 длинное «Антикитера» | Claude | ✅ вышло https://youtu.be/s7YVEyinxDE | longform/antikythera, Release long-antikythera | обложку ставит Денис вручную (vidIQ кредитов нет) |
+| вс 25 / пн 26.10 16:00 нарезки Антикитеры (find, moon) | Claude | ✅ в Metricool | videos/long/antikythera_short_*.mp4 | ✅ ссылка добавлена |
 | вс 25.10 10:00 серия 2, пн 26.10 10:00 серия 3 | Claude | ✅ в Metricool | — | — |
 | пт 30.10 10:00 скетч «Робот-телохранитель» | Claude | ✅ в Metricool | — | авто-скетч в ср пропустит (слот занят) |
 | пн 02.11 10:00 скетч «Машина с ИИ» | Claude | ✅ в Metricool | — | авто-скетч в сб пропустит |
