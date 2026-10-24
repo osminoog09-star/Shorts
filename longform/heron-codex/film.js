@@ -1,9 +1,13 @@
 import * as T from 'three';
 import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-const timeline=await (await fetch('./timeline.json')).json();
+const clip=new URLSearchParams(location.search).get('clip');
+const portrait=clip&&clip!=='ending';
+const timeline=await (await fetch(clip?`./timeline-${clip}.json`:'./timeline.json')).json();
 export const duration=timeline.reduce((a,s)=>a+s.dur,0);
-const W=1920,H=1080, TAU=Math.PI*2;
+const W=portrait?1080:1920,H=portrait?1920:1080, TAU=Math.PI*2;
+document.getElementById('stage').style.cssText=`width:${W}px;height:${H}px;position:relative;overflow:hidden`;
+const overlayCanvas=document.getElementById('overlay');overlayCanvas.width=W;overlayCanvas.height=H;
 const C={cream:0xeee9e1,lav:0xcac5ef,mint:0x9ed6bf,blue:0x80bbdb,peach:0xe4b09b,gold:0xc9a467,ink:0x26363a,white:0xf9f6ed,water:0x399fcd};
 const renderer=new T.WebGLRenderer({canvas:document.getElementById('gl'),antialias:true,preserveDrawingBuffer:true});
 renderer.setSize(W,H);renderer.setPixelRatio(1);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=.9;
@@ -60,10 +64,23 @@ function steamModel(){const g=group();slab(g,6,4);cyl(0,-1.6,0,1.3,.9,'gold',g);
  const fire=[];for(let i=0;i<6;i++){const f=mesh(new T.ConeGeometry(.11,.5,12),mat(i%2?0xf1b265:0xe08c6e),g);f.position.set(Math.cos(i)*.6,-2.1,Math.sin(i)*.6);fire.push(f);}
  return {g,update(t){rotor.rotation.x=t*1.4;steam.forEach(({p,i,sign})=>{let v=((t*1.1+i/9)%1);p.position.set(.08*Math.sin(i+t),sign,sign*(1+v*1.8));p.scale.setScalar(1+v*1.5);p.material.opacity=1-v;});fire.forEach((f,i)=>f.scale.y=.8+.2*Math.sin(t*6+i));}};}
 const models={coin:coinModel(),door:doorModel(),steam:steamModel()};
+if(clip){
+ const grain=document.createElement('canvas');grain.width=grain.height=128;const q=grain.getContext('2d');
+ q.fillStyle='#9b9b9b';q.fillRect(0,0,128,128);
+ for(let i=0;i<190;i++){q.strokeStyle=`rgba(35,35,35,${.05+.08*(.5+.5*Math.sin(i*73))})`;q.beginPath();const y=(i*37)%128;q.moveTo((i*11)%128,y);q.lineTo(Math.min(128,(i*11)%128+16+(i%29)),y+.3);q.stroke();}
+ const tex=new T.CanvasTexture(grain);tex.wrapS=tex.wrapT=T.RepeatWrapping;tex.repeat.set(2,2);M.gold.roughnessMap=tex;M.gold.bumpMap=tex;M.gold.bumpScale=.018;M.gold.needsUpdate=true;
+ const g=models.coin.g;
+ for(const x of [-2.1,2.1])for(const y of [-1.6,1.6]){const b=cyl(x,y,-.78,.065,.06,'gold',g);b.rotation.x=Math.PI/2;box(x,y,-.735,.065,.013,.008,'ink',g);}
+ for(let i=0;i<8;i++){const a=i*Math.PI/4;cyl(1.1+Math.cos(a)*.99,-1.58,-.15+Math.sin(a)*.99,.045,.07,'gold',g);}
+ const label=document.createElement('canvas');label.width=512;label.height=96;const l=label.getContext('2d');l.fillStyle='#c9a467';l.fillRect(0,0,512,96);l.fillStyle='#4a4032';l.font='bold 46px DejaVu Sans';l.textAlign='center';l.fillText('HERON · XXI',256,64);
+ const plate=mesh(new T.PlaneGeometry(1.7,.32),new T.MeshStandardMaterial({map:new T.CanvasTexture(label),metalness:.4,roughness:.5}),g);plate.position.set(.1,-2.21,2.05);
+ for(const x of [-.85,.85]){const b=cyl(x,-1.09,.25,.06,.08,'gold',models.steam.g);b.rotation.x=Math.PI/2;}
+}
+
 const rt=new T.WebGLRenderTarget(W,H,{depthTexture:new T.DepthTexture(W,H,T.UnsignedShortType)});
 const post=new T.Scene(),postCam=new T.OrthographicCamera(-1,1,1,-1,0,1);
 const focusMaterial=new T.ShaderMaterial({uniforms:{image:{value:rt.texture},depth:{value:rt.depthTexture},focus:{value:15}},vertexShader:`varying vec2 uv0;void main(){uv0=uv;gl_Position=vec4(position.xy,0.,1.);}`,fragmentShader:`uniform sampler2D image;uniform sampler2D depth;uniform float focus;varying vec2 uv0;
-void main(){float d=texture2D(depth,uv0).x;float z=.1*100./(100.-d*(100.-.1));float coc=clamp(abs(z-focus)*.0015,0.,.003);vec2 e=vec2(coc,coc*1.7778);gl_FragColor=texture2D(image,uv0)*.4+(texture2D(image,uv0+vec2(e.x,0.))+texture2D(image,uv0-vec2(e.x,0.))+texture2D(image,uv0+vec2(0.,e.y))+texture2D(image,uv0-vec2(0.,e.y)))*.15;
+void main(){float d=texture2D(depth,uv0).x;float z=.1*100./(100.-d*(100.-.1));float coc=clamp(abs(z-focus)*.0015,0.,.003);vec2 e=vec2(coc,coc*${W/H});gl_FragColor=texture2D(image,uv0)*.4+(texture2D(image,uv0+vec2(e.x,0.))+texture2D(image,uv0-vec2(e.x,0.))+texture2D(image,uv0+vec2(0.,e.y))+texture2D(image,uv0-vec2(0.,e.y)))*.15;
 #include <tonemapping_fragment>
 #include <colorspace_fragment>
 }`});post.add(new T.Mesh(new T.PlaneGeometry(2,2),focusMaterial));
@@ -73,6 +90,19 @@ function wrap(text,max,font){ctx.font=font;let out=[],line='';for(const word of 
 function roundRect(x,y,w,h,r,c){ctx.fillStyle=c;ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fill();}
 function text(s,x,y,size=30,color='#26363a',weight=600){ctx.font=`${weight} ${size}px DejaVu Sans`;ctx.fillStyle=color;ctx.fillText(s,x,y);}
 function overlay(s,t,total){ctx.clearRect(0,0,W,H);
+ if(portrait){
+  text('M1LASH / ИНЖЕНЕРИЯ ДРЕВНОСТИ',70,94,25,'#53656a',700);
+  wrap(s.title,940,'700 62px DejaVu Sans').forEach((l,i)=>text(l,70,194+i*72,62,'#26363a',700));
+  wrap(s.key,940,'600 35px DejaVu Sans').forEach((l,i)=>text(l,70,365+i*43,35,'#586f78',600));
+  roundRect(55,1480,970,250,30,'rgba(255,253,247,.96)');
+  const cue=s.cues?.find(c=>t>=c.start+.15&&t<c.end+.3);
+  wrap(cue?.text||'',870,'600 43px DejaVu Sans').slice(0,4).forEach((l,i)=>text(l,100,1545+i*49,43,'#26363a',600));
+  text('ПОЛНАЯ ИСТОРИЯ — НА КАНАЛЕ',70,1800,30,'#53656a',700);
+  text('Учебная 3D-реконструкция · размеры условны',70,1852,22,'#607078');
+  ctx.fillStyle='#8db8b0';ctx.fillRect(0,H-5,W*total/duration,5);
+  let fade=Math.max(1-t/.3,1-(s.dur-t)/.3,0);if(fade>0){ctx.fillStyle=`rgba(238,233,225,${Math.min(1,fade)})`;ctx.fillRect(0,0,W,H);}
+  return;
+ }
  text('M1LASH / ИНЖЕНЕРИЯ ДРЕВНОСТИ',90,68,22,'#53656a',700);text(String(s.index+1).padStart(2,'0')+' / '+timeline.length,1710,68,22,'#53656a');
  const titleLines=wrap(s.title,1470,'700 48px DejaVu Sans');titleLines.forEach((l,i)=>text(l,90,140+i*55,48,'#26363a',700));
  const lines=wrap(s.key,1350,'600 33px DejaVu Sans');lines.forEach((l,i)=>text(l,92,218+i*40,33,'#586f78',600));
@@ -92,7 +122,7 @@ export function renderAt(time){time=Math.max(0,Math.min(duration-.001,time));con
   for(const [j,o]of Object.values(models).entries()){o.g.visible=true;o.g.scale.setScalar(.56);o.g.position.set((j-1)*4.4,-1.05,0);o.update(t+j*1.7,focus);}
  }else{const o=models[s.model];o.g.visible=true;o.g.scale.setScalar(1);o.g.position.set(0,0,0);o.update(t,focus);}
  const cut=Math.floor(t/9),v=(t%9)/9;let az=(-.28+cut*.3)%1.1-.35,el=.25;
- let r=s.model==='all'?21:s.model==='door'?19:15;
+ let r=portrait?(s.model==='coin'?25:22):(s.model==='all'?21:s.model==='door'?19:15);
  if(['lever','valve','reset','jets','detail','bucket','heat'].includes(focus))r*=.8;
  az+=.18*smooth(v);el+=.03*Math.sin(t*.15);r*=1-.025*smooth(v);
  const target=new T.Vector3(0,s.model==='door'?.6:.1,0);cam.position.set(Math.sin(az)*Math.cos(el)*r,target.y+Math.sin(el)*r,Math.cos(az)*Math.cos(el)*r);cam.lookAt(target);cam.updateMatrixWorld();

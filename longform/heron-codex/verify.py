@@ -5,7 +5,7 @@ from PIL import Image,ImageDraw,ImageFont
 R=Path(__file__).resolve().parent;O=R/'out';T=json.loads((R/'timeline.json').read_text());D=sum(s['dur'] for s in T)
 checks=[]
 for f in sorted(O.glob('heron_*.mp4')):
- data=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams','-show_format','-of','json',str(f)]));v=next(s for s in data['streams'] if s['codec_type']=='video');a=next(s for s in data['streams'] if s['codec_type']=='audio');dur=float(data['format']['duration']);assert v['codec_name']=='h264';assert v['pix_fmt']=='yuv420p';assert v['r_frame_rate']=='30/1';assert a['codec_name']=='aac'
+ data=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams','-show_format','-of','json',str(f)]));v=next(s for s in data['streams'] if s['codec_type']=='video');a=next(s for s in data['streams'] if s['codec_type']=='audio');dur=float(data['format']['duration']);print(f.name,v['codec_name'],v['pix_fmt'],v['r_frame_rate'],flush=True);assert v['codec_name']=='h264';assert v['pix_fmt']=='yuv420p';assert v['r_frame_rate']=='30/1';assert a['codec_name']=='aac'
  assert (v['width'],v['height'])==((1080,1920) if 'short' in f.name else (1920,1080))
  if 'short' not in f.name:assert abs(dur-D)<.2 and 480<=dur<=600
  else:assert 15<=dur<=60
@@ -27,4 +27,4 @@ im=Image.open(O/'qa_scene_04.jpg').resize((1280,720));q=ImageDraw.Draw(im);q.rou
 chapters=[]
 for i in [0,3,8,14,18,21]:
  sec=int(T[i]['start']);chapters.append({'time':f'{sec//60}:{sec%60:02d}','title':T[i]['title']})
-(O/'heron_metadata.json').write_text(json.dumps({'duration':D,'chapters':chapters,'voice':'ru-RU-DmitryNeural','language':'ru','planned_longform':'2026-10-27T19:00:00+02:00','planned_shorts':['2026-10-28T10:00:00+02:00','2026-10-29T10:00:00+02:00','2026-10-30T10:00:00+02:00']},ensure_ascii=False,indent=2))
+(O/'heron_metadata.json').write_text(json.dumps({'duration':D,'chapters':chapters,'voice':'ru-RU-DmitryNeural','language':'ru','planned_longform':'2026-10-27T19:00:00+02:00','planned_shorts':['2026-10-28T16:00:00+02:00','2026-10-29T16:00:00+02:00']},ensure_ascii=False,indent=2))
