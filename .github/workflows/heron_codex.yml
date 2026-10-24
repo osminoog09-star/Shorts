@@ -1,0 +1,116 @@
+name: Heron Codex Film
+on:
+  push:
+    paths: ['longform/heron-codex/**', '.github/workflows/heron_codex.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: heron-codex-film
+  cancel-in-progress: false
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      frames: ${{ steps.duration.outputs.frames }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for shared TTS outputs
+        run: |
+          for I in $(seq 1 90); do
+            git fetch -q origin main
+            COUNT=$(git ls-tree -r --name-only origin/main -- media/tts/heron_codex | wc -l)
+            if [ "$COUNT" -ge 44 ]; then
+              git checkout origin/main -- media/tts/heron_codex
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "Shared TTS outputs incomplete" >&2
+          exit 1
+      - run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg
+          python3 longform/heron-codex/script.py
+          python3 longform/heron-codex/prepare_edge_audio.py
+      - id: duration
+        run: |
+          echo "frames=$(python3 -c 'import json; x=json.load(open("longform/heron-codex/timeline.json")); print(round(sum(s["dur"] for s in x)*30))')" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: heron-voice
+          path: |
+            longform/heron-codex/audio/[0-9][0-9].wav
+            longform/heron-codex/timeline.json
+          retention-days: 1
+  frames:
+    needs: voice
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        part: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: longform/heron-codex/package-lock.json
+      - uses: actions/download-artifact@v4
+        with:
+          name: heron-voice
+          path: longform/heron-codex
+      - run: |
+          npm ci --prefix longform/heron-codex
+          node longform/heron-codex/node_modules/playwright-core/cli.js install --with-deps chromium
+          sudo apt-get install -y -q ffmpeg fonts-dejavu-core
+      - name: Render independent frame range
+        env:
+          PART: ${{ matrix.part }}
+          FRAMES: ${{ needs.voice.outputs.frames }}
+        run: |
+          cd longform/heron-codex
+          read FROM TO < <(python3 -c 'import os; n=int(os.environ["FRAMES"]); p=int(os.environ["PART"]); print((n*p//20)/30,(n*(p+1)//20)/30)')
+          FILE=$(printf 'part_%02d.mp4' "$PART")
+          node render.mjs --fps 30 --from "$FROM" --to "$TO" --out "out/$FILE"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: heron-part-${{ matrix.part }}
+          path: longform/heron-codex/out/part_*.mp4
+          retention-days: 1
+  finish:
+    needs: [voice, frames]
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: heron-voice
+          path: longform/heron-codex
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: heron-part-*
+          merge-multiple: true
+          path: longform/heron-codex/shards
+      - run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg fonts-dejavu-core
+          python3 -m pip install numpy
+          python3 longform/heron-codex/compose.py
+          for F in longform/heron-codex/out/heron_*.mp4; do ffprobe -v error -show_entries format=duration -show_entries stream=codec_name,width,height,r_frame_rate -of json "$F"; done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: heron-final-films
+          path: longform/heron-codex/out/heron_*.mp4
+          retention-days: 3
+      - name: Publish downloadable review files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="heron-codex-${GITHUB_RUN_ID}"
+          gh release create "$TAG" longform/heron-codex/out/heron_*.mp4 --title "Heron: film and three Shorts (review export)" --notes "Original RU 3D educational reconstruction. Automated encode complete; human/agent visual and sound review remains separate. No YouTube post is created by this workflow."
