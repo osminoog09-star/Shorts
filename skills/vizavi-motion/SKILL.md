@@ -44,6 +44,7 @@ metadata:
 - Продуктовая анимация интерфейса, курсор и состояния: [SaaS/UI motion](references/saas-ui-motion.md).
 - Согласованные стили и проверенные источники: [реестр](references/styles-and-sources.md). Выбранные шесть частей учебного демо применяются только к этому демо; для других роликов выбирай язык по их брифу.
 - **Стиль канала (обязателен для всех роликов M1lash):** [стиль](references/channel-style.md).
+- **Эксперимент стилей Shorts (с 25.10):** [библиотека стилей S1–S9 и глубины D2/D25/D3](references/style-library.md), учёт — `reports/style_experiment.md`.
 - **Улучшения качества (обязательны для M1lash):** [улучшения](references/quality-upgrades.md).
 - Документальный лонгрид под голос (8–15 мин, факты, таймлайн по словам): [лонгрид](references/documentary-longform.md).
 - Длинный рендер, 30 fps, параллельные куски в GitHub Actions: [бюджет рендера](references/render-budget.md).
