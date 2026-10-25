@@ -10,3 +10,6 @@ AGENTS.md
 videos__*
 *.jpg
 *.wav
+voice_bundle.js
+voice_silent.mp4
+liam_source.mp3
