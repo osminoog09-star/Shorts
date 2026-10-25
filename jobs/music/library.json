@@ -1,10 +1,108 @@
-{"tracks": [
- {"title": "Investigations", "file": "Investigations.mp3"},
- {"title": "Inspired", "file": "Inspired.mp3"},
- {"title": "Mesmerize", "file": "Mesmerize.mp3"},
- {"title": "Clean Soul", "file": "Clean Soul.mp3"},
- {"title": "Lightless Dawn", "file": "Lightless Dawn.mp3"},
- {"title": "Thatched Villagers", "file": "Thatched Villagers.mp3"},
- {"title": "Dreamy Flashback", "file": "Dreamy Flashback.mp3"},
- {"title": "Hidden Agenda", "file": "Hidden Agenda.mp3"}
-]}
+{
+ "tracks": [
+  {
+   "title": "Investigations",
+   "file": "Investigations.mp3"
+  },
+  {
+   "title": "Inspired",
+   "file": "Inspired.mp3"
+  },
+  {
+   "title": "Mesmerize",
+   "file": "Mesmerize.mp3"
+  },
+  {
+   "title": "Clean Soul",
+   "file": "Clean Soul.mp3"
+  },
+  {
+   "title": "Lightless Dawn",
+   "file": "Lightless Dawn.mp3"
+  },
+  {
+   "title": "Thatched Villagers",
+   "file": "Thatched Villagers.mp3"
+  },
+  {
+   "title": "Dreamy Flashback",
+   "file": "Dreamy Flashback.mp3"
+  },
+  {
+   "title": "Hidden Agenda",
+   "file": "Hidden Agenda.mp3"
+  },
+  {
+   "title": "Hitman",
+   "file": "Hitman.mp3"
+  },
+  {
+   "title": "Crypto",
+   "file": "Crypto.mp3"
+  },
+  {
+   "title": "Darkest Child",
+   "file": "Darkest Child.mp3"
+  },
+  {
+   "title": "Long Note Four",
+   "file": "Long Note Four.mp3"
+  },
+  {
+   "title": "Gathering Darkness",
+   "file": "Gathering Darkness.mp3"
+  },
+  {
+   "title": "Unseen Horrors",
+   "file": "Unseen Horrors.mp3"
+  },
+  {
+   "title": "Interloper",
+   "file": "Interloper.mp3"
+  },
+  {
+   "title": "Anxiety",
+   "file": "Anxiety.mp3"
+  },
+  {
+   "title": "Ossuary 6 - Air",
+   "file": "Ossuary 6 - Air.mp3"
+  },
+  {
+   "title": "Spy Glass",
+   "file": "Spy Glass.mp3"
+  },
+  {
+   "title": "Decisions",
+   "file": "Decisions.mp3"
+  },
+  {
+   "title": "Impact Prelude",
+   "file": "Impact Prelude.mp3"
+  },
+  {
+   "title": "Heavy Interlude",
+   "file": "Heavy Interlude.mp3"
+  },
+  {
+   "title": "The Descent",
+   "file": "The Descent.mp3"
+  },
+  {
+   "title": "Volatile Reaction",
+   "file": "Volatile Reaction.mp3"
+  },
+  {
+   "title": "Stormfront",
+   "file": "Stormfront.mp3"
+  },
+  {
+   "title": "Echoes of Time v2",
+   "file": "Echoes of Time v2.mp3"
+  },
+  {
+   "title": "Dark Walk",
+   "file": "Dark Walk.mp3"
+  }
+ ]
+}
