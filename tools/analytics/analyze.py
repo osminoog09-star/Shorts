@@ -44,6 +44,8 @@ def main():
         v = r["_v"]
         r["_like"] = (num(r.get("likes")) or 0) / v * 100 if v else None
         r["_share"] = (num(r.get("shares")) or 0) / v * 100 if v else None
+        tok = num((r.get("tokens") or "").lstrip("~"))
+        r["_eff"] = v / tok * 1e5 if (v and tok) else None   # просмотры на 100 тыс. токенов
 
     def median_for(r):
         key = "views_7d" if r["_age"] == "7д" else "views_48h"
@@ -79,14 +81,19 @@ def main():
         if not agg:
             continue
         print(f"\n### По группе «{name}»\n")
-        print("| значение | n | средний индекс | медиана досмотра % | вывод |")
-        print("|---|---|---|---|---|")
+        print("| значение | n | средний индекс | медиана досмотра % | просм./100к токенов | вывод |")
+        print("|---|---|---|---|---|---|")
         for k, rs in sorted(agg.items(), key=lambda kv: -statistics.mean(x["_idx"] for x in kv[1])):
             idx = statistics.mean(x["_idx"] for x in rs)
             apvs = [x["_apv"] for x in rs if x["_apv"]]
             apv = f"{statistics.median(apvs):.0f}" if apvs else "—"
             verdict = "гипотеза (n<3)" if len(rs) < 3 else "лучше нормы" if idx >= 1.3 else "хуже нормы" if idx <= 0.7 else "норма"
-            print(f"| {k} | {len(rs)} | {idx:.2f} | {apv} | {verdict} |")
+            effs = [x["_eff"] for x in rs if x["_eff"]]
+            eff = f"{statistics.median(effs):.0f}" if effs else "—"
+            print(f"| {k} | {len(rs)} | {idx:.2f} | {apv} | {eff} | {verdict} |")
+    spent = [(num((r.get("tokens") or "").lstrip("~")), num(r.get("credits")), num(r.get("render_min"))) for r in rows]
+    t = sum(x[0] or 0 for x in spent); c = sum(x[1] or 0 for x in spent); m = sum(x[2] or 0 for x in spent)
+    print(f"\n**Расход по журналу:** токены ≈ {t:,.0f}, кредиты vidIQ {c:.0f}, рендер {m:.0f} мин.")
 
 
 if __name__ == "__main__":
