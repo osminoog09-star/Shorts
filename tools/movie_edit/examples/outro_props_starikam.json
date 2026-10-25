@@ -1,0 +1,4 @@
+{"kicker": "ЭТО БЫЛ ФИЛЬМ", "title": "СТАРИКАМ ТУТ НЕ МЕСТО", "titleSize": 84,
+ "chips": ["2007", "БРАТЬЯ КОЭН"], "accent": "#ffb347",
+ "t": {"kicker": 0.35, "title": 1.3, "chips": [3.75, 5.32], "like": 7.9, "sub": 8.45, "thanks": 10.23},
+ "poses": [[0, "point"], [2.4, "talk"], [7.3, "point"], [9.9, "laugh"]]}

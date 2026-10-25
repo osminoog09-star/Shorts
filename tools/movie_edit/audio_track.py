@@ -1,4 +1,6 @@
-# Звук: диалог из исходника по монтажу + своя музыка (синтез, без чужих треков): гул, сердцебиение, удары, нарастание.
+# Звук movie-edit: диалог по монтажу + лицензионный трек (CC BY) с дакингом + удары/нарастания + голос ведущего в финале.
+# Ключевые моменты берутся из edit.py: PUNCH (удары), KEY_DROP (музыка пропадает), KEY_HIT (главный удар).
+# Финал: outro_voice.wav + outro.json {duration, like, tap}.
 import subprocess, sys
 import numpy as np
 from edit import *
@@ -20,7 +22,9 @@ for a, b in SEGMENTS:
     p[:fade] *= ramp; p[-fade:] *= ramp[::-1]
     parts.append(p)
 dlg = np.concatenate(parts)
-OUT_T = 11.48
+import json
+OUTRO = json.load(open('outro.json'))
+OUT_T = OUTRO['duration']
 VO_OFF = len(dlg) / SR
 import wave
 def rdw(f, ch=1):
@@ -32,7 +36,7 @@ def rdw(f, ch=1):
 vo = rdw('outro_voice.wav')
 dlg = np.concatenate([dlg, np.zeros((int(OUT_T * SR), 2), np.float32)])
 i0 = int(VO_OFF * SR); dlg[i0:i0 + len(vo)] += (vo * 1.6)[:, None]
-for sfx, at, g in [('ding.wav', 6.84, 0.5), ('chime.wav', 8.15, 0.5)]:
+for sfx, at, g in [('ding.wav', OUTRO['like'], 0.5), ('chime.wav', OUTRO['tap'], 0.5)]:
     x = rdw('/home/claude/shorts/studio/public/' + sfx); j = int((VO_OFF + at) * SR)
     dlg[j:j + len(x)] += (x * g)[:len(dlg) - j, None]
 N = len(dlg)
@@ -50,17 +54,6 @@ def lp(x, k):  # однополюсный НЧ-фильтр
 E = edit_time
 T = total()
 mus = np.zeros(N)
-
-# гул: низкие ноты + тёмный пэд
-drone = (np.sin(2 * np.pi * 55 * t) * 0.6 + np.sin(2 * np.pi * 82.41 * t) * 0.35 +
-         np.sin(2 * np.pi * 110 * t + 0.4 * np.sin(2 * np.pi * 0.2 * t)) * 0.18)
-drone *= 0.75 + 0.25 * np.sin(2 * np.pi * 0.13 * t)
-pad = (np.sin(2 * np.pi * 220 * t * (1 + 0.003 * np.sin(2 * np.pi * 4.5 * t))) * 0.12 +
-       np.sin(2 * np.pi * 329.63 * t) * 0.06)
-pad = lp(pad, 0.05)
-d_env = env_at([(0, 0.0), (1.5, 0.18), (E(311.3), 0.26), (E(329.3), 0.32), (E(343.4), 0.42),
-                (E(349.35), 0.5), (E(349.45), 0.0), (E(354.30), 0.0), (E(354.36), 0.55), (T, 0.4), (T + 0.8, 0.16), (T + OUT_T - 1.5, 0.16), (T + OUT_T, 0.0)])
-
 
 def boom(at, amp=1.0, dur=1.6, f0=120, f1=38):
     i0 = int(at * SR); n = min(int(dur * SR), N - i0)
@@ -86,15 +79,11 @@ def swell(end, dur=1.6, amp=0.5):  # обратный «вдох» шума пе
         acc += k[j] * (x[j] - acc); y[j] = acc
     mus[i0:i1] += y * np.linspace(0, 1, n) ** 3 * amp * 3
 
-for p in [312.10, 323.60, 343.38]:
-    boom(E(p), 0.9)
-# сердцебиение в молчаливой паузе и перед «Скажи моё имя»
-hb0, hb1 = E(328.9), E(343.0)
-x = hb0
-swell(E(349.40), 1.8, 0.45)
-boom(E(349.40), 0.7, 1.2, 100, 40)
-swell(E(354.34), 0.9, 0.6)
-boom(E(354.34), 1.4, 2.8, 140, 34)
+for p in PUNCH:
+    if p != KEY_HIT:
+        boom(E(p), 0.8)
+swell(E(KEY_HIT), 1.0, 0.6)
+boom(E(KEY_HIT), 1.4, 2.8, 140, 34)
 
 mus = np.tanh(mus * 1.2) * 0.32
 trk = np.frombuffer(subprocess.run(['ffmpeg', '-v', 'error', '-i', TRACK, '-ac', '2', '-ar', str(SR), '-f', 'f32le', '-'],
@@ -111,8 +100,8 @@ print('offset', OFF)
 seg = trk[int(OFF * SR): int(OFF * SR) + N]
 if len(seg) < N: seg = np.concatenate([seg, np.zeros((N - len(seg), 2), np.float32)])
 seg = seg / (np.sqrt((seg ** 2).mean()) + 1e-6) * 0.046            # уровень подложки (+15% к 0.035 после loudnorm)
-# огибающая трека: пропадает на «Хайзенберг», возвращается на «Прав», тише в финале под голос
-g = env_at([(0, 0.0), (0.6, 1.0), (E(349.25), 1.0), (E(349.45), 0.0), (E(354.30), 0.0), (E(354.40), 1.25), (T, 1.0), (T + 0.6, 0.55), (T + OUT_T - 1.2, 0.55), (T + OUT_T, 0.0)])
+# огибающая трека: пропадает перед ключевым моментом, возвращается с ударом, тише в финале под голос
+g = env_at([(0, 0.0), (0.6, 1.0), (E(KEY_DROP) - 0.2, 1.0), (E(KEY_DROP), 0.0), (E(KEY_HIT) - 0.05, 0.0), (E(KEY_HIT) + 0.05, 1.25), (T, 1.0), (T + 0.6, 0.55), (T + OUT_T - 1.2, 0.55), (T + OUT_T, 0.0)])
 # дакинг под речь
 v = np.abs(dlg.mean(1)); k = SR // 20
 env = np.convolve(v, np.ones(k) / k, 'same'); env = np.convolve(env, np.ones(k * 4) / (k * 4), 'same')

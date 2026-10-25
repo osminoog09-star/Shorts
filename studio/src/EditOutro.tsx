@@ -19,6 +19,7 @@ export type OutroProps = {
   title: string;       // «ВО ВСЕ ТЯЖКИЕ»
   chips: string[];     // ['5 СЕЗОН', '7 СЕРИЯ']
   accent: string;      // цвет названия
+  titleSize?: number;  // кегль названия (длинным названиям — меньше)
   t: {kicker: number; title: number; chips: number[]; like: number; sub: number; thanks: number};
   poses: [number, NPose][];
 };
@@ -111,7 +112,7 @@ export const EditOutro: React.FC<OutroProps> = (p) => {
       {/* название */}
       <div style={{position: 'absolute', top: 250, width: '100%', textAlign: 'center', opacity: sKick, transform: `translateY(${(1 - sKick) * 30}px)`,
         color: '#fff', fontWeight: 800, fontSize: 50, letterSpacing: 14, textShadow: glow('rgba(255,255,255,0.5)', 12)}}>{p.kicker}</div>
-      <div style={{position: 'absolute', top: 320, width: '100%', textAlign: 'center', fontFamily: 'Unb', fontWeight: 900, fontSize: 112, lineHeight: 1.02, letterSpacing: 4,
+      <div style={{position: 'absolute', top: 320, width: '100%', textAlign: 'center', fontFamily: 'Unb', fontWeight: 900, fontSize: p.titleSize ?? 112, lineHeight: 1.02, letterSpacing: 4,
         color: '#eaffe8', opacity: Math.min(1, sTitle * 1.4), transform: `scale(${1.6 - 0.6 * sTitle})`, textShadow: glow(p.accent, 28)}}>{p.title}</div>
       <div style={{position: 'absolute', top: 590, width: '100%', display: 'flex', justifyContent: 'center', gap: 28}}>
         {p.chips.map((c, j) => (

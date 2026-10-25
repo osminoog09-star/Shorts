@@ -12,13 +12,14 @@ Y0 = 1000
 phr = []
 for top_st, top, bot_st, bot, end in PHRASES:
     if isinstance(bot, str):  # по буквам
-        t0, t1 = edit_time(349.40), edit_time(350.70)
+        t0, t1 = (edit_time(x) for x in LETTERS[bot])
         toks = [(c, t0 + (t1 - t0) * i / (len(bot) - 1)) for i, c in enumerate(bot)]
         bl = Line(bot_st, toks, gap_word=False)
     else:
         bl = Line(bot_st, [(w, edit_time(t)) for w, t in bot])
     tl = Line(top_st, [(w, edit_time(t)) for w, t in top]) if top else None
-    e = edit_time(min(end, max(b for a, b in SEGMENTS if a <= (bot[0][1] if not isinstance(bot, str) else 349.4) <= b)))
+    s0 = bot[0][1] if not isinstance(bot, str) else LETTERS[bot][0]
+    e = edit_time(min(end, max(b for a, b in SEGMENTS if a <= s0 <= b)))
     phr.append((tl, bl, e))
 
 flashes = [edit_time(t) for t in FLASH]
