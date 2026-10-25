@@ -1,6 +1,7 @@
 Name: edge-tts
 Version: 7.3.1
-ok h1
-ok h2
-ok h3
-ok h4
+retry o1 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry o1 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry o1 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+ok o1
+ok o2
