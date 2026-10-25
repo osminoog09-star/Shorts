@@ -1,0 +1,12 @@
+node_modules/
+bundle.js
+laeko.mp3
+silent.mp4
+ncs.html
+studio__*
+skills__*
+tools__*
+AGENTS.md
+videos__*
+*.jpg
+*.wav
