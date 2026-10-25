@@ -1,0 +1,47 @@
+[
+  {
+    "id": "research_privacy",
+    "title": "Выключил обучение ИИ — а переписка осталась? #shorts",
+    "style": "S7-D25",
+    "duration": 40.736,
+    "bytes": 6720927,
+    "sha256": "c0d297bb3f2e492a8548cfbcaa8b7976be880934afd755f3a7d395734fa93562",
+    "file": "videos/research_privacy_ru.mp4"
+  },
+  {
+    "id": "research_truth",
+    "title": "Ошибка ИИ или обман? Почему нужна проверка #shorts",
+    "style": "S3-D25",
+    "duration": 45.205,
+    "bytes": 6032382,
+    "sha256": "3bdb87b1d90e7b399507d5366992c04809af52abdc65c228aa1c39dcc28533c2",
+    "file": "videos/research_truth_ru.mp4"
+  },
+  {
+    "id": "research_business",
+    "title": "Бизнес с ИИ за вечер: что мы действительно сделали #shorts",
+    "style": "S8-D25",
+    "duration": 52.48,
+    "bytes": 5788112,
+    "sha256": "ec31fac4b13fd1a9f79f86ac514b00477e811161ee3e85ebd9b3bcb433772a07",
+    "file": "videos/research_business_ru.mp4"
+  },
+  {
+    "id": "research_fake",
+    "title": "Одно видео — две «правды»: как нас ловят на фейках #shorts",
+    "style": "S2-D25",
+    "duration": 57.877,
+    "bytes": 5898237,
+    "sha256": "246b43e2ebbae644150477c2174df18a58f8a24bfbc526065193c85d5523779b",
+    "file": "videos/research_fake_ru.mp4"
+  },
+  {
+    "id": "sketch_schedule",
+    "title": "Доверил ИИ график смен. Зря. #shorts",
+    "style": "S6-D2",
+    "duration": 38.869,
+    "bytes": 3936279,
+    "sha256": "290dd3c6269a55684ba17dcb3f9a42ead3a863f074739cbf564b9e6d907538c6",
+    "file": "videos/sketch_schedule_ru.mp4"
+  }
+]

@@ -39,9 +39,32 @@ EPISODES=[
  ('fair','Справедливость: оптимизирована','Спрашиваю: а где справедливость? Он отвечает: недовольный всего один. Раньше недовольны были все.'),
  ('off','ИИ: меня в отпуск не забудь','Говорю: тогда сам выходи на смену. Он пишет: к сожалению, ваша подписка не включает физический труд.')])]
 
+# Final short-form editorial cut: remove secondary branches, retain one complete payoff.
+CUTS={'research_privacy':[0,1,3,5],'research_truth':[2,3,4,5],'research_business':[0,1,2,3,5],'research_fake':[0,1,2,4,5]}
+for _e in EPISODES:
+ if _e['id'] in CUTS:
+  _sel=CUTS[_e['id']];_e['scene_indices']=_sel;_e['lines']=[_e['lines'][i] for i in _sel]
+ if _e['id']=='research_truth':
+  _e['title']='Ошибка ИИ или обман? Почему нужна проверка #shorts'
+  _e['lines'][0]=(_e['lines'][0][0],'ИИ дал ссылку. Верить?',_e['lines'][0][2])
+ if _e['id']=='research_business':
+  _e['lines'][-1]=(_e['lines'][-1][0],'Продажи не запускали. Спрос не проверен.',_e['lines'][-1][2])
+
+for _e in EPISODES:
+ if _e['id']=='sketch_schedule':
+  _e['scene_indices']=[0,1,3,4,5]
+  _e['lines']=[_e['lines'][0],_e['lines'][1],('night','Мне — все ночные',''),('fair','Справедливость: оптимизирована','Спрашиваю: а где справедливость? Он отвечает: недовольный всего один. Раньше недовольны были все.'),('off','ИИ: труд не входит в подписку','Тогда сам выходи на смену. Он отвечает: физический труд в подписку не входит.')]
+  _e['tts_ids']=['sketch_schedule_0','sketch_schedule_1',None,'sketch_schedule_4','sketch_schedule_alt4']
+  _e['silent_durations']={2:4.0}
+
 if __name__=='__main__':
  B.mkdir(exist_ok=True)
  (B/'episodes.json').write_text(json.dumps(EPISODES,ensure_ascii=False,indent=2))
- job={'voice':'ru-RU-DmitryNeural','rate':'+8%','pitch':'+0Hz','lines':[{'id':f'{e["id"]}_{i}', 'text':s[2]} for e in EPISODES for i,s in enumerate(e['lines'])]}
+ joblines=[]
+ for e in EPISODES:
+  inds=e.get('scene_indices',list(range(len(e['lines']))));ids=e.get('tts_ids',[e['id']+'_'+str(n) for n in inds])
+  for i,line in enumerate(e['lines']):
+   if ids[i] is not None:joblines.append({'id':ids[i],'text':line[2]})
+ job={'voice':'ru-RU-DmitryNeural','rate':'+8%','pitch':'+0Hz','lines':joblines}
  root=B.parents[1]
  (root/'jobs/tts/research_codex.json').write_text(json.dumps(job,ensure_ascii=False,indent=2))
