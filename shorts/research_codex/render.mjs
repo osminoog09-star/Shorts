@@ -1,0 +1,14 @@
+import {chromium} from 'playwright';
+import fs from 'node:fs';import path from 'node:path';import {spawn} from 'node:child_process';import {once} from 'node:events';import {fileURLToPath} from 'node:url';
+const B=path.dirname(fileURLToPath(import.meta.url));const id=process.argv[2];const e=JSON.parse(fs.readFileSync(path.join(B,'episodes.json'))).find(e=>e.id===id);if(!e)throw Error('unknown episode');const O=path.join(B,'work',id);const timeline=JSON.parse(fs.readFileSync(path.join(O,'timeline.json'))),vis=JSON.parse(fs.readFileSync(path.join(O,'visemes.json'))).visemes;const frames=Math.ceil(timeline.at(-1).end*30);
+const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});const page=await browser.newPage({viewport:{width:1080,height:1920},deviceScaleFactor:1});
+const errors=[];page.on('pageerror',x=>errors.push(String(x)));
+if(id==='research_business'){
+ await page.goto('file://'+path.join(B,'calculator.html'));let actual=await page.evaluate(()=>window.calculate());if(Math.abs(actual.net-110.4)>.001||Math.abs(actual.cost-9.6)>.001)throw Error('calculator failed example');
+ await page.locator('#km').fill('0');await page.locator('#km').dispatchEvent('input');actual=await page.evaluate(()=>window.calculate());if(actual.net!==120)throw Error('zero distance failed');
+ await page.locator('#km').fill('100');await page.locator('#km').dispatchEvent('input');await page.screenshot({path:path.join(O,'calculator_actual.png')});fs.writeFileSync(path.join(O,'calculator_test.json'),JSON.stringify({tested:true,example:{revenue:120,km:100,litres100:6,price:1.6,cost:9.6,net:110.4},zeroDistanceNet:actual.net,salesRun:false,demandValidated:false},null,2));
+}
+await page.goto('file://'+path.join(B,'index.html'));await page.waitForFunction('typeof window.renderFrame==="function"');await page.evaluate(()=>document.fonts.ready);await page.evaluate(({e,timeline,vis})=>window.configure(e,timeline,vis),{e,timeline,vis});
+const enc=spawn('ffmpeg',['-v','error','-y','-f','image2pipe','-vcodec','mjpeg','-framerate','30','-i','-','-an','-vf','scale=in_range=full:out_range=tv','-c:v','libx264','-threads','2','-preset','fast','-crf','20','-pix_fmt','yuv420p',path.join(O,'silent.mp4')],{stdio:['pipe','inherit','inherit']});const closed=once(enc,'close');
+for(let f=0;f<frames;f++){await page.evaluate(f=>window.renderFrame(f),f);const buf=await page.screenshot({type:'jpeg',quality:92,animations:'disabled'});if(!enc.stdin.write(buf))await once(enc.stdin,'drain');if(f%180===0)console.log(id,f,'/',frames);}
+enc.stdin.end();const [code]=await closed;await browser.close();if(code!==0||errors.length)throw Error(JSON.stringify({code,errors}));fs.writeFileSync(path.join(O,'render.json'),JSON.stringify({frames,fps:30,width:1080,height:1920,pageErrors:errors,style:e.style},null,2));

@@ -1,0 +1,9 @@
+node_modules/
+work/
+*.mp3
+*.wav
+bundle.js
+
+__pycache__/
+native-bundle.cjs
+visual_draft.jpg

@@ -1,0 +1,39 @@
+{
+  "engine": "actual calculator.html script executed in Node VM with DOM input stubs",
+  "tests": [
+    {
+      "input": {
+        "revenue": 120,
+        "km": 100,
+        "fuel": 6,
+        "price": 1.6
+      },
+      "result": {
+        "cost": 9.600000000000001,
+        "net": 110.4
+      }
+    },
+    {
+      "input": {
+        "km": 0
+      },
+      "result": {
+        "cost": 0,
+        "net": 120
+      }
+    },
+    {
+      "input": {
+        "km": 100,
+        "price": 2
+      },
+      "result": {
+        "cost": 12,
+        "net": 108
+      }
+    }
+  ],
+  "uiBrowserTest": false,
+  "salesLaunched": false,
+  "demandValidated": false
+}
