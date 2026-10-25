@@ -4,7 +4,7 @@
     "date": "2026-10-27T16:00:00",
     "timezone": "Europe/Tallinn",
     "style": "S7-D25",
-    "status": "exported; QA recorded; awaiting scheduling",
+    "status": "scheduled; autoPublish=true; draft=false",
     "firstCommentText": "Ты проверял настройки своих чатов?",
     "description": "Выключил обучение ИИ — а переписка осталась?\nТы проверял настройки своих чатов?\n\nИсточники (проверены 25.10.2026):\nhttps://help.openai.com/en/articles/7730893-data-controls-in-chatgpt\nhttps://help.openai.com/en/articles/8914046-temporary-chat-in-chatgpt\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\nОсновная подложка и звуковые акценты — оригинальная процедурная композиция M1lash.\n\n#ии #нейросети #технологии #эксперимент #M1lash #интересное #shorts",
     "youtubeData": {
@@ -27,14 +27,22 @@
       "madeForKids": false,
       "isAiGeneratedContent": false
     },
-    "url": "https://raw.githubusercontent.com/osminoog09-star/Shorts/refs/heads/codex/research-four-days/videos/research_privacy_ru.mp4"
+    "url": "https://raw.githubusercontent.com/osminoog09-star/Shorts/refs/heads/codex/research-four-days/videos/research_privacy_ru.mp4",
+    "metricool": {
+      "metricool_id": 405846977,
+      "uuid": "-9160858925274938673",
+      "date": "2026-10-27T16:00:00",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7605462&openWithPostUuid=-9160858925274938673",
+      "media": "https://static.metricool.com/planner/202610/7605462-file-6721526727482093853.mp4",
+      "render_min_estimate": 7.08
+    }
   },
   {
     "id": "research_truth",
     "date": "2026-10-30T16:00:00",
     "timezone": "Europe/Tallinn",
     "style": "S3-D25",
-    "status": "exported; QA recorded; awaiting scheduling",
+    "status": "scheduled; autoPublish=true; draft=false",
     "firstCommentText": "Какой ответ ИИ ты проверял и поймал на ошибке?",
     "description": "Ошибка ИИ или обман? Почему нужна проверка\nКакой ответ ИИ ты проверял и поймал на ошибке?\n\nИсточники (проверены 25.10.2026):\nhttps://openai.com/index/why-language-models-hallucinate/\nhttps://www.anthropic.com/research/alignment-faking\nhttps://arxiv.org/abs/2412.14093\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\nОсновная подложка и звуковые акценты — оригинальная процедурная композиция M1lash.\n\n#ии #нейросети #технологии #эксперимент #M1lash #интересное #shorts",
     "youtubeData": {
@@ -57,14 +65,22 @@
       "madeForKids": false,
       "isAiGeneratedContent": false
     },
-    "url": "https://raw.githubusercontent.com/osminoog09-star/Shorts/refs/heads/codex/research-four-days/videos/research_truth_ru.mp4"
+    "url": "https://raw.githubusercontent.com/osminoog09-star/Shorts/refs/heads/codex/research-four-days/videos/research_truth_ru.mp4",
+    "metricool": {
+      "metricool_id": 405847520,
+      "uuid": "7020720250603587401",
+      "date": "2026-10-30T16:00:00",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7605462&openWithPostUuid=7020720250603587401",
+      "media": "https://static.metricool.com/planner/202610/7605462-file-3822812430765580118.mp4",
+      "render_min_estimate": 8.08
+    }
   },
   {
     "id": "research_business",
     "date": "2026-10-28T10:00:00",
     "timezone": "Europe/Tallinn",
     "style": "S8-D25",
-    "status": "exported; QA recorded; awaiting scheduling",
+    "status": "scheduled; autoPublish=true; draft=false",
     "firstCommentText": "Какой продукт проверить на реальном спросе следующим?",
     "description": "Бизнес с ИИ за вечер: что мы действительно сделали\nКакой продукт проверить на реальном спросе следующим?\n\nСобственный учебный прототип калькулятора смены. 110,40 € — остаток после топлива на учебных числах, без комиссий, налогов и износа. Продажи не запускали; спрос не проверяли.\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\nОсновная подложка и звуковые акценты — оригинальная процедурная композиция M1lash.\n\n#ии #нейросети #технологии #эксперимент #M1lash #интересное #shorts",
     "youtubeData": {
@@ -87,14 +103,22 @@
       "madeForKids": false,
       "isAiGeneratedContent": false
     },
-    "url": "https://raw.githubusercontent.com/osminoog09-star/Shorts/refs/heads/codex/research-four-days/videos/research_business_ru.mp4"
+    "url": "https://raw.githubusercontent.com/osminoog09-star/Shorts/refs/heads/codex/research-four-days/videos/research_business_ru.mp4",
+    "metricool": {
+      "metricool_id": 405847304,
+      "uuid": "-3511953531919775555",
+      "date": "2026-10-28T10:00:00",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7605462&openWithPostUuid=-3511953531919775555",
+      "media": "https://static.metricool.com/planner/202610/7605462-file-9806094660297741862.mp4",
+      "render_min_estimate": 9.08
+    }
   },
   {
     "id": "research_fake",
     "date": "2026-10-29T10:00:00",
     "timezone": "Europe/Tallinn",
     "style": "S2-D25",
-    "status": "exported; QA recorded; awaiting scheduling",
+    "status": "scheduled; autoPublish=true; draft=false",
     "firstCommentText": "Что ты проверяешь перед тем, как переслать громкое видео?",
     "description": "Одно видео — две «правды»: как нас ловят на фейках\nЧто ты проверяешь перед тем, как переслать громкое видео?\n\nИсточники (проверены 25.10.2026):\nhttps://www.nist.gov/publications/reducing-risks-posed-synthetic-content-overview-technical-approaches-digital-content\nhttps://c2pa.org/faqs/\nhttps://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/provenance-detection\n\nНарисованная сцена с разными подписями — постановочный пример, не запись реального происшествия.\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\nОсновная подложка и звуковые акценты — оригинальная процедурная композиция M1lash.\n\n#ии #нейросети #технологии #эксперимент #M1lash #интересное #shorts",
     "youtubeData": {
@@ -117,14 +141,22 @@
       "madeForKids": false,
       "isAiGeneratedContent": false
     },
-    "url": "https://raw.githubusercontent.com/osminoog09-star/Shorts/refs/heads/codex/research-four-days/videos/research_fake_ru.mp4"
+    "url": "https://raw.githubusercontent.com/osminoog09-star/Shorts/refs/heads/codex/research-four-days/videos/research_fake_ru.mp4",
+    "metricool": {
+      "metricool_id": 405847408,
+      "uuid": "-5439468444824157354",
+      "date": "2026-10-29T10:00:00",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7605462&openWithPostUuid=-5439468444824157354",
+      "media": "https://static.metricool.com/planner/202610/7605462-file-15745235429789087169.mp4",
+      "render_min_estimate": 9.08
+    }
   },
   {
     "id": "sketch_schedule",
     "date": "2026-10-31T10:00:00",
     "timezone": "Europe/Tallinn",
     "style": "S6-D2",
-    "status": "exported; QA recorded; awaiting scheduling",
+    "status": "scheduled; autoPublish=true; draft=false",
     "firstCommentText": "Кому у вас достаются лучшие выходные?",
     "description": "Доверил ИИ график смен. Зря.\nКому у вас достаются лучшие выходные?\n\nАвторский вымышленный скетч.\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\nОсновная подложка и звуковые акценты — оригинальная процедурная композиция M1lash.\n\n#ии #нейросети #технологии #эксперимент #M1lash #интересное #shorts",
     "youtubeData": {
@@ -147,6 +179,14 @@
       "madeForKids": false,
       "isAiGeneratedContent": false
     },
-    "url": "https://raw.githubusercontent.com/osminoog09-star/Shorts/refs/heads/codex/research-four-days/videos/sketch_schedule_ru.mp4"
+    "url": "https://raw.githubusercontent.com/osminoog09-star/Shorts/refs/heads/codex/research-four-days/videos/sketch_schedule_ru.mp4",
+    "metricool": {
+      "metricool_id": 405847624,
+      "uuid": "3460228850661017657",
+      "date": "2026-10-31T10:00:00",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7605462&openWithPostUuid=3460228850661017657",
+      "media": "https://static.metricool.com/planner/202610/7605462-file-14427732895782710879.mp4",
+      "render_min_estimate": 9.08
+    }
   }
 ]

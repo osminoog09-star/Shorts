@@ -1,0 +1,75 @@
+{
+  "checked_at": "2026-10-25",
+  "timezone": "Europe/Tallinn",
+  "source_branch": "codex/research-four-days",
+  "posts": [
+    {
+      "id": "research_privacy",
+      "title": "Выключил обучение ИИ — а переписка осталась? #shorts",
+      "style": "S7-D25",
+      "date": "2026-10-27T16:00:00",
+      "metricool_id": 405846977,
+      "uuid": "-9160858925274938673",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7605462&openWithPostUuid=-9160858925274938673",
+      "media": "https://static.metricool.com/planner/202610/7605462-file-6721526727482093853.mp4",
+      "render_min_estimate": 7.08
+    },
+    {
+      "id": "research_truth",
+      "title": "Ошибка ИИ или обман? Почему нужна проверка #shorts",
+      "style": "S3-D25",
+      "date": "2026-10-30T16:00:00",
+      "metricool_id": 405847520,
+      "uuid": "7020720250603587401",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7605462&openWithPostUuid=7020720250603587401",
+      "media": "https://static.metricool.com/planner/202610/7605462-file-3822812430765580118.mp4",
+      "render_min_estimate": 8.08
+    },
+    {
+      "id": "research_business",
+      "title": "Бизнес с ИИ за вечер: что мы действительно сделали #shorts",
+      "style": "S8-D25",
+      "date": "2026-10-28T10:00:00",
+      "metricool_id": 405847304,
+      "uuid": "-3511953531919775555",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7605462&openWithPostUuid=-3511953531919775555",
+      "media": "https://static.metricool.com/planner/202610/7605462-file-9806094660297741862.mp4",
+      "render_min_estimate": 9.08
+    },
+    {
+      "id": "research_fake",
+      "title": "Одно видео — две «правды»: как нас ловят на фейках #shorts",
+      "style": "S2-D25",
+      "date": "2026-10-29T10:00:00",
+      "metricool_id": 405847408,
+      "uuid": "-5439468444824157354",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7605462&openWithPostUuid=-5439468444824157354",
+      "media": "https://static.metricool.com/planner/202610/7605462-file-15745235429789087169.mp4",
+      "render_min_estimate": 9.08
+    },
+    {
+      "id": "sketch_schedule",
+      "title": "Доверил ИИ график смен. Зря. #shorts",
+      "style": "S6-D2",
+      "date": "2026-10-31T10:00:00",
+      "metricool_id": 405847624,
+      "uuid": "3460228850661017657",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7605462&openWithPostUuid=3460228850661017657",
+      "media": "https://static.metricool.com/planner/202610/7605462-file-14427732895782710879.mp4",
+      "render_min_estimate": 9.08
+    }
+  ],
+  "vidiq_credits": 0,
+  "tokens_session_estimate": "~100000",
+  "tokens_allocation_per_video": "~20000",
+  "tts_action_minutes": 25.416666666666668,
+  "local_render_minutes_estimates": {
+    "research_privacy": 2,
+    "research_truth": 3,
+    "research_business": 4,
+    "research_fake": 4,
+    "sketch_schedule": 4
+  },
+  "queue_verified_max_two_shorts": true,
+  "existing_posts_modified": false
+}
