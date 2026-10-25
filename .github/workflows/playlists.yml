@@ -15,4 +15,5 @@ jobs:
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
           PLAYLIST_RU: ${{ secrets.PLAYLIST_RU }}
           PLAYLIST_EN: ${{ secrets.PLAYLIST_EN }}
+          PLAYLIST_FILMS: ${{ secrets.PLAYLIST_FILMS }}
         run: python3 scripts/playlist_sync.py

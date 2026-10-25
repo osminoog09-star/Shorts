@@ -1,8 +1,10 @@
-"""Раскладывает свежие ролики канала по плейлистам: 🇷🇺 → RU, 🇺🇸 → EN.
+"""Раскладывает свежие ролики канала по плейлистам: 🇷🇺 → RU, 🇺🇸 → EN, нарезки из фильмов/сериалов → «Фильмы».
 
 Нужны переменные окружения (секреты GitHub):
   YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN  — OAuth-доступ к каналу (scope youtube)
   PLAYLIST_RU, PLAYLIST_EN                          — ID плейлистов (из ссылки list=...)
+  PLAYLIST_FILMS (необязательно)                    — плейлист для movie-edit нарезок
+Movie-edit = ролик в категории «Фильмы и анимация» (categoryId 1); такие идут только в «Фильмы».
 Язык ролика: флаг 🇷🇺/🇺🇸 в названии; если флага нет — кириллица = RU, иначе EN.
 """
 import json
@@ -72,12 +74,20 @@ def main():
     ch = http("GET", f"{API}/channels?part=contentDetails&mine=true", token=tok)
     uploads = ch["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
     targets = {"ru": os.environ["PLAYLIST_RU"], "en": os.environ["PLAYLIST_EN"]}
+    if os.environ.get("PLAYLIST_FILMS"):
+        targets["films"] = os.environ["PLAYLIST_FILMS"]
     have = {k: {i["contentDetails"]["videoId"] for i in items(pl, tok)} for k, pl in targets.items()}
     added = 0
-    for it in items(uploads, tok, limit=100):
+    ups = items(uploads, tok, limit=100)
+    cats = {}
+    for i in range(0, len(ups), 50):
+        ids = ",".join(u["contentDetails"]["videoId"] for u in ups[i:i + 50])
+        for v in http("GET", f"{API}/videos?part=snippet&id={ids}", token=tok).get("items", []):
+            cats[v["id"]] = v["snippet"].get("categoryId")
+    for it in ups:
         vid = it["contentDetails"]["videoId"]
         title = it["snippet"]["title"]
-        lang = lang_of(title)
+        lang = "films" if cats.get(vid) == "1" and "films" in targets else lang_of(title)
         if vid in have[lang]:
             continue
         # только Shorts/наши ролики: пропускаем то, что уже лежит в другом языковом плейлисте
