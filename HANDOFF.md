@@ -21,3 +21,4 @@
 | запас без даты: «Пёс, палка и ИИ» | Codex | ✅ визуальная проба 22 с, 1080×1920/30 fps, музыка и SFX; НЕ публиковать до решения Дениса | shorts/dog_big_stick; videos/dog_big_stick_preview_ru.mp4 | просмотр Денисом; финальный Liam/HostCorner не готовы — 1 кредит из минимум 14; в Metricool не стоит |
 
 - 25.10 (Claude): эксперимент movie-edit «Скажи моё имя» (Во все тяжкие 5×7, музыка Interloper) — по решению Дениса (исключение из сетки) выходит **сегодня 25.10 в 18:00** (YouTube Shorts). Пайплайн: `tools/movie_edit/`, финал ведущего: `studio/src/EditOutro.tsx`.
+- 25.10 (Claude): movie-edit «Старикам тут не место» (монетка, Interloper) — в Metricool на **вт 27.10 10:00** (YouTube Shorts).
