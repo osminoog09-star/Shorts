@@ -1,0 +1,36 @@
+{
+  "duration": 6.041667,
+  "native_dimensions": [
+    720,
+    1280
+  ],
+  "source": "Higgsfield Genjutsu free motion-control, original driver and imagegen reference",
+  "job_id": "cb0487f7-ac8a-4995-9a6f-f4b6d723fa16",
+  "quoted_credits": 0,
+  "publication": "reserved; do not schedule without Denis decision",
+  "audio": "original short synthetic metal-bowl taps, no narrator",
+  "full_decode": "passed",
+  "continuous_human_audio_motion_review": "not performed",
+  "final_duration": 6.041,
+  "final_streams": [
+    {
+      "codec_name": "h264",
+      "width": 720,
+      "height": 1280,
+      "pix_fmt": "yuv420p",
+      "r_frame_rate": "30/1"
+    },
+    {
+      "codec_name": "aac",
+      "width": null,
+      "height": null,
+      "pix_fmt": null,
+      "r_frame_rate": "0/0"
+    }
+  ],
+  "visual_review": "Inspected six generated frames at 0.18, 1.21, 2.42, 3.63, 4.83 and 5.80 seconds, and captioned frame at 3.4 seconds. Dog, bowl and kitchen remain recognizable, no extra limbs or overlapping caption observed in this sample. This is not a claim of full continuous motion/audio viewing.",
+  "paid_credit_balance_before_after": [
+    21.9,
+    21.9
+  ]
+}

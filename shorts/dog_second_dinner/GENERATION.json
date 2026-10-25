@@ -1,0 +1,13 @@
+{
+  "job_id": "cb0487f7-ac8a-4995-9a6f-f4b6d723fa16",
+  "model": "hf_mult_motion_control",
+  "resolution": "720p",
+  "use_free_gens": true,
+  "quoted_credits": 0,
+  "status": "completed",
+  "publication": "reserved_only",
+  "supersedes": "dog_big_stick rejected by Denis",
+  "paid_credits_spent": 0,
+  "output": "videos/dog_second_dinner_realistic_preview_ru.mp4",
+  "realistic_synthetic_content": true
+}
