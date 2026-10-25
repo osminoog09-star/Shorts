@@ -1,6 +1,6 @@
 {
-  "status": "success",
-  "updated_at": "2026-10-24T08:49:47.601Z",
+  "status": "stale",
+  "updated_at": "2026-10-25T06:39:58.989Z",
   "items": [
     {
       "id": "lyrLKQ97-Sg",
@@ -16,7 +16,10 @@
       "query": "Древняя инженерия",
       "measured_at": "2026-10-24T08:49:47.601Z",
       "duration": "PT50S",
-      "source": "vidIQ public YouTube search"
+      "source": "vidIQ public YouTube search",
+      "url": "https://www.youtube.com/watch?v=lyrLKQ97-Sg",
+      "stale": true,
+      "stale_reason": "Свежий замер недоступен: insufficientCredits; measured_at сохраняет время последнего реального измерения."
     },
     {
       "id": "A8Mn-zXXdIw",
@@ -32,7 +35,10 @@
       "query": "Древняя инженерия",
       "measured_at": "2026-10-24T08:49:47.601Z",
       "duration": "PT1M5S",
-      "source": "vidIQ public YouTube search"
+      "source": "vidIQ public YouTube search",
+      "url": "https://www.youtube.com/watch?v=A8Mn-zXXdIw",
+      "stale": true,
+      "stale_reason": "Свежий замер недоступен: insufficientCredits; measured_at сохраняет время последнего реального измерения."
     },
     {
       "id": "Frj6ViNgPBs",
@@ -48,7 +54,10 @@
       "query": "Древняя инженерия",
       "measured_at": "2026-10-24T08:49:47.601Z",
       "duration": "PT50S",
-      "source": "vidIQ public YouTube search"
+      "source": "vidIQ public YouTube search",
+      "url": "https://www.youtube.com/watch?v=Frj6ViNgPBs",
+      "stale": true,
+      "stale_reason": "Свежий замер недоступен: insufficientCredits; measured_at сохраняет время последнего реального измерения."
     },
     {
       "id": "oZ7o54cCxWo",
@@ -64,7 +73,10 @@
       "query": "Древняя инженерия",
       "measured_at": "2026-10-24T08:49:47.601Z",
       "duration": "PT1M22S",
-      "source": "vidIQ public YouTube search"
+      "source": "vidIQ public YouTube search",
+      "url": "https://www.youtube.com/watch?v=oZ7o54cCxWo",
+      "stale": true,
+      "stale_reason": "Свежий замер недоступен: insufficientCredits; measured_at сохраняет время последнего реального измерения."
     },
     {
       "id": "ZLewey8ZsJk",
@@ -80,7 +92,10 @@
       "query": "Древняя инженерия",
       "measured_at": "2026-10-24T08:49:47.601Z",
       "duration": "PT30S",
-      "source": "vidIQ public YouTube search"
+      "source": "vidIQ public YouTube search",
+      "url": "https://www.youtube.com/watch?v=ZLewey8ZsJk",
+      "stale": true,
+      "stale_reason": "Свежий замер недоступен: insufficientCredits; measured_at сохраняет время последнего реального измерения."
     },
     {
       "id": "pDDuwTZYOjM",
@@ -96,7 +111,10 @@
       "query": "ИИ и объясняющая анимация",
       "measured_at": "2026-10-24T08:49:47.601Z",
       "duration": "PT13M32S",
-      "source": "vidIQ public YouTube search"
+      "source": "vidIQ public YouTube search",
+      "url": "https://www.youtube.com/watch?v=pDDuwTZYOjM",
+      "stale": true,
+      "stale_reason": "Свежий замер недоступен: insufficientCredits; measured_at сохраняет время последнего реального измерения."
     },
     {
       "id": "7OHXDA4WT6Q",
@@ -112,7 +130,10 @@
       "query": "ИИ и объясняющая анимация",
       "measured_at": "2026-10-24T08:49:47.601Z",
       "duration": "PT34M49S",
-      "source": "vidIQ public YouTube search"
+      "source": "vidIQ public YouTube search",
+      "url": "https://www.youtube.com/watch?v=7OHXDA4WT6Q",
+      "stale": true,
+      "stale_reason": "Свежий замер недоступен: insufficientCredits; measured_at сохраняет время последнего реального измерения."
     },
     {
       "id": "Is_VxRLqLck",
@@ -128,7 +149,10 @@
       "query": "ИИ и объясняющая анимация",
       "measured_at": "2026-10-24T08:49:47.601Z",
       "duration": "PT19M16S",
-      "source": "vidIQ public YouTube search"
+      "source": "vidIQ public YouTube search",
+      "url": "https://www.youtube.com/watch?v=Is_VxRLqLck",
+      "stale": true,
+      "stale_reason": "Свежий замер недоступен: insufficientCredits; measured_at сохраняет время последнего реального измерения."
     },
     {
       "id": "AFShqQbEeF8",
@@ -144,7 +168,10 @@
       "query": "ИИ и объясняющая анимация",
       "measured_at": "2026-10-24T08:49:47.601Z",
       "duration": "PT2M20S",
-      "source": "vidIQ public YouTube search"
+      "source": "vidIQ public YouTube search",
+      "url": "https://www.youtube.com/watch?v=AFShqQbEeF8",
+      "stale": true,
+      "stale_reason": "Свежий замер недоступен: insufficientCredits; measured_at сохраняет время последнего реального измерения."
     },
     {
       "id": "S0wDB-uruv8",
@@ -160,13 +187,72 @@
       "query": "ИИ и объясняющая анимация",
       "measured_at": "2026-10-24T08:49:47.601Z",
       "duration": "PT38S",
-      "source": "vidIQ public YouTube search"
+      "source": "vidIQ public YouTube search",
+      "url": "https://www.youtube.com/watch?v=S0wDB-uruv8",
+      "stale": true,
+      "stale_reason": "Свежий замер недоступен: insufficientCredits; measured_at сохраняет время последнего реального измерения."
     }
   ],
-  "message": "Первый замер через vidIQ. Ежедневное обновление радара настроено на утро по Таллину. VPH — средняя скорость с публикации; для текущей нужен второй замер. Выборка 2 запросов за неделю, не рейтинг всего YouTube.",
+  "message": "Свежие данные на 25.10.2026 не получены: vidIQ требует 5 кредитов на запрос, доступен 1. Сохранены предыдущие измерения от 24.10.2026. Это устаревшая выборка, не текущий рейтинг трендов.",
   "monitoring": {
     "provider": "ChatGPT automation + vidIQ",
     "schedule": "Ежедневно утром, Europe/Tallinn",
-    "active": true
-  }
+    "active": false,
+    "state": "blocked_insufficient_credits",
+    "reason": "Недостаточно кредитов vidIQ; регулярная задача приостанавливается, чтобы не повторять заведомо неуспешные запросы."
+  },
+  "last_attempt_at": "2026-10-25T06:39:58.989Z",
+  "last_success_at": "2026-10-24T08:49:47.601Z",
+  "limitations": [
+    "vidIQ: insufficientCredits. Доступно 1 кредит, запрос стоит 5. По сообщению провайдера возобновляемые кредиты обновятся 2026-11-23T10:41:03.948475Z. Оба запроса отклонены; списаний не было.",
+    "В этом запуске нет новых просмотров или повторного сопоставимого измерения: средний и текущий VPH не пересчитывались.",
+    "Разбор визуального стиля не проводился; идеи ниже — гипотезы по темам и названиям прежней выборки, без подтверждения свежего спроса.",
+    "Срок возобновления кредитов указан провайдером, не гарантирует автоматическое возобновление мониторинга."
+  ],
+  "attempts": [
+    {
+      "query": "ancient engineering animation",
+      "published_after": "2026-10-18T06:38:52Z",
+      "published_before": "2026-10-25T06:38:52Z",
+      "status": "insufficientCredits",
+      "credits_charged": 0
+    },
+    {
+      "query": "geography animated map",
+      "published_after": "2026-10-18T06:38:52Z",
+      "published_before": "2026-10-25T06:38:52Z",
+      "status": "insufficientCredits",
+      "credits_charged": 0
+    }
+  ],
+  "adaptation_ideas": [
+    {
+      "title": "Как поднять тяжёлую колонну без современного крана?",
+      "hook": "Есть груз. Нет крана. С какого движения ты начнёшь?",
+      "format": "Оригинальная детализированная 3D-механическая демонстрация: задача, варианты, проверка физики.",
+      "evidence_status": "Гипотеза на основе темы старого референса; исторический способ и факты нужно проверить по первичным источникам.",
+      "reference_ids": [
+        "lyrLKQ97-Sg"
+      ]
+    },
+    {
+      "title": "Один пролёт — три способа удержать мост",
+      "hook": "Уберём одну опору. Какая конструкция устоит?",
+      "format": "Сравнение трёх оригинальных 3D-конструкций при одинаковой условной нагрузке; подпись «учебная модель».",
+      "evidence_status": "Гипотеза на основе старого результата о мостах; инженерные выводы требуют расчёта, свежий спрос не измерен.",
+      "reference_ids": [
+        "A8Mn-zXXdIw"
+      ]
+    },
+    {
+      "title": "ИИ-агент получил задачу. Кто делает работу дальше?",
+      "hook": "Ты дал одну команду. Почему за ней выстроилась целая очередь?",
+      "format": "Оригинальный короткий скетч с переходом к объясняющей 3D-схеме: задача, инструмент, проверка результата.",
+      "evidence_status": "Гипотеза по ранее найденным темам про агентов; без анализа чужих кадров, без подтверждения нового тренда.",
+      "reference_ids": [
+        "Is_VxRLqLck",
+        "AFShqQbEeF8"
+      ]
+    }
+  ]
 }
