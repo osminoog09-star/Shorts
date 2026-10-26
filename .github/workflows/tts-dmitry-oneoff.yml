@@ -18,7 +18,7 @@ jobs:
           python-version: '3.11'
       - name: Install free neural speech synthesizer
         run: python -m pip install --disable-pip-version-check edge-tts==7.3.1
-      - name: Generate three Russian voice segments
+      - name: Generate Russian voice with partial preservation
         shell: bash
         run: |
           mkdir -p audio
@@ -27,31 +27,38 @@ jobs:
           import edge_tts
           from pathlib import Path
           clips = {
-              "intro": "Вот как я выхожу гулять, когда один...",
-              "reaction": "Стоп! Это было слишком эпично!",
-              "outro": "А ты тоже так гуляешь? Ставь лайк, подписывайся и пиши в комментариях!",
+              "intro": ["Вот как я выхожу гулять, когда один..."],
+              "reaction": ["Стоп! Это было слишком эпично!", "Стоп, это было эпично!"],
+              "outro": ["А ты тоже так гуляешь? Ставь лайк, подписывайся и пиши в комментариях!", "А ты тоже так гуляешь? Ставь лайк, подписывайся и пиши коммент!"],
           }
           async def main():
-              for name, line in clips.items():
+              for name, variants in clips.items():
                   out = Path("audio") / f"{name}.mp3"
-                  for attempt in range(1, 4):
+                  success=False
+                  for attempt in range(1, 9):
                       try:
                           if out.exists(): out.unlink()
+                          line=variants[(attempt-1)%len(variants)]
                           task = edge_tts.Communicate(text=line, voice="ru-RU-DmitryNeural", rate="+8%")
                           await task.save(str(out))
                           if out.stat().st_size < 5000: raise ValueError("Audio too short")
-                          print(name, out.stat().st_size, flush=True)
+                          print("SUCCESS",name,out.stat().st_size,flush=True)
+                          success=True
                           break
                       except Exception as exc:
-                          print("Attempt", attempt, name, type(exc).__name__, str(exc), flush=True)
-                          if attempt == 3: raise
-                          await asyncio.sleep(2 * attempt)
+                          print("retry", attempt,name,type(exc).__name__,str(exc)[:80],flush=True)
+                          await asyncio.sleep(1.0)
+                  if not success:
+                      if out.exists(): out.unlink()
+                      print("UNAVAILABLE",name,flush=True)
+              print("GENERATED:",*[p.name for p in Path("audio").glob("*.mp3")],flush=True)
           asyncio.run(main())
           PY
-      - name: Upload reusable voice clips
+      - name: Upload every completed audio clip
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: m1lash-dmitry-voice-20261026
           path: audio/*.mp3
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 14
