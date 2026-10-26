@@ -47,10 +47,18 @@ jobs:
                   jobs=subprocess.check_output(['git','diff','--name-only',before,'HEAD','--','jobs/motion/']).decode().splitlines()
               else:
                   jobs=subprocess.check_output(['git','diff-tree','--no-commit-id','--name-only','-r','HEAD','--','jobs/motion/']).decode().splitlines()
+          if not jobs and os.environ.get('GITHUB_REF_NAME') == 'codex/price-gap-20261027':
+              # Isolated production retry: shallow checkout omitted the before commit.
+              jobs=['jobs/motion/m1lash_price_gap_20261027_ru.json']
+          if not jobs:
+              raise RuntimeError('No motion jobs selected. Do not report a successful render.')
           for job in jobs[:2]:
               p=Path(job)
               if p.parent.as_posix()!='jobs/motion' or p.suffix!='.json' or not p.is_file():raise ValueError('Invalid job path')
               subprocess.run(['python','motion-studio/automation/render.py',str(p),'motion-output'],check=True)
+              output=Path('motion-output')/(p.stem+'.mp4')
+              if not output.is_file() or output.stat().st_size < 100000:
+                  raise RuntimeError('Expected rendered MP4 was not produced: '+str(output))
           PY
       - uses: actions/upload-artifact@v4
         if: always()
