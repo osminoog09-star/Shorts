@@ -226,7 +226,7 @@ def youtube_upload(video_path, data, publish_at, token):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("operation", choices=["check", "reserve", "send"])
+    parser.add_argument("operation", choices=["check", "preflight", "reserve", "send"])
     parser.add_argument("--manifest", required=True)
     parser.add_argument("--video-file", default="")
     args = parser.parse_args()
@@ -243,6 +243,16 @@ def main():
         print("CHECK OK: channel=%s, publish_at=%s, mode=PRIVATE until scheduled release" %
               (channel, publish_at.isoformat()))
         print("Metricool appointments are NOT visible here: inspect its existing queue during migration.")
+        return
+    if args.operation == "preflight":
+        if receipt.exists():
+            raise ValueError("A previous reservation exists: inspect YouTube Studio")
+        video = Path(args.video_file)
+        if not args.video_file or not video.is_file() or video.suffix.lower() != ".mp4" or video.stat().st_size < 1000:
+            raise ValueError("Reviewed MP4 missing, not an MP4, or empty")
+        access = token_for(channel)
+        verify_channel(access, expected_id)
+        print("PREFLIGHT OK: OAuth matches %s; MP4 exists; upload has NOT started" % expected_id)
         return
     if args.operation == "reserve":
         if receipt.exists():
