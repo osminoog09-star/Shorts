@@ -4,7 +4,9 @@ from pathlib import Path
 import numpy as np
 B=Path(__file__).resolve().parent; R=B.parents[1]; W=B/'work'; V=R/'videos';V.mkdir(exist_ok=True)
 j=json.load(open(B/'script.json')); SR=48000
-def run(args):subprocess.run(['ffmpeg','-v','error','-y',*map(str,args)],check=True)
+def run(args):
+ r=subprocess.run(['ffmpeg','-v','error','-y',*map(str,args)],check=True,stderr=subprocess.PIPE,text=True)
+ if r.stderr.strip():raise RuntimeError(r.stderr)
 def probe(p):return json.loads(subprocess.check_output(['ffprobe','-v','error','-show_format','-show_streams','-of','json',str(p)]))
 def cat(paths,dest):
  f=W/(dest.stem+'.concat');f.write_text('\n'.join("file '"+str(p.resolve()).replace("'","'\\''")+"'" for p in paths))

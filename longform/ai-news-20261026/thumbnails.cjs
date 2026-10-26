@@ -2,7 +2,7 @@ const fs=require('fs'),path=require('path'),{createCanvas}=require('@napi-rs/can
 (async()=>{
  const B=__dirname;fs.mkdirSync(path.join(B,'thumbnails'),{recursive:true});
  const host=await F.hostImage(.7,'talk',1);
- const variants=[['КТО','ПЕРЕГНУЛ?','4 НОВОСТИ ОБ ИИ','#c2d4bf'],['ЛИМИТ','КОНЧИЛСЯ','KIMI · ОБЕЩАНО +25% КВОТЫ','#e5c28b'],['КТО ДАЛ','ЕМУ КЛЮЧ?','БЕЗОПАСНОСТЬ ИИ','#b8cfcd']];
+ const variants=[['КТО','ПЕРЕГНУЛ?','4 НОВОСТИ ОБ ИИ','#c2d4bf'],['ЛИМИТ','КОНЧИЛСЯ','KIMI · ПЕРЕСЧЁТ КВОТЫ','#e5c28b'],['КТО ДАЛ','ЕМУ КЛЮЧ?','БЕЗОПАСНОСТЬ ИИ','#b8cfcd']];
  for(let v=0;v<3;v++){
   const [a,b,strap,col]=variants[v],cv=createCanvas(1280,720),c=cv.getContext('2d');
   c.fillStyle='#eee4cc';c.fillRect(0,0,1280,720);

@@ -1,0 +1,35 @@
+{
+  "status": "technical_checks_passed",
+  "edition": "2026-10-26",
+  "full": {
+    "duration": 696,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "codec": "h264",
+    "audio": "AAC stereo 48000 Hz 128k",
+    "decode_frames": 20880,
+    "complete_decode": "pass after delivery compression",
+    "mean_volume_db": -20.7,
+    "max_volume_db": -4.4
+  },
+  "short": {
+    "duration": 48.3,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "codec": "h264",
+    "audio": "AAC stereo 48000 Hz 160k",
+    "complete_decode": "pass",
+    "mean_volume_db": -21.1,
+    "max_volume_db": -4.6
+  },
+  "scenes_checked": 23,
+  "visual_review": "Контакты 19 полных и 4 вертикальных сцен, оригинальный ведущий, финал и три кадра окончательной сжатой версии просмотрены. Все 23 текста совпадают с кэшем TTS и WordBoundary; конечные метки помещаются в сцены.",
+  "limitations": [
+    "Непрерывный просмотр с восприятием звука и независимое ASR не выполнены. Перед публикацией нужен просмотр со звуком владельцем.",
+    "Kimi: прямое чтение X — 403; индексированный официальный текст, Reuters и PANdaily. Расход собственным тестом не измеряли.",
+    "Ограничение NCS в отношении generative AI content для утверждённого финала не разрешено; credit не подтверждает разрешение."
+  ],
+  "scheduling": "Не опубликовано; очередь не менялась. В проверенной сетке 26.10 уже два Shorts."
+}

@@ -1,0 +1,197 @@
+{
+  "edition": "2026-10-26",
+  "status": "review_ready_unscheduled",
+  "agent": "Codex",
+  "style": "S2-D25",
+  "title": "ИИ снова вляпался: лимиты, запреты и иск | Новости 26 октября",
+  "full": {
+    "download_url": "https://chatgpt.com/library?file_id=libfile_63c3d2544fa88191bf1f51272e6fe838&account_id=personal",
+    "seconds": 696,
+    "bytes": 40484254,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "timeline": [
+      {
+        "id": "hook",
+        "start": 0,
+        "duration": 33.233333333333334,
+        "headline": "Четыре новости. Один вопрос.",
+        "label": "Шутка ведущего"
+      },
+      {
+        "id": "kimi_fact",
+        "start": 33.233,
+        "duration": 14.766666666666667,
+        "headline": "Kimi: извинение за расход лимита",
+        "label": "Факт · сообщение 26.10"
+      },
+      {
+        "id": "quota_example",
+        "start": 48,
+        "duration": 39.5,
+        "headline": "Четверть квоты ≠ возврат денег",
+        "label": "Учебный пример"
+      },
+      {
+        "id": "agents",
+        "start": 87.5,
+        "duration": 42.53333333333333,
+        "headline": "Помощник нанял помощников",
+        "label": "Сатирический пример"
+      },
+      {
+        "id": "kimi_takeaway",
+        "start": 130.033,
+        "duration": 35.53333333333333,
+        "headline": "Первый конфликт: полезность против расхода",
+        "label": "Вывод редакции"
+      },
+      {
+        "id": "reddit_fact",
+        "start": 165.567,
+        "duration": 34.833333333333336,
+        "headline": "ИИ запрещён в r/opensource",
+        "label": "Факт · правила сообщества"
+      },
+      {
+        "id": "moderation",
+        "start": 200.4,
+        "duration": 37.166666666666664,
+        "headline": "Зачем модераторам фильтр",
+        "label": "Комментарий · две стороны"
+      },
+      {
+        "id": "translation",
+        "start": 237.567,
+        "duration": 32.86666666666667,
+        "headline": "Переводчик оказался под подозрением",
+        "label": "Факт + редакционный вопрос"
+      },
+      {
+        "id": "reddit_balance",
+        "start": 270.433,
+        "duration": 39.63333333333333,
+        "headline": "Фильтр качества или фильтр инструмента?",
+        "label": "Вывод редакции"
+      },
+      {
+        "id": "security_fact",
+        "start": 310.067,
+        "duration": 40.1,
+        "headline": "OpenAI: обучение без свободного интернета",
+        "label": "Факт · публикация 23.10"
+      },
+      {
+        "id": "sandbox",
+        "start": 350.167,
+        "duration": 38.86666666666667,
+        "headline": "Просьба не выходить — ещё не забор",
+        "label": "Объясняющая метафора"
+      },
+      {
+        "id": "defenses",
+        "start": 389.033,
+        "duration": 35.96666666666667,
+        "headline": "Не один замок, а несколько границ",
+        "label": "Факт + метафора"
+      },
+      {
+        "id": "independent",
+        "start": 425,
+        "duration": 37.3,
+        "headline": "Что известно, а что ещё не проверено",
+        "label": "Факт · отчёт METR 22.10"
+      },
+      {
+        "id": "elvis_fact",
+        "start": 462.3,
+        "duration": 34.9,
+        "headline": "Anthropic и песни Элвиса: подан иск",
+        "label": "Новость · утверждения сторон"
+      },
+      {
+        "id": "claim",
+        "start": 497.2,
+        "duration": 40.13333333333333,
+        "headline": "Претензия ≠ решение суда",
+        "label": "Разбор формулировок"
+      },
+      {
+        "id": "creators",
+        "start": 537.333,
+        "duration": 36.93333333333333,
+        "headline": "Вопрос к создателю: откуда материал?",
+        "label": "Комментарий для авторов"
+      },
+      {
+        "id": "thread",
+        "start": 574.267,
+        "duration": 40.666666666666664,
+        "headline": "Лимит. Дверь. Доступ. Происхождение.",
+        "label": "Итог редакции"
+      },
+      {
+        "id": "checklist",
+        "start": 614.933,
+        "duration": 40.53333333333333,
+        "headline": "Три вопроса перед большой задачей",
+        "label": "Практический итог"
+      },
+      {
+        "id": "end",
+        "start": 655.467,
+        "duration": 34.53333333333333,
+        "headline": "Кто сегодня победил: ИИ или здравый смысл?",
+        "label": "Финал · вопрос зрителям"
+      }
+    ]
+  },
+  "short": {
+    "file": "videos/ai_news_20261026_short_ru.mp4",
+    "download_url": "https://github.com/osminoog09-star/Shorts/raw/refs/heads/codex/news-20261026/videos/ai_news_20261026_short_ru.mp4",
+    "seconds": 48.3,
+    "bytes": 4826837,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "sha256": "be651abde776abc522345f780e7d1d11b32b23d417bda3f105e4fcf852bcf569",
+    "timeline": [
+      {
+        "id": "short_0",
+        "start": 0,
+        "duration": 11.4,
+        "headline": "ИИ нанял слишком много ИИ",
+        "label": "Шутка ведущего"
+      },
+      {
+        "id": "short_1",
+        "start": 11.4,
+        "duration": 13.633333333333333,
+        "headline": "Kimi извинилась за расход квоты",
+        "label": "Факт · 26.10"
+      },
+      {
+        "id": "short_2",
+        "start": 25.033,
+        "duration": 9.233333333333333,
+        "headline": "Работы много. Результат где?",
+        "label": "Комментарий ведущего"
+      },
+      {
+        "id": "short_3",
+        "start": 34.267,
+        "duration": 8.233333333333333,
+        "headline": "Полный разбор — в большом выпуске",
+        "label": "Переход к полному видео"
+      }
+    ]
+  },
+  "session_tokens": "~100000",
+  "vidiq_credits": 0,
+  "render_minutes": "~51.7",
+  "render_note": "Сумма измеренных последних проходов: 38.723 мин long + 1.610 мин short. Прежние проходы двух исправленных сцен ~1.05 мин, финал ~1 мин, сжатие ~9.31 мин по времени файла. Сумма проходов, не календарное время трёх параллельных работников.",
+  "voice": "Dmitry; existing approved Liam finale",
+  "music_status": "owner-approved Laeko finale; NCS generative-AI-use restriction unresolved",
+  "runtime_note": "Среда отключилась после финального decode и сохранения MP4. Исходники, аудиокэш и виземы сохранены. Workflow не добавлялся."
+}
