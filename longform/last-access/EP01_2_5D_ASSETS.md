@@ -22,6 +22,15 @@ These are reference-conditioned using the canonical MARA image, not generated bl
 | 03 | Three hands pressed to locked glass | [PNG](https://d8j0ntlcm91z4.cloudfront.net/user_3IucDWofuMZGRDc047d7wjIe7So/hf_20261026_225615_818926b1-09be-4b72-859d-8d6a91d3a703.png) | `818926b1-09be-4b72-859d-8d6a91d3a703` |
 | 04 | Bioscanner/registry discrepancy | [PNG](https://d8j0ntlcm91z4.cloudfront.net/user_3IucDWofuMZGRDc047d7wjIe7So/hf_20261026_225615_acbaa80a-4ca7-43c4-99d1-28a2f6527155.png) | `acbaa80a-4ca7-43c4-99d1-28a2f6527155` |
 
+## Video proof: 70-second illustrated opening scene (27.10.2026)
+
+- Rendered through GitHub Actions `Last Access 2.5D illustrated opening preview`, verified successful [run #40419021359](https://github.com/osminoog09-star/Shorts/actions/runs/40419021359).
+- [Download the 70s preview artifact](https://github.com/osminoog09-star/Shorts/actions/runs/40419021359/artifacts/12696521513) (ZIP with MP4, Russian subtitle SRT, ffprobe and QA stills; artifact retention 30 days).
+- The preview uses the four newly generated original stills, eight motivated moving crops, a separate drifting atmosphere layer, **new shortened Cyrillic subtitle timing**, exact canon 311/312 HUD, and the first 70 seconds of the prior confirmed Russian audio mix.
+- Technical QA: 70.000s, H.264, 1280×720, 24fps, AAC 44.1kHz; FFmpeg decode PASS and sampled frames at 3, 14, 35, 53, 67 seconds reviewed. Subtitles corrected from the first export, becoming appreciably smaller, and character close-ups remain readable.
+- **Not the final animation**. Actor mouth/eye movement, independently extracted foregrounds/backgrounds, full 120+ scene frames, final character continuity audits and human full-length listening are still pending. Keep watermark `ПРОБА 2.5D`. Do **not publish as Episode 1**; no YouTube or Metricool actions were taken.
+- The renderer stays reproducible as `render_2_5D_opening_preview.sh` plus GitHub workflow; its external media URLs should be checked if rerunning months later.
+
 ## QA and continuity
 
 - **Canon:** The sensor registers **312 living signals**, ship registry lists **311 confirmed records**. KERN has *no human face*; its icon is abstract. MARA 38, asymmetric black bob, steel-gray eyes, dark teal/navy uniform with one copper shoulder stripe. The remote engineer LEV 29 wears olive-gray utility clothing.
