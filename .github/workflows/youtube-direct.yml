@@ -66,6 +66,19 @@ jobs:
               f.write("video_file=" + str(output) + "\n")
           print("MP4 ready, size=%d bytes" % output.stat().st_size)
           PY
+      - name: Verify OAuth credentials and channel BEFORE reservation
+        if: inputs.execute == true
+        env:
+          MANIFEST: ${{ inputs.manifest }}
+          VIDEO_FILE: ${{ steps.source.outputs.video_file }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YOUTUBE_REFRESH_TOKEN_EN: ${{ secrets.YOUTUBE_REFRESH_TOKEN_EN }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python scripts/youtube_direct.py preflight --manifest "$MANIFEST" --video-file "$VIDEO_FILE"
       - name: Persist no-retry reservation BEFORE upload
         if: inputs.execute == true
         env:
