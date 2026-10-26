@@ -1,0 +1,150 @@
+{
+  "id": "m1lash_price_gap_20261027_ru",
+  "voice": "ru-RU-DmitryNeural",
+  "tts_provider": "edge",
+  "project": {
+    "title": "M1lash: Два телефона — две цены",
+    "topic": "Подтверждённый случай $369 vs $259 в Walmart; компания объяснила это ошибкой. Рандомизированные ценовые эксперименты Instacart прекращены.",
+    "lang": "ru",
+    "format": "portrait",
+    "theme": "paper",
+    "resolution": 1080,
+    "target": 60,
+    "musicVolume": 0,
+    "scenes": [
+      {
+        "title": "ДВА ТЕЛЕФОНА — ДВЕ ЦЕНЫ",
+        "text": "Один жёсткий диск, два телефона — и разница сто десять долларов!",
+        "type": "compare",
+        "items": [
+          "$369",
+          "$259"
+        ],
+        "country": "",
+        "duration": 5,
+        "source": "https://www.wsj.com/business/retail/why-so-many-shoppers-think-retailers-are-using-ai-to-jack-up-prices-d77cd4eb",
+        "verified": true
+      },
+      {
+        "title": "ОДИН ТОВАР. РАЗНЫЕ ЦЕНЫ",
+        "text": "Покупатель увидел цену триста шестьдесят девять долларов. А на телефоне жены — на сто десять дешевле.",
+        "type": "compare",
+        "items": [
+          "Его экран: $369",
+          "Её экран: $259"
+        ],
+        "country": "",
+        "duration": 5,
+        "source": "https://www.wsj.com/business/retail/why-so-many-shoppers-think-retailers-are-using-ai-to-jack-up-prices-d77cd4eb",
+        "verified": true
+      },
+      {
+        "title": "МАГАЗИН ЗНАЕТ ТВОЙ КОШЕЛЁК?",
+        "text": "Магазин теперь знает твой кошелёк?",
+        "type": "stat",
+        "items": [],
+        "country": "",
+        "duration": 5,
+        "source": "https://www.wsj.com/business/retail/why-so-many-shoppers-think-retailers-are-using-ai-to-jack-up-prices-d77cd4eb",
+        "verified": true
+      },
+      {
+        "title": "СТОП: ЭТО НЕ ДОКАЗАНО",
+        "text": "Walmart объяснил разницу ошибкой отображения и отрицает индивидуальные цены.",
+        "type": "explainer",
+        "items": [
+          "Версия Walmart",
+          "Ошибка цены",
+          "Не персональная наценка"
+        ],
+        "country": "",
+        "duration": 5,
+        "source": "https://www.wsj.com/business/retail/why-so-many-shoppers-think-retailers-are-using-ai-to-jack-up-prices-d77cd4eb",
+        "verified": true
+      },
+      {
+        "title": "ПОЧЕМУ ПОДОЗРЕВАЮТ ИИ?",
+        "text": "Но похожие опасения возникли не на пустом месте.",
+        "type": "title",
+        "items": [],
+        "country": "",
+        "duration": 5,
+        "source": "https://www.consumerreports.org/media-room/press-releases/2025/12/new-report-exposes-instacarts-hidden-price-games/",
+        "verified": true
+      },
+      {
+        "title": "ДО 23% РАЗНИЦЫ",
+        "text": "Исследователи нашли разные цены на одни товары в экспериментах Instacart. В отдельных случаях — до двадцати трёх процентов.",
+        "type": "compare",
+        "items": [
+          "Одна цена",
+          "На 23% выше"
+        ],
+        "country": "",
+        "duration": 5,
+        "source": "https://www.consumerreports.org/media-room/press-releases/2025/12/new-report-exposes-instacarts-hidden-price-games/",
+        "verified": true
+      },
+      {
+        "title": "ЭКСПЕРИМЕНТЫ ПРЕКРАЩЕНЫ",
+        "text": "Важно: тесты были случайными, а не по личному профилю. После критики Instacart их прекратил.",
+        "type": "timeline",
+        "items": [
+          "Тесты",
+          "Проверка",
+          "Стоп"
+        ],
+        "country": "",
+        "duration": 5,
+        "source": "https://www.consumerreports.org/media-room/press-releases/2025/12/new-report-exposes-instacarts-hidden-price-games/",
+        "verified": true
+      },
+      {
+        "title": "ПРОВЕРЯЙ ДВА ЭКРАНА",
+        "text": "Так что сравни цену на двух телефонах. Но смотри: один и тот же товар, продавец и время.",
+        "type": "compare",
+        "items": [
+          "Телефон №1",
+          "Телефон №2"
+        ],
+        "country": "",
+        "duration": 5,
+        "source": "https://www.consumerreports.org/media-room/press-releases/2025/12/new-report-exposes-instacarts-hidden-price-games/",
+        "verified": true
+      },
+      {
+        "title": "ДЕЛО О СКИДКАХ",
+        "text": "Если цена не совпадёт — поздравляю, у вас дома следственный комитет по скидкам!",
+        "type": "dialogue",
+        "items": [
+          "Покупатель",
+          "Ценовой детектив"
+        ],
+        "country": "",
+        "duration": 5,
+        "source": "https://www.consumerreports.org/media-room/press-releases/2025/12/new-report-exposes-instacarts-hidden-price-games/",
+        "verified": true
+      },
+      {
+        "title": "А У ТЕБЯ ЦЕНЫ РАЗЛИЧАЛИСЬ?",
+        "text": "А тебе когда-нибудь попадались разные цены? Напиши в комментариях!",
+        "type": "stat",
+        "items": [],
+        "country": "",
+        "duration": 5,
+        "source": "https://www.consumerreports.org/media-room/press-releases/2025/12/new-report-exposes-instacarts-hidden-price-games/",
+        "verified": true
+      },
+      {
+        "title": "M1LASH • НОВОСТИ + ЮМОР",
+        "text": "Ставь лайк, подпишись на M1lash и расскажи свою историю в комментариях.",
+        "type": "title",
+        "items": [],
+        "country": "",
+        "duration": 5,
+        "source": "https://www.consumerreports.org/media-room/press-releases/2025/12/new-report-exposes-instacarts-hidden-price-games/",
+        "verified": true
+      }
+    ]
+  }
+}
