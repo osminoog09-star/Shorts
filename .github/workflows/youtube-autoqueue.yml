@@ -1,0 +1,51 @@
+name: YouTube · guarded autopublish queue
+on:
+  schedule:
+    - cron: '11 6 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        type: boolean
+        default: true
+        description: "TRUE = report only, FALSE = dispatch reviewed manifest if enabled"
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: youtube-autoqueue
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install 'requests>=2.32,<3'
+      - name: Validate reviewed queue and dispatch at most ONE upload
+        env:
+          GH_TOKEN: ${{ github.token }}
+          YOUTUBE_AUTOPUBLISH_ENABLED: ${{ vars.YOUTUBE_AUTOPUBLISH_ENABLED }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+          YOUTUBE_REFRESH_TOKEN_RU_EXISTS: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU != '' || secrets.YT_REFRESH_TOKEN != '' }}
+          YOUTUBE_CLIENT_ID_EXISTS: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID != '' || secrets.YT_CLIENT_ID != '' }}
+          YOUTUBE_CLIENT_SECRET_EXISTS: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET != '' || secrets.YT_CLIENT_SECRET != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$YOUTUBE_REFRESH_TOKEN_RU_EXISTS" != "true" || "$YOUTUBE_CLIENT_ID_EXISTS" != "true" || "$YOUTUBE_CLIENT_SECRET_EXISTS" != "true" ]]; then
+            echo 'OAuth not ready: only a dry-run report will be generated. No upload.'
+            python scripts/youtube_autoqueue.py
+          elif [[ "$DRY_RUN" == "true" ]]; then
+            python scripts/youtube_autoqueue.py
+          else
+            python scripts/youtube_autoqueue.py --execute
+          fi
