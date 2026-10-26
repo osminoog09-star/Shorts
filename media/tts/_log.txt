@@ -1,16 +1,13 @@
 Name: edge-tts
 Version: 7.3.1
-retry hook 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry hook 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry hook 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry hook 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry hook 4 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry pause 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok pause
-retry contrast 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry contrast 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry contrast 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok contrast
+ok hook
+ok payoff
+retry cta 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry cta 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry cta 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry cta 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+ok cta
+ok hook
 retry payoff 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry payoff 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry payoff 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
@@ -21,34 +18,20 @@ retry cta 1 NoAudioReceived('No audio was received. Please verify that your para
 retry cta 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry cta 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry cta 4 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok research_privacy_0
-ok research_privacy_2
-retry research_privacy_4 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry research_privacy_4 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry research_privacy_4 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok research_privacy_4
-ok research_truth_0
 retry research_truth_1 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry research_truth_1 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry research_truth_1 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry research_truth_1 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry research_truth_1 4 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok research_truth_2
 retry research_truth_3 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry research_truth_3 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry research_truth_3 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry research_truth_3 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry research_truth_3 4 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok research_fake_3
-retry sketch_schedule_2 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok sketch_schedule_2
 retry sketch_schedule_3 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry sketch_schedule_3 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry sketch_schedule_3 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry sketch_schedule_3 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry sketch_schedule_3 4 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 retry sketch_schedule_5 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry sketch_schedule_5 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry sketch_schedule_5 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry sketch_schedule_5 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry sketch_schedule_5 4 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+ok sketch_schedule_5
