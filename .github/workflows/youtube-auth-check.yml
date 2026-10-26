@@ -1,0 +1,62 @@
+name: YouTube · check authorization (no upload)
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: "Which YouTube channel to verify?"
+        required: true
+        type: choice
+        default: ru
+        options:
+          - ru
+          - en
+
+permissions:
+  contents: read
+
+jobs:
+  check-oauth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install API client dependencies
+        run: python -m pip install 'requests>=2.32,<3'
+      - name: Verify OAuth against the exact YouTube channel (read-only)
+        env:
+          TARGET_CHANNEL: ${{ inputs.channel }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YOUTUBE_REFRESH_TOKEN_EN: ${{ secrets.YOUTUBE_REFRESH_TOKEN_EN }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          python - <<'PY'
+          import json, os, sys
+          from scripts.youtube_direct import token_for, verify_channel
+          lang = os.environ['TARGET_CHANNEL']
+          channel_id = json.load(open('publishing/channels.json', encoding='utf-8')).get(lang)
+          if not channel_id:
+              sys.exit('ERROR: channel ID not set in publishing/channels.json for ' + lang)
+          # Never log any credential values.
+          client_id = os.getenv('YOUTUBE_OAUTH_CLIENT_ID') or os.getenv('YT_CLIENT_ID')
+          client_secret = os.getenv('YOUTUBE_OAUTH_CLIENT_SECRET') or os.getenv('YT_CLIENT_SECRET')
+          refresh_token = os.getenv('YOUTUBE_REFRESH_TOKEN_' + lang.upper())
+          if lang == 'ru':
+              refresh_token = refresh_token or os.getenv('YT_REFRESH_TOKEN')
+          missing = []
+          if not client_id: missing.append('YOUTUBE_OAUTH_CLIENT_ID (or YT_CLIENT_ID)')
+          if not client_secret: missing.append('YOUTUBE_OAUTH_CLIENT_SECRET (or YT_CLIENT_SECRET)')
+          if not refresh_token: missing.append('YOUTUBE_REFRESH_TOKEN_' + lang.upper() + (' (or YT_REFRESH_TOKEN)' if lang == 'ru' else ''))
+          if missing:
+              sys.exit('ERROR: configure these GitHub Actions repository secrets first: ' + ', '.join(missing))
+          token = token_for(lang)
+          verify_channel(token, channel_id)
+          print('SUCCESS: Google OAuth is valid and belongs to configured ' + lang.upper() + ' channel ' + channel_id)
+          print('NO VIDEO UPLOAD WAS PERFORMED.')
+          PY
