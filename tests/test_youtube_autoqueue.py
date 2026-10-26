@@ -38,7 +38,7 @@ class AutoQueueTests(unittest.TestCase):
         self.when = (self.current + dt.timedelta(days=2)).astimezone(
             ZoneInfo("Europe/Tallinn")).replace(hour=19, minute=0, second=0, microsecond=0)
         self.config = {
-            "migration_hold_until": (self.current - dt.timedelta(days=1)).isoformat(),
+            "migration_hold_until": (self.current - dt.timedelta(days=1)).astimezone(ZoneInfo("Europe/Tallinn")).isoformat(),
             "min_lead_hours": 8, "max_days_ahead": 14,
             "require_sha256": True, "max_dispatch_per_run": 1,
         }
