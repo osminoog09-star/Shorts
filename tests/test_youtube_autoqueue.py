@@ -90,7 +90,7 @@ class AutoQueueTests(unittest.TestCase):
     def test_stops_during_migration(self):
         self.save()
         self.config["migration_hold_until"] = (
-            self.current + dt.timedelta(days=4)).isoformat()
+            self.current + dt.timedelta(days=4)).astimezone(ZoneInfo("Europe/Tallinn")).isoformat()
         self.assertFalse(queue.select(self.config, self.current)[0])
 
     def test_receipt_prevents_duplicate(self):
