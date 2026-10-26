@@ -1,0 +1,33 @@
+name: YouTube direct · offline tests
+on:
+  pull_request:
+    paths:
+      - 'scripts/youtube_direct.py'
+      - 'tests/test_youtube_direct.py'
+      - 'publishing/**'
+      - '.github/workflows/youtube-direct*.yml'
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'requests>=2.32,<3' 'PyYAML>=6,<7'
+      - name: Compile uploader and unit tests
+        run: |
+          python -m py_compile scripts/youtube_direct.py tests/test_youtube_direct.py
+          python -m unittest discover -s tests -p 'test_youtube_direct.py' -v
+      - name: Check workflow YAML
+        run: |
+          python - <<'PY'
+          import yaml
+          for name in (".github/workflows/youtube-direct.yml", ".github/workflows/youtube-direct-checks.yml"):
+              value = yaml.safe_load(open(name))
+              assert isinstance(value, dict) and isinstance(value.get("jobs"), dict)
+          print("Workflow YAML OK")
+          PY
