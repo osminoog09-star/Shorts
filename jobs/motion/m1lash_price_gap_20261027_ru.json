@@ -147,5 +147,5 @@
       }
     ]
   },
-  "render_note": "retry after shallow-diff fix; no YouTube schedule or upload"
+  "render_note": "third production try: enforce file output; free Edge Dmitry TTS"
 }
