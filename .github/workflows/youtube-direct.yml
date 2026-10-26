@@ -1,0 +1,117 @@
+name: YouTube direct · review then schedule
+
+on:
+  workflow_dispatch:
+    inputs:
+      manifest:
+        description: "publishing/queue/<slug>.json (committed to main)"
+        required: true
+        type: string
+      execute:
+        description: "FALSE = validate only. TRUE = schedule a new YouTube upload."
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: youtube-direct-upload
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install minimal requirements
+        run: python -m pip install 'requests>=2.32,<3'
+      - name: Validate manifest (NO upload)
+        env:
+          MANIFEST: ${{ inputs.manifest }}
+        run: python scripts/youtube_direct.py check --manifest "$MANIFEST"
+      - name: Resolve reviewed MP4 source
+        id: source
+        if: inputs.execute == true
+        env:
+          MANIFEST: ${{ inputs.manifest }}
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os, pathlib, subprocess
+          manifest = json.load(open(os.environ["MANIFEST"], encoding="utf-8"))
+          source = manifest["source"]
+          if source["type"] == "repo":
+              output = pathlib.Path(source["path"]).resolve()
+          else:
+              output_dir = pathlib.Path(os.environ["RUNNER_TEMP"]) / "youtube_source"
+              output_dir.mkdir(exist_ok=True)
+              subprocess.run(["gh", "release", "download", source["tag"],
+                              "--repo", os.environ["GITHUB_REPOSITORY"],
+                              "--pattern", source["asset"], "--dir", str(output_dir)],
+                             check=True)
+              output = (output_dir / source["asset"]).resolve()
+          if not output.is_file() or output.suffix.lower() != ".mp4":
+              raise SystemExit("Reviewed MP4 not found; no upload")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write("video_file=" + str(output) + "\n")
+          print("MP4 ready, size=%d bytes" % output.stat().st_size)
+          PY
+      - name: Persist no-retry reservation BEFORE upload
+        if: inputs.execute == true
+        env:
+          MANIFEST: ${{ inputs.manifest }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/youtube_direct.py reserve --manifest "$MANIFEST"
+          RECEIPT="publishing/receipts/$(basename "$MANIFEST")"
+          git config user.name youtube-direct-bot
+          git config user.email youtube-direct-bot@users.noreply.github.com
+          git add "$RECEIPT"
+          git commit -m "youtube: reserve upload $(basename "$MANIFEST")"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Upload to verified YouTube channel (private/scheduled)
+        if: inputs.execute == true
+        id: upload
+        env:
+          MANIFEST: ${{ inputs.manifest }}
+          VIDEO_FILE: ${{ steps.source.outputs.video_file }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YOUTUBE_REFRESH_TOKEN_EN: ${{ secrets.YOUTUBE_REFRESH_TOKEN_EN }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python scripts/youtube_direct.py send --manifest "$MANIFEST" --video-file "$VIDEO_FILE"
+      - name: Persist YouTube ID and URL
+        if: steps.upload.outcome == 'success'
+        env:
+          MANIFEST: ${{ inputs.manifest }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          RECEIPT="publishing/receipts/$(basename "$MANIFEST")"
+          git add "$RECEIPT"
+          git commit -m "youtube: record scheduled upload $(basename "$MANIFEST")"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Keep receipt for manual recovery
+        if: always() && inputs.execute == true
+        uses: actions/upload-artifact@v4
+        with:
+          name: youtube-receipt-${{ github.run_id }}
+          path: publishing/receipts/
+          retention-days: 30
+          if-no-files-found: ignore
