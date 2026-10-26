@@ -34,7 +34,7 @@ F+="[s04b]zoompan=z='1.13-0.0002*on':x='iw/2-iw/zoom/2+4*sin(on/31)':y='ih/2-ih/
 F+="[s02b]zoompan=z='1.07+0.00025*on':x='iw/2-iw/zoom/2+7*sin(on/30)':y='ih/2-ih/zoom/2+14*cos(on/43)':d=240:s=1280x720:fps=24,setsar=1,format=yuv420p[v7];"
 F+="[v0][v1][v2][v3][v4][v5][v6][v7]concat=n=8:v=1:a=0,format=yuv420p[base];"
 F+="[4:v]scale=1310:750,format=rgba[foreground];[base][foreground]overlay=x='-18+13*sin(t/2)':y='-11+12*cos(t/3)':eval=frame:shortest=1,format=yuv420p,"
-F+="subtitles=opening.srt:force_style='FontName=DejaVu Sans,FontSize=21,Outline=1,BorderStyle=3,PrimaryColour=&H00FFFFFF,BackColour=&H8A07121C,MarginV=32',"
+F+="subtitles=opening.srt:force_style='FontName=DejaVu Sans,FontSize=14,Outline=1,BorderStyle=3,PrimaryColour=&H00FFFFFF,BackColour=&H8A07121C,MarginV=32',"
 F+="drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='ПОСЛЕДНИЙ ДОПУСК':fontcolor=white:fontsize=24:x=34:y=25:box=1:boxcolor=0x061522@0.64:boxborderw=12,"
 F+="drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='ПРОБА 2.5D':fontcolor=0x9cd6df:fontsize=21:x=w-tw-35:y=28:box=1:boxcolor=0x061522@0.60:boxborderw=10,"
 F+="drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='311 В РЕЕСТРЕ  /  312 ЖИВЫХ':fontcolor=0x8eeedb:fontsize=29:x=w-tw-42:y=117:box=1:boxcolor=0x061522@0.80:boxborderw=12:enable='between(t,45,60)',"
