@@ -2,6 +2,12 @@
 
 Статус: **внедряется, по умолчанию ничего не публикует**. Существующие ролики и расписание Metricool не изменяются. Автопилот создания RU/EN в `motion-studio` пока отдельно выключен.
 
+## Быстрая диагностика OAuth без ролика
+
+Открой [YouTube · check authorization (no upload)](https://github.com/osminoog09-star/Shorts/actions/workflows/youtube-auth-check.yml) → **Run workflow** → `channel: ru`. Эта проверка не загружает и не публикует видео, а лишь проверяет наличие GitHub Secrets, получает временный OAuth-токен и проверяет ID канала. Если секретов нет, лог покажет **названия** недостающих переменных (не их значения).
+
+По журналу запуска `Playlist sync` 26.10 видно, что `YT_REFRESH_TOKEN` отсутствовал в окружении и Google возвращал `Missing required parameter: refresh_token`. Для прямой загрузки можно использовать отдельный `YOUTUBE_REFRESH_TOKEN_RU`; сам OAuth нужно подтвердить владельцу через Google один раз.
+
 ## Как работает
 
 Ролик уже готов и проверен человеком. Сначала создаётся манифест `publishing/queue/<slug>.json` (по примеру в `publishing/examples/`). Укажите существующий MP4 в `videos/` или **точные** GitHub Release tag + asset. Время `publish_at` — ISO-8601 **с числовым смещением Tallinn**, например `2026-11-04T19:00:00+02:00`. Скрипт проверяет летнее/зимнее время.
