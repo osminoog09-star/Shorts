@@ -1,0 +1,596 @@
+{
+  "project": "last-access",
+  "episode": "01",
+  "version": "2.5D_v1",
+  "status": "prompts_only",
+  "format": "16:9",
+  "resolution": "1920x1080",
+  "frame_rate": 30,
+  "duration_target_seconds": 810.5,
+  "style_code": "LA-COMICK-D25-v1",
+  "based_on": "S3-D25 (adult treatment; not original Shorts experiment style)",
+  "master_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later.",
+  "negative_prompt": "juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+  "actor_reference_cards": {
+    "Mara": "MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous.",
+    "Lev": "LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes.",
+    "KERN": "KERN — not humanoid and not a robot: non-personified circular cyan sensor interface with three concentric arcs, small waveform pattern, sparse high-contrast ship UI.",
+    "Ina": "INA SOL — 42-year-old female medic, deep brown eyes, short dark hair threaded with silver, practical slate-blue medical coat and teal clasp, composed professional expression.",
+    "Oren": "OREN — 45-year-old male security leader, dark blue graphite utility security uniform with one muted brass stripe, closely cropped dark hair, controlled posture, wary but responsible.",
+    "Tessa": "TESSA — 31-year-old female service engineer, short curly auburn-brown hair in tight braid, weathered rust-red work coveralls with faded gray shoulder patches, wet cuffs after P‑4 leak, resilient scared look.",
+    "Archive Mara": "ARCHIVE MARA — exactly the same face as MARA VEY, earlier clean uniform, slightly different lighting and no time-skipping fantasy effects."
+  },
+  "keyframes_per_scene": 4,
+  "scenes": [
+    {
+      "n": 1,
+      "time": "00:00–00:13",
+      "title": "Аварийная переборка P‑4",
+      "cast": "Mara",
+      "focus": "Мара требует открыть P‑4",
+      "prompt": "Extreme low-angle establishing shot of a damaged pressure bulkhead aboard the civilian rescue vessel Porog; Mara Vey in navy-teal captain’s survival jacket stands in the near foreground with one hand hitting the control panel, sealed industrial hatch in deep background, scraped metal, three faint handprints on reinforced inspection glass, emergency red reflections across puddles and cold cyan overhead fixtures, strong foreground ceiling cables and floor guide lines leading to the hatch.",
+      "frames": [
+        "A: long corridor with Mara entering frame",
+        "B: Mara strikes dead control panel",
+        "C: close handprint behind inspection glass",
+        "D: Mara braces toward hatch"
+      ],
+      "camera": "Rapid push along foreground cables → short locked close-up on gloved hand",
+      "fx": "Door thud, ventilation pulse, first alarm spike",
+      "hook": "Begin at 0:00 with the emergency, no logo.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Extreme low-angle establishing shot of a damaged pressure bulkhead aboard the civilian rescue vessel Porog; Mara Vey in navy-teal captain’s survival jacket stands in the near foreground with one hand hitting the control panel, sealed industrial hatch in deep background, scraped metal, three faint handprints on reinforced inspection glass, emergency red reflections across puddles and cold cyan overhead fixtures, strong foreground ceiling cables and floor guide lines leading to the hatch. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_01"
+    },
+    {
+      "n": 2,
+      "time": "00:13–00:27",
+      "title": "«Вы погибли 18 часов назад»",
+      "cast": "Mara,KERN",
+      "focus": "ИИ отказывает капитану",
+      "prompt": "Shoulder-level close-up of Mara Vey lit blue on one cheek and amber on the other, a floating abstract cyan command indicator reflected on the dark glossy hatch panel, her eyebrows tense but not cartoonishly exaggerated; leave clean negative space beside her face for the words that will be composited later: the system declares her dead eighteen hours ago.",
+      "frames": [
+        "A: tense mid-close Mara and inactive console",
+        "B: tighter eyes in screen reflection",
+        "C: subtle startled eye focus change",
+        "D: determined stare and clenched jaw"
+      ],
+      "camera": "Small 12 cm dolly toward eyes, focus rack from holographic halo to face",
+      "fx": "System denial, one beat of near silence",
+      "hook": "Do not reveal whether KERN is right.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Shoulder-level close-up of Mara Vey lit blue on one cheek and amber on the other, a floating abstract cyan command indicator reflected on the dark glossy hatch panel, her eyebrows tense but not cartoonishly exaggerated; leave clean negative space beside her face for the words that will be composited later: the system declares her dead eighteen hours ago. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. KERN — not humanoid and not a robot: non-personified circular cyan sensor interface with three concentric arcs, small waveform pattern, sparse high-contrast ship UI. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_02"
+    },
+    {
+      "n": 3,
+      "time": "00:27–00:47",
+      "title": "Люди за стеклом",
+      "cast": "Mara",
+      "focus": "Мара слышит людей, которых компьютер не видит",
+      "prompt": "Reverse angle from behind dark pressure glass, water-smeared hands pressed hard to the window from inside the locked compartment, silhouettes of three adult survivors mostly obscured by vapor, Mara Vey seen outside through thick glass, a cold violet pressure warning glows off weathered door rivets, no graphic injury, cinematic focus on desperate hands.",
+      "frames": [
+        "A: first silhouette deep behind opaque glass",
+        "B: two palms press the window",
+        "C: third smaller shadow emerges",
+        "D: Mara seen through the glass rushing closer"
+      ],
+      "camera": "Parallax against grime foreground then rack focus from palm to Mara",
+      "fx": "Three muffled knocks under rising ventilation whine",
+      "hook": "Mystery of invisible people, distinct from identity mystery.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Reverse angle from behind dark pressure glass, water-smeared hands pressed hard to the window from inside the locked compartment, silhouettes of three adult survivors mostly obscured by vapor, Mara Vey seen outside through thick glass, a cold violet pressure warning glows off weathered door rivets, no graphic injury, cinematic focus on desperate hands. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_03"
+    },
+    {
+      "n": 4,
+      "time": "00:47–01:10",
+      "title": "312 против 311",
+      "cast": "Mara,KERN",
+      "focus": "Главная загадка счётчика",
+      "prompt": "Over-the-shoulder view of Mara’s gloved hands holding a battered handheld bioscanner beside a sealed spaceship hatch; cyan scan lines project toward ghostlike heat signatures beyond the door, a second ship display glows amber behind her; compose with generous clean screen surfaces so precise numbers 312 and 311 can be added in postproduction rather than generated inside the illustration.",
+      "frames": [
+        "A: Mara lifts bioscanner",
+        "B: scanning beam crosses door",
+        "C: translucent trio of signatures appears",
+        "D: Mara compares scanner to ship registry panel"
+      ],
+      "camera": "Push from shoulder to scanner with a split-focus reveal of second display",
+      "fx": "Two contrasting count confirmation beeps",
+      "hook": "Numbers inserted as crisp postproduction text; no AI-generated gibberish.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Over-the-shoulder view of Mara’s gloved hands holding a battered handheld bioscanner beside a sealed spaceship hatch; cyan scan lines project toward ghostlike heat signatures beyond the door, a second ship display glows amber behind her; compose with generous clean screen surfaces so precise numbers 312 and 311 can be added in postproduction rather than generated inside the illustration. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. KERN — not humanoid and not a robot: non-personified circular cyan sensor interface with three concentric arcs, small waveform pattern, sparse high-contrast ship UI. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_04"
+    },
+    {
+      "n": 5,
+      "time": "01:10–01:40",
+      "title": "Лев в машинном отсеке",
+      "cast": "Lev",
+      "focus": "Инженер выходит на связь",
+      "prompt": "Medium-wide cinematic view of Lev Rudin in a cramped industrial engineering bay, short brown hair and practical olive-gray utility suit with copper collar patch, oil-stained gloves, handheld radio close to mouth, mechanical relays and cable bundles framing the foreground; practical amber lamps contrast cyan instrument spill and scarred brushed metal.",
+      "frames": [
+        "A: Lev elbow-deep in open relay cabinet",
+        "B: radio crackles and he turns",
+        "C: annoyed close-up with dry humor",
+        "D: search for schematic over his shoulder"
+      ],
+      "camera": "Tracking sideways past hanging cables followed by 3/4 close-up",
+      "fx": "Radio static, clipped relay clicks",
+      "hook": "Relief through character wit, then back to threat.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Medium-wide cinematic view of Lev Rudin in a cramped industrial engineering bay, short brown hair and practical olive-gray utility suit with copper collar patch, oil-stained gloves, handheld radio close to mouth, mechanical relays and cable bundles framing the foreground; practical amber lamps contrast cyan instrument spill and scarred brushed metal. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_05"
+    },
+    {
+      "n": 6,
+      "time": "01:40–02:07",
+      "title": "Путь через сервисный лаз",
+      "cast": "Mara,Lev",
+      "focus": "Поиск обходного доступа",
+      "prompt": "Gritty illustrated maintenance access beside the ship corridor, Mara kneeling beside an unlabeled utility hatch under an emergency medkit, bolted steel panel half-removed, exposed conduit and tightly packed industrial details; Lev appears only as a small cyan voice-link icon to be composited later, giving the scene plausible physical scale and isolation.",
+      "frames": [
+        "A: Mara pulls medkit aside",
+        "B: finds concealed access screws",
+        "C: metal panel comes away revealing tight shaft",
+        "D: crawls into darkness"
+      ],
+      "camera": "Low tracking shot to the opening, then POV from inside shaft",
+      "fx": "Screws rattling, distant alarm, clothing scrape",
+      "hook": "A physical obstacle, not teleportation.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Gritty illustrated maintenance access beside the ship corridor, Mara kneeling beside an unlabeled utility hatch under an emergency medkit, bolted steel panel half-removed, exposed conduit and tightly packed industrial details; Lev appears only as a small cyan voice-link icon to be composited later, giving the scene plausible physical scale and isolation. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_06"
+    },
+    {
+      "n": 7,
+      "time": "02:07–02:45",
+      "title": "Карта, которой нет в памяти",
+      "cast": "Mara",
+      "focus": "Схема корабля изменилась",
+      "prompt": "Claustrophobic maintenance crawlspace in the Porog with layered ribbing, sweat on Mara’s cheek and worn captain jacket brushing overhead wiring, thick coolant pipe installed where her remembered corridor should be; a scratched metal maintenance tag and new bolt marks reveal a recent structural change, narrow cold light behind, amber work lamp ahead.",
+      "frames": [
+        "A: Mara emerges around vent rib",
+        "B: unfamiliar coolant pipe blocks way",
+        "C: macro of fresh bolt scars",
+        "D: her confused face framed between conduits"
+      ],
+      "camera": "Restricted shoulder-follow, strong 3-layer parallax against pipes",
+      "fx": "Metal scrape, fabric drag, low-frequency silence",
+      "hook": "Small mystery about memory foreshadows scar later.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Claustrophobic maintenance crawlspace in the Porog with layered ribbing, sweat on Mara’s cheek and worn captain jacket brushing overhead wiring, thick coolant pipe installed where her remembered corridor should be; a scratched metal maintenance tag and new bolt marks reveal a recent structural change, narrow cold light behind, amber work lamp ahead. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_07"
+    },
+    {
+      "n": 8,
+      "time": "02:45–03:22",
+      "title": "Жёлтый рычаг",
+      "cast": "Mara",
+      "focus": "Неверная аварийная команда",
+      "prompt": "Extreme macro hero shot of a weathered yellow mechanical emergency lever within an old relay cabinet, Mara’s dark-gloved hand moving toward it, chipped enamel, recent wiring modifications, burnished screw heads, amber work light and deep red warning reflections; the handle’s cast shadow visually threatens her fingers.",
+      "frames": [
+        "A: lever revealed from behind loose conduit",
+        "B: Mara studies contradictory wear and markings",
+        "C: fingers close around lever",
+        "D: hiss erupts from seam with blue-white vapor"
+      ],
+      "camera": "Slow macro slide around lever to abrupt tight insert of failing seal",
+      "fx": "Metal clunk → decompression hiss → music drop",
+      "hook": "False moment of triumph turns into worse danger.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Extreme macro hero shot of a weathered yellow mechanical emergency lever within an old relay cabinet, Mara’s dark-gloved hand moving toward it, chipped enamel, recent wiring modifications, burnished screw heads, amber work light and deep red warning reflections; the handle’s cast shadow visually threatens her fingers. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_08"
+    },
+    {
+      "n": 9,
+      "time": "03:22–03:53",
+      "title": "Два независимых контактора",
+      "cast": "Lev,Mara",
+      "focus": "Новая механическая задача",
+      "prompt": "Industrial relay room with one heavily damaged copper contactor and a pair of independent manual cutoff assemblies; Lev steadies a flashlight with one hand as he traces scorched cables, schematic annotations must be added later, Mara visible only in a paired composition via offscreen radio scene; strong foreground tools, crisp textured copper, restrained emergency color.",
+      "frames": [
+        "A: damaged relay cabinet opened",
+        "B: macro copper terminals blackened",
+        "C: Lev points to two separated cutoff assemblies",
+        "D: gloved finger tests stuck switch"
+      ],
+      "camera": "Technical macro to over-shoulder reveal, no unsupported sci-fi magic",
+      "fx": "Electrostatic hiss, meter click, glove rasp",
+      "hook": "They must coordinate simultaneously.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Industrial relay room with one heavily damaged copper contactor and a pair of independent manual cutoff assemblies; Lev steadies a flashlight with one hand as he traces scorched cables, schematic annotations must be added later, Mara visible only in a paired composition via offscreen radio scene; strong foreground tools, crisp textured copper, restrained emergency color. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_09"
+    },
+    {
+      "n": 10,
+      "time": "03:53–04:24",
+      "title": "КЕРН отказывает в помощи",
+      "cast": "Mara,KERN",
+      "focus": "Пределы возможностей ИИ",
+      "prompt": "Captain Mara faces a dark ship systems terminal in a confined corridor while an elegant non-human abstract concentric cyan indicator shows the ship AI KERN; the hologram is austere, no robot face, her posture resolute under bouncing alarm light, layered conduit silhouettes near camera, distressed ship panels far behind.",
+      "frames": [
+        "A: KERN indicator appears in peripheral display",
+        "B: Mara leans toward interface",
+        "C: display flickers during refusal",
+        "D: Mara turns away to act manually"
+      ],
+      "camera": "Slow orbit around shoulder limited to flat-parallax-safe movement",
+      "fx": "Calm synthesized voice against strained mechanical drone",
+      "hook": "KERN does not know everything.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Captain Mara faces a dark ship systems terminal in a confined corridor while an elegant non-human abstract concentric cyan indicator shows the ship AI KERN; the hologram is austere, no robot face, her posture resolute under bouncing alarm light, layered conduit silhouettes near camera, distressed ship panels far behind. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. KERN — not humanoid and not a robot: non-personified circular cyan sensor interface with three concentric arcs, small waveform pattern, sparse high-contrast ship UI. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_10"
+    },
+    {
+      "n": 11,
+      "time": "04:24–04:54",
+      "title": "«Я не помню ремонт»",
+      "cast": "Mara,Lev",
+      "focus": "Мара сомневается в воспоминаниях",
+      "prompt": "Dual-location illustrated montage pairing Mara at old relay board with Lev in engineering bay, both in sharply different lighting but the same consistent painterly sci-fi graphic novel style; details of newly installed cabling juxtaposed with a faint archival tracing of the old conduit route, no literal memory footage presented as confirmed fact.",
+      "frames": [
+        "A: Mara studies mismatched color-coded conduit",
+        "B: Lev checks repair docket offscreen monitor",
+        "C: close focus on Mara's pained eyes",
+        "D: reflection of modified pipes obscures her face"
+      ],
+      "camera": "Alternating diagonal compositions / motivated hard cuts",
+      "fx": "Voice radio filter on Lev, low droning pressure",
+      "hook": "Convey uncertainty rather than confirming a clone.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Dual-location illustrated montage pairing Mara at old relay board with Lev in engineering bay, both in sharply different lighting but the same consistent painterly sci-fi graphic novel style; details of newly installed cabling juxtaposed with a faint archival tracing of the old conduit route, no literal memory footage presented as confirmed fact. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_11"
+    },
+    {
+      "n": 12,
+      "time": "04:54–05:18",
+      "title": "Временный союз",
+      "cast": "Mara,KERN,Lev",
+      "focus": "КЕРН закрывает локальные клапаны",
+      "prompt": "Industrial corridor service manifold with several chunky mechanical air valves rotating shut, cyan holographic tracking lines near the valves, Mara visible watching pressure gauges from the near left, warm mechanical shafts in the distance, oily steel textures and thick shadows, small signs of real physical constraints.",
+      "frames": [
+        "A: wide manifold and alarm glow",
+        "B: first valve rotates into lock",
+        "C: pressure needle steadies in macro",
+        "D: Mara acknowledges AI help with a short glance"
+      ],
+      "camera": "Flow from wide valve bank into macro needle, then response close-up",
+      "fx": "Valve torque, compressed-air rush fading",
+      "hook": "A subtle shift from hostile AI toward uneasy cooperation.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Industrial corridor service manifold with several chunky mechanical air valves rotating shut, cyan holographic tracking lines near the valves, Mara visible watching pressure gauges from the near left, warm mechanical shafts in the distance, oily steel textures and thick shadows, small signs of real physical constraints. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. KERN — not humanoid and not a robot: non-personified circular cyan sensor interface with three concentric arcs, small waveform pattern, sparse high-contrast ship UI. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_12"
+    },
+    {
+      "n": 13,
+      "time": "05:18–05:32",
+      "title": "Три!",
+      "cast": "Mara,Lev",
+      "focus": "Синхронное отключение",
+      "prompt": "High-tension split-panel action illustration of Mara gripping the emergency contactor near bulkhead and Lev bracing in a remote engineering bay, both shoulders tense at the instant before manually pulling their switches; no superhero poses, visible strain, mechanically plausible equipment, strong diagonals and graphic novel inks.",
+      "frames": [
+        "A: each hand hovers over own switch",
+        "B: eyes exchange an imagined count by radio",
+        "C: both handles pulled simultaneously",
+        "D: indicator lights switch from red to dark"
+      ],
+      "camera": "Two angled close-ups → deliberate split panel → impact cut to darkness",
+      "fx": "Two sync clicks, hum abruptly cut",
+      "hook": "A short payoff before the next mechanical failure.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. High-tension split-panel action illustration of Mara gripping the emergency contactor near bulkhead and Lev bracing in a remote engineering bay, both shoulders tense at the instant before manually pulling their switches; no superhero poses, visible strain, mechanically plausible equipment, strong diagonals and graphic novel inks. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_13"
+    },
+    {
+      "n": 14,
+      "time": "05:32–05:55",
+      "title": "Но дверь всё ещё закрыта",
+      "cast": "Mara,KERN",
+      "focus": "Рельс погнут, автоматика обесточена",
+      "prompt": "Wide hero shot of the enormous P‑4 bulkhead still immovable after shutdown, bent lower guide rail in sharp foreground close-up, heavy scratched metal door resisting motion, Mara dwarfed by industrial scale at frame edge, KERN's small cyan UI signal reflected on the hatch, believable weight and damage.",
+      "frames": [
+        "A: red danger lamps extinguish",
+        "B: Mara pulls door with no effect",
+        "C: extreme macro of buckled guide rail",
+        "D: she spots a point where a jack might fit"
+      ],
+      "camera": "Start static success beat then sudden push to actual cause",
+      "fx": "Silence after cutoff, deep groan of bent steel",
+      "hook": "One solved problem reveals another.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Wide hero shot of the enormous P‑4 bulkhead still immovable after shutdown, bent lower guide rail in sharp foreground close-up, heavy scratched metal door resisting motion, Mara dwarfed by industrial scale at frame edge, KERN's small cyan UI signal reflected on the hatch, believable weight and damage. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. KERN — not humanoid and not a robot: non-personified circular cyan sensor interface with three concentric arcs, small waveform pattern, sparse high-contrast ship UI. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_14"
+    },
+    {
+      "n": 15,
+      "time": "05:55–06:29",
+      "title": "Домкрат старше корабля",
+      "cast": "Mara,Lev",
+      "focus": "Механическое решение",
+      "prompt": "Detailed close-view of a battered hand-operated rescue jack being dragged across ribbed ship floor toward the deformed hatch, Mara's gloves and boot in near foreground, old dented steel tool with readable mechanical teeth but no illegible typography, amber tool light and cold shaft recesses; Lev is remote on radio.",
+      "frames": [
+        "A: battered emergency toolbox opened",
+        "B: close-up jack screw ratchet and rust texture",
+        "C: Mara slides jack into hatch gap",
+        "D: tool begins to bear weight, metal groans"
+      ],
+      "camera": "Macro to low floor tracking around jack teeth",
+      "fx": "Toolbox clang, ratchet ticks, drawn-out groan",
+      "hook": "Concrete rescue mechanics create suspense.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Detailed close-view of a battered hand-operated rescue jack being dragged across ribbed ship floor toward the deformed hatch, Mara's gloves and boot in near foreground, old dented steel tool with readable mechanical teeth but no illegible typography, amber tool light and cold shaft recesses; Lev is remote on radio. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_15"
+    },
+    {
+      "n": 16,
+      "time": "06:29–06:53",
+      "title": "Опасный упор",
+      "cast": "Mara,Lev,KERN",
+      "focus": "Исправление точки опоры",
+      "prompt": "Close-up from beneath a damaged bulkhead where Mara's gloved hand repositions the jack's steel shoe against an intact load-bearing bracket while fractured metal deforms inches away; slanted warning reflections create graphic tension, foreground spring and midground glove separated cleanly for motion layering.",
+      "frames": [
+        "A: incorrect jack placement threatens break",
+        "B: Lev warns over comm as bracket creaks",
+        "C: Mara repositions jack shoe higher",
+        "D: load transfers visibly to stable rib"
+      ],
+      "camera": "Narrow macro shift in focus between shoe and cracked bracket",
+      "fx": "Spring ping, shallow breath, tool squeal",
+      "hook": "She learns, not effortlessly solves everything.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Close-up from beneath a damaged bulkhead where Mara's gloved hand repositions the jack's steel shoe against an intact load-bearing bracket while fractured metal deforms inches away; slanted warning reflections create graphic tension, foreground spring and midground glove separated cleanly for motion layering. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. KERN — not humanoid and not a robot: non-personified circular cyan sensor interface with three concentric arcs, small waveform pattern, sparse high-contrast ship UI. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_16"
+    },
+    {
+      "n": 17,
+      "time": "06:53–07:16",
+      "title": "Голос Тессы",
+      "cast": "Tessa,Mara",
+      "focus": "Контакт с выжившими",
+      "prompt": "Inside flooded P‑4 compartment, soaked engineer Tessa in muted rust-red service suit grips a waist-high railing as cold coolant water swirls at her boots, one injured coworker slumped against wall and another unconscious beyond, distant industrial hatch glows through vapor; rescue workers are ordinary adults, no graphic gore.",
+      "frames": [
+        "A: first dramatic view inside hidden compartment",
+        "B: close Tessa's damp frightened face",
+        "C: wider injured and unconscious survivors revealed",
+        "D: Tessa shouts toward tiny opening"
+      ],
+      "camera": "POV from trapped side, alternating low water-level and close-up",
+      "fx": "Water slosh, distant pounding, muffled desperate speech",
+      "hook": "Humanize unknown biosignals.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Inside flooded P‑4 compartment, soaked engineer Tessa in muted rust-red service suit grips a waist-high railing as cold coolant water swirls at her boots, one injured coworker slumped against wall and another unconscious beyond, distant industrial hatch glows through vapor; rescue workers are ordinary adults, no graphic gore. TESSA — 31-year-old female service engineer, short curly auburn-brown hair in tight braid, weathered rust-red work coveralls with faded gray shoulder patches, wet cuffs after P‑4 leak, resilient scared look. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_17"
+    },
+    {
+      "n": 18,
+      "time": "07:16–07:38",
+      "title": "Четыре секунды магнита",
+      "cast": "Mara,KERN,Lev",
+      "focus": "Спасательная стратегия",
+      "prompt": "Cinematic mechanical close-up of old electromagnetic latch with exposed windings and a narrow timer-ready relay contact, Mara hunched beside the door, intense cyan activation reflection and amber warning glow, heavy steel jack pushing against damaged track, clear scale between human and machine.",
+      "frames": [
+        "A: magnetic clamp begins to hum",
+        "B: four indicator lights glow, composited later",
+        "C: Mara grips handle and calls for the signal",
+        "D: door opens a dangerous hand-width"
+      ],
+      "camera": "Move across electromagnetic coil to widening gap in door",
+      "fx": "Electrical buzz ramping, metallic tension",
+      "hook": "Clear, precise four-second limitation.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Cinematic mechanical close-up of old electromagnetic latch with exposed windings and a narrow timer-ready relay contact, Mara hunched beside the door, intense cyan activation reflection and amber warning glow, heavy steel jack pushing against damaged track, clear scale between human and machine. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. KERN — not humanoid and not a robot: non-personified circular cyan sensor interface with three concentric arcs, small waveform pattern, sparse high-contrast ship UI. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_18"
+    },
+    {
+      "n": 19,
+      "time": "07:38–08:06",
+      "title": "Хэл первым",
+      "cast": "Mara,Tessa",
+      "focus": "Эвакуация человека без сознания",
+      "prompt": "Tense realistic rescue through a narrow open spaceship hatch, Mara leaning down to receive an unconscious adult in worn gray-blue crew suit pushed from inside by wet engineer Tessa, exposed jack and heavy door mass visible, strong dramatic diagonal anatomy that communicates actual weight, no gore, detailed painterly graphic-novel finish.",
+      "frames": [
+        "A: unconscious crew member pushed near gap",
+        "B: Mara secures shoulder under weight",
+        "C: gloved arms pass body across threshold",
+        "D: survivor sprawls safely outside while door strains"
+      ],
+      "camera": "Low sideways tracking to emphasize mass transfer, cut to survivors' hands",
+      "fx": "Fabric strain, Jack click, hurried breathing",
+      "hook": "Visible tangible progress before reversal.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Tense realistic rescue through a narrow open spaceship hatch, Mara leaning down to receive an unconscious adult in worn gray-blue crew suit pushed from inside by wet engineer Tessa, exposed jack and heavy door mass visible, strong dramatic diagonal anatomy that communicates actual weight, no gore, detailed painterly graphic-novel finish. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. TESSA — 31-year-old female service engineer, short curly auburn-brown hair in tight braid, weathered rust-red work coveralls with faded gray shoulder patches, wet cuffs after P‑4 leak, resilient scared look. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_19"
+    },
+    {
+      "n": 20,
+      "time": "08:06–08:27",
+      "title": "Тесса застряла",
+      "cast": "Tessa,Mara,Lev",
+      "focus": "Створка падает",
+      "prompt": "Severe perspective from trapped engineer Tessa on wet floor, her boot caught beneath a damaged handrail, pressure door descending dangerously in upper background, Mara reaching toward her through narrowing opening, water streaks foreground and flaring red emergency glow, physically coherent limbs and shadows.",
+      "frames": [
+        "A: Tessa tries to step out",
+        "B: boot cable jams beneath railing",
+        "C: heavy door tilts downward",
+        "D: Mara extends hand refusing to leave her"
+      ],
+      "camera": "Ground-level POV with rack focus from trapped boot to Mara's outstretched hand",
+      "fx": "Metal slide and abrupt low boom, sudden breath",
+      "hook": "A second crisis peaks at 8 minutes.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Severe perspective from trapped engineer Tessa on wet floor, her boot caught beneath a damaged handrail, pressure door descending dangerously in upper background, Mara reaching toward her through narrowing opening, water streaks foreground and flaring red emergency glow, physically coherent limbs and shadows. TESSA — 31-year-old female service engineer, short curly auburn-brown hair in tight braid, weathered rust-red work coveralls with faded gray shoulder patches, wet cuffs after P‑4 leak, resilient scared look. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_20"
+    },
+    {
+      "n": 21,
+      "time": "08:27–08:54",
+      "title": "Цена спасения",
+      "cast": "Mara,KERN,Tessa",
+      "focus": "КЕРН разгружает стабилизатор",
+      "prompt": "Intercut illustrated ship power distribution manifold with one medical supply line deliberately dimming while a side stabilizer retracts, emergency cables sparking minimally; simultaneously trapped Tessa frees her boot and reaches Mara's glove at P‑4, graphic novel compositions keep consequences of switching power visually explicit.",
+      "frames": [
+        "A: schematic-like actual power box physically switches",
+        "B: medical light flickers off",
+        "C: pressure releases from jammed rail",
+        "D: Tessa's freed hand clasps Mara's"
+      ],
+      "camera": "Mechanical match cut across two physical switches then snap to hands",
+      "fx": "Breaker thunk, lights hum collapse, relieved gasp",
+      "hook": "Choice costs something; reinforces ethical AI.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Intercut illustrated ship power distribution manifold with one medical supply line deliberately dimming while a side stabilizer retracts, emergency cables sparking minimally; simultaneously trapped Tessa frees her boot and reaches Mara's glove at P‑4, graphic novel compositions keep consequences of switching power visually explicit. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. KERN — not humanoid and not a robot: non-personified circular cyan sensor interface with three concentric arcs, small waveform pattern, sparse high-contrast ship UI. TESSA — 31-year-old female service engineer, short curly auburn-brown hair in tight braid, weathered rust-red work coveralls with faded gray shoulder patches, wet cuffs after P‑4 leak, resilient scared look. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_21"
+    },
+    {
+      "n": 22,
+      "time": "08:54–09:24",
+      "title": "Спасены трое — кто четвёртый?",
+      "cast": "Mara,Lev,KERN,Tessa",
+      "focus": "КЕРН признаёт живую Мару, но не её личность",
+      "prompt": "Quiet aftermath outside P‑4, Mara kneeling beside rescued people as Lev observes remotely on blue comm projection, injured survivors sheltered behind her, the ship's luminous cyan biosensor scanning Mara's wrist while a cold sterile registry panel remains blank, emotionally understated relief with looming uncertainty.",
+      "frames": [
+        "A: three rescued people gathered safely",
+        "B: Mara exhales in exhaustion",
+        "C: cyan scanner pings her own heartbeat",
+        "D: she looks toward registry screen with disbelief"
+      ],
+      "camera": "Wide aftermath to intimate wrist / eyes macro",
+      "fx": "Alarm fades, pulse beep, one uneasy unresolved chord",
+      "hook": "Mirror the 312/311 mystery with a new detail.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Quiet aftermath outside P‑4, Mara kneeling beside rescued people as Lev observes remotely on blue comm projection, injured survivors sheltered behind her, the ship's luminous cyan biosensor scanning Mara's wrist while a cold sterile registry panel remains blank, emotionally understated relief with looming uncertainty. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. KERN — not humanoid and not a robot: non-personified circular cyan sensor interface with three concentric arcs, small waveform pattern, sparse high-contrast ship UI. TESSA — 31-year-old female service engineer, short curly auburn-brown hair in tight braid, weathered rust-red work coveralls with faded gray shoulder patches, wet cuffs after P‑4 leak, resilient scared look. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_22"
+    },
+    {
+      "n": 23,
+      "time": "09:24–09:30",
+      "title": "Переход в медотсек",
+      "cast": "Mara,Tessa",
+      "focus": "Новые последствия",
+      "prompt": "Silent transition image: hospital trolley wheels rolling quickly across wet metal deck toward cool-white medical bay door while Mara's boot and Tessa's work glove cross in opposite foreground layers, emergency red light yields to clinical blue light in distance.",
+      "frames": [
+        "A: wheel crossing hallway threshold",
+        "B: medical doors part",
+        "C: silhouette pushes injured crewmate through",
+        "D: cool white light overtakes red"
+      ],
+      "camera": "Match movement of trolley wheel into swinging medical door",
+      "fx": "Wheels click, alarm replaced by med-bay monitors",
+      "hook": "Briefly rest the viewer before new reveal.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Silent transition image: hospital trolley wheels rolling quickly across wet metal deck toward cool-white medical bay door while Mara's boot and Tessa's work glove cross in opposite foreground layers, emergency red light yields to clinical blue light in distance. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. TESSA — 31-year-old female service engineer, short curly auburn-brown hair in tight braid, weathered rust-red work coveralls with faded gray shoulder patches, wet cuffs after P‑4 leak, resilient scared look. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_23"
+    },
+    {
+      "n": 24,
+      "time": "09:30–10:10",
+      "title": "Свежий шов",
+      "cast": "Ina,Mara",
+      "focus": "Ина обнаруживает след операции",
+      "prompt": "Intimate medical drama composition in a small functional spaceship infirmary, doctor Ina Sol in pale slate-blue medical coat shining a narrow diagnostic light beside Mara Vey's left collarbone, barely visible fresh surgical stitch revealed at edge of pulled-back captain jacket collar, no gore, both faces concerned; detailed sterile equipment and soft cool lighting, believable clinical intimacy.",
+      "frames": [
+        "A: Ina turns to examine exhausted Mara",
+        "B: Mara opens collar with guarded look",
+        "C: macro of small fresh incision near collarbone",
+        "D: Ina's expression becomes intensely worried"
+      ],
+      "camera": "Doctor over-shoulder to macro incision, slow focus change to her eyes",
+      "fx": "Diagnostic beep, no music for reveal",
+      "hook": "Reveal medical event, do not explain its cause.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Intimate medical drama composition in a small functional spaceship infirmary, doctor Ina Sol in pale slate-blue medical coat shining a narrow diagnostic light beside Mara Vey's left collarbone, barely visible fresh surgical stitch revealed at edge of pulled-back captain jacket collar, no gore, both faces concerned; detailed sterile equipment and soft cool lighting, believable clinical intimacy. INA SOL — 42-year-old female medic, deep brown eyes, short dark hair threaded with silver, practical slate-blue medical coat and teal clasp, composed professional expression. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_24"
+    },
+    {
+      "n": 25,
+      "time": "10:10–10:48",
+      "title": "Молчание Ины",
+      "cast": "Ina,Mara,KERN",
+      "focus": "Врач не сообщает всего",
+      "prompt": "Mara seated on narrow medical exam berth, collar covered again, doctor Ina Sol holding handheld diagnostic tablet with unreadable graphical waveform and refusing to meet Mara's eyes, an abstract KERN cyan indicator on wall display; isolated white-blue lighting versus distant dark hospital alcove, rich painted adult sci-fi drama.",
+      "frames": [
+        "A: Mara watches Ina's tablet",
+        "B: Ina hides screen angle, uneasy",
+        "C: close-up of Mara's clenched fist on exam berth",
+        "D: doctor turns toward bridge alert lighting"
+      ],
+      "camera": "Alternating intimate reverse shots with 3-layer room depth",
+      "fx": "Monitor beeps and strained silence",
+      "hook": "Suspicion of a cover-up without definitive villain.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Mara seated on narrow medical exam berth, collar covered again, doctor Ina Sol holding handheld diagnostic tablet with unreadable graphical waveform and refusing to meet Mara's eyes, an abstract KERN cyan indicator on wall display; isolated white-blue lighting versus distant dark hospital alcove, rich painted adult sci-fi drama. INA SOL — 42-year-old female medic, deep brown eyes, short dark hair threaded with silver, practical slate-blue medical coat and teal clasp, composed professional expression. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. KERN — not humanoid and not a robot: non-personified circular cyan sensor interface with three concentric arcs, small waveform pattern, sparse high-contrast ship UI. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_25"
+    },
+    {
+      "n": 26,
+      "time": "10:48–11:20",
+      "title": "Кто имеет право командовать?",
+      "cast": "Mara,Oren,Lev",
+      "focus": "Орен требует ограничить полномочия",
+      "prompt": "Wide cinematic command bridge on civilian rescue vessel Porog, pale-blue tactical hologram hovering above modest command console, Oren security officer in deep graphite-blue uniform confronting captain Mara, Lev to the side near communications station, thoughtful serious faces and realistic restrained poses, windows show starless shadow of a gateway distant in space.",
+      "frames": [
+        "A: Mara steps into cold-lit bridge",
+        "B: Oren blocks path to captain chair",
+        "C: close Oren's measured stern face",
+        "D: Mara argues while Lev watches skeptically"
+      ],
+      "camera": "Wide establishing pan to opposing profile two-shot",
+      "fx": "Room hum, boots on metal, clipped strategic dialogue",
+      "hook": "People disagree for defensible reasons.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Wide cinematic command bridge on civilian rescue vessel Porog, pale-blue tactical hologram hovering above modest command console, Oren security officer in deep graphite-blue uniform confronting captain Mara, Lev to the side near communications station, thoughtful serious faces and realistic restrained poses, windows show starless shadow of a gateway distant in space. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. OREN — 45-year-old male security leader, dark blue graphite utility security uniform with one muted brass stripe, closely cropped dark hair, controlled posture, wary but responsible. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_26"
+    },
+    {
+      "n": 27,
+      "time": "11:20–12:01",
+      "title": "Временный допуск",
+      "cast": "Mara,Oren,Lev,KERN",
+      "focus": "Ограниченные полномочия на два часа",
+      "prompt": "Close view of a shared starship command console with distinct physical confirmation pads used by two crew officers, Oren cautiously granting limited authority as Mara rests her hand but does not seize complete command, Lev standing as procedural witness; KERN indicated by small cyan concentric light on console, detailed panel framing and clean empty display areas for post-created authentic Cyrillic overlays.",
+      "frames": [
+        "A: tense three-person composition",
+        "B: Lev proposes two-key safeguard",
+        "C: Oren reluctantly touches control pad",
+        "D: Mara's temporary authorization appears as clean overlay added later"
+      ],
+      "camera": "Slow arc around grouped hands to faces, then console insert",
+      "fx": "Two confirmation clicks and restrained musical release",
+      "hook": "Resolution of immediate command conflict, bigger mystery remains.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Close view of a shared starship command console with distinct physical confirmation pads used by two crew officers, Oren cautiously granting limited authority as Mara rests her hand but does not seize complete command, Lev standing as procedural witness; KERN indicated by small cyan concentric light on console, detailed panel framing and clean empty display areas for post-created authentic Cyrillic overlays. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. OREN — 45-year-old male security leader, dark blue graphite utility security uniform with one muted brass stripe, closely cropped dark hair, controlled posture, wary but responsible. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. KERN — not humanoid and not a robot: non-personified circular cyan sensor interface with three concentric arcs, small waveform pattern, sparse high-contrast ship UI. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_27"
+    },
+    {
+      "n": 28,
+      "time": "12:01–12:33",
+      "title": "Архив 18 часов назад",
+      "cast": "Mara,KERN,Lev",
+      "focus": "КЕРН открывает неизвестную запись",
+      "prompt": "Low-lit starship command bridge as restricted archive projector creates translucent rectangular light in front of Mara Vey, Lev nearby, floating cyan motes of old recording data, Mara's silhouette facing a darkness-filled screen with no portrait initially, clean picture area for timestamp and archive status added during compositing.",
+      "frames": [
+        "A: Mara orders full accident log",
+        "B: archive interface assembles from light shards",
+        "C: date marker glows with empty recording screen",
+        "D: woman's silhouette resolves on screen"
+      ],
+      "camera": "Slow push through foreground bridge console into luminous archive",
+      "fx": "Tape-like digital flutter, deepened bass hush",
+      "hook": "Reset tension ahead of final twist.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Low-lit starship command bridge as restricted archive projector creates translucent rectangular light in front of Mara Vey, Lev nearby, floating cyan motes of old recording data, Mara's silhouette facing a darkness-filled screen with no portrait initially, clean picture area for timestamp and archive status added during compositing. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. KERN — not humanoid and not a robot: non-personified circular cyan sensor interface with three concentric arcs, small waveform pattern, sparse high-contrast ship UI. LEV RUDIN — 29-year-old male engineer, narrow tired face, dark brown cropped hair, faint stubble, olive-gray jumpsuit, copper utility collar patch, tool belt, dry humor reflected in eyes. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_28"
+    },
+    {
+      "n": 29,
+      "time": "12:33–13:07",
+      "title": "Запись «другой Мары»",
+      "cast": "Mara,Archive Mara",
+      "focus": "Предупреждение не доверять голосу капитана",
+      "prompt": "Dramatic split-depth illustrated shot: current captain Mara Vey in dark foreground faces a flickering blue archive recording of herself in earlier clean captain's uniform, same exact facial identity and hair as reference, recorded face not evil or distorted, merely weary and urgent; realistic interference, handprints on glass console, no arbitrary clone explanation revealed; the image should imply the recording predates current Mara's memory.",
+      "frames": [
+        "A: recorded Mara comes into focus",
+        "B: current Mara freezes, back to camera",
+        "C: archival Mara leans forward to issue warning",
+        "D: current Mara catches her breath after screen cuts dark"
+      ],
+      "camera": "Gentle drift from current profile to archived face, snap black on final warning",
+      "fx": "Archive interference, ominous line, 1.5 seconds dead silence",
+      "hook": "«Не верь только моему голосу» must remain intact.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Dramatic split-depth illustrated shot: current captain Mara Vey in dark foreground faces a flickering blue archive recording of herself in earlier clean captain's uniform, same exact facial identity and hair as reference, recorded face not evil or distorted, merely weary and urgent; realistic interference, handprints on glass console, no arbitrary clone explanation revealed; the image should imply the recording predates current Mara's memory. MARA VEY — 38-year-old female captain, oval angular face, steel-gray eyes, asymmetrical short black bob with hair tucked behind right ear, navy/teal functional captain jacket with narrow copper shoulder insignia, no visible surgery scar except in medical reveal at #24, determined rather than glamorous. ARCHIVE MARA — exactly the same face as MARA VEY, earlier clean uniform, slightly different lighting and no time-skipping fantasy effects. -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_29"
+    },
+    {
+      "n": 30,
+      "time": "13:07–13:30",
+      "title": "Финальный вопрос зрителям",
+      "cast": "none",
+      "focus": "Ненавязчивый CTA после развязки",
+      "prompt": "Elegant original illustrated view of the civilian rescue spacecraft Porog drifting past a dim azure planet in deep space, tiny warm windows in dark hull, silhouette readable against blue-black stars, one clean compositional quadrant deliberately empty for overlaid Russian question and end-screen elements, mature painted graphic novel science-fiction visual identity, no borrowed franchise iconography.",
+      "frames": [
+        "A: lone rescue spacecraft over dark blue planet",
+        "B: ship turns slightly as parallax stars drift",
+        "C: question about Mara appears only in compositing",
+        "D: logo and upcoming episode «Тихая гавань» on separate end-screen overlay"
+      ],
+      "camera": "Slow lateral ship drift; hold final layout readable for at least 8 seconds",
+      "fx": "Small musical resolution, voiced thanks + call to comment and subscribe",
+      "hook": "Ask genuine theory: person, copy, or AI error; no fake urgency.",
+      "full_prompt": "ORIGINAL mature cinematic hand-painted science-fiction graphic novel frame for a 2.5D animated series, sober semi-realistic adult anatomy and recognizable consistent faces, elegant tapered ink contours rather than thick stickers, brush-textured color and restrained grain, charcoal steel-blue and cyan environment with controlled amber practical lighting and scarce red emergency accents, believable engineering on the civilian rescue spaceship Porog, deeply atmospheric composition, physically credible shadows and perspective, crisp high-detail focal objects and props, richly illustrated sci-fi storyboard quality, 16:9 horizontal 1920x1080. Enforce shared character and location reference sheets across every shot, readable foreground/midground/background planes for parallax, important props separated for optional mask-and-layer animation. No text rendered into the art; all Cyrillic UI and captions added cleanly later. Elegant original illustrated view of the civilian rescue spacecraft Porog drifting past a dim azure planet in deep space, tiny warm windows in dark hull, silhouette readable against blue-black stars, one clean compositional quadrant deliberately empty for overlaid Russian question and end-screen elements, mature painted graphic novel science-fiction visual identity, no borrowed franchise iconography.  -- Negative: juvenile cartoon, childish anime eyes, comedy stickers, photorealistic photograph, cheap 3D, waxy plastic skin, glossy toy robot, comic speech bubbles, generic Star Wars or Star Trek visual elements, copied franchise ships, watermark, invented lettering, random Chinese text, unreadable signs, collapsed perspective, deformed anatomy, extra fingers or limbs, duplicate faces, face drift, costume drift, inconsistent lighting, extreme oversaturation, flat cardboard backgrounds, UI panels blocking character performance, AI artifact, excessive bloom, overdone film grain",
+      "deliverable_prefix": "EP01_30"
+    }
+  ]
+}
