@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install free neural speech synthesizer
-        run: python -m pip install --disable-pip-version-check edge-tts
+        run: python -m pip install --disable-pip-version-check edge-tts==7.3.1
       - name: Generate three Russian voice segments
         shell: bash
         run: |
@@ -33,11 +33,19 @@ jobs:
           }
           async def main():
               for name, line in clips.items():
-                  out=Path("audio")/f"{name}.mp3"
-                  c=edge_tts.Communicate(text=line,voice="ru-RU-DmitryNeural",rate="+8%")
-                  await c.save(str(out))
-                  assert out.stat().st_size>5000,(name,out.stat().st_size)
-                  print(name,out.stat().st_size)
+                  out = Path("audio") / f"{name}.mp3"
+                  for attempt in range(1, 4):
+                      try:
+                          if out.exists(): out.unlink()
+                          task = edge_tts.Communicate(text=line, voice="ru-RU-DmitryNeural", rate="+8%")
+                          await task.save(str(out))
+                          if out.stat().st_size < 5000: raise ValueError("Audio too short")
+                          print(name, out.stat().st_size, flush=True)
+                          break
+                      except Exception as exc:
+                          print("Attempt", attempt, name, type(exc).__name__, str(exc), flush=True)
+                          if attempt == 3: raise
+                          await asyncio.sleep(2 * attempt)
           asyncio.run(main())
           PY
       - name: Upload reusable voice clips
