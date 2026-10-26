@@ -1,14 +1,40 @@
 name: Playlist sync
+
+# Pause gracefully until Google OAuth and destination playlist IDs are configured.
+# This automation is NOT the direct video uploader.
 on:
   schedule:
     - cron: "17 */2 * * *"
   workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Check whether playlist sync is configured (no secrets printed)
+        id: readiness
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          PLAYLIST_RU: ${{ secrets.PLAYLIST_RU }}
+          PLAYLIST_EN: ${{ secrets.PLAYLIST_EN }}
+        shell: bash
+        run: |
+          if [[ -z "$YT_CLIENT_ID" || -z "$YT_CLIENT_SECRET" || -z "$YT_REFRESH_TOKEN" || -z "$PLAYLIST_RU" || -z "$PLAYLIST_EN" ]]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Playlist sync suspended until OAuth and playlist IDs are provided in GitHub Actions secrets."
+            echo "### Playlist sync skipped" >> "$GITHUB_STEP_SUMMARY"
+            echo "Missing one or more OAuth credentials or target playlist IDs. No attempt to upload, publish or modify YouTube was made." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
       - name: Разложить ролики по плейлистам
+        if: steps.readiness.outputs.ready == 'true'
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
