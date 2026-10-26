@@ -1,0 +1,66 @@
+name: M1LASH Dmitry voice repair 04 and 09
+on:
+  push:
+    branches:
+      - codex/m1lash-ralph-dmitry-voice-20261027
+    paths:
+      - .github/workflows/m1lash-ralph-dmitry-repair.yml
+jobs:
+  repair:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - idx: "04"
+            voice_text: "Но есть другой вариант: Ральф Луп для Клод Код."
+          - idx: "09"
+            voice_text: "Цикл останавливается, когда выполнено условие. Или сработает лимит."
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install free Russian neural TTS
+        run: python -m pip install --disable-pip-version-check edge-tts==7.3.1
+      - name: Repair scene ${{ matrix.idx }}
+        env:
+          IDX: ${{ matrix.idx }}
+          VOICE_TEXT: ${{ matrix.voice_text }}
+        shell: bash
+        run: |
+          mkdir -p repaired
+          python - <<'PY'
+          import asyncio,os,pathlib
+          import edge_tts
+          name=os.getenv("IDX")
+          line=os.getenv("VOICE_TEXT")
+          dest=pathlib.Path("repaired")/f"scene_{name}.mp3"
+          variants = [line,line.replace(": ", ". "),line.replace(". Или ", ", или ")]
+          rates = ["+8%","+5%","+0%"]
+          async def main():
+              for attempt in range(1,29):
+                  try:
+                      if dest.exists():dest.unlink()
+                      speech=edge_tts.Communicate(text=variants[(attempt-1)%3],voice="ru-RU-DmitryNeural",rate=rates[(attempt-1)%3])
+                      await speech.save(str(dest))
+                      if dest.stat().st_size < 4500:raise ValueError("empty output")
+                      print("SUCCESS",name,attempt,dest.stat().st_size,flush=True)
+                      return
+                  except Exception as exc:
+                      print("RETRY",name,attempt,type(exc).__name__,str(exc)[:100],flush=True)
+                      await asyncio.sleep(min(4,1+attempt*.09))
+              if dest.exists():dest.unlink()
+              raise RuntimeError("Voice unavailable after retries")
+          asyncio.run(main())
+          PY
+      - name: Upload successfully repaired scene
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m1lash-dmitry-repair-${{ matrix.idx }}
+          path: repaired/
+          if-no-files-found: warn
+          retention-days: 7
