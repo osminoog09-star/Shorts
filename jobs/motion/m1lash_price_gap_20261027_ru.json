@@ -146,5 +146,6 @@
         "verified": true
       }
     ]
-  }
+  },
+  "render_note": "retry after shallow-diff fix; no YouTube schedule or upload"
 }
