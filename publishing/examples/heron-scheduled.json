@@ -1,0 +1,18 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "release",
+    "tag": "REPLACE_WITH_EXISTING_RELEASE_TAG",
+    "asset": "REPLACE_WITH_REAL_VIDEO.mp4"
+  },
+  "metadata": {
+    "type": "long",
+    "title": "Название готового видео",
+    "description": "Описание, подтверждённые факты, источники и лицензии",
+    "tags": ["история", "технологии"],
+    "category_id": "27",
+    "made_for_kids": false,
+    "contains_synthetic_media": true
+  },
+  "publish_at": "2026-11-04T19:00:00+02:00"
+}
