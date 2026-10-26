@@ -1,0 +1,10 @@
+{
+  "enabled": false,
+  "requires_explicit_approval": true,
+  "migration_hold_until": "2026-11-03T00:00:00+02:00",
+  "max_dispatch_per_run": 1,
+  "max_days_ahead": 14,
+  "min_lead_hours": 8,
+  "require_sha256": true,
+  "notes": "Never run alongside Metricool for the same video. Do not enable until YouTube OAuth RU tested, queued Metricool slots checked, and channel verified. No automatic generation, no paid video calls."
+}
