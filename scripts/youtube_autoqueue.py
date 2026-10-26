@@ -82,6 +82,10 @@ def main():
     if not picked:
         print("No reviewed, unreserved, eligible YouTube jobs")
         return
+    lang = direct.load_json(picked[0][1])["channel"]
+    if os.environ.get("YOUTUBE_REFRESH_TOKEN_" + lang.upper() + "_EXISTS") != "true":
+        print("No OAuth refresh token configured for " + lang.upper() + "; skip dispatch safely")
+        return
     if not os.environ.get("GH_TOKEN"):
         raise RuntimeError("GH_TOKEN is required for Actions dispatch")
     manifest = str(picked[0][1].relative_to(ROOT))
