@@ -36,12 +36,13 @@ jobs:
           YOUTUBE_AUTOPUBLISH_ENABLED: ${{ vars.YOUTUBE_AUTOPUBLISH_ENABLED }}
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
           YOUTUBE_REFRESH_TOKEN_RU_EXISTS: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU != '' || secrets.YT_REFRESH_TOKEN != '' }}
+          YOUTUBE_REFRESH_TOKEN_EN_EXISTS: ${{ secrets.YOUTUBE_REFRESH_TOKEN_EN != '' }}
           YOUTUBE_CLIENT_ID_EXISTS: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID != '' || secrets.YT_CLIENT_ID != '' }}
           YOUTUBE_CLIENT_SECRET_EXISTS: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET != '' || secrets.YT_CLIENT_SECRET != '' }}
         shell: bash
         run: |
           set -euo pipefail
-          if [[ "$YOUTUBE_REFRESH_TOKEN_RU_EXISTS" != "true" || "$YOUTUBE_CLIENT_ID_EXISTS" != "true" || "$YOUTUBE_CLIENT_SECRET_EXISTS" != "true" ]]; then
+          if [[ "$YOUTUBE_CLIENT_ID_EXISTS" != "true" || "$YOUTUBE_CLIENT_SECRET_EXISTS" != "true" ]]; then
             echo 'OAuth not ready: only a dry-run report will be generated. No upload.'
             python scripts/youtube_autoqueue.py
           elif [[ "$DRY_RUN" == "true" ]]; then
