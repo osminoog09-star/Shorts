@@ -1,0 +1,44 @@
+name: Samsung fast render
+on:
+  push:
+    paths:
+      - "jobs/samsung_fast_trigger.txt"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/samsung-teaser-tts-20261027
+          persist-credentials: false
+      - name: Load rendering source
+        run: |
+          git fetch --depth=1 origin main
+          git show origin/main:scripts/render_samsung_teaser.py > scripts/render_samsung_teaser.py
+          git show origin/main:jobs/tts/samsung_teaser_s06.json > jobs/tts/samsung_teaser_s06.json
+      - name: Dependencies (no apt)
+        run: |
+          python3 -m pip install --user --disable-pip-version-check Pillow edge-tts
+          command -v ffmpeg
+          command -v ffprobe
+          test -f /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
+      - name: Synthesize last line
+        run: |
+          set -e
+          for i in 1 2 3 4; do
+            timeout 110 python3 scripts/tts_job.py jobs/tts/samsung_teaser_s06.json || true
+            test -s media/tts/samsung_teaser_s06/s06.mp3 && break
+            sleep 4
+          done
+          test -s media/tts/samsung_teaser_s06/s06.mp3
+      - name: Render and decode verify
+        run: python3 scripts/render_samsung_teaser.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: samsung-short-ru-mp4
+          path: videos/samsung_teaser_ru.mp4
+          if-no-files-found: error
