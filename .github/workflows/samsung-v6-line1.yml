@@ -1,0 +1,40 @@
+name: Samsung V6 isolated opening neural
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/samsung-v6-line1.yml
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  tts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q "edge-tts>=7,<8"
+      - name: Generate s01 only with the exact Dmitry Neural voice
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          j=json.loads(Path('jobs/tts/samsung_v6_ru.json').read_text())
+          j['lines']=[j['lines'][0]]
+          Path('jobs/tts/samsung_v6_s01.json').write_text(json.dumps(j,ensure_ascii=False))
+          PY
+          python scripts/tts_job.py jobs/tts/samsung_v6_s01.json
+      - name: Validate line
+        continue-on-error: true
+        run: |
+          test -s media/tts/samsung_v6_s01/s01.mp3
+          ffmpeg -v error -xerror -i media/tts/samsung_v6_s01/s01.mp3 -f null -
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: samsung-v6-s01-dmitry
+          path: media/tts/samsung_v6_s01/
+          if-no-files-found: warn
+          retention-days: 30
