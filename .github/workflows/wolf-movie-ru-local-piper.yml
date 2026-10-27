@@ -1,0 +1,50 @@
+name: Wolf movie RU offline neural voice fallback
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/wolf-movie-ru-local-piper.yml
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  synth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            jobs/tts/wolf_movie_ru.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q piper-tts
+      - name: Download MIT-licensed Russian Denis voice
+        run: |
+          mkdir -p work/voices
+          curl --fail --location --retry 2 --connect-timeout 12 --max-time 150 \
+            'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/ru/ru_RU/denis/medium/ru_RU-denis-medium.onnx' \
+            -o work/voices/ru_RU-denis-medium.onnx
+          curl --fail --location --retry 2 \
+            'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/ru/ru_RU/denis/medium/ru_RU-denis-medium.onnx.json' \
+            -o work/voices/ru_RU-denis-medium.onnx.json
+          test $(stat -c%s work/voices/ru_RU-denis-medium.onnx) -gt 50000000
+      - name: Synthesize independently of online speech services
+        run: |
+          python - <<'PY'
+          import json,subprocess,pathlib
+          job=json.loads(pathlib.Path('jobs/tts/wolf_movie_ru.json').read_text())
+          root=pathlib.Path('output/ru_voice');root.mkdir(parents=True,exist_ok=True)
+          for line in job['lines']:
+              target=root/(line['id']+'.wav')
+              subprocess.run(['python','-m','piper','--model','work/voices/ru_RU-denis-medium.onnx','--output_file',str(target)],input=line['text'],text=True,check=True)
+              assert target.stat().st_size>1024
+              print('synth',line['id'],target.stat().st_size,flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wolf-russian-voice-piper
+          path: output/ru_voice/
+          retention-days: 7
