@@ -1,12 +1,19 @@
 Name: edge-tts
 Version: 7.3.1
-retry s03 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s03 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s03 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-retry s03 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
 ok s03
-retry s06 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok s06
-retry s10 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
-ok s10
+ok s04b
+ok s05
+ok s09
 ok s11
+retry s12 0 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry s12 1 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry s12 2 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry s12 3 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+retry s12 4 NoAudioReceived('No audio was received. Please verify that your parameters are correct.')
+ok s13
+ok s01
+ok s02
+ok s03
+ok s04
+ok s05
+ok s06
