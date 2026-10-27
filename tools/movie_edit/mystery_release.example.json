@@ -1,0 +1,65 @@
+{
+  "internal": {
+    "project_id": "movie_mystery_001",
+    "film_title": "ТАЙНЫЙ ФИЛЬМ",
+    "film_title_aliases": [
+      "Secret Movie",
+      "Тайный Фильм"
+    ],
+    "film_rights_verified": false
+  },
+  "public": {
+    "title": "ЭТО НЕВОЗМОЖНО?! Но он всё равно рискнул 🚀 #shorts",
+    "description": "Одна ошибка — и всё закончится. Но он всё равно решается на невозможное! 🚀\nУгадал, что за фильм, ДО последней секунды? Напиши, на какой секунде понял! 👇\n🎬 Лучшие моменты кино — на M1lash.\nПодписывайся на новые загадки!\n\n[Добавить проверенный credit-block лицензированной музыки]\n\n#shorts #Кино #УгадайФильм #КрутаяСцена",
+    "tags": [
+      "кино",
+      "угадай фильм",
+      "лучшие сцены",
+      "кинонарезка",
+      "фильм shorts",
+      "русская озвучка",
+      "m1lash",
+      "movie edit",
+      "suspense scene"
+    ],
+    "hashtags": [
+      "#shorts",
+      "#Кино",
+      "#УгадайФильм",
+      "#КрутаяСцена"
+    ],
+    "pinned_comment": "🎬 Ты узнал фильм до последнего слова ведущего? На какой секунде? 👇",
+    "thumbnail_text": "ОН ЭТО СДЕЛАЕТ?!",
+    "public_filename": "m1lash_movie_mystery_001_ru.mp4",
+    "captions": [
+      "ЭТО НЕВОЗМОЖНО!",
+      "НЕТ. ЭТО НЕОБХОДИМО!"
+    ],
+    "chapters": [],
+    "end_card_text": "Подпишись! Спасибо за лайк!"
+  },
+  "outro": {
+    "cta_voice_id": "edge:ru-RU-DmitryNeural",
+    "last_title_voice_id": "edge:ru-RU-DmitryNeural",
+    "cta_text": "Подпишись! И спасибо всем, кто досмотрел и поставил лайк.",
+    "spoken_lines": [
+      "Подпишись! И спасибо всем, кто досмотрел и поставил лайк.",
+      "ТАЙНЫЙ ФИЛЬМ"
+    ],
+    "title_visible_on_screen": false,
+    "lip_sync_verified": false
+  },
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "full_bleed": true,
+    "dialogue_language": "ru",
+    "music_license_verified": false,
+    "music_ducking": true,
+    "visual_qa_done": false,
+    "audio_qa_done": false
+  },
+  "publication": {
+    "publish_ready": false
+  }
+}
