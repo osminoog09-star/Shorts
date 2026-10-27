@@ -38,3 +38,14 @@ description: Независимый аудит и улучшение уже со
 - Mandatory acting checks beyond frame differencing: body mechanics (anticipation→contact→recoil), eye-line, prop interaction, secondary motion, continuity of character design, visual-only comprehensibility.
 - Stop calling merely oscillating limbs a successful scene. Mark visual NO-GO until physical and emotional action reads in motion.
 - When researching techniques, cite the actual sources and state which movement tests each source changed. See `docs/M1LASH_CODE_ANIMATION_V2_REVIEW.md`.
+
+
+## Критический аудит CODE V3 (27.10.2026) — новый художественный gate
+Документ: `docs/M1LASH_CODE_V3_FULL_AUDIT_20261027.md`. Проверка реального пользовательского MP4, не самоотчёта.
+- **Запрещать** персонажей, у которых кисти — окружности, плечи/локти — палки, «мимика» — одна открытая буква O. Контур руки, ладонь и минимум 4 пальца должны читаться на общем и крупном плане.
+- Художественный `NO-GO`, даже если FFmpeg показывает PASS: низкое качество силуэта, симметричный «руки вверх» без подготовки/шага/эмоций, дубли персонажей разного масштаба, плоское одинаковое окружение.
+- Вводить `MODEL_GATE`: 3 ракурса одного героя, 6 независимых выражений, 4 силуэта действий; при расхождении дизайна между ракурсами — запрещать сценовый рендер.
+- Вводить `CONTACT_GATE`: реальный палец нажимает кнопку (перемещение реквизита видно), рука сгибается в правильных суставах, центр тяжести и пол согласованы; не признавать «кисть нацелена на точку» за физический контакт.
+- `ACTING_GATE`: в 15-сек сцене должны читаться пять причинных фаз действия + асимметричная реакция персонажа, понятная без звука.
+- Метрика V3: 11/23 полусекундных соседних переходов почти статичны при пороге mean diff <3/255 (96×54); резкие дельты на 4-й и 8-й секундах — склейки. **Не оптимизировать эту метрику вместо качества**.
+- Реализация: принцип staging, anatomy, appeal, anticipation и overlapping action из Disney/Meta; Grease Pencil/shape keys/IK из Blender — `Pillow` не основной художественный движок, если качество героя провалено.
