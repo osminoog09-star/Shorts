@@ -19,8 +19,11 @@ jobs:
           python-version: '3.12'
       - name: Install only Python packages
         run: |
-          python -m pip install --quiet pillow "edge-tts>=7,<8"
-          ffmpeg -version | head -1
+          python -m pip install --quiet pillow "edge-tts>=7,<8" imageio-ffmpeg mutagen
+          mkdir -p "$HOME/.local/bin"
+          ln -sf "$(python -c 'import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())')" "$HOME/.local/bin/ffmpeg"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          "$HOME/.local/bin/ffmpeg" -version | head -1
       - name: Render voice and motion video
         run: python tools/ai_scandals_s7d25.py
       - name: Upload full video
