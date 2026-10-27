@@ -1,0 +1,29 @@
+name: Wolf movie Russian dub - audio package
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/wolf-movie-ru-voice-package.yml
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            media/tts/wolf_movie_ru
+          sparse-checkout-cone-mode: false
+      - name: Verify Russian dialogue clips
+        run: |
+          set -eu
+          for n in 01 02 03 04 05 06 07 08; do
+            test -s "media/tts/wolf_movie_ru/${n}.mp3" || exit 1
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wolf-russian-dub-audio
+          path: media/tts/wolf_movie_ru/
+          retention-days: 7
