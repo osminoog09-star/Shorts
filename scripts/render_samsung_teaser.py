@@ -31,7 +31,7 @@ for i,(p,d) in enumerate(dur):
  dr.rounded_rectangle((64,260,1016,1650),radius=50,outline=(45,171,205),width=5)
  dr.text((90,105),"M1LASH  /  ТЕХНОЛОГИИ",font=f2,fill=(126,219,240))
  y=690
- for line in texts[i].split("\\n"):
+ for line in texts[i].split("\n"):
   box=dr.textbbox((0,0),line,font=f1)
   dr.text(((w-(box[2]-box[0]))/2,y),line,font=f1,fill=(241,249,255),stroke_width=1)
   y+=135
@@ -43,7 +43,7 @@ for i,(p,d) in enumerate(dur):
  subprocess.run(["ffmpeg","-y","-loglevel","error","-loop","1","-framerate","30","-i",str(TMP/f"scene{i}.png"),"-i",str(p),"-vf","format=yuv420p","-af","apad=pad_dur=0.22","-t",str(d),"-c:v","libx264","-preset","veryfast","-crf","21","-r","30","-c:a","aac","-b:a","160k","-ar","48000","-shortest",str(seg)],check=True)
  parts.append(seg)
 lst=TMP/"concat.txt"
-lst.write_text("".join(f"file '{p.resolve()}'\\n" for p in parts))
+lst.write_text("".join(f"file '{p.resolve()}'\n" for p in parts))
 OUT.parent.mkdir(exist_ok=True)
 subprocess.run(["ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",str(lst),"-c","copy",str(OUT)],check=True)
 subprocess.run(["ffmpeg","-v","error","-xerror","-i",str(OUT),"-f","null","-"],check=True)
