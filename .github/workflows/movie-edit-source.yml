@@ -11,7 +11,7 @@ on:
     inputs:
       urls:
         description: 'Direct/public URLs, one per line, only footage you may reuse'
-        required: true
+        required: false
         type: string
       title:
         description: 'Output filename stem'
@@ -55,7 +55,7 @@ jobs:
           for i,url in enumerate(urls):
               if not url.startswith('https://'): raise SystemExit('Only HTTPS sources allowed')
               out=f'work/clips/source_{i}.%(ext)s'
-              subprocess.run([os.path.expanduser('~/.local/bin/yt-dlp'),'--no-playlist','--max-downloads','1','--merge-output-format','mp4','-o',out,url],check=True)
+              subprocess.run(['python3','-m','yt_dlp','--no-playlist','--max-downloads','1','--merge-output-format','mp4','-o',out,url],check=True)
           sources=[]
           for i in range(len(urls)):
               matches=list(pathlib.Path('work/clips').glob(f'source_{i}.*'))
