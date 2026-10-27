@@ -19,7 +19,7 @@ jobs:
           python-version: '3.12'
       - name: Install only Python packages
         run: |
-          python -m pip install --quiet pillow "edge-tts>=7,<8" imageio-ffmpeg mutagen
+          python -m pip install --quiet pillow "edge-tts>=7,<8" imageio-ffmpeg mutagen gTTS
           mkdir -p "$HOME/.local/bin"
           ln -sf "$(python -c 'import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())')" "$HOME/.local/bin/ffmpeg"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
