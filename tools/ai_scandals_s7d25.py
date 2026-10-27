@@ -130,9 +130,9 @@ def frame(i,t,dur,back):
     put(d,(49,100),"M1 ● BREAKING TECH",25,fill=ac,bold=True)
     put(d,(675,98),"27.10.2026",16,fill=(151,178,200),anchor="ra")
     put(d,(49,157),"ТОП ТЕХНО-СКАНДАЛОВ",22,fill=(140,167,198),bold=True)
-    put(d,(46,208),num,102,fill=ac,bold=True)
-    put(d,(48,338),safe(d,title,610,40),40,bold=True)
-    put(d,(49,393),safe(d,tag,620,21),21,fill=ac,bold=True)
+    put(d,(46,180),num,102,fill=ac,bold=True)
+    put(d,(48,301),safe(d,title,610,40),40,bold=True)
+    put(d,(49,354),safe(d,tag,620,21),21,fill=ac,bold=True)
     graphic(d,key,ac,t)
     box(d,(42,867,678,912),fill=(20,40,60),outline=(*ac,170),r=9,w=2)
     put(d,(57,889),source,19,fill=ac,bold=True,anchor="lm")
@@ -145,7 +145,7 @@ def frame(i,t,dur,back):
     lines=[ss[:split],ss[split:]] if len(ss)>34 and split>0 else [ss]
     box(d,(40,934,678,1075),fill=(12,22,39),outline=ac,r=14,w=2)
     for j,ln in enumerate(lines):
-        put(d,(60,958+j*45),safe(d,ln,558,25),25,bold=True)
+        put(d,(60,958+j*45),safe(d,ln,389,23),23,bold=True)
     if i<6:host(d,ac,t)
     put(d,(49,1130),"ФАКТЫ • ПРОВЕРЕНЫ",18,fill=(150,177,199),bold=True)
     put(d,(49,1168),"M1LASH / AI NEWS",23,fill=ac,bold=True)
@@ -158,10 +158,15 @@ def run(args):
         print(p.stderr[-4000:],flush=True);raise RuntimeError("Command failed: "+" ".join(map(str,args[:8])))
     return p.stdout
 def duration(p):
-    from mutagen import File as MetaFile
-    data=MetaFile(str(p))
-    if not data or not data.info:raise RuntimeError("Unable to inspect audio/video: "+str(p))
-    return float(data.info.length)
+    import re
+    if str(p).lower().endswith((".mp3",".wav",".m4a")):
+        a=subprocess.run(["ffmpeg","-v","error","-i",str(p),"-f","s16le","-acodec","pcm_s16le","-ac","1","-ar","8000","pipe:1"],capture_output=True)
+        if a.returncode:raise RuntimeError("Audio decode failed: "+a.stderr.decode(errors="replace")[-600:])
+        return len(a.stdout)/16000.0
+    x=subprocess.run(["ffmpeg","-hide_banner","-i",str(p)],capture_output=True,text=True)
+    m=re.search(r"Duration:\s*(\d+):(\d+):([\d.]+)",x.stderr)
+    if not m:raise RuntimeError("No duration in video: "+x.stderr[-800:])
+    return int(m.group(1))*3600+int(m.group(2))*60+float(m.group(3))
 async def makevoices():
     import edge_tts
     for i,news in enumerate(NEWS):
