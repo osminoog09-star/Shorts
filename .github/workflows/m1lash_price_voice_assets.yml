@@ -1,0 +1,47 @@
+name: M1lash price short voice and canonical host assets
+on:
+  push:
+    branches:
+      - codex/price-gap-20261027
+    paths:
+      - .github/workflows/m1lash_price_voice_assets.yml
+      - shorts/news_price_gap_20261027/make_voice_assets.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  voice-and-approved-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install voice engines and FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg rhvoice rhvoice-russian fonts-dejavu-core
+          python -m pip install -q 'edge-tts>=7,<8'
+          RHVoice-test -l || true
+      - name: Synthesize news text and inspect actual durations
+        run: python shorts/news_price_gap_20261027/make_voice_assets.py
+      - name: Copy approved talking host outro and reference
+        run: |
+          test -s videos/m1lash_outro_short_ru.mp4
+          cp videos/m1lash_outro_short_ru.mp4 price_qa/approved_m1lash_outro_ru.mp4
+          cp videos/m1lash_outro_short_ru.mp4 price_qa/approved_reference_only.mp4
+          ffmpeg -v error -i price_qa/approved_m1lash_outro_ru.mp4 -f null -
+          ffprobe -v error -show_entries format=duration,size -of json price_qa/approved_m1lash_outro_ru.mp4
+          test -s price_qa/speech.wav
+      - name: Export review assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: m1lash-price-voice-and-approved-outro
+          path: |
+            price_qa/speech.wav
+            price_qa/scene*.wav
+            price_qa/voice_report.json
+            price_qa/approved_m1lash_outro_ru.mp4
+          if-no-files-found: error
+          retention-days: 14
