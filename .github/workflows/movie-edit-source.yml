@@ -24,6 +24,14 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg
           python -m pip install --user -U yt-dlp
+      - name: Smoke test FFmpeg concat manifest
+        run: |
+          mkdir -p work/smoke
+          ffmpeg -hide_banner -loglevel error -f lavfi -i color=c=blue:s=160x284:r=10 -t 0.4 -c:v libx264 -pix_fmt yuv420p -y work/smoke/a.mp4
+          ffmpeg -hide_banner -loglevel error -f lavfi -i color=c=red:s=160x284:r=10 -t 0.4 -c:v libx264 -pix_fmt yuv420p -y work/smoke/b.mp4
+          python3 tools/movie_edit/source_manifest.py work/smoke/list.txt work/smoke/a.mp4 work/smoke/b.mp4
+          ffmpeg -hide_banner -loglevel error -f concat -safe 0 -i work/smoke/list.txt -c copy -y work/smoke/joined.mp4
+          test -s work/smoke/joined.mp4
       - name: Download and render source clips
         env:
           CLIP_URLS: ${{ inputs.urls }}
