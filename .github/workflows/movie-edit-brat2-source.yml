@@ -1,0 +1,54 @@
+name: Movie edit Brat 2 - obtain original Russian scene
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/movie-edit-brat2-source.yml
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            tools/movie_edit
+          sparse-checkout-cone-mode: false
+      - name: Install video acquisition tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg
+          python -m pip install -q yt-dlp
+      - name: Try official STV scene and public backup
+        shell: bash
+        run: |
+          set -u
+          mkdir -p output
+          URLs=(
+            'https://www.youtube.com/watch?v=X4Fny-udrNI'
+            'https://ok.ru/video/4239940389442'
+            'https://rutube.ru/video/1749b06daa183512a7aa46b87da67d49/'
+            'https://rutube.ru/video/b9cb1f3f7ece5620bdb120f1be8063f0/'
+          )
+          for i in "${!URLs[@]}"; do
+            echo "Trying candidate $i: ${URLs[$i]}"
+            timeout 75 python -m yt_dlp --no-playlist --no-warnings               -f 'bv*[height<=1080]+ba/b[height<=1080]/best'               --merge-output-format mp4 --retries 1 --fragment-retries 1               -o 'output/source.%(ext)s' "${URLs[$i]}" && break
+            rm -f output/source.* || true
+          done
+          shopt -s nullglob
+          srcs=(output/source.mp4 output/source.webm output/source.mkv)
+          test "${#srcs[@]}" -gt 0 || { echo "No source available"; exit 1; }
+          src="${srcs[0]}"
+          ffprobe -v error -show_entries format=duration,size -of json "$src"
+          ffmpeg -v error -y -i "$src" -vf 'fps=1/5,scale=480:-2,tile=4x4' -frames:v 1 output/contact.jpg || true
+      - name: Package scene for local art direction and rights review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: brat2-scene-private-draft
+          path: output/
+          retention-days: 7
+          if-no-files-found: warn
