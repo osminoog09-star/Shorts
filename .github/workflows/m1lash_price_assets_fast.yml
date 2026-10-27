@@ -1,0 +1,29 @@
+name: M1lash canonical approved outro export
+on:
+  push:
+    branches:
+      - codex/price-gap-20261027
+    paths:
+      - .github/workflows/m1lash_price_assets_fast.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  export-approved:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Export exact approved original speaking outro
+        run: |
+          test -s videos/m1lash_outro_short_ru.mp4
+          mkdir -p m1lash-reference
+          cp videos/m1lash_outro_short_ru.mp4 m1lash-reference/approved_outro.mp4
+          sha256sum m1lash-reference/approved_outro.mp4
+          ffprobe -v error -show_entries format=duration,size -of json m1lash-reference/approved_outro.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: approved-m1lash-outro-reference
+          path: m1lash-reference/
+          if-no-files-found: error
+          retention-days: 14
