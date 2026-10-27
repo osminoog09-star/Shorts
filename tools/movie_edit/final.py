@@ -7,7 +7,8 @@ from kinetic import Line, draw_line
 
 base, out = sys.argv[1], sys.argv[2]
 only = [float(x) for x in sys.argv[3].split(',')] if len(sys.argv) > 3 else None
-Y0 = 1000
+import os
+Y0 = int(os.environ.get('MOVIE_EDIT_CAPTION_Y', '1000'))
 
 phr = []
 for top_st, top, bot_st, bot, end in PHRASES:
