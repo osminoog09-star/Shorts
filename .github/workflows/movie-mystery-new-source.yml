@@ -1,4 +1,4 @@
-name: Movie mystery new film - original Russian source follow-up
+name: Movie mystery new film - direct speech scene instead of montage
 on:
   push:
     branches: [main]
@@ -23,7 +23,7 @@ jobs:
           set -u
           mkdir -p output
           urls=(
-            'https://rutube.ru/video/e796697836f651666f33f197013470e2/'
+            'https://rutube.ru/video/079bf1e78eff8e3f9eccab222e94e14e/'
             'https://rutube.ru/video/bd5d8867140cb314f9c54e17766f910f/'
             'https://rutube.ru/video/953a8b19ad3d833dcbe1146716e33425/'
           )
