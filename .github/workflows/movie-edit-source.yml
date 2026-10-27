@@ -28,6 +28,7 @@ jobs:
           CLIP_URLS: ${{ inputs.urls }}
           TITLE: ${{ inputs.title }}
         run: |
+          git --version
           mkdir -p work/clips output
           python3 - <<'PY'
           import os, subprocess, pathlib, re
@@ -48,7 +49,7 @@ jobs:
               dest=f'work/clips/segment_{i}.mp4'
               subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(src),'-t','8','-vf','scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,format=yuv420p','-an','-c:v','libx264','-preset','fast','-crf','22',dest],check=True)
               segments.append(dest)
-          pathlib.Path('work/list.txt').write_text(''.join("file '{}'\\n".format(pathlib.Path(seg).resolve()) for seg in segments))
+          subprocess.run(['python3','tools/movie_edit/source_manifest.py','work/list.txt',*segments],check=True)
           title=re.sub('[^a-zA-Z0-9_-]','-',os.environ['TITLE'])[:64] or 'm1lash-movie-edit'
           subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-f','concat','-safe','0','-i','work/list.txt','-c','copy',f'output/{title}.mp4'],check=True)
           PY
