@@ -1,0 +1,30 @@
+name: M1lash price approved Liam voice clean export
+on:
+  push:
+    branches:
+      - codex/price-gap-20261027
+    paths:
+      - .github/workflows/price-outro-clean-voice.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install audio codec and export approved Liam original
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          test -s media/tts/host_demo/eleven.mp3
+          mkdir -p approved-voice
+          ffmpeg -hide_banner -loglevel error -y -ss 20 -i media/tts/host_demo/eleven.mp3 -t 5.80 -af "loudnorm=I=-16:TP=-2:LRA=8,afade=t=in:st=0:d=0.025,apad=pad_dur=0.2" -ar 48000 -ac 2 -c:a pcm_s16le approved-voice/liam_clean_outro.wav
+          ffprobe -v error -show_entries format=duration,size -of json approved-voice/liam_clean_outro.wav
+      - uses: actions/upload-artifact@v4
+        with:
+          name: approved-liam-no-music
+          path: approved-voice/liam_clean_outro.wav
+          retention-days: 14
+          if-no-files-found: error
