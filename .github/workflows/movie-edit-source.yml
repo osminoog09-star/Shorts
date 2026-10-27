@@ -1,0 +1,55 @@
+name: Movie edit source-to-short (manual, rights-cleared)
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'Direct/public URLs, one per line, only footage you may reuse'
+        required: true
+        type: string
+      title:
+        description: 'Output filename stem'
+        required: false
+        default: m1lash-movie-edit
+        type: string
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - name: Install video tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python -m pip install --user -U yt-dlp
+      - name: Download and render source clips
+        env:
+          CLIP_URLS: ${{ inputs.urls }}
+          TITLE: ${{ inputs.title }}
+        run: |
+          mkdir -p work/clips output
+          python3 - <<'PY'
+          import os, subprocess, pathlib, re
+          urls=[s.strip() for s in os.environ['CLIP_URLS'].splitlines() if s.strip()]
+          if not 1<=len(urls)<=8: raise SystemExit('Provide 1-8 URLs')
+          for i,url in enumerate(urls):
+              if not url.startswith('https://'): raise SystemExit('Only HTTPS sources allowed')
+              out=f'work/clips/source_{i}.%(ext)s'
+              subprocess.run([os.path.expanduser('~/.local/bin/yt-dlp'),'--no-playlist','--max-downloads','1','--merge-output-format','mp4','-o',out,url],check=True)
+          sources=sorted(pathlib.Path('work/clips').glob('source_*'))
+          if len(sources)!=len(urls): raise SystemExit('Some sources did not download')
+          segments=[]
+          for i,src in enumerate(sources):
+              dest=f'work/clips/segment_{i}.mp4'
+              subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(src),'-t','8','-vf','scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,format=yuv420p','-an','-c:v','libx264','-preset','fast','-crf','22',dest],check=True)
+              segments.append(dest)
+          pathlib.Path('work/list.txt').write_text(''.join(f"file '{pathlib.Path(s).resolve()}'\\n" for s in segments))
+          title=re.sub('[^a-zA-Z0-9_-]','-',os.environ['TITLE'])[:64] or 'm1lash-movie-edit'
+          subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-f','concat','-safe','0','-i','work/list.txt','-c','copy',f'output/{title}.mp4'],check=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: movie-edit-draft
+          path: output/*.mp4
+          retention-days: 7
