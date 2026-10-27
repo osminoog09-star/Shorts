@@ -1,0 +1,69 @@
+name: Movie edit Interstellar - Russian docking scene source
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/movie-edit-interstellar-source.yml
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 26
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            videos/m1lash_outro_short_ru.mp4
+          sparse-checkout-cone-mode: false
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg
+          python -m pip install -q yt-dlp piper-tts
+      - name: Acquire Russian-language scene
+        shell: bash
+        run: |
+          set -u
+          mkdir -p output/scene
+          URLs=(
+            'https://www.youtube.com/watch?v=FKpQTdMu9Fc'
+            'https://rutube.ru/video/999be68c16d0f76b343345dd7ae56c6a/'
+            'https://www.dailymotion.com/video/x36qm23'
+          )
+          for i in "${!URLs[@]}"; do
+            echo "::group::Candidate $i ${URLs[$i]}"
+            timeout 130 python -m yt_dlp --no-playlist --no-warnings               -f 'bv*[height<=720]+ba/b[height<=720]/best' --merge-output-format mp4               --retries 1 --fragment-retries 1               -o 'output/scene/scene.%(ext)s' "${URLs[$i]}"
+            code=$?
+            echo "::endgroup::"
+            shopt -s nullglob
+            srcs=(output/scene/scene.mp4 output/scene/scene.webm output/scene/scene.mkv)
+            if [ $code -eq 0 ] && [ "${#srcs[@]}" -gt 0 ]; then
+              ffprobe -v error -show_entries format=duration,size -of json "${srcs[0]}"
+              ffmpeg -hide_banner -loglevel error -y -i "${srcs[0]}" -vf 'fps=1/11,scale=400:-2,tile=4x4' -frames:v 1 output/scene/contact.jpg || true
+              break
+            fi
+            rm -f output/scene/scene.* || true
+          done
+          shopt -s nullglob
+          srcs=(output/scene/scene.mp4 output/scene/scene.webm output/scene/scene.mkv)
+          test "${#srcs[@]}" -gt 0 || exit 1
+      - name: Synthesize only the film title in Russian
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p work/voice
+          curl -fL --retry 2 --connect-timeout 12 --max-time 150             'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/ru/ru_RU/denis/medium/ru_RU-denis-medium.onnx'             -o work/voice/denis.onnx
+          curl -fL --retry 2 --connect-timeout 12 --max-time 60             'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/ru/ru_RU/denis/medium/ru_RU-denis-medium.onnx.json'             -o work/voice/denis.onnx.json
+          echo 'Интерстеллар!' | python -m piper --model work/voice/denis.onnx --output_file output/scene/host_title.wav
+      - name: Upload source + narrator name for edit and QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: interstellar-scene-russian-source
+          path: |
+            output/scene/
+            videos/m1lash_outro_short_ru.mp4
+          retention-days: 7
+          if-no-files-found: warn
