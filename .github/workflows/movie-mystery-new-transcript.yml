@@ -1,0 +1,46 @@
+name: Movie mystery - source language and dialogue timing
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/movie-mystery-new-transcript.yml]
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  actions: read
+jobs:
+  listen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          name: private-movie-mystery-feature-source
+          run-id: 40595125020
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: downloaded
+      - name: Install Whisper
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get -qqy install ffmpeg
+          python -m pip install -q faster-whisper
+      - name: Transcribe actual movie audio and determine language
+        run: |
+          python - <<'PY'
+          import json
+          from faster_whisper import WhisperModel
+          model=WhisperModel('base',device='cpu',compute_type='int8')
+          segments, info=model.transcribe('downloaded/source_raw.mp4',beam_size=2,vad_filter=True)
+          records=[{'start':round(s.start,2),'end':round(s.end,2),'text':s.text.strip()} for s in segments]
+          data={'language':info.language,'probability':info.language_probability,'segments':records}
+          print(json.dumps(data,ensure_ascii=False,indent=2),flush=True)
+          with open('transcript.json','w') as f: json.dump(data,f,ensure_ascii=False,indent=2)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: private-movie-mystery-russian-transcript
+          path: transcript.json
+          retention-days: 7
