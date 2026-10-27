@@ -1,0 +1,43 @@
+name: Samsung L06 short neural pieces
+on:
+  push:
+    branches: [codex/samsung-long-map-20261027]
+    paths: ['.github/workflows/samsung-long-L06-parts.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  tts:
+    strategy:
+      fail-fast: false
+      matrix:
+        id: [L06a,L06b,L06c]
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: codex/samsung-long-map-20261027}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q "edge-tts>=7,<8"
+      - name: Synthesize one Dmitry segment
+        env: {LINE: '${{ matrix.id }}'}
+        run: |
+          python - <<'PY'
+          import json,os,pathlib,subprocess
+          doc=json.loads(pathlib.Path('jobs/tts/samsung_long_L06_parts.json').read_text())
+          l=[v for v in doc['lines'] if v['id']==os.environ['LINE']][0]
+          p=pathlib.Path('jobs/tts/samsung_L06_'+l['id']+'.json')
+          p.write_text(json.dumps({**doc,'lines':[l]},ensure_ascii=False))
+          f=pathlib.Path('media/tts')/p.stem/(l['id']+'.mp3')
+          for i in range(3):
+              subprocess.run(['timeout','70','python','scripts/tts_job.py',str(p)],check=False)
+              if f.exists() and f.stat().st_size>1200:break
+          print('COMPLETE' if f.exists() and f.stat().st_size>1200 else 'MISSING',l['id'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: samsung-australia-${{ matrix.id }}
+          path: media/tts/samsung_L06_${{ matrix.id }}/
+          if-no-files-found: warn
+          retention-days: 30
