@@ -1,0 +1,78 @@
+name: Movie edit source-to-short (manual, rights-cleared)
+on:
+  push:
+    branches:
+      - codex/movie-edit-download-pipeline-20261027
+    paths:
+      - '.github/workflows/movie-edit-source.yml'
+      - 'tools/movie_edit/source_manifest.py'
+      - 'tools/movie_edit/source_urls.txt'
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'Direct/public URLs, one per line, only footage you may reuse'
+        required: false
+        type: string
+      title:
+        description: 'Output filename stem'
+        required: false
+        default: m1lash-movie-edit
+        type: string
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install video tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python -m pip install --user -U yt-dlp
+      - name: Smoke test FFmpeg concat manifest
+        run: |
+          mkdir -p work/smoke
+          ffmpeg -hide_banner -loglevel error -f lavfi -i color=c=blue:s=160x284:r=10 -t 0.4 -c:v libx264 -pix_fmt yuv420p -y work/smoke/a.mp4
+          ffmpeg -hide_banner -loglevel error -f lavfi -i color=c=red:s=160x284:r=10 -t 0.4 -c:v libx264 -pix_fmt yuv420p -y work/smoke/b.mp4
+          python3 tools/movie_edit/source_manifest.py work/smoke/list.txt work/smoke/a.mp4 work/smoke/b.mp4
+          ffmpeg -hide_banner -loglevel error -f concat -safe 0 -i work/smoke/list.txt -c copy -y work/smoke/joined.mp4
+          test -s work/smoke/joined.mp4
+      - name: Download and render source clips
+        env:
+          CLIP_URLS: ${{ inputs.urls }}
+          TITLE: ${{ inputs.title }}
+        run: |
+          mkdir -p work/clips output
+          python3 - <<'PY'
+          import os, subprocess, pathlib, re
+          raw=os.environ.get('CLIP_URLS','').strip()
+          if not raw:
+              raw=pathlib.Path('tools/movie_edit/source_urls.txt').read_text()
+          urls=[s.strip() for s in raw.splitlines() if s.strip() and not s.lstrip().startswith('#')]
+          if not 1<=len(urls)<=8: raise SystemExit('Provide 1-8 URLs')
+          for i,url in enumerate(urls):
+              if not url.startswith('https://'): raise SystemExit('Only HTTPS sources allowed')
+              out=f'work/clips/source_{i}.%(ext)s'
+              subprocess.run(['python3','-m','yt_dlp','--no-playlist','--max-downloads','1','--merge-output-format','mp4','-o',out,url],check=True)
+          sources=[]
+          for i in range(len(urls)):
+              matches=list(pathlib.Path('work/clips').glob(f'source_{i}.*'))
+              if len(matches)!=1: raise SystemExit(f'Expected one source for index {i}, got {matches}')
+              sources.append(matches[0])
+          if len(sources)!=len(urls): raise SystemExit('Some sources did not download')
+          segments=[]
+          for i,src in enumerate(sources):
+              dest=f'work/clips/segment_{i}.mp4'
+              subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(src),'-t','8','-vf','scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,format=yuv420p','-an','-c:v','libx264','-preset','fast','-crf','22',dest],check=True)
+              segments.append(dest)
+          subprocess.run(['python3','tools/movie_edit/source_manifest.py','work/list.txt',*segments],check=True)
+          title=re.sub('[^a-zA-Z0-9_-]','-',os.environ.get('TITLE','m1lash-movie-edit'))[:64] or 'm1lash-movie-edit'
+          subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-f','concat','-safe','0','-i','work/list.txt','-c','copy',f'output/{title}.mp4'],check=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: movie-edit-draft
+          path: output/*.mp4
+          retention-days: 7
