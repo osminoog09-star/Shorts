@@ -1,0 +1,83 @@
+name: Movie mystery - consistent Russian host voice and epic CC music
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/movie-mystery-voice-music.yml]
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install offline narrator and ffmpeg
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get -qqy install ffmpeg
+          python -m pip install -q piper-tts
+      - name: Synthesize BOTH CTA and title with identical offline Russian Dmitri model
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output voice
+          curl -fL --retry 2 --max-time 120 'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/ru/ru_RU/dmitri/medium/ru_RU-dmitri-medium.onnx' -o voice/ru_RU-dmitri-medium.onnx
+          curl -fL --retry 2 --max-time 40 'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/ru/ru_RU/dmitri/medium/ru_RU-dmitri-medium.onnx.json' -o voice/ru_RU-dmitri-medium.onnx.json
+          python - <<'PY'
+          import subprocess,pathlib,json
+          root=pathlib.Path('output')
+          texts={
+            'cta_dmitri': 'Подпишись! И спасибо всем, кто досмотрел и поставил лайк.',
+            'reveal_dmitri': 'Гладиатор.'
+          }
+          for name,text in texts.items():
+              subprocess.run(['python','-m','piper','--model','voice/ru_RU-dmitri-medium.onnx','--output_file',str(root/(name+'.wav'))],input=text,text=True,check=True)
+          (root/'voice_manifest.json').write_text(json.dumps({'voice_id':'piper:ru_RU-dmitri-medium','segments':texts,'provider':'Piper OFFLINE, not Edge Dmitry or Liam'},ensure_ascii=False,indent=2))
+          PY
+          for name in cta_dmitri reveal_dmitri; do
+            ffmpeg -v error -y -i "output/$name.wav" -ar 48000 -ac 2 -b:a 192k "output/$name.mp3"
+          done
+      - name: Download CC BY 4.0 epic orchestral soundtrack from composer
+        shell: bash
+        run: |
+          set -u
+          urls=(
+            'https://incompetech.com/music/royalty-free/mp3-royaltyfree/Five%20Armies.mp3'
+            'https://music.incompetech.com/royalty-free/Five%20Armies.mp3'
+            'https://incompetech.com/music/royalty-free/mp3-royaltyfree/Five%20Armies.mp3?download=1'
+          )
+          for url in "${urls[@]}"; do
+            echo "Checking official composer asset: $url"
+            if curl -fLsS -A 'Mozilla/5.0' --connect-timeout 10 --max-time 85 "$url" -o output/music_candidate;then
+              t=$(ffprobe -v error -show_entries format=duration -of default=nk=1:nw=1 output/music_candidate 2>/dev/null || true)
+              echo "Duration $t"
+              if awk -v t="$t" 'BEGIN{exit !(t>148 && t<164)}';then
+                mv output/music_candidate output/epic_score_original.mp3
+                break
+              fi
+            fi
+          done
+          if test -s output/epic_score_original.mp3;then
+            printf '%s\n' '"Five Armies" Kevin MacLeod (incompetech.com)' 'Licensed under Creative Commons: By Attribution 4.0 License' 'http://creativecommons.org/licenses/by/4.0/' 'Source: https://incompetech.com/music/royalty-free/index.html?Search=Search&isrc=USUAN1100875' 'Adapted: excerpts, gain ducking, fades, soundtrack mixing.' >output/music_license.txt
+          else
+            echo 'No verified composer soundtrack; procedural score required instead'
+          fi
+          rm -f output/music_candidate
+      - name: Verify both matching voices and soundtrack
+        run: |
+          test -s output/cta_dmitri.mp3
+          test -s output/reveal_dmitri.mp3
+          cat output/voice_manifest.json
+          ffprobe -v error -show_entries format=duration,size -of json output/cta_dmitri.mp3
+          ffprobe -v error -show_entries format=duration,size -of json output/reveal_dmitri.mp3
+          if [ -s output/epic_score_original.mp3 ];then ffprobe -v error -show_entries format=duration,size -of json output/epic_score_original.mp3;fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: private-movie-mystery-consistent-voice-licensed-music
+          path: output/
+          retention-days: 7
