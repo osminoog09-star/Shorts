@@ -50,6 +50,17 @@ jobs:
           python tools/movie_edit/wolf_wall_street/render.py \
             --source "$source" --output output/m1lash_wolf_of_wall_street_draft_ru.mp4 \
             --work work/wolf
+      - name: Keep short original scene excerpt for framing QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          sources=(work/wolf/paramount.mp4 work/wolf/paramount.webm work/wolf/paramount.mkv)
+          for s in "${sources[@]}"; do
+            if [ -s "$s" ]; then source="$s"; break; fi
+          done
+          test -n "${source:-}"
+          ffmpeg -hide_banner -loglevel error -y -ss 360 -i "$source" -t 50 -vf "scale=1280:-2" -c:v libx264 -crf 22 -preset veryfast -c:a aac -b:a 128k work/wolf/source_original_scene.mp4
       - name: Verify output can be fully decoded
         run: |
           test -s output/m1lash_wolf_of_wall_street_draft_ru.mp4
@@ -63,6 +74,7 @@ jobs:
           path: |
             output/*.mp4
             work/wolf/qa.json
+            work/wolf/source_original_scene.mp4
             work/wolf/frame_*.jpg
           retention-days: 7
           if-no-files-found: warn
