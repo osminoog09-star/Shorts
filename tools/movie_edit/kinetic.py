@@ -3,7 +3,8 @@ import math
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageChops
 
-F = '/root/fonts/'
+import os
+F = os.environ.get('MOVIE_EDIT_FONT_DIR', '/root/fonts').rstrip('/') + '/'
 _fc = {}
 
 def font(name, size, var=None):
