@@ -37,14 +37,18 @@ jobs:
               if not url.startswith('https://'): raise SystemExit('Only HTTPS sources allowed')
               out=f'work/clips/source_{i}.%(ext)s'
               subprocess.run([os.path.expanduser('~/.local/bin/yt-dlp'),'--no-playlist','--max-downloads','1','--merge-output-format','mp4','-o',out,url],check=True)
-          sources=sorted(pathlib.Path('work/clips').glob('source_*'))
+          sources=[]
+          for i in range(len(urls)):
+              matches=list(pathlib.Path('work/clips').glob(f'source_{i}.*'))
+              if len(matches)!=1: raise SystemExit(f'Expected one source for index {i}, got {matches}')
+              sources.append(matches[0])
           if len(sources)!=len(urls): raise SystemExit('Some sources did not download')
           segments=[]
           for i,src in enumerate(sources):
               dest=f'work/clips/segment_{i}.mp4'
               subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(src),'-t','8','-vf','scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,format=yuv420p','-an','-c:v','libx264','-preset','fast','-crf','22',dest],check=True)
               segments.append(dest)
-          pathlib.Path('work/list.txt').write_text(''.join(f"file '{pathlib.Path(s).resolve()}'\\n" for s in segments))
+          pathlib.Path('work/list.txt').write_text(''.join("file '{}'\\n".format(pathlib.Path(seg).resolve()) for seg in segments))
           title=re.sub('[^a-zA-Z0-9_-]','-',os.environ['TITLE'])[:64] or 'm1lash-movie-edit'
           subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-f','concat','-safe','0','-i','work/list.txt','-c','copy',f'output/{title}.mp4'],check=True)
           PY
