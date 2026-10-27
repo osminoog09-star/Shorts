@@ -45,11 +45,11 @@ def duration(path):
 
 async def synth():
  import edge_tts
- all_data=[]; offsets=[]; at=0.0
+ all_data=[]; offsets=[]; at=0.0; edge_failed=False
  for i,s in enumerate(SCENES):
   dest=WORK/("speech_%02d.mp3"%i)
-  err=None
-  for attempt in range(4):
+  err=RuntimeError('Edge voice blocked') if edge_failed else None
+  for attempt in range(2) if not edge_failed else range(0):
    try:
     await asyncio.wait_for(edge_tts.Communicate(s["text"],"ru-RU-DmitryNeural",rate="+11%").save(str(dest)),timeout=42)
     if dest.stat().st_size < 700:raise RuntimeError("Tiny TTS file")
@@ -60,6 +60,7 @@ async def synth():
     await asyncio.sleep((attempt+1)*3)
   wav=WORK/("speech_%02d.wav"%i)
   if err is not None:
+   edge_failed=True
    # Stable offline Russian Dmitri voice; no mix of multiple narrators.
    from urllib.request import urlretrieve
    model=WORK/"ru_RU-dmitri-medium.onnx"
@@ -68,9 +69,11 @@ async def synth():
    if not model.exists():urlretrieve(base+model.name,str(model))
    if not config.exists():urlretrieve(base+config.name,str(config))
    if model.stat().st_size<50000000:raise RuntimeError("Piper model incomplete")
-   p=subprocess.run(["python","-m","piper","--model",str(model),"--output_file",str(wav)],
+   rawwav=WORK/("piper_%02d.wav"%i)
+   p=subprocess.run(["python","-m","piper","--model",str(model),"--output_file",str(rawwav)],
                     input=s["text"],capture_output=True,text=True)
-   if p.returncode or not wav.exists():raise RuntimeError("Piper TTS failed: "+p.stderr[-800:])
+   if p.returncode or not rawwav.exists():raise RuntimeError("Piper TTS failed: "+p.stderr[-800:])
+   run("ffmpeg","-y","-v","error","-i",rawwav,"-ar",SR,"-ac",1,"-c:a","pcm_s16le",wav)
    print("Piper offline Dmitri, segment",i,flush=True)
   else:
    run("ffmpeg","-y","-v","error","-i",dest,"-ar",SR,"-ac",1,"-c:a","pcm_s16le",wav)
