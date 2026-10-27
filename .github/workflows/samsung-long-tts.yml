@@ -1,0 +1,78 @@
+name: Samsung long-form RU neural TTS
+on:
+  push:
+    branches: [codex/samsung-long-map-20261027]
+    paths:
+      - '.github/workflows/samsung-long-tts.yml'
+      - 'jobs/tts/samsung_long_ru.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  voices:
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [0,1,2,3]
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/samsung-long-map-20261027
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -q "edge-tts>=7,<8"
+      - name: Build independent per-group job
+        env:
+          GROUP: ${{ matrix.group }}
+        run: |
+          python - <<'PY'
+          import os,json,pathlib
+          j=json.loads(pathlib.Path('jobs/tts/samsung_long_ru.json').read_text())
+          g=int(os.environ['GROUP'])
+          j['lines']=[x for i,x in enumerate(j['lines']) if i%4==g]
+          pathlib.Path(f'jobs/tts/samsung_long_group{g}.json').write_text(json.dumps(j,ensure_ascii=False),encoding='utf-8')
+          print('GROUP',g,'LINES',[v['id'] for v in j['lines']])
+          PY
+      - name: Generate neural clips
+        env:
+          GROUP: ${{ matrix.group }}
+        run: |
+          python - <<'PY'
+          import os,json,subprocess,pathlib
+          g=int(os.environ['GROUP'])
+          j=json.loads(pathlib.Path(f'jobs/tts/samsung_long_group{g}.json').read_text())
+          for line in j['lines']:
+              single={'voice':'ru-RU-DmitryNeural','rate':'+2%','lines':[line]}
+              p=pathlib.Path(f'jobs/tts/samsung_long_{line["id"]}.json')
+              p.write_text(json.dumps(single,ensure_ascii=False))
+              for attempt in range(3):
+                  run=subprocess.run(['timeout','80','python','scripts/tts_job.py',str(p)],capture_output=True,text=True)
+                  file=pathlib.Path(f'media/tts/samsung_long_{line["id"]}/{line["id"]}.mp3')
+                  if file.exists() and file.stat().st_size>1400:break
+                  print('FAIL',line['id'],attempt,run.stderr[-600:],run.stdout[-600:])
+              else:print('MISSING',line['id'],flush=True)
+          PY
+      - name: Manifest valid clips
+        if: always()
+        run: |
+          python - <<'PY'
+          import pathlib,json
+          a={}
+          for j in sorted(pathlib.Path('media/tts').glob('samsung_long_L*')):
+              for p in j.glob('*.mp3'):
+                  if p.stat().st_size>1400:a[p.stem]=p.stat().st_size
+          pathlib.Path('media/tts/long_completed.json').write_text(json.dumps(a,indent=2))
+          print('VERIFIED AVAILABLE',sorted(a))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: samsung-long-neural-group-${{ matrix.group }}
+          path: |
+            media/tts/samsung_long_L*/
+            media/tts/long_completed.json
+          retention-days: 30
+          if-no-files-found: warn
