@@ -1,0 +1,51 @@
+name: M1lash Dmitry fast narration retry
+on:
+  push:
+    branches:
+      - codex/price-gap-20261027
+    paths:
+      - .github/workflows/m1lash_price_dmitry_fast.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Edge Dmitry, single text, bounded retries
+        run: |
+          pip install -q 'edge-tts>=7,<8'
+          python - <<'PY'
+          import asyncio,json,os,pathlib
+          import edge_tts
+          out=pathlib.Path('price-voice');out.mkdir(exist_ok=True)
+          ss=json.load(open('jobs/motion/m1lash_price_gap_20261027_ru.json',encoding='utf8'))['project']['scenes'][:10]
+          txt=' '.join(s['text'].strip() for s in ss)
+          (out/'script.txt').write_text(txt,encoding='utf8')
+          async def run():
+           for i in range(12):
+            try:
+             await edge_tts.Communicate(txt,'ru-RU-DmitryNeural',rate='+0%').save(str(out/'dmitry.mp3'))
+             if (out/'dmitry.mp3').stat().st_size>40000:
+              print('SPEECH EXISTS', (out/'dmitry.mp3').stat().st_size)
+              return
+             raise RuntimeError('tiny output')
+            except Exception as exc:
+             print('TRY',i,repr(exc),flush=True)
+             (out/'dmitry.mp3').unlink(missing_ok=True)
+             await asyncio.sleep(min(12,i+2))
+           raise RuntimeError('No speech audio after retries')
+          asyncio.run(run())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m1lash-dmitry-news-voice
+          path: price-voice/
+          if-no-files-found: warn
+          retention-days: 14
