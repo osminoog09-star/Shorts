@@ -1,0 +1,45 @@
+name: Samsung final MP4
+on:
+  push:
+    paths:
+      - "jobs/samsung_render_trigger.txt"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/samsung-teaser-tts-20261027
+      - name: Get renderer from main
+        run: |
+          git fetch origin main --depth=1
+          git show origin/main:scripts/render_samsung_teaser.py > scripts/render_samsung_teaser.py
+          git show origin/main:jobs/tts/samsung_teaser_s06.json > jobs/tts/samsung_teaser_s06.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip install "edge-tts>=7,<8" Pillow
+      - name: Generate Dmitry closing line
+        run: |
+          set -e
+          for attempt in 1 2 3; do
+            python scripts/tts_job.py jobs/tts/samsung_teaser_s06.json || true
+            test -s media/tts/samsung_teaser_s06/s06.mp3 && break
+            sleep 15
+          done
+          test -s media/tts/samsung_teaser_s06/s06.mp3
+      - name: Build MP4 and validate
+        run: python scripts/render_samsung_teaser.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: samsung-short-final-dmitry-svetlana
+          path: videos/samsung_teaser_ru.mp4
+          if-no-files-found: error
