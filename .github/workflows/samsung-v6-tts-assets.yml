@@ -1,0 +1,45 @@
+name: Samsung V6 neural dialogue assets
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/samsung-v6-tts-assets.yml
+      - jobs/tts/samsung_v6_ru.json
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  synth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -q "edge-tts>=7,<8"
+      - name: Synthesize Dmitry and Svetlana
+        run: python scripts/tts_job.py jobs/tts/samsung_v6_ru.json
+      - name: Verify all 8 neural clips and word boundaries
+        run: |
+          python - <<'PY'
+          import json, pathlib, subprocess
+          j=json.loads(pathlib.Path('jobs/tts/samsung_v6_ru.json').read_text())
+          assert len(j['lines'])==8
+          for line in j['lines']:
+              stem=pathlib.Path('media/tts/samsung_v6_ru')/line['id']
+              mp3=stem.with_suffix('.mp3');meta=stem.with_suffix('.json')
+              assert mp3.is_file() and mp3.stat().st_size>1024, str(mp3)
+              m=json.loads(meta.read_text())
+              assert m['text']==line['text']
+              subprocess.run(['ffmpeg','-v','error','-xerror','-i',str(mp3),'-f','null','-'],check=True)
+          print('VERIFIED: 8 segments, 2 neural voices')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: samsung-v6-dmitry-svetlana-neural-audio
+          path: |
+            media/tts/samsung_v6_ru/
+            jobs/tts/samsung_v6_ru.json
+          if-no-files-found: error
+          retention-days: 30
