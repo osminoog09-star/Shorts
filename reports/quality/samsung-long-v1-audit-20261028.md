@@ -11,6 +11,7 @@ Target: Russian, 16:9, 1920×1080/30, DmitryNeural + SvetlanaNeural, >=100 uniqu
 - Renderer independently hardcodes CONFIRMED_RETAIL = {KR,JP,IN,SG,ID,AU,PL,DE,FR,GB,EE,ZA,MX,US,CA} and displays these in green **despite the CSV not recording country-level retail proof**. Resolve in factual database; never infer retail from Knox support or newsroom.
 - Renderer hardcodes flag stripes for ~12 countries. The majority show generic country code tokens rather than their real flags.
 - Subtitle snippet() slices words into equally sized beats, regardless of actual speech timing. Not aligned to word timestamps; potential phrase clipping/truncation.
+- Actual voice-based scene starts: **North Korea 01:50, Iran 03:35, Russia 05:08**. The strongest hook (Russia supply/sales paradox) is buried five minutes into the film. Bring its visually supported paradox into 00:00–00:05 as a teaser; preserve its later full regional appearance and do not double-count the country.
 - Repeated static title banner, dialogue panel, 26 'chapters' UI for only 9 geographic regions; large blank/ocean framing on Pacific stops.
 - Positives: complete 159-country route, distinguish Russia shipments vs Iran Galaxy Store vs Korea sanctions, clean 1080p export, both Russian voices, readable broad strokes of map.
 
