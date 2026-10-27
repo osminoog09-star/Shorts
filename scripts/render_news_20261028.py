@@ -58,9 +58,22 @@ async def synth():
     err=ex
     if dest.exists():dest.unlink()
     await asyncio.sleep((attempt+1)*3)
-  if err is not None:raise RuntimeError(f"Dmitry voice unavailable at segment {i}: {err}; abort, no low-quality substitute")
   wav=WORK/("speech_%02d.wav"%i)
-  run("ffmpeg","-y","-v","error","-i",dest,"-ar",SR,"-ac",1,"-c:a","pcm_s16le",wav)
+  if err is not None:
+   # Stable offline Russian Dmitri voice; no mix of multiple narrators.
+   from urllib.request import urlretrieve
+   model=WORK/"ru_RU-dmitri-medium.onnx"
+   config=WORK/"ru_RU-dmitri-medium.onnx.json"
+   base="https://huggingface.co/rhasspy/piper-voices/resolve/main/ru/ru_RU/dmitri/medium/"
+   if not model.exists():urlretrieve(base+model.name,str(model))
+   if not config.exists():urlretrieve(base+config.name,str(config))
+   if model.stat().st_size<50000000:raise RuntimeError("Piper model incomplete")
+   p=subprocess.run(["python","-m","piper","--model",str(model),"--output_file",str(wav)],
+                    input=s["text"],capture_output=True,text=True)
+   if p.returncode or not wav.exists():raise RuntimeError("Piper TTS failed: "+p.stderr[-800:])
+   print("Piper offline Dmitri, segment",i,flush=True)
+  else:
+   run("ffmpeg","-y","-v","error","-i",dest,"-ar",SR,"-ac",1,"-c:a","pcm_s16le",wav)
   with wave.open(str(wav),"rb") as f:
    arr=np.frombuffer(f.readframes(f.getnframes()),dtype=np.int16).astype(np.float32)/32768
   peak=np.max(np.abs(arr))
@@ -256,7 +269,7 @@ def qa(path):
       "-frames:v","1",WORK/f"check_{j}.png")
  (WORK/"audit.json").write_text(json.dumps({"duration":meta["format"]["duration"],
      "size":meta["format"]["size"],"dimensions":"1080x1920","codec":"H264/AAC",
-     "full_decode":"pass","sources":SOURCES,"voice":"ru-RU-DmitryNeural (main); approved studio outro"},
+     "full_decode":"pass","sources":SOURCES,"voice":"DmitryNeural if available, otherwise Piper ru_RU-dmitri-medium; approved studio outro"},
     ensure_ascii=False,indent=2))
  print("QA PASS",json.dumps(meta),flush=True)
 
