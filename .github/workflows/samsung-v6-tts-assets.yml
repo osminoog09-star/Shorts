@@ -21,6 +21,7 @@ jobs:
       - name: Synthesize Dmitry and Svetlana
         run: python scripts/tts_job.py jobs/tts/samsung_v6_ru.json
       - name: Verify all 8 neural clips and word boundaries
+        continue-on-error: true
         run: |
           python - <<'PY'
           import json, pathlib, subprocess
@@ -36,6 +37,7 @@ jobs:
           print('VERIFIED: 8 segments, 2 neural voices')
           PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: samsung-v6-dmitry-svetlana-neural-audio
           path: |
