@@ -2,7 +2,7 @@ name: Movie edit source-to-short (manual, rights-cleared)
 on:
   push:
     branches:
-      - codex/movie-edit-download-pipeline-20261027
+      - main
     paths:
       - '.github/workflows/movie-edit-source.yml'
       - 'tools/movie_edit/source_manifest.py'
