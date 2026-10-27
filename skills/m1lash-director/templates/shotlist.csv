@@ -1,0 +1,2 @@
+shot_id,scene_id,start_s,end_s,spoken_words,location,shot_size,action,emotion,camera,foreground,middle,background,lighting,props,sfx,transition,asset_refs,status
+S001,ACT1,0,4.5,Начальник заменил сотрудников ИИ,office,CU,Директор нажимает кнопку увольнения,самодовольство,push-in,рука и кнопка,лицо,рабочие столы,утренний боковой,кнопка,click,cut,character_boss_v1,PLANNED
