@@ -55,3 +55,6 @@ description: Производство оригинального 2D/2.5D/3D фи
 - The press/contact test needs real fingertip-to-prop screen-space distance and prop travel verification, plus visual inspections for sleeve/palm overlap; mathematical IK is not adequate on its own.
 - Keep reusable vector geometry and independently interpolated elements instead of fake camera pans. However geometric SVG bodies are not inherently attractive: art direction and character silhouette must pass before long renders.
 - The 9-second V4 reference is intentionally SILENT. Do not mislabel it as a narrated release or replace narrator Dmitry without explicit permission. See docs/M1LASH_CHARACTER_V4_SELF_AUDIT.md.
+
+## Новый урок V6 · реальный тест контакта пальца
+Перед рендером проверять координаты пальца относительно хитбокса предмета. В кадре контакта кончик пальца должен опираться на поверхность, а не проходить сквозь её геометрию. Проверять t-0.2s, t, t+0.2s: ладонь, другие пальцы, складка рукава, ход кнопки. Числовое попадание в область без правдоподобного визуального контакта = NO-GO. См. `docs/M1LASH_V6_HAND_CONTACT_AUDIT.md`.
