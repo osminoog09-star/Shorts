@@ -49,3 +49,6 @@ description: Независимый аудит и улучшение уже со
 - `ACTING_GATE`: в 15-сек сцене должны читаться пять причинных фаз действия + асимметричная реакция персонажа, понятная без звука.
 - Метрика V3: 11/23 полусекундных соседних переходов почти статичны при пороге mean diff <3/255 (96×54); резкие дельты на 4-й и 8-й секундах — склейки. **Не оптимизировать эту метрику вместо качества**.
 - Реализация: принцип staging, anatomy, appeal, anticipation и overlapping action из Disney/Meta; Grease Pencil/shape keys/IK из Blender — `Pillow` не основной художественный движок, если качество героя провалено.
+
+## V9 note (2026-10-27)
+An interrupted render can still be probeable and playable until its incomplete tail; discard it. Accept only fully completed final render, check exact duration and FFmpeg full decode. Geometry matched button top precisely in V9 but hand remained stylized/unnatural: independent acting and design NO-GO. See `docs/M1LASH_V9_HAND_QA.md`.
