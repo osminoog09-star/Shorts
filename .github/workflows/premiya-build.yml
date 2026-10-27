@@ -17,6 +17,11 @@ jobs:
           mkdir -p work/premiya
           curl -fL --retry 2 --max-time 90 'https://www.pexels.com/download/video/7693470/' -o work/premiya/office.mp4
           curl -fL --retry 2 --max-time 90 'https://www.pexels.com/download/video/7735814/' -o work/premiya/money.mp4
+      - name: Synthesize Russian narration
+        run: |
+          python -m pip install -q edge-tts
+          python scripts/tts_job.py tools/movie_edit/premiya/voice.json
+          cp -r media/tts/voice work/premiya/voice
       - uses: actions/upload-artifact@v4
         if: always()
         with:
