@@ -55,3 +55,10 @@ description: Производство оригинального 2D/2.5D/3D фи
 - The press/contact test needs real fingertip-to-prop screen-space distance and prop travel verification, plus visual inspections for sleeve/palm overlap; mathematical IK is not adequate on its own.
 - Keep reusable vector geometry and independently interpolated elements instead of fake camera pans. However geometric SVG bodies are not inherently attractive: art direction and character silhouette must pass before long renders.
 - The 9-second V4 reference is intentionally SILENT. Do not mislabel it as a narrated release or replace narrator Dmitry without explicit permission. See docs/M1LASH_CHARACTER_V4_SELF_AUDIT.md.
+
+## Code V5: строгое ограничение на художественную приёмку
+- Проверенный V5 MP4 выявил непропорционально вытянутую руку и неестественный большой рукав даже при математически правильной точке контакта. **IK/contact coordinates are not proof of anatomy**.
+- Перед сценовым рендером обязательный крупный макрокадр кисти в фазах подход/контакт/нажатие/отпускание, 5 артикулированных пальцев, сустав запястья и форма рукава над локтем; при ухудшении силуэта — NO-GO.
+- До рендера длинного фильма отдельно принимать дизайн: фронт/профиль/3-4 и 6 эмоций, привлекательность нейтральной позы. Векторное рисование не является само по себе художественным качеством.
+- Новый обязательный балльный журнал: персонажи, анатомия, контакт, актёрская игра, среда, режиссура, техника, звук/липсинк. Требование владельца — **каждая применимая категория >=8/10**, никакого усреднения.
+- См. `docs/M1LASH_CODE_V5_AUDIT_20261027.md`. V5 — технически декодируемая немая проба, художественно не принята.
