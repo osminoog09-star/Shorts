@@ -1,0 +1,67 @@
+name: Movie-edit Wolf of Wall Street - private draft
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/movie-edit-wolf.yml
+  workflow_dispatch: {}
+permissions:
+  contents: read
+concurrency:
+  group: movie-edit-wolf-draft
+  cancel-in-progress: false
+jobs:
+  cut:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            tools/movie_edit/wolf_wall_street
+            videos/m1lash_outro_short_ru.mp4
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install editor and transcription dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg fonts-dejavu-core
+          python -m pip install --disable-pip-version-check -q yt-dlp "numpy>=1.26,<3" "faster-whisper>=1.1,<2"
+      - name: Obtain official Paramount promotional source
+        run: |
+          mkdir -p work/wolf output
+          python -m yt_dlp --no-playlist --merge-output-format mp4 \
+            -o 'work/wolf/paramount.%(ext)s' \
+            'https://www.youtube.com/watch?v=g07Xxr20L9s'
+          ls -lah work/wolf/paramount.*
+      - name: Render 9x16 movie edit with caption punches, soundbed and host outro
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          sources=(work/wolf/paramount.mp4 work/wolf/paramount.mkv work/wolf/paramount.webm)
+          for s in "\${sources[@]}"; do
+            if [ -s "$s" ]; then source="$s"; break; fi
+          done
+          test -n "\${source:-}" || { echo "Source not found"; exit 1; }
+          python tools/movie_edit/wolf_wall_street/render.py \
+            --source "$source" --output output/m1lash_wolf_of_wall_street_draft_ru.mp4 \
+            --work work/wolf
+      - name: Verify output can be fully decoded
+        run: |
+          test -s output/m1lash_wolf_of_wall_street_draft_ru.mp4
+          ffmpeg -v error -i output/m1lash_wolf_of_wall_street_draft_ru.mp4 -f null -
+          ffprobe -v error -show_entries format=duration,size -of json output/m1lash_wolf_of_wall_street_draft_ru.mp4
+          cat work/wolf/qa.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m1lash-wolf-wall-street-draft
+          path: |
+            output/*.mp4
+            work/wolf/qa.json
+            work/wolf/frame_*.jpg
+          retention-days: 7
+          if-no-files-found: warn
