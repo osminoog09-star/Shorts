@@ -173,14 +173,18 @@ async def makevoices():
         path=OUT/f"speech_{i}.mp3"
         if path.exists():continue
         exc=None
-        for n in range(3):
+        for n in range(2):
             try:
                 await edge_tts.Communicate(news[3],voice="ru-RU-DmitryNeural",rate="+12%").save(str(path))
-                if path.stat().st_size<1000:raise RuntimeError("Empty TTS")
+                if path.stat().st_size<1000 or duration(path)<2:raise RuntimeError("Edge produced invalid or short audio")
                 exc=None;break
             except Exception as e:
-                exc=e;await asyncio.sleep(n*3+2)
-        if exc:raise exc
+                exc=e;path.unlink(missing_ok=True);await asyncio.sleep(2+n*3)
+        if exc:
+            from gtts import gTTS
+            print("EDGE UNAVAILABLE; using Russian gTTS for segment",i,str(exc)[:130],flush=True)
+            await asyncio.to_thread(gTTS(text=news[3],lang="ru",slow=False).save,str(path))
+            if path.stat().st_size<1000 or duration(path)<2:raise RuntimeError("Both TTS paths failed")
         print("TTS",i,round(duration(path),1),flush=True)
 async def main():
     await makevoices()
