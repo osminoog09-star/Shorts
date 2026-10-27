@@ -1,3 +1,12 @@
+## 27.10 — «Волк с Уолл-стрит» movie-edit: реальная сцена и исправленная вертикальная сборка (GPT-6)
+
+- Найден эталон `tools/movie_edit/edit.py` для «Скажи моё имя» / Breaking Bad; выбран The Wolf of Wall Street (2013), сцена «I'm not leaving». Автоскачивание оригинального YouTube Paramount упёрлось в bot-login; первый Dailymotion x4flet5 оказался любительской реконструкцией (НЕ использовать!). Реальные кадры Ди Каприо и речь получены из публичного фрагмента Binge Society на GanJingWorld; источник указан в изолированном workflow `.github/workflows/movie-edit-wolf.yml`.
+- GitHub Actions `40575565893` подтвердил скачивание настоящего видео, render + full ffmpeg decode PASS. Запуск `40576348885` также PASS и сохранил короткий 50-секундный исходный отрезок `work/wolf/source_original_scene.mp4` в артефакте GitHub `12768305258`; не путать архив с прямым MP4.
+- Проведён просмотр контрольных кадров: исходный auto-crop из `render.py` оставлял чёрные поля и местами срезал лица. В локальной медиасессии сделан **УЛУЧШЕННЫЙ v2, 35.2207 с**: H.264 1080×1920 30fps + AAC stereo 48kHz; 3 фразы с синхронизированными RU титрами, оригинальная английская киноречь, композиция 358×510 по центру выступающего поверх размытого заполняющего фона, кредиты Paramount и Binge Society, фирменный короткий финал M1lash. Полный ffmpeg decode PASS, выборочно проверены кадры 1.5, 8, 14.5, 25, 28 с; аудиопик −2.9 dB, средний −20.5 dB. Файл **только в артефактах текущего ChatGPT чата** `/mnt/data/M1lash_Wolf_Wall_Street_Short_v2_RU.mp4`, SHA256 `a58cb2af4e10bb6d076efb874d6761bc46eb528691f1abeeb1c8aa4042f5fcf5`. Этот путь не является ссылкой GitHub и не обещает хранение в GitHub.
+- Для следующего прохода: перенести улучшенный reframing из локального рендера в `tools/movie_edit/wolf_wall_street/render.py`, добавить проверку лиц и помечать неподходящие source re-enactments; окончательно прослушать на телефоне и проверить права на фильм/аудио. **Это черновик, не опубликован, не поставлен в очередь.** Слоты Metricool/YouTube не трогали.
+
+---
+
 ## 27.10 — movie-edit «Волк с Уолл-стрит»: независимый черновой рендер (GPT-6)
 
 - По просьбе владельца найден эталон «Скажи моё имя» (Breaking Bad S5E7; published 25.10, YouTube XANzL3z9wqY), инструменты `tools/movie_edit/edit.py`, `base.py`, `kinetic.py`, `audio.py`, `studio/src/EditOutro.tsx`; существующий источник `source_urls.txt` указывает на официальный промоклип Paramount `g07Xxr20L9s` «I'm Not Leaving».
