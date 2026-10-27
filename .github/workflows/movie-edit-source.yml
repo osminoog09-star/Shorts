@@ -1,5 +1,11 @@
 name: Movie edit source-to-short (manual, rights-cleared)
 on:
+  push:
+    branches:
+      - codex/movie-edit-download-pipeline-20261027
+    paths:
+      - '.github/workflows/movie-edit-source.yml'
+      - 'tools/movie_edit/source_manifest.py'
   workflow_dispatch:
     inputs:
       urls:
@@ -33,6 +39,7 @@ jobs:
           ffmpeg -hide_banner -loglevel error -f concat -safe 0 -i work/smoke/list.txt -c copy -y work/smoke/joined.mp4
           test -s work/smoke/joined.mp4
       - name: Download and render source clips
+        if: github.event_name == 'workflow_dispatch'
         env:
           CLIP_URLS: ${{ inputs.urls }}
           TITLE: ${{ inputs.title }}
@@ -62,6 +69,7 @@ jobs:
           subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-f','concat','-safe','0','-i','work/list.txt','-c','copy',f'output/{title}.mp4'],check=True)
           PY
       - uses: actions/upload-artifact@v4
+        if: github.event_name == 'workflow_dispatch'
         with:
           name: movie-edit-draft
           path: output/*.mp4
