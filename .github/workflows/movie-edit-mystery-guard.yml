@@ -6,6 +6,7 @@ on:
       - tools/movie_edit/validate_mystery.py
       - tools/movie_edit/test_validate_mystery.py
       - tools/movie_edit/mystery_release.example.json
+      - tools/movie_edit/releases/**.json
       - .github/workflows/movie-edit-mystery-guard.yml
   workflow_dispatch: {}
 permissions:
@@ -21,5 +22,14 @@ jobs:
           python-version: "3.11"
       - name: Validate default spoiler-free publication template
         run: python tools/movie_edit/validate_mystery.py tools/movie_edit/mystery_release.example.json
+      - name: Validate each new movie-mystery release metadata manifest
+        shell: bash
+        run: |
+          shopt -s nullglob
+          configs=(tools/movie_edit/releases/*.json)
+          for path in "${configs[@]}"; do
+            echo "Checking $path"
+            python tools/movie_edit/validate_mystery.py "$path"
+          done
       - name: Run release safety regression tests
         run: python -m unittest discover -s tools/movie_edit -p 'test_validate_mystery.py' -v
