@@ -1,0 +1,58 @@
+name: M1lash AI news 28 Oct 2026 · render verified RU MP4
+on:
+  push:
+    paths:
+      - "scripts/render_news_20261028.py"
+      - ".github/workflows/news-ai-20261028.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: m1lash-news-20261028
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Free tools · ffmpeg, ink drawing and TTS
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip install -q "numpy>=1.26,<3" "Pillow>=10,<13" "edge-tts>=7,<8"
+      - name: Render with Dmitry voice and the approved final host outro
+        run: python scripts/render_news_20261028.py
+      - name: Verify MP4 and source audit
+        run: |
+          test -s videos/m1lash_ai_news_2026_10_28_ru.mp4
+          test -s work/news_20261028/audit.json
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height -of json videos/m1lash_ai_news_2026_10_28_ru.mp4
+      - name: Store proof frames and final MP4
+        uses: actions/upload-artifact@v4
+        with:
+          name: m1lash-ai-news-20261028-ru-qa
+          path: |
+            videos/m1lash_ai_news_2026_10_28_ru.mp4
+            work/news_20261028/check_*.png
+            work/news_20261028/audit.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Commit audited MP4 for the owner to download
+        run: |
+          git config user.name "m1lash-news-render-bot"
+          git config user.email "m1lash-news-render-bot@users.noreply.github.com"
+          git add videos/m1lash_ai_news_2026_10_28_ru.mp4
+          if ! git diff --cached --quiet; then
+            git commit -m "video: render fact-checked 28 Oct AI news Shorts RU (not published)"
+            for i in 1 2 3; do
+              git pull -q --rebase && git push -q && exit 0
+              sleep 5
+            done
+            exit 1
+          fi
