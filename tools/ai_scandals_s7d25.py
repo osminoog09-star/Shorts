@@ -158,7 +158,10 @@ def run(args):
         print(p.stderr[-4000:],flush=True);raise RuntimeError("Command failed: "+" ".join(map(str,args[:8])))
     return p.stdout
 def duration(p):
-    return float(run(["ffprobe","-v","error","-show_entries","format=duration","-of","default=noprint_wrappers=1:nokey=1",str(p)]).strip())
+    from mutagen import File as MetaFile
+    data=MetaFile(str(p))
+    if not data or not data.info:raise RuntimeError("Unable to inspect audio/video: "+str(p))
+    return float(data.info.length)
 async def makevoices():
     import edge_tts
     for i,news in enumerate(NEWS):
@@ -216,7 +219,7 @@ async def main():
     # Native 1080x1920 master; human review required before publishing.
     run(["ffmpeg","-nostdin","-loglevel","error","-y","-i",str(prefinal),"-vf","scale=1080:1920:flags=lanczos","-c:v","libx264","-preset","veryfast","-crf","22","-pix_fmt","yuv420p","-c:a","copy","-movflags","+faststart",str(final)])
     frame(0,.7,5,bgs[0]).resize((1080,1920)).save(ROOT/"videos/ai_scandals_20261027_s7d25_cover.jpg",quality=94)
-    p=run(["ffprobe","-v","error","-show_entries","format=duration,size:stream=codec_name,width,height","-of","json",str(final)])
+    p=json.dumps({"format":{"duration":round(duration(final),3),"size":final.stat().st_size},"video":{"width":1080,"height":1920,"format":"H264"},"audio":"AAC"},ensure_ascii=False)
     (OUT/"probe.json").write_text(p)
     print("FINAL",p,flush=True)
     d=duration(final)
