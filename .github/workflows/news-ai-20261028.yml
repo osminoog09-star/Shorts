@@ -24,8 +24,8 @@ jobs:
       - name: Free tools · ffmpeg, ink drawing and TTS
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
-          pip install -q "numpy>=1.26,<3" "Pillow>=10,<13" "edge-tts>=7,<8"
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core espeak-ng
+          pip install -q "numpy>=1.26,<3" "Pillow>=10,<13" "edge-tts>=7,<8" "piper-tts>=1.3,<2"
       - name: Render with Dmitry voice and the approved final host outro
         run: python scripts/render_news_20261028.py
       - name: Verify MP4 and source audit
