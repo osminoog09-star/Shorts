@@ -48,3 +48,10 @@ description: Производство оригинального 2D/2.5D/3D фи
 - `ACTING_GATE`: в 15-сек сцене должны читаться пять причинных фаз действия + асимметричная реакция персонажа, понятная без звука.
 - Метрика V3: 11/23 полусекундных соседних переходов почти статичны при пороге mean diff <3/255 (96×54); резкие дельты на 4-й и 8-й секундах — склейки. **Не оптимизировать эту метрику вместо качества**.
 - Реализация: принцип staging, anatomy, appeal, anticipation и overlapping action из Disney/Meta; Grease Pencil/shape keys/IK из Blender — `Pillow` не основной художественный движок, если качество героя провалено.
+
+## V4 self-audit lesson — frame-first physical contact checks (2026-10-27)
+- Before encoding, render representative stills at anticipation, contact, maximum press, release and settled frames and visually inspect **layer ordering**. First V4 export had its sleeve hiding the hand, and was rerendered after this was spotted.
+- Model, stage, contact, acting and audio quality gates are INDEPENDENT. Technical decode PASS cannot override visible bad anatomy.
+- The press/contact test needs real fingertip-to-prop screen-space distance and prop travel verification, plus visual inspections for sleeve/palm overlap; mathematical IK is not adequate on its own.
+- Keep reusable vector geometry and independently interpolated elements instead of fake camera pans. However geometric SVG bodies are not inherently attractive: art direction and character silhouette must pass before long renders.
+- The 9-second V4 reference is intentionally SILENT. Do not mislabel it as a narrated release or replace narrator Dmitry without explicit permission. See docs/M1LASH_CHARACTER_V4_SELF_AUDIT.md.
