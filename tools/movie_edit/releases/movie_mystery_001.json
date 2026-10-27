@@ -1,0 +1,115 @@
+{
+  "internal": {
+    "project_id": "movie_mystery_001",
+    "film_title": "Гладиатор",
+    "film_title_aliases": [
+      "Gladiator",
+      "Gladiator 2000",
+      "Гладиатор (2000)",
+      "Гладиатор 2000"
+    ],
+    "film_rights_verified": false,
+    "source_internal": "https://rutube.ru/video/079bf1e78eff8e3f9eccab222e94e14e/",
+    "source_scene_seconds": [
+      [
+        92.95,
+        98.3
+      ],
+      [
+        99,
+        104.3
+      ],
+      [
+        109.93,
+        112.95
+      ],
+      [
+        113.02,
+        116.9
+      ],
+      [
+        117.05,
+        118.8
+      ],
+      [
+        118.9,
+        128
+      ],
+      [
+        128.05,
+        131.72
+      ],
+      [
+        131.89,
+        138.9
+      ]
+    ],
+    "source_reference": "GitHub Actions artifact 12776800730"
+  },
+  "public": {
+    "title": "ОН ПОТРЕБОВАЛ НАЗВАТЬ СВОЁ ИМЯ… И ПОЖАЛЕЛ 🔥 #shorts",
+    "description": "Он думал, что перед ним обычный пленник. Но услышал ответ, которого боялся. ⚔️\n\n🎬 Угадал, что за фильм, до последней реплики ведущего?\nНапиши, на какой секунде понял! 👇\n\nПодписывайся на M1lash — ещё больше напряжённых моментов кино.\n\nМузыка:\n\"Five Armies\" Kevin MacLeod (incompetech.com)\nLicensed under Creative Commons: By Attribution 4.0 License\nhttp://creativecommons.org/licenses/by/4.0/\nМузыка сокращена и сведена с кинодиалогами.\n\n#shorts #Кино #УгадайФильм #ЭпичнаяСцена",
+    "tags": [
+      "кино",
+      "угадай фильм",
+      "легендарные сцены",
+      "лучшие моменты фильмов",
+      "эпичный момент",
+      "кинонарезка",
+      "историческое кино",
+      "русский дубляж",
+      "movie edit",
+      "cinematic scene",
+      "m1lash",
+      "shorts"
+    ],
+    "hashtags": [
+      "#shorts",
+      "#Кино",
+      "#УгадайФильм",
+      "#ЭпичнаяСцена"
+    ],
+    "pinned_comment": "⚔️ Ты понял, какой это фильм, раньше нашего ведущего? На какой секунде? 👇",
+    "thumbnail_text": "ОН НАЗВАЛ СВОЁ ИМЯ!",
+    "public_filename": "m1lash_movie_mystery_001_ru_v4_PREVIEW.mp4",
+    "captions": [
+      "РАБ!",
+      "СНИМИ ШЛЕМ!",
+      "И НАЗОВИ СВОЁ ИМЯ",
+      "МЕНЯ ЗОВУТ МАКСИМУС",
+      "КОМАНДУЮЩИЙ СЕВЕРНЫМИ АРМИЯМИ",
+      "ВЕРНЫЙ СЛУГА МАРКА АВРЕЛИЯ",
+      "ОТЕЦ УБИТОГО СЫНА",
+      "МУЖ УБИТОЙ ЖЕНЫ",
+      "Я ОТОМЩУ ЗА НИХ",
+      "СТРАЖА!"
+    ],
+    "chapters": [],
+    "end_card_text": "Подпишись! Спасибо за просмотр! И за твой лайк! Угадал? Пиши в комментариях!"
+  },
+  "outro": {
+    "cta_voice_id": "piper:ru_RU-dmitri-medium",
+    "last_title_voice_id": "piper:ru_RU-dmitri-medium",
+    "cta_text": "Подпишись! И спасибо всем, кто досмотрел и поставил лайк.",
+    "spoken_lines": [
+      "Подпишись! И спасибо всем, кто досмотрел и поставил лайк.",
+      "Гладиатор"
+    ],
+    "title_visible_on_screen": false,
+    "lip_sync_verified": false
+  },
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "full_bleed": true,
+    "dialogue_language": "ru",
+    "music_license_verified": true,
+    "music_ducking": true,
+    "visual_qa_done": true,
+    "audio_qa_done": false
+  },
+  "publication": {
+    "publish_ready": false,
+    "reason": "PRIVATE PREVIEW. No film rights; approved Liam voice unavailable, new Dmitri voice has not been matched to lip sync; source film may be Content ID blocked."
+  }
+}
