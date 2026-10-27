@@ -1,0 +1,39 @@
+name: Movie edit - last title with exact Edge Dmitry alternate host
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/movie-edit-interstellar-dmitry-alt-host.yml]
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  tts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -q 'edge-tts==7.3.1'
+      - name: Try Edge 155 alternate Read Aloud host
+        run: |
+          python - <<'PY'
+          import asyncio, importlib
+          from pathlib import Path
+          from edge_tts import Communicate
+          m=importlib.import_module('edge_tts.communicate')
+          import edge_tts.constants as c
+          m.WSS_URL=f'wss://api.msedgeservices.com/tts/cognitiveservices/websocket/v1?Ocp-Apim-Subscription-Key={c.TRUSTED_CLIENT_TOKEN}'
+          print('Trying official Edge voice on',m.WSS_URL.split('?')[0])
+          async def main():
+              await asyncio.wait_for(Communicate('Интерстеллар.',voice='ru-RU-DmitryNeural',rate='-5%',pitch='+0Hz').save('last_title_dmitry_neural.mp3'),timeout=45)
+          asyncio.run(main())
+          assert Path('last_title_dmitry_neural.mp3').stat().st_size>3000
+          print('Exact official DmitryNeural succeeded')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: interstellar-exact-edge-dmitry-neural
+          path: last_title_dmitry_neural.mp3
+          retention-days: 7
