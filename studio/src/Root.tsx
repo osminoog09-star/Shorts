@@ -11,6 +11,8 @@ import {HostCorner} from './HostCorner';
 import HC from './host_corner.json';
 import {EditOutro, defaultOutro} from './EditOutro';
 import EO from './edit_outro.json';
+import {HostLong} from './HostLong';
+import HL from './host_long.json';
 
 // Композиция создаётся автоматически для каждого эпизода, у которого есть озвучка (таймлайн).
 // ID: ep-<id>-<RU|EN>, например ep-x1-RU
@@ -21,6 +23,7 @@ export const Root: React.FC = () => (
   <>
     <Composition id="host-corner" component={HostCorner} durationInFrames={Math.round((HC as any).duration * 30)} fps={30} width={1080} height={1920} />
     <Composition id="edit-outro" component={EditOutro} durationInFrames={Math.round((EO as any).duration * 30)} fps={30} width={1080} height={1920} defaultProps={defaultOutro} />
+    <Composition id="host-long" component={HostLong} durationInFrames={Math.round((HL as any).duration * 30)} fps={30} width={1920} height={1080} />
     <Composition id="host-layer" component={HostLayer} durationInFrames={Math.round((HD as any).duration * 30)} fps={30} width={1080} height={1920} />
     {ALL.filter((e) => TL[e.id]).flatMap((e) =>
       (['ru', 'en'] as const)

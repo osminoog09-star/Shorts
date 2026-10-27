@@ -35,7 +35,7 @@ export const defaultOutro: OutroProps = {
 
 const pop = (f: number, at: number, damping = 12) => spring({frame: f - at * 30, fps: 30, config: {damping, stiffness: 170}});
 
-const HostCard: React.FC<{f: number; pose: NPose; prev: NPose; k: number; mouth: number}> = ({f, pose, prev, k, mouth}) => {
+export const HostCard: React.FC<{f: number; pose: NPose; prev: NPose; k: number; mouth: number}> = ({f, pose, prev, k, mouth}) => {
   const Wc = 380, Hc = 450;
   return (
     <div style={{position: 'absolute', inset: 0}}>
