@@ -365,3 +365,6 @@ S3 → S6 → S7 → S2 → S5 → S1 → S4 → S8 (S9 — контроль) и
 - Еженедельный и месячный отчёты обновляют раздел «Текущая стратегия» в `STRATEGY.md`; ежедневный — только «Журнал».
 - Источники данных: vidIQ (vidiq_channel_videos, vidiq_video_stats, vidiq_channel_analytics) и
   Metricool (getAnalyticsDataByMetrics, getScheduledPosts).
+
+## ВНЕШНИЕ СКИЛЛЫ
+skills/ext/ (README там же): HyperFrames, Remotion, Emil Kowalski, taste-skill, impeccable, frontend-design, UI UX Pro Max. Подключены через .agents/skills/ (Codex) и .claude/skills/ (Claude).

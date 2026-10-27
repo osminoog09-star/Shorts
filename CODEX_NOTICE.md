@@ -61,3 +61,8 @@ Claude делает: пн/пт скетч, чт новости, вс «Топ-5 
 недельный и месячный отчёты.
 
 7. **Качество:** обязателен `skills/vizavi-motion/references/quality-upgrades.md` (текстуры CC0, HDRI, детали, макро, крючки, живые шумы, 2–3 обложки).
+
+## 27.10 — новые скиллы для обоих агентов
+Добавлены 7 внешних скиллов (HyperFrames, Remotion, Эмиль Ковальски, taste-skill, impeccable, frontend-design, UI UX Pro Max):
+`skills/ext/` (список и назначение — skills/ext/README.md). Codex видит их через `.agents/skills/`, Claude — через `.claude/skills/`.
+Используй при работе над обложками, титрами, аутро, Remotion и motion-графикой.
