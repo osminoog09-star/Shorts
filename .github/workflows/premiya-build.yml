@@ -1,0 +1,25 @@
+name: Premiya production
+on:
+  push:
+    branches: [codex/premiya-finish-20261027]
+    paths: ['.github/workflows/premiya-build.yml', 'tools/movie_edit/premiya/**']
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Acquire licensed footage
+        run: |
+          mkdir -p work/premiya
+          curl -fL --retry 2 --max-time 90 'https://www.pexels.com/download/video/7693470/' -o work/premiya/office.mp4
+          curl -fL --retry 2 --max-time 90 'https://www.pexels.com/download/video/7735814/' -o work/premiya/money.mp4
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: premiya-sources
+          path: work/premiya/
+          retention-days: 7
