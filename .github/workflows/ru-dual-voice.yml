@@ -1,0 +1,40 @@
+name: RU dual voice smoke test (Dmitry + Svetlana)
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/edge-tts-dual-voices-20261027]
+    paths: ['.github/workflows/ru-dual-voice.yml']
+permissions:
+  contents: read
+jobs:
+  synthesize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Edge TTS and FFmpeg
+        run: |
+          python -m pip install --disable-pip-version-check edge-tts
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Synthesize and validate BOTH Russian neural voices
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p voice-tests
+          edge-tts --voice ru-RU-DmitryNeural --rate=+4% --text "Привет! Я Дмитрий. Проверяем озвучку для канала Милашь." --write-media voice-tests/dmitry.mp3
+          edge-tts --voice ru-RU-SvetlanaNeural --rate=+0% --text "Привет! Я Светлана. Второй голос тоже работает." --write-media voice-tests/svetlana.mp3
+          for name in dmitry svetlana; do
+            test -s "voice-tests/$name.mp3"
+            ffmpeg -v error -xerror -i "voice-tests/$name.mp3" -f null -
+            ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 "voice-tests/$name.mp3"
+            ffmpeg -y -v error -i "voice-tests/$name.mp3" -af "loudnorm=I=-16:TP=-1.5:LRA=11" -ar 48000 -ac 1 "voice-tests/$name.wav"
+            test -s "voice-tests/$name.wav"
+          done
+          printf '%s\n' "Dmitry and Svetlana audio decoded successfully" > voice-tests/validation.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: russian-neural-voices
+          path: voice-tests/
+          retention-days: 14
