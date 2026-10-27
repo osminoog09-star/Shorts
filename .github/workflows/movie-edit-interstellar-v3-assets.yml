@@ -1,46 +1,31 @@
-name: Movie edit Interstellar V3 - Dmitry voice and licensed music assets
+name: Movie edit Interstellar V3 - Dmitry and licensed Interloper
 on:
   push:
     branches: [main]
-    paths:
-      - .github/workflows/movie-edit-interstellar-v3-assets.yml
+    paths: [.github/workflows/movie-edit-interstellar-v3-assets.yml]
   workflow_dispatch: {}
 permissions:
   contents: read
 jobs:
   assets:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install audio tools
+      - name: Install media and speech engines
         run: |
           sudo apt-get -qq update
-          sudo apt-get -y -qq install ffmpeg
-          python -m pip install -q 'edge-tts>=7,<8'
-      - name: Synthesize Dmitry Russian voice for the LAST word only
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p output
-          python - <<'PY'
-          import asyncio,edge_tts
-          from pathlib import Path
-          async def main():
-              await edge_tts.Communicate('Интерстеллар.', voice='ru-RU-DmitryNeural', rate='-7%',pitch='-3Hz').save('output/last_title_dmitry.mp3')
-          asyncio.run(main())
-          p=Path('output/last_title_dmitry.mp3')
-          assert p.stat().st_size>3000,p.stat().st_size
-          print('Dmitry generated',p.stat().st_size,flush=True)
-          PY
-          ffprobe -v error -show_entries stream=codec_name,duration -of json output/last_title_dmitry.mp3
-      - name: Get official Interloper by Kevin MacLeod (CC BY 4.0)
+          sudo apt-get -qqy install ffmpeg
+          python -m pip install -q 'edge-tts==7.3.1' 'piper-tts'
+          python -m pip show edge-tts | grep Version
+      - name: Download the actual CC BY 4.0 Interloper composition
         shell: bash
         run: |
           set -u
+          mkdir -p output
           urls=(
             'https://incompetech.com/music/royalty-free/mp3-royaltyfree/Interloper.mp3'
             'https://music.incompetech.com/royalty-free/Interloper.mp3'
@@ -48,32 +33,68 @@ jobs:
             'https://commons.wikimedia.org/wiki/Special:Redirect/file/Interloper%20%28MacLeod%2C%20Kevin%29%20%28ISRC%20USUAN1100401%29.oga'
           )
           for url in "${urls[@]}"; do
-            echo "Source attempt: $url"
-            if curl -fLsS --connect-timeout 10 --max-time 90 --retry 1 -A 'Mozilla/5.0' "$url" -o output/music_candidate; then
-              if ffprobe -v error -show_entries format=duration -of csv=p=0 output/music_candidate >output/music.duration 2>/dev/null;then
-                seconds=$(cat output/music.duration)
-                echo "Downloaded track duration: $seconds"
-                if awk -v t="$seconds" 'BEGIN {exit !(t>200&&t<300)}';then
-                  mv output/music_candidate output/interloper_original
-                  break
-                fi
+            echo "Trying $url"
+            if curl -fLsS --connect-timeout 12 --max-time 90 -A 'Mozilla/5.0' "$url" -o output/candidate; then
+              sec=$(ffprobe -v error -show_entries format=duration -of default=nk=1:nw=1 output/candidate 2>/dev/null || true)
+              echo "Media duration: $sec"
+              if awk -v n="$sec" 'BEGIN {exit !(n>200 && n<300)}';then
+                ffmpeg -v error -y -i output/candidate -ar 48000 -ac 2 -b:a 256k output/interloper_licensed.mp3 && break
               fi
             fi
           done
-          if [ -s output/interloper_original ]; then
-            ffmpeg -v error -y -i output/interloper_original -ar 48000 -ac 2 -b:a 256k output/interloper_licensed.mp3
-            rm -f output/interloper_original
-            echo '"Interloper" Kevin MacLeod (incompetech.com)' > output/interloper.license.txt
-            echo 'Licensed under Creative Commons: By Attribution 4.0 License' >> output/interloper.license.txt
-            echo 'http://creativecommons.org/licenses/by/4.0/' >> output/interloper.license.txt
-            echo 'Source https://incompetech.com/music/royalty-free/index.html?Search=Search&isrc=USUAN1100401' >> output/interloper.license.txt
-            echo 'Edit note: cut, gain changes and mix for film edit.' >> output/interloper.license.txt
+          if [ -s output/interloper_licensed.mp3 ]; then
+            printf '%s\n' '"Interloper" Kevin MacLeod (incompetech.com)' 'Licensed under Creative Commons: By Attribution 4.0 License' 'http://creativecommons.org/licenses/by/4.0/' 'Source: https://incompetech.com/music/royalty-free/index.html?Search=Search&isrc=USUAN1100401' 'Alterations: excerpted, volume automated and mixed with narration.' >output/interloper.license.txt
+            echo "Licensed music ready"
           else
-            echo "Licensed external music retrieval failed; use own procedurally composed bed (not a copyrighted track)"
+            echo "No original file available; will use original self-composed score"
           fi
-          rm -f output/music_candidate output/music.duration
+          rm -f output/candidate
+      - name: Try Microsoft DmitryNeural with up-to-date edge-tts
+        shell: bash
+        run: |
+          mkdir -p output
+          python - <<'PY'
+          import asyncio
+          from pathlib import Path
+          import edge_tts
+          async def main():
+              try:
+                  voice_list=await edge_tts.list_voices()
+                  matches=[v['ShortName'] for v in voice_list if 'Dmitry' in v['ShortName']]
+                  print('Matching official Edge voices:',matches,flush=True)
+              except Exception as e:print('Voice catalog check:',str(e),flush=True)
+              try:
+                  await asyncio.wait_for(edge_tts.Communicate('Интерстеллар.',voice='ru-RU-DmitryNeural',rate='-5%',pitch='+0Hz').save('output/last_title_dmitry.mp3'),timeout=45)
+              except Exception as e:print('Edge Dmitry failure:',type(e).__name__,str(e),flush=True)
+              if Path('output/last_title_dmitry.mp3').exists() and Path('output/last_title_dmitry.mp3').stat().st_size>3000:
+                  Path('output/voice_source.txt').write_text('Microsoft Edge ru-RU-DmitryNeural')
+                  print('Exact DmitryNeural acquired!',flush=True)
+          asyncio.run(main())
+          PY
+      - name: Fall back to independently licensed Piper Dmitri voice when official unavailable
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -s output/last_title_dmitry.mp3 ]; then exit 0; fi
+          mkdir -p voice
+          curl -fL --retry 2 --max-time 110 'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/ru/ru_RU/dmitri/medium/ru_RU-dmitri-medium.onnx' -o voice/ru_RU-dmitri-medium.onnx
+          curl -fL --retry 2 --max-time 30 'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/ru/ru_RU/dmitri/medium/ru_RU-dmitri-medium.onnx.json' -o voice/ru_RU-dmitri-medium.onnx.json
+          echo 'Интерстеллар.' | python -m piper --model voice/ru_RU-dmitri-medium.onnx --output_file output/piper_dmitri.wav
+          ffmpeg -v error -y -i output/piper_dmitri.wav -ac 2 -ar 48000 -b:a 192k output/last_title_dmitry.mp3
+          echo 'Piper ru_RU-dmitri-medium (NOT Microsoft DmitryNeural)' >output/voice_source.txt
+      - name: Validate media
+        run: |
+          test -s output/last_title_dmitry.mp3
+          ffprobe -v error -show_entries format=duration,size -of json output/last_title_dmitry.mp3
+          cat output/voice_source.txt
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: interstellar-v3-dmitry-and-music
-          path: output/
+          path: |
+            output/last_title_dmitry.mp3
+            output/voice_source.txt
+            output/interloper_licensed.mp3
+            output/interloper.license.txt
           retention-days: 7
+          if-no-files-found: warn
