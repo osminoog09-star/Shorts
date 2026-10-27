@@ -1,0 +1,45 @@
+name: Movie edit Interstellar - transcribe source timing
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/movie-edit-interstellar-transcript.yml
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  actions: read
+jobs:
+  transcript:
+    runs-on: ubuntu-latest
+    timeout-minutes: 23
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/download-artifact@v4
+        with:
+          name: interstellar-scene-russian-source
+          run-id: 40584590279
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: downloaded
+      - name: Install ASR
+        run: |
+          python -m pip install -q faster-whisper
+      - name: Transcribe RU source and save compact timings
+        run: |
+          python - <<'PY'
+          import json
+          from faster_whisper import WhisperModel
+          model=WhisperModel('base',device='cpu',compute_type='int8')
+          segs,info=model.transcribe('downloaded/output/scene/scene.mp4',language='ru',beam_size=3,vad_filter=False,word_timestamps=False)
+          a=[dict(start=round(s.start,2),end=round(s.end,2),text=s.text.strip()) for s in segs]
+          print(json.dumps(a,ensure_ascii=False,indent=2),flush=True)
+          with open('transcript.json','w') as f:json.dump(a,f,ensure_ascii=False,indent=2)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: interstellar-transcript
+          path: transcript.json
+          retention-days: 7
