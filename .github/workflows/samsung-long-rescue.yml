@@ -1,0 +1,55 @@
+name: Samsung long 4 missing neural lines
+on:
+  push:
+    branches: [codex/samsung-long-map-20261027]
+    paths: ['.github/workflows/samsung-long-rescue.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  rescue:
+    strategy:
+      fail-fast: false
+      matrix:
+        id: [L02,L04,L06,L22]
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/samsung-long-map-20261027
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -q "edge-tts>=7,<8"
+      - name: Generate shorter verified Dmitry line
+        env:
+          ID: ${{ matrix.id }}
+        run: |
+          python - <<'PY'
+          import os,json,pathlib,subprocess
+          ident=os.environ['ID']
+          j=json.loads(pathlib.Path('jobs/tts/samsung_long_ru.json').read_text())
+          j['lines']=[x for x in j['lines'] if x['id']==ident]
+          j['lines'][0]['rate']='+0%'
+          path=pathlib.Path('jobs/tts/samsung_rescue_'+ident+'.json')
+          path.write_text(json.dumps(j,ensure_ascii=False),encoding='utf-8')
+          out=pathlib.Path('media/tts')/('samsung_rescue_'+ident)/(ident+'.mp3')
+          for attempt in range(3):
+              ret=subprocess.run(['timeout','100','python','scripts/tts_job.py',str(path)],capture_output=True,text=True)
+              if out.exists() and out.stat().st_size>1800:
+                  print('READY',ident,out.stat().st_size,flush=True);break
+              print('RETRY',ident,attempt,ret.stdout[-250:],flush=True)
+          PY
+      - name: Decode validation
+        continue-on-error: true
+        env: {ID: '${{ matrix.id }}'}
+        run: |
+          f="media/tts/samsung_rescue_${ID}/${ID}.mp3"
+          test -s "$f"
+          ffmpeg -v error -xerror -i "$f" -f null -
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: samsung-long-rescue-${{ matrix.id }}
+          path: media/tts/samsung_rescue_${{ matrix.id }}/
+          if-no-files-found: warn
+          retention-days: 30
