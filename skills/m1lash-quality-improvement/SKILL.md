@@ -32,3 +32,9 @@ description: Независимый аудит и улучшение уже со
 - **Количество монтажных стыков ≠ количество новых художественных постановок.** Каждому новому кадру нужны намеренное действие, мимика и соответствие тексту.
 - **Не обрезать речь по фиксированным 20 секундам** при сборке демонстрации: выбирать полные фразы из таймлайна или озвучивать новую законченную демо-реплику тем же голосом.
 - Для следующего результата обязателен before/after ролик и доказательство трёх новых действий: нажатие кнопки с контактом пальца, физическая реакция работника и изменение положения/действия робота.
+
+## V2 code-animation quality learning, 27.10.2026
+- Compare successive MP4s by actual decoded frames and preserve method/threshold. For the 12s example, mean 1fps change 5.78→5.97/255; near-static intervals unchanged 4/11. This is weak, not a certified artistic improvement.
+- Mandatory acting checks beyond frame differencing: body mechanics (anticipation→contact→recoil), eye-line, prop interaction, secondary motion, continuity of character design, visual-only comprehensibility.
+- Stop calling merely oscillating limbs a successful scene. Mark visual NO-GO until physical and emotional action reads in motion.
+- When researching techniques, cite the actual sources and state which movement tests each source changed. See `docs/M1LASH_CODE_ANIMATION_V2_REVIEW.md`.
