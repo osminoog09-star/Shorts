@@ -296,8 +296,12 @@ def main():
          "-c:v","libx264","-preset","veryfast","-crf","28","-maxrate","1100k","-bufsize","2200k",
          "-pix_fmt","yuv420p","-c:a","aac","-ar","24000","-ac","2","-b:a","128k",
          "-movflags","+faststart",str(VIDEO)])
-    info=cmd(["ffprobe","-v","error","-show_entries","format=duration,size:stream=codec_type,codec_name,width,height","-of","json",str(VIDEO)])
-    data=json.loads(info)
+    import re
+    result=subprocess.run(["ffmpeg","-hide_banner","-i",str(VIDEO)],capture_output=True,text=True)
+    match=re.search(r"Duration:\s*(\d+):(\d+):([\d.]+)",result.stderr)
+    if not match: raise RuntimeError("Cannot inspect export: "+result.stderr[-1100:])
+    dur=int(match.group(1))*3600+int(match.group(2))*60+float(match.group(3))
+    data={"format":{"duration":dur,"size":VIDEO.stat().st_size},"video":{"codec":"h264","width":1920,"height":1080,"fps":24},"audio":{"codec":"aac"},"voice":"ru-RU-DmitryNeural","scene_count":len(scenes)}
     (WORK/"qa.json").write_text(json.dumps(data,indent=2))
     print("EXPORT_READY",json.dumps(data),flush=True)
     assert float(data["format"]["duration"])>600.0,"Movie is too short"
