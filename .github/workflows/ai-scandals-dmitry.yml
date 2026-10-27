@@ -1,0 +1,31 @@
+name: "M1lash Дмитрий — единая озвучка"
+on:
+  push:
+    branches:
+      - codex/ai-scandals-dmitry-correction
+    paths:
+      - .github/workflows/ai-scandals-dmitry.yml
+      - tools/ai_scandals_dmitry_voice.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  dmitry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -q 'edge-tts>=7,<8' 'mutagen>=1.47'
+      - name: Generate all seven segments with Dmitry ONLY, no alternate TTS
+        run: python tools/ai_scandals_dmitry_voice.py
+      - name: Upload voiced segments (only when ALL successful)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m1lash-5-news-all-dmitry
+          path: dmitry-news-voice/
+          if-no-files-found: error
+          retention-days: 14
