@@ -1,0 +1,79 @@
+name: Movie edit Interstellar V3 - Dmitry voice and licensed music assets
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/movie-edit-interstellar-v3-assets.yml
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install audio tools
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get -y -qq install ffmpeg
+          python -m pip install -q 'edge-tts>=7,<8'
+      - name: Synthesize Dmitry Russian voice for the LAST word only
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          python - <<'PY'
+          import asyncio,edge_tts
+          from pathlib import Path
+          async def main():
+              await edge_tts.Communicate('Интерстеллар.', voice='ru-RU-DmitryNeural', rate='-7%',pitch='-3Hz').save('output/last_title_dmitry.mp3')
+          asyncio.run(main())
+          p=Path('output/last_title_dmitry.mp3')
+          assert p.stat().st_size>3000,p.stat().st_size
+          print('Dmitry generated',p.stat().st_size,flush=True)
+          PY
+          ffprobe -v error -show_entries stream=codec_name,duration -of json output/last_title_dmitry.mp3
+      - name: Get official Interloper by Kevin MacLeod (CC BY 4.0)
+        shell: bash
+        run: |
+          set -u
+          urls=(
+            'https://incompetech.com/music/royalty-free/mp3-royaltyfree/Interloper.mp3'
+            'https://music.incompetech.com/royalty-free/Interloper.mp3'
+            'https://incompetech.com/music/royalty-free/Interloper.mp3'
+            'https://commons.wikimedia.org/wiki/Special:Redirect/file/Interloper%20%28MacLeod%2C%20Kevin%29%20%28ISRC%20USUAN1100401%29.oga'
+          )
+          for url in "${urls[@]}"; do
+            echo "Source attempt: $url"
+            if curl -fLsS --connect-timeout 10 --max-time 90 --retry 1 -A 'Mozilla/5.0' "$url" -o output/music_candidate; then
+              if ffprobe -v error -show_entries format=duration -of csv=p=0 output/music_candidate >output/music.duration 2>/dev/null;then
+                seconds=$(cat output/music.duration)
+                echo "Downloaded track duration: $seconds"
+                if awk -v t="$seconds" 'BEGIN {exit !(t>200&&t<300)}';then
+                  mv output/music_candidate output/interloper_original
+                  break
+                fi
+              fi
+            fi
+          done
+          if [ -s output/interloper_original ]; then
+            ffmpeg -v error -y -i output/interloper_original -ar 48000 -ac 2 -b:a 256k output/interloper_licensed.mp3
+            rm -f output/interloper_original
+            echo '"Interloper" Kevin MacLeod (incompetech.com)' > output/interloper.license.txt
+            echo 'Licensed under Creative Commons: By Attribution 4.0 License' >> output/interloper.license.txt
+            echo 'http://creativecommons.org/licenses/by/4.0/' >> output/interloper.license.txt
+            echo 'Source https://incompetech.com/music/royalty-free/index.html?Search=Search&isrc=USUAN1100401' >> output/interloper.license.txt
+            echo 'Edit note: cut, gain changes and mix for film edit.' >> output/interloper.license.txt
+          else
+            echo "Licensed external music retrieval failed; use own procedurally composed bed (not a copyrighted track)"
+          fi
+          rm -f output/music_candidate output/music.duration
+      - uses: actions/upload-artifact@v4
+        with:
+          name: interstellar-v3-dmitry-and-music
+          path: output/
+          retention-days: 7
