@@ -1,4 +1,4 @@
-name: Movie mystery - source language and dialogue timing
+name: Movie mystery - direct scene Russian dialogue timing
 on:
   push:
     branches: [main]
@@ -19,7 +19,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: private-movie-mystery-feature-source
-          run-id: 40595125020
+          run-id: 40595996153
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: downloaded
       - name: Install Whisper
