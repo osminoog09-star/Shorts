@@ -20,7 +20,7 @@ jobs:
           mkdir -p m1lash-reference
           cp videos/m1lash_outro_short_ru.mp4 m1lash-reference/approved_outro.mp4
           sha256sum m1lash-reference/approved_outro.mp4
-          ffprobe -v error -show_entries format=duration,size -of json m1lash-reference/approved_outro.mp4
+          test $(wc -c < m1lash-reference/approved_outro.mp4) -gt 100000
       - uses: actions/upload-artifact@v4
         with:
           name: approved-m1lash-outro-reference
