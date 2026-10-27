@@ -1,0 +1,2 @@
+issue_id,severity,timecode_start,timecode_end,evidence,root_cause,proposed_fix,owner,acceptance_test,status
+OFFICE-P0-001,P0,00:14:35,00:14:43,7.7-second near-silent tail,video ending was padded,complete spoken CTA + natural fade,editor,audible last line and <=2s unplanned silence,OPEN

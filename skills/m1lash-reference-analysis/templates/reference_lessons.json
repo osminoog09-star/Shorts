@@ -1,0 +1,15 @@
+{
+  "source": "user-supplied reference video",
+  "permission": "analysis only; no source frames in output",
+  "sampled_not_full_view": true,
+  "lessons": [
+    {
+      "technique": "insert action and reaction cutaways",
+      "observed_at": "manual verification required",
+      "expected_benefit": "stronger character storytelling",
+      "application_scene": "director firing staff",
+      "verification_method": "compare unique shots and watch scene in motion",
+      "confidence": "hypothesis"
+    }
+  ]
+}

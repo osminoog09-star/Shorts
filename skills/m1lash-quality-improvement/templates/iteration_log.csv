@@ -1,0 +1,2 @@
+version,source_sha256,changes,technical_checks,visual_checks,critical_issues_open,lessons_learned,reviewer,status
+V7,unknown,baseline,not_yet_revalidated,40-frame sample,unresolved,repeated rooms are not solved by zoom,unknown,DRAFT
