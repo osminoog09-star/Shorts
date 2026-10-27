@@ -29,17 +29,13 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends ffmpeg fonts-dejavu-core
           python -m pip install --disable-pip-version-check -q yt-dlp "numpy>=1.26,<3" "faster-whisper>=1.1,<2"
-      - name: Obtain official Paramount promotional source
+      - name: Obtain verified feature-film scene (no fan reenactments)
         run: |
+          set -euo pipefail
           mkdir -p work/wolf output
-          if ! python -m yt_dlp --no-playlist --merge-output-format mp4 \
+          python -m yt_dlp --no-playlist --merge-output-format mp4 \
             -o 'work/wolf/paramount.%(ext)s' \
-            'https://www.youtube.com/watch?v=g07Xxr20L9s'; then
-            echo "Official YouTube host denied automated extraction; testing alternate scene mirror for DRAFT only."
-            python -m yt_dlp --no-playlist --merge-output-format mp4 \
-              -o 'work/wolf/paramount.%(ext)s' \
-              'https://www.dailymotion.com/video/x4flet5'
-          fi
+            'https://www.ganjingworld.com/video/1isqihdlvml2qNJdZqsJk2h6g1qh1c'
           ls -lah work/wolf/paramount.*
       - name: Render 9x16 movie edit with caption punches, soundbed and host outro
         shell: bash
