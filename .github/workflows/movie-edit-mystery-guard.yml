@@ -1,0 +1,25 @@
+name: Movie edit mystery package guard
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/movie_edit/validate_mystery.py
+      - tools/movie_edit/test_validate_mystery.py
+      - tools/movie_edit/mystery_release.example.json
+      - .github/workflows/movie-edit-mystery-guard.yml
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate default spoiler-free publication template
+        run: python tools/movie_edit/validate_mystery.py tools/movie_edit/mystery_release.example.json
+      - name: Run release safety regression tests
+        run: python -m unittest discover -s tools/movie_edit -p 'test_validate_mystery.py' -v
