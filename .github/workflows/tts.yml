@@ -1,34 +1,68 @@
 name: TTS
-
-# Озвучка: пушнул jobs/tts/<name>.json -> получил media/tts/<name>/*.mp3 + тайминги слов
 on:
   push:
+    branches: [main]
     paths: ["jobs/tts/**.json"]
   workflow_dispatch:
-
+    inputs:
+      job:
+        description: "Job basename without .json, e.g. samsung_teaser"
+        required: true
+        default: "samsung_teaser"
 permissions:
   contents: write
-
 concurrency:
-  group: tts
+  group: tts-${{ github.event_name == 'workflow_dispatch' && inputs.job || github.sha }}
   cancel-in-progress: false
-
 jobs:
   tts:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
-      - run: pip install -q "edge-tts>=7"
-      - name: Synthesize
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -q "edge-tts>=7,<8"
+      - name: Synthesize selected job only
+        shell: bash
+        env:
+          SELECTED_JOB: ${{ inputs.job }}
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE_SHA: ${{ github.event.before }}
         run: |
-          mkdir -p media/tts
-          pip show edge-tts | head -2 > media/tts/_log.txt
-          python scripts/tts_job.py jobs/tts/*.json >> media/tts/_log.txt 2>&1 || echo "FAILED" >> media/tts/_log.txt
-      - name: Commit
+          set -euo pipefail
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            [[ "$SELECTED_JOB" =~ ^[a-zA-Z0-9_-]+$ ]] || exit 1
+            files=("jobs/tts/$SELECTED_JOB.json")
+          else
+            mapfile -t files < <(git diff --name-only "${BEFORE_SHA}" HEAD -- 'jobs/tts/*.json' | grep -E '^jobs/tts/[A-Za-z0-9_-]+\.json$' || true)
+          fi
+          if (( ${#files[@]} == 0 )); then echo "No new TTS jobs"; exit 0; fi
+          for file in "${files[@]}"; do
+            test -f "$file"
+            python scripts/tts_job.py "$file"
+            python - "$file" <<'PY'
+          import json,sys
+          from pathlib import Path
+          job=Path(sys.argv[1]);data=json.loads(job.read_text())
+          out=Path('media/tts')/job.stem
+          for line in data['lines']:
+              audio=out/(line['id']+'.mp3')
+              meta=out/(line['id']+'.json')
+              assert audio.is_file() and audio.stat().st_size>1024, f'Missing audio: {audio}'
+              assert meta.is_file() and json.loads(meta.read_text())['text']==line['text'], f'Missing metadata: {meta}'
+          print('Verified',len(data['lines']),'segments for',job.stem)
+          PY
+          done
+      - name: Commit verified output
         run: |
-          git config user.name "tts-bot"
-          git config user.email "tts-bot@users.noreply.github.com"
+          set -euo pipefail
+          git config user.name tts-bot
+          git config user.email tts-bot@users.noreply.github.com
           git add media/tts
-          git diff --cached --quiet && exit 0
-          git commit -m "tts: $(ls jobs/tts | tr '\n' ' ')"
-          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done
+          if ! git diff --cached --quiet; then
+            git commit -m "tts: synthesize verified speech"
+            for i in 1 2 3; do git pull -q --rebase && git push -q && exit 0; sleep 5; done
+            exit 1
+          fi
