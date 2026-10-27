@@ -10,17 +10,26 @@ permissions:
 jobs:
   package:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
           sparse-checkout: |
-            media/tts/wolf_movie_ru
+            jobs/tts/wolf_movie_ru.json
+            scripts/tts_job.py
           sparse-checkout-cone-mode: false
-      - name: Verify Russian dialogue clips
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -q 'edge-tts>=7,<8'
+      - name: Synthesize Russian dub and verify all lines
+        shell: bash
         run: |
-          set -eu
+          set -euo pipefail
+          python scripts/tts_job.py jobs/tts/wolf_movie_ru.json
           for n in 01 02 03 04 05 06 07 08; do
-            test -s "media/tts/wolf_movie_ru/${n}.mp3" || exit 1
+            test -s "media/tts/wolf_movie_ru/${n}.mp3"
+            test -s "media/tts/wolf_movie_ru/${n}.json"
           done
       - uses: actions/upload-artifact@v4
         with:
