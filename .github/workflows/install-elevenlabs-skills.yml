@@ -1,0 +1,40 @@
+name: Install official ElevenLabs skills for Codex and Claude
+on:
+  push:
+    branches:
+      - codex/free-video-skills-20261027
+    paths:
+      - '.github/workflows/install-elevenlabs-skills.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  install-skills:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install official skill instructions into project
+        run: |
+          npx --yes skills add elevenlabs/skills --skill '*' --agent codex --agent claude-code --copy --yes
+          test -s .agents/skills/text-to-speech/SKILL.md
+          test -s .agents/skills/sound-effects/SKILL.md
+          test -s .agents/skills/music/SKILL.md
+          test -s .agents/skills/voice-isolator/SKILL.md
+          test -s .claude/skills/text-to-speech/SKILL.md
+          echo "Installed skills:"
+          find .agents/skills -maxdepth 2 -name SKILL.md | grep -E 'speech|voice|music|dubbing|onboarding|agents' | sort
+      - name: Commit only skill files
+        run: |
+          git config user.name m1lash-skills-bot
+          git config user.email m1lash-skills-bot@users.noreply.github.com
+          git add -A .agents/skills/ .claude/skills/
+          if test -f skills-lock.json; then git add skills-lock.json; fi
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "skills: install official ElevenLabs agent guidance"
+          git push origin HEAD:codex/free-video-skills-20261027
