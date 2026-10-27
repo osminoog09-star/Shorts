@@ -1,0 +1,32 @@
+name: Samsung teaser render
+on:
+  push:
+    paths:
+      - "scripts/render_samsung_teaser.py"
+      - "media/tts/samsung_teaser_s06/s06.mp3"
+      - "media/tts/samsung_teaser/s06.mp3"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install renderer
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          python -m pip install Pillow
+      - name: Render and decode-validate MP4
+        run: python scripts/render_samsung_teaser.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: samsung-teaser-dmitry-svetlana-mp4
+          path: videos/samsung_teaser_ru.mp4
+          if-no-files-found: error
+          retention-days: 30
