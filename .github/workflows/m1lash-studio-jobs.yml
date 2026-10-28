@@ -23,6 +23,7 @@ jobs:
       - name: Run validated research preparation
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          M1LASH_VIDEO_API_ENABLED: ${{ vars.M1LASH_VIDEO_API_ENABLED }}
         run: |
           python motion-studio/automation/prepare_job.py --event "$GITHUB_EVENT_PATH" --out studio-output
       - name: Keep research and prompts as review artifacts
