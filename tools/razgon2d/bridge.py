@@ -54,9 +54,31 @@ def install(archive: Path, dest: Path = KIT) -> None:
                     shutil.copyfileobj(source, target)
             subprocess.run([sys.executable, str(stage / "tools/verify_kit.py")],
                            check=True, timeout=30)
+            harden_renderer(stage)
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copytree(stage, dest)
     print(f"Installed verified kit: {dest}")
+
+
+
+def harden_renderer(stage: Path) -> None:
+    """Pin the ephemeral HTTP server to loopback and prevent sibling-prefix reads."""
+    render = stage / "render.mjs"
+    code = render.read_text(encoding="utf-8")
+    old_file = """  const p = url.startsWith('/project/') ? path.join(PROJECT, url.slice(9)) : path.join(ROOT, url);
+  if (!(p.startsWith(ROOT) || p.startsWith(PROJECT)) || !fs.existsSync(p) || fs.statSync(p).isDirectory()) { res.writeHead(404); return res.end(); }"""
+    new_file = """  const projectFile = url.startsWith('/project/');
+  const base = projectFile ? PROJECT : ROOT;
+  const relUrl = (projectFile ? url.slice(9) : url).replace(/^\\/+/, '');
+  const p = path.resolve(base, relUrl);
+  const relative = path.relative(base, p);
+  if (relative === '..' || relative.startsWith('..' + path.sep) || path.isAbsolute(relative) || !fs.existsSync(p) || fs.statSync(p).isDirectory()) { res.writeHead(404); return res.end(); }"""
+    old_bind = "}).listen(0);"
+    new_bind = "}).listen(0, '127.0.0.1');"
+    if code.count(old_file) != 1 or code.count(old_bind) != 1:
+        raise ValueError("Unexpected vendor renderer layout; refusing unreviewed server")
+    code = code.replace(old_file, new_file).replace(old_bind, new_bind)
+    render.write_text(code, encoding="utf-8")
 
 
 def voice_gate(manifest: Path) -> None:

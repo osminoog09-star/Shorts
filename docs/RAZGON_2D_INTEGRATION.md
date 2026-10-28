@@ -16,7 +16,7 @@ required before any final film. No promise of 8/10 quality from installing softw
 Input: user-provided `razgon-2d-studio.plugin.zip` (plugin metadata version `0.3.0`).
 Audited sample SHA256:
 `3376259460a0d6efb11dd808d5cb9e4b0fcdfdd5503e6e5ef6eb4991f48e2812`.
-All 30 vendor-file hashes passed vendor's `verify_kit.py`; Python `compileall` and
+All 30 vendor-file hashes passed vendor's `verify_kit.py`; on import the bridge **then patches** `render.mjs` to bind its HTTP server to loopback and reject directory traversal, so the post-import vendor hash for `render.mjs` intentionally differs. Python `compileall` and
 Node `--check` passed locally. Local 9:16 project creation and WAV duration passed.
 **Full animation render was NOT verified** in the audit environment: missing npm
 packages and Playwright Chromium; package installation timed out. The example has
@@ -26,6 +26,9 @@ The code in `tools/razgon2d/bridge.py` is an integration adapter; the vendor kit
 **not checked into the repository**. Bring a copy of the original ZIP to the PC or
 build runner. Do not fetch unverified third-party mirrors or put the owner's voice
 files into a public repository.
+
+
+Security note: upstream `render.mjs` used unrestricted `listen(0)` and prefix-based path checks. Use the bridge installer, not manual extraction, until that upstream code is fixed; tests cover the safety rewrite. The patch is deliberately applied after the vendor checksum gate, and will refuse to install an unknown renderer layout.
 
 ## Local workflow (Python 3.10+, Node 18+, ffmpeg)
 
