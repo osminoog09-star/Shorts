@@ -21,3 +21,12 @@ Full film V6 expected 698.433 seconds, 20953 frames, 1920×1080 H.264 30fps + or
 
 ## Process
 Under development in authorized cloud: `/mnt/data/Samsung_V6_WORK/Samsung_Full_2026/v6`. This is NOT a path on the user's computer. New README, source code, original voices, 10m shapes and detailed QA are archived as a separate project ZIP after delivery.
+
+## Final verified local export — 2026-10-28
+
+- **Full HD file created:** `/mnt/data/SAMSUNG_FULL_V6_HD.mp4`, 396,039,113 bytes, 1920×1080 H.264/AAC 30fps, **20,953 frames**, duration **698.433333 seconds**; **full FFmpeg -xerror video+audio decode PASS**.
+- **Phone file created:** `/mnt/data/SAMSUNG_FULL_V6_MOBILE.mp4`, 31,056,141 bytes, 1280×720 H.264/AAC 30fps, **20,953 frames**, duration **698.440998 seconds**; **full FFmpeg -xerror video+audio decode PASS**.
+- Sampled and inspected **16 frames extracted from the finished Full HD MP4**, including 0s hook, South Korea, Japan, Pacific, Iran, Russia, Europe, Africa, South America, United States/Canada and the 690s final world view. Contact sheet: `SAMSUNG_FULL_V6_CONTACT.jpg` in downloadable source ZIP.
+- Source QA: 159 unique ISO2, 9 geographic groups with >=12 countries, 159/159 verified ISO3-matched detailed shape features, **GM and TT markers reanchored**, 42 documented Samsung official-store offers, 117 **unclassified**; 119 spoken country cues, 28 visual first passes, **12 estimated** cues.
+- Both final MP4s are **review cuts**, **not uploaded to YouTube**. Some animated UI/captions are inherited from V5's 960x540 logic and upscaled; it is the geographic background that has native Full HD precision. Subtitle timestamps for L20 South America and L24 finale remain estimates. A full manual normal-speed watch/listen has not been certified by QA scripts.
+- **Internal subjective score ~7.5/10 overall; geographic drawing ~8.5/10, technical integrity 8.5/10. Do not claim user-verified 8/10.** Next material upgrade is voice-to-story pacing and more country-specific source evidence.
