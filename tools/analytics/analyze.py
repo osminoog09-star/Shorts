@@ -37,8 +37,10 @@ def main():
     rows = [r for r in csv.DictReader(open(CSV, encoding="utf-8")) if (r.get("kind") or "short") == a.kind]
     rows.sort(key=lambda r: (r["date"], r.get("time", "")))
     for r in rows:
-        r["_v"] = num(r.get("views_7d")) or num(r.get("views_48h"))
-        r["_age"] = "7д" if num(r.get("views_7d")) else "48ч" if num(r.get("views_48h")) else "—"
+        # Zero views is a valid observation, not missing data.
+        v7, v48 = num(r.get("views_7d")), num(r.get("views_48h"))
+        r["_v"] = v7 if v7 is not None else v48
+        r["_age"] = "7д" if v7 is not None else "48ч" if v48 is not None else "—"
         L, avd = num(r.get("length_s")), num(r.get("avd_s"))
         r["_apv"] = (avd / L * 100) if L and avd else None
         v = r["_v"]
@@ -49,7 +51,7 @@ def main():
 
     def median_for(r):
         key = "views_7d" if r["_age"] == "7д" else "views_48h"
-        pool = [num(x[key]) for x in rows if num(x.get(key))][-a.last:]
+        pool = [num(x.get(key)) for x in rows if x is not r and num(x.get(key)) is not None][-a.last:]
         return statistics.median(pool) if len(pool) >= 3 else None
 
     print(f"## Ролики ({a.kind}, {len(rows)})\n")
@@ -57,7 +59,7 @@ def main():
     print("|---|---|---|---|---|---|---|---|---|---|---|---|")
     for r in rows:
         m = median_for(r)
-        r["_idx"] = r["_v"] / m if (r["_v"] and m) else None
+        r["_idx"] = r["_v"] / m if (r["_v"] is not None and m is not None and m > 0) else None
         tag = "" if r["_idx"] is None else " 🔥" if r["_idx"] >= 2 else " ⚠️" if r["_idx"] <= 0.5 else ""
         f = lambda x, d=1: "—" if x is None else f"{x:.{d}f}"
         print(f"| {r['date']} | {r['video_id']} | {r.get('format','')} | {r.get('style','')} | {r.get('topic','')[:24]} | "
