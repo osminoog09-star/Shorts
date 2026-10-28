@@ -1,12 +1,44 @@
 {
-  "status": "success",
-  "updated_at": "2026-10-28T04:34:31.416659Z",
-  "last_attempt_at": "2026-10-28T04:34:31.416659Z",
-  "feeds_ok": 7,
-  "feeds_failed": 0,
-  "errors": [],
+  "status": "partial",
+  "updated_at": "2026-10-28T12:54:13.069008Z",
+  "last_attempt_at": "2026-10-28T12:54:13.069008Z",
+  "feeds_ok": 6,
+  "feeds_failed": 1,
+  "errors": [
+    {
+      "source": "NASA Technology",
+      "error_type": "HTTPError"
+    }
+  ],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "3a0e6f223eff99ed17",
+      "title": "Voters in Texas agree: They hate data centers",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1018676/data-center-midterm-election-energy-water-texas",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-28T12:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "3c84bdc9f1b42a2924",
+      "title": "Meta quietly launched an ‘AI pet journal’ app",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1020410/meta-launched-ai-pet-journal-app-waddle-world",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-28T11:27:30Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "bab4d2d109d6ff570d",
+      "title": "China’s snooping around Pacific undersea cables raises risks for Big Tech",
+      "url": "https://arstechnica.com/gadgets/2026/10/google-and-meta-subsea-cables-among-most-at-risk-from-sabotage-in-pacific/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T11:00:49Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "9eab77713c3920c6ed",
       "title": "Making machines that can listen",
