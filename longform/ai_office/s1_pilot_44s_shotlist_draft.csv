@@ -1,0 +1,12 @@
+shot_id,start_s,end_s,location,shot_size,characters,action,emotion,camera,audio_cue,status
+S01,0,4.5,director_office,CU,boss,Кладёт пальцы на папку увольнений,самоуверенность,static,Дмитрий: начало завершённой реплики,PROVISIONAL
+S02,4.5,8.5,director_office,MS,boss;employee,Сотрудник замечает решение начальника,недоверие,static,Дмитрий: продолжение,PROVISIONAL
+S03,8.5,12,office_floor,WS,staff,Пустеют рабочие места; люди забирают коробки,разочарование,tracking,Дмитрий: увольнение,PROVISIONAL
+S04,12,15.5,director_office,ECU,boss,Кисть кладёт палец на кнопку и нажимает,решимость,static,SFX: physical click,PROVISIONAL
+S05,15.5,19,office_floor,MS,staff,Один сотрудник вздрагивает и делает шаг назад,удивление,static,SFX: papers,PROVISIONAL
+S06,19,23,office_floor,WS,robots,Роботы занимают освободившиеся рабочие места,деловитость,static,SFX: footsteps,PROVISIONAL
+S07,23,27,robot_desk,CU,robot,Робот принимает запрос и ошибается,самодовольство,static,SFX: computer,PROVISIONAL
+S08,27,31,office_floor,MS,boss;robot,Начальник задаёт вопрос роботу,растерянность,static,Дмитрий: эскалация,PROVISIONAL
+S09,31,35.5,director_office,CU,boss,Брови и челюсть меняют выражение после ответа,паника,static,Дмитрий: реакция,PROVISIONAL
+S10,35.5,39,office_floor,ECU,computer,На экране появляется неожиданный счёт,ошибка,static,SFX: alert,PROVISIONAL
+S11,39,43.8,office_floor,WS,boss;robot,Последний взгляд директора на робота и ясная сюжетная пауза,потрясение,static,Завершение полной реплики,PROVISIONAL

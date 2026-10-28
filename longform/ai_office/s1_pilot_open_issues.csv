@@ -1,0 +1,9 @@
+issue_id,severity,component,root_cause,acceptance_test,status
+ART-01,P1,characters,Primitive outline model is not appealing,Three-angle visual model sheet with >=8/10 artistic review,OPEN
+ANATOMY-01,P1,character_rig,Poor wrist and finger anatomy,Visible five-finger hand and anatomical silhouette in close-up,OPEN
+ACTING-01,P1,animation,Micro-bobs instead of intentional performance,Anticipation-contact-reaction and weight shift readable without audio,OPEN
+CAM-01,P1,direction,Long static same-office shots,11 clearly different meaningful compositions reviewed in motion,OPEN
+ENV-01,P1,background,Flat repetitive office set,Two detailed spatially coherent office sets,OPEN
+AUDIO-01,P0,narration,Recent tests lack the approved Dmitry voice,Full original ru-RU-DmitryNeural phrases with no cut-off and lip-sync check,OPEN
+OUTRO-01,P0,end,Prior films had abrupt end and silent tail,Last 30 seconds visually and audibly verified after export,OPEN
+CODE-01,P1,reproducibility,Render scripts absent from GitHub,Project builds video from scripts/assets in repository with manifest,OPEN
