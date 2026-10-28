@@ -1,0 +1,45 @@
+name: NEUROOFFICE EP01 · voice production smoke test (Dima + Sveta only)
+on:
+  push:
+    branches: [codex/neurooffice-s01e01-feature-20261028]
+    paths: ['.github/workflows/neurooffice-ep01-tts-smoke.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  approved-voices:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install edge-tts
+      - name: Speak short script with ONLY approved voice IDs; fail rather than substitute
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          python - <<'PY'
+          import asyncio, pathlib, json
+          import edge_tts
+          async def main():
+           lines=[("dima","ru-RU-DmitryNeural","Наш новый директор — искусственный интеллект. И уволить он решил всех."),
+                  ("sveta","ru-RU-SvetlanaNeural","Оптимизация завершена успешно. Поздравляю коллектив!")]
+           manifest=[]
+           for idx,(speaker,voice,text) in enumerate(lines):
+            dest=pathlib.Path(f"output/{idx:02d}_{speaker}.mp3")
+            await edge_tts.Communicate(text,voice=voice,rate="+0%").save(str(dest))
+            assert dest.stat().st_size>3000, f"No TTS audio from approved {voice}"
+            manifest.append({"speaker":speaker,"voice_id":voice,"engine":"Edge TTS","text":text,"source_file":dest.name,"bytes":dest.stat().st_size})
+           pathlib.Path("output/manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
+          asyncio.run(main())
+          PY
+          ffprobe -v error -show_entries format=duration -of default=nw=1 output/00_dima.mp3
+          ffprobe -v error -show_entries format=duration -of default=nw=1 output/01_sveta.mp3
+      - uses: actions/upload-artifact@v4
+        with:
+          name: neurooffice-ep01-real-dima-sveta-voice-test
+          path: output/
+          retention-days: 14
