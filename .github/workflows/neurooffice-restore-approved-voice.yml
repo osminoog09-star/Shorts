@@ -1,0 +1,69 @@
+name: Neurooffice EP01 - preserve 321 approved real voices (no re-TTS)
+on:
+  push:
+    branches: [codex/neurooffice-s01e01-feature-20261028]
+    paths: [.github/workflows/neurooffice-restore-approved-voice.yml]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { persist-credentials: true }
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python -m pip install --quiet mutagen
+      - name: Recover complete 321-line finished TTS artifact from run 40731921460
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/tts
+          gh run download 40731921460 -n neurooffice-ep01-voice-segments-checkpoint -D /tmp/tts
+          test -f /tmp/tts/SCRIPT_MANIFEST.json
+          test "$(find /tmp/tts -maxdepth 1 -name 'line_*.mp3' | wc -l)" -eq 321
+      - name: Assemble audio without resynthesis and make timeline
+        run: |
+          set -euo pipefail
+          mkdir -p longform/neurooffice-s01e01/audio
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from mutagen.mp3 import MP3
+          base=Path('/tmp/tts')
+          out=Path('longform/neurooffice-s01e01/audio')
+          script=json.loads((base/'SCRIPT_MANIFEST.json').read_text())
+          lines=script['lines'];assert len(lines)==321
+          manifest=[];pos=0.
+          with (base/'concat.txt').open('w') as c:
+           c.write('ffconcat version 1.0\n')
+           for idx,l in enumerate(lines):
+            p=next(base.glob(f"line_{idx:04d}_{l['speaker']}.mp3"))
+            d=MP3(p).info.length
+            meta=json.loads((base/f"line_{idx:04d}_{l['speaker']}.json").read_text())
+            voice={'dima':'ru-RU-DmitryNeural','sveta':'ru-RU-SvetlanaNeural'}[l['speaker']]
+            assert meta['voice_id']==voice
+            c.write(f"file '{p.name}'\n")
+            manifest.append({'index':idx,'scene':l['scene_index'],'speaker':l['speaker'],'voice_id':voice,'text':l['text'],'start_s':round(pos,4),'end_s':round(pos+d,4),'duration_s':round(d,4),'source_file':p.name})
+            pos+=d
+          assert pos>=1260,(pos,'21 minute gate')
+          (out/'AUDIO_MANIFEST.json').write_text(json.dumps({'status':'REAL_AUDIO_READY','audio_duration_s':pos,'line_count':len(lines),'scene_count':len(script['scenes']),'voice_ids':{'dima':'ru-RU-DmitryNeural','sveta':'ru-RU-SvetlanaNeural'},'timeline':manifest},ensure_ascii=False,indent=2))
+          print('REAL_AUDIO_DURATION',pos,'real_line_count',len(lines),flush=True)
+          PY
+          (cd /tmp/tts && ffmpeg -nostdin -v error -y -f concat -safe 0 -i concat.txt -c:a copy "$GITHUB_WORKSPACE/longform/neurooffice-s01e01/audio/NEUROOFFICE_S01E01_REAL_VOICES.mp3")
+          ffmpeg -nostdin -v error -xerror -i longform/neurooffice-s01e01/audio/NEUROOFFICE_S01E01_REAL_VOICES.mp3 -f null -
+          ffprobe -v error -show_entries format=duration,size -of json longform/neurooffice-s01e01/audio/NEUROOFFICE_S01E01_REAL_VOICES.mp3
+      - name: Store long soundtrack on same branch, protecting other active edits
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add longform/neurooffice-s01e01/audio
+          git commit -m 'audio(neurooffice): preserve all 321 real approved Dima and Sveta segments as 38 minute soundtrack'
+          git fetch origin codex/neurooffice-s01e01-feature-20261028
+          git rebase origin/codex/neurooffice-s01e01-feature-20261028
+          git push origin HEAD:refs/heads/codex/neurooffice-s01e01-feature-20261028
