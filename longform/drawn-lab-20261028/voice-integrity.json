@@ -1,0 +1,250 @@
+{
+  "source_run": 40764224486,
+  "accepted": [
+    {
+      "file": "voice_00.mp3",
+      "bytes": 287568,
+      "sha256": "e739edf4d743cac677fc23a3aba9e0c2ed81a668a3d11438037f2d252d160115",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_01.mp3",
+      "bytes": 330480,
+      "sha256": "3d4026c3e5e4b140deb5891141204349253cafd60d417e8eeb07b8cfdbdc9d84",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_02.mp3",
+      "bytes": 306144,
+      "sha256": "1ee07c2982ec6f72ca2e39c7f1958dce8cad8c7d5052f059855f9b5738f8b35e",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_03.mp3",
+      "bytes": 330480,
+      "sha256": "b7c063f18d2e45000ad328f0b7a73f8110c65da84bf5b47b0fdd8e796d80f938",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_04.mp3",
+      "bytes": 350064,
+      "sha256": "b5ee7867864e0a8e8f01344bea2f99fc7b78982f5a3552ab1d06a79bfec18ec0",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_05.mp3",
+      "bytes": 322128,
+      "sha256": "cef44d55730289dd260f5d90dba46f4111bf0df72c3c6b74cad890e01bb760b4",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_06.mp3",
+      "bytes": 332928,
+      "sha256": "f8a0c4974397ea86ccaabd026477f08467f2b4d5eb5ae52da59d268654856379",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_07.mp3",
+      "bytes": 312768,
+      "sha256": "2d799521c5e3c37d53ba5ee3d19327ebde1d471307aeda3004528311fcecf798",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_08.mp3",
+      "bytes": 329616,
+      "sha256": "4e8a11305e1d7af3ff13b3da9bd1385ac0ac7d99517ee7150e900e807b3fffd0",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_09.mp3",
+      "bytes": 342288,
+      "sha256": "2e5fff75eb25b0e49137c333587b87ed7d1b3ad90b4184e64b75c9bdd5a76fc2",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_10.mp3",
+      "bytes": 349488,
+      "sha256": "81044d92c9c4491a492683f395e299891a05e5f78f8db89a0a286a8fe028c5a2",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_11.mp3",
+      "bytes": 361584,
+      "sha256": "fb595f08799a252ebc93d49220655586e7e24399415cc6d1338eb8ed11e13f5d",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_12.mp3",
+      "bytes": 309024,
+      "sha256": "145264da259b0fc409f791af18fc5176c84360af58dee209553d4ca588d2dbcc",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_13.mp3",
+      "bytes": 318096,
+      "sha256": "a011a705518110777c243a760d93c806ce76ff33ae3d91e920be1e709194eed5",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_14.mp3",
+      "bytes": 342000,
+      "sha256": "f1b9034a9485f8a644c21c8c6917b9cdc2f14f2c5da745ed74a56c83487dbe01",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_15.mp3",
+      "bytes": 322272,
+      "sha256": "457135dab5a3e0e4e5731e6b9b6fef63275dd8209423174719b739947177e457",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_16.mp3",
+      "bytes": 330912,
+      "sha256": "e3b9e8e08d74a289f7c7eb6ae0186e0cd9ba5849034e383a464f3690c1af0f2f",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_17.mp3",
+      "bytes": 350784,
+      "sha256": "8e3e9c29cd7ba3ceeddd7871c803188cb378f2fe0cecbea04877284501b9ad9e",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_18.mp3",
+      "bytes": 366192,
+      "sha256": "e1e4a7fb381af9bcf79128b3f63e8e5aa5cee71a78cbb7b61aa909c689f16495",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_19.mp3",
+      "bytes": 329184,
+      "sha256": "e5e5eab098c0f59c7b885e2f68118aa69a6e27a7206acae0bac594a13bdea58a",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_20.mp3",
+      "bytes": 331776,
+      "sha256": "88a6dbe03f168f7256663aeb3aab9d5b700c069ec83f7bcae25272a66d8e089a",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_21.mp3",
+      "bytes": 341424,
+      "sha256": "d619cdf44c47eac7948500362f4b9667e8f646249653ed2f3525bbd13c1f6f9c",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_22.mp3",
+      "bytes": 338976,
+      "sha256": "52ced9b9183ea62aae152300ec533a77945e50512dc73f8113eb5eef6b416366",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_23.mp3",
+      "bytes": 338544,
+      "sha256": "69625ec9a959fa7bd814b315d4d7e94337563ecb2e735ef7e59777654fe61974",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_24.mp3",
+      "bytes": 348912,
+      "sha256": "a9db24e0aa33069a44f2ef2135c76d17275b479531daa2d61c1b2ecd47a7e6c2",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_25.mp3",
+      "bytes": 355248,
+      "sha256": "3428905b7170844de98555ddf16a344662d0369df0442b6f7ba9f018f9e07254",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_26.mp3",
+      "bytes": 363024,
+      "sha256": "5bd581890772c5f7534fcf40149166353a10dfdf121aa9af5e71b93079db92da",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_27.mp3",
+      "bytes": 354672,
+      "sha256": "0c41d8b1e94549db448520ea578fe814d29bc166e27f5deb373378cd84c0a485",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_28.mp3",
+      "bytes": 354672,
+      "sha256": "cd40ac2cfb5b8e01021d7113599c1d2b10ea3395a886638eed51e61c488ca385",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_29.mp3",
+      "bytes": 336816,
+      "sha256": "25435b69432c52556381e3171ff3a02ee1c4c5b28567af3c5525010ffa33529a",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_30.mp3",
+      "bytes": 341424,
+      "sha256": "aab92bb164271d9b7f5edb6a511a7269eb3b1f4a3730b1e8aaaba8244123fb35",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_31.mp3",
+      "bytes": 313488,
+      "sha256": "629d4e29061aa487e18e39da1db666b14ec126855ec3bc9b21e1a3355224936b",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_90.mp3",
+      "bytes": 300672,
+      "sha256": "a9d91d29ac4466131320e602c68bfe606909f059a01e37d1f9ac5cfc79956951",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_91.mp3",
+      "bytes": 299520,
+      "sha256": "cdb087645cd0fe19715ec8a2e0beeb6ca4e7827fa0e78aa460d3d745359e26a5",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "voice_92.mp3",
+      "bytes": 296784,
+      "sha256": "6180c9e28f654b1a86161fe667585bb8603602a605222677cd16de789df7144b",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    }
+  ]
+}

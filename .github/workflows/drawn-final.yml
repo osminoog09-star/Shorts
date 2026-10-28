@@ -1,4 +1,4 @@
-name: M1lash drawn lab final masters
+name: M1lash drawn lab final masters v2
 on:
   push:
     branches: [codex/drawn-explainers-20261028]
