@@ -1,0 +1,51 @@
+name: Samsung V6 precise worldwide national polygons
+on:
+  push:
+    branches: [codex/samsung-long-map-20261027]
+    paths: ['.github/workflows/samsung-v6-geo-all.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download official Natural Earth vectors with verification
+        run: |
+          python - <<'PY'
+          import pathlib,json,urllib.request,time
+          url="https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries.geojson"
+          for attempt in range(4):
+            try:
+              with urllib.request.urlopen(url,timeout=80) as response: raw=response.read()
+              break
+            except Exception as e:
+              print("retry",attempt,str(e),flush=True)
+              if attempt==3: raise
+              time.sleep(5)
+          original=json.loads(raw)
+          print("FEATURES",len(original['features']),"BYTES",len(raw),flush=True)
+          keepkeys=['ADMIN','NAME','ISO_A2','ISO_A2_EH','ISO_A3','ADM0_A3','SOV_A3','WB_A2']
+          cleaned={'type':'FeatureCollection','source_url':url,'license':'Public domain (Natural Earth)','features':[]}
+          seen=set()
+          for f in original['features']:
+            p=f['properties']
+            iso3=p.get('ADM0_A3')
+            if not iso3 or iso3 in seen:continue
+            seen.add(iso3)
+            props={k:p.get(k) for k in keepkeys}
+            cleaned['features'].append({'type':'Feature','properties':props,'geometry':f['geometry']})
+          out=pathlib.Path('samsung_v6_natural_earth_10m_all.geojson')
+          out.write_text(json.dumps(cleaned,separators=(',',':'),ensure_ascii=False))
+          pathlib.Path('samsung_v6_natural_earth_source.txt').write_text(url+'\nNatural Earth public domain, 1:10m countries, downloaded for original educational mapping.\n')
+          print("RESULT",out.stat().st_size,len(cleaned['features']),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: samsung-v6-world-country-polygons-10m
+          path: |
+            samsung_v6_natural_earth_10m_all.geojson
+            samsung_v6_natural_earth_source.txt
+          if-no-files-found: error
+          retention-days: 30
