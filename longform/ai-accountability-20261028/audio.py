@@ -41,4 +41,9 @@ async def main():
  for s in scenes:s['start']=at;at+=s['duration']+.18
  (OUT/'timeline.json').write_text(json.dumps(dict(duration=at,scenes=scenes),ensure_ascii=False,indent=2))
  print('MEASURED',at,at/60,flush=True)
+ if '--smoke' not in sys.argv:
+  short=dict(id=90,chapter='Чужой контекст',kind='fact',visual='leak',title='ЭТО НЕ ГАЛЛЮЦИНАЦИЯ?',text=(ROOT/'short.txt').read_text().strip(),cta=True)
+  await asyncio.wait_for(synth(short,sem),timeout=180)
+  short['start']=0
+  (OUT/'short_timeline.json').write_text(json.dumps(dict(duration=short['duration']+.18,scenes=[short]),ensure_ascii=False,indent=2))
 asyncio.run(main())

@@ -195,12 +195,14 @@ def join(paths,name):
  li=BUILD/(name+'.concat.txt');li.write_text('\n'.join("file '"+str(Path(p).resolve())+"'" for p in paths))
  out=BUILD/(name+'.mp4');subprocess.run(['ffmpeg','-v','error','-y','-f','concat','-safe','0','-i',str(li),'-c','copy','-movflags','+faststart',str(out)],check=True);return out
 if __name__=='__main__':
- ap=argparse.ArgumentParser();ap.add_argument('--stills',action='store_true');ap.add_argument('--pilot',action='store_true');ap.add_argument('--workers',type=int,default=5);args=ap.parse_args()
+ ap=argparse.ArgumentParser();ap.add_argument('--stills',action='store_true');ap.add_argument('--pilot',action='store_true');ap.add_argument('--short',action='store_true');ap.add_argument('--workers',type=int,default=5);args=ap.parse_args()
  timeline=json.loads((BUILD/'timeline.json').read_text());scenes=timeline['scenes'];scenes[-1]['cta']=True
  if args.stills:
   qa=BUILD/'qa';qa.mkdir(exist_ok=True)
   for s in scenes:
    for tt in [1,9,20]:frame(s,min(tt,s['duration']),visemes='X'*int((s['duration']+1)*30)).save(qa/f"scene_{s['id']:02d}_{tt}.jpg",quality=90)
+ elif args.short:
+  short=json.loads((BUILD/'short_timeline.json').read_text())['scenes'][0];print(join([render_scene((90,short,True))],'M1lash_AI_Context_Short_20261028_RU'))
  elif args.pilot:
   s=dict(scenes[0]);s['duration']=min(24,s['duration']);join([render_scene((99,s,False))],'pilot')
  else:
