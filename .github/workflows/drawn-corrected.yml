@@ -1,0 +1,142 @@
+name: M1lash drawn lab corrected science and mystery release
+on:
+  push:
+    branches: [codex/drawn-explainers-20261028]
+    paths: [.github/workflows/drawn-corrected.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  render:
+    strategy:
+      fail-fast: false
+      matrix:
+        ids: ["90", "92"]
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            longform/drawn-lab-20261028
+            studio/src/Narrator2.tsx
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prepare exact tools and original engine
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core libcairo2
+          pip install edge-tts==7.3.1 cairosvg
+          git clone --depth 1 https://github.com/alchaincyf/huashu-motion.git /tmp/huashu-motion
+          git -C /tmp/huashu-motion fetch --depth 1 origin 52467f99c602b76ba86d511d37acdfe93fa1e16e
+          git -C /tmp/huashu-motion checkout --detach 52467f99c602b76ba86d511d37acdfe93fa1e16e
+          curl --fail -L -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.13.0/Rhubarb-Lip-Sync-1.13.0-Linux.zip
+          unzip -q /tmp/rhubarb.zip -d /tmp/rhubarb
+          cd longform/drawn-lab-20261028
+          npm ci --ignore-scripts
+          npm rebuild esbuild
+      - uses: actions/download-artifact@v4
+        with:
+          name: m1lash-drawn-all-accepted-voices
+          run-id: 40764224486
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/drawn-lab-20261028/build
+      - uses: actions/download-artifact@v4
+        with:
+          name: m1lash-drawn-measured-timelines
+          run-id: 40764224486
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/drawn-lab-20261028/build
+      - name: Original host artwork and actual lip cues
+        env:
+          RHUBARB: /tmp/rhubarb/Rhubarb-Lip-Sync-1.13.0-Linux/rhubarb
+        run: |
+          cd longform/drawn-lab-20261028
+          ./node_modules/.bin/esbuild host.tsx --bundle --platform=node --external:react --external:react-dom/server --outfile=build/host.cjs
+          node build/host.cjs
+          python native_prepare.py --ids=${{ matrix.ids }}
+          python edit_timeline.py
+      - name: Render full native scenes and decode every master
+        env:
+          HUASHU_ROOT: /tmp/huashu-motion
+        run: |
+          cd longform/drawn-lab-20261028
+          if [ "${{ matrix.ids }}" = "92" ]; then python movie.py; fi
+          python build_drawn.py --ids=${{ matrix.ids }}
+          python render_batch.py --ids=${{ matrix.ids }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: drawn-masters-${{ matrix.ids }}
+          path: longform/drawn-lab-20261028/build/masters
+          retention-days: 30
+          if-no-files-found: error
+  join:
+    needs: render
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Wait for accepted main v2 masters
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run watch 40787322956 --exit-status --interval 30
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: drawn-masters-*
+          run-id: 40787322956
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          merge-multiple: true
+          path: longform/drawn-lab-20261028/build/masters
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: drawn-masters-*
+          merge-multiple: true
+          path: longform/drawn-lab-20261028/build/masters
+      - uses: actions/download-artifact@v4
+        with:
+          name: m1lash-drawn-measured-timelines
+          run-id: 40764224486
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/drawn-lab-20261028/build
+      - uses: actions/download-artifact@v4
+        with:
+          name: m1lash-drawn-all-accepted-voices
+          run-id: 40764224486
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/drawn-lab-20261028/build
+      - name: Assemble, normalize, decode and validate
+        run: |
+          cd longform/drawn-lab-20261028
+          python edit_timeline.py
+          python finish.py
+          cd ../..
+          python tools/movie_edit/validate_mystery.py longform/drawn-lab-20261028/mystery_release_private.json
+          python scripts/qa/longform_duration_gate.py longform/drawn-lab-20261028/build/release/M1lash_Battery_Drawn_RU.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: M1lash_Drawn_Lab_One_Long_Three_Shorts_RU
+          path: longform/drawn-lab-20261028/build/release
+          retention-days: 30
+      - name: Preserve private review release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG=m1lash-drawn-lab-20261028-review
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --draft --target "${{ github.sha }}" --title "M1lash drawn lab — review candidates" --notes "Private review candidates. Not published on YouTube. See CHECKS and PUBLISH."
+          gh release upload "$TAG" longform/drawn-lab-20261028/build/release/*.mp4 longform/drawn-lab-20261028/build/release/*.srt longform/drawn-lab-20261028/build/release/PUBLISH.md longform/drawn-lab-20261028/build/release/CHECKS.json --clobber
+          python -c "import pathlib,tarfile; b=pathlib.Path('longform/drawn-lab-20261028/build'); t=tarfile.open('/tmp/drawn-voices-private.tar.gz','w:gz'); [t.add(p,arcname=p.name) for p in b.iterdir() if (p.name.startswith('voice_') and p.suffix in {'.mp3','.json'}) or p.name.endswith('timeline.json')]; t.close()"
+          gh release upload "$TAG" /tmp/drawn-voices-private.tar.gz --clobber

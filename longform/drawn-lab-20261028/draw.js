@@ -32,6 +32,7 @@ function world(t){T=t;stage=Math.max(0,beats.filter(x=>x<=t).length-1);q=(t-beat
  const elapsed=t-beats[stage],shots=[[1,0,0],[1.55,300,15],[1.55,-290,-10],[1.22,0,30]],from=shots[(stage+3)%4],to=shots[variant],f=ease(elapsed/.65);
  let cam=stage?from[0]+(to[0]-from[0])*f:1,px=stage?from[1]+(to[1]-from[1])*f:0,py=stage?from[2]+(to[2]-from[2])*f:0;
  if(t<3.3){const burst=Math.sin(Math.PI*t/3.3);cam=1+.52*burst;px=250*burst;py=-18*burst}else{cam*=1+.055*ease(q);px+=35*ease(q)}
+ if(S.visual==='plane'){cam=1.06+.12*Math.sin(Math.PI*Math.min(t,3.3)/3.3);px=350-((t*32)%500);py=70-(t%8)*15}
  INK_PROGRESS=stage===0?clamp(.12+t/1.05):clamp(.35+elapsed/1.0);
  g.save();g.beginPath();g.rect(P?30:50,P?430:265,P?1020:1490,P?690:550);g.clip();g.translate(P?540:860,P?735:530);const z=P?.82:.94;g.scale(z*cam,z*cam);g.translate(px,py);
 

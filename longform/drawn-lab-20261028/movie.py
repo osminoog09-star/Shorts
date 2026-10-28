@@ -12,7 +12,7 @@ if not source.exists():
 s=json.loads((B/'short_92_timeline.json').read_text())['scenes'][0];D=s['duration']+.18
 def when(w):return next(x['offset']/1e7 for x in s['words']if x['text'].lower()==w.lower())
 # Actual silent source shots were checked on a whole-film contact sheet.
-cuts=[(0,320,1000), (when('Сначала'),65,510),(when('потом'),195,710),(when('внутрь'),280,920),(when('запуск'),320,1000),(when('посадка'),354,720),(when('встреча'),509,730),(when('Это'),511,770),(when('Попробуй'),550,720),(when('Сейчас'),666,760),(when('Подпишись'),703,720)]
+cuts=[(0,320,1000), (when('Сначала'),65,510),(when('потом'),195,710),(when('внутрь'),280,920),(when('запуск'),352.2,600),(when('посадка'),371,720),(when('встреча'),554,630),(when('Это'),562,630),(when('Попробуй'),595,730),(when('Сейчас'),666,760),(when('Подпишись'),703,720)]
 cuts.sort();parts=B/'movie_parts';parts.mkdir(exist_ok=True);paths=[];shotlog=[]
 for i,(at,start,cx)in enumerate(cuts):
  end=cuts[i+1][0]if i+1<len(cuts)else D;dur=end-at
