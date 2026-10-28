@@ -16,11 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: recursive
+          persist-credentials: false
           sparse-checkout: |
+            .gitmodules
             skills/ext/huashu-motion
             scripts/huashu-motion
           sparse-checkout-cone-mode: false
+      - name: Initialize only the pinned public upstream
+        run: git submodule update --init --depth 1 skills/ext/huashu-motion
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
