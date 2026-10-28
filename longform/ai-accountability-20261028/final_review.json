@@ -1,0 +1,47 @@
+{
+  "status": "RELEASE_CANDIDATE",
+  "date": "2026-10-28",
+  "files": [
+    {
+      "file": "M1lash_AI_Context_Shorts_20261028_RU.mp4",
+      "sha256": "981a5e6f34ca169f0903c2b7d72d19813abd6b23fcfc2084fded3f0b32c67c97",
+      "duration": 50.6,
+      "width": 1080,
+      "height": 1920,
+      "fps": "30/1",
+      "frames": 1517,
+      "pixel_format": "yuv420p",
+      "av_duration_difference": 0.033333,
+      "full_decode": "passed in final CI run 40752722147"
+    },
+    {
+      "file": "M1lash_AI_News_20261028_RU.mp4",
+      "sha256": "f955f8fc7780e6809186abf3d2fb25ac745b28dd12f16f5f12abbed7cf2ad66c",
+      "duration": 1634.744,
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "frames": 49037,
+      "pixel_format": "yuv420p",
+      "av_duration_difference": 0.085341,
+      "full_decode": "passed in final CI run 40752722147"
+    }
+  ],
+  "engine": "original huashu-motion 0.3.1 pinned 52467f99c602b76ba86d511d37acdfe93fa1e16e",
+  "voice": "32 retained segments and both CTA metadata verified as ru-RU-DmitryNeural +0%, edge-tts; no fallback",
+  "lip_sync": "Rhubarb 1.13.0 phonetic cues recalculated from accepted audio",
+  "visual_review": "31 chapter contact sheets; native preflight; actual decoded opening, dense Opera caption, fact card and both CTA/end frames inspected",
+  "music": "procedural original huashu soundtrack; Laeko not included because permission for this AI use was not confirmed",
+  "publication": "not uploaded to YouTube; no schedule changes",
+  "limitations": [
+    "Complete uninterrupted viewer watch and subjective listening not certified",
+    "Technical and sampled visual checks do not establish artistic score or predict views/retention"
+  ],
+  "source_audio": "private draft release asset M1lash_20261028_accepted_voice_sources.tar.gz; preservation workflow 40754354417 succeeded",
+  "final_main_audio_measurement": {
+    "integrated_loudness_lufs": -15.0,
+    "loudness_range_lu": 2.7,
+    "sample_peak_dbfs": -1.2,
+    "measurement": "FFmpeg ebur128 across the complete final audio; sample peak, not a true-peak certification"
+  }
+}
