@@ -1,15 +1,10 @@
 {
-  "status": "partial",
-  "updated_at": "2026-10-28T04:33:27.468345Z",
-  "last_attempt_at": "2026-10-28T04:33:27.468345Z",
-  "feeds_ok": 6,
-  "feeds_failed": 1,
-  "errors": [
-    {
-      "source": "NASA Technology",
-      "error_type": "HTTPError"
-    }
-  ],
+  "status": "success",
+  "updated_at": "2026-10-28T04:34:31.416659Z",
+  "last_attempt_at": "2026-10-28T04:34:31.416659Z",
+  "feeds_ok": 7,
+  "feeds_failed": 0,
+  "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
     {
