@@ -1,0 +1,52 @@
+name: M1lash Neurooffice V2 — code render and direct MP4 (never YouTube)
+on:
+  push:
+    branches: [codex/neurooffice-v2-direct-download-20261028]
+    paths:
+      - '.github/workflows/neurooffice-v2-direct.yml'
+      - 'shorts/neurooffice-v2/render_v2.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  render-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Prepare FFmpeg and Python
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          python -m pip install --quiet pillow numpy
+      - name: Verify V1 source audio and extract original Dmitry voice
+        run: |
+          set -euo pipefail
+          test -s videos/m1lash_neurooffice_demo_ru_51s.mp4
+          ffmpeg -nostdin -v error -y -i videos/m1lash_neurooffice_demo_ru_51s.mp4 -map 0:a:0 -c:a copy shorts/neurooffice-v2/voice_dima.m4a
+          ffprobe -v error -show_entries format=duration -of default=nk=1:nw=1 shorts/neurooffice-v2/voice_dima.m4a
+      - name: Render 1243 true code-animated frames, preserving audio
+        run: |
+          set -euo pipefail
+          python shorts/neurooffice-v2/render_v2.py --render
+          test -s shorts/neurooffice-v2/output/NEUROOFFICE_V2_CODE_ANIMATED_RU.mp4
+          ffmpeg -nostdin -v error -xerror -i shorts/neurooffice-v2/output/NEUROOFFICE_V2_CODE_ANIMATED_RU.mp4 -f null -
+      - name: Write downloadable MP4 into branch
+        run: |
+          set -euo pipefail
+          mkdir -p videos
+          cp shorts/neurooffice-v2/output/NEUROOFFICE_V2_CODE_ANIMATED_RU.mp4 videos/M1lash_Neurooffice_V2_RU.mp4
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add videos/M1lash_Neurooffice_V2_RU.mp4
+          git diff --cached --quiet || git commit -m 'release: add verified original V2 code-rendered MP4 (manual YouTube upload)'
+          git push origin HEAD:refs/heads/codex/neurooffice-v2-direct-download-20261028
+      - name: Also attach workflow artifact for archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: M1lash-Neurooffice-V2-RU-1080x1920
+          path: videos/M1lash_Neurooffice_V2_RU.mp4
+          if-no-files-found: error
