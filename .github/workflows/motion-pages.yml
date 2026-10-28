@@ -18,14 +18,17 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - name: Validate JavaScript
-        run: node --check motion-studio/app.js
+        run: |
+          node --check motion-studio/app.js
+          node --check motion-studio/studio-v2.js
+          python3 motion-studio/automation/site_smoke.py
       - uses: actions/configure-pages@v5
       - name: Prepare only browser assets
         run: |
           mkdir -p _site
-          cp motion-studio/index.html motion-studio/app.js motion-studio/style.css motion-studio/world.json _site/
+          cp motion-studio/index.html motion-studio/studio-v2.js motion-studio/studio-v2.css motion-studio/renderer.html motion-studio/app.js motion-studio/style.css motion-studio/world.json _site/
           cp -r motion-studio/data _site/data
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3

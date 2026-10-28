@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b111b">
+<meta name="description" content="M1lash Studio — управление роликами, голосами, стилями и командой агентов YouTube-студии.">
+<title>M1lash Studio · Продюсерская панель</title>
+<link rel="stylesheet" href="./studio.css">
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../"><span class="brand-sign">M<span>1</span></span><span><b>M1LASH</b><small>CREATIVE STUDIO</small></span></a>
+  <div class="workspace">WORKSPACE <span>PRODUCTION / 01</span></div>
+  <nav class="navigation" aria-label="Основные разделы">
+    <button type="button" data-tab="create" class="nav active"><span class="nav-icon">◈</span> Новый выпуск</button>
+    <button type="button" data-tab="agents" class="nav"><span class="nav-icon">♟</span> Команда агентов</button>
+    <button type="button" data-tab="styles" class="nav"><span class="nav-icon">◧</span> Библиотека стилей</button>
+    <button type="button" data-tab="queue" class="nav"><span class="nav-icon">◷</span> Производство</button>
+    <button type="button" data-tab="settings" class="nav"><span class="nav-icon">⚙</span> Настройки</button>
+  </nav>
+  <div class="sidebar-bottom">
+    <span class="status-signal"></span><div><b>Безопасная подготовка</b><small>Публикация только с одобрением</small></div>
+  </div>
+  <a class="subtle-link" href="../">← Старый Motion Studio</a>
+</aside>
+<div class="app">
+<header class="topbar">
+  <div><span class="breadcrumb">M1lash / Studio / </span><span id="sectionTitle">Новый выпуск</span></div>
+  <div class="topright"><span id="saveMessage">Локальный черновик</span><a class="header-link" href="https://github.com/osminoog09-star/Shorts/actions" target="_blank" rel="noopener noreferrer">GitHub Actions ↗</a></div>
+</header>
+<main>
+<section id="tab-create" class="page active">
+  <div class="page-heading">
+    <div><p class="eyebrow">AI VIDEO PRODUCTION SYSTEM</p><h1>Создаём не просто видео.<br><em>Создаём историю.</em></h1><p>Задай тему, выбери визуальный язык и команду. Производственный пакет собирается по этапам и ждёт контроля качества перед выпуском.</p></div>
+    <div class="page-metric"><small>НОВЫЙ СТАНДАРТ</small><strong>21:00<span>+</span></strong><small>минимум для длинных роликов</small></div>
+  </div>
+  <div class="stepper"><div class="step active"><span>01</span> Идея и формат</div><div class="line"></div><div class="step"><span>02</span> Стиль и голос</div><div class="line"></div><div class="step"><span>03</span> Агенты</div><div class="line"></div><div class="step"><span>04</span> Проверка и запуск</div></div>
+  <div class="columns">
+    <div class="maincol">
+    <section class="panel">
+      <div class="panel-title"><h2>01 / Концепция выпуска</h2><span class="muted">ОСНОВА ИСТОРИИ</span></div>
+      <div class="form-grid">
+        <div class="field stretch"><label for="topic">Тема / рабочее название</label><input id="topic" maxlength="180" autocomplete="off" placeholder="Например: Как роботы изменят нашу работу к 2030 году"></div>
+        <div class="field stretch"><label for="brief">Что именно показать зрителю?</label><textarea id="brief" rows="4" maxlength="4500" placeholder="Основной конфликт, что проверить, какие демонстрации и истории нужны..."></textarea></div>
+        <div class="field"><label for="format">Формат</label><select id="format"><option value="long">Полное видео · 21+ минут</option><option value="short">Shorts · вертикальное</option></select></div>
+        <div class="field"><label for="duration">Плановая длительность</label><select id="duration"></select></div>
+        <div class="field"><label for="language">Язык канала</label><select id="language"><option value="ru">Русский / M1lash RU</option><option value="en">English / M1lash EN</option></select></div>
+        <div class="field"><label for="voice">Голос рассказчика</label><select id="voice"><option value="dima">Дима · основной / утверждённый</option><option value="sveta">Света · второстепенный / утверждённый</option><option value="orion-ru">Орион RU · эксперимент</option><option value="nova-ru">Нова RU · эксперимент</option><option value="orion-en">Орион EN · эксперимент</option></select></div>
+        <div class="field stretch"><label for="sources">Источники / ссылки для исследования</label><textarea id="sources" rows="3" maxlength="2500" placeholder="https://...&#10;https://..."></textarea><small>Наличие ссылок не означает, что факты уже проверены. Агент-исследователь должен это подтвердить.</small></div>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="panel-title"><h2>02 / Визуальный стиль</h2><span class="muted">СОБСТВЕННЫЙ ПОЧЕРК</span></div>
+      <div class="seg-tabs" role="group" aria-label="Группа стилей"><button data-group="official" class="selected">S1–S9 · официальные</button><button data-group="experimental">X01–X12 · лаборатория</button></div>
+      <div id="styleChoices" class="style-grid"></div>
+      <div class="field"><label for="depth">Глубина графики</label><select id="depth"><option value="D2">D2 — 2D</option><option value="D25">D25 — 2.5D</option><option value="D3">D3 — 3D</option></select></div>
+      <div class="style-details" id="styleDetails">Выбери один стиль для выпуска.</div>
+    </section>
+    <section class="panel">
+      <div class="panel-title"><h2>03 / Команда и автоматизация</h2><span class="muted">КТО ДЕЛАЕТ РОЛИК</span></div>
+      <div id="agentSelections" class="agent-list"></div>
+      <div class="notice">Автоподготовка запустит проверяемые этапы и сохранит их результаты в GitHub Actions. Генерация оригинальных изображений, полноценного MP4 и озвучки требует подключённых движков/API и не считается готовой без реального рендера.</div>
+    </section>
+    </div>
+    <div class="sidecol">
+      <section class="panel sticky-panel">
+        <div class="panel-title"><h2>Производственное задание</h2><span class="tag">LIVE CONFIG</span></div>
+        <div class="preview-art" aria-hidden="true"><div class="orb"></div><div class="art-grid"></div><div class="art-mark">M1<span>STUDIO</span></div><div class="art-bottom"><span>01 / YOUR NEXT STORY</span><span>AI · VIDEO</span></div></div>
+        <div class="summary-row"><span>Формат</span><b id="sumFormat">Полное видео</b></div>
+        <div class="summary-row"><span>Длительность</span><b id="sumDuration">25:00</b></div>
+        <div class="summary-row"><span>Стиль</span><b id="sumStyle">S9 / D3</b></div>
+        <div class="summary-row"><span>Озвучка</span><b id="sumVoice">Дима</b></div>
+        <div class="summary-row"><span>Агентов</span><b id="sumAgents">8</b></div>
+        <div class="estimate"><span>ПРОВЕРКА ГОТОВНОСТИ</span><p id="readiness">Укажи тему выпуска.</p></div>
+        <button id="submitJob" class="primary full" type="button">Создать задание в GitHub <span>↗</span></button>
+        <button id="exportConfig" class="secondary full" type="button">↓ Скачать конфигурацию JSON</button>
+        <p class="fineprint">Отправка открывает GitHub и требует подтверждения в твоём аккаунте. Не вставляй сюда пароли, секреты и частные файлы: репозиторий публичный. Автоматической публикации на YouTube нет.</p>
+      </section>
+    </div>
+  </div>
+</section>
+<section id="tab-agents" class="page"><div class="page-heading small"><div><p class="eyebrow">THE CREATIVE CREW</p><h1>Каждому этапу — <em>свой агент.</em></h1><p>Агенты не заменяют проверку фактов и авторское решение. Их результаты переходят по цепочке, с контрольными точками качества.</p></div></div><div id="agentCards" class="directory"></div></section>
+<section id="tab-styles" class="page"><div class="page-heading small"><div><p class="eyebrow">VISUAL LANGUAGE LIBRARY</p><h1>21 визуальный <em>почерк.</em></h1><p>9 утверждённых стилей S и 12 экспериментальных X. Выбирай под жанр, а не ради случайного эффекта.</p></div></div><div id="allStyles" class="directory"></div></section>
+<section id="tab-queue" class="page"><div class="page-heading small"><div><p class="eyebrow">PRODUCTION TRACKER</p><h1>Производство <em>и результаты.</em></h1><p>Здесь видны задачи, созданные через GitHub. Проверяй реальный результат в Actions, а не обещание готовности.</p></div><button id="refreshJobs" class="secondary">↻ Обновить</button></div><div class="panel"><div class="panel-title"><h2>Последние задания</h2><a href="https://github.com/osminoog09-star/Shorts/issues?q=label%3Am1lash-studio" target="_blank" rel="noopener noreferrer">Все в GitHub ↗</a></div><div id="queueList" class="queue-list"><p class="muted">Открой этот раздел, чтобы загрузить очередь.</p></div></div></section>
+<section id="tab-settings" class="page"><div class="page-heading small"><div><p class="eyebrow">SYSTEM SETUP</p><h1>Управление <em>без лишних чатов.</em></h1><p>Дизайн и выбор параметров работают в браузере. Автоматический запуск — через безопасный GitHub Actions pipeline.</p></div></div><div class="directory"><section class="panel"><h2>Сайт</h2><p>Открыт на GitHub Pages. Код и настройки темы сохраняются локально. Ключи и токены в этой панели не вводятся.</p><a class="textlink" href="../">Старый Motion Studio ↗</a></section><section class="panel"><h2>Команда и голоса</h2><p>Дима и Света остаются утверждёнными голосами. Орион / Нова — экспериментальные профили собственного Voice Studio; для реального синтеза нужен локальный GPU с проверенными весами.</p><a class="textlink" href="https://github.com/osminoog09-star/Shorts/tree/codex/m1lash-studio-release-audit-20261028/tools/voice_studio" target="_blank" rel="noopener noreferrer">Voice Studio в GitHub ↗</a></section><section class="panel"><h2>Безопасность</h2><p>Задания создаются только через вход в GitHub, запуск разрешён владельцу репозитория. Не вставляй приватные источники: публичные Issues видны всем. Выпуск на YouTube заблокирован до отдельного утверждения.</p><a class="textlink" href="https://github.com/osminoog09-star/Shorts/actions" target="_blank" rel="noopener noreferrer">Проверить GitHub Actions ↗</a></section><section class="panel"><h2>Настройки студии</h2><p>Сбросить только локальный черновик. GitHub Issues, ролики и файлы это не удаляет.</p><button id="clearDraft" class="secondary">Сбросить настройки на устройстве</button></section></div></section>
+</main>
+<footer>© M1lash Studio · Программное производство видео · <span>Контроль качества важнее скорости</span></footer>
+</div>
+</div>
+<script src="./studio.js" defer></script>
+</body>
+</html>

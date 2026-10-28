@@ -1,0 +1,34 @@
+name: M1lash Studio - owner requested AI agents and video research
+on:
+  issues:
+    types: [opened]
+permissions:
+  contents: read
+  issues: read
+concurrency:
+  group: m1lash-studio-issue-${{ github.event.issue.number }}
+  cancel-in-progress: false
+jobs:
+  prepare:
+    if: github.event.issue.user.login == 'osminoog09-star' && startsWith(github.event.issue.title, '[M1LASH STUDIO]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Offline agent input and video research tests
+        run: python -m unittest discover -s tests -p 'test_m1lash_studio_jobs.py' -v
+      - name: Run validated research preparation
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          M1LASH_VIDEO_API_ENABLED: ${{ vars.M1LASH_VIDEO_API_ENABLED }}
+        run: |
+          python motion-studio/automation/prepare_job.py --event "$GITHUB_EVENT_PATH" --out studio-output
+      - name: Keep research and prompts as review artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: m1lash-studio-research-${{ github.event.issue.number }}
+          path: studio-output/
+          retention-days: 14

@@ -62,7 +62,7 @@ async def render(job_path, outdir):
     try:
         async with async_playwright() as pw:
             browser=await pw.chromium.launch(args=['--no-sandbox']);page=await browser.new_page(viewport={'width':width,'height':height},device_scale_factor=1)
-            await page.goto(f'http://127.0.0.1:{server.server_port}/');await page.wait_for_function('window.motionReady === true')
+            await page.goto(f'http://127.0.0.1:{server.server_port}/renderer.html');await page.wait_for_function('window.motionReady === true')
             await page.evaluate('(p)=>window.motionSetProject(p)',p)
             await page.add_style_tag(content='body>*{display:none!important} body{margin:0!important;background:black!important} #preview{display:block!important;position:fixed!important;left:0!important;top:0!important;max-width:none!important;width:'+str(width)+'px!important;height:'+str(height)+'px!important} body>.app,main,#view-studio,.studio-grid,.preview-panel,.canvas-wrap{display:contents!important} canvas{visibility:visible!important}')
             # Move only the actual canvas to the body, no UI CSS affects the render.
