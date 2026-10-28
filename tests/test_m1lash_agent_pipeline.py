@@ -95,7 +95,7 @@ class ProductionPipeline(unittest.TestCase):
             self.assertEqual(summary["run_id"],123456789)
             self.assertFalse(summary["output_is_final_video"])
             self.assertEqual(len(summary["stages"]),10)
-            self.assertNotIn("GEMINI_API_KEY",comment)
+            self.assertNotIn("mock-private-key",comment)
 
     def test_unsafe_source_rejected(self):
         pack=p.load_pack(54)
