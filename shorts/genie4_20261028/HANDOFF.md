@@ -22,3 +22,11 @@ Owner: GPT-6 research-only agent. Branch: `research/genie4-20261028-radar` (NOT 
 
 ## Release status
 **NO-GO / production package only.** No actual `dima_ru.mp3`, no `dima_visemes.json`, no MP4, no YouTube ID, no live slot verification. All source links are in the report. Public branch contains no film clips and no unlicensed footage.
+
+
+## 28.10 — Implementation attempt (GPT-6, follow-up)
+- Created the real Python production renderer: `shorts/genie4_20261028/render_genie4.py` and push-triggered `.github/workflows/genie4-experimental-render.yml`. It uses eight existing shots, procedural original S7-D25 visuals, and the approved `studio/src/HostCorner.tsx`, with refreshed Rhubarb visemes and proper FFmpeg QA if an approved voice becomes available. No unlicensed Google demo, no archived Liam outro, no YouTube publishing. Branch only.
+- GitHub Actions [run 40692002156](https://github.com/osminoog09-star/Shorts/actions/runs/40692002156): failed fast due Python syntax; fixed in commit `f67d9786c15bd47c5b9e6eac5529a17ac0ff7cd9`.
+- GitHub Actions [run 40692195247](https://github.com/osminoog09-star/Shorts/actions/runs/40692195247): dependencies installed, actual Edge TTS execution attempted. **NO-GO**: three retries of `ru-RU-DmitryNeural` yielded `NoAudioReceived('No audio was received. Please verify that your parameters are correct.')`. Full TTS, lipsync and MP4 were therefore correctly NOT claimed. Offline Piper/Liam fallback expressly prohibited by AGENTS/CODEX_NOTICE.
+- Added `preview_genie4.py` and `.github/workflows/genie4-visual-only.yml` to produce a visibly labeled NON-RELEASE 20-second original animation proof, with no audio, no avatar and no lip-sync, so it cannot be mistaken for the completed Shorts. Preview result must be verified separately.
+- Do not schedule or post. When approved `ru-RU-DmitryNeural` becomes available, rerun production and inspect 8 voice segments, visemes, video/audio frames and rights before release; do not assume any successful rendering from this report.
