@@ -1,0 +1,105 @@
+name: Samsung V8 researched additional Dima and Sveta narration
+on:
+  push:
+    branches: [codex/samsung-long-map-20261027]
+    paths: ['.github/workflows/samsung-v8-long-tts.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  tts:
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [0,1,2,3,4,5,6,7,8,9]
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: codex/samsung-long-map-20261027}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install -q "edge-tts>=7,<8"
+      - name: Prepare paragraph speech segments without losing a word
+        env: {GROUP: '${{ matrix.group }}'}
+        run: |
+          python - <<'PY'
+          import os,re,json,pathlib
+          g=int(os.environ['GROUP'])
+          doc=json.loads(pathlib.Path('jobs/tts/samsung_v8_new_research.json').read_text())
+          selected=doc['paragraphs'][g*2:g*2+2]
+          out=pathlib.Path('jobs/tts/v8_part_jobs')
+          out.mkdir(parents=True,exist_ok=True)
+          manifest=[]
+          for par in selected:
+              sentences=re.split(r'(?<=[.!?])\s+',par['text'])
+              batches=[];buf=[]
+              for sent in sentences:
+                  if buf and len((' '.join(buf)+' '+sent).split())>42:
+                      batches.append(' '.join(buf));buf=[]
+                  buf.append(sent)
+              if buf:batches.append(' '.join(buf))
+              assert ' '.join(batches).split()==par['text'].split(),par['id']
+              for k,t in enumerate(batches):
+                  name=par['id']+'_'+str(k).zfill(2)
+                  job={'voice':par['voice'],'rate':'+1%','pitch':'+0Hz','lines':[{'id':name,'text':t}]}
+                  file=out/(name+'.json')
+                  file.write_text(json.dumps(job,ensure_ascii=False),encoding='utf-8')
+                  manifest.append({'segment':name,'chapter':par['id'],'speaker':par['speaker'],'voice_id':par['voice'],'title':par['title'],'after_original':par['after_original'],'text':t,'sources':par['sources']})
+          pathlib.Path('jobs/tts/v8_part_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
+          print('GROUP',g,'PARAGRAPHS',len(selected),'CLIPS',len(manifest),'WORDS',sum(len(m['text'].split()) for m in manifest),flush=True)
+          PY
+      - name: Synthesize and preserve successful exact-voice clips
+        shell: bash
+        run: |
+          python - <<'PY'
+          import pathlib,subprocess,json,time
+          manifest=json.loads(pathlib.Path('jobs/tts/v8_part_manifest.json').read_text())
+          bad=[]
+          for m in manifest:
+              name=m['segment']
+              job=pathlib.Path('jobs/tts/v8_part_jobs')/(name+'.json')
+              dst=pathlib.Path('media/tts/v8_part_jobs')/(name+'.mp3')
+              for attempt in range(3):
+                  r=subprocess.run(['timeout','130','python','scripts/tts_job.py',str(job)],capture_output=True,text=True)
+                  mp3=pathlib.Path('media/tts')/name/name+'.mp3'
+                  meta=mp3.with_suffix('.json')
+                  if mp3.exists() and meta.exists() and mp3.stat().st_size>1700:
+                      dst.parent.mkdir(parents=True,exist_ok=True)
+                      dst.write_bytes(mp3.read_bytes())
+                      (dst.with_suffix('.json')).write_bytes(meta.read_bytes())
+                      print('OK',name,'bytes',dst.stat().st_size,flush=True)
+                      break
+                  print('FAILED TRY',name,attempt,(r.stdout+r.stderr)[-500:],flush=True)
+              else:bad.append(name)
+          pathlib.Path('jobs/tts/v8_failures.json').write_text(json.dumps(bad))
+          print('MISSING',bad,flush=True)
+          PY
+      - name: Verify generated clips and metadata
+        if: always()
+        run: |
+          python - <<'PY'
+          import json,pathlib,subprocess
+          f=pathlib.Path('jobs/tts/v8_part_manifest.json')
+          if not f.exists():raise SystemExit(1)
+          a=json.loads(f.read_text());ok=0
+          for m in a:
+              mp3=pathlib.Path('media/tts/v8_part_jobs')/(m['segment']+'.mp3')
+              meta=mp3.with_suffix('.json')
+              if not mp3.exists():continue
+              j=json.loads(meta.read_text())
+              assert j['text']==m['text'] and j['voice_id']==m['voice_id']
+              subprocess.run(['ffmpeg','-v','error','-xerror','-i',str(mp3),'-f','null','-'],check=True)
+              ok+=1
+          print('CLIPS',ok,'/',len(a))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: samsung-v8-ru-neural-group-${{ matrix.group }}
+          path: |
+            media/tts/v8_part_jobs/
+            jobs/tts/v8_part_manifest.json
+            jobs/tts/v8_failures.json
+            jobs/tts/samsung_v8_new_research.json
+          if-no-files-found: warn
+          retention-days: 30
