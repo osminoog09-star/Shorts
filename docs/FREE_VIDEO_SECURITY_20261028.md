@@ -28,3 +28,5 @@ python scripts/m1lash_calendar_audit.py --input reports/videos.csv
 1. New Dima outro needs actual recording, synchronized lips and human listening approval plus hash attestation; no fake approval.
 2. Character design and true motion remain below 8/10 in prior audited pilot; change the model/rig, not just line art.
 3. Metricool/YouTube slots and analytics require live connected source verification; local CSV only lists previously recorded claims.
+
+Staging run 40627450664: passed (GitHub Actions, 28 October 2026). PySceneDetect 0.7.2 and dependencies downloaded; ZIP checks and pip-audit reported no known vulnerabilities at that moment, isolated install and version smoke test passed. This does NOT certify that all possible threats are absent. A future run archives the inspected wheel files along with SHA256 manifest for owner download; no wheel is committed to Git.
