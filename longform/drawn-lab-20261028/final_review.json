@@ -1,0 +1,115 @@
+{
+  "status": "RELEASE_CANDIDATE",
+  "files": [
+    {
+      "file": "M1lash_Battery_Drawn_RU.mp4",
+      "duration": 1623.8,
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "decode": "PASS",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "M1lash_Plane_Drawn_Shorts_RU.mp4",
+      "duration": 50.4,
+      "width": 1080,
+      "height": 1920,
+      "fps": "30/1",
+      "decode": "PASS",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "M1lash_Venus_Drawn_Shorts_RU.mp4",
+      "duration": 50.2,
+      "width": 1080,
+      "height": 1920,
+      "fps": "30/1",
+      "decode": "PASS",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    },
+    {
+      "file": "m1lash_movie_mystery_002_ru.mp4",
+      "duration": 49.7,
+      "width": 1080,
+      "height": 1920,
+      "fps": "30/1",
+      "decode": "PASS",
+      "voice_id": "ru-RU-DmitryNeural",
+      "rate": "+0%"
+    }
+  ],
+  "full_decode": "PASS",
+  "continuous_subjective_watch_and_listen": "not certified",
+  "publication": "not published or scheduled",
+  "run_id": 40788332502,
+  "artifact_id": 12860364319,
+  "sampled_scene_review": "Contacts across all29 main scenes, portrait diagrams and movie frames; continuous playback/listening not certified",
+  "motion_qa": "Reading-hold/flat-motion warnings retained; not silently marked PASS",
+  "local_files": [
+    {
+      "file": "M1lash_Battery_Drawn_RU.mp4",
+      "bytes": 296450145,
+      "duration": 1623.8,
+      "video_duration": "1623.684049",
+      "audio_duration": "1623.800000",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "M1lash_Plane_Drawn_Shorts_RU.mp4",
+      "bytes": 8649787,
+      "duration": 50.4,
+      "video_duration": "50.300000",
+      "audio_duration": "50.400000",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "file": "M1lash_Venus_Drawn_Shorts_RU.mp4",
+      "bytes": 6816365,
+      "duration": 50.2,
+      "video_duration": "50.100000",
+      "audio_duration": "50.200000",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "file": "m1lash_movie_mystery_002_ru.mp4",
+      "bytes": 90355590,
+      "duration": 49.7,
+      "video_duration": "49.633333",
+      "audio_duration": "49.700000",
+      "width": 1080,
+      "height": 1920
+    }
+  ],
+  "loudness": [
+    {
+      "file": "M1lash_Battery_Drawn_RU.mp4",
+      "integrated_lufs": -15.0,
+      "true_peak_dbfs": -1.3
+    },
+    {
+      "file": "M1lash_Plane_Drawn_Shorts_RU.mp4",
+      "integrated_lufs": -15.1,
+      "true_peak_dbfs": -1.5
+    },
+    {
+      "file": "M1lash_Venus_Drawn_Shorts_RU.mp4",
+      "integrated_lufs": -15.0,
+      "true_peak_dbfs": -1.6
+    },
+    {
+      "file": "m1lash_movie_mystery_002_ru.mp4",
+      "integrated_lufs": -15.2,
+      "true_peak_dbfs": -1.4
+    }
+  ],
+  "movie_sampled_frames": 15,
+  "public_text_spoiler_check": "PASS, actual SRT and public movie package",
+  "workflow_conclusion": "success"
+}
