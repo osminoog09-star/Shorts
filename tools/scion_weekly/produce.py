@@ -160,9 +160,25 @@ async def speak(i,rec):
     kind,title,sub,speaker,copy=rec
     voice=VOICES[speaker]
     path=OUT/f"{i:02d}.mp3"
+    wav=OUT/f"{i:02d}.wav"
+    meta=OUT/f"{i:02d}.json"
+    # Cache ONLY the exact approved voice+text. This survives interrupted Actions runs.
+    if meta.is_file() and wav.is_file() and path.is_file():
+        try:
+            previous=json.loads(meta.read_text(encoding="utf-8"))
+            verified=(previous.get("voice_id")==voice and previous.get("text")==copy
+                      and previous.get("audio_sha256")==hashlib.sha256(wav.read_bytes()).hexdigest())
+            if verified:
+                with wave.open(str(wav)) as f:
+                    verified=f.getframerate()==SR and f.getnframes()>SR
+            if verified:
+                print("CACHED",i,voice,flush=True)
+                return previous
+        except (OSError,ValueError,KeyError,EOFError,wave.Error):
+            pass
     words=[]
     last=None
-    for attempt in range(9):
+    for attempt in range(12):
         try:
             path.unlink(missing_ok=True)
             words=[]
@@ -178,9 +194,11 @@ async def speak(i,rec):
             with wave.open(str(wav)) as f:
                 if f.getframerate()!=SR or f.getnframes()<SR:raise RuntimeError("Bad speech duration")
                 duration=f.getnframes()/SR
-            return dict(index=i,kind=kind,title=title,sub=sub,speaker=speaker,
+            record=dict(index=i,kind=kind,title=title,sub=sub,speaker=speaker,
                         voice_id=voice,text=copy,words=words,duration=duration,
                         audio_sha256=hashlib.sha256(wav.read_bytes()).hexdigest())
+            meta.write_text(json.dumps(record,ensure_ascii=False,indent=2),encoding="utf-8")
+            return record
         except Exception as e:
             last=e
             await asyncio.sleep(min(16,2+attempt*2))
@@ -260,6 +278,7 @@ async def main():
         item=await speak(i,scene)
         items.append(item)
         print("TTS",i+1,"/",len(S),item["speaker"],round(item["duration"],2),flush=True)
+        await asyncio.sleep(4)  # keep load low on Microsoft voice service
     pos=0.0;blocks=[]
     for r in items:
         samples=readwav(OUT/f'{r["index"]:02d}.wav')
