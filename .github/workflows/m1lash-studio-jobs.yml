@@ -1,34 +1,59 @@
-name: M1lash Studio - owner requested AI agents and video research
+name: M1lash Studio - research, writing, directing and honest stage status
 on:
   issues:
     types: [opened]
+  issue_comment:
+    types: [created]
+
 permissions:
   contents: read
-  issues: read
+  issues: write
+
 concurrency:
-  group: m1lash-studio-issue-${{ github.event.issue.number }}
+  group: m1lash-production-issue-${{ github.event.issue.number }}
   cancel-in-progress: false
+
 jobs:
-  prepare:
-    if: github.event.issue.user.login == 'osminoog09-star' && startsWith(github.event.issue.title, '[M1LASH STUDIO]')
+  produce:
+    if: >-
+      github.event.issue.user.login == 'osminoog09-star' &&
+      startsWith(github.event.issue.title, '[M1LASH STUDIO]') &&
+      (github.event_name == 'issues' ||
+       (github.event_name == 'issue_comment' &&
+        github.event.comment.user.login == 'osminoog09-star' &&
+        github.event.comment.body == '/studio run'))
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 22
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12'
-      - name: Offline agent input and video research tests
-        run: python -m unittest discover -s tests -p 'test_m1lash_studio_jobs.py' -v
-      - name: Run validated research preparation
+      - name: Validate owner request and stage contracts offline
+        run: |
+          python -m unittest discover -s tests -p 'test_m1lash_studio_jobs.py' -v
+          python -m unittest discover -s tests -p 'test_m1lash_agent_pipeline.py' -v
+      - name: Actual source research and optional owner-approved text generation
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          M1LASH_VIDEO_API_ENABLED: ${{ vars.M1LASH_VIDEO_API_ENABLED }}
+          M1LASH_TEXT_AI_ENABLED: ${{ vars.M1LASH_TEXT_AI_ENABLED }}
         run: |
-          python motion-studio/automation/prepare_job.py --event "$GITHUB_EVENT_PATH" --out studio-output
-      - name: Keep research and prompts as review artifacts
+          python motion-studio/automation/run_agents.py --event "$GITHUB_EVENT_PATH" --out studio-output
+      - name: Package source files, stage report and script drafts (if any)
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: m1lash-studio-research-${{ github.event.issue.number }}
+          name: m1lash-studio-production-${{ github.event.issue.number }}
           path: studio-output/
           retention-days: 14
+      - name: Compose verified progress comment
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: |
+          python motion-studio/automation/progress_comment.py --manifest studio-output/stages.json --out studio-output/progress_comment.md
+      - name: Show per-agent status directly in GitHub and M1lash Studio site
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/issues/$ISSUE_NUMBER/comments" --method POST --field body="$(cat studio-output/progress_comment.md)"
