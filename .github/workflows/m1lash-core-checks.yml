@@ -1,0 +1,27 @@
+name: M1lash core safeguards - offline only
+on:
+  push:
+    branches: [codex/studio-hardening-free-tools-20261028]
+    paths: ['scripts/m1lash_calendar_audit.py','scripts/render_news_20261028.py','scripts/qa/test_news_voice_policy.py','tools/m1lash_qa/**','tools/security/**','tools/free_video/**','tests/test_m1lash_*.py','.github/workflows/m1lash-core-checks.yml']
+  pull_request:
+    paths: ['scripts/m1lash_calendar_audit.py','scripts/render_news_20261028.py','scripts/qa/test_news_voice_policy.py','tools/m1lash_qa/**','tools/security/**','tools/free_video/**','tests/test_m1lash_*.py','.github/workflows/m1lash-core-checks.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test without any external package downloads
+        run: |
+          python -m py_compile scripts/render_news_20261028.py tools/m1lash_qa/preflight.py
+          python scripts/qa/test_news_voice_policy.py
+          python -m unittest discover -s tests -p 'test_m1lash_*.py' -v
+          python scripts/m1lash_calendar_audit.py --input reports/videos.csv
+      - name: Report workflow security debt (read-only)
+        run: python tools/security/workflow_audit.py

@@ -1,0 +1,37 @@
+name: M1lash free tool staging - isolated download and audit
+on:
+  push:
+    branches: [codex/studio-hardening-free-tools-20261028]
+    paths: ['tools/free_video/**','tools/security/wheel_guard.py','.github/workflows/m1lash-free-tools-staging.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download pinned wheels only (do not install or run)
+        run: |
+          python -m pip download --only-binary=:all: --dest wheelhouse -r tools/free_video/requirements-scene.txt
+      - name: Static ZIP / integrity inspection BEFORE install
+        run: python tools/security/wheel_guard.py wheelhouse > wheel-inspection.json
+      - name: Scan pinned package dependency advisories (read-only query)
+        run: |
+          python -m pip install 'pip-audit>=2.7,<3'
+          python -m pip_audit --requirement tools/free_video/requirements-scene.txt --progress-spinner off
+      - name: Install isolated tool after safeguards
+        run: |
+          python -m venv .scene-venv
+          .scene-venv/bin/python -m pip install --no-index --find-links wheelhouse -r tools/free_video/requirements-scene.txt
+          .scene-venv/bin/python -m scenedetect version
+      - name: Archive inspected wheel checksums (no executable upload)
+        uses: actions/upload-artifact@v4
+        with:
+          name: scene-tool-wheel-manifest
+          path: wheel-inspection.json
+          retention-days: 14
