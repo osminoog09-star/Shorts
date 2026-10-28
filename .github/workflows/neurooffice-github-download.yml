@@ -1,0 +1,32 @@
+name: Neurooffice · publish downloadable MP4 in GitHub branch (not YouTube)
+on:
+  push:
+    branches: [codex/neurooffice-voice-short-20261028]
+    paths: ['.github/workflows/neurooffice-github-download.yml']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  make-direct-link:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Download completed, verified demo artifact
+        run: gh run download 40702703538 -n neurooffice-voiced-short-demo -D /tmp/neurooffice-delivery
+      - name: Commit MP4 to this demo branch for direct download
+        run: |
+          set -euo pipefail
+          test -s /tmp/neurooffice-delivery/NEUROOFFICE_VOICE_SHORT_RU.mp4
+          mkdir -p videos
+          cp /tmp/neurooffice-delivery/NEUROOFFICE_VOICE_SHORT_RU.mp4 videos/m1lash_neurooffice_demo_ru_51s.mp4
+          ffprobe -v error -show_entries format=duration -of default=nk=1:nw=1 videos/m1lash_neurooffice_demo_ru_51s.mp4
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add videos/m1lash_neurooffice_demo_ru_51s.mp4
+          git diff --cached --quiet || git commit -m 'chore(neurooffice): attach verified voiced demo MP4'
+          git push origin HEAD:refs/heads/codex/neurooffice-voice-short-20261028
