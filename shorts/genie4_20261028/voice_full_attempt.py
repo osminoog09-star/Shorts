@@ -18,9 +18,17 @@ async def main():
     async for chunk in c.stream():
      if chunk["type"]=="audio":f.write(chunk["data"]);n+=len(chunk["data"])
      if chunk["type"]=="WordBoundary":words.append(dict(w=chunk["text"],start=chunk["offset"]/1e7,end=(chunk["offset"]+chunk["duration"])/1e7))
-   if n<40000 or len(words)<80:
-    raise ValueError(f"incomplete audio n={n}, word count={len(words)}")
-   md={"voice_id":"ru-RU-DmitryNeural","engine":"edge-tts","rate":"+0%","text":text,"shot_texts":[s["text"] for s in shots],"words":words,"bytes":n,"is_dima":True}
+   if n<40000:
+    raise ValueError(f"incomplete audio n={n}")
+   # Valid Edge audio may omit WordBoundary events; lip-sync done via Rhubarb.
+   import subprocess
+   check=subprocess.run(["ffprobe","-v","error","-show_entries","format=duration","-of","default=noprint_wrappers=1:nokey=1",str(file)],capture_output=True,text=True)
+   if check.returncode or not check.stdout.strip() or float(check.stdout)<15:
+    raise ValueError("Bad MP3 duration: "+check.stderr[-300:])
+   decode=subprocess.run(["ffmpeg","-v","error","-i",str(file),"-f","null","-"],capture_output=True,text=True)
+   if decode.returncode:
+    raise ValueError("MP3 full decode failed: "+decode.stderr[-300:])
+   md={"voice_id":"ru-RU-DmitryNeural","engine":"edge-tts","rate":"+0%","text":text,"shot_texts":[s["text"] for s in shots],"words":words,"word_boundaries_available":bool(words),"duration":float(check.stdout),"bytes":n,"is_dima":True}
    (P/"voice_manifest.json").write_text(json.dumps(md,ensure_ascii=False,indent=2))
    print("SUCCESS",n,len(words),flush=True)
    return
