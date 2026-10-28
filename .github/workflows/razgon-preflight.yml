@@ -1,0 +1,32 @@
+name: Razgon 2D · adapter tests (no publish)
+on:
+  push:
+    paths:
+      - 'tools/razgon/**'
+      - 'tests/test_razgon_preflight.py'
+      - 'skills/m1lash-razgon/**'
+      - '.github/workflows/razgon-preflight.yml'
+  pull_request:
+    paths:
+      - 'tools/razgon/**'
+      - 'tests/test_razgon_preflight.py'
+      - 'skills/m1lash-razgon/**'
+      - '.github/workflows/razgon-preflight.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-adapter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Syntax and unit tests
+        run: |
+          python -m py_compile tools/razgon/preflight.py
+          python -m unittest discover -s tests -p test_razgon_preflight.py -v
+      - name: Non-publishing QA
+        run: echo 'Adapter-only; vendor Chromium E2E and licensing still pending.'
