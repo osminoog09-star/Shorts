@@ -1,0 +1,47 @@
+name: Verify original huashu-motion installation
+on:
+  push:
+    paths:
+      - .gitmodules
+      - skills/ext/huashu-motion
+      - scripts/huashu-motion
+      - .github/workflows/huashu-motion-check.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          sparse-checkout: |
+            skills/ext/huashu-motion
+            scripts/huashu-motion
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify pinned original and requirements
+        run: |
+          test "$(git -C skills/ext/huashu-motion rev-parse HEAD)" = 52467f99c602b76ba86d511d37acdfe93fa1e16e
+          ./scripts/huashu-motion doctor
+      - name: Exercise original package and production modules
+        run: |
+          cd skills/ext/huashu-motion
+          node --import ./test/setup.mjs --test test/package.test.js test/music.test.js test/templates-3d.test.js test/learn.test.js
+      - name: Create and render a separate internal smoke test
+        run: |
+          ./scripts/huashu-motion new work/huashu-install-smoke --template object-3d
+          ./scripts/huashu-motion check work/huashu-install-smoke
+          ./scripts/huashu-motion render work/huashu-install-smoke --silent --fps 30 --workers 2
+          ./scripts/huashu-motion qa work/huashu-install-smoke
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: huashu-install-smoke-internal
+          path: work/huashu-install-smoke/out
+          retention-days: 7
+          if-no-files-found: warn

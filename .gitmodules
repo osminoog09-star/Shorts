@@ -1,0 +1,3 @@
+[submodule "skills/ext/huashu-motion"]
+	path = skills/ext/huashu-motion
+	url = https://github.com/alchaincyf/huashu-motion.git
