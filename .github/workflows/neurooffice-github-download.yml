@@ -24,7 +24,7 @@ jobs:
           test -s /tmp/neurooffice-delivery/NEUROOFFICE_VOICE_SHORT_RU.mp4
           mkdir -p videos
           cp /tmp/neurooffice-delivery/NEUROOFFICE_VOICE_SHORT_RU.mp4 videos/m1lash_neurooffice_demo_ru_51s.mp4
-          ffprobe -v error -show_entries format=duration -of default=nk=1:nw=1 videos/m1lash_neurooffice_demo_ru_51s.mp4
+          python -c "from pathlib import Path; p=Path('videos/m1lash_neurooffice_demo_ru_51s.mp4'); assert p.stat().st_size>1000000 and b'ftyp' in p.read_bytes()[:32]"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add videos/m1lash_neurooffice_demo_ru_51s.mp4
