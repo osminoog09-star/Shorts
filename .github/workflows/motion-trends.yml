@@ -7,6 +7,7 @@ on:
     paths: ['motion-studio/automation/config.json', '.github/workflows/motion-trends.yml']
 permissions:
   contents: write
+  actions: write
 concurrency:
   group: motion-trends
   cancel-in-progress: false
@@ -26,6 +27,8 @@ jobs:
         run: python motion-studio/automation/pipeline.py scan
       - name: Commit measured data only on main; Pages workflow deploys once
         if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name motion-studio-bot
           git config user.email motion-studio-bot@users.noreply.github.com
@@ -34,3 +37,4 @@ jobs:
           git commit -m 'motion: update trend radar measurements'
           git pull --rebase origin main
           git push
+          gh workflow run motion-pages.yml --ref main
