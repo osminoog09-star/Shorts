@@ -65,7 +65,74 @@ function makeJob(){const topic=String(state.topic||'').trim();if(topic.length<8|
 function openGithubJob(obj){if(!confirm('Создать публичное задание через GitHub? Его текст увидят посетители репозитория. Автопубликации нет.'))return;const title='[M1LASH STUDIO] '+String(obj.topic||'Новый выпуск').slice(0,170);const body='Задание M1lash Studio. ПОДГОТОВКА, не готовый ролик.\n\nM1LASH_JOB_START\n'+JSON.stringify(obj)+'\nM1LASH_JOB_END\n\nПубликация на YouTube запрещена без одобрения.';const url='https://github.com/'+REPO+'/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);if(url.length>12000)throw Error('Слишком большой запрос; скачай JSON или сократи текст.');const opened=window.open(url,'_blank','noopener,noreferrer');if(!opened)location.assign(url)}
 function submit(){try{openGithubJob(makeJob())}catch(e){alert(e.message)}}
 function downloadJob(){try{const blob=new Blob([JSON.stringify(makeJob(),null,2)+'\n'],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.download='m1lash-project.json';a.href=url;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}catch(e){alert(e.message)}}
-async function refreshJobs(){const target=$('queueList');target.textContent='Загружаем очередь…';try{const response=await fetch('https://api.github.com/repos/'+REPO+'/issues?state=all&per_page=50&sort=created');if(!response.ok)throw Error('GitHub API '+response.status);const rows=(await response.json()).filter(x=>!x.pull_request&&x.title.startsWith('[M1LASH STUDIO]')).slice(0,16);if(!rows.length){target.textContent='Пока нет заявок. Создай первую.';return}target.replaceChildren(...rows.map(x=>{const el=document.createElement('article');el.className='queue-item';const a=document.createElement('a');a.href=x.html_url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=x.title+' ↗';const meta=document.createElement('small');meta.textContent='Заявка #'+x.number+' · '+x.state+' · полный статус рендера в GitHub Actions';el.append(a,meta);return el}))}catch(e){target.textContent='Не удалось загрузить: '+e.message}}
+const stageLabels={research:'Исследователь',factcheck:'Фактчекер',script:'Сценарист',director:'Режиссёр',image:'Художник',animation:'Аниматор',voice:'Озвучка Димы',editor:'Монтаж',quality:'Аудитор',youtube:'YouTube'};
+const statusLabels={ready:'Материалы созданы',needs_review:'Нужна проверка',blocked:'Ещё не сделано'};
+function parseStageComment(body,issueNumber){
+ if(typeof body!=='string')return null;
+ const a='M1LASH_STAGE_STATUS_BEGIN\n',z='\nM1LASH_STAGE_STATUS_END';
+ const start=body.indexOf(a);
+ if(start<0)return null;
+ const end=body.indexOf(z,start+a.length);
+ if(end<0||end-start>11000)return null;
+ try{
+  const data=JSON.parse(body.slice(start+a.length,end));
+  if(data.schema!==1||data.issue_number!==issueNumber||!Number.isSafeInteger(data.run_id)||!Array.isArray(data.stages))return null;
+  if(data.stages.some(x=>!Object.hasOwn(stageLabels,x.id)||!Object.hasOwn(statusLabels,x.status)))return null;
+  return data;
+ }catch{return null}
+}
+function makeJobCard(issue){
+ const card=document.createElement('article');card.className='queue-item';
+ const link=document.createElement('a');link.href=issue.html_url;link.target='_blank';link.rel='noopener noreferrer';
+ link.textContent=issue.title.replace('[M1LASH STUDIO] ','')+' ↗';
+ const label=document.createElement('small');label.textContent='Задание №'+issue.number+' · '+issue.state+' · ожидаем подробный отчёт агентов';
+ const stages=document.createElement('div');stages.className='stage-list';
+ stages.textContent='Загружаем последние результаты из GitHub…';
+ const info=document.createElement('p');info.className='muted';info.textContent='Новые задания автоматически стартуют в GitHub Actions. Для повтора напиши /studio run в комментарии к заданию.';
+ card.append(link,label,stages,info);
+ return {card,label,stages};
+}
+async function fetchJobStatus(issue,view){
+ try{
+  const response=await fetch('https://api.github.com/repos/'+REPO+'/issues/'+issue.number+'/comments?per_page=35',{headers:{Accept:'application/vnd.github+json'}});
+  if(!response.ok)throw Error('API '+response.status);
+  const comments=await response.json();
+  let status=null;
+  for(const c of comments){
+   // Only bot-written summaries from our workflow, never arbitrary community comments.
+   if(!c.user||c.user.type!=='Bot'||!['github-actions[bot]','github-actions'].includes(c.user.login))continue;
+   const parsed=parseStageComment(c.body,issue.number);
+   if(parsed)status=parsed;
+  }
+  if(!status){view.stages.textContent='Пока есть только GitHub Issue. Последнего отчёта агентов ещё нет.';return}
+  const ready=status.stages.filter(x=>x.status==='ready').length;
+  const review=status.stages.filter(x=>x.status==='needs_review').length;
+  const blocked=status.stages.filter(x=>x.status==='blocked').length;
+  view.label.textContent='Задание №'+issue.number+' · подготовлено этапов: '+ready+' · на проверке: '+review+' · заблокировано: '+blocked;
+  view.stages.replaceChildren(...status.stages.map(x=>{
+   const row=document.createElement('div');row.className='stage-row stage-'+x.status;
+   const name=document.createElement('strong');name.textContent=(stageLabels[x.id]||x.id)+' · '+statusLabels[x.status];
+   const reason=document.createElement('small');reason.textContent=String(x.reason||'').slice(0,250);
+   row.append(name,reason);return row;
+  }));
+  const url='https://github.com/'+REPO+'/actions/runs/'+status.run_id;
+  const artifact=document.createElement('a');artifact.href=url;artifact.className='textlink';artifact.target='_blank';artifact.rel='noopener noreferrer';
+  artifact.textContent='Рабочие файлы, сценарий и отчёт запуска ↗';
+  view.stages.append(artifact);
+ }catch(error){view.stages.textContent='Статус не загружен ('+error.message+'). Открой GitHub Issue для подробностей.'}
+}
+async function refreshJobs(){
+ const target=$('queueList');target.textContent='Загружаем очередь…';
+ try{
+  const response=await fetch('https://api.github.com/repos/'+REPO+'/issues?state=all&per_page=50&sort=created',{headers:{Accept:'application/vnd.github+json'}});
+  if(!response.ok)throw Error('GitHub API '+response.status);
+  const rows=(await response.json()).filter(x=>!x.pull_request&&x.title.startsWith('[M1LASH STUDIO]')).slice(0,8);
+  if(!rows.length){target.textContent='Заданий пока нет. Создай первое через сайт.';return}
+  const views=rows.map(issue=>({issue,view:makeJobCard(issue)}));
+  target.replaceChildren(...views.map(x=>x.view.card));
+  await Promise.all(views.map(x=>fetchJobStatus(x.issue,x.view)));
+ }catch(e){target.textContent='Не удалось загрузить очередь: '+e.message}
+}
 function validNews(item){return item&&typeof item.id==='string'&&typeof item.title==='string'&&typeof item.url==='string'&&item.url.startsWith('https://')&&item.title.length<400}
 function isFresh(date){const time=Date.parse(date||'');return Number.isFinite(time)&&(Date.now()-time>=0)&&(Date.now()-time<7*86400000)}
 let feedCache=[];
