@@ -15,6 +15,8 @@
   <div class="workspace">WORKSPACE <span>PRODUCTION / 01</span></div>
   <nav class="navigation" aria-label="Основные разделы">
     <button type="button" data-tab="create" class="nav active"><span class="nav-icon">◈</span> Новый выпуск</button>
+    <button type="button" data-tab="news" class="nav"><span class="nav-icon">◉</span> Радар новостей</button>
+    <button type="button" data-tab="reference" class="nav"><span class="nav-icon">▣</span> Разбор YouTube</button>
     <button type="button" data-tab="agents" class="nav"><span class="nav-icon">♟</span> Команда агентов</button>
     <button type="button" data-tab="styles" class="nav"><span class="nav-icon">◧</span> Библиотека стилей</button>
     <button type="button" data-tab="queue" class="nav"><span class="nav-icon">◷</span> Производство</button>
@@ -78,6 +80,28 @@
         <button id="exportConfig" class="secondary full" type="button">↓ Скачать конфигурацию JSON</button>
         <p class="fineprint">Отправка открывает GitHub и требует подтверждения в твоём аккаунте. Не вставляй сюда пароли, секреты и частные файлы: репозиторий публичный. Автоматической публикации на YouTube нет.</p>
       </section>
+    </div>
+  </div>
+</section>
+<section id="tab-news" class="page">
+  <div class="page-heading small"><div><p class="eyebrow">FRESH NEWS / 12-HOUR CYCLE</p><h1>Новости, которые <em>стоит снять.</em></h1><p>ИИ, робототехника, космос, разработки. Заголовки собираются из публичных RSS каждые 12 часов, с датой и ссылкой. Выбираешь — и тема сразу попадает в производство Shorts или длинного видео.</p></div><button id="refreshNews" type="button" class="secondary">↻ Обновить список</button></div>
+  <div class="panel">
+    <div class="panel-title"><h2>Лента редакции</h2><span class="tag">Проверяемые ссылки</span></div>
+    <p class="notice" id="newsStatus">Первое получение новостей — после запуска GitHub Actions. Это заголовки источников, не готовые проверенные факты.</p>
+    <div class="field" style="max-width:290px;margin:16px 0"><label for="newsCategory">Тематика</label><select id="newsCategory"><option value="all">Все новости</option><option value="ai">Искусственный интеллект</option><option value="robotics">Робототехника</option><option value="space">Космос</option><option value="technology">Технологии</option></select></div>
+    <div id="newsList" class="directory"><p class="muted">Данные загружаются при открытии вкладки.</p></div>
+  </div>
+</section>
+<section id="tab-reference" class="page">
+  <div class="page-heading small"><div><p class="eyebrow">REFERENCE LAB / YOUTUBE</p><h1>Разбираем чужой <em>приём,</em> а не копируем ролик.</h1><p>Добавь YouTube-ссылку. Студия подготовит задачу на разбор: хук, драматургия, темп, работа камеры, оригинальные сценарные и визуальные промпты.</p></div></div>
+  <div class="panel" style="max-width:900px">
+    <div class="panel-title"><h2>Ссылка на YouTube</h2><span class="tag">Исследование</span></div>
+    <div class="field"><label for="referenceUrl">Видео или Shorts</label><input type="url" id="referenceUrl" placeholder="https://www.youtube.com/watch?v=..." inputmode="url"></div>
+    <button type="button" class="primary" id="analyzeYoutube" style="margin-top:17px">Создать задание на анализ ролика ↗</button>
+    <p class="notice" id="referenceStatus">На публичном GitHub Pages видео не анализируется автоматически. Задание отправляется в GitHub: сначала подтверждённые метаданные и доступные материалы, затем — полный кадро-звуковой аудит только при разрешённом доступе к оригиналу.</p>
+    <div class="directory" style="margin-top:20px">
+      <div><h3>Что извлекаем</h3><p class="muted">Хук, структура, ритм, динамика, стиль изображения, приемы удержания и безопасные оригинальные варианты промптов.</p></div>
+      <div><h3>Чего не обещаем</h3><p class="muted">Нет выдуманного транскрипта, кадр-за-кадром просмотра по одному URL, чужих материалов без лицензии или автоматической публикации.</p></div>
     </div>
   </div>
 </section>
