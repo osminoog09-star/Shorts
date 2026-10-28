@@ -5,7 +5,7 @@ on:
     - cron: '17 6,18 * * *'
   workflow_dispatch:
   push:
-    branches: [codex/m1lash-studio-dashboard-20261028]
+    branches: [main, codex/m1lash-studio-dashboard-20261028]
     paths:
       - 'motion-studio/automation/news_radar.py'
       - 'motion-studio/data/news.json'
