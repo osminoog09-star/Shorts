@@ -61,7 +61,7 @@ jobs:
               dst=pathlib.Path('media/tts/v8_part_jobs')/(name+'.mp3')
               for attempt in range(3):
                   r=subprocess.run(['timeout','130','python','scripts/tts_job.py',str(job)],capture_output=True,text=True)
-                  mp3=pathlib.Path('media/tts')/name/name+'.mp3'
+                  mp3=pathlib.Path('media/tts')/name/(name+'.mp3')
                   meta=mp3.with_suffix('.json')
                   if mp3.exists() and meta.exists() and mp3.stat().st_size>1700:
                       dst.parent.mkdir(parents=True,exist_ok=True)
