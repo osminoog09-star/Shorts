@@ -60,7 +60,10 @@ jobs:
           python -m pip install 'Pillow>=11,<13' 'edge-tts>=7,<8'
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg
-      - name: Generate real Dima narration (no substitutes), original motion, and 1080p full video
+      - name: Generate real Dima narration (same voice via Azure if configured), original motion, and 1080p full video
+        env:
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          AZURE_SPEECH_REGION: ${{ vars.AZURE_SPEECH_REGION }}
         run: python film54/produce.py --out film54-output
       - name: Mandatory ≥21:00 technical MP4 release gate
         run: |
