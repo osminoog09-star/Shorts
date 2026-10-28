@@ -7,3 +7,5 @@ The drawn-final workflow reuses the 35 accepted voice files from run 40764224486
 Full native rendering, OM check/QA, decode, format and duration checks produce RELEASE_CANDIDATE outputs. These checks do not certify complete subjective viewing/listening. No publication or scheduling is performed. Public captions omit the final spoken movie answer. Review YouTube automatic captions before publication too.
 
 Pipeline: host.tsx → native_prepare.py → edit_timeline.py → movie.py (movie batch only) → build_drawn.py --ids=... → render_batch.py --ids=... → finish.py. Script, treatment and storyboard are editable production sources. Music and SFX are procedurally authored; no unverified commercial track is substituted.
+
+Review iterations and remaining verification limits are recorded in DIRECTOR_REVIEW.md. The final full build is run40788332502; earlier partial/recovery builds are superseded. Audio joins via continuous PCM to preserve chapter boundaries without copied AAC priming timestamps.

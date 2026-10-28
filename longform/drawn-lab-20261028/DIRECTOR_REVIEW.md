@@ -1,0 +1,15 @@
+# Drawn lab review notes · 29 October 2026
+
+The first full render was an internal draft. It was not delivered as a final release.
+
+1. Scientific frames read too quietly at phone size. Native OM QA reported a flat opening and low image-motion measures. Replaced the nearly fixed wide view with caption-anchored detail shots, progressive ink strokes, larger portrait drawings, a much larger filled aircraft, and a tracked plane camera. Hide the portrait narrator during the central explanation. This is an actual iteration; low-motion warnings are not a certificate of poor or good retention and must not be silently called PASS.
+2. The first macro iteration clipped in-canvas labels. The seven-scene still review showed partial electrode captions and diagnostic labels. Main/numerical diagrams now retain a complete overview, and the canvas text renderer suppresses a label atomically if its bounds leave the drawing window. Overview phases show the complete labels. The opening phone's lower annotation was moved clear of the phone body.
+3. The first movie draft used source times that did not match the spoken events closely enough. Reinspected the entire source and precise source frames. The corrected launch starts352.2s and includes the cannon firing; the landing starts371s and reaches the unusual impact; meeting starts554s and includes the creature encounter. A562s action teaser replaces the empty landscape. Narration and final reveal stay unchanged. The source is muted and public metadata remains answer-free.
+
+Audio integrity: all35 original MP3s fingerprinted in voice-integrity.json; Edge ru-RU-DmitryNeural, +0%, edge-tts, dima. All32 retained spoken scripts matched measured WordBoundary text after normalization. Movie captions finish46.325s; final answer starts47.175s; final spoken word ends48.550s; no speech follows. Actual Rhubarb cues include the full final recording.
+
+Technical correction: direct packet copying across independently encoded AAC parts caused a non-monotonic timestamp at a chapter boundary. Do not weaken xerror. The new join decodes/resamples to one continuous PCM track in a private MOV intermediate, then encodes AAC once for the release. A100.4s two-part reproduction passed with A/V endpoints differing0.037s; the full master must still pass the final decode/drift gate.
+
+Remaining scope of review: technical decode, native checks, sampled frames and source/metadata checks are measurable. A continuous normal-speed subjective watch/listen of every final minute is not certified by this environment. Deliver RELEASE_CANDIDATE, do not publish or claim a creative score/guaranteed views. Review YouTube automatic captions too, so the final spoken answer is not reintroduced in text.
+
+V3 sampled output: inspected all8 contact frames of chapter27 diagnostic and chapter31 ending. Branch labels are whole at overview scale; no cropped words in those frames; narrator and caption regions remain distinct. Some OM whole-frame motion warnings remain on diagram reading holds and the ending. They are retained as observations, not silently marked PASS. Technical export acceptance does not equal complete creative approval.
