@@ -55,7 +55,8 @@ async def speak():
         dur=len(a)/SR
         for v in w:words.append(dict(text=v["text"],start=position+v["start"],end=position+v["end"]))
         segments.append(dict(id=i,text=s["text"],start=position,end=position+dur,voice_id="ru-RU-DmitryNeural",engine="edge-tts",rate="+0%",source_file=str(mp.relative_to(ROOT)),word_count=len(w)))
-        audios.extend((np.zeros(round(.11*SR),dtype="<i2") if i else np.zeros(round(.24*SR),dtype="<i2")),a))
+        audios.append(np.zeros(round(.11*SR),dtype="<i2") if i else np.zeros(round(.24*SR),dtype="<i2"))
+        audios.append(a)
         position+=dur+.11
         meta.write_text(json.dumps(dict(voice_id="ru-RU-DmitryNeural",engine="edge-tts",word_count=len(w),words=w),ensure_ascii=False,indent=2))
     audios.append(np.zeros(round(.6*SR),dtype="<i2"))
