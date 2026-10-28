@@ -31,6 +31,22 @@ class RazgonBridgeTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Incomplete"):
                 bridge.install(zpath, root / "out")
 
+
+    def test_harden_renderer_limits_http_paths(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            vendor = root / "render.mjs"
+            vendor.write_text("""const p = 'stub';
+  const p = url.startsWith('/project/') ? path.join(PROJECT, url.slice(9)) : path.join(ROOT, url);
+  if (!(p.startsWith(ROOT) || p.startsWith(PROJECT)) || !fs.existsSync(p) || fs.statSync(p).isDirectory()) { res.writeHead(404); return res.end(); }
+}).listen(0);""")
+            bridge.harden_renderer(root)
+            updated = vendor.read_text()
+            self.assertIn("127.0.0.1", updated)
+            self.assertIn("path.relative(base, p)", updated)
+            self.assertNotIn("p.startsWith(ROOT)", updated)
+
+
     def test_cast_guard_and_missing_audio(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)
