@@ -27,4 +27,8 @@ async def main():
     print("GEC_VERSION",getattr(co,"SEC_MS_GEC_VERSION",None))
     await check("Привет! Это голос Димы для канала Милашь.","short")
     await check("ИИ создаёт интерактивный мир. Это тест озвучки канала.", "medium")
+    import edge_tts.communicate as cc
+    from edge_tts.constants import TRUSTED_CLIENT_TOKEN
+    cc.WSS_URL = f"wss://api.msedgeservices.com/tts/cognitiveservices/websocket/v1?Ocp-Apim-Subscription-Key={TRUSTED_CLIENT_TOKEN}"
+    await check("Привет! Это Дима, ведущий канала Милашь.", "alternative_host")
 asyncio.run(main())
