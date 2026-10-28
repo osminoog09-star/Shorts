@@ -242,7 +242,7 @@ def main():
     args=parser.parse_args()
     event=json.loads(Path(args.event).read_text(encoding="utf-8"))
     job=parse_issue(event["issue"])
-    state=prepare(job,args.out,key=os.environ.get("GEMINI_API_KEY",""))
+    state=prepare(job,args.out,key=(os.environ.get("GEMINI_API_KEY","") if os.environ.get("M1LASH_VIDEO_API_ENABLED")=="true" else ""))
     print("Studio job:",state,"output:",args.out)
 
 
