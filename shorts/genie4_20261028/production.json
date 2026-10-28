@@ -1,0 +1,142 @@
+{
+  "project": "M1lash",
+  "date": "2026-10-28",
+  "slug": "genie4_worlds_ru",
+  "branch": "research/genie4-20261028-radar",
+  "status": "PRODUCTION_PACKAGE_ONLY_NO_GO",
+  "title": "ИИ делает игровой мир прямо на ходу — но есть подвох",
+  "language": "ru",
+  "format": "short",
+  "target": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "duration_hint_seconds": 55,
+    "duration_is_estimate": true
+  },
+  "style": {
+    "options": [
+      "S7-D25",
+      "S3-D25",
+      "S9-D3"
+    ],
+    "suggested": "S7-D25",
+    "approved": false
+  },
+  "voices": [
+    {
+      "speaker": "dima",
+      "voice_id": "ru-RU-DmitryNeural",
+      "engine": "Microsoft Edge TTS",
+      "rate": "+0%",
+      "source_file": "work/genie4/dima_ru.mp3",
+      "file_exists": false
+    }
+  ],
+  "host": {
+    "type": "HostCorner",
+    "approved_character": true,
+    "asset_source": "studio/src/HostCorner.tsx",
+    "lipsync_tool": "tools/lipsync.sh",
+    "visemes_file": "work/genie4/dima_visemes.json",
+    "visemes_exists": false
+  },
+  "shots": [
+    {
+      "start": 0,
+      "end": 3,
+      "text": "Пишешь одну фразу — и попадаешь в новый мир.",
+      "shot": "prompt_world",
+      "overlay": "МИР ИЗ ОДНОЙ ФРАЗЫ?",
+      "fact": "creative hook"
+    },
+    {
+      "start": 3,
+      "end": 9,
+      "text": "Google DeepMind показала Genie 4: модель создаёт интерактивную сцену, пока ты по ней перемещаешься.",
+      "shot": "world_build",
+      "overlay": "GENIE 4 · 27.10",
+      "fact": "Google/TechCrunch"
+    },
+    {
+      "start": 9,
+      "end": 16,
+      "text": "Можно менять погоду, поворачивать камеру и добавлять персонажей. Мир реагирует сразу.",
+      "shot": "weather_control",
+      "overlay": "МЕНЯЙ МИР НА ХОДУ",
+      "fact": "Google/TechCrunch"
+    },
+    {
+      "start": 16,
+      "end": 22,
+      "text": "И теперь он ещё звучит: ветер, музыка и даже диалоги.",
+      "shot": "native_audio",
+      "overlay": "МИР СО ЗВУКОМ",
+      "fact": "Google/TechCrunch"
+    },
+    {
+      "start": 22,
+      "end": 29,
+      "text": "Но есть подвох: это пока исследовательский доступ для ограниченной группы тестировщиков, а не игра, которую можно скачать сегодня.",
+      "shot": "research_preview",
+      "overlay": "ПОКА НЕ ДЛЯ ВСЕХ",
+      "fact": "Google/TechCrunch"
+    },
+    {
+      "start": 29,
+      "end": 37,
+      "text": "И сама Google признаёт: предметы могут меняться, физика — ошибаться, а надписи — плыть.",
+      "shot": "simulation_limits",
+      "overlay": "СИМУЛЯЦИЯ ОШИБАЕТСЯ",
+      "fact": "Google limitations"
+    },
+    {
+      "start": 37,
+      "end": 44,
+      "text": "Так что GTA по одному предложению пока не заменит разработчиков. Но у игровых движков появился повод нервничать!",
+      "shot": "game_developer_joke",
+      "overlay": "РАЗРАБОТЧИКИ, СПОКОЙНО...",
+      "fact": "opinion/joke"
+    },
+    {
+      "start": 44,
+      "end": 55,
+      "text": "Подпишись! И спасибо всем, кто досмотрел и поставил лайк. Ты бы построил город или космос? Напиши в комментариях.",
+      "shot": "host_cta",
+      "overlay": "ГОРОД ИЛИ КОСМОС?",
+      "fact": "CTA"
+    }
+  ],
+  "source_urls": [
+    "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
+    "https://techcrunch.com/2026/10/27/googles-genie-4-world-model-adds-audio-more-realistic-worlds-and-real-time-steering/"
+  ],
+  "license_policy": "All backgrounds are original procedural art; official Google demo footage is NOT licensed or bundled. Audio: none, until approved voice/music.",
+  "qa": {
+    "status": "NO_GO",
+    "blockers": [
+      "Missing Edge TTS DmitryNeural audio",
+      "Missing host lip-sync and approved outro audio",
+      "No final MP4 decode/audio/visual QA",
+      "No live slot verification"
+    ],
+    "no_automatic_publish": true
+  },
+  "youtube": {
+    "title": "ИИ делает игровой мир прямо на ходу — но есть подвох",
+    "description": "Google DeepMind представила Genie 4 — экспериментальную модель интерактивных миров со звуком. Пока доступ ограничен, а симуляции могут ошибаться. Что бы ты построил первым?\nИсточники:\nhttps://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/\nhttps://techcrunch.com/2026/10/27/googles-genie-4-world-model-adds-audio-more-realistic-worlds-and-real-time-steering/\n#ИИ #Genie4 #Технологии #Игры #Shorts #M1lash",
+    "tags": [
+      "ИИ",
+      "нейросети",
+      "Genie 4",
+      "Google DeepMind",
+      "миры ИИ",
+      "world models",
+      "технологии",
+      "игры будущего",
+      "M1lash",
+      "shorts"
+    ],
+    "first_comment": "Город, космос или что-то совершенно безумное — какой мир ты бы создал? 👇"
+  }
+}
