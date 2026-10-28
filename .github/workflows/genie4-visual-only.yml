@@ -1,0 +1,38 @@
+name: Genie4 S7-D25 · visual only proof · not a release
+on:
+  push:
+    branches:
+      - research/genie4-20261028-radar
+    paths:
+      - "shorts/genie4_20261028/preview_genie4.py"
+      - ".github/workflows/genie4-visual-only.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  storyboard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install offline rendering tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip install -q "numpy>=1.26,<3" "Pillow>=10,<13"
+      - name: Render visual-only motion reference
+        run: python shorts/genie4_20261028/preview_genie4.py
+      - name: Store visual-only proof (NOT a publishable video)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genie4-S7-D25-no-audio-visual-preview
+          path: |
+            work/genie4/GENIE4_S7D25_VISUAL_ONLY_NO_AUDIO.mp4
+            work/genie4/visual_shot_*.png
+            work/genie4/visual_preview_qa.json
+          if-no-files-found: warn
+          retention-days: 30
