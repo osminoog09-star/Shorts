@@ -29,6 +29,10 @@ jobs:
           python -m venv .scene-venv
           .scene-venv/bin/python -m pip install --no-index --find-links wheelhouse -r tools/free_video/requirements-scene.txt
           .scene-venv/bin/python -m scenedetect version
+      - name: Smoke-test scene detection on an existing M1lash MP4
+        run: |
+          .scene-venv/bin/python tools/free_video/scene_report.py videos/m1lash_ai_news_2026_10_28_ru.mp4 --output work/scene_audit
+          find work/scene_audit -type f -name '*.csv' -print -quit | grep -q .
       - name: Archive inspected wheel checksums (no executable upload)
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -36,4 +40,5 @@ jobs:
           path: |
             wheel-inspection.json
             wheelhouse/*.whl
+            work/scene_audit/*.csv
           retention-days: 14
