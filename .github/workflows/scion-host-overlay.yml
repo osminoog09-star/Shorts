@@ -102,6 +102,8 @@ jobs:
             videos/scion_weekly_20261028_dima_sveta_HOST_V2.mp4
             tools/scion_weekly/work/intro_lipsync.json
             tools/scion_weekly/work/outro_lipsync.json
+            tools/scion_weekly/work/host_intro.mov
+            tools/scion_weekly/work/host_outro.mov
           retention-days: 30
       - name: Commit new rendered cut to PR branch
         shell: bash
@@ -109,5 +111,9 @@ jobs:
           git config user.name m1lash-render-bot
           git config user.email m1lash-render-bot@users.noreply.github.com
           git add videos/scion_weekly_20261028_dima_sveta_HOST_V2.mp4
-          git commit -m 'video: approved Narrator2 with Dmitry Rhubarb lip sync'
-          git push origin HEAD:codex/scion-weekly-s8d25-dima-sveta-20261028
+          if ! git diff --cached --quiet; then
+            git commit -m 'video: approved Narrator2 with Dmitry Rhubarb lip sync'
+            git push origin HEAD:codex/scion-weekly-s8d25-dima-sveta-20261028
+          else
+            echo "Rendered host cut unchanged"
+          fi
