@@ -1,0 +1,6 @@
+{
+  "status": "awaiting_configuration",
+  "updated_at": null,
+  "items": [],
+  "methodology": "YouTube API sample only. Set YOUTUBE_API_KEY in GitHub Actions Secrets. No fabricated scans."
+}
