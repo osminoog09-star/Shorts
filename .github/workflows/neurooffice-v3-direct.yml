@@ -1,0 +1,50 @@
+name: Neurooffice V3 · render clean frame and upload direct MP4 (no YouTube)
+on:
+  push:
+    branches:
+      - codex/neurooffice-v3-clean-20261028
+    paths:
+      - .github/workflows/neurooffice-v3-direct.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  render-v3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install code-render dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          python -m pip install --quiet pillow numpy
+      - name: Restore unchanged Dmitry voice directly from V2
+        run: |
+          set -euo pipefail
+          test -s videos/M1lash_Neurooffice_V2_RU.mp4
+          ffmpeg -nostdin -v error -y -i videos/M1lash_Neurooffice_V2_RU.mp4 -map 0:a:0 -c:a copy shorts/neurooffice-v3/voice_dima.m4a
+          python -m py_compile shorts/neurooffice-v3/render_v3.py
+      - name: Render full frame-by-frame code-animated V3
+        run: |
+          set -euo pipefail
+          python -u shorts/neurooffice-v3/render_v3.py --render
+      - name: Validate real MP4 output and audio integrity
+        run: |
+          set -euo pipefail
+          src=shorts/neurooffice-v3/output/NEUROOFFICE_V3_CLEAN_RU.mp4
+          test -s "$src"
+          ffmpeg -nostdin -v error -xerror -i "$src" -f null -
+          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate -show_entries format=duration -of json "$src"
+          mkdir -p videos
+          cp "$src" videos/M1lash_Neurooffice_V3_CLEAN_RU.mp4
+      - name: Commit downloadable MP4 to this branch only
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add videos/M1lash_Neurooffice_V3_CLEAN_RU.mp4
+          git diff --cached --quiet || git commit -m 'video(neurooffice): V3 polished clean-frame voiced MP4'
+          git push origin HEAD:refs/heads/codex/neurooffice-v3-clean-20261028
