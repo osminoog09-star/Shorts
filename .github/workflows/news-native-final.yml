@@ -1,4 +1,4 @@
-name: M1lash native 27-minute news and linked Shorts
+name: M1lash native news resumed verified assembly
 on:
   push:
     branches: [codex/huashu-news-pilot-20261028]
