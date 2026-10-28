@@ -7,8 +7,6 @@ on:
     paths: ['motion-studio/automation/config.json', '.github/workflows/motion-trends.yml']
 permissions:
   contents: write
-  pages: write
-  id-token: write
 concurrency:
   group: motion-trends
   cancel-in-progress: false
@@ -18,7 +16,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12'
       - run: pip install 'requests>=2.32,<3'
@@ -26,7 +24,8 @@ jobs:
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: python motion-studio/automation/pipeline.py scan
-      - name: Commit measured data only
+      - name: Commit measured data only on main; Pages workflow deploys once
+        if: github.ref == 'refs/heads/main'
         run: |
           git config user.name motion-studio-bot
           git config user.email motion-studio-bot@users.noreply.github.com
@@ -35,14 +34,3 @@ jobs:
           git commit -m 'motion: update trend radar measurements'
           git pull --rebase origin main
           git push
-      - name: Prepare browser assets
-        run: |
-          mkdir -p _site
-          cp motion-studio/index.html motion-studio/studio-v2.js motion-studio/studio-v2.css motion-studio/renderer.html motion-studio/app.js motion-studio/style.css motion-studio/world.json _site/
-          cp -r motion-studio/data _site/data
-          touch _site/.nojekyll
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-      - uses: actions/deploy-pages@v4
