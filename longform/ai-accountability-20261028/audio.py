@@ -15,8 +15,8 @@ def blocks():
 async def synth(s,sem):
  async with sem:
   p=OUT/f"voice_{s['id']:02d}.mp3"; meta=p.with_suffix('.json')
-  if not(p.exists() and meta.exists()):
-   for attempt in range(3):
+  if not(p.exists() and meta.exists() and json.loads(meta.read_text()).get('text')==s['text']):
+   for attempt in range(5):
     try:
      events=[]
      with p.open('wb') as f:
@@ -28,15 +28,18 @@ async def synth(s,sem):
      break
     except Exception:
      p.unlink(missing_ok=True)
-     if attempt==2:raise
+     if attempt==4:raise
      await asyncio.sleep(2*(attempt+1))
   s['duration']=duration(p);s['audio']=p.name;s['words']=json.loads(meta.read_text())['words']
   print(s['id'],round(s['duration'],2),flush=True)
 async def main():
  import sys
- scenes=blocks();sem=asyncio.Semaphore(2)
+ scenes=blocks();sem=asyncio.Semaphore(1)
  if '--smoke' in sys.argv: scenes=scenes[:1]
- await asyncio.wait_for(asyncio.gather(*(synth(s,sem) for s in scenes)),timeout=1500)
+ results=await asyncio.wait_for(asyncio.gather(*(synth(s,sem) for s in scenes),return_exceptions=True),timeout=1800)
+ failures=[dict(scene=s['id'],error=type(e).__name__,detail=str(e)[:300]) for s,e in zip(scenes,results) if isinstance(e,BaseException)]
+ (OUT/'voice_status.json').write_text(json.dumps(dict(accepted=[s['id'] for s,e in zip(scenes,results) if not isinstance(e,BaseException)],failed=failures),ensure_ascii=False,indent=2))
+ if failures: raise RuntimeError('Exact Dmitry narration incomplete; accepted segments preserved. '+str(failures))
  at=0
  for s in scenes:s['start']=at;at+=s['duration']+.18
  (OUT/'timeline.json').write_text(json.dumps(dict(duration=at,scenes=scenes),ensure_ascii=False,indent=2))

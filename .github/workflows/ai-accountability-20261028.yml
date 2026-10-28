@@ -8,13 +8,14 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: ai-accountability-20261028
   cancel-in-progress: false
 jobs:
   pilot:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,6 +37,13 @@ jobs:
           cd longform/ai-accountability-20261028
           npm ci --ignore-scripts
           npm rebuild esbuild
+      - name: Reuse the three accepted original Dmitry segments
+        uses: actions/download-artifact@v4
+        with:
+          name: ai-accountability-20261028-pilot-and-voices
+          run-id: 40745105528
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/ai-accountability-20261028/build
       - name: Voice gate · exact Dmitry only, fail closed
         run: python longform/ai-accountability-20261028/audio.py --smoke
       - name: Full narration · measured duration
