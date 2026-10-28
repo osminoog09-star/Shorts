@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 
 import edge_tts
+from voice_cast import APPROVED, validate_job
 
 
 async def one(text, voice, rate, pitch, mp3, meta):
@@ -27,25 +28,44 @@ async def one(text, voice, rate, pitch, mp3, meta):
             elif ch["type"] == "WordBoundary":
                 words.append({"w": ch["text"], "start": ch["offset"] / 1e7,
                               "end": (ch["offset"] + ch["duration"]) / 1e7})
-    meta.write_text(json.dumps({"text": text, "words": words}, ensure_ascii=False, indent=1), encoding="utf-8")
+    if not mp3.is_file() or mp3.stat().st_size < 1024:
+        raise RuntimeError(f"NO-GO: no usable TTS audio for {voice}")
+    meta.write_text(json.dumps({"text": text, "words": words, "voice_id": voice,
+                                "speaker": APPROVED[voice], "engine": "edge-tts",
+                                "rate": rate, "pitch": pitch}, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
 async def main(job_path: str):
     job = json.loads(Path(job_path).read_text(encoding="utf-8"))
+    lines = validate_job(job)  # fail BEFORE writing any new audio
     out = Path("media/tts") / Path(job_path).stem
     out.mkdir(parents=True, exist_ok=True)
-    for ln in job["lines"]:
-        mp3 = out / f"{ln['id']}.mp3"
-        meta = out / f"{ln['id']}.json"
-        if mp3.exists() and meta.exists() and json.loads(meta.read_text(encoding="utf-8")).get("text") == ln["text"]:
-            continue
+    for ident, text, voice, rate, pitch in lines:
+        mp3 = out / f"{ident}.mp3"
+        meta = out / f"{ident}.json"
+        if mp3.is_file() and mp3.stat().st_size >= 1024 and meta.is_file():
+            try:
+                old = json.loads(meta.read_text(encoding="utf-8"))
+                if (old.get("text") == text and old.get("voice_id") == voice
+                        and old.get("engine") == "edge-tts" and old.get("rate") == rate
+                        and old.get("pitch") == pitch):
+                    print("cached", ident, voice, flush=True)
+                    continue
+            except (ValueError, OSError):
+                pass
         for attempt in range(5):
             try:
-                await one(ln["text"], ln.get("voice", job["voice"]), ln.get("rate", job.get("rate", "+0%")),
-                          ln.get("pitch", job.get("pitch", "+0Hz")), mp3, meta)
-                print("ok", ln["id"]); break
+                mp3.unlink(missing_ok=True)
+                meta.unlink(missing_ok=True)
+                await one(text, voice, rate, pitch, mp3, meta)
+                print("ok", ident, voice, flush=True)
+                break
             except Exception as ex:  # noqa: BLE001
-                print("retry", ln["id"], attempt, repr(ex)); mp3.unlink(missing_ok=True)
+                print("retry", ident, attempt, repr(ex), flush=True)
+                mp3.unlink(missing_ok=True)
+                meta.unlink(missing_ok=True)
+                if attempt == 4:
+                    raise RuntimeError(f"NO-GO: {voice} unavailable for {ident}; no fallback") from ex
                 await asyncio.sleep(4 + attempt * 6)
         await asyncio.sleep(1.5)
 
