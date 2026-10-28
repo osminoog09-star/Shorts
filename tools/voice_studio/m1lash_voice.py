@@ -173,6 +173,46 @@ def create_reference(profile, out_dir, model, cpu=False, *, infer=None, save=Non
         raise
 
 
+
+def assemble_wav(lines, output, gap_seconds=0.13):
+    """Join mono 16-bit PCM WAV takes without shell commands or destructive remixing."""
+    import wave
+    first_rate = None
+    total = 0
+    with wave.open(str(output), "wb") as writer:
+        for row in lines:
+            source = output.parent / row["file"]
+            with wave.open(str(source), "rb") as reader:
+                sr, nch, sw = reader.getframerate(), reader.getnchannels(), reader.getsampwidth()
+                if nch != 1 or sw != 2 or sr < 16000 or sr > 96000:
+                    raise ValueError("invalid/stereo PCM input; voice output must be 16bit mono")
+                if first_rate is None:
+                    writer.setnchannels(1)
+                    writer.setsampwidth(2)
+                    writer.setframerate(sr)
+                    first_rate = sr
+                if sr != first_rate:
+                    raise ValueError("sample rate changed mid narration")
+                while True:
+                    buf = reader.readframes(65536)
+                    if not buf:
+                        break
+                    writer.writeframesraw(buf)
+                total += reader.getnframes()
+            if row is not lines[-1]:
+                padding = int(first_rate * gap_seconds)
+                writer.writeframesraw(b"\0\0" * padding)
+                total += padding
+    if first_rate is None or total == 0:
+        raise ValueError("no completed narration audio")
+    return {
+        "full_wav_file": output.name,
+        "full_wav_sha256": sha256(output),
+        "full_wav_duration_s": round(total / first_rate, 3),
+        "full_wav_sample_rate": first_rate
+    }
+
+
 def synthesize(profile, reference_dir, text, out_dir, model, cpu=False, *, infer=None, save=None):
     """Voice-clone OUR OWN generated/authorized reference, emit per-line audio + audit."""
     reference, ref_data = ref_manifest(reference_dir, profile)
@@ -194,7 +234,9 @@ def synthesize(profile, reference_dir, text, out_dir, model, cpu=False, *, infer
         filename = f"line_{i:04}.wav"
         audit = save(out_dir / filename, wavs, sr)
         rows.append({"index": i, "file": filename, "text": part, **audit})
+    full_audio = assemble_wav(rows, out_dir / "narration.wav")
     report = {
+        **full_audio,
         "schema": 1,
         "status": "EXPERIMENTAL_NOT_APPROVED_FOR_PUBLICATION",
         "approved_for_channel": False,
