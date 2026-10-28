@@ -30,11 +30,14 @@ jobs:
           out={};matches={}
           for feature in data.get('features',[]):
             prop=feature.get('properties',{})
-            rawcodes=[prop.get(k,'') for k in ('ISO_A2','ISO_A2_EH','WB_A2','POSTAL','ISO_A2_EH')]
+            rawcodes=[prop.get(k,'') for k in ('ISO_A2','ISO_A2_EH')]
             codes=[str(v).upper() for v in rawcodes if v and v not in ('-99','-1')]
             matches[prop.get('ADMIN','')]=codes
+            expected={'BB':'BRB','BH':'BHR','FM':'FSM','KI':'KIR','MV':'MDV','NR':'NRU','PW':'PLW','SG':'SGP','TO':'TON','TV':'TUV','WS':'WSM','GB':'GBR','RS':'SRB','ME':'MNE','MM':'MMR'}
             for c in codes:
-              if c in need and c not in out:out[c]=feature['geometry']
+              if c in need and c not in out and expected[c] in [prop.get('ADM0_A3'),prop.get('ISO_A3'),prop.get('SOV_A3'),prop.get('GU_A3')]:
+                out[c]=feature['geometry']
+                print('MATCH',c,prop.get('ADMIN'),prop.get('ADM0_A3'),flush=True)
           pathlib.Path('samsung_v5_geo_10m.json').write_text(json.dumps({'source':url,'geometries':out},ensure_ascii=False,separators=(',',':')))
           print('GEO COVERED',len(out),sorted(out),'MISSING',sorted(need-set(out)),flush=True)
           pathlib.Path('samsung_v5_geo_stats.txt').write_text('\n'.join(sorted(f'{k}: {v}' for k,v in matches.items())))
