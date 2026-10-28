@@ -39,3 +39,17 @@ Story arcs to research and build as *new content*, not repeats:
 - Two Shorts funnels remain separate from 21+ constraint and follow channel slots.
 
 **Status:** research and editorial rebuild required; V8 >=21:00 has NOT been rendered or released. Work here is plan/gate correction only.
+
+## ADDENDUM: verified V8 full-length delivery on 2026-10-28 (supersedes prior pre-production NO-GO status for V8 only)
+
+The earlier paragraphs in this same document apply to **V7** and the V8 pre-production state, NOT this newly rendered V8. The current **V8 FullHD was assembled and tested successfully**:
+- **Final 21+ FullHD**: `/mnt/data/M1lash_Samsung_Full_21plus_V8.mp4`, exact `ffprobe` duration **1477.317 s** = 24 min 37.317 sec, 1920×1080, H.264 30fps, AAC audio (audio ~1477.317 s, video ~1477.233 s), container 690,024,043 bytes. File exists in the authorized cloud model runtime, **not uploaded to GitHub**.
+- Passed repository-equivalent `scripts/qa/longform_duration_gate.py`: `pass:true, minimum_seconds:1260.0, issues:[]`. Full FFmpeg video+audio decoder `-xerror` completed **exit 0**, see cloud `/mnt/data/Samsung_V8_21plus/qa/full_decode_exit.txt` and `longform_21_gate.json`.
+- **43 original, sequential chapters**: 26 pre-existing V7 narrated scenes plus **17 entirely new, factual storyboarded, Edge-TTS original-voice sections**, geographically inserted throughout the same 159-country first pass. Added section IDs **E01-E11, E13, E15-E19**. The other 3 planned chapters (E00, E12, E14) were **explicitly deferred** due to Edge TTS `NoAudioReceived` errors and are not replaced by silence/looping/fake voices. No time stretch, slowed video or meaningless padding to reach threshold.
+- New research source: `jobs/tts/samsung_v8_new_research.json` contains **20 researched paragraphs** and 28 unique original declared URLs. Actually included 17 stories, drawing on 25 unique direct sources recorded in cloud `sources_v8.txt`. Not every claim independently fact-checked against two independent institutions; author editorial review remains before publication.
+- Russian narration preserves `ru-RU-DmitryNeural` and `ru-RU-SvetlanaNeural`, not re-voiced with other voice engines. Real `WordBoundary` metadata for newly inserted lines; inherited V7 L20/L24 estimated cue limitations remain.
+- 159 unique country entries in nine groups, original 42 confirmed national Samsung Galaxy storefront offers; 117 retail statuses **unknown, never assumed absent**. No historical NEVER invented.
+- Twelve preview frames were actually extracted from final FullHD MP4 at 00:10 through 24:20, including map scenes, Asia, Russia/Iran region, Europe, Africa, America and world finale. Contact sheet `/mnt/data/Samsung_V8_21plus/qa/contact_v8_21plus.jpg`.
+- Editable source project ZIP `/mnt/data/M1lash_Samsung_V8_EDITABLE_PROJECT.zip` packed 255 files (~18.5 MB) including new script, 60 original 1920×1080 infographic stills, original and new voice MP3, word-boundary metadata, Natural Earth data, source URLs, video assembly scripts, cue audit and chapters. Zip CRC `testzip() PASS`. Private cloud artifact path is not an external public download URL.
+
+**Current status V8: duration + technical decode PASS; editorial human release review still pending; no YouTube publication or guaranteed artistic 10/10.**
