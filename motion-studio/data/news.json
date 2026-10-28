@@ -1,7 +1,7 @@
 {
   "status": "partial",
-  "updated_at": "2026-10-28T12:54:13.069008Z",
-  "last_attempt_at": "2026-10-28T12:54:13.069008Z",
+  "updated_at": "2026-10-28T22:35:13.825078Z",
+  "last_attempt_at": "2026-10-28T22:35:13.825078Z",
   "feeds_ok": 6,
   "feeds_failed": 1,
   "errors": [
@@ -12,6 +12,321 @@
   ],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "0c8f9ce2d60c8e0dbc",
+      "title": "Microsoft just shared Azure’s actual revenue in dollars: $33.2 billion",
+      "url": "https://techcrunch.com/2026/10/28/microsoft-just-shared-azures-actual-revenue-in-dollars-33-2-billion/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-28T21:58:32Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "04fe104cafb4728a8e",
+      "title": "NASA Welcomes Vietnam as Newest Artemis Accords Signatory",
+      "url": "https://www.nasa.gov/organizations/oiir/nasa-welcomes-vietnam-as-newest-artemis-accords-signatory/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-10-28T21:50:01Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e46d29680afeffb35e",
+      "title": "Google expands AI Search ads globally as core ad growth slows",
+      "url": "https://techcrunch.com/2026/10/28/google-expands-ai-search-ads-globally-as-core-ad-growth-slows/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-28T21:48:37Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "020314ea17c3bf3d5e",
+      "title": "Microsoft recorded $10 billion in revenue from OpenAI",
+      "url": "https://techcrunch.com/2026/10/28/microsoft-recorded-10-billion-in-revenue-from-openai/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-28T21:34:30Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "cf0b445a13fca74cd4",
+      "title": "Akai is embracing vibe-coded mods with an open-source MPC",
+      "url": "https://www.theverge.com/gadgets/1021405/akai-open-source-mpc-sample-key",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-28T21:34:04Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "f32d7efe87a5d30e33",
+      "title": "Microsoft hits 10 quarters of record-breaking revenue in a row",
+      "url": "https://techcrunch.com/2026/10/28/microsoft-hits-10-quarters-of-record-breaking-revenue-in-a-row/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-28T21:25:30Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7b5653451a244c2d34",
+      "title": "Google launches Gemini 4 Carbon with a ‘significant leap’ in cybersecurity",
+      "url": "https://www.theverge.com/tech/1021339/google-gemini-4-carbon-cybersecurity-frontier",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-28T20:03:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ba823d52c4011c6cf1",
+      "title": "Trump admin sues Utah to save Kalshi from the state's total ban on gambling",
+      "url": "https://arstechnica.com/tech-policy/2026/10/trump-admin-sues-utah-to-save-kalshi-from-the-states-total-ban-on-gambling/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T19:30:33Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "12f247c9e5fe0f874f",
+      "title": "The last, best hope for space tourism just rolled onto a runway in Arizona",
+      "url": "https://arstechnica.com/space/2026/10/the-last-best-hope-for-space-tourism-just-rolled-onto-a-runway-in-arizona/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T19:20:36Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "3b6696291dbcf94fbf",
+      "title": "Anthropic just launched tools to show companies what their AI spending is buying",
+      "url": "https://techcrunch.com/2026/10/28/anthropic-just-launched-tools-to-show-companies-what-their-ai-spending-is-buying/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-28T19:19:58Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8d8489c29ef17d676e",
+      "title": "Touchscreen MacBook Pro hands-on: OLED looks great on a Mac",
+      "url": "https://arstechnica.com/apple/2026/10/touchscreen-macbook-pro-hands-on-oled-looks-great-on-a-mac/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T19:10:29Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4f99b9d14ea0948f48",
+      "title": "Wiz’s CTO on PHP2Shell and the coming ‘vulnpocalypse’",
+      "url": "https://techcrunch.com/video/wizs-cto-on-php2shell-and-the-coming-vulnpocalypse/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-28T19:05:46Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "132dca1045a75f55ec",
+      "title": "Artemis III SLS Core Stage Joins Boosters at Kennedy",
+      "url": "https://www.nasa.gov/image-article/artemis-iii-sls-core-stage-joins-boosters-at-kennedy/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-10-28T18:59:44Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "297bfab97606129482",
+      "title": "The ‘Vulnpocalypse’ is coming for the internet’s aging code, says Wiz’s CTO",
+      "url": "https://techcrunch.com/podcast/the-vulnpocalypse-is-coming-for-the-internets-aging-code-says-wizs-cto/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-28T18:50:39Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "721146dc4df9479164",
+      "title": "Google announces Gemini 4 Carbon, its latest frontier AI model that you can't use",
+      "url": "https://arstechnica.com/ai/2026/10/google-announces-gemini-4-carbon-its-latest-frontier-ai-model-that-you-cant-use/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T18:47:27Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8c981a7773ea1054fd",
+      "title": "Microsoft is ending Copilot support on smart TVs",
+      "url": "https://www.theverge.com/tech/1021143/microsoft-lg-samsung-copilot-ai-assistant-smart-tvs-ending",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-28T18:36:26Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "6047c8e896d218eb5b",
+      "title": "Amazon turns its most capable smart speaker into a smart camera, too",
+      "url": "https://arstechnica.com/gadgets/2026/10/amazon-adds-a-camera-to-its-best-sounding-smart-speaker-for-30-extra/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T18:05:22Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "23fc4b02995c7c16a2",
+      "title": "NASA University Challenge Ignites Trajectory of Drone Entrepreneur",
+      "url": "https://www.nasa.gov/aeronautics/nasa-challenge-drone-entrepreneur/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-10-28T18:00:28Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "73965435a1734fc39c",
+      "title": "Cadillac Escalade IQ review: Huge battery, huge range, huge SUV",
+      "url": "https://arstechnica.com/cars/2026/10/cadillac-escalade-iq-review-4-tons-of-electric-american-luxury-on-wheels/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T17:55:45Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "f4fbe885f8a380c9bd",
+      "title": "Google AI gets cagey when asked who won the 2020 elections",
+      "url": "https://arstechnica.com/ai/2026/10/google-ai-gets-cagey-when-asked-who-won-the-2020-elections/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T17:46:32Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "576adeb8bf9a9b5ef0",
+      "title": "Florida county won’t investigate sketchy Flock cameras removed by mystery owners",
+      "url": "https://arstechnica.com/tech-policy/2026/10/florida-county-wont-investigate-sketchy-flock-cameras-removed-by-mystery-owners/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T17:37:49Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "cabf6302d4194f1010",
+      "title": "Apple announces touchscreen MacBook Pro with OLED display",
+      "url": "https://arstechnica.com/apple/2026/10/apple-announces-touchscreen-macbook-pro-with-oled-display/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T17:25:04Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "f2796a9e771f5f13b0",
+      "title": "Chrome’s AI-powered Autofill can now dig through your Gmail to fill out forms",
+      "url": "https://techcrunch.com/2026/10/28/chromes-ai-powered-autofill-can-now-dig-through-your-gmail-to-fill-out-forms/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-28T17:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "dc7790b3a03a16cfe3",
+      "title": "As AI agents reshape the web, Google opens Gemini and Search to more apps",
+      "url": "https://techcrunch.com/2026/10/28/as-ai-agents-reshape-the-web-google-opens-gemini-and-search-to-more-apps/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-28T17:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "db30df4bb3be374c70",
+      "title": "Chrome’s enhanced autofill can now pull info from Gmail to help you fill out forms",
+      "url": "https://www.theverge.com/tech/1020626/chrome-enhanced-autofill-gmail-forms-gemini-personal-intelligence",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-28T17:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1583c560106073a3e7",
+      "title": "Meta says it’ll probably delay its controversial new business terms again",
+      "url": "https://www.theverge.com/tech/1020769/meta-updated-business-terms-delay-indefinitely",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-28T16:15:30Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ba816ae2c66dda0a8e",
+      "title": "3 Questions: Why infrastructure is entering a defining era",
+      "url": "https://news.mit.edu/2026/3-questions-why-infrastructure-is-entering-defining-era-1028",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-10-28T16:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c3f3cbf4e178e82211",
+      "title": "AI execs may be too out of touch to build for the general public",
+      "url": "https://techcrunch.com/2026/10/28/ai-execs-may-be-too-out-of-touch-to-build-for-the-general-public/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-28T15:53:52Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "36e2ba37c839235c74",
+      "title": "Buckle up for more body-swapping hijinks in Jumanji: Open World trailer",
+      "url": "https://arstechnica.com/culture/2026/10/buckle-up-for-more-body-swapping-hijinks-in-jumanji-open-world-trailer/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T15:48:12Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "776aed39bd32c42375",
+      "title": "South Korea’s financial industry hit by fresh wave of cyberattacks",
+      "url": "https://techcrunch.com/2026/10/28/south-koreas-financial-industry-hit-by-fresh-wave-of-cyberattacks/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-28T15:41:18Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8ca2f0d9390b693859",
+      "title": "Webb Sees Turbulent Star Nursery",
+      "url": "https://www.nasa.gov/image-article/webb-sees-turbulent-star-nursery/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-10-28T15:33:10Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8fd264d14a343cc6ba",
+      "title": "Voice AI in vogue: Nvidia releases new open transcription model",
+      "url": "https://techcrunch.com/2026/10/28/voice-ai-in-vogue-nvidia-releases-new-open-transcription-model/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-28T15:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "bddebf86268f0d308c",
+      "title": "xAI is buying out homeowners who promise not to sue over data center noise",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1020596/xai-mississippi-neighborhood-data-center-lawsuit",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-28T14:44:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "fb027ec6d2256b851d",
+      "title": "A hidden ocean change near Antarctica could have global consequences",
+      "url": "https://arstechnica.com/science/2026/10/antarctic-sea-ice-loss-could-reshape-weather-far-beyond-the-pole/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T13:38:53Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "3d80486e8e6b07c7d6",
+      "title": "7 days until TechCrunch Founder Summit: Save up to $100 on your pass before doors open",
+      "url": "https://techcrunch.com/2026/10/28/7-days-until-techcrunch-founder-summit-save-up-to-100-before-doors-open/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-28T13:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "3a0e6f223eff99ed17",
       "title": "Voters in Texas agree: They hate data centers",
@@ -415,186 +730,6 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-10-27T02:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "8af7b30500f9c04c48",
-      "title": "Cohere says Alibaba’s Qwen model tried to send a file to Beijing",
-      "url": "https://techcrunch.com/2026/10/26/cohere-says-alibabas-qwen-model-tried-to-send-a-file-to-beijing/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-27T01:12:21Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b555ce2afa55383d5d",
-      "title": "OpenAI announces three big science discoveries and a new way to work with academics",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1019143/openai-eth-kaseya-science-math-physics",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-10-26T23:34:58Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7bbad43981bdcc197f",
-      "title": "Microsoft offers to buy out a quarter of its workforce",
-      "url": "https://arstechnica.com/gadgets/2026/10/microsoft-offers-voluntary-buyouts-to-60000-employees/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-26T22:36:06Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "092e8ceea2bd79fc97",
-      "title": "Anthropic is burning gas to feed the AI boom",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1018994/anthropic-ipo-ai-data-center-energy-climate-risk",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-10-26T21:45:31Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "dfc519dd5290724ca6",
-      "title": "NASA’s Perseverance Offers Clues to Protect Crews From Mars Dust",
-      "url": "https://www.nasa.gov/missions/mars-2020-perseverance/nasas-perseverance-offers-clues-to-protect-crews-from-mars-dust/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-10-26T21:07:28Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "bd7cd1d4fbb419fea0",
-      "title": "Worms mate in man's eyes, get plucked out right before larvae burst out",
-      "url": "https://arstechnica.com/health/2026/10/whats-worse-than-having-eye-worms-having-eye-worms-with-babies/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-26T20:27:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "489a5325aa0446a1a2",
-      "title": "Meet the real-life Scottish surgeon who inspired Sherlock Holmes",
-      "url": "https://arstechnica.com/science/2026/10/meet-the-real-life-scottish-surgeon-who-inspired-sherlock-holmes/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-26T20:15:07Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3806ea7442989e073c",
-      "title": "Apple releases iOS and macOS 27.2 with new Siri AI features, new Music logo",
-      "url": "https://arstechnica.com/apple/2026/10/apple-releases-ios-and-macos-27-2-with-new-siri-ai-features-new-music-logo/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-26T20:04:16Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "a4c5f32431d10496f0",
-      "title": "At New York Climate Week 2026, MIT connects with a global network",
-      "url": "https://news.mit.edu/2026/at-new-york-climate-week-mit-connects-global-network-1026",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-10-26T19:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c703d92e74636f3695",
-      "title": "The RealReal won’t let AI agents hog designer clothing",
-      "url": "https://www.theverge.com/news/1018713/meta-muse-agentic-shopping-ai-the-realreal",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-10-26T17:30:55Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b2ed8daad1cc7e3f41",
-      "title": "Anthropic’s IPO filing reveals its strategy for keeping enterprise customers hooked",
-      "url": "https://techcrunch.com/2026/10/26/anthropics-ipo-filing-reveals-its-strategy-for-keeping-enterprise-customers-hooked/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-26T16:49:42Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d6e31d9e0fa6ab5ca3",
-      "title": "SpaceX locks in $40B GPU financing deal with Apollo",
-      "url": "https://techcrunch.com/2026/10/26/spacex-locks-in-40b-gpu-financing-deal-with-apollo/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-26T16:46:36Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b67fd02a214f91e2b5",
-      "title": "Anthropic officially files for its public debut",
-      "url": "https://techcrunch.com/2026/10/26/anthropic-officially-files-for-its-public-debut/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-26T14:35:22Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "08ec5c76056e031d89",
-      "title": "Grok releases the first seven minutes of its AI-generated ‘Odyssey’",
-      "url": "https://techcrunch.com/2026/10/25/grok-releases-the-first-seven-minutes-of-its-ai-generated-odyssey/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-25T21:31:16Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "9a814be9eb36882325",
-      "title": "AI delivers ‘zero financial payoff’ to most companies, Apollo economist says",
-      "url": "https://techcrunch.com/2026/10/25/ai-delivers-zero-financial-payoff-to-most-companies-according-to-apollo-economist/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-25T16:57:32Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "303db39c14fcfc30a1",
-      "title": "At MIT, Martha Minow speaks on sustaining democracy, both by using and overcoming AI",
-      "url": "https://news.mit.edu/2026/martha-minow-speaks-on-sustaining-democracy-using-overcoming-ai-1023",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-10-23T21:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "6b7380afc5963ae936",
-      "title": "Reinforcing the value of human understanding at MIT",
-      "url": "https://news.mit.edu/2026/reinforcing-value-of-human-understanding-at-mit-1023",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-10-23T19:35:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "fe3eb94d922b728fcc",
-      "title": "Video Friday: Quadruped Robot Solves Giant Rubik’s Cube by Itself",
-      "url": "https://spectrum.ieee.org/video-friday-rubiks-cube-robot",
-      "category": "robotics",
-      "source": "IEEE Spectrum Robotics",
-      "published_at": "2026-10-23T15:30:02Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "000b68dcd1349dc118",
-      "title": "Q&A: How AI came to model the “messy” human mind",
-      "url": "https://news.mit.edu/2026/qa-how-ai-came-to-model-messy-human-mind-1023",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-10-23T04:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5f1dd60d45c3c1d2cf",
-      "title": "This design software reimagines everyday objects as self-aware devices",
-      "url": "https://news.mit.edu/2026/design-software-reimagines-everyday-objects-as-self-aware-devices-1022",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-10-22T20:45:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
