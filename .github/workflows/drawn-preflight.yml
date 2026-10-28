@@ -1,4 +1,4 @@
-name: M1lash drawn lab visual preflight and native pilot
+name: M1lash drawn lab motion review v2
 on:
   push:
     branches: [codex/drawn-explainers-20261028]
@@ -72,8 +72,8 @@ jobs:
             node /tmp/huashu-motion/cli/om.js still "$P" --at 0.4,5,12,30,40,48
             node /tmp/huashu-motion/cli/om.js sound "$P"
           done
-          node /tmp/huashu-motion/cli/om.js render longform/drawn-lab-20261028/build/native/scene_92 --fps 30 --workers 4
-          node /tmp/huashu-motion/cli/om.js qa longform/drawn-lab-20261028/build/native/scene_92
+          node /tmp/huashu-motion/cli/om.js render longform/drawn-lab-20261028/build/native/scene_90 --fps 30 --workers 4
+          node /tmp/huashu-motion/cli/om.js qa longform/drawn-lab-20261028/build/native/scene_90
       - uses: actions/upload-artifact@v4
         if: always()
         with:
