@@ -141,7 +141,9 @@ class YouTubeAPI:
         result=[]
         for i in range(0,len(ids),50):
             if ids[i:i+50]:
-                response=self.get(method,id=",".join(ids[i:i+50]),part=part,maxResults=50)
+                # YouTube videos.list rejects maxResults together with id.
+                # id itself supports a batch of up to 50 resources.
+                response=self.get(method,id=",".join(ids[i:i+50]),part=part)
                 result.extend(response.get("items",[]))
         return result
 
@@ -240,8 +242,15 @@ def scan(api,old=None,now=None):
         count=int(cs.get("subscriberCount")) if str(cs.get("subscriberCount","")).isdigit() else None
         if cs.get("hiddenSubscriberCount") or count is None or count>300000:
             continue
-        baseline=channel_baseline(api,channel,candidate,detail_cache)
+        try:
+            baseline=channel_baseline(api,channel,candidate,detail_cache)
+            baseline_error=None
+        except (ValueError,RuntimeError,urllib.error.URLError,TimeoutError):
+            # One inaccessible uploads playlist must not cancel every other channel.
+            baseline=[]
+            baseline_error="UNAVAILABLE_NO_RATIO"
         candidate.update({
+            "baseline_status":baseline_error or ("OK" if len(baseline)>=5 else "INSUFFICIENT_HISTORY"),
             "subscribers_rounded":count,
             "baseline_sample_count":len(baseline),
             "baseline_median_views":round(statistics.median(baseline),1) if len(baseline)>=5 else None,
