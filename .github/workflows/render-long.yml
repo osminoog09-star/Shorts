@@ -111,6 +111,9 @@ jobs:
             ffprobe -v error -show_entries format=duration,size -of default=nw=1 $OUT | tee $P/out_info.txt
             ffmpeg -v error -y -i $OUT -vf "fps=1/10,scale=480:-1,tile=6x6" -frames:v 1 $P/contact.jpg
           else ffprobe -v error -show_entries format=duration,size -of default=nw=1 $OUT; fi
+      - name: Enforce minimum 21-minute new full-length release
+        if: inputs.short == ''
+        run: python3 scripts/qa/longform_duration_gate.py "videos/long/${{ inputs.project }}.mp4"
       - name: Commit
         run: |
           git config user.name "render-bot"
