@@ -11,6 +11,7 @@ on:
       - '.github/workflows/m1lash-outliers.yml'
 permissions:
   contents: write
+  actions: write
 concurrency:
   group: m1lash-youtube-outlier-radar
   cancel-in-progress: false
@@ -38,13 +39,20 @@ jobs:
           retention-days: 7
       - name: Publish scanner dataset to main for GitHub Pages after successful live scan
         if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           python - <<'PY'
           import json
           data=json.load(open("motion-studio/data/outliers.json"))
-          if data.get("status")!="success":
-              raise SystemExit("No verified live data; keep previous dataset, no commit")
+          if data.get("status") not in ("success","not_configured"):
+              raise SystemExit("SCAN NO-GO: API call failed; previous dataset retained")
           PY
+          STATE=$(python -c "import json; print(json.load(open('motion-studio/data/outliers.json'))['status'])")
+          if [ "$STATE" = "not_configured" ]; then
+            echo "No YouTube API key: no new data or deployment. Manual setup required."
+            exit 0
+          fi
           git config user.name m1lash-scanner-bot
           git config user.email m1lash-scanner-bot@users.noreply.github.com
           git add motion-studio/data/outliers.json
@@ -52,3 +60,5 @@ jobs:
           git commit -m "research: refresh YouTube outliers with verified API measurements"
           git pull --rebase origin main
           git push origin main
+          # GITHUB_TOKEN pushes do not trigger normal push-based Pages workflows.
+          gh workflow run motion-pages.yml --ref main
