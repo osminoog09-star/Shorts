@@ -1,0 +1,220 @@
+{
+  "schema": 1,
+  "issue_numbers": [
+    54
+  ],
+  "topic": "Как появился табак: от культур коренных народов Америки до никотиновой зависимости",
+  "language": "ru",
+  "checked_on": "2026-10-28",
+  "editorial_angle": "Не сводить историю табака к европейскому «открытию»: растение и разнообразные практики народов Америки существовали задолго до Колумба. Показать, как колониальная торговля и индустриализация изменили масштаб потребления, а наука установила риски и зависимость.",
+  "warnings": [
+    "Точное место и дата первого использования табака не установлены; не выдавать 1492 год за дату возникновения табака.",
+    "Различать традиционные/ритуальные практики коренных народов и современную коммерческую табачную индустрию.",
+    "Не приписывать все вредные последствия одному никотину: важны токсичные продукты горения.",
+    "Не показывать колониальную торговлю без упоминания принудительного труда и рабства.",
+    "Современные оценки ВОЗ 2026 года привязаны к дате публикации; не смешивать с историческими данными.",
+    "Исторические реконструкции должны быть маркированы как визуализация, без утверждений о дословных словах исторических лиц."
+  ],
+  "sources": [
+    {
+      "id": "CDC_HISTORY",
+      "url": "https://stacks.cdc.gov/view/cdc/52469",
+      "publisher": "CDC / U.S. Surgeon General historical report",
+      "scope": "Early indigenous tobacco use, colonization and industrial mechanization",
+      "kind": "official_historical"
+    },
+    {
+      "id": "OXFORD_CHRONOLOGY",
+      "url": "https://academic.oup.com/view-large/528809169",
+      "publisher": "Oxford Academic scholarly chronology",
+      "scope": "Distinct Indigenous cultures, tobacco use before 1492",
+      "kind": "scholarly"
+    },
+    {
+      "id": "SMITHSONIAN_TRADE",
+      "url": "https://americanhistory.si.edu/explore/exhibitions/on-the-water/online/living-atlantic-world/new-tastes-new-trades/tobacco-trade",
+      "publisher": "Smithsonian National Museum of American History",
+      "scope": "1500s trade, colonial economy, enslaved labor",
+      "kind": "museum"
+    },
+    {
+      "id": "CDC_2000",
+      "url": "https://stacks.cdc.gov/view/cdc/11261",
+      "publisher": "U.S. Surgeon General / CDC historical report",
+      "scope": "Industrial cigarette mechanization, Bonsack, Duke",
+      "kind": "official_historical"
+    },
+    {
+      "id": "CDC_1964",
+      "url": "https://www.cdc.gov/tobacco-surgeon-general-reports/about/history.html",
+      "publisher": "CDC",
+      "scope": "1964 Surgeon General report and scientific conclusions",
+      "kind": "official"
+    },
+    {
+      "id": "CDC_1988",
+      "url": "https://stacks.cdc.gov/view/cdc/22014",
+      "publisher": "CDC / Surgeon General",
+      "scope": "1988 nicotine addiction report",
+      "kind": "official"
+    },
+    {
+      "id": "NCBI_NEURO",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK53018/",
+      "publisher": "NCBI Bookshelf / Surgeon General",
+      "scope": "Nicotine reward and receptor mechanisms",
+      "kind": "official_science"
+    },
+    {
+      "id": "FDA_NICOTINE",
+      "url": "https://www.fda.gov/tobacco-products/health-effects-tobacco-use/nicotine-why-tobacco-products-are-addictive",
+      "publisher": "US FDA",
+      "scope": "Nicotine dependence vs harmful smoke chemicals",
+      "kind": "official"
+    },
+    {
+      "id": "WHO_2026",
+      "url": "https://www.who.int/ru/news-room/fact-sheets/detail/tobacco/",
+      "publisher": "World Health Organization (2026)",
+      "scope": "Current harm and nicotine dependence statistics",
+      "kind": "official"
+    }
+  ],
+  "claims": [
+    {
+      "id": "F01",
+      "statement": "Народы Америки использовали различные виды табака до прибытия европейцев; практики различались, включая ритуальное, социальное и лечебное употребление.",
+      "sources": [
+        "CDC_HISTORY",
+        "OXFORD_CHRONOLOGY"
+      ],
+      "chapter": 1,
+      "confidence": "high",
+      "scope": "historical_overview"
+    },
+    {
+      "id": "F02",
+      "statement": "В 1492 году участники экспедиции Колумба столкнулись с табаком в Карибском бассейне; это не было «изобретением» табака европейцами.",
+      "sources": [
+        "CDC_HISTORY",
+        "OXFORD_CHRONOLOGY"
+      ],
+      "chapter": 2,
+      "confidence": "high"
+    },
+    {
+      "id": "F03",
+      "statement": "Европейская и затем трансатлантическая торговля табаком расширялась с XVI–XVII веков, а его выращивание в колониях было связано в том числе с принудительным трудом.",
+      "sources": [
+        "SMITHSONIAN_TRADE",
+        "CDC_HISTORY"
+      ],
+      "chapter": 3,
+      "confidence": "high"
+    },
+    {
+      "id": "F04",
+      "statement": "Механизация производства сигарет в XIX веке, включая машину Бонсака, существенно увеличила масштаб и снизила цену промышленной продукции.",
+      "sources": [
+        "CDC_2000",
+        "CDC_HISTORY"
+      ],
+      "chapter": 4,
+      "confidence": "high"
+    },
+    {
+      "id": "F05",
+      "statement": "Доклад главного санитарного врача США 11 января 1964 года опирался на тысячи работ и установил причинную связь курения сигарет с раком лёгких у мужчин.",
+      "sources": [
+        "CDC_1964",
+        "CDC_2000"
+      ],
+      "chapter": 5,
+      "confidence": "high"
+    },
+    {
+      "id": "F06",
+      "statement": "В докладе 1988 года никотин определён как вещество, вызывающее зависимость; механизмы подкрепления связаны с никотиновыми рецепторами и дофаминовой системой.",
+      "sources": [
+        "CDC_1988",
+        "NCBI_NEURO"
+      ],
+      "chapter": 6,
+      "confidence": "high"
+    },
+    {
+      "id": "F07",
+      "statement": "Никотин является ключевой причиной зависимости, а тяжелый вред от курения связан и с множеством токсичных компонентов дыма; путать это нельзя.",
+      "sources": [
+        "FDA_NICOTINE",
+        "WHO_2026"
+      ],
+      "chapter": 6,
+      "confidence": "high"
+    },
+    {
+      "id": "F08",
+      "statement": "По данным ВОЗ от 26 июня 2026 года, табак ежегодно связан с более чем 7 млн смертей, включая более 1,6 млн среди некурящих из-за вторичного дыма.",
+      "sources": [
+        "WHO_2026",
+        "FDA_NICOTINE"
+      ],
+      "chapter": 7,
+      "confidence": "source_1_statistics_source_2_general_harm",
+      "review_required": true
+    }
+  ],
+  "chapters": [
+    {
+      "start_s": 0,
+      "end_s": 180,
+      "title": "Секрет листа: почему люди возвращались к табаку?",
+      "narrative": "Сильный вопрос-хук, контраст древнего растения и современной зависимой индустрии; обозначить открытые вопросы.",
+      "visual": "Анимация табачного листа на черном музейном фоне, затем временная линия; X05-D25."
+    },
+    {
+      "start_s": 180,
+      "end_s": 420,
+      "title": "До Колумба: табак и культуры Америки",
+      "narrative": "Не пытаться реконструировать единственный «первый ритуал»; показать различия регионов и контекст.",
+      "visual": "Многослойная историческая карта Центральной и Южной Америки, осмысленные условные реконструкции."
+    },
+    {
+      "start_s": 420,
+      "end_s": 650,
+      "title": "1492 и европейский контакт",
+      "narrative": "Европейцы встретили уже существующие практики; аккуратно с датами и исключить европоцентризм.",
+      "visual": "Карта пути, порты, условные архивные документы — с явной маркировкой реконструкции."
+    },
+    {
+      "start_s": 650,
+      "end_s": 910,
+      "title": "Как лист стал мировым товаром",
+      "narrative": "Торговые маршруты, колониальная экономика, принудительный труд; человеческие последствия.",
+      "visual": "Рисованная карта Атлантики, перемещение товаров, акцент на людях, без декоративзации рабства."
+    },
+    {
+      "start_s": 910,
+      "end_s": 1120,
+      "title": "Машина изменила всё",
+      "narrative": "Бонсак, промышленное производство, реклама и потребительские привычки.",
+      "visual": "Технический разрез устройства, реальные шестерни и направления перемещения, без псевдофизики."
+    },
+    {
+      "start_s": 1120,
+      "end_s": 1340,
+      "title": "Как наука распознала риск и зависимость",
+      "narrative": "1964 и 1988: причинная связь рака и роли никотина, наглядно объяснить механизм зависимости.",
+      "visual": "Реконструкция газет и научных документов, аккуратная графика рецепторов и системы подкрепления."
+    },
+    {
+      "start_s": 1340,
+      "end_s": 1500,
+      "title": "Открытие, прибыль и цена привычки",
+      "narrative": "Современные последствия по ВОЗ, различие никотина и дыма, уважительный вывод без морализаторства.",
+      "visual": "Наглядная инфографика с точной датой показателей, постепенное возвращение к образу листа."
+    }
+  ],
+  "rights": "Оригинальные графические реконструкции. Ссылки на исследования для фактов, изображения из источников не копировать автоматически. Персонажей, конкретные реквизиты и исторические подписи сверять отдельно.",
+  "stage": "editor-curated source leads, every claim needs human verification before release"
+}
