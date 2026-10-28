@@ -95,6 +95,10 @@ def tc(t):
 async def build(out,only_audio=False):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     chapters,paragraphs,words=textdata()
+    # Always preserve the full original screenplay and citations, even when TTS fails.
+    (out/"script_full.txt").write_text("\n\n".join(ch["title"]+"\n\n"+"\n\n".join(ch["lines"]) for ch in chapters),encoding="utf-8")
+    (out/"sources.json").write_text(json.dumps(SOURCES,ensure_ascii=False,indent=2),encoding="utf-8")
+    (out/"voice_status.json").write_text(json.dumps({"voice":VOICE,"state":"SYNTHESIS_REQUESTED_NOT_CONFIRMED","substitutes_allowed":False},indent=2),encoding="utf-8")
     audio_folder=out/"audio-parts";audio_folder.mkdir(exist_ok=True)
     cues=[];subtitles=[];offset=0
     combined=out/"narration.wav"
