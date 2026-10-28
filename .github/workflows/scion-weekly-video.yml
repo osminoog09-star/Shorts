@@ -1,0 +1,76 @@
+name: Scion weekly - Dima Sveta video
+on:
+  push:
+    branches: [codex/scion-weekly-s8d25-dima-sveta-20261028]
+    paths:
+      - tools/scion_weekly/produce.py
+      - .github/workflows/scion-weekly-video.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install renderer and voice synthesizer
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq -y ffmpeg
+          python -m pip install -q 'edge-tts>=7,<8' 'Pillow>=10,<13' 'numpy>=1.26,<3'
+      - name: Generate complete Russian Dima and Sveta voiced motion film
+        run: python tools/scion_weekly/produce.py
+      - name: Validate voice identity, render and full decode
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          j=json.loads(Path('tools/scion_weekly/work/manifest.json').read_text())
+          clips=j['segments']
+          assert len(clips)==11
+          assert clips[0]['speaker']==clips[-1]['speaker']=='Дима'
+          assert clips[-1]['voice_id']=='ru-RU-DmitryNeural'
+          assert sum(s['speaker']=='Света' for s in clips)==2
+          assert all(s['voice_id']==j['approved_voice_ids'][s['speaker']] for s in clips)
+          assert all(s['duration']>1 for s in clips)
+          print('VOICE CAST PASS',clips[-1]['end'])
+          PY
+          ffmpeg -v error -xerror -i tools/scion_weekly/work/base.mp4 -f null -
+          mkdir -p videos
+          cp tools/scion_weekly/work/base.mp4 videos/scion_weekly_20261028_dima_sveta_voicecut.mp4
+      - name: Commit reviewed video preview
+        if: success()
+        shell: bash
+        run: |
+          git config user.name m1lash-render-bot
+          git config user.email m1lash-render-bot@users.noreply.github.com
+          git add videos/scion_weekly_20261028_dima_sveta_voicecut.mp4
+          git commit -m 'video: Dima Sveta narrated Scion weekly preview'
+          git push origin HEAD:codex/scion-weekly-s8d25-dima-sveta-20261028
+      - name: Save every verified Dima/Sveta audio segment for retry
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name m1lash-voice-cache
+          git config user.email m1lash-voice-cache@users.noreply.github.com
+          git add -f tools/scion_weekly/work/[0-9][0-9].wav tools/scion_weekly/work/[0-9][0-9].mp3 tools/scion_weekly/work/[0-9][0-9].json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'audio: cache approved Dima Sveta speech for resume'
+            git push origin HEAD:codex/scion-weekly-s8d25-dima-sveta-20261028
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scion-weekly-dima-sveta-preview
+          path: |
+            videos/scion_weekly_20261028_dima_sveta_voicecut.mp4
+            tools/scion_weekly/work/manifest.json
+            tools/scion_weekly/work/still_*.jpg
+          retention-days: 30
