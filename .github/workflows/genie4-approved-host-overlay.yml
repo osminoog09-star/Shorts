@@ -54,7 +54,7 @@ jobs:
           assert old in t, 'approved HostCorner source modified; do not invent substitute'
           t=t.replace(old,new).replace("const big = t > 17.2 && t < 20 ? 1.25 : 1;","const big = 1;")
           path.write_text(t)
-          Path('work/genie4/duration_frames.txt').write_text(str(int(d*30+0.999)))
+          Path('work/genie4/duration_frames.txt').write_text(str(round(d*30)))
           print('duration',d,'visemes',len(v))
           PY
       - name: Render original approved speaking host with transparent background
