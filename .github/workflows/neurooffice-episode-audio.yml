@@ -1,0 +1,55 @@
+name: Neurooffice S01E01 · actual approved-voice full soundtrack (NO YouTube)
+on:
+  push:
+    branches: [codex/neurooffice-s01e01-feature-20261028]
+    paths: [.github/workflows/neurooffice-episode-audio.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  full-soundtrack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install original Russian Edge voices
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python -m pip install -q edge-tts
+      - name: Parse script, synthesize all lines with real voice IDs
+        run: |
+          set -euo pipefail
+          python -m py_compile longform/neurooffice-s01e01/tts_approved_voices.py
+          python -u longform/neurooffice-s01e01/tts_approved_voices.py --jobs 2
+      - name: Check real audio and make production report
+        run: |
+          set -euo pipefail
+          p=longform/neurooffice-s01e01/production/audio/NEUROOFFICE_S01E01_DIMA_SVETA.m4a
+          test -s "$p"
+          ffmpeg -nostdin -v error -xerror -i "$p" -f null -
+          ffprobe -v error -show_entries format=duration -of default=nw=1 "$p"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("longform/neurooffice-s01e01/production/audio/AUDIO_MANIFEST.json").read_text())
+          assert len(a["timeline"])>=50
+          assert set(a["voice_ids"])=={"dima","sveta"}
+          print("REAL_SECONDS",a["audio_duration_s"])
+          print("REAL_WORDS",a["spoken_words"])
+          print("21MIN_AUDIO_GATE",a["audio_reaches_21min"])
+          PY
+      - name: Save soundtrack and timecodes for code renderer
+        if: success()
+        run: |
+          set -euo pipefail
+          mkdir -p longform/neurooffice-s01e01/audio
+          cp longform/neurooffice-s01e01/production/audio/NEUROOFFICE_S01E01_DIMA_SVETA.m4a longform/neurooffice-s01e01/audio/NEUROOFFICE_S01E01_DIMA_SVETA.m4a
+          cp longform/neurooffice-s01e01/production/audio/AUDIO_MANIFEST.json longform/neurooffice-s01e01/audio/AUDIO_MANIFEST.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add longform/neurooffice-s01e01/audio/
+          git diff --cached --quiet || git commit -m 'audio(neurooffice): real Dima and Sveta full episode narration with precise word timing'
+          git push origin HEAD:refs/heads/codex/neurooffice-s01e01-feature-20261028
