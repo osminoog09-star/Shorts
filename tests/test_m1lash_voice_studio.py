@@ -113,6 +113,9 @@ class VoiceLabTest(unittest.TestCase):
         self.assertEqual(report["status"], "EXPERIMENTAL_NOT_APPROVED_FOR_PUBLICATION")
         self.assertEqual(" ".join(x["text"] for x in report["lines"]), " ".join(script.split()))
         self.assertTrue((self.root / "takes" / "manifest.json").is_file())
+        self.assertTrue((self.root / "takes" / "narration.wav").is_file())
+        self.assertGreater(report["full_wav_duration_s"], report["estimated_total_audio_s"])
+        self.assertEqual(report["full_wav_sha256"], mod.sha256(self.root / "takes" / "narration.wav"))
 
     def test_missing_local_model_rejected(self):
         with self.assertRaises(ValueError):
