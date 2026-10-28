@@ -28,7 +28,10 @@ async def synth(i, sentence):
     mp3.unlink(missing_ok=True)
     meta.unlink(missing_ok=True)
     # Generation errors are fatal. Do not substitute another narrator.
-    speaker = edge_tts.Communicate(sentence, VOICE, rate="+0%", pitch="+0Hz", boundary="WordBoundary")
+    try:
+        speaker = edge_tts.Communicate(sentence, VOICE, rate="+0%", pitch="+0Hz", boundary="WordBoundary")
+    except TypeError:
+        speaker = edge_tts.Communicate(sentence, VOICE, rate="+0%", pitch="+0Hz")
     with mp3.open("wb") as output:
         async for msg in speaker.stream():
             if msg["type"] == "audio":
