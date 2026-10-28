@@ -47,6 +47,7 @@ metadata:
 - **Эксперимент стилей Shorts (с 25.10):** [библиотека стилей S1–S9 и глубины D2/D25/D3](references/style-library.md), учёт — `reports/style_experiment.md`.
 - **Улучшения качества (обязательны для M1lash):** [улучшения](references/quality-upgrades.md).
 - Документальный лонгрид под голос (8–15 мин, факты, таймлайн по словам): [лонгрид](references/documentary-longform.md).
+- **Географические карты и countryballs (обязательный P0 release gate):** [проверка геометрии всех стран, якорей флагов, синхронизации по словам, статусов и перекрытий](references/geography-map-video-qa.md). Основано на 17 пользовательских скриншотах Samsung Full V3; без прохождения тестов готовым не считать.
 - Длинный рендер, 30 fps, параллельные куски в GitHub Actions: [бюджет рендера](references/render-budget.md).
 - Музыка только с лицензией и атрибуцией (обязательно для канала): [музыка](references/music-and-license.md).
 - Название, описание, главы, теги, обложка: [упаковка для YouTube](references/youtube-packaging.md).
