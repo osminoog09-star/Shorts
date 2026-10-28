@@ -6,7 +6,7 @@ permissions:
   contents: read
   issues: read
 concurrency:
-  group: m1lash-studio-issue-\${{ github.event.issue.number }}
+  group: m1lash-studio-issue-${{ github.event.issue.number }}
   cancel-in-progress: false
 jobs:
   prepare:
@@ -22,12 +22,12 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_m1lash_studio_jobs.py' -v
       - name: Run validated research preparation
         env:
-          GEMINI_API_KEY: \${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python motion-studio/automation/prepare_job.py --event "$GITHUB_EVENT_PATH" --out studio-output
       - name: Keep research and prompts as review artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: m1lash-studio-research-\${{ github.event.issue.number }}
+          name: m1lash-studio-research-${{ github.event.issue.number }}
           path: studio-output/
           retention-days: 14
