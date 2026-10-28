@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        id: [E00_01,E10_01,E14_01]
+        id: [E12_02]
     runs-on: ubuntu-latest
     timeout-minutes: 23
     steps:
