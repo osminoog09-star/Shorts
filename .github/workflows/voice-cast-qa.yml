@@ -1,0 +1,30 @@
+name: Voice cast QA (Dima and Sveta)
+on:
+  push:
+    paths:
+      - "scripts/voice_cast.py"
+      - "scripts/tts_job.py"
+      - "scripts/qa/test_voice_cast.py"
+      - "jobs/tts/**"
+      - ".github/workflows/voice-cast-qa.yml"
+  pull_request:
+    paths:
+      - "scripts/voice_cast.py"
+      - "scripts/tts_job.py"
+      - "scripts/qa/test_voice_cast.py"
+      - "jobs/tts/**"
+      - ".github/workflows/voice-cast-qa.yml"
+permissions:
+  contents: read
+jobs:
+  cast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Syntax check
+        run: python -m py_compile scripts/voice_cast.py scripts/tts_job.py scripts/qa/test_voice_cast.py
+      - name: Validate cast against production jobs
+        run: python scripts/qa/test_voice_cast.py
