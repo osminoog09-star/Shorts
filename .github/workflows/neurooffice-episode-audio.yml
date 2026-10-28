@@ -23,7 +23,18 @@ jobs:
         run: |
           set -euo pipefail
           python -m py_compile longform/neurooffice-s01e01/tts_approved_voices.py
-          python -u longform/neurooffice-s01e01/tts_approved_voices.py --jobs 2
+          python -u longform/neurooffice-s01e01/tts_approved_voices.py --jobs 1
+      - name: Preserve completed voice segments even if Edge service drops
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: neurooffice-ep01-voice-segments-checkpoint
+          path: |
+            longform/neurooffice-s01e01/production/audio/line_*.mp3
+            longform/neurooffice-s01e01/production/audio/line_*.json
+            longform/neurooffice-s01e01/production/audio/SCRIPT_MANIFEST.json
+          if-no-files-found: warn
+          retention-days: 7
       - name: Check real audio and make production report
         run: |
           set -euo pipefail
