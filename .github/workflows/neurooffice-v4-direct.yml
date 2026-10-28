@@ -1,0 +1,47 @@
+name: Neurooffice V4 · code render + verified direct MP4 (no YouTube)
+on:
+  push:
+    branches: [codex/neurooffice-v4-sync-20261028]
+    paths: ['.github/workflows/neurooffice-v4-direct.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  create-download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install video/code-render dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          python -m pip install --quiet Pillow numpy
+      - name: Preserve authentic Dmitry audio (no new voices)
+        run: |
+          set -euo pipefail
+          ffmpeg -nostdin -v error -y -i videos/M1lash_Neurooffice_V2_RU.mp4 -map 0:a:0 -c:a copy shorts/neurooffice-v4/voice_dima.m4a
+          python -m py_compile shorts/neurooffice-v4/render_v4.py
+      - name: Render whole animated V4 and subtitle timeline
+        run: |
+          set -euo pipefail
+          python -u shorts/neurooffice-v4/render_v4.py --render
+      - name: Validate AV and produce download without publishing to YouTube
+        run: |
+          set -euo pipefail
+          src=shorts/neurooffice-v4/output/NEUROOFFICE_V4_SYNC_RU.mp4
+          test -s "$src"
+          ffmpeg -nostdin -v error -xerror -i "$src" -f null -
+          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate -show_entries format=duration -of json "$src"
+          mkdir -p videos
+          cp "$src" videos/M1lash_Neurooffice_V4_SYNC_RU.mp4
+      - name: Commit verified MP4 to demo branch, NOT YouTube
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add videos/M1lash_Neurooffice_V4_SYNC_RU.mp4
+          git diff --cached --quiet || git commit -m 'video(neurooffice): V4 speech-synced subtitles and polished characters'
+          git push origin HEAD:refs/heads/codex/neurooffice-v4-sync-20261028
