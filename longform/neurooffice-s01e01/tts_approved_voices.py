@@ -37,7 +37,7 @@ def parse_blocks(txt,kind):
    pieces=BREAK.split(t)
    buf=""
    for part in pieces:
-    if buf and len(buf)+len(part)>260:
+    if buf and len(buf)+len(part)>140:
      lines.append({"speaker":who,"text":buf.strip()});buf=""
     buf+=" "+part
    if buf.strip():lines.append({"speaker":who,"text":buf.strip()})
@@ -67,9 +67,9 @@ async def synth_one(i,line,edge,sem,out,force):
  if not force and path.exists() and path.stat().st_size>2000 and timing.exists():return
  async with sem:
   last=None
-  for attempt in range(4):
+  for attempt in range(7):
    try:
-    await asyncio.sleep(attempt*2)
+    await asyncio.sleep(1.0+attempt*(attempt+1)*1.5)
     comm=edge.Communicate(line["text"],voice=voice,rate=RATE[who],volume="+0%")
     boundaries=[];audio=[]
     async for chunk in comm.stream():
@@ -93,14 +93,17 @@ async def main():
  import edge_tts
  ap=argparse.ArgumentParser()
  ap.add_argument("--force",action="store_true")
- ap.add_argument("--jobs",type=int,default=2)
+ ap.add_argument("--jobs",type=int,default=1)
  args=ap.parse_args()
  ordered,lines=canonical()
  out=HERE/"production"/"audio";out.mkdir(parents=True,exist_ok=True)
  (out/"SCRIPT_MANIFEST.json").write_text(json.dumps(
   {"status":"SCRIPT_VALIDATED_NOT_FILM","scenes":ordered,"lines":lines},ensure_ascii=False,indent=2),"utf-8")
  sem=asyncio.Semaphore(args.jobs)
- await asyncio.gather(*(synth_one(i,line,edge_tts,sem,out,args.force) for i,line in enumerate(lines)))
+ # Sequential checkpointing avoids burst throttling and isolates errors.
+ for i,line in enumerate(lines):
+  await synth_one(i,line,edge_tts,sem,out,args.force)
+  if i%10==0:print("VOICE_PROGRESS",i+1,"/",len(lines),line["speaker"],flush=True)
  master=out/"NEUROOFFICE_S01E01_DIMA_SVETA.m4a"
  concat=out/"dialogue.ffconcat"
  concat.write_text("ffconcat version 1.0\n"+"".join(
