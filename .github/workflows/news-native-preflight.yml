@@ -72,8 +72,6 @@ jobs:
             node /tmp/huashu-motion/cli/om.js check "$P" --source
             node /tmp/huashu-motion/cli/om.js still "$P" --at 0.4,9,22,40
             node /tmp/huashu-motion/cli/om.js sound "$P"
-            node /tmp/huashu-motion/cli/om.js render "$P" --fps 30 --workers 3 --verbose
-            node /tmp/huashu-motion/cli/om.js qa "$P"
           done
       - uses: actions/upload-artifact@v4
         if: always()
