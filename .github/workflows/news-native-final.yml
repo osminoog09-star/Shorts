@@ -54,6 +54,12 @@ jobs:
           run-id: 40749534199
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: longform/ai-accountability-20261028/build
+      - uses: actions/download-artifact@v4
+        with:
+          name: native-masters-${{ matrix.ids }}
+          run-id: 40751179703
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/ai-accountability-20261028/build/masters
       - name: Native sources and exact lip cues
         env:
           RHUBARB: /tmp/rhubarb/Rhubarb-Lip-Sync-1.13.0-Linux/rhubarb
