@@ -1,0 +1,81 @@
+name: Genie4 · Approved HostCorner synced to genuine DmitryNeural
+on:
+  push:
+    branches:
+      - research/genie4-20261028-radar
+    paths:
+      - '.github/workflows/genie4-approved-host-overlay.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  host:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch approved source audio from earlier successful action
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p work/genie4/final_voice
+          gh run download 40696423671 -R osminoog09-star/Shorts -n genie4-approved-dima-full-take -D work/genie4/final_voice
+          test -s work/genie4/final_voice/dima_full.mp3
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('work/genie4/final_voice/voice_manifest.json').read_text())
+          assert m['voice_id']=='ru-RU-DmitryNeural' and m['is_dima'] and m['engine']=='edge-tts'
+          print('APPROVED DIMA CONFIRMED')
+          PY
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg unzip
+          cd studio && npm install --no-audit --no-fund
+      - name: Calculate true Rhubarb lip-sync and adapt original avatar timing
+        run: |
+          bash tools/lipsync.sh work/genie4/final_voice/dima_full.mp3 work/genie4/visemes.json
+          python - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          d=float(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','default=noprint_wrappers=1:nokey=1','work/genie4/final_voice/dima_full.mp3']).strip())
+          v=json.loads(Path('work/genie4/visemes.json').read_text())['visemes']
+          assert len(v)>int(d*29), (len(v),d)
+          Path('studio/src/host_corner.json').write_text(json.dumps({'fps':30,'duration':d,'visemes':v}))
+          path=Path('studio/src/HostCorner.tsx')
+          t=path.read_text()
+          old="[[0, 'point'], [2.6, 'talk'], [17.2, 'facepalm'], [19.0, 'laugh'], [20.0, 'talk'], [23.6, 'laugh']]"
+          new=f"[[0, 'point'], [2.6, 'talk'], [{d*.56:.2f}, 'facepalm'], [{d*.61:.2f}, 'talk'], [{d-7:.2f}, 'point'], [{d-4:.2f}, 'laugh']]"
+          assert old in t, 'approved HostCorner source modified; do not invent substitute'
+          t=t.replace(old,new).replace("const big = t > 17.2 && t < 20 ? 1.25 : 1;","const big = 1;")
+          path.write_text(t)
+          Path('work/genie4/duration_frames.txt').write_text(str(int(d*30+0.999)))
+          print('duration',d,'visemes',len(v))
+          PY
+      - name: Render original approved speaking host with transparent background
+        run: |
+          FRAMES=$(cat work/genie4/duration_frames.txt)
+          cd studio
+          npx remotion render src/index.ts host-corner ../work/genie4/full_host.mov --codec=prores --prores-profile=4444 --pixel-format=yuva444p10le --frames=0-$((FRAMES-1)) --log=error
+      - name: Crop only avatar card region and preserve alpha
+        run: |
+          ffmpeg -y -v error -i work/genie4/full_host.mov -vf 'crop=420:500:20:1060' -c:v prores_ks -profile:v 4 -pix_fmt yuva444p10le work/genie4/host_crop.mov
+          ffprobe -v error -show_entries stream=width,height,codec_name,pix_fmt -of json work/genie4/host_crop.mov
+          test -s work/genie4/host_crop.mov
+      - name: Save approved avatar and real speech for review only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genie4-dima-lipsynced-original-host
+          path: |
+            work/genie4/host_crop.mov
+            work/genie4/visemes.json
+            work/genie4/final_voice/dima_full.mp3
+            work/genie4/final_voice/voice_manifest.json
+          retention-days: 30
+          if-no-files-found: warn
