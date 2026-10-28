@@ -1,0 +1,64 @@
+name: M1lash AI accountability 28 Oct · voice and pilot
+on:
+  push:
+    branches: [codex/ai-accountability-20261028]
+    paths:
+      - longform/ai-accountability-20261028/**
+      - .github/workflows/ai-accountability-20261028.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ai-accountability-20261028
+  cancel-in-progress: false
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            longform/ai-accountability-20261028
+            studio/src/Narrator2.tsx
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install free production tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core libcairo2
+          pip install -r longform/ai-accountability-20261028/requirements.txt
+          cd longform/ai-accountability-20261028
+          npm ci --ignore-scripts
+          npm rebuild esbuild
+      - name: Voice gate · exact Dmitry only, fail closed
+        run: python longform/ai-accountability-20261028/audio.py --smoke
+      - name: Full narration · measured duration
+        run: python longform/ai-accountability-20261028/audio.py
+      - name: Approved narrator artwork and Rhubarb lip sync
+        run: |
+          curl --fail -L --retry 2 -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.13.0/Rhubarb-Lip-Sync-1.13.0-Linux.zip
+          unzip -q /tmp/rhubarb.zip -d /tmp/rhubarb
+          cd longform/ai-accountability-20261028
+          ./node_modules/.bin/esbuild host.tsx --bundle --platform=node --external:react --external:react-dom/server --outfile=build/host.cjs
+          node build/host.cjs
+          RHUBARB=/tmp/rhubarb/Rhubarb-Lip-Sync-1.13.0-Linux/rhubarb python prepare.py
+      - name: Full storyboard stills and short risk pilot
+        run: |
+          cd longform/ai-accountability-20261028
+          python render.py --stills
+          python render.py --pilot
+          ffmpeg -v error -i build/pilot.mp4 -f null -
+      - name: Keep recoverable voice, pilot and evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-accountability-20261028-pilot-and-voices
+          path: longform/ai-accountability-20261028/build
+          if-no-files-found: warn
+          retention-days: 14
