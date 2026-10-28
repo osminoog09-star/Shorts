@@ -91,6 +91,14 @@
     <div class="field" style="max-width:290px;margin:16px 0"><label for="newsCategory">Тематика</label><select id="newsCategory"><option value="all">Все новости</option><option value="ai">Искусственный интеллект</option><option value="robotics">Робототехника</option><option value="space">Космос</option><option value="technology">Технологии</option></select></div>
     <div id="newsList" class="directory"><p class="muted">Данные загружаются при открытии вкладки.</p></div>
   </div>
+
+  <div class="panel" style="margin-top:20px">
+    <div class="panel-title"><h2>SCAN 2.0 · Какие небольшие каналы неожиданно взлетели?</h2><span class="tag">YouTube Data API</span></div>
+    <p id="outlierStatus" class="notice">Ожидаем первый сбор YouTube API. Без ключа статистика не выдумывается.</p>
+    <p class="muted">Сравниваем ролики длительностью 21+ минут с публикациями того же канала. «Просмотры в день» — средняя с момента выхода, а текущий прирост считаем только после двух замеров. «Без ведущего» нельзя установить одним API-запросом.</p>
+    <button id="refreshOutliers" class="secondary" type="button" style="margin:12px 0 18px">↻ Обновить список аномалий</button>
+    <div id="outlierList" class="directory"><p class="muted">Здесь появятся подтверждённые результаты после настройки YouTube API.</p></div>
+  </div>
 </section>
 <section id="tab-reference" class="page">
   <div class="page-heading small"><div><p class="eyebrow">REFERENCE LAB / YOUTUBE</p><h1>Разбираем чужой <em>приём,</em> а не копируем ролик.</h1><p>Добавь YouTube-ссылку. Студия подготовит задачу на разбор: хук, драматургия, темп, работа камеры, оригинальные сценарные и визуальные промпты.</p></div></div>
