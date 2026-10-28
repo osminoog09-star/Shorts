@@ -1,0 +1,72 @@
+name: M1lash drawn lab exact Dima voices
+on:
+  push:
+    branches: [codex/drawn-explainers-20261028]
+    paths: [.github/workflows/drawn-voices.yml, longform/drawn-lab-20261028/voice.py]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  voices:
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        ids: ['0,1,2,3,4,5','6,7,8,9,10,11','12,13,14,15,16,17','18,19,20,21,22,23','24,25,26,27,28,29','30,31,90,91,92']
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: longform/drawn-lab-20261028
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          pip install edge-tts==7.3.1
+      - run: python longform/drawn-lab-20261028/voice.py --ids=${{ matrix.ids }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: drawn-voice-batch-${{ matrix.ids }}
+          path: longform/drawn-lab-20261028/build/voice_*
+          retention-days: 14
+          if-no-files-found: warn
+  assemble:
+    needs: voices
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: longform/drawn-lab-20261028
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          pip install edge-tts==7.3.1
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: drawn-voice-batch-*
+          merge-multiple: true
+          path: longform/drawn-lab-20261028/build
+      - run: python longform/drawn-lab-20261028/voice.py --assemble
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m1lash-drawn-all-accepted-voices
+          path: longform/drawn-lab-20261028/build/voice_*
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: m1lash-drawn-measured-timelines
+          path: longform/drawn-lab-20261028/build/*timeline.json
+          retention-days: 14
