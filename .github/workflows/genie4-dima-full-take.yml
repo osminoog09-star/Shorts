@@ -1,0 +1,34 @@
+name: Genie4 · Approved Dima full-take retry
+on:
+  push:
+    branches:
+      - research/genie4-20261028-radar
+    paths:
+      - "shorts/genie4_20261028/voice_full_attempt.py"
+      - ".github/workflows/genie4-dima-full-take.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Microsoft neural TTS with no fallback
+        run: |
+          pip install -q "edge-tts==7.3.1"
+          python shorts/genie4_20261028/voice_full_attempt.py
+      - name: Store approved source voice if Microsoft provided it
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genie4-approved-dima-full-take
+          path: |
+            work/genie4/final_voice/dima_full.mp3
+            work/genie4/final_voice/voice_manifest.json
+          retention-days: 7
+          if-no-files-found: warn
