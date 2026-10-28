@@ -1,0 +1,49 @@
+name: Samsung V5 Natural Earth detailed country shapes
+on:
+  push:
+    branches: [codex/samsung-long-map-20261027]
+    paths: ['.github/workflows/samsung-v5-geojson.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  download-and-filter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download official Natural Earth 1:10m GitHub GeoJSON mirror
+        run: |
+          python - <<'PY'
+          import json,urllib.request,pathlib,time
+          url='https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries.geojson'
+          for i in range(3):
+            try:
+              with urllib.request.urlopen(url,timeout=70) as r: raw=r.read()
+              break
+            except Exception as e:
+              print('retry',i,e,flush=True)
+              if i==2:raise
+              time.sleep(3)
+          print('downloaded',len(raw),flush=True)
+          data=json.loads(raw)
+          need=set('BB BH FM KI MV NR PW SG TO TV WS GB RS ME MM'.split())
+          out={};matches={}
+          for feature in data.get('features',[]):
+            prop=feature.get('properties',{})
+            rawcodes=[prop.get(k,'') for k in ('ISO_A2','ISO_A2_EH','WB_A2','POSTAL','ISO_A2_EH')]
+            codes=[str(v).upper() for v in rawcodes if v and v not in ('-99','-1')]
+            matches[prop.get('ADMIN','')]=codes
+            for c in codes:
+              if c in need and c not in out:out[c]=feature['geometry']
+          pathlib.Path('samsung_v5_geo_10m.json').write_text(json.dumps({'source':url,'geometries':out},ensure_ascii=False,separators=(',',':')))
+          print('GEO COVERED',len(out),sorted(out),'MISSING',sorted(need-set(out)),flush=True)
+          pathlib.Path('samsung_v5_geo_stats.txt').write_text('\n'.join(sorted(f'{k}: {v}' for k,v in matches.items())))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: samsung-v5-natural-earth-10m-shapes
+          path: |
+            samsung_v5_geo_10m.json
+            samsung_v5_geo_stats.txt
+          retention-days: 30
+          if-no-files-found: error
