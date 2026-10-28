@@ -20,6 +20,8 @@ jobs:
           python-version: '3.11'
       - name: Microsoft neural TTS with no fallback
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
           pip install -q "edge-tts==7.3.1"
           python shorts/genie4_20261028/voice_full_attempt.py
       - name: Store approved source voice if Microsoft provided it
