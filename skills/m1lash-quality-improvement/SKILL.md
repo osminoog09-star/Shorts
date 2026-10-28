@@ -49,3 +49,6 @@ description: Независимый аудит и улучшение уже со
 - `ACTING_GATE`: в 15-сек сцене должны читаться пять причинных фаз действия + асимметричная реакция персонажа, понятная без звука.
 - Метрика V3: 11/23 полусекундных соседних переходов почти статичны при пороге mean diff <3/255 (96×54); резкие дельты на 4-й и 8-й секундах — склейки. **Не оптимизировать эту метрику вместо качества**.
 - Реализация: принцип staging, anatomy, appeal, anticipation и overlapping action из Disney/Meta; Grease Pencil/shape keys/IK из Blender — `Pillow` не основной художественный движок, если качество героя провалено.
+
+## M1lash S1 integrated 44s V2 (2026-10-28)
+New lesson from a verified full 43.824s code-only voice pilot: more clothing/facial geometry and 20fps output still left character appeal 4/10, hands 3/10, acting 3/10; fix **the actor model & purposeful acting**, not more overlays, window shapes or generic frame wiggles. Original Dmitry voice stem, full-episode ffmpeg decode and near-identical track end are confirmed. Two subtitles visually collided with scenery; code was corrected and exported again. Future QA must review actual contact sheet for all planned beats and clearly distinguish scene coverage, drawing quality, acting, voice completeness and true lip-sync. Source code must be checked in for reproducibility. See `docs/M1LASH_S1_44S_PILOT_V2_INTEGRATED_AUDIT.md`.
