@@ -2,7 +2,7 @@ name: Motion Studio · GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ['motion-studio/**', '.github/workflows/motion-pages.yml']
+    paths: ['motion-studio/**', '.github/workflows/motion-pages.yml', '.github/workflows/m1lash-news-radar.yml', '.github/workflows/motion-trends.yml']
   workflow_dispatch:
 permissions:
   contents: read
