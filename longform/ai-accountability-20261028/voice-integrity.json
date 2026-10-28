@@ -1,0 +1,322 @@
+[
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_00.mp3",
+    "id": 0,
+    "sha256": "fac8c82a4a788228558d4726973a9498e38868787001f2e495b037fcfa315c54",
+    "duration": 47.592
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_01.mp3",
+    "id": 1,
+    "sha256": "4a5e14e9ff9655bca26aab3c1a515862e63e81864a5e6b98dc1297b71705b42f",
+    "duration": 51.48
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_02.mp3",
+    "id": 2,
+    "sha256": "c67f3200161bc0ccfaf3f2c53d222f3044345ab975193a1fbe8add96d671a584",
+    "duration": 51.792
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_03.mp3",
+    "id": 3,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "duration": 51.888
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_04.mp3",
+    "id": 4,
+    "sha256": "e6719406769a72df4bf66f19de0e45463a0a8e2c905f5455ba822248f84e7eae",
+    "duration": 49.68
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_06.mp3",
+    "id": 6,
+    "sha256": "3a45ddf2aebf4084c06f7aede13cdb652c09e2e7f1f8f68dd116db151d93f6d1",
+    "duration": 55.152
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_07.mp3",
+    "id": 7,
+    "sha256": "77115a710da0228721de54f86f6d86c49f2a14557d0af97c08b80c800660e9bd",
+    "duration": 59.016
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_08.mp3",
+    "id": 8,
+    "sha256": "97191480a703d9aa6c9dcbf73fee4ce789670a858116924d5507502680585688",
+    "duration": 54.552
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_09.mp3",
+    "id": 9,
+    "sha256": "1fcf95717ac3e65514e47a4af594fc63303360826cb6d14566d82c804113f67e",
+    "duration": 46.08
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_10.mp3",
+    "id": 10,
+    "sha256": "01643875dd0a7c0ac56f96eaf290259255dc6a3045a5fe45494fc394dfd557ba",
+    "duration": 55.104
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_11.mp3",
+    "id": 11,
+    "sha256": "096d47f55c4c1abf6969f1b1b3626c53184e4aa5b44a5db0b964a54c15064b5f",
+    "duration": 52.392
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_12.mp3",
+    "id": 12,
+    "sha256": "86c03595e2abec8e71718939b89424e3b6807760b1a29ae6398a9ace75c00547",
+    "duration": 51.336
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_13.mp3",
+    "id": 13,
+    "sha256": "f41bedadee35a410fe8fb84378da811fd923ec1a4a88e39309a0cc0454070c3b",
+    "duration": 54.0
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_14.mp3",
+    "id": 14,
+    "sha256": "948c193befd29b592490007e2cdfef71ee2d30f8e343e9254c6e7d07d6ccdb65",
+    "duration": 57.552
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_15.mp3",
+    "id": 15,
+    "sha256": "f35439c30469676a6f145be9b462699795567abbfca40f2c5ef63e760ba11add",
+    "duration": 57.408
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_17.mp3",
+    "id": 17,
+    "sha256": "9a9147b8df442e21c2f2b61d9d34e72fd42060a928d9a615b45dc0b653ac1752",
+    "duration": 52.368
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_18.mp3",
+    "id": 18,
+    "sha256": "f06d9e7f0826f05a92a7f4d7b530a8c6faa5e6b8ce6a1fd1d5d2f57a5f988b4c",
+    "duration": 53.4
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_19.mp3",
+    "id": 19,
+    "sha256": "7d9abdf73258a8698ca4b4bf1d218069d8249cf67c0b9f2ac435bde6c6750792",
+    "duration": 50.88
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_20.mp3",
+    "id": 20,
+    "sha256": "f1e1ff5176f127f95533a051e401b571b5ddc8ce8fa52a82661f42a3c0c26f2f",
+    "duration": 52.008
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_21.mp3",
+    "id": 21,
+    "sha256": "51517bd13758c9c677fbee9377df297afda8718289d3dc19d92b135037847301",
+    "duration": 52.896
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_22.mp3",
+    "id": 22,
+    "sha256": "b3e94d44efecc02af387f16c904eb6a42df293bba2e0d14cd30df09d641f1181",
+    "duration": 52.08
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_23.mp3",
+    "id": 23,
+    "sha256": "73e96612a75ec710b1741ab27530cde8ef2881ed225d8e6381a2752cd7c1a38e",
+    "duration": 55.608
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_24.mp3",
+    "id": 24,
+    "sha256": "f13efa2b7169e3e1c8fa645d2e5bf7f3286366fcce0d202f4008095c94e7ba7a",
+    "duration": 53.448
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_25.mp3",
+    "id": 25,
+    "sha256": "26d8a29fa8ef1e03f1bb37225fe845f856b54e06ab8fa3e39665e88df327b003",
+    "duration": 55.512
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_26.mp3",
+    "id": 26,
+    "sha256": "84d183d6392b0f294f5f48b73016e031778ba4325371e2c8a49cf30c7d524bb2",
+    "duration": 50.616
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_27.mp3",
+    "id": 27,
+    "sha256": "153bb4cb672863582f273a02bf0d865d4d0f3153c9ce698edb842db99eb235e2",
+    "duration": 53.544
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_28.mp3",
+    "id": 28,
+    "sha256": "0104d7afd461c40095c6ae87e12ea5d5ec1653ab775c4e2404dce387b6e876c4",
+    "duration": 54.72
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_29.mp3",
+    "id": 29,
+    "sha256": "8a7413aee0e0f794a56cd87597ccbbe3f5405fab43bc37b801247ea70aa02db9",
+    "duration": 57.456
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_35.mp3",
+    "id": 35,
+    "sha256": "3f69115d65d1ddb9041ce33a00be37e230e94af938405fe898ef7dd8ff1b7d5e",
+    "duration": 52.776
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_36.mp3",
+    "id": 36,
+    "sha256": "3aa053483d90e774895537509048801b1eded985a0b87de5b3deed7c848c2cc9",
+    "duration": 51.192
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_37.mp3",
+    "id": 37,
+    "sha256": "e10b2770e2b5b7b0beb95789333141cc17445a6c13c48fa886655124a1938ed8",
+    "duration": 35.424
+  },
+  {
+    "speaker": "dima",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "source_file": "voice_90.mp3",
+    "id": 90,
+    "sha256": "7b86233e9d700efc34cc2c693d86bafc168d608e8a717eb18ca53a5feadd35a2",
+    "duration": 50.4
+  }
+]

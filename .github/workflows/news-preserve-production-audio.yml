@@ -1,0 +1,32 @@
+name: Preserve accepted exact production audio
+on:
+  push:
+    branches: [codex/huashu-news-pilot-20261028]
+    paths: [.github/workflows/news-preserve-production-audio.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  preserve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: m1lash-news-all-accepted-voices
+          run-id: 40749534199
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: accepted
+      - uses: actions/download-artifact@v4
+        with:
+          name: m1lash-news-measured-timelines
+          run-id: 40749534199
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: accepted
+      - name: Keep original voice bytes and word timings with private review files
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tar -czf M1lash_20261028_accepted_voice_sources.tar.gz -C accepted .
+          gh release upload m1lash-ai-news-20261028-native-review M1lash_20261028_accepted_voice_sources.tar.gz --repo osminoog09-star/Shorts --clobber
