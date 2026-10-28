@@ -1,0 +1,57 @@
+name: Samsung V8 licensed documentary photos
+on:
+  push:
+    branches: [codex/samsung-long-map-20261027]
+    paths: ['.github/workflows/samsung-v8-visual-assets.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  imagery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download individually licensed images, verify format and provenance
+        run: |
+          python - <<'PY'
+          import urllib.request,urllib.parse,pathlib,json,hashlib,time
+          P=pathlib.Path('samsung_v8_visual_assets');P.mkdir(exist_ok=True)
+          photos=[
+            dict(id='galaxy_a51',name='Samsung-Galaxy-A51.jpg',license='CC BY 4.0',author='EDG 543',usage='actual Samsung Galaxy A51 photograph; representative past model, not a new 2026 phone'),
+            dict(id='samsung_older_phone',name='Samsung SGH-C207.jpg',license='Public Domain',author='Jorge Barrios',usage='authentic 2007 Samsung handset, NOT the first 1988 mobile'),
+            dict(id='smartphone_purchase',name='Smartphone display screen.jpg',license='CC0',author='Skitterphoto',usage='generic purchase/smartphone illustration, NOT proof of Samsung.com checkout'),
+            dict(id='phone_assembly',name='Phone Assembly Line.jpg',license='CC0',author='Encik Tekateki',usage='generic assembly illustration of iPhone build, NOT Samsung or Vietnam/India plant'),
+            dict(id='container_ship',name='Container ship Anna Schulte.jpg',license='CC0',author='Tvabutzku1234',usage='illustrative cargo ship in Bremerhaven in 2011, NOT evidence of shipments of Samsung devices'),
+            dict(id='fishing_net',name='Historical Fishing Net.jpg',license='CC0',author='787IYO',usage='generic fishing net photograph, NOT material that Samsung specifically procured'),
+            dict(id='smartphone_use',name='Smartphone Use.jpg',license='CC0',author='Océanos y dados',usage='generic phone in hand, not necessarily Samsung')
+          ]
+          report=[]
+          for x in photos:
+            name=x['name'].replace(' ','_')
+            h=hashlib.md5(name.encode('utf8')).hexdigest()
+            url='https://upload.wikimedia.org/wikipedia/commons/'+h[0]+'/'+h[:2]+'/'+urllib.parse.quote(name)
+            dst=P/(x['id']+'.jpg')
+            error=''
+            for attempt in range(3):
+              try:
+                req=urllib.request.Request(url,headers={'User-Agent':'M1lashYouTubeResearch/1.0 (educational asset manifest; contact via repository owner)'})
+                with urllib.request.urlopen(req,timeout=55) as r:
+                  b=r.read()
+                if len(b)<8000 or not b.startswith(bytes.fromhex('ffd8')):raise ValueError('Invalid JPEG or too small')
+                dst.write_bytes(b);break
+              except Exception as e:
+                error=repr(e);time.sleep(2)
+            item={**x,'origin':'https://commons.wikimedia.org/wiki/File:'+urllib.parse.quote(x['name'].replace(' ','_')),
+                  'download_url':url,'download_bytes':dst.stat().st_size if dst.exists() else 0,'error':error if not dst.exists() else ''}
+            report.append(item)
+            print('PHOTO',item['id'],item['download_bytes'],item['error'],flush=True)
+          (P/'LICENSE_AND_PROVENANCE.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
+          # fail if nothing available; missing per-file outputs remain explicit.
+          assert sum(x['download_bytes']>8000 for x in report)>=3,'Insufficient properly sourced images'
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: samsung-v8-licensed-photos
+          path: samsung_v8_visual_assets/
+          if-no-files-found: error
+          retention-days: 30
