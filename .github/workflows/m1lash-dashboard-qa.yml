@@ -1,0 +1,47 @@
+name: M1lash Studio v2 - dashboard, news and agent tests
+
+on:
+  push:
+    branches: [codex/m1lash-studio-dashboard-20261028]
+    paths:
+      - 'motion-studio/index.html'
+      - 'motion-studio/studio-v2.css'
+      - 'motion-studio/studio-v2.js'
+      - 'motion-studio/automation/site_smoke.py'
+      - 'motion-studio/automation/news_radar.py'
+      - 'motion-studio/automation/prepare_job.py'
+      - 'motion-studio/renderer.html'
+      - 'motion-studio/data/news.json'
+      - 'tests/test_m1lash_news_radar.py'
+      - 'tests/test_m1lash_studio_jobs.py'
+      - '.github/workflows/m1lash-dashboard-qa.yml'
+  pull_request:
+    paths:
+      - 'motion-studio/**'
+      - 'tests/test_m1lash_news_radar.py'
+      - 'tests/test_m1lash_studio_jobs.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-and-offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Browser JavaScript syntax
+        run: |
+          node --check motion-studio/studio-v2.js
+          node --check motion-studio/app.js
+      - name: Check control IDs and assets
+        run: python motion-studio/automation/site_smoke.py
+      - name: RSS and owner-only job tests
+        run: |
+          python -m unittest discover -s tests -p 'test_m1lash_news_radar.py' -v
+          python -m unittest discover -s tests -p 'test_m1lash_studio_jobs.py' -v
+          python -m py_compile motion-studio/automation/render.py motion-studio/automation/news_radar.py motion-studio/automation/prepare_job.py
