@@ -1,0 +1,47 @@
+name: Neurooffice V5 · verified video and downloadable MP4 (never YouTube)
+on:
+  push:
+    branches: [codex/neurooffice-v5-audit-20261028]
+    paths: ['.github/workflows/neurooffice-v5-direct.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  render-verified-video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install reproducible code video dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          python -m pip install --quiet Pillow numpy
+      - name: Restore same approved Dmitry voice from V2
+        run: |
+          set -euo pipefail
+          ffmpeg -nostdin -v error -y -i videos/M1lash_Neurooffice_V2_RU.mp4 -map 0:a:0 -c:a copy shorts/neurooffice-v5/voice_dima.m4a
+          python -m py_compile shorts/neurooffice-v5/render_v3.py shorts/neurooffice-v5/render_v4.py shorts/neurooffice-v5/render_v5.py
+      - name: Render full V5 (new human, robot, windows, readable schedule)
+        run: |
+          set -euo pipefail
+          python -u shorts/neurooffice-v5/render_v5.py --render
+      - name: Validate final MP4 and prepare download
+        run: |
+          set -euo pipefail
+          src=shorts/neurooffice-v5/output/M1LASH_NEUROOFFICE_V5_RU.mp4
+          test -s "$src"
+          ffmpeg -nostdin -v error -xerror -i "$src" -f null -
+          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate -show_entries format=duration -of json "$src"
+          mkdir -p videos
+          cp "$src" videos/M1LASH_NEUROOFFICE_V5_RU.mp4
+      - name: Commit downloadable MP4 to branch only
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add videos/M1LASH_NEUROOFFICE_V5_RU.mp4
+          git diff --cached --quiet || git commit -m 'video(neurooffice): V5 code-animated MP4, fixed schedule and actors'
+          git push origin HEAD:refs/heads/codex/neurooffice-v5-audit-20261028
