@@ -1,0 +1,217 @@
+{
+  "id": "waddle_world_20261028",
+  "format": "news_short",
+  "status": "NO_GO_VISUAL_ANIMATIC_ONLY",
+  "created_at": "2026-10-28",
+  "language": "ru",
+  "style": "S5-D2",
+  "frame": {
+    "width": 1080,
+    "height": 1920,
+    "release_fps": 30,
+    "animatic_fps": 12
+  },
+  "duration_target_s": 51,
+  "facts": [
+    "Waddle World discussed 2026-10-28; app store first appeared late September",
+    "Meta app available in Philippines only for adults",
+    "pixel pet hatches, can be fed and played with",
+    "voice/text diary, AI reply and doodle, weekly email"
+  ],
+  "source_urls": [
+    "https://techcrunch.com/2026/10/28/meta-has-a-new-ai-pet-app-called-waddle-world/",
+    "https://www.engadget.com/2299227/meta-tamagotchi-like-ai-digital-pet-app-waddle-world/"
+  ],
+  "visual_assets": [
+    {
+      "name": "original procedural pixel-art animation",
+      "license": "author-created for M1lash",
+      "real_app_screenshot": false
+    },
+    {
+      "name": "approved HostCorner",
+      "path": "studio/src/HostCorner.tsx",
+      "status": "required but NOT composited"
+    }
+  ],
+  "audio_manifest": [
+    {
+      "segment": 1,
+      "speaker": "dima",
+      "voice_id": "ru-RU-DmitryNeural",
+      "engine": "Microsoft Edge TTS",
+      "rate": "+0%",
+      "source_file": null,
+      "status": "NOT_GENERATED",
+      "text": "Тамагочи теперь умеет вести твой дневник!",
+      "draft_start": "00:00:00,000",
+      "draft_end": "00:00:02,000"
+    },
+    {
+      "segment": 2,
+      "speaker": "dima",
+      "voice_id": "ru-RU-DmitryNeural",
+      "engine": "Microsoft Edge TTS",
+      "rate": "+0%",
+      "source_file": null,
+      "status": "NOT_GENERATED",
+      "text": "Meta тихо выпустила Waddle World — пиксельного питомца с искусственным интеллектом.",
+      "draft_start": "00:00:02,000",
+      "draft_end": "00:00:07,000"
+    },
+    {
+      "segment": 3,
+      "speaker": "dima",
+      "voice_id": "ru-RU-DmitryNeural",
+      "engine": "Microsoft Edge TTS",
+      "rate": "+0%",
+      "source_file": null,
+      "status": "NOT_GENERATED",
+      "text": "Он вылупляется из яйца, его можно кормить и играть с ним — прямо как раньше.",
+      "draft_start": "00:00:07,000",
+      "draft_end": "00:00:13,000"
+    },
+    {
+      "segment": 4,
+      "speaker": "dima",
+      "voice_id": "ru-RU-DmitryNeural",
+      "engine": "Microsoft Edge TTS",
+      "rate": "+0%",
+      "source_file": null,
+      "status": "NOT_GENERATED",
+      "text": "Но фишка другая: ты рассказываешь ему, как прошёл день. Голосом или текстом.",
+      "draft_start": "00:00:13,000",
+      "draft_end": "00:00:20,000"
+    },
+    {
+      "segment": 5,
+      "speaker": "dima",
+      "voice_id": "ru-RU-DmitryNeural",
+      "engine": "Microsoft Edge TTS",
+      "rate": "+0%",
+      "source_file": null,
+      "status": "NOT_GENERATED",
+      "text": "Питомец отвечает и рисует картинку к записи. А ещё может прислать письмо за неделю.",
+      "draft_start": "00:00:20,000",
+      "draft_end": "00:00:27,000"
+    },
+    {
+      "segment": 6,
+      "speaker": "dima",
+      "voice_id": "ru-RU-DmitryNeural",
+      "engine": "Microsoft Edge TTS",
+      "rate": "+0%",
+      "source_file": null,
+      "status": "NOT_GENERATED",
+      "text": "Пока игра доступна взрослым на Филиппинах. В магазинах она появилась ещё в сентябре.",
+      "draft_start": "00:00:27,000",
+      "draft_end": "00:00:33,000"
+    },
+    {
+      "segment": 7,
+      "speaker": "dima",
+      "voice_id": "ru-RU-DmitryNeural",
+      "engine": "Microsoft Edge TTS",
+      "rate": "+0%",
+      "source_file": null,
+      "status": "NOT_GENERATED",
+      "text": "И вот шутка: раньше Тамагочи просил еды. Теперь он знает, почему ты опять не выспался!",
+      "draft_start": "00:00:33,000",
+      "draft_end": "00:00:40,000"
+    },
+    {
+      "segment": 8,
+      "speaker": "dima",
+      "voice_id": "ru-RU-DmitryNeural",
+      "engine": "Microsoft Edge TTS",
+      "rate": "+0%",
+      "source_file": null,
+      "status": "NOT_GENERATED",
+      "text": "Ты бы доверил такому питомцу свой дневник?",
+      "draft_start": "00:00:40,000",
+      "draft_end": "00:00:45,000"
+    },
+    {
+      "segment": 9,
+      "speaker": "dima",
+      "voice_id": "ru-RU-DmitryNeural",
+      "engine": "Microsoft Edge TTS",
+      "rate": "+0%",
+      "source_file": null,
+      "status": "NOT_GENERATED",
+      "text": "Подпишись! И спасибо всем, кто досмотрел и поставил лайк.",
+      "draft_start": "00:00:45,000",
+      "draft_end": "00:00:51,000"
+    }
+  ],
+  "scene_plan": [
+    {
+      "scene": 1,
+      "start": "00:00:00,000",
+      "end": "00:00:02,000",
+      "on_screen": "ТВОЙ ПИТОМЕЦ ВЕДЁТ ДНЕВНИК"
+    },
+    {
+      "scene": 2,
+      "start": "00:00:02,000",
+      "end": "00:00:07,000",
+      "on_screen": "META: WADDLE WORLD"
+    },
+    {
+      "scene": 3,
+      "start": "00:00:07,000",
+      "end": "00:00:13,000",
+      "on_screen": "16-БИТНЫЙ ПИТОМЕЦ"
+    },
+    {
+      "scene": 4,
+      "start": "00:00:13,000",
+      "end": "00:00:20,000",
+      "on_screen": "РАССКАЖИ ПРО СВОЙ ДЕНЬ"
+    },
+    {
+      "scene": 5,
+      "start": "00:00:20,000",
+      "end": "00:00:27,000",
+      "on_screen": "ОН РИСУЕТ ТВОЙ ДЕНЬ"
+    },
+    {
+      "scene": 6,
+      "start": "00:00:27,000",
+      "end": "00:00:33,000",
+      "on_screen": "ПИСЬМО РАЗ В НЕДЕЛЮ"
+    },
+    {
+      "scene": 7,
+      "start": "00:00:33,000",
+      "end": "00:00:40,000",
+      "on_screen": "ПОКА ТОЛЬКО ФИЛИППИНЫ"
+    },
+    {
+      "scene": 8,
+      "start": "00:00:40,000",
+      "end": "00:00:45,000",
+      "on_screen": "КТО КОГО КОРМИТ?"
+    },
+    {
+      "scene": 9,
+      "start": "00:00:45,000",
+      "end": "00:00:51,000",
+      "on_screen": "ТЫ БЫ ДОВЕРИЛ ДНЕВНИК?"
+    }
+  ],
+  "music": {
+    "status": "NONE_IN_ANIMATIC",
+    "release": "original documented composition or Laeko after explicit rights verification"
+  },
+  "release_gates": [
+    "real DmitryNeural voice for all narration and CTA",
+    "Rhubarb lip sync from final audio",
+    "approved HostCorner unchanged",
+    "SRT timing from actual voice word boundaries",
+    "rights check music",
+    "30fps full bleed 1080x1920",
+    "ffprobe audio/video decode and listening QA",
+    "no scheduled or published duplicate"
+  ]
+}
