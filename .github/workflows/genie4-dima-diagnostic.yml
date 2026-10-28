@@ -1,0 +1,30 @@
+name: Genie4 · Check exact approved Dima voice
+on:
+  push:
+    branches:
+      - research/genie4-20261028-radar
+    paths:
+      - "shorts/genie4_20261028/diagnose_dmitry.py"
+      - ".github/workflows/genie4-dima-diagnostic.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: |
+          python -m pip install -q --upgrade "edge-tts==7.3.1"
+          python shorts/genie4_20261028/diagnose_dmitry.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: genie4-approved-voice-diagnostics
+          path: work/genie4/diag_*.mp3
+          if-no-files-found: warn
+          retention-days: 7
