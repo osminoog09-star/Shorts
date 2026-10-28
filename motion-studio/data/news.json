@@ -1,0 +1,9 @@
+{
+  "status": "awaiting_first_scan",
+  "updated_at": null,
+  "last_attempt_at": null,
+  "feeds_ok": 0,
+  "feeds_failed": 0,
+  "scope": "news headlines are not fact-checked; never fabricate items",
+  "items": []
+}
