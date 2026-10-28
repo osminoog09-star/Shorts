@@ -11,9 +11,9 @@ jobs:
   voices:
     strategy:
       fail-fast: false
-      max-parallel: 6
+      max-parallel: 3
       matrix:
-        ids: ['0,1,2,3,4,5','6,7,8,9,10,11','12,13,14,15,16,17','18,19,20,21,22,23','24,25,26,27,28,29','30,31,90,91,92']
+        ids: ['4','8','14','27','91','92']
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -27,6 +27,12 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg
           pip install edge-tts==7.3.1
+      - uses: actions/download-artifact@v4
+        with:
+          name: m1lash-drawn-all-accepted-voices
+          run-id: 40762612570
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/drawn-lab-20261028/build
       - run: python longform/drawn-lab-20261028/voice.py --ids=${{ matrix.ids }}
       - uses: actions/upload-artifact@v4
         if: always()
@@ -51,6 +57,12 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg
           pip install edge-tts==7.3.1
+      - uses: actions/download-artifact@v4
+        with:
+          name: m1lash-drawn-all-accepted-voices
+          run-id: 40762612570
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/drawn-lab-20261028/build
       - uses: actions/download-artifact@v4
         with:
           pattern: drawn-voice-batch-*

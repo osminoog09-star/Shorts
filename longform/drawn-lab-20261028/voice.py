@@ -16,11 +16,11 @@ async def synth(s,sem):
  async with sem:
   p=OUT/f"voice_{s['id']:02d}.mp3"; meta=p.with_suffix('.json')
   if not(p.exists() and meta.exists() and json.loads(meta.read_text()).get('text')==s['text']):
-   for attempt in range(5):
+   for attempt in range(8):
     try:
      events=[]
      with p.open('wb') as f:
-      async for x in edge_tts.Communicate(s['text'],'ru-RU-DmitryNeural',rate='+0%',boundary='WordBoundary',receive_timeout=20).stream():
+      async for x in edge_tts.Communicate(s['text'],'ru-RU-DmitryNeural',rate='+0%',boundary='WordBoundary',receive_timeout=45).stream():
        if x['type']=='audio':f.write(x['data'])
        elif x['type']=='WordBoundary':events.append(x)
      if p.stat().st_size<1000 or not events:raise RuntimeError('Missing voice or word timing')
@@ -28,8 +28,8 @@ async def synth(s,sem):
      break
     except Exception:
      p.unlink(missing_ok=True)
-     if attempt==4:raise
-     await asyncio.sleep(2*(attempt+1))
+     if attempt==7:raise
+     await asyncio.sleep(min(45,5*(attempt+1)))
   s['duration']=duration(p);s['audio']=p.name;s['words']=json.loads(meta.read_text())['words']
   print(s['id'],round(s['duration'],2),flush=True)
 def short_scenes():

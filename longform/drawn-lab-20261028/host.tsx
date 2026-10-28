@@ -20,5 +20,13 @@ for(const pose of ['talk','point','shock','shrug','rest'])for(const [v,mouth] of
  <rect x="295" y="340" width="43" height="50" rx="8" fill="#e9e3da"/><path d="M337 350q25 0 15 24h-15" fill="none" stroke="#e9e3da" strokeWidth="6"/>
  <text x="303" y="371" fill="#e43c40" fontFamily="DejaVu Sans" fontWeight="bold" fontSize="18">M1</text>
  </svg>);
- fs.writeFileSync(`build/host/${pose}_${v}.svg`,body);
+ let ink=body.replace(/#[0-9a-fA-F]{6}/g,(c)=>({
+ '#f3c9a9':'#f5d9bd','#fde3cf':'#fff3df','#d99f80':'#d5b99e','#b97b5f':'#5b4b45',
+ '#58c8ff':'#2c82aa','#ff5fb0':'#cc5c87','#4fd1ff':'#2c82aa','#ff5ad1':'#cc5c87',
+ '#e9e3da':'#fff8ec','#e43c40':'#ae4d62'
+ }[c.toLowerCase()]||(/#(?:1|2|3)/.test(c)?'#30363d':'#6a7275')));
+ ink=ink.replace(/url\(#bg\)/g,'#f6edda').replace(/url\(#desk\)/g,'#e5cda5').replace(/url\(#rim\)/g,'#30363d');
+ ink=ink.replace('<defs>','<defs><pattern id="pencil" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 8L8 0" stroke="#343b42" stroke-width="0.5" opacity="0.12"/></pattern>');
+ ink=ink.replace(/<\/svg>$/, '<rect x="8" y="365" width="360" height="70" fill="url(#pencil)" pointer-events="none"/></svg>');
+ fs.writeFileSync(`build/host/${pose}_${v}.svg`,ink);
 }
