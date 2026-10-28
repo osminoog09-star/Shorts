@@ -1,0 +1,130 @@
+name: M1lash native 27-minute news and linked Shorts
+on:
+  push:
+    branches: [codex/huashu-news-pilot-20261028]
+    paths: [.github/workflows/news-native-final.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  chapters:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        ids: ['0,1,2,3,4,6','7,8,9,10,11,12','13,14,15,17,18,19','20,21,22,23,24,25','26,27,28,29,35,36','37,90']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            longform/ai-accountability-20261028
+            studio/src/Narrator2.tsx
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Free exact production tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core libcairo2
+          pip install edge-tts==7.3.1 cairosvg
+          git clone --depth 1 https://github.com/alchaincyf/huashu-motion.git /tmp/huashu-motion
+          git -C /tmp/huashu-motion fetch --depth 1 origin 52467f99c602b76ba86d511d37acdfe93fa1e16e
+          git -C /tmp/huashu-motion checkout --detach 52467f99c602b76ba86d511d37acdfe93fa1e16e
+          curl --fail -L -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.13.0/Rhubarb-Lip-Sync-1.13.0-Linux.zip
+          unzip -q /tmp/rhubarb.zip -d /tmp/rhubarb
+          cd longform/ai-accountability-20261028
+          npm ci --ignore-scripts
+          npm rebuild esbuild
+      - uses: actions/download-artifact@v4
+        with:
+          name: m1lash-news-all-accepted-voices
+          run-id: 40749534199
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/ai-accountability-20261028/build
+      - uses: actions/download-artifact@v4
+        with:
+          name: m1lash-news-measured-timelines
+          run-id: 40749534199
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/ai-accountability-20261028/build
+      - name: Native sources and exact lip cues
+        env:
+          RHUBARB: /tmp/rhubarb/Rhubarb-Lip-Sync-1.13.0-Linux/rhubarb
+          HUASHU_ROOT: /tmp/huashu-motion
+        run: |
+          cd longform/ai-accountability-20261028
+          python edit_timeline.py
+          ./node_modules/.bin/esbuild host.tsx --bundle --platform=node --external:react --external:react-dom/server --outfile=build/host.cjs
+          node build/host.cjs
+          python native_prepare.py --ids=${{ matrix.ids }}
+          python build_native.py --ids=${{ matrix.ids }}
+          if [ '${{ matrix.ids }}' = '37,90' ]; then python build_native.py --short; fi
+      - name: Render measured chapters and verify each export
+        env:
+          HUASHU_ROOT: /tmp/huashu-motion
+        run: python longform/ai-accountability-20261028/render_native_batch.py --ids=${{ matrix.ids }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-masters-${{ matrix.ids }}
+          path: longform/ai-accountability-20261028/build/masters
+          retention-days: 14
+          if-no-files-found: error
+  join:
+    needs: chapters
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            longform/ai-accountability-20261028
+            scripts/qa/longform_duration_gate.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with:
+          name: m1lash-news-measured-timelines
+          run-id: 40749534199
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/ai-accountability-20261028/build
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: native-masters-*
+          merge-multiple: true
+          path: longform/ai-accountability-20261028/build/masters
+      - name: Join, normalize, decode, duration gate and measured chapters
+        run: |
+          cd longform/ai-accountability-20261028
+          python edit_timeline.py
+          python join_native.py
+          cd ../..
+          python scripts/qa/longform_duration_gate.py longform/ai-accountability-20261028/build/release/M1lash_AI_News_20261028_RU.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: M1lash_27min_AI_News_and_Shorts_20261028_RU
+          path: longform/ai-accountability-20261028/build/release
+          retention-days: 30
+          if-no-files-found: error
+      - name: Make durable downloadable draft files for owner review
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG=m1lash-ai-news-20261028-native-review
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --draft --title 'M1lash AI news 28 Oct · review files' --notes 'Not uploaded to YouTube. Technical checks passed; viewer review required.'
+          gh release upload "$TAG" longform/ai-accountability-20261028/build/release/*.mp4 longform/ai-accountability-20261028/build/release/PUBLISH.md --clobber
