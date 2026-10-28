@@ -1,0 +1,78 @@
+name: Samsung V8 rescue exact neural segments
+on:
+  push:
+    branches: [codex/samsung-long-map-20261027]
+    paths: ['.github/workflows/samsung-v8-rescue-neural.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  rescue:
+    strategy:
+      fail-fast: false
+      matrix:
+        id: [E00_01,E10_01,E14_01]
+    runs-on: ubuntu-latest
+    timeout-minutes: 23
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: codex/samsung-long-map-20261027}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install -q "edge-tts>=7,<8" pydub
+      - name: Split only failed neural phrase into shorter true-speech parts
+        env: {ID: '${{ matrix.id }}'}
+        run: |
+          python - <<'PY'
+          import json,os,re,pathlib,subprocess
+          from pydub import AudioSegment
+          name=os.environ['ID']
+          doc=json.loads(pathlib.Path('jobs/tts/samsung_v8_new_research.json').read_text())
+          raw=[]
+          for par in doc['paragraphs']:
+              buf=[];batches=[]
+              for sent in re.split(r'(?<=[.!?])\s+',par['text']):
+                  if buf and len((' '.join(buf)+' '+sent).split())>42:
+                      batches.append(' '.join(buf));buf=[]
+                  buf.append(sent)
+              if buf:batches.append(' '.join(buf))
+              for k,s in enumerate(batches):
+                  if par['id']+'_'+str(k).zfill(2)==name:raw=[par,s]
+          assert raw,'missing id '+name
+          par,text=raw
+          t=text.split();mid=len(t)//2
+          chunks=[' '.join(t[:mid]),' '.join(t[mid:])]
+          clips=[];words=[];offset=0.
+          for part,segment in enumerate(chunks):
+              job={'voice':par['voice'],'rate':'+1%','pitch':'+0Hz',
+                   'lines':[{'id':name+'_part'+str(part),'text':segment}]}
+              jpath=pathlib.Path('jobs/tts')/('v8rescue_'+name+'_'+str(part)+'.json')
+              jpath.write_text(json.dumps(job,ensure_ascii=False),encoding='utf-8')
+              f=pathlib.Path('media/tts')/jpath.stem/(name+'_part'+str(part)+'.mp3')
+              for attempt in range(5):
+                  subprocess.run(['timeout','120','python','scripts/tts_job.py',str(jpath)],check=False)
+                  if f.exists() and f.stat().st_size>1800:break
+              assert f.is_file() and f.stat().st_size>1800,'failed voice '+str(f)
+              a=AudioSegment.from_mp3(str(f)).set_frame_rate(48000).set_channels(2)
+              j=json.loads(f.with_suffix('.json').read_text())
+              assert j['text']==segment
+              for w in j['words']:
+                  words.append({'w':w['w'],'start':offset+float(w['start']),'end':offset+float(w['end'])})
+              clips.append(a)
+              offset+=len(a)/1000
+              if part==0:offset+=.14
+          result=clips[0]+AudioSegment.silent(duration=140,frame_rate=48000)+clips[1]
+          out=pathlib.Path('media/tts/v8_rescue');out.mkdir(parents=True,exist_ok=True)
+          result.export(out/(name+'.mp3'),format='mp3',bitrate='192k')
+          (out/(name+'.json')).write_text(json.dumps({'text':text,'words':words,
+                       'speaker':par['speaker'],'voice_id':par['voice'],'engine':'edge-tts-rescue'},ensure_ascii=False,indent=1))
+          assert ' '.join(chunks)==text and len(words)>8
+          subprocess.run(['ffmpeg','-v','error','-xerror','-i',str(out/(name+'.mp3')),'-f','null','-'],check=True)
+          print('SUCCESS',name,len(words),'voice',par['voice'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: samsung-v8-rescue-${{ matrix.id }}
+          path: media/tts/v8_rescue/
+          if-no-files-found: warn
+          retention-days: 30
