@@ -13,7 +13,7 @@ const words=OM.words();const tl=gsap.timeline({paused:true});window.__timelines=
 beatTimes.forEach((t,i)=>tl.addLabel('scene:beat-'+i,t));
 const blue='#58c8ff',orange='#efae70',pink='#ee87c4',green='#72c7aa';
 const host=document.querySelector('#host'),cap=document.querySelector('#caption'),spot=document.querySelector('#spot');
-const when=w=>words.find(x=>x.word.toLowerCase().includes(w.toLowerCase()))?.start??1e6;
+const when=w=>words.find(x=>x.word.toLowerCase()===w.toLowerCase())?.start??1e6;
 const preload=[];for(const pose of ['point','talk'])for(const v of 'ABCDEFGHX'){let im=new Image();im.src=`assets/host/${pose}_${v}.png`;preload.push(im)}
 const lerp=(a,b,t)=>a+(b-a)*t;let angle,scale,cx,cy,faces,tags;
 function pr(p){let[x,y,z]=p,a=angle;let xx=x*Math.cos(a)-z*Math.sin(a),zz=x*Math.sin(a)+z*Math.cos(a),dep=1/(1-zz*.025);return[cx+xx*scale*dep,cy+(zz*.36-y)*scale*dep]}
@@ -24,14 +24,14 @@ function route(a,b,t,c=blue,n=3){path([a,b],'#416782',4);for(let i=0;i<n;i++){le
 function machine(x,z,c,title){box([x,0,z],[1.3,1.8,1.1],c,title);for(let y of[-.4,0,.4])box([x,y,z-.57],[.85,.07,.05],'#ccdfed');box([x,-.98,z],[1.6,.12,1.3],'#35506b');for(let a of[-.55,.55])box([x+a,-.65,z-.6],[.07,.07,.05],'#839db3')}
 function laptop(x,z,c=blue){box([x,-.6,z],[2.7,.16,1.8],'#91a9c0');box([x,.45,z+.75],[2.7,1.9,.14],c);box([x,.45,z+.64],[2.4,1.55,.06],'#19334a');for(let i=0;i<4;i++)box([x-.22,.85-i*.26,z+.59],[1.45-i*.15,.05,.03],green);for(let i=0;i<7;i++)box([x-1+i*.32,-.48,z],[.19,.03,.5],'#3a526b')}
 function doc(x,z,c,title){box([x,0,z],[1.8,2,.16],c,title);for(let j=0;j<4;j++)box([x,.55-j*.3,z-.1],[1.15-j*.08,.07,.04],'#dfebf1')}
-function world(t){let shot=Math.max(0,beatTimes.filter(x=>x<=t).length-1),stage=shot%6,pres=[[-.34,1],[.22,1.12],[-.55,1.3],[.40,1.1],[-.12,1.4],[.12,1]];angle=pres[stage][0]+.12*Math.sin(t*.23);scale=(P?85:128)*pres[stage][1];cx=P?540:910;cy=P?800:570;faces=[];tags=[];
+function world(t){let shot=Math.max(0,beatTimes.filter(x=>x<=t).length-1),stage=shot%6,pres=[[-.34,1],[.22,1.12],[-.55,1.3],[.40,1.1],[-.12,1.4],[.12,1]];angle=pres[stage][0]+.12*Math.sin(t*.23);scale=(P?85:128)*pres[stage][1];cx=P?540:910;cy=P?800:570;if((S.id===0||S.id===90)&&t<1.5)scale*=1+.65*(1-t/1.5)**2;faces=[];tags=[];
 for(let i=-7;i<=7;i++)path([[i,-1.1,-3],[i,-1.1,4]],'#29445b',1);for(let j=-3;j<=4;j++)path([[-7,-1.1,j],[7,-1.1,j]],'#29445b',1);
 let mode=S.visual;
 if(['factory','meter','tokens','ledger'].includes(mode)){
  if(mode==='ledger'){for(let i=0;i<3;i++){let h=.8+(i+1)*.37+Math.max(0,Math.sin(t*.45+i))*.4;box([-3+i*3,-.8+h/2,0],[1.6,h,1.4],[blue,pink,orange][i],['ГЕНЕРАЦИЯ','ПРОВЕРКА','ИСПРАВЛЕНИЯ'][i])}}
  else{[-4,0,4].forEach((x,i)=>machine(x,0,[blue,pink,green][i],['ЗАДАЧА','ОБРАБОТКА','РЕЗУЛЬТАТ'][i]));route([-3,0,0],[-1,0,0],t);route([1,0,0],[3,0,0],t,pink);for(let j=0;j<6;j++)box([-4.5+(t*.9+j*1.7)%9,-.55,2],[.5,.3,.55],mode==='tokens'?green:orange);if(stage===3)box([2.8,0,2],[.12,1.6,1.2],orange,'ПРОВЕРКА')}
 }else if(['cache','leak'].includes(mode)){
- for(let side of[-1,1]){let c=side<0?blue:orange;for(let i=0;i<6;i++)box([side*3+(i%3-1)*.75,-.5,Math.floor(i/3)],[.65,.42,.8],c);tags.push([[side*3,1.5,0],side<0?'КОНТЕКСТ А':'КОНТЕКСТ Б',c])}box([0,-.85,0],[.13,.5,3],'#95adc3','ГРАНИЦА');if(stage%2===0){let u=(t-beatTimes[shot])/((beatTimes[shot+1]||D)-beatTimes[shot]);box([3-6*u,.6+Math.sin(u*Math.PI)*.5,0],[.65,.42,.8],orange)}else{route([-3,.5,0],[-3,.5,2],t,blue);route([3,.5,0],[3,.5,2],t,orange)}
+ for(let side of[-1,1]){let c=side<0?blue:orange;for(let i=0;i<6;i++)box([side*3+(i%3-1)*.75,-.5,Math.floor(i/3)],[.65,.42,.8],c);tags.push([[side*3,1.5,0],side<0?'КОНТЕКСТ А':'КОНТЕКСТ Б',c])}box([0,-.85,0],[.13,.5,3],'#95adc3','ГРАНИЦА');if(stage%2===0){let u=(S.id===0||S.id===90)&&shot===0?Math.min(1,Math.max(0,(t-when('фрагментом'))/.7)):(t-beatTimes[shot])/((beatTimes[shot+1]||D)-beatTimes[shot]);if(S.id===90&&shot===0)u=Math.min(1,Math.max(0,(t-when('кусок'))/.65));box([3-6*u,.6+Math.sin(u*Math.PI)*.5,0],[.65,.42,.8],orange,u>0&&shot===0?'ЧУЖОЙ ФРАГМЕНТ':'')}else{route([-3,.5,0],[-3,.5,2],t,blue);route([3,.5,0],[3,.5,2],t,orange)}
 }else if(mode==='handoff'){
  [-4,0,4].forEach((x,i)=>machine(x,0,[blue,orange,pink][i],['ВХОД','ДОПУСК','ВЫХОД'][i]));route([-3,0,0],[-1,0,0],t);if(stage%2===0)route([1,0,0],[3,0,0],t,orange);else box([1.8,.1,0],[.18,2.5,2],'#d78d8d','СТОП')
 }else if(['permissions','office'].includes(mode)){
