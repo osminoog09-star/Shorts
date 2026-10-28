@@ -45,6 +45,9 @@ jobs:
             ffmpeg -v error -y -i $OUT -vf "fps=1/10,scale=480:-1,tile=6x6" -frames:v 1 $P/contact.jpg
             for t in 5 160 290 380 590; do ffmpeg -v error -y -ss $t -i $OUT -frames:v 1 -vf scale=960:-1 $P/check_$t.jpg; done
           fi
+      - name: Enforce minimum 21-minute new full-length release
+        if: inputs.short == ''
+        run: python3 scripts/qa/longform_duration_gate.py "rel/${{ inputs.project }}.mp4"
       - name: Release upload
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
