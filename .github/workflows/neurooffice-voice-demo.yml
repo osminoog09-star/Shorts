@@ -1,0 +1,45 @@
+name: Neurooffice RU voiced short demo · no publish
+on:
+  push:
+    branches: [codex/neurooffice-voice-short-20261028]
+    paths:
+      - 'shorts/neurooffice-demo/**'
+      - '.github/workflows/neurooffice-voice-demo.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          pip install 'pillow>=11,<13'
+      - name: Render fully animated voiced Russian Short
+        run: python shorts/neurooffice-demo/render.py
+      - name: Verify video release properties
+        run: |
+          ffprobe -v error -show_entries format=duration:stream=codec_name,codec_type,width,height -of json shorts/neurooffice-demo/out/NEUROOFFICE_VOICE_SHORT_RU.mp4
+          python - <<'PY'
+          import json
+          p=json.load(open('shorts/neurooffice-demo/out/QA.json'))
+          assert 30<=p['duration_seconds']<=70,p
+          assert p['voice_id']=='ru-RU-DmitryNeural'
+          assert p['resolution']=='1080x1920'
+          assert p['ffmpeg_full_decode']=='PASS'
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: neurooffice-voiced-short-demo
+          path: |
+            shorts/neurooffice-demo/out/NEUROOFFICE_VOICE_SHORT_RU.mp4
+            shorts/neurooffice-demo/out/contact.jpg
+            shorts/neurooffice-demo/out/QA.json
+          retention-days: 30
