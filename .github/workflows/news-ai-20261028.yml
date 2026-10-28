@@ -1,9 +1,6 @@
 name: M1lash AI news 28 Oct 2026 · render verified RU MP4
 on:
-  push:
-    paths:
-      - "scripts/render_news_20261028.py"
-      - ".github/workflows/news-ai-20261028.yml"
+  # Manual-only: previous outro must be re-voiced and attested first.
   workflow_dispatch:
 permissions:
   contents: write
