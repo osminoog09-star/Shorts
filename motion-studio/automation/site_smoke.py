@@ -9,7 +9,7 @@ IDS={
  "topic","brief","format","duration","language","voice","sources","depth",
  "styleChoices","styleDetails","allStyles","agentSelections","agentCards",
  "submitJob","exportConfig","refreshJobs","queueList","newsList",
- "newsStatus","newsCategory","refreshNews","referenceUrl","analyzeYoutube",
+ "newsStatus","newsCategory","refreshNews","outlierStatus","outlierList","refreshOutliers","referenceUrl","analyzeYoutube",
  "referenceStatus","sumFormat","sumDuration","sumStyle","sumVoice",
  "sumAgents","readiness","saveMessage","clearDraft","sectionTitle",
  "tab-create","tab-news","tab-reference","tab-agents","tab-styles",
