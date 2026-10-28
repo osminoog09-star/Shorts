@@ -91,15 +91,15 @@ jobs:
             -i tools/scion_weekly/work/host_outro.mov \
             -filter_complex "[1:v]crop=400:480:35:1065,scale=205:246:flags=lanczos,setpts=PTS-STARTPTS+0.16/TB,format=yuva420p[hi];[2:v]crop=400:480:35:1065,scale=205:246:flags=lanczos,setpts=PTS-STARTPTS+$FINAL_START/TB,format=yuva420p[ho];[0:v][hi]overlay=x=18:y=1010:format=auto:eof_action=pass:enable='between(t,0.16,4.16)'[tmp];[tmp][ho]overlay=x=18:y=1010:format=auto:eof_action=pass:enable='gte(t,$FINAL_START)'[v]" \
             -map "[v]" -map 0:a -c:v libx264 -preset medium -crf 19 -pix_fmt yuv420p \
-            -c:a copy -movflags +faststart videos/scion_weekly_20261028_dima_sveta_HOST_V2.mp4
-          ffprobe -v error -show_entries format=duration:stream=codec_name,width,height -of json videos/scion_weekly_20261028_dima_sveta_HOST_V2.mp4
-          ffmpeg -v error -xerror -i videos/scion_weekly_20261028_dima_sveta_HOST_V2.mp4 -f null -
+            -c:a copy -movflags +faststart videos/scion_weekly_20261028_dima_sveta_HOST_V4.mp4
+          ffprobe -v error -show_entries format=duration:stream=codec_name,width,height -of json videos/scion_weekly_20261028_dima_sveta_HOST_V4.mp4
+          ffmpeg -v error -xerror -i videos/scion_weekly_20261028_dima_sveta_HOST_V4.mp4 -f null -
       - name: Upload new host cut for full editorial QA
         uses: actions/upload-artifact@v4
         with:
           name: scion-weekly-approved-dima-host-cut
           path: |
-            videos/scion_weekly_20261028_dima_sveta_HOST_V2.mp4
+            videos/scion_weekly_20261028_dima_sveta_HOST_V4.mp4
             tools/scion_weekly/work/intro_lipsync.json
             tools/scion_weekly/work/outro_lipsync.json
             tools/scion_weekly/work/host_intro.mov
@@ -110,7 +110,7 @@ jobs:
         run: |
           git config user.name m1lash-render-bot
           git config user.email m1lash-render-bot@users.noreply.github.com
-          git add videos/scion_weekly_20261028_dima_sveta_HOST_V2.mp4
+          git add videos/scion_weekly_20261028_dima_sveta_HOST_V4.mp4
           if ! git diff --cached --quiet; then
             git commit -m 'video: approved Narrator2 with Dmitry Rhubarb lip sync'
             git push origin HEAD:codex/scion-weekly-s8d25-dima-sveta-20261028
