@@ -1,0 +1,12 @@
+{
+  "index": 3,
+  "kind": "scion",
+  "title": "SCION ВМЕСТО GIT",
+  "sub": "Система внутри Anthropic",
+  "speaker": "Дима",
+  "voice_id": "ru-RU-DmitryNeural",
+  "text": "Поэтому Антропик сделала собственную систему Сайон. Почти всю тяжёлую работу с историей и изменениями выполняет сервер.",
+  "words": [],
+  "duration": 8.808,
+  "audio_sha256": "4245bb45efbca538b39b857d2a974719ca58bb88f4734ff182cd08097a9b5b34"
+}
