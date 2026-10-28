@@ -60,7 +60,7 @@ function renderAgents(){
  $('agentCards').replaceChildren(...agents.map((a,i)=>{const box=document.createElement('article');box.className='panel';const code=document.createElement('p');code.className='eyebrow';code.textContent='АГЕНТ '+String(i+1).padStart(2,'0');const title=document.createElement('h3');title.textContent=a.name;const info=document.createElement('p');info.textContent=a.description;box.append(code,title,info);return box}));
 }
 function updateSummary(){ $('sumFormat').textContent=formatLabel();$('sumDuration').textContent=labelTime(Number(state.duration));$('sumStyle').textContent=state.style+' / '+state.depth;$('sumAgents').textContent=state.agents.length; const labels={dima:'Дима',sveta:'Света','orion-ru':'Орион RU (тест)','nova-ru':'Нова RU (тест)','orion-en':'Орион EN (тест)'};$('sumVoice').textContent=labels[state.voice]||state.voice;const m=[];if(String(state.topic).trim().length<8)m.push('Заполни тему ролика.');if(state.format==='long'&&state.duration<1260)m.push('Для длинных видео требуется 21+ минута.');if(!['dima','sveta'].includes(state.voice))m.push('Голос экспериментальный: нельзя автоматически публиковать.');$('readiness').textContent=m.length?m.join(' '):'Готов к созданию задания. Видео/источники ещё не проверены.';$('submitJob').disabled=String(state.topic).trim().length<8}
-function setTab(tab){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='tab-'+tab));document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));$('sectionTitle').textContent=({create:'Новый выпуск',agents:'Агенты',styles:'Стили',queue:'Производство',settings:'Настройки',news:'Радар новостей',reference:'Разбор YouTube'})[tab]||tab;if(tab==='queue')refreshJobs();if(tab==='news')refreshNews();window.scrollTo(0,0)}
+function setTab(tab){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='tab-'+tab));document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));$('sectionTitle').textContent=({create:'Новый выпуск',agents:'Агенты',styles:'Стили',queue:'Производство',settings:'Настройки',news:'Радар новостей',reference:'Разбор YouTube'})[tab]||tab;if(tab==='queue')refreshJobs();if(tab==='news'){refreshNews();refreshOutliers();}window.scrollTo(0,0)}
 function makeJob(){const topic=String(state.topic||'').trim();if(topic.length<8||topic.length>180)throw Error('Тема должна содержать 8–180 символов.');if(state.format==='long'&&(state.duration<1260||state.duration>3600))throw Error('Полный ролик 21–60 минут.');if(state.format==='short'&&(state.duration<30||state.duration>180))throw Error('Shorts 30–180 секунд.');if(state.brief.length>2200||state.sources.length>1500)throw Error('Сократи описание или ссылки перед отправкой на публичный GitHub.');return {schema:1,source:'m1lash-studio-v2',topic,brief:state.brief.trim(),format:state.format,duration_s:Number(state.duration),language:state.language,voice:state.voice,style:state.style,depth:state.depth,sources:state.sources.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).slice(0,12),agents:[...new Set([...agents.filter(a=>a.required).map(a=>a.id),...state.agents])],request:'prepare_only',publish:false}}
 function openGithubJob(obj){if(!confirm('Создать публичное задание через GitHub? Его текст увидят посетители репозитория. Автопубликации нет.'))return;const title='[M1LASH STUDIO] '+String(obj.topic||'Новый выпуск').slice(0,170);const body='Задание M1lash Studio. ПОДГОТОВКА, не готовый ролик.\n\nM1LASH_JOB_START\n'+JSON.stringify(obj)+'\nM1LASH_JOB_END\n\nПубликация на YouTube запрещена без одобрения.';const url='https://github.com/'+REPO+'/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);if(url.length>12000)throw Error('Слишком большой запрос; скачай JSON или сократи текст.');const opened=window.open(url,'_blank','noopener,noreferrer');if(!opened)location.assign(url)}
 function submit(){try{openGithubJob(makeJob())}catch(e){alert(e.message)}}
@@ -72,6 +72,69 @@ let feedCache=[];
 function makeNewsCard(item){const box=document.createElement('article');box.className='panel news-card';const category=document.createElement('p');category.className='eyebrow';category.textContent=String(item.category||'Технологии')+' · '+String(item.source||'Источник');const h=document.createElement('h3');h.textContent=item.title;const date=document.createElement('p');date.className='muted';date.textContent='Дата публикации: '+(item.published_at?new Date(item.published_at).toLocaleString('ru-RU'):'неизвестна')+' · '+(isFresh(item.published_at)?'Свежая':'Требует проверки актуальности');const link=document.createElement('a');link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';link.className='textlink';link.textContent='Читать первоисточник ↗';const choose=document.createElement('button');choose.type='button';choose.className='primary';choose.textContent='Взять в производство';choose.addEventListener('click',()=>{state.topic=item.title.slice(0,180);state.brief='Новость из радара; НЕ считать проверенным фактом. Найди минимум два независимых источника, уточни дату события и ключевые противоречия. Категория: '+(item.category||'технологии')+'.';state.sources=item.url;state.format='short';state.duration=45;state.style='X03';state.group='experimental';state.depth='D25';applyDraft();persist();setTab('create')});box.append(category,h,date,link,choose);return box}
 async function refreshNews(){const target=$('newsList'),summary=$('newsStatus');target.textContent='Загружаем новости…';try{const r=await fetch('./data/news.json?cache='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('Нет новостного JSON');const data=await r.json();feedCache=(Array.isArray(data.items)?data.items:[]).filter(validNews);summary.textContent='Обновление: '+(data.updated_at||'ещё не выполнено')+' · источников успешно '+(data.feeds_ok||0)+' · ошибок '+(data.feeds_failed||0)+'. Новости не являются фактчекингом.';renderNews()}catch(e){summary.textContent='Радар ещё не запущен: '+e.message;target.textContent='После первого запуска GitHub Actions здесь появятся новости.'}}
 function renderNews(){const category=$('newsCategory')?$('newsCategory').value:'all';const recent=feedCache.filter(x=>category==='all'||x.category===category).slice(0,48);$('newsList').replaceChildren(...recent.map(makeNewsCard));if(!recent.length)$('newsList').textContent='Нет материалов по этой категории. Попробуй другую.'}
+
+function validOutlier(v){
+ return v && /^[A-Za-z0-9_-]{11}$/.test(v.video_id||'') &&
+        typeof v.title==='string' && typeof v.channel_name==='string' &&
+        Number.isFinite(v.views) && Number.isFinite(v.duration_s) && v.duration_s>=1260 &&
+        v.url==='https://www.youtube.com/watch?v='+v.video_id;
+}
+function numberRu(value){
+ return Number.isFinite(value)?Math.round(value).toLocaleString('ru-RU'):'Нет данных';
+}
+function useOutlier(row,kind){
+ state.topic=('Исследование: '+row.title).slice(0,180);
+ state.brief='Найти собственный новый угол на тему исследования. Конкурент используется только как сигнал интереса, а не источник фактов или кадров. '
+  +'Сопоставить два независимых источника, проверить дату события и все изображения. '
+  +'Показатель просмотров в день — средний с публикации. '
+  +'Отношение к медиане прежних видео: '+(row.outlier_ratio===null?'не оценено':row.outlier_ratio+'x')+'. '
+  +'Никаких заимствованных чужих сцен или музыки.';
+ state.sources=row.url;
+ state.format=kind;
+ state.duration=kind==='long'?1500:45;
+ state.style=kind==='long'?'X01':'X03';
+ state.depth=kind==='long'?'D3':'D25';
+ state.group='experimental';
+ applyDraft();persist();setTab('create');
+}
+function outlierCard(v){
+ const box=document.createElement('article');box.className='panel news-card';
+ const top=document.createElement('p');top.className='eyebrow';top.textContent='21+ МИН · '+v.channel_name;
+ const title=document.createElement('h3');title.textContent=v.title;
+ const stats=document.createElement('p');stats.className='muted';
+ stats.textContent='Просмотры: '+numberRu(v.views)
+   +' · Аномалия: '+(v.outlier_ratio===null?'недостаточно данных':v.outlier_ratio+'×')
+   +' · Средн./день: '+numberRu(v.average_views_per_day)
+   +' · Реальный рост/час: '+(v.recent_views_per_hour===null?'нужен второй замер':numberRu(v.recent_views_per_hour))
+   +' · База: '+numberRu(v.baseline_sample_count)+'/10';
+ const more=document.createElement('p');more.className='muted';
+ more.textContent='Подписчики (округлено): '+numberRu(v.subscribers_rounded)
+   +' · «Без ведущего» не проверено · аудитория США не подтверждена';
+ const url=document.createElement('a');url.className='textlink';
+ url.textContent='Открыть видео конкурента ↗';url.href=v.url;url.target='_blank';url.rel='noopener noreferrer';
+ const line=document.createElement('div');line.className='outlier-actions';
+ const short=document.createElement('button');short.type='button';short.className='secondary';
+ short.textContent='Сделать Shorts';short.addEventListener('click',()=>useOutlier(v,'short'));
+ const long=document.createElement('button');long.type='button';long.className='primary';
+ long.textContent='Видео 21+ мин';long.addEventListener('click',()=>useOutlier(v,'long'));
+ line.append(short,long);box.append(top,title,stats,more,url,line);return box;
+}
+async function refreshOutliers(){
+ const target=$('outlierList'),status=$('outlierStatus');
+ if(!target||!status)return;
+ target.textContent='Проверяем последние измерения…';
+ try{
+  const r=await fetch('./data/outliers.json?cache='+Date.now(),{cache:'no-store'});
+  if(!r.ok)throw Error('outliers.json недоступен');
+  const data=await r.json();
+  const items=(Array.isArray(data.items)?data.items:[]).filter(validOutlier).slice(0,24);
+  status.textContent='SCAN 2.0: '+(data.status||'не настроен')+'. Последний реальный сбор: '+(data.updated_at||'нет')
+    +'. '+(data.quota_notice||'Лимит API проверяется отдельно')+'. Медиана прошлых роликов не является историческим удержанием.';
+  target.replaceChildren(...items.map(outlierCard));
+  if(!items.length)target.textContent='Пока нет подтверждённых аномалий. Для реального сканирования укажи YouTube API key в GitHub Secrets.';
+ }catch(e){status.textContent='Сканер ещё недоступен: '+e.message;target.textContent='Запусти GitHub Actions SCAN 2.0 после настройки ключа.';}
+}
+
 function youtubeId(text){let u;try{u=new URL(text)}catch{return null}const host=u.hostname.toLowerCase();let id=null;if(host==='youtu.be'||host==='www.youtu.be')id=u.pathname.replace(/^\//,'').split('/')[0];else if(['youtube.com','www.youtube.com','m.youtube.com'].includes(host)){if(u.pathname==='/watch')id=u.searchParams.get('v');else{const m=u.pathname.match(/^\/(?:shorts|live|embed)\/([a-zA-Z0-9_-]{11})/);if(m)id=m[1]}}return id&&/^[a-zA-Z0-9_-]{11}$/.test(id)?id:null}
 function submitReference(){const raw=$('referenceUrl').value,id=youtubeId(raw);if(!id){$('referenceStatus').textContent='Нужна настоящая ссылка на YouTube (watch, shorts, youtu.be).';return}const request={schema:1,source:'m1lash-studio-v2',request:'reference_analysis',video_url:'https://www.youtube.com/watch?v='+id,video_id:id,analysis_scope:'Only verified metadata/available authorized media; never claim frame-level audit from title alone',publish:false};$('referenceStatus').textContent='Задание для анализа: '+request.video_url+'. Покадровый разбор возможен только при доступе к самому видео.';try{openGithubJob({topic:'Разобрать ролик YouTube '+id,...request})}catch(e){alert(e.message)}}
 function applyDraft(){for(const k of ['topic','brief','sources','format','language','voice','depth'])$(k).value=state[k];updateDurations();renderStyles();updateSummary()}
@@ -85,6 +148,7 @@ function init(){applyDraft();renderAgents();
  $('refreshJobs').addEventListener('click',refreshJobs);
  $('clearDraft').addEventListener('click',()=>{if(confirm('Сбросить локальные настройки?')){localStorage.removeItem(STORE);location.reload()}});
  if($('refreshNews'))$('refreshNews').addEventListener('click',refreshNews);
+ if($('refreshOutliers'))$('refreshOutliers').addEventListener('click',refreshOutliers);
  if($('newsCategory'))$('newsCategory').addEventListener('change',renderNews);
  if($('analyzeYoutube'))$('analyzeYoutube').addEventListener('click',submitReference);
 }
