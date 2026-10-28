@@ -1,0 +1,59 @@
+name: M1lash native huashu-motion news opening
+on:
+  push:
+    branches: [codex/huashu-news-pilot-20261028]
+    paths: [.github/workflows/huashu-news-pilot.yml, longform/ai-accountability-20261028/build_huashu_pilot.py]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  native-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: longform/ai-accountability-20261028
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FFmpeg and pinned original motion engine
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          git clone --depth 1 https://github.com/alchaincyf/huashu-motion.git /tmp/huashu-motion
+          git -C /tmp/huashu-motion fetch --depth 1 origin 52467f99c602b76ba86d511d37acdfe93fa1e16e
+          git -C /tmp/huashu-motion checkout --detach 52467f99c602b76ba86d511d37acdfe93fa1e16e
+          node /tmp/huashu-motion/cli/om.js doctor
+      - uses: actions/download-artifact@v4
+        with:
+          name: ai-accountability-20261028-pilot-and-voices
+          run-id: 40745105528
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/ai-accountability-20261028/build
+      - name: Generate native composition with real Dmitry cues
+        env:
+          HUASHU_ROOT: /tmp/huashu-motion
+        run: python longform/ai-accountability-20261028/build_huashu_pilot.py
+      - name: Check and photograph key moments
+        run: |
+          P=longform/ai-accountability-20261028/build/huashu-pilot
+          node /tmp/huashu-motion/cli/om.js check "$P" --source
+          node /tmp/huashu-motion/cli/om.js still "$P" --at 0.4,4.5,12.8,20.5,35.8,44
+      - name: Render and decode the narrated risk pilot
+        run: |
+          P=longform/ai-accountability-20261028/build/huashu-pilot
+          node /tmp/huashu-motion/cli/om.js render "$P" --fps 30 --workers 3 --verbose
+          node /tmp/huashu-motion/cli/om.js qa "$P"
+          for f in "$P"/out/*.mp4; do ffmpeg -v error -i "$f" -f null -; done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m1lash-native-huashu-news-opening-pilot
+          path: longform/ai-accountability-20261028/build/huashu-pilot
+          if-no-files-found: error
+          retention-days: 14
