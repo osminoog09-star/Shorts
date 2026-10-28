@@ -1,0 +1,64 @@
+name: M1lash Genie 4 · Dmitry-only Shorts experimental build
+on:
+  push:
+    branches:
+      - research/genie4-20261028-radar
+    paths:
+      - 'shorts/genie4_20261028/render_genie4.py'
+      - 'shorts/genie4_20261028/production.json'
+      - '.github/workflows/genie4-experimental-render.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: m1lash-genie4-no-publish
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install ffmpeg, fonts and image/voice dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core unzip
+          python -m pip install -q "numpy>=1.26,<3" "Pillow>=10,<13" "edge-tts>=7,<8"
+          cd studio && npm install --no-audit --no-fund
+      - name: Render verified source · no voice fallback
+        run: python shorts/genie4_20261028/render_genie4.py
+      - name: Validate output and provenance
+        run: |
+          test -s work/genie4/genie4_ru_PREVIEW_QA.mp4
+          test -s work/genie4/qa.json
+          test -s work/genie4/voice_manifest.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("work/genie4/voice_manifest.json").read_text())
+          assert d["voice_id"]=="ru-RU-DmitryNeural" and d["no_substitution"]
+          assert len(d["segments"])==8
+          assert all(x["voice_id"]=="ru-RU-DmitryNeural" and x["word_count"]>3 for x in d["segments"])
+          q=json.loads(Path("work/genie4/qa.json").read_text())
+          assert q["full_decode"] and q["size"]=="1080x1920" and not q["published"]
+          PY
+      - name: Save draft MP4 and evidence (NOT YOUTUBE RELEASE)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genie4-ru-dmitry-QA-review
+          path: |
+            work/genie4/genie4_ru_PREVIEW_QA.mp4
+            work/genie4/voice_manifest.json
+            work/genie4/visemes.json
+            work/genie4/words.json
+            work/genie4/qa.json
+            work/genie4/qa_*.png
+          if-no-files-found: warn
+          retention-days: 30
