@@ -40,7 +40,13 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: m1lash-drawn-all-accepted-voices
-          run-id: 40762612570
+          run-id: 40764224486
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/drawn-lab-20261028/build
+      - uses: actions/download-artifact@v4
+        with:
+          name: m1lash-drawn-measured-timelines
+          run-id: 40764224486
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: longform/drawn-lab-20261028/build
       - name: Original host artwork and actual lip cues
@@ -50,23 +56,24 @@ jobs:
           cd longform/drawn-lab-20261028
           ./node_modules/.bin/esbuild host.tsx --bundle --platform=node --external:react --external:react-dom/server --outfile=build/host.cjs
           node build/host.cjs
-          python native_prepare.py --ids=0,2,28,31,90
-          python preview_timeline.py
+          python native_prepare.py --ids=0,2,27,31,90,91,92
+          python edit_timeline.py
       - name: Build two native compositions
         env:
           HUASHU_ROOT: /tmp/huashu-motion
         run: |
           cd longform/drawn-lab-20261028
-          python build_drawn.py --ids=0,2,28,31,90
+          python movie.py
+          python build_drawn.py --ids=0,2,27,31,90,91,92
       - name: Stills, real soundtrack, MP4 and QA
         run: |
           for P in longform/drawn-lab-20261028/build/native/scene_*; do
             node /tmp/huashu-motion/cli/om.js check "$P" --source
-            node /tmp/huashu-motion/cli/om.js still "$P" --at 0.4,5,12,30
+            node /tmp/huashu-motion/cli/om.js still "$P" --at 0.4,5,12,30,40,48
             node /tmp/huashu-motion/cli/om.js sound "$P"
           done
-          node /tmp/huashu-motion/cli/om.js render longform/drawn-lab-20261028/build/native/scene_00 --fps 30 --workers 4
-          node /tmp/huashu-motion/cli/om.js qa longform/drawn-lab-20261028/build/native/scene_00
+          node /tmp/huashu-motion/cli/om.js render longform/drawn-lab-20261028/build/native/scene_92 --fps 30 --workers 4
+          node /tmp/huashu-motion/cli/om.js qa longform/drawn-lab-20261028/build/native/scene_92
       - uses: actions/upload-artifact@v4
         if: always()
         with:
