@@ -24,9 +24,12 @@ def response(method,params):
             "statistics":{"subscriberCount":"10900","hiddenSubscriberCount":False},
             "contentDetails":{"relatedPlaylists":{"uploads":"UUupload"}}}]}
     if method=="playlistItems":
-        return {"items":[{"snippet":{"resourceId":{"videoId":vid},"publishedAt":"2026-09-01T10:00:00Z"}}
+        return {"items":[{"snippet":{"resourceId":{"videoId":vid},"publishedAt":"2026-10-26T10:00:00Z"},
+                          "contentDetails":{"videoPublishedAt":"2026-09-01T10:00:00Z"}}
                          for vid in BASE_IDS]}
     if method=="videos":
+        if "maxResults" in params:
+            raise AssertionError("videos.list(id=...) must NOT include maxResults")
         ids=params["id"].split(",")
         rows=[]
         for vid in ids:
@@ -88,6 +91,33 @@ class OutlierTests(unittest.TestCase):
         next_time=NOW+dt.timedelta(hours=12)
         result=m.scan(api,old=baseline,now=next_time)
         self.assertEqual(result["items"][0]["recent_views_per_hour"],2500)
+    def test_batch_uses_only_supported_id_params(self):
+        seen=[]
+        def strict(method, params):
+            if method=="videos" and "maxResults" in params:
+                raise ValueError("YouTube API would reject id+maxResults")
+            seen.append((method, params))
+            return {"items":[]}
+        api=m.YouTubeAPI("fake",request=strict)
+        api.batched("videos",["abc123"]*80,part="statistics")
+        self.assertEqual(len(seen),1)
+        self.assertEqual(seen[0][1]["id"],"abc123")
+        self.assertNotIn("maxResults",seen[0][1])
+
+    def test_other_channel_playlist_failure_isolated(self):
+        def flaky(method,params):
+            if method=="playlistItems":
+                raise RuntimeError("403 inaccessible channel")
+            return response(method,params)
+        output=m.scan(m.YouTubeAPI("fake",request=flaky),now=NOW)
+        self.assertEqual(len(output["items"]),1)
+        self.assertEqual(output["items"][0]["baseline_status"],"UNAVAILABLE_NO_RATIO")
+        self.assertIsNone(output["items"][0]["outlier_ratio"])
+
+    def test_video_publication_date_over_playlist_insertion_date(self):
+        output=m.scan(m.YouTubeAPI("fake",request=response),now=NOW)
+        self.assertEqual(output["items"][0]["baseline_sample_count"],10)
+
     def test_no_api_key_in_errors(self):
         key="private-key"
         api=m.YouTubeAPI(key,request=lambda method,params:{"items":[]})
