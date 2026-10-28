@@ -1,0 +1,4 @@
+# The vendor plugin kit is supplied locally and is not reviewed/pinned in this PR.
+kit/
+__pycache__/
+*.pyc
