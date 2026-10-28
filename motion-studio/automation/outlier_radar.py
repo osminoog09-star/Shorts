@@ -154,13 +154,13 @@ def channel_baseline(api,channel,target,detail_cache):
     """
     uploads=((channel.get("contentDetails") or {}).get("relatedPlaylists") or {}).get("uploads")
     if not uploads:return []
-    response=api.get("playlistItems",part="snippet",playlistId=uploads,maxResults=MAX_PLAYLIST_RESULTS)
+    response=api.get("playlistItems",part="snippet,contentDetails",playlistId=uploads,maxResults=MAX_PLAYLIST_RESULTS)
     entries=response.get("items",[])
     ids=[]
     for entry in entries:
         snippet=entry.get("snippet") or {}
         vid=(snippet.get("resourceId") or {}).get("videoId")
-        published=parse_time(snippet.get("publishedAt"))
+        published=parse_time((entry.get("contentDetails") or {}).get("videoPublishedAt") or snippet.get("publishedAt"))
         if vid and published and vid!=target["video_id"] and published<parse_time(target["published_at"]):
             ids.append(vid)
     missing=[x for x in ids if x not in detail_cache]
