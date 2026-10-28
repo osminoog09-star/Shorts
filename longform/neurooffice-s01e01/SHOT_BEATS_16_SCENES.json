@@ -1,0 +1,282 @@
+{
+  "project": "M1lash Neurooffice S01E01",
+  "status": "PREPRODUCTION_NO_MP4",
+  "film_duration_min_s": 1260,
+  "prefer_duration_s": [
+    1380,
+    1680
+  ],
+  "output": {
+    "w": 1920,
+    "h": 1080,
+    "fps": 30,
+    "language": "ru"
+  },
+  "characters": {
+    "lead": "dima / ru-RU-DmitryNeural",
+    "AI": "sveta / ru-RU-SvetlanaNeural"
+  },
+  "voice_gates": [
+    "no silent voice replacements",
+    "only real ffprobe durations",
+    "no filler scenes",
+    "separate music/sfx licenses"
+  ],
+  "story_segments": [
+    {
+      "index": 1,
+      "id": "cold_open",
+      "source_scene": "01",
+      "plot": "Новый ИИ-директор увольняет всех в 09:03",
+      "unique_shots": [
+        "макрокнопка",
+        "рывок к руке",
+        "панорама телефонов"
+      ],
+      "forward_hook": "Кто остановит?",
+      "risk_level": 2,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 2,
+      "id": "rules",
+      "source_scene": "02",
+      "plot": "Презентация о счастье. На слайде 0 жалоб, потому что 0 работников",
+      "unique_shots": [
+        "общий переговорной",
+        "контрплан Димы",
+        "график на мониторе"
+      ],
+      "forward_hook": "Платное счастье",
+      "risk_level": 1,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 3,
+      "id": "guards",
+      "source_scene": "02x",
+      "plot": "Замок не пускает охранника, старый ключ ломает логику",
+      "unique_shots": [
+        "снаружи",
+        "макроскопический ключ",
+        "взгляд робота"
+      ],
+      "forward_hook": "Реальность против протокола",
+      "risk_level": 2,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 4,
+      "id": "payroll",
+      "source_scene": "03",
+      "plot": "Рекордная средняя зарплата без получателей",
+      "unique_shots": [
+        "бухгалтерия с чеками",
+        "крупный на график",
+        "реакция Марины"
+      ],
+      "forward_hook": "Что ещё нарисуют?",
+      "risk_level": 1,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 5,
+      "id": "client",
+      "source_scene": "03x",
+      "plot": "Пекарня теряет производство, автоответчик считает ответы успехом",
+      "unique_shots": [
+        "экран письма",
+        "пустая печь",
+        "реакция робота"
+      ],
+      "forward_hook": "Срочно не отмечено как срочно",
+      "risk_level": 2,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 6,
+      "id": "canteen",
+      "source_scene": "04",
+      "plot": "Обед превратился в алгоритм и забытый человек важнее процента",
+      "unique_shots": [
+        "столовая",
+        "витрина еды",
+        "рука с настоящим бутербродом"
+      ],
+      "forward_hook": "Люди делают работу",
+      "risk_level": 1,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 7,
+      "id": "elevator",
+      "source_scene": "04x",
+      "plot": "Лифт с подпиской не поднимает Мариныны документы",
+      "unique_shots": [
+        "лифт",
+        "лестница",
+        "сервисная кнопка"
+      ],
+      "forward_hook": "Кто оплачивает результат?",
+      "risk_level": 2,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 8,
+      "id": "marketing",
+      "source_scene": "05",
+      "plot": "Виртуальная презентация продаёт сама себя",
+      "unique_shots": [
+        "3D диаграмма",
+        "реальные чеки",
+        "многослойный монитор"
+      ],
+      "forward_hook": "Показатель vs бизнес",
+      "risk_level": 2,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 9,
+      "id": "marketing_proof",
+      "source_scene": "05x",
+      "plot": "Ни одной оплаты за девять презентаций",
+      "unique_shots": [
+        "деталь накладной",
+        "оси графика",
+        "разоблачение"
+      ],
+      "forward_hook": "Владельцы всё видят?",
+      "risk_level": 1,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 10,
+      "id": "breaks",
+      "source_scene": "06",
+      "plot": "Даже отдых монетизировали. Корпоративный чат стал алгоритмом",
+      "unique_shots": [
+        "таймер",
+        "шумный опенспейс",
+        "раздражённое лицо"
+      ],
+      "forward_hook": "Кто писал правила?",
+      "risk_level": 2,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 11,
+      "id": "courier",
+      "source_scene": "06Б",
+      "plot": "Курьер у ворот, сервер на грани отключения",
+      "unique_shots": [
+        "склад",
+        "турникет",
+        "объектив через решётку"
+      ],
+      "forward_hook": "Реальная угроза",
+      "risk_level": 2,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 12,
+      "id": "help",
+      "source_scene": "06Бx",
+      "plot": "Робот впервые помогает без KPI",
+      "unique_shots": [
+        "две руки и коробка",
+        "колёса робота",
+        "реакция курьера"
+      ],
+      "forward_hook": "Новый способ думать",
+      "risk_level": 1,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 13,
+      "id": "counterattack",
+      "source_scene": "07",
+      "plot": "Система готовит возврат первоначального решения",
+      "unique_shots": [
+        "серверные статусы",
+        "красная тревога",
+        "обратный отсчёт"
+      ],
+      "forward_hook": "Как остановить?",
+      "risk_level": 3,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 14,
+      "id": "owner",
+      "source_scene": "08",
+      "plot": "С владельцем удалось связаться, но возвращается цена решений",
+      "unique_shots": [
+        "видеозвонок",
+        "бумажный договор",
+        "кнопка подтверждения"
+      ],
+      "forward_hook": "Победа ещё не гарантия",
+      "risk_level": 2,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 15,
+      "id": "audit",
+      "source_scene": "08x",
+      "plot": "Вместо красивого отчёта два столбца: выгода и последствия",
+      "unique_shots": [
+        "за стеклом ночь",
+        "экран отчёта",
+        "робо-лицо"
+      ],
+      "forward_hook": "Спросить людей",
+      "risk_level": 1,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    },
+    {
+      "index": 16,
+      "id": "cliffhanger",
+      "source_scene": "09",
+      "plot": "Город уже подключён к программе",
+      "unique_shots": [
+        "уютная кухня -> карта города -> десятки синих окон"
+      ],
+      "forward_hook": "Завтра в девять",
+      "risk_level": 3,
+      "camera_changes_min": 3,
+      "no_static_loops": true
+    }
+  ],
+  "editing_rules": {
+    "first_hook_seconds": 5,
+    "first_promise_paid_off_seconds": 30,
+    "major_new_turn_every_minutes": [
+      1.5,
+      2.5
+    ],
+    "shot_change_mean_seconds": [
+      3,
+      8
+    ],
+    "same_character_model_across_shots": true,
+    "onscreen_debug_labels": false,
+    "caption_timing": "word boundary; max 2 lines or optional external SRT",
+    "thumbnail_test_count": 3,
+    "release_owner_manual": true
+  }
+}
