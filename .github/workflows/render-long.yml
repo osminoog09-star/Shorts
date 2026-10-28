@@ -35,6 +35,23 @@ jobs:
     outputs:
       idx: ${{ steps.p.outputs.idx }}
     steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Reject short audio timeline before 20-way expensive render
+        if: inputs.short == ''
+        env:
+          M1LASH_PROJECT: ${{ inputs.project }}
+        run: |
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          filename=Path("longform")/os.environ["M1LASH_PROJECT"]/"audio"/"cues.json"
+          if not filename.is_file():
+              raise SystemExit("NO-GO: no scene/audio cues timeline for 21+ minute film")
+          declared=float(json.loads(filename.read_text(encoding="utf-8")).get("duration",0))
+          if declared<1260:
+              raise SystemExit(f"NO-GO: declared film timeline {declared}s < 1260s")
+          print(f"Plan accepted: declared timeline {declared:.1f}s")
+          PY
       - id: p
         run: |
           python3 -c "import json;o='${{ inputs.only }}'.strip();print('idx='+json.dumps([int(x) for x in o.split(',')] if o else list(range(int('${{ inputs.chunks }}')))))" >> $GITHUB_OUTPUT
