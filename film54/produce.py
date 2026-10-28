@@ -4,7 +4,7 @@
 3) measured audio-cued original graphics -> 4) MP4 ffprobe technical gate.
 """
 from __future__ import annotations
-import argparse,asyncio,datetime,json,math,re,subprocess,sys,wave
+import argparse,asyncio,datetime,json,math,re,subprocess,sys,wave,os,html,urllib.request,urllib.error
 from pathlib import Path
 import edge_tts
 from render_visuals import render
@@ -40,12 +40,43 @@ def textdata():
     if words<3000 or words>5500:raise ValueError("Incomplete or unnaturally lengthy manuscript")
     return chapters,paragraphs,words
 
+def azure_speak(text,dest):
+    """Authorized Azure Speech resource; identical voice ID, never a substitute."""
+    key=os.environ.get("AZURE_SPEECH_KEY","")
+    region=os.environ.get("AZURE_SPEECH_REGION","")
+    if not key or not re.fullmatch(r"[a-z0-9]{3,25}",region):
+        raise ValueError("Azure TTS requires key and valid region")
+    xml=("<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' "
+         "xml:lang='ru-RU'><voice name='ru-RU-DmitryNeural'>"
+         "<prosody rate='-7%'>"+html.escape(text)+"</prosody></voice></speak>")
+    headers={"Ocp-Apim-Subscription-Key":key,"Content-Type":"application/ssml+xml",
+             "X-Microsoft-OutputFormat":"audio-24khz-48kbitrate-mono-mp3",
+             "User-Agent":"M1lash54DocumentaryTTS/1.0"}
+    url="https://"+region+".tts.speech.microsoft.com/cognitiveservices/v1"
+    req=urllib.request.Request(url,data=xml.encode("utf-8"),headers=headers,method="POST")
+    try:
+        with urllib.request.urlopen(req,timeout=75) as response:
+            data=response.read(12_000_000)
+    except urllib.error.HTTPError as error:
+        raise RuntimeError("Azure Speech HTTP "+str(error.code)) from None
+    except urllib.error.URLError:
+        raise RuntimeError("Azure Speech connectivity failure") from None
+    if len(data)<500 or data[:3]!=b"ID3" and data[:2]!=bytes([255,251]) and data[:2]!=bytes([255,243]):
+        # MP3 often starts with ID3 or MPEG frame sync; ffprobe will verify later.
+        if len(data)<500:raise RuntimeError("Azure returned empty speech")
+    dest.write_bytes(data)
+
 async def make_audio(text,dest):
-    # Always genuine Dmitry; NEVER replace with Piper, espeak, another Azure voice, or silence.
+    # Same exact ru-RU-DmitryNeural ID with either official Azure account or Edge.
+    # Azure is preferred if credentials are configured; never use any other voice.
     error=None
+    azure_available=bool(os.environ.get("AZURE_SPEECH_KEY") and os.environ.get("AZURE_SPEECH_REGION"))
     for attempt in range(3):
         try:
-            await edge_tts.Communicate(text,voice=VOICE,rate="-7%").save(str(dest))
+            if azure_available:
+                await asyncio.to_thread(azure_speak,text,dest)
+            else:
+                await edge_tts.Communicate(text,voice=VOICE,rate="-7%").save(str(dest))
             if dest.stat().st_size<500:raise RuntimeError("Speech empty")
             return
         except Exception as ex:
@@ -54,7 +85,8 @@ async def make_audio(text,dest):
             except OSError:pass
             print(f"TTS TRY {attempt+1}/3 FAILED: {type(ex).__name__}",flush=True)
             await asyncio.sleep(2*(attempt+1))
-    raise RuntimeError("Dmitry neural service did not return spoken audio: "+type(error).__name__)
+    raise RuntimeError(("Authorized Azure" if azure_available else "Edge")+
+                       " Dmitry neural did not return spoken audio: "+type(error).__name__)
 
 def tc(t):
     m=round(t*1000)
