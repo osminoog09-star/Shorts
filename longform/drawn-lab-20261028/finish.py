@@ -10,7 +10,7 @@ for i in ids+[90,91,92]:
  assert(M/f'part_{i:02d}.mp4').stat().st_size>1000
  meta=json.loads((M/f'part_{i:02d}.json').read_text());assert meta['voice_id']=='ru-RU-DmitryNeural'and meta['rate']=='+0%'
 cat=O/'parts.txt';cat.write_text('\n'.join("file '"+str((M/f'part_{i:02d}.mp4').resolve())+"'"for i in ids))
-raw=O/'joined.mp4';run('ffmpeg','-xerror','-v','error','-y','-f','concat','-safe','0','-i',cat,'-c','copy',raw)
+raw=O/'joined.mov';run('ffmpeg','-xerror','-v','error','-y','-f','concat','-safe','0','-i',cat,'-c:v','copy','-af','aresample=async=1:first_pts=0','-c:a','pcm_s16le',raw)
 packages=[(raw,'M1lash_Battery_Drawn_RU',ids),(M/'part_90.mp4','M1lash_Plane_Drawn_Shorts_RU',[90]),(M/'part_91.mp4','M1lash_Venus_Drawn_Shorts_RU',[91]),(M/'part_92.mp4','m1lash_movie_mystery_002_ru',[92])];checks=[]
 def stamp(t):
  ms=round(t*1000);return f'{ms//3600000:02d}:{ms//60000%60:02d}:{ms//1000%60:02d},{ms%1000:03d}'
