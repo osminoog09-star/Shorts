@@ -2,3 +2,18 @@ studio/.browser
 studio/node_modules
 studio/voices
 studio/out
+
+# Local credentials, build outputs and downloaded review-only tooling
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*.key
+.venv/
+.scene-venv/
+wheelhouse/
+work/
+__pycache__/
+*.pyc

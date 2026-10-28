@@ -23,5 +23,7 @@ jobs:
           python scripts/qa/test_news_voice_policy.py
           python -m unittest discover -s tests -p 'test_m1lash_*.py' -v
           python scripts/m1lash_calendar_audit.py --input reports/videos.csv
-      - name: Report workflow security debt (read-only)
-        run: python tools/security/workflow_audit.py
+      - name: Report workflow and tracked-text security debt (read-only)
+        run: |
+          python tools/security/workflow_audit.py
+          python tools/security/secret_guard.py
