@@ -10,7 +10,7 @@ permissions:
   contents: read
 concurrency:
   group: heron-v3-21plus
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   prepare:
     runs-on: ubuntu-24.04
