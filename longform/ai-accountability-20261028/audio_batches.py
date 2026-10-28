@@ -36,7 +36,7 @@ def short_scene():
  return dict(id=90,chapter="Чужой контекст",kind="fact",visual="leak",title="ЭТО НЕ ГАЛЛЮЦИНАЦИЯ?",text=(ROOT/"short.txt").read_text().strip(),cta=True)
 
 def assemble():
- scenes=blocks();at=0
+ scenes=[s for s in blocks() if s["id"] not in {31,32,33,34}];at=0
  for scene in scenes+[short_scene()]:
   p=OUT/("voice_%02d.mp3"%scene["id"]);meta=json.loads(p.with_suffix(".json").read_text())
   if meta.get("voice_id")!="ru-RU-DmitryNeural" or meta.get("text")!=scene["text"] or not meta.get("words"):raise RuntimeError("Unaccepted voice metadata: "+str(p))

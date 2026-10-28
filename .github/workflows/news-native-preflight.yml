@@ -1,0 +1,84 @@
+name: M1lash native chapters and Shorts visual preflight
+on:
+  push:
+    branches: [codex/huashu-news-pilot-20261028]
+    paths: [.github/workflows/news-native-preflight.yml, longform/ai-accountability-20261028/build_native.py]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            longform/ai-accountability-20261028
+            studio/src/Narrator2.tsx
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prepare exact tools and original engine
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core libcairo2
+          pip install edge-tts==7.3.1 cairosvg
+          git clone --depth 1 https://github.com/alchaincyf/huashu-motion.git /tmp/huashu-motion
+          git -C /tmp/huashu-motion fetch --depth 1 origin 52467f99c602b76ba86d511d37acdfe93fa1e16e
+          git -C /tmp/huashu-motion checkout --detach 52467f99c602b76ba86d511d37acdfe93fa1e16e
+          curl --fail -L -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.13.0/Rhubarb-Lip-Sync-1.13.0-Linux.zip
+          unzip -q /tmp/rhubarb.zip -d /tmp/rhubarb
+          cd longform/ai-accountability-20261028
+          npm ci --ignore-scripts
+          npm rebuild esbuild
+      - uses: actions/download-artifact@v4
+        with:
+          name: m1lash-news-all-accepted-voices
+          run-id: 40748655281
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/ai-accountability-20261028/build
+      - name: Original host artwork and actual lip cues
+        env:
+          RHUBARB: /tmp/rhubarb/Rhubarb-Lip-Sync-1.13.0-Linux/rhubarb
+        run: |
+          cd longform/ai-accountability-20261028
+          ./node_modules/.bin/esbuild host.tsx --bundle --platform=node --external:react --external:react-dom/server --outfile=build/host.cjs
+          node build/host.cjs
+          python native_prepare.py --ids=0,90
+          python - <<'PY'
+          import json
+          from audio_batches import blocks,short_scene,duration,OUT
+          for scene,out in [(blocks()[0],'timeline.json'),(short_scene(),'short_timeline.json')]:
+              p=OUT/f"voice_{scene['id']:02d}.mp3";m=json.loads(p.with_suffix('.json').read_text())
+              scene.update(audio=p.name,duration=duration(p),words=m['words'],start=0)
+              (OUT/out).write_text(json.dumps(dict(duration=scene['duration']+.18,scenes=[scene]),ensure_ascii=False))
+          PY
+      - name: Build two native compositions
+        env:
+          HUASHU_ROOT: /tmp/huashu-motion
+        run: |
+          cd longform/ai-accountability-20261028
+          python build_native.py --ids=0
+          python build_native.py --short
+      - name: Stills, real soundtrack, MP4 and QA
+        run: |
+          for P in longform/ai-accountability-20261028/build/native/chapter_00 longform/ai-accountability-20261028/build/native/short; do
+            node /tmp/huashu-motion/cli/om.js check "$P" --source
+            node /tmp/huashu-motion/cli/om.js still "$P" --at 0.4,9,22,40
+            node /tmp/huashu-motion/cli/om.js sound "$P"
+            node /tmp/huashu-motion/cli/om.js render "$P" --fps 30 --workers 3 --verbose
+            node /tmp/huashu-motion/cli/om.js qa "$P"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m1lash-native-long-and-short-preflight
+          path: longform/ai-accountability-20261028/build/native
+          retention-days: 14
+          if-no-files-found: error
