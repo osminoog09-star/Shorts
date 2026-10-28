@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "purpose": "EXPERIMENTAL original synthetic characters, not approved replacement for Dima/Sveta",
+  "voices": [
+    {
+      "id": "orion-ru",
+      "name": "Орион — исследователь",
+      "language": "Russian",
+      "reference_text": "Сначала это казалось фантастикой. Но чем внимательнее мы изучали устройство, тем интереснее становились результаты. Сегодня разберёмся, как оно работает, какие факты подтверждены, а где пока остаются вопросы.",
+      "design_instruct": "An original Russian-speaking adult male narrator. Warm low midrange baritone, slightly textured, articulate consonants, calm confident documentary delivery, natural pauses, mildly curious intonation, subtle dry humor. Do not imitate any existing person, actor or branded voice."
+    },
+    {
+      "id": "nova-ru",
+      "name": "Нова — научная журналистка",
+      "language": "Russian",
+      "reference_text": "О новой технологии говорили всю неделю. Однако за громкими заголовками скрываются детали, которые действительно меняют картину. Давайте отделим проверенные результаты от обещаний и посмотрим, что выяснилось.",
+      "design_instruct": "An original Russian-speaking adult female science reporter. Clear warm medium register, quick but intelligible articulation, energetic curiosity without shouting, natural conversational pauses, friendly authoritative timbre. Do not imitate existing persons, actresses or branded voices."
+    },
+    {
+      "id": "orion-en",
+      "name": "Orion — English edition",
+      "language": "English",
+      "reference_text": "At first, the discovery sounded almost impossible. But a closer look at the evidence reveals a much more interesting story. Today we will explore what actually happened, what experts verified, and what remains uncertain.",
+      "design_instruct": "An original US English adult male technology documentary narrator, warm slightly textured mid-low register, articulate, friendly, dry understated wit and credible journalistic pacing. Do not imitate any known narrator, actor, personality or commercial voice."
+    }
+  ]
+}
