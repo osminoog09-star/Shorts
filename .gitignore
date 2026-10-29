@@ -2,3 +2,4 @@ studio/.browser
 studio/node_modules
 studio/voices
 studio/out
+__pycache__/
