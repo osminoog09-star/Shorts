@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       base_run: { description: "ID запуска Render long video с кусками" }
+      patch_run: { description: "Запуск с исправленными кусками (перекрывают базовые)", default: "" }
 permissions:
   contents: write
   actions: read
@@ -21,6 +22,12 @@ jobs:
       - run: sudo apt-get -qq update && sudo apt-get -qq install -y ffmpeg unzip >/dev/null && pip install -q numpy
       - uses: actions/download-artifact@v4
         with: { path: chunks, pattern: chunk-*, merge-multiple: true, run-id: "${{ inputs.base_run }}", github-token: "${{ github.token }}" }
+      - uses: actions/download-artifact@v4
+        if: inputs.patch_run != ''
+        with: { path: patch, pattern: chunk-*, merge-multiple: true, run-id: "${{ inputs.patch_run }}", github-token: "${{ github.token }}" }
+      - name: Apply patch chunks
+        if: inputs.patch_run != ''
+        run: ls patch && cp -f patch/*.mp4 chunks/ && ls chunks | wc -l
       - name: Voice-only track + Rhubarb visemes + host windows
         run: |
           cd $P && python3 host_build.py voice && cd ../..
