@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="ru" data-om-signature="off" data-composition-variables='[
+  {"id":"question","type":"string","label":"Вопрос в комментарии","default":"Сколько агентов нужно тебе, чтобы сказать «да»?"},
+  {"id":"accent","type":"color","label":"Акцент титров","default":"#ffd23f"},
+  {"id":"capY","type":"number","label":"Титры: верх (px)","default":1215,"min":200,"max":1300,"step":2,"group":"Титры"},
+  {"id":"capSize","type":"number","label":"Титры: кегль","default":70,"min":40,"max":110,"step":1,"group":"Титры"}
+]'>
+<head>
+<meta charset="utf-8">
+<title>Я нанял ИИ, чтобы меньше работать</title>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/three.min.js"></script>
+<script src="vendor/om.js"></script>
+<script src="vendor/om-three.js"></script>
+<script src="assets/voice/timeline.js"></script>
+<script src="assets/voice/lipsync.js"></script>
+<script src="assets/js/kit.js"></script>
+<script src="assets/js/world.js"></script>
+<script src="assets/js/host.js"></script>
+<style id="om-fonts">
+@font-face { font-family: "Rubik"; font-weight: 500; src: url("assets/fonts/rubik-cyrillic-500-normal.woff2") format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
+@font-face { font-family: "Rubik"; font-weight: 500; src: url("assets/fonts/rubik-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Rubik"; font-weight: 700; src: url("assets/fonts/rubik-cyrillic-700-normal.woff2") format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
+@font-face { font-family: "Rubik"; font-weight: 700; src: url("assets/fonts/rubik-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Rubik"; font-weight: 900; src: url("assets/fonts/rubik-cyrillic-900-normal.woff2") format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
+@font-face { font-family: "Rubik"; font-weight: 900; src: url("assets/fonts/rubik-latin-900-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Unbounded"; font-weight: 800; src: url("assets/fonts/unbounded-cyrillic-800-normal.woff2") format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
+@font-face { font-family: "Unbounded"; font-weight: 800; src: url("assets/fonts/unbounded-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+</style>
+<style>
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #10131f; }
+  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #10131f; color: #fff; font-family: "Rubik", sans-serif; }
+  #gl { position: absolute; inset: 0; width: 1080px; height: 1920px; display: block; }
+  .vig { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 80% 62% at 50% 45%, transparent 55%, rgba(8,10,20,0.38) 100%); }
+  #dim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,12,24,0.88) 0%, rgba(10,12,24,0.55) 45%, rgba(10,12,24,0.8) 100%); opacity: 0; }
+  #caps { position: absolute; left: 60px; right: 150px; text-align: center; }
+  #caps.side { left: 450px; right: 140px; text-align: left; }
+  .cap { position: absolute; left: 0; right: 0; font-weight: 900; line-height: 1.08; letter-spacing: -1px; color: #fff;
+         -webkit-text-stroke: 14px #141626; paint-order: stroke fill; text-shadow: 0 8px 0 rgba(20,22,38,0.55); white-space: normal; }
+  .cap .hl { color: var(--accent); }
+  .cap.sveta { color: #9ff5e6; }
+  .cap.sveta .hl { color: var(--accent); }
+  #plate { position: absolute; left: 60px; right: 120px; top: 1160px; }
+  .pl { position: absolute; left: 0; top: 0; padding: 26px 40px 30px 52px; background: #fff; color: #161826; border-radius: 26px; font-weight: 900; font-size: 74px; line-height: 1.02; letter-spacing: -2px; box-shadow: 0 18px 40px rgba(10,12,30,0.35); transform-origin: 0 50%; }
+  .pl::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 22px; border-radius: 26px 0 0 26px; background: var(--c, #ff4d6d); }
+  .pl small { display: block; font-size: 34px; font-weight: 700; letter-spacing: 0; color: #6b7187; margin-bottom: 6px; }
+  #host { position: absolute; left: 40px; top: 1105px; width: 380px; height: 450px; transform-origin: 0 100%; opacity: 0; }
+  #outro { position: absolute; inset: 0; pointer-events: none; }
+  #o-title { position: absolute; left: 70px; top: 250px; font-family: "Unbounded", "Rubik", sans-serif; font-weight: 800; font-size: 112px; letter-spacing: -4px; color: #fff; opacity: 0; transform-origin: 0 50%; }
+  #o-bar { position: absolute; left: 74px; top: 400px; width: 360px; height: 16px; border-radius: 8px; background: #ff3b4f; transform-origin: 0 50%; transform: scaleX(0); }
+  #o-thanks { position: absolute; left: 70px; top: 455px; width: 880px; font-weight: 700; font-size: 52px; line-height: 1.18; color: #e8ecff; opacity: 0; }
+  #o-thanks b { color: var(--accent); font-weight: 900; }
+  #o-q { position: absolute; left: 70px; top: 650px; width: 820px; padding: 30px 36px; border-radius: 28px; background: #fff; color: #161826; font-weight: 900; font-size: 50px; line-height: 1.12; letter-spacing: -1px; opacity: 0; transform-origin: 0 0; box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+  #o-q small { display: block; font-size: 30px; font-weight: 700; color: #ff3b4f; letter-spacing: 1px; margin-bottom: 10px; }
+  #o-sub { position: absolute; left: 640px; top: 1290px; padding: 24px 34px; border-radius: 22px; background: linear-gradient(140deg, #ff4969, #d52246); font-weight: 900; font-size: 40px; color: #fff; opacity: 0; transform-origin: 0 50%; box-shadow: 0 12px 40px rgba(255,73,105,0.45); }
+</style>
+</head>
+<body>
+<div id="film" data-composition-id="film" data-width="1080" data-height="1920">
+  <audio id="om-sound" src="assets/sound.wav" data-start="0" data-duration="56.966" data-track-index="8" data-volume="1"></audio>
+  <canvas id="gl" width="1080" height="1920" data-om-id="scene"></canvas>
+  <div class="vig"></div>
+  <div id="dim" data-om-id="dim"></div>
+  <div id="plate" data-om-id="plate"></div>
+  <div id="caps" data-om-id="captions"></div>
+  <div id="outro" data-om-id="outro">
+    <div id="o-title" data-om-id="o-title">ПОДПИШИСЬ!</div>
+    <div id="o-bar"></div>
+    <div id="o-thanks" data-om-id="o-thanks">Спасибо всем, кто досмотрел<br>и <b>поставил лайк</b></div>
+    <div id="o-q" data-om-id="o-question"><small>НАПИШИ В КОММЕНТАРИЯХ</small><span data-var-text="question">Сколько агентов нужно тебе, чтобы сказать «да»?</span></div>
+    <div id="o-sub" data-om-id="o-sub">ПОДПИСАТЬСЯ</div>
+  </div>
+  <div id="host" data-om-id="host"></div>
+</div>
+
+<script>
+const V = OM.vars();
+const { clamp, lerp, prog, sm, eio, eout, expo, back, spring, hash } = KIT;
+const SEG = Object.fromEntries(VO.segs.map((s) => [s.id, s]));
+const st = (id) => SEG[id].start, en = (id) => SEG[id].speechEnd;
+const wd = (id, i) => SEG[id].words[i].s;
+const D = VO.total;
+
+// ============ сцена ============
+const stage = OM3.stage(document.getElementById('gl'), { background: '#10131f', env: 'room', exposure: 1.0, fov: 34, dof: { aperture: 0.0016, maxblur: 0.006 } });
+stage.scene.environmentIntensity = 0.55;
+const R = stage.renderer; R.shadowMap.type = THREE.PCFSoftShadowMap;
+const A = WORLD.office(); stage.add(A.g);
+const B = WORLD.meeting(20); stage.add(B.g);
+const C = WORLD.hr(40); stage.add(C.g);
+const Dm = WORLD.podium(60); stage.add(Dm.g);
+const E = WORLD.sendRoom(80); stage.add(E.g);
+const SETS = { A, B, C, D: Dm, E };
+
+// ---- персонажи сета A ----
+const hero = KIT.hero(); hero.root.position.set(0, 0, -0.62); A.g.add(hero.root);
+const neura = KIT.bot({ color: '#8ff0d4', w: 0.5, h: 0.44, halo: true, bulb: '#ffd23f' }); A.g.add(neura.root);
+const trioCols = [['#c3b2ff', '#ff4d6d'], ['#ffe08a', null], ['#9fd3ff', '#2b6bff']];
+const trio = trioCols.map(([c, tie]) => { const b = KIT.bot({ color: c, tie, scale: 0.62 }); A.g.add(b.root); return b; });
+// письмо начальника — карточка над ноутбуком
+const mailTex = KIT.canvasTex(1024, 600, (g, w, h) => {
+  KIT.rrect(g, 6, 6, w - 12, h - 12, 56); g.fillStyle = '#ffffff'; g.fill();
+  g.fillStyle = '#ff4d6d'; g.beginPath(); g.arc(110, 110, 52, 0, 7); g.fill();
+  g.fillStyle = '#fff'; g.font = `900 56px ${KIT.FONT}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('Н', 110, 114);
+  g.textAlign = 'left'; g.fillStyle = '#161826'; g.font = `900 58px ${KIT.FONT}`; g.fillText('Начальник', 190, 92);
+  g.fillStyle = '#8a90a5'; g.font = `700 40px ${KIT.FONT}`; g.fillText('сейчас · входящие', 190, 145);
+  g.fillStyle = '#161826'; g.font = `900 118px ${KIT.FONT}`; g.fillText('Завтра в 9', 70, 315);
+  g.fillText('будешь?', 70, 445);
+  g.fillStyle = '#e8ebf3'; KIT.rrect(g, 70, 500, 300, 56, 28); g.fill(); g.fillStyle = '#8a90a5'; g.font = `700 34px ${KIT.FONT}`; g.fillText('Ответить…', 100, 530);
+});
+const mail = new THREE.Group(); A.g.add(mail); const MAILS = 0.72;
+const mailCard = KIT.rbox(0.82, 0.48, 0.02, 0.05, new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 0.5 })); mail.add(mailCard);
+const mailFace = KIT.plane(0.8, 0.469, mailTex.tex); mailFace.position.z = 0.0105; mail.add(mailFace);
+// загрузочное кольцо вокруг Нейры
+const loadRing = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.018, 8, 64, Math.PI * 1.3), KIT.glow('#7ff3ff', 2.4)); loadRing.castShadow = false; A.g.add(loadRing);
+
+// ---- финальная толпа сета A (облегчённые боты) ----
+const crowdCols = ['#c3b2ff', '#ffe08a', '#9fd3ff', '#ffb99a', '#ffadd2', '#9ff0c9'];
+const crowd = [];
+for (let i = 0; i < 40; i++) {
+  const b = KIT.bot({ color: crowdCols[i % 6], tie: i % 3 === 0 ? '#ff4d6d' : null, scale: 0.95 + hash(i) * 0.15 });
+  // блокнот в руке
+  const pad = KIT.rbox(0.12, 0.16, 0.015, 0.01, KIT.Mm(i % 2 ? '#ffe066' : '#ffffff', 0.8)); pad.position.set(0.17, 0.26, 0.15); pad.rotation.set(-0.5, 0, 0.2); b.body.add(pad);
+  b.root.visible = false; A.g.add(b.root); crowd.push(b);
+}
+// куда встают: полукольца за героем и по бокам
+const crowdSpots = [];
+for (let i = 0; i < 40; i++) {
+  if (i >= 32) { const k = i - 32, side = k % 2 ? 1 : -1, row = Math.floor(k / 2); crowdSpots.push([side * (1.25 + row * 0.38), 0, 0.55 + (row % 2) * 0.45 - row * 0.05]); continue; }
+  const ring = Math.floor(i / 8), k = (i % 8) / 7;
+  const ang = lerp(-1.15, 1.15, k) + (ring % 2) * 0.14;
+  const r = 1.05 + ring * 0.38;
+  crowdSpots.push([clamp(Math.sin(ang) * r * 1.25, -2.3, 2.3), 0, -0.55 - Math.cos(ang) * r * 0.55 - ring * 0.05]);
+}
+const neuraF = KIT.bot({ color: '#8ff0d4', w: 0.5, h: 0.44, halo: true, bulb: '#ffd23f' }); A.g.add(neuraF.root);
+const agendaTex = KIT.canvasTex(600, 760, (g, w, h) => {
+  KIT.rrect(g, 0, 0, w, h, 34); g.fillStyle = '#c98b4e'; g.fill(); KIT.rrect(g, 26, 60, w - 52, h - 86, 18); g.fillStyle = '#fffdf7'; g.fill();
+  g.fillStyle = '#9aa1b4'; KIT.rrect(g, w / 2 - 90, 18, 180, 64, 16); g.fill();
+  g.fillStyle = '#ff3b4f'; g.font = `900 64px ${KIT.FONT}`; g.textAlign = 'left'; g.fillText('ПОВЕСТКА', 62, 175);
+  g.fillStyle = '#161826'; g.font = `900 92px ${KIT.FONT}`; g.fillText('9:00', 62, 290);
+  g.font = `800 58px ${KIT.FONT}`; g.fillText('1. Точка', 62, 420); g.fillText('после «да»', 62, 492);
+  g.fillStyle = '#b5bccc'; g.font = `700 44px ${KIT.FONT}`; g.fillText('2. …', 62, 600); g.fillText('47. …', 62, 665);
+});
+const agenda = new THREE.Group(); A.g.add(agenda); agenda.scale.setScalar(1.35);
+const agB = KIT.rbox(0.42, 0.53, 0.02, 0.03, KIT.Mm('#c98b4e', 0.6)); agenda.add(agB);
+const agF = KIT.plane(0.42, 0.53, agendaTex.tex); agF.position.z = 0.011; agenda.add(agF);
+const dotA = KIT.sph(0.36, KIT.M('#15161d', { r: 0.12, cc: 1, m: 0.2 }), 48); A.g.add(dotA);
+// телефон крупно (для плана через плечо)
+const phoneBig = new THREE.Group(); A.g.add(phoneBig);
+const pB = KIT.rbox(0.2, 0.4, 0.022, 0.03, KIT.M('#1d1d24', { r: 0.2, m: 0.6, cc: 1 })); phoneBig.add(pB);
+let chatState = -1;
+const PHONE_CAM = [0.02, 1.78, 0.04];
+const K_fitText = (g, txt, maxW, size) => KIT.fit(g, txt, maxW, size, 800);
+const chatTex = KIT.canvasTex(540, 1080, () => {});
+const chatScr = KIT.plane(0.186, 0.372, chatTex.tex); chatScr.position.z = 0.0115; phoneBig.add(chatScr);
+const BOSS = ['Вижу, у тебя отдел', 'из 40 сотрудников.', '|', 'Поздравляю,', 'ты руководитель.', '|', 'Планёрка завтра', 'в 9:00.'];
+function drawChat(n) {          // n — сколько строк показано (0..8), 0.5-шаг = «печатает…»
+  chatTex.redraw((g, w, h) => {
+    g.fillStyle = '#eef1f7'; g.fillRect(0, 0, w, h);
+    g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, 150); g.fillStyle = '#ff4d6d'; g.beginPath(); g.arc(80, 92, 40, 0, 7); g.fill();
+    g.fillStyle = '#fff'; g.font = `900 42px ${KIT.FONT}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('Н', 80, 95);
+    g.textAlign = 'left'; g.fillStyle = '#161826'; g.font = `900 44px ${KIT.FONT}`; g.fillText('Начальник', 140, 82); g.fillStyle = '#3cc47c'; g.font = `700 28px ${KIT.FONT}`; g.fillText('в сети', 140, 122);
+    // мой ответ? — никакого: ответил «отдел»
+    let y = 200, line = 0, bubbleLines = [];
+    const groups = [[0, 1], [3, 4], [6, 7]];
+    for (const [a, b] of groups) {
+      const shown = [a, b].filter((i) => i < n);
+      if (!shown.length) continue;
+      const bh = 40 + shown.length * 62;
+      KIT.rrect(g, 30, y, w - 60, bh, 30); g.fillStyle = '#ffffff'; g.fill();
+      g.font = `800 42px ${KIT.FONT}`;
+      shown.forEach((i, k) => { const txt = BOSS[i]; g.fillStyle = i === 4 || i === 7 ? '#e0273f' : '#161826'; K_fitText(g, txt, w - 120, 42); g.fillText(txt, 58, y + 52 + k * 62); });
+      y += bh + 22;
+    }
+    if (n % 1 > 0 && n < 8) { KIT.rrect(g, 30, y, 150, 70, 30); g.fillStyle = '#ffffff'; g.fill(); g.fillStyle = '#9aa1b4'; for (let k = 0; k < 3; k++) { g.beginPath(); g.arc(70 + k * 36, y + 35, 10, 0, 7); g.fill(); } }
+  });
+}
+drawChat(0);
+
+// ---- персонажи сета B ----
+const meetCols = [['#c3b2ff', '#ff4d6d'], ['#ffe08a', null], ['#9fd3ff', '#2b6bff'], ['#ffb99a', null], ['#ffadd2', '#7a5cff'], ['#9ff0c9', null]];
+const meet = meetCols.map(([c, tie], i) => { const b = KIT.bot({ color: c, tie, scale: 0.6 }); B.g.add(b.root); return b; });
+const neuraB = KIT.bot({ color: '#8ff0d4', w: 0.5, h: 0.44, halo: true, bulb: '#ffd23f', scale: 0.85 }); B.g.add(neuraB.root);
+const seatAng = [-2.3, -1.4, -0.5, 0.5, 1.4, 2.3];   // вокруг стола (0 — к камере)
+const dotB = KIT.sph(0.3, KIT.M('#15161d', { r: 0.12, cc: 1, m: 0.2 }), 48); B.g.add(dotB);
+const stickies = ['#ffe066', '#ff9ec7', '#8ce0ff', '#b8f28c'].map((c) => { const n = KIT.rbox(0.16, 0.16, 0.006, 0.004, KIT.Mm(c, 0.8)); B.g.add(n); return n; });
+const DOTPX = [0, 0];
+function drawBoard(p1, p2, circ) {
+  B.boardTex.redraw((g, w, h) => {
+    g.fillStyle = '#fbfcff'; g.fillRect(0, 0, w, h);
+    g.fillStyle = '#7a8296'; g.font = `800 64px ${KIT.FONT}`; g.textAlign = 'left'; g.textBaseline = 'alphabetic'; g.fillText('Ответ начальнику:', 70, 120);
+    g.strokeStyle = '#cfd5e2'; g.lineWidth = 6; g.beginPath(); g.moveTo(70, 160); g.lineTo(w - 70, 160); g.stroke();
+    g.font = `900 360px ${KIT.FONT}`;
+    const wDA = g.measureText('ДА').width;
+    if (p1 > 0) { g.save(); g.beginPath(); g.rect(90, 200, (wDA + 40) * p1, 400); g.clip(); g.fillStyle = '#2b6bff'; g.fillText('ДА', 110, 530); g.restore(); }
+    if (p1 >= 1) { g.fillStyle = '#9aa1b4'; g.font = `900 120px ${KIT.FONT}`; g.fillText('или', 110, 720); }
+    g.font = `900 360px ${KIT.FONT}`;
+    DOTPX[0] = 110 + wDA + 70; DOTPX[1] = 1080 - 34;
+    if (p2 > 0) { g.save(); g.beginPath(); g.rect(90, 800, (wDA + 180) * p2, 420); g.clip(); g.fillStyle = '#e0273f'; g.fillText('ДА', 110, 1080); if (!(t_dotGone)) { g.beginPath(); g.arc(DOTPX[0], DOTPX[1], 34, 0, 7); g.fill(); } g.restore(); }
+    if (circ > 0) {
+      g.strokeStyle = '#e0273f'; g.lineWidth = 14; g.lineCap = 'round'; g.beginPath(); g.ellipse(DOTPX[0], DOTPX[1], 92, 86, 0, -1.2, -1.2 + Math.PI * 2.1 * circ); g.stroke();
+      if (circ >= 1) { g.font = `900 110px ${KIT.FONT}`; g.fillStyle = '#e0273f'; g.fillText('?!', DOTPX[0] + 80, DOTPX[1] - 120); }
+    }
+  });
+  DOT_ON_BOARD.set((DOTPX[0] / 1024 - 0.5) * 1.3, (0.5 - DOTPX[1] / 1340) * 1.7, 0.04);
+}
+let t_dotGone = false;
+let boardState = '';
+// точка, которая потом станет шаром: рисуем её на доске, пока шар не вылетел
+// (точка — часть второго «ДА.», позиция на доске ~ (1390,528) из 1536×896)
+const DOTB = new THREE.Vector3(0.0, 1.08, -0.05);
+const DOT_ON_BOARD = new THREE.Vector3((1390 / 1536 - 0.5) * 2.2, (0.5 - 528 / 896) * 1.27, 0.04);
+
+// ---- сет C ----
+const hrBot = KIT.bot({ color: '#ffb99a', glasses: true, badge: 'HR', scale: 0.85 }); C.g.add(hrBot.root); hrBot.root.position.set(-1.3, 0.81, -0.95);
+const stamp = new THREE.Group(); hrBot.body.add(stamp); stamp.position.set(0.32, 0.12, 0.05);
+const stH = KIT.cyl(0.03, 0.03, 0.12, KIT.M('#7a4a2c', { r: 0.5 }), 12); stH.position.y = 0.1; stamp.add(stH);
+const stB = KIT.rbox(0.12, 0.05, 0.09, 0.01, KIT.M('#ff4d6d', { r: 0.5 })); stamp.add(stB);
+const queue = [];
+const hiredTex = KIT.canvasTex(256, 96, (g) => { g.strokeStyle = '#e0273f'; g.lineWidth = 8; KIT.rrect(g, 8, 8, 240, 80, 14); g.stroke(); g.fillStyle = '#e0273f'; g.font = `900 54px ${KIT.FONT}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('НАНЯТ', 128, 52); });
+for (let i = 0; i < 14; i++) {
+  const b = KIT.bot({ color: crowdCols[(i * 5) % 6], tie: i % 3 === 1 ? '#2b6bff' : null, scale: 0.72 });
+  const hp = KIT.plane(0.17, 0.064, hiredTex.tex); hp.position.set(0, 0.17, 0.176); hp.rotation.z = -0.15; b.body.add(hp);
+  C.g.add(b.root); queue.push(b);
+}
+
+// ---- сет D: четыре агента всплеска ----
+function addTo(b, obj, x, y, z, rx = 0, ry = 0, rz = 0) { obj.position.set(x, y, z); obj.rotation.set(rx, ry, rz); b.body.add(obj); return obj; }
+const lawyer = KIT.bot({ color: '#c3b2ff', tie: '#ff4d6d', glasses: true }); Dm.g.add(lawyer.root);
+{ const case_ = new THREE.Group(); const cb = KIT.rbox(0.3, 0.22, 0.09, 0.03, KIT.M('#7a4a2c', { r: 0.45, cc: 0.6 })); case_.add(cb); const hd = KIT.mesh(new THREE.TorusGeometry(0.05, 0.012, 8, 16, Math.PI), KIT.M('#3a2414', { r: 0.4 })); hd.position.y = 0.11; case_.add(hd); const lk = KIT.rbox(0.05, 0.03, 0.02, 0.005, KIT.M('#d9b44a', { r: 0.2, m: 0.9 })); lk.position.set(0, 0.05, 0.05); case_.add(lk); addTo(lawyer, case_, 0.36, 0.05, 0.08); }
+const analyst = KIT.bot({ color: '#ffe08a' }); Dm.g.add(analyst.root);
+const smileTex = KIT.canvasTex(512, 512, (g) => { g.fillStyle = '#ffd23f'; g.beginPath(); g.arc(256, 256, 230, 0, 7); g.fill(); g.fillStyle = '#161826'; g.beginPath(); g.arc(180, 210, 28, 0, 7); g.arc(332, 210, 28, 0, 7); g.fill(); g.lineWidth = 22; g.strokeStyle = '#161826'; g.beginPath(); g.moveTo(170, 345); g.lineTo(342, 330); g.stroke(); g.font = `900 120px ${KIT.FONT}`; g.fillStyle = '#e0273f'; g.fillText('?', 400, 140); });
+const smileCard = KIT.plane(0.32, 0.32, smileTex.tex); smileCard.position.set(-0.32, 0.95, 0.35); Dm.g.add(smileCard);
+const magn = new THREE.Group(); { const rimM = KIT.mesh(new THREE.TorusGeometry(0.11, 0.018, 12, 40), KIT.M('#2b2b35', { r: 0.3, m: 0.5 })); magn.add(rimM); const gl = KIT.mesh(new THREE.CircleGeometry(0.105, 40), new THREE.MeshPhysicalMaterial({ color: '#dff4ff', transmission: 0.7, roughness: 0.02, transparent: true, opacity: 0.35 })); magn.add(gl); const hdl = KIT.caps(0.02, 0.14, KIT.M('#7a4a2c', { r: 0.4 })); hdl.position.set(0.1, -0.15, 0); hdl.rotation.z = 0.6; magn.add(hdl); }
+magn.scale.setScalar(0.7); Dm.g.add(magn);
+const meetBot = KIT.bot({ color: '#9fd3ff', tie: '#2b6bff' }); Dm.g.add(meetBot.root);
+const bell = new THREE.Group(); { const bb = KIT.mesh(new THREE.SphereGeometry(0.11, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2), KIT.M('#d9b44a', { r: 0.18, m: 0.95 })); bell.add(bb); const bp = KIT.cyl(0.13, 0.13, 0.02, KIT.M('#2b2b35', { r: 0.4 }), 32); bp.position.y = -0.01; bell.add(bp); const kn = KIT.sph(0.025, KIT.M('#d9b44a', { r: 0.2, m: 0.95 }), 12); kn.position.y = 0.11; bell.add(kn); }
+addTo(meetBot, bell, -0.38, 0.06, 0.1);
+const calTex = KIT.canvasTex(320, 360, (g, w, h) => { KIT.rrect(g, 0, 0, w, h, 24); g.fillStyle = '#fff'; g.fill(); g.fillStyle = '#ff3b4f'; KIT.rrect(g, 0, 0, w, 90, 24); g.fill(); g.fillRect(0, 60, w, 30); g.fillStyle = '#fff'; g.font = `900 52px ${KIT.FONT}`; g.textAlign = 'center'; g.fillText('ПН', w / 2, 66); g.fillStyle = '#161826'; g.font = `900 120px ${KIT.FONT}`; g.fillText('9:00', w / 2, 230); g.fillStyle = '#8a90a5'; g.font = `700 40px ${KIT.FONT}`; g.fillText('совещание', w / 2, 300); });
+const cal = KIT.plane(0.2, 0.225, calTex.tex); addTo(meetBot, cal, 0.33, 0.24, 0.12, 0, -0.3, 0.1);
+const seeker = KIT.bot({ color: '#ffadd2' }); Dm.g.add(seeker.root);
+const bino = new THREE.Group(); for (const s of [-1, 1]) { const tb = KIT.cyl(0.045, 0.05, 0.14, KIT.M('#2b2b35', { r: 0.3, m: 0.4 }), 20); tb.rotation.x = Math.PI / 2; tb.position.x = s * 0.055; bino.add(tb); const lens = KIT.cyl(0.04, 0.04, 0.005, new THREE.MeshPhysicalMaterial({ color: '#4a8cff', roughness: 0.05, metalness: 0.4 }), 20); lens.rotation.x = Math.PI / 2; lens.position.set(s * 0.055, 0, 0.072); bino.add(lens); }
+addTo(seeker, bino, 0, 0.32, 0.25);
+const meetBot2 = KIT.bot({ color: '#9fd3ff', tie: '#2b6bff' }); Dm.g.add(meetBot2.root);
+const bell2 = bell.clone(); addTo(meetBot2, bell2, -0.38, 0.06, 0.1);
+
+// ---- сет E ----
+const neuraE = KIT.bot({ color: '#8ff0d4', w: 0.5, h: 0.44, halo: true, bulb: '#ffd23f' }); E.g.add(neuraE.root);
+const envs = [];
+for (let i = 0; i < 40; i++) { const e = KIT.envelope(null); e.visible = false; E.g.add(e); envs.push(e); }
+const ccEnv = KIT.envelope('КОПИЯ: НАЧАЛЬНИК'); ccEnv.scale.setScalar(1.25); E.g.add(ccEnv);
+
+// ============ монтаж: планы и камера ============
+// план: [начало, сет, ключи камеры [t, pos, look, fov]]
+const cut = {
+  meet: st('d03') - 0.1, hr: st('d04') - 0.12, mont: wd('d05', 0) - 0.05,
+  m2: wd('d05', 1) - 0.05, m3: wd('d05', 3) - 0.05, m4: wd('d05', 6) - 0.05,
+  send: st('s04') - 0.14, wait: st('d06') - 0.25, chat: st('d07') - 0.12,
+  face: wd('d07', 8) - 0.04, chat2: wd('d07', 10) - 0.04, punch: st('d08') - 0.18, outro: st('d09') - 0.75,
+};
+const SH = [
+  { t: 0, set: 'A', keys: [[0, [0.0, 1.62, 1.75], [0.0, 1.55, 0.05], 34], [1.3, [0.1, 1.5, 2.75], [0.02, 1.38, -0.2], 36, 'expo'], [st('d02') - 0.1, [0.14, 1.48, 2.85], [0.03, 1.36, -0.2], 36, 'sine']] },
+  { t: st('d02') - 0.1, set: 'A', keys: [[0, [0.14, 1.48, 2.85], [0.03, 1.36, -0.2], 36], [1.3, [0.62, 1.45, 2.6], [0.34, 1.25, -0.2], 36, 'eio']] },
+  { t: st('s01') - 0.05, set: 'A', keys: [[0, [0.82, 1.5, 1.55], [0.6, 1.42, -0.1], 34], [wd('s01', 3) - st('s01') - 0.25, [0.78, 1.48, 1.45], [0.6, 1.42, -0.1], 34, 'sine'], [wd('s01', 3) - st('s01') + 0.55, [0.35, 1.48, 2.95], [0.2, 1.05, -0.05], 36, 'expo']] },
+  { t: cut.meet, set: 'B', keys: [[0, [20.0, 3.3, 4.1], [20, 1.05, -0.6], 36], [2.2, [20.15, 2.35, 3.3], [20, 1.1, -0.7], 36, 'eio']] },
+  { t: st('s02') - 0.12, set: 'B', keys: [[0, [19.85, 1.75, 2.05], [20.0, 1.72, -2.3], 36], [st('s03') - st('s02') + 0.6, [19.9, 1.75, 1.75], [20.0, 1.72, -2.3], 36, 'sine']] },
+  { t: wd('s03', 3) - 0.02, set: 'B', keys: [[0, [20.3, 1.75, 1.6], [20.0, 1.45, -1.0], 36], [1.0, [20.55, 1.85, 2.6], [20.0, 1.05, -0.1], 38, 'expo']] },
+  { t: cut.hr, set: 'C', keys: [[0, [40.1, 0.95, 3.1], [40, 1.05, -2.9], 40], [wd('d04', 8) - st('d04') - 0.1, [40.05, 1.0, 2.6], [40, 1.15, -2.9], 40, 'sine'], [wd('d04', 8) - st('d04') + 1.1, [40.0, 2.6, 3.3], [40, 4.4, -2.95], 42, 'eio']] },
+  { t: cut.mont, set: 'D', keys: [[0, [60.0, 1.05, 2.9], [60, 0.5, 0], 34], [cut.m2 - cut.mont, [60.0, 1.0, 2.6], [60, 0.5, 0], 34, 'none']] },
+  { t: cut.m2, set: 'D', keys: [[0, [60.0, 1.05, 2.9], [60, 0.5, 0], 34], [cut.m3 - cut.m2, [60.0, 1.0, 2.6], [60, 0.5, 0], 34, 'none']] },
+  { t: cut.m3, set: 'D', keys: [[0, [60.0, 1.05, 2.9], [60, 0.5, 0], 34], [cut.m4 - cut.m3, [60.0, 1.0, 2.6], [60, 0.5, 0], 34, 'none']] },
+  { t: cut.m4, set: 'D', keys: [[0, [60.0, 1.05, 2.9], [60, 0.5, 0], 34], [wd('d05', 10) - cut.m4, [60.0, 1.0, 2.65], [60, 0.5, 0], 34, 'none'], [wd('d05', 10) - cut.m4 + 0.8, [60.7, 1.35, 3.6], [60.25, 0.42, -0.3], 38, 'expo']] },
+  { t: cut.send, set: 'E', keys: [[0, [79.9, 1.5, 2.6], [79.82, 1.0, 0], 36], [wd('s04', 1) - 0.15 - cut.send, [79.88, 1.45, 2.45], [79.82, 1.0, 0], 36, 'sine'], [wd('s04', 1) + 0.45 - cut.send, [80.4, 1.7, 3.9], [80.5, 2.3, -0.8], 40, 'expo']] },
+  { t: wd('s04', 2) - 0.15, set: 'E', keys: [[0, [80.0, 1.5, 3.05], [80.0, 1.5, 0.2], 34], [1.5, [80.0, 1.5, 2.85], [80.0, 1.5, 0.2], 34, 'sine']] },
+  { t: cut.wait, set: 'A', keys: [[0, [0.0, 1.55, 3.6], [0.1, 1.25, -0.6], 38], [wd('d06', 3) - cut.wait, [0.0, 1.45, 3.0], [0.05, 1.15, -0.6], 38, 'sine'], [wd('d06', 3) - cut.wait + 0.8, [-0.35, 1.25, 1.45], [-0.25, 0.95, -0.15], 36, 'eio']] },
+  { t: cut.chat, set: 'A', keys: [[0, [0.02, 1.84, 0.06], [0.0, 1.0, -0.14], 30], [cut.face - cut.chat, [0.02, 1.78, 0.04], [0.0, 1.0, -0.14], 30, 'sine']] },
+  { t: cut.face, set: 'A', keys: [[0, [0.0, 1.38, 1.05], [0.0, 1.22, -0.6], 32], [cut.chat2 - cut.face, [0.0, 1.38, 0.9], [0.0, 1.22, -0.6], 32, 'sine']] },
+  { t: cut.chat2, set: 'A', keys: [[0, [0.02, 1.8, 0.05], [0.0, 1.0, -0.14], 30], [st('d08') - cut.chat2, [0.02, 1.76, 0.03], [0.0, 1.0, -0.14], 30, 'sine']] },
+  { t: cut.punch, set: 'A', keys: [[0, [-0.12, 1.4, 1.35], [-0.16, 1.22, -0.6], 36], [wd('d08', 6) - cut.punch, [-0.12, 1.38, 1.15], [-0.16, 1.22, -0.6], 36, 'sine'], [wd('d08', 9) - cut.punch, [0.1, 2.5, 5.0], [0.1, 0.72, -1.0], 44, 'expo']] },
+  { t: st('s05') - 0.08, set: 'A', keys: [[0, [0.25, 1.5, 2.8], [0.2, 1.12, -0.6], 38], [wd('s05', 4) - st('s05'), [0.1, 1.5, 3.1], [0.1, 1.08, -0.6], 38, 'sine'], [en('s05') + 0.4 - st('s05'), [0.0, 2.6, 5.0], [0.0, 0.62, -0.8], 44, 'eio']] },
+  { t: cut.outro, set: 'A', keys: [[0, [0.0, 2.6, 5.0], [0.0, 0.62, -0.8], 44], [D - cut.outro, [-0.4, 2.8, 5.5], [0.0, 0.62, -0.8], 44, 'sine']] },
+];
+const EASE = { expo: (x) => (x >= 1 ? 1 : 1 - Math.pow(2, -10 * x)), eio, sine: (x) => 0.5 - 0.5 * Math.cos(Math.PI * x), none: (x) => x };
+const v3 = new THREE.Vector3(), l3 = new THREE.Vector3();
+function shotAt(t) { let s = SH[0]; for (const x of SH) if (t >= x.t) s = x; return s; }
+function camAt(t) {
+  const s = shotAt(t), lt = t - s.t, k = s.keys;
+  let a = k[0], b = k[0], f = 0;
+  for (let i = 1; i < k.length; i++) { if (lt <= k[i][0]) { a = k[i - 1]; b = k[i]; f = (lt - a[0]) / Math.max(1e-4, b[0] - a[0]); f = (EASE[b[4]] || eio)(clamp(f)); break; } a = b = k[i]; f = 1; }
+  for (let j = 0; j < 3; j++) { v3.setComponent(j, lerp(a[1][j], b[1][j], f)); l3.setComponent(j, lerp(a[2][j], b[2][j], f)); }
+  return { pos: v3, look: l3, fov: lerp(a[3], b[3], f), set: s.set };
+}
+
+// ============ анимация персонажей ============
+const blinkAt = (t, seed) => { const p = 2.6 + hash(seed) * 1.6, x = (t + hash(seed + 3) * p) % p; return x < 0.13 ? Math.sin(x / 0.13 * Math.PI) : 0; };
+const talkEnv = (t) => { const i = Math.round(t * 30); return window.ENV[i] || 0; };
+const speaking = (id, t) => t >= st(id) && t <= en(id);
+const svetaNow = (t) => VO.segs.some((s) => s.who === 'sveta' && t >= s.start && t <= s.speechEnd);
+
+function heroUpdate(t) {
+  const p = { L: {}, R: {}, blink: blinkAt(t, 1) };
+  // 0–4.6: читает письмо, на «одно слово» поднимает палец
+  const finger = prog(t, wd('d01', 7) - 0.15, 0.3) * (1 - prog(t, st('d02') - 0.1, 0.25));
+  const grab = prog(t, st('d02'), 0.35), toss = prog(t, wd('d02', 2) - 0.15, 0.25), rel = prog(t, wd('d02', 2) + 0.2, 0.4);
+  p.lookY = 0.6; p.lookX = 0; p.brow = 0.3; p.lean = 0.12; p.nod = -0.06;
+  if (t < st('d02') + 1.2) {
+    p.brow = 0.3 + 0.7 * prog(t, wd('d01', 5) - 0.1, 0.2) * (1 - prog(t, wd('d01', 6), 0.3));
+    p.R = { x: lerp(0.15, -2.4, finger), z: lerp(0.12, 0.25, finger), ex: lerp(-0.35, -0.6, finger), point: finger > 0.5 };
+    p.L = { x: lerp(0.15, -0.6, 0.6), z: 0.25, ex: -1.3 };
+    // бросок письма: правая рука вперёд → вправо
+    if (t > st('d02')) {
+      p.R = { x: lerp(-0.6, -1.3, grab) + toss * 0.4, y: 0, z: lerp(0.2, 0.2, grab) - toss * 0.9 + rel * 0.6, ex: lerp(-0.6, -0.2, grab) - rel * 0.6 };
+      p.lookX = lerp(0, 1, toss); p.turn = lerp(0, 0.35, toss) * (1 - rel * 0.3);
+    }
+  }
+  // Нейра думает: герой откидывается, смотрит вправо
+  if (t >= st('d02') + 1.2 && t < cut.meet) {
+    const surprise = prog(t, wd('s01', 3) + 0.2, 0.25);
+    p.turn = 0.38; p.lookX = 1; p.lookY = 0.3; p.lean = lerp(0.05, -0.12, surprise); p.brow = lerp(0.2, 1, surprise); p.wide = surprise * 0.6; p.mouth = surprise * 0.5;
+    p.L = { x: lerp(0.15, -0.5, surprise), z: lerp(0.15, 0.7, surprise), ex: -0.8 }; p.R = { x: lerp(0.15, -0.5, surprise), z: lerp(0.15, 0.7, surprise), ex: -0.8 };
+  }
+  // ожидание: подбородок на руке, постукивание пальцами
+  if (t >= cut.wait && t < cut.chat) {
+    const buzz = prog(t, wd('d06', 4) - 0.1, 0.2);
+    const pick = prog(t, wd('d06', 6) - 0.05, 0.35);
+    p.lean = 0.25 - pick * 0.15; p.nod = 0.1 - buzz * 0.15; p.lookY = -0.3 + buzz * 0.2; p.lookX = -0.6 * buzz; p.brow = buzz * 0.7; p.wide = buzz * 0.5;
+    p.L = { x: -1.6, z: 0.35, ex: -1.9 }; p.headTilt = 0.12 * (1 - buzz);
+    p.R = { x: -0.5 - pick * 0.7, z: 0.15 + Math.sin(t * 18) * 0.03 * (1 - buzz), ex: -0.9 - pick * 0.4 };
+    p.blink = Math.max(p.blink, prog(t, wd('d06', 2) - 0.1, 0.15) * (1 - prog(t, wd('d06', 3) - 0.2, 0.15)) * 0.6);
+  }
+  // читает сообщение: обе руки держат телефон
+  if (t >= cut.chat && t < cut.punch) {
+    const wide = prog(t, wd('d07', 8) - 0.1, 0.15);
+    p.lean = 0.18; p.nod = 0.28 - wide * 0.3; p.lookY = -0.7 + wide * 0.7; p.lookX = 0; p.brow = 0.2 + wide * 0.9; p.wide = wide * 0.8; p.mouth = wide * 0.75;
+    p.L = { x: -1.15, z: 0.05, ex: -1.25 }; p.R = { x: -1.15, z: 0.05, ex: -1.25 };
+  }
+  // панч: смотрит в камеру, потом толпа — шок; «шеф» — фейспалм
+  if (t >= cut.punch) {
+    const shock = prog(t, wd('d08', 6) + 0.25, 0.2), palm = prog(t, wd('s05', 5), 0.35);
+    p.lean = 0.05; p.lookY = 0.15; p.lookX = 0; p.brow = lerp(-0.2, 1, shock); p.browAng = lerp(0.18, -0.1, shock); p.wide = shock * 0.7 - palm * 0.6; p.mouth = shock * 0.6 * (1 - palm);
+    p.nod = palm * 0.25; p.turn = shock * 0.25 * (1 - palm);
+    p.L = { x: lerp(-0.5, -0.3, shock), z: lerp(0.15, 0.9, shock) * (1 - palm) + 0.15, ex: -1.0 };
+    p.R = { x: lerp(-0.5, -2.2, palm) , z: lerp(0.15, 0.9, shock) * (1 - palm) + palm * -0.15, ex: lerp(-1.0, -2.0, palm) };
+    p.blink = Math.max(p.blink, palm);
+    if (t > cut.outro) { p.nod = 0.25; }
+  }
+  hero.pose(p);
+}
+
+const ND = { pos: new THREE.Vector3() };
+function neuraUpdate(t) {
+  // Нейра влетает справа к «Отдаю это нейросети»
+  const inn = spring(t - (st('d02') - 0.2), 7, 10);
+  const x = lerp(1.6, 0.52, inn), y = 1.08 + Math.sin(t * 2.2) * 0.03;
+  neura.root.position.set(x, y, -0.25);
+  neura.root.rotation.y = -0.35;
+  const caught = prog(t, wd('d02', 2) + 0.25, 0.15);
+  const think = prog(t, wd('s01', 1) - 0.1, 0.2) * (1 - prog(t, wd('s01', 3) - 0.05, 0.2));
+  const shake = prog(t, wd('s01', 3) - 0.1, 0.1) * (1 - prog(t, wd('s01', 4) + 0.35, 0.1));
+  const gulp = Math.sin(clamp((t - (wd('d02', 2) + 0.25)) / 0.3) * Math.PI);
+  neura.body.scale.set(1 + gulp * 0.12, 1 - gulp * 0.1, 1 + gulp * 0.12);
+  neura.body.position.x = Math.sin(t * 55) * 0.012 * shake;
+  neura.body.rotation.z = Math.sin(t * 40) * 0.05 * shake;
+  const tk = svetaNow(t) && t < cut.meet ? talkEnv(t) : 0;
+  neura.set({ blink: blinkAt(t, 5), squint: think, happy: prog(t, st('s01'), 0.1) * (1 - prog(t, wd('s01', 1) - 0.1, 0.1)), talk: tk, look: -0.6 * (1 - caught), armR: 0.25 + gulp * 0.6, armL: 0.25 + shake * 1.2 });
+  loadRing.position.set(x, y + 0.35, -0.25 + 0.1); loadRing.rotation.set(0, 0, -t * 6); loadRing.scale.setScalar(0.001 + think);
+  loadRing.visible = think > 0.01;
+  // трое агентов вылетают
+  trio.forEach((b, i) => {
+    const t0 = wd('s01', 4) - 0.05 + i * 0.2, p = clamp((t - t0) / 0.55);
+    const shown = t >= t0;
+    b.root.visible = shown && t < cut.meet;
+    if (!shown) return;
+    const tx = -0.42 + i * 0.36, tz = 0.18;
+    const px = lerp(x, tx, eout(p)), pz = lerp(-0.2, tz, eout(p)), py = lerp(y + 0.2, 0.81, p) + Math.sin(p * Math.PI) * 0.45;
+    const land = spring(t - t0 - 0.55, 12, 18);
+    b.root.position.set(px, py, pz);
+    b.body.scale.set(1 + (1 - land) * 0.25 * (p >= 1), 1 - (1 - land) * 0.25 * (p >= 1), 1);
+    b.root.rotation.y = lerp(-1, 0.15 * (i - 1), p);
+    b.set({ blink: blinkAt(t, 20 + i), happy: p >= 1 ? 1 : 0, look: (1 - i) * -0.5 });
+  });
+}
+
+function mailUpdate(t) {
+  // письмо: уже вылетает из ноутбука в кадре 0
+  const rise = clamp((t + 0.35) / 0.9); const r = back(rise, 1.2);
+  let px = 0.0, py = lerp(0.95, 1.8, r), pz = lerp(0.0, 0.05, r), s = MAILS * lerp(0.35, 1, eout(rise)), ry = 0, rx = lerp(-0.6, -0.08, eout(rise));
+  py += Math.sin(t * 2.0) * 0.012;
+  // бросок в Нейру
+  const fly = prog(t, wd('d02', 2) - 0.05, 0.42);
+  if (fly > 0) {
+    const tx = neura.root.position.x, ty = neura.root.position.y + 0.32, tz = neura.root.position.z + 0.15;
+    const e = eio(fly);
+    px = lerp(px, tx, e); pz = lerp(pz, tz, e); py = lerp(py, ty, e) + Math.sin(fly * Math.PI) * 0.35; s = MAILS * lerp(1, 0.15, e); ry = -fly * 2.5; rx = lerp(-0.08, 0.3, fly);
+  }
+  mail.visible = fly < 1;
+  mail.position.set(px, py, pz); mail.scale.setScalar(s); mail.rotation.set(rx, ry, fly * 0.6);
+}
+
+function meetingUpdate(t) {
+  // агенты вокруг стола, Нейра во главе (у доски)
+  meet.forEach((b, i) => {
+    const a = seatAng[i], r = 0.62;
+    const bx = Math.sin(a) * r, bz = Math.cos(a) * r - 0.0;
+    // к шару: на «рабочую группу» трое срываются к точке
+    const go = i < 3 ? prog(t, wd('s03', 3) + i * 0.12, 0.5) : 0;
+    const G = [[-0.48, 0.0], [0.48, 0.0], [0.05, 0.4]][i] || [bx, bz];
+    const tx = lerp(bx, G[0], eout(go)), tz = lerp(bz, G[1], eout(go));
+    b.root.position.set(tx, 0.775 + Math.sin(go * Math.PI) * 0.3 + Math.abs(Math.sin(t * 6 + i * 1.7)) * 0.02, tz);
+    const toC = Math.atan2(-bx, -bz), toDot = Math.atan2(DOTB.x - tx, DOTB.z - tz);
+    b.root.rotation.y = go > 0 ? lerp(toC, toDot, eout(go)) : toC;
+    b.set({ blink: blinkAt(t, 40 + i), squint: 0.3 * (i % 2), angry: i === 2 ? 0.4 : 0, look: -Math.sin(a) * 0.4, talk: 0, armR: i === 0 ? 0.25 + prog(t, st('s02'), 0.3) * 1.6 : 0.25 });
+  });
+  // Нейра у доски, указывает маркером
+  neuraB.root.position.set(-0.78, 1.15 + Math.sin(t * 2) * 0.03, -1.7);
+  neuraB.root.rotation.y = 0.35;
+  neuraB.set({ blink: blinkAt(t, 7), talk: svetaNow(t) ? talkEnv(t) : 0, armR: 0.25 + prog(t, st('s02') + 0.1, 0.3) * 1.5, look: 0.5 });
+  // доска
+  const p1 = prog(t, wd('s02', 2) - 0.25, 0.35), p2 = prog(t, wd('s02', 4) - 0.1, 0.35), circ = prog(t, wd('s02', 6) - 0.05, 0.45);
+  t_dotGone = t > wd('s03', 3) - 0.05;
+  const key = [p1, p2, circ].map((x) => Math.round(x * 20)).join(',') + (t_dotGone ? 'g' : '');
+  if (key !== boardState) { boardState = key; drawBoard(p1, p2, circ); }
+  // точка вылетает шаром
+  const pop = prog(t, wd('s03', 3) - 0.05, 0.45), grow = spring(t - wd('s03', 3) - 0.05, 6, 9);
+  dotB.visible = t > wd('s03', 3) - 0.05;
+  const bp = B.boardG.position;
+  dotB.position.set(lerp(bp.x + DOT_ON_BOARD.x, DOTB.x, eout(pop)), lerp(bp.y + DOT_ON_BOARD.y, DOTB.y, eout(pop)) + Math.sin(pop * Math.PI) * 0.4, lerp(bp.z + 0.1, DOTB.z, eout(pop)));
+  dotB.scale.setScalar(Math.max(0.05, grow));
+  // стикеры прилипают
+  stickies.forEach((n, i) => {
+    const t0 = wd('s03', 4) + 0.08 + i * 0.22, p = prog(t, t0, 0.22);
+    n.visible = t > t0 - 0.3 && t >= wd('s03', 3);
+    const ang = -0.9 + i * 0.6, R_ = 0.305;
+    const tx = dotB.position.x + Math.sin(ang) * R_, ty = dotB.position.y + 0.12 + Math.cos(i * 2.1) * 0.12, tz = dotB.position.z + Math.cos(ang) * R_;
+    n.position.set(lerp(tx + Math.sin(ang) * 1.2, tx, eout(p)), lerp(ty + 0.8, ty, eout(p)), lerp(tz + 1.0, tz, eout(p)));
+    n.lookAt(dotB.position.x + Math.sin(ang) * 3, ty, dotB.position.z + Math.cos(ang) * 3);
+    n.rotateZ(0.2 * (i - 1.5));
+  });
+}
+
+function hrUpdate(t) {
+  const t0 = cut.hr;
+  // дверь распахнута
+  C.door.rotation.y = -1.3 * eout(prog(t, t0 - 0.2, 0.4));
+  // очередь: каждые 0.32 с новый агент выходит из двери и идёт к камере, потом в сторону
+  queue.forEach((b, i) => {
+    const s0 = t0 - 0.6 + i * 0.3, p = (t - s0) / 2.6;
+    b.root.visible = p > 0 && p < 1 && t < cut.mont;
+    if (!b.root.visible) return;
+    const side = i % 2 ? 1 : -1;
+    const z = lerp(-3.2, 2.4, p), x = side * (0.25 + Math.max(0, p - 0.45) * 2.6);
+    b.root.position.set(x, Math.abs(Math.sin((t - s0) * 9)) * 0.06, z);
+    b.root.rotation.y = side * Math.max(0, p - 0.45) * 1.6;
+    b.set({ blink: blinkAt(t, 60 + i), happy: 1 });
+  });
+  // HR штампует в ритм
+  const ph = ((t - t0) * 2.3) % 1, down = ph < 0.25 ? Math.sin(ph / 0.25 * Math.PI) : 0;
+  stamp.position.y = 0.12 - down * 0.14; hrBot.set({ blink: blinkAt(t, 70), armR: 0.25, squint: 0.3, talk: 0 });
+  hrBot.root.rotation.y = 0.5;
+  // оргструктура растёт на «сорок агентов»
+  const g0 = wd('d04', 8) - 0.1;
+  C.cards.forEach((c, i) => { const p = spring(t - (g0 + i * 0.03), 10, 16); c.scale.setScalar(Math.max(0.001, p)); c.visible = t > g0 + i * 0.03; });
+  C.lines.forEach((l, i) => { l.scale.x = Math.max(0.001, prog(t, g0 + i * 0.25, 0.4)); });
+  C.trunk.scale.y = Math.max(0.001, prog(t, g0, 1.3));
+}
+
+const mon = [lawyer, analyst, meetBot, seeker];
+const monCols = ['#cfc4ff', '#ffe9a8', '#bfe3ff', '#ffc9e3'];
+function montageUpdate(t) {
+  const cuts = [cut.mont, cut.m2, cut.m3, cut.m4];
+  let k = 0; for (let i = 0; i < 4; i++) if (t >= cuts[i]) k = i;
+  Dm.backM.color.set(monCols[k]);
+  mon.forEach((b, i) => {
+    b.root.visible = i === k;
+    if (i !== k) return;
+    const pop = spring(t - cuts[i], 10, 15);
+    b.root.position.set(60 - 60 + (i === 3 ? 0 : 0), 0.35 + (1 - Math.min(1, pop)) * -0.15, 0);
+    b.body.scale.set(1.1 - 0.1 * pop, 0.9 + 0.1 * pop, 1.1 - 0.1 * pop);
+    b.root.rotation.y = i === 3 ? Math.sin((t - cuts[3]) * 3.2) * 0.55 : 0.15 * Math.sin(t * 1.5);
+    b.set({ blink: blinkAt(t, 80 + i), happy: i === 0 ? 0 : 0, squint: i === 0 ? 0.5 : i === 1 ? 0.7 : 0, angry: i === 0 ? 0.35 : 0, armR: i === 1 ? 1.4 : i === 2 ? 0.9 : 0.3, armL: i === 2 ? 0.9 : 0.3, armLx: i === 3 ? -1.4 : 0, armRx: i === 3 ? -1.4 : 0, look: i === 1 ? -0.8 : 0 });
+  });
+  smileCard.visible = k === 1; magn.visible = k === 1;
+  if (k === 1) { const tt = t - cut.m2; magn.position.set(-0.22 + Math.sin(tt * 3) * 0.05, 0.98 + Math.cos(tt * 2.4) * 0.03, 0.55); magn.rotation.set(0, 0, 0.3); smileCard.rotation.z = Math.sin(tt * 2) * 0.05; }
+  // всплеск 4: искомый агент стоит прямо за ищущим
+  meetBot2.root.visible = k === 3;
+  meetBot2.root.position.set(0.5, 0.0, -0.4); meetBot2.root.rotation.y = -0.3;
+  const tap = prog(t, wd('d05', 11), 0.3);
+  meetBot2.set({ blink: blinkAt(t, 90), armL: 0.25 + tap * 1.4, armLx: -tap * 0.6, look: -0.6, happy: 0 });
+  // пьедестал маленький для 4-го — ищущий на подиуме, искомый на полу за ним
+}
+
+function sendUpdate(t) {
+  const t0 = cut.send, press = wd('s04', 1) - 0.2;
+  const appr = eout(prog(t, t0, 0.5));
+  neuraE.root.position.set(lerp(-0.8, -0.42, appr), 1.0 + Math.sin(t * 2.2) * 0.03, 0.15);
+  neuraE.root.rotation.y = 0.55;
+  const hitp = prog(t, press, 0.12), up = prog(t, press + 0.15, 0.3);
+  neuraE.set({ blink: blinkAt(t, 9), talk: svetaNow(t) ? talkEnv(t) : 0, armR: lerp(0.25, 1.9, prog(t, press - 0.35, 0.25)) - up * 1.0, armRx: -0.8 * prog(t, press - 0.35, 0.25) * (1 - up), happy: up });
+  E.btnG.scale.y = 1 - 0.45 * hitp * (1 - up);
+  E.red.intensity = 2.5 * Math.max(0, 1 - (t - press) * 2) * (t > press ? 1 : 0);
+  // фонтан писем
+  envs.forEach((e, i) => {
+    const s0 = press + 0.1 + i * 0.045, p = (t - s0) / 1.6;
+    e.visible = p > 0 && p < 1;
+    if (!e.visible) return;
+    const ang = hash(i) * Math.PI * 2, spd = 0.6 + hash(i + 9) * 0.9;
+    e.position.set(0.9 + Math.cos(ang) * spd * p * 1.4, 0.6 + p * 5.5 - p * p * 2.2, -1.2 + Math.sin(ang) * spd * p * 1.2 + p * 1.2);
+    e.rotation.set(p * 6 * (hash(i + 2) - 0.5), p * 8 * (hash(i + 4) - 0.5), p * 5);
+  });
+  // «копия: начальник» — в камеру
+  const cc0 = wd('s04', 2) - 0.35, cp = prog(t, cc0, 0.55);
+  ccEnv.visible = t > cc0;
+  ccEnv.position.set(lerp(0.9, 0.0, eout(cp)), lerp(2.2, 1.55, eout(cp)) + Math.sin(t * 2) * 0.01, lerp(-1.2, 1.32, eout(cp)));
+  ccEnv.rotation.set(lerp(1.2, 0, eout(cp)), lerp(3.0, 0, eout(cp)), lerp(1.5, -0.06, eout(cp)));
+  ccEnv.scale.setScalar(1.25 * (1 + spring(t - wd('s04', 3), 10, 16) * 0 + (t > wd('s04', 4) ? 0.06 * Math.exp(-(t - wd('s04', 4)) * 8) : 0)));
+}
+
+function officeEvening(t) {
+  const ev = prog(t, cut.wait - 0.05, 0.1) * (t < cut.outro + 10 ? 1 : 1);
+  const isEve = t >= cut.wait;
+  A.win.paneN.material.opacity = isEve ? 1 : 0;
+  A.key.intensity = isEve ? 1.3 : 2.6; A.key.color.set(isEve ? '#c7d2ff' : '#fff1de');
+  A.fill.intensity = isEve ? 0.45 : 0.7;
+  A.lamp.intensity = isEve ? 2.2 : 0.0;
+  // часы: «жду час» — стрелки крутятся
+  const spin = prog(t, wd('d06', 0), 0.9);
+  A.clock.minH.rotation.z = -spin * Math.PI * 2 - 0.5; A.clock.hourH.rotation.z = -spin * Math.PI / 6 - 1.9;
+  // телефон вибрирует
+  const bz = t > wd('d06', 4) - 0.1 && t < wd('d06', 6) + 0.1 ? Math.sin(t * 90) * 0.006 : 0;
+  A.phone.position.x = -0.32 + bz;
+  A.phone.visible = t < wd('d06', 6) + 0.05 || t < cut.wait;
+  A.pscr.material.color.set(t > wd('d06', 4) - 0.1 && t < cut.chat ? '#cfe8ff' : '#0c0f18');
+  A.glowScreen.material.color.set(isEve ? '#7f97c7' : '#cfe8ff');
+}
+
+function phoneUpdate(t) {
+  const on = t >= wd('d06', 6) - 0.05 && t < cut.punch + 0.6;
+  phoneBig.visible = on;
+  const lift = prog(t, wd('d06', 6) - 0.05, 0.4);
+  const e = eout(lift);
+  phoneBig.position.set(lerp(-0.32, 0.0, e), lerp(0.83, 1.0, e), lerp(0.18, -0.14, e));
+  phoneBig.rotation.set(-Math.PI / 2, 0, lerp(0.35, 0, e));
+  if (t >= cut.chat && t < cut.punch) { phoneBig.lookAt(PHONE_CAM[0], PHONE_CAM[1], PHONE_CAM[2]); phoneBig.rotateZ(0.04); }
+  else if (lift > 0) { phoneBig.rotation.set(lerp(-Math.PI / 2, -1.15, e), 0, 0); }
+  if (t > cut.punch) { const dn = prog(t, cut.punch, 0.5); phoneBig.position.y = lerp(1.0, 0.92, dn); phoneBig.rotation.set(-1.25, 0, 0); }
+  // строки сообщения синхронно с речью d07
+  const w07 = SEG.d07.words;
+  const lineAt = [w07[0].s, w07[4].s, null, w07[7].s, w07[8].s, null, w07[10].s, w07[12].s];
+  let n = 0; lineAt.forEach((x, i) => { if (x != null && t >= x - 0.05) n = i + 1; });
+  if (t < st('d07') - 0.05) n = t > wd('d06', 5) ? 0.5 : 0;
+  else if (n === 0) n = 0.5;
+  if (n !== chatState) { chatState = n; drawChat(n); }
+}
+
+function finaleUpdate(t) {
+  const inT = wd('d08', 6) + 0.1;
+  A.door.rotation.y = t > cut.punch ? -1.45 * eout(prog(t, inT - 0.15, 0.25)) : 0;
+  crowd.forEach((b, i) => {
+    const s0 = inT + i * 0.035, p = clamp((t - s0) / 0.75);
+    b.root.visible = t > s0 && t >= cut.punch;
+    if (!b.root.visible) return;
+    const [sx, sy, sz] = crowdSpots[i];
+    const dx = 2.5, dz = -0.9;
+    b.root.position.set(lerp(dx, sx, eout(p)), Math.abs(Math.sin(p * Math.PI * 2)) * 0.12 * (1 - p), lerp(dz, sz, eout(p)));
+    b.root.rotation.y = Math.atan2(0 - sx, 1.2 - sz) * eout(p) + (1 - eout(p)) * -1.5;
+    b.set({ blink: blinkAt(t, 100 + i), happy: (i % 4 === 0) ? 1 : 0, look: -sx * 0.3, armR: 0.6 });
+  });
+  // Нейра с повесткой — «Шеф!»
+  const ni = spring(t - (st('s05') - 0.12), 8, 12);
+  neuraF.root.visible = t > st('s05') - 0.2;
+  neuraF.root.position.set(lerp(1.5, 0.48, Math.min(1, ni)), 1.02 + Math.sin(t * 2.2) * 0.02, 0.6);
+  neuraF.root.rotation.y = -0.35;
+  neuraF.set({ blink: blinkAt(t, 11), talk: svetaNow(t) ? talkEnv(t) : 0, happy: 1 - prog(t, wd('s05', 1), 0.1), armR: 1.3, armL: 0.6 });
+  agenda.visible = neuraF.root.visible;
+  agenda.position.set(neuraF.root.position.x - 0.32, 1.12 + Math.sin(t * 2.2) * 0.02, 0.72); agenda.rotation.set(-0.12, 0.35, 0.08);
+  // шар-точка вкатывается и толкает стол
+  const r0 = wd('s05', 4) - 0.35, rp = prog(t, r0, 0.9);
+  dotA.visible = t > r0;
+  dotA.position.set(lerp(2.4, -0.6, eout(rp)), 0.36, lerp(0.9, 0.78, eout(rp)));
+  dotA.rotation.z = lerp(0, 7, eout(rp));
+}
+
+// ============ титры ============
+const capsEl = document.getElementById('caps');
+const HIDE = [[cut.mont, cut.send], [st('d07') - 0.2, cut.punch], [wd('s05', 1) - 0.05, cut.outro]];
+const capEls = VO.caps.map((c) => {
+  const el = document.createElement('div'); el.className = 'cap ' + c.who;
+  const hl = new Set(c.hl);
+  el.innerHTML = c.text.split(' ').map((w) => { const bare = w.replace(/[^\wА-Яа-яЁё-]/g, ''); return hl.has(bare) ? `<span class="hl">${w}</span>` : w; }).join(' ');
+  el.style.opacity = 0; capsEl.appendChild(el); return el;
+});
+function capsUpdate(t) {
+  capsEl.style.top = V.capY + 'px'; capsEl.style.fontSize = V.capSize + 'px';
+  const hidden = HIDE.some(([a, b]) => t >= a && t < b) || t >= cut.outro;
+  const side = HOSTWIN.some(([a, b]) => t >= a - 0.1 && t < b + 0.1);
+  capsEl.classList.toggle('side', side); if (side) capsEl.style.fontSize = Math.round(V.capSize * 0.86) + 'px';
+  VO.caps.forEach((c, i) => {
+    const el = capEls[i];
+    const on = !hidden && t >= c.t0 - 0.03 && t < c.t1;
+    if (!on) { el.style.opacity = 0; return; }
+    const a = clamp((t - c.t0 + 0.03) / 0.09);
+    el.style.opacity = 1;
+    el.style.transform = `translateY(${(1 - eout(a)) * 26}px) scale(${0.92 + 0.08 * back(a, 2)})`;
+  });
+}
+
+// ============ таблички всплеска ============
+const plateEl = document.getElementById('plate');
+const PLATES = [
+  { t: cut.mont, txt: 'ЮРИСТ', sub: 'агент №7', c: '#7a5cff' },
+  { t: cut.m2, txt: 'АНАЛИТИК ТОНА', sub: 'агент №12', c: '#e0a800' },
+  { t: cut.m3, txt: 'АГЕНТ ПО СОВЕЩАНИЯМ', sub: 'агент №23', c: '#2b6bff' },
+  { t: cut.m4, txt: 'АГЕНТ, КОТОРЫЙ ИЩЕТ АГЕНТА ПО СОВЕЩАНИЯМ', sub: 'агент №24', c: '#ff4d8d' },
+];
+const plEls = PLATES.map((p) => { const el = document.createElement('div'); el.className = 'pl'; el.style.setProperty('--c', p.c); el.innerHTML = `<small>${p.sub}</small>${p.txt}`; el.style.opacity = 0; plateEl.appendChild(el); return el; });
+plEls[3].style.fontSize = '60px'; plEls[2].style.fontSize = '66px';
+function platesUpdate(t) {
+  PLATES.forEach((p, i) => {
+    const end = i < 3 ? PLATES[i + 1].t : cut.send;
+    const on = t >= p.t && t < end, el = plEls[i];
+    if (!on) { el.style.opacity = 0; return; }
+    const a = clamp((t - p.t - 0.04) / 0.22);
+    el.style.opacity = a > 0 ? 1 : 0;
+    el.style.transform = `translateX(${(1 - expo(a)) * -120}px) scale(${0.85 + 0.15 * back(a, 2.2)})`;
+  });
+}
+
+// ============ ведущий в углу ============
+const hostEl = document.getElementById('host');
+const VISV = { A: 0, B: 0.3, C: 0.55, D: 0.95, E: 0.65, F: 0.35, G: 0.25, H: 0.55, X: 0 };
+const HOSTWIN = [[0.15, st('d02') - 0.15, 1], [st('d08') - 0.25, wd('d08', 6) + 0.1, 1.3], [cut.outro + 0.35, D + 1, 1.42]];
+function hostPose(t) {
+  if (t < 6) return t < wd('d01', 6) - 0.1 ? ['talk', 'rest', 0.15] : ['point', 'talk', wd('d01', 6) - 0.1];
+  if (t < cut.outro) return t < wd('d08', 3) ? ['shrug', 'rest', st('d08') - 0.1] : ['facepalm', 'shrug', wd('d08', 3)];
+  const a = st('d09');
+  if (t < wd('d09', 1) - 0.1) return ['point', 'rest', a - 0.1];
+  if (t < en('d09') + 0.1) return ['talk', 'point', wd('d09', 1) - 0.1];
+  return ['laugh', 'talk', en('d09') + 0.1];
+}
+function hostUpdate(t) {
+  let w = null; for (const x of HOSTWIN) if (t >= x[0] && t < x[1]) w = x;
+  if (!w) { hostEl.style.opacity = 0; return; }
+  const pin = spring(t - w[0], 9, 13), pout = clamp((w[1] - t) / 0.18);
+  const sc = w[2] * (0.6 + 0.4 * pin) * (0.85 + 0.15 * pout);
+  hostEl.style.opacity = Math.min(1, pin * 3) * pout;
+  const yOff = w[2] > 1.35 ? -60 : 0;
+  hostEl.style.transform = `translateY(${(1 - Math.min(1, pin)) * 120 + yOff}px) scale(${sc}) rotate(${Math.sin(t * 1.5) * 0.6}deg)`;
+  const f = Math.round(t * 30);
+  const vv = (i) => VISV[window.VIS[i] || 'X'] ?? 0;
+  const mouth = (vv(f - 1) + 2 * vv(f) + vv(f + 1)) / 4;
+  const [pose, prev, at] = hostPose(t);
+  HOST.render(hostEl, { f, pose, prev, k: clamp((t - at) / 0.35), mouth });
+}
+
+// ============ концовка ============
+const oT = document.getElementById('o-title'), oBar = document.getElementById('o-bar'), oTh = document.getElementById('o-thanks'), oQ = document.getElementById('o-q'), oS = document.getElementById('o-sub'), dimEl = document.getElementById('dim');
+function outroUpdate(t) {
+  const d = prog(t, cut.outro, 0.5); dimEl.style.opacity = eout(d) * 0.92;
+  const ti = st('d09'), a = clamp((t - ti + 0.05) / 0.3);
+  oT.style.opacity = a > 0 ? 1 : 0; oT.style.transform = `translateY(${(1 - expo(a)) * 40}px) scale(${0.8 + 0.2 * back(a, 2.5)})`;
+  oBar.style.transform = `scaleX(${eout(prog(t, ti + 0.15, 0.4))})`;
+  const b = prog(t, wd('d09', 1) - 0.05, 0.3); oTh.style.opacity = b; oTh.style.transform = `translateY(${(1 - eout(b)) * 30}px)`;
+  const q = prog(t, wd('d09', 6), 0.35); oQ.style.opacity = q > 0 ? 1 : 0; oQ.style.transform = `scale(${0.7 + 0.3 * back(q, 2)}) rotate(${(1 - q) * -3}deg)`;
+  const s = prog(t, wd('d09', 0) + 0.2, 0.3); oS.style.opacity = s > 0 ? 1 : 0;
+  const beat = t > en('d09') ? 1 + 0.05 * Math.exp(-((t - en('d09')) % 0.5) * 8) : 1;
+  oS.style.transform = `scale(${(0.6 + 0.4 * back(s, 2.4)) * beat})`;
+}
+
+// ============ общий кадр ============
+const tl = gsap.timeline({ paused: true });
+['hook', 'delegate', 'spawn'].forEach((n, i) => tl.addLabel('scene:' + n, [0, st('d02') - 0.1, st('s01') - 0.05][i]));
+tl.addLabel('scene:meeting', cut.meet).addLabel('scene:hr', cut.hr).addLabel('scene:burst', cut.mont).addLabel('scene:send', cut.send)
+  .addLabel('scene:wait', cut.wait).addLabel('scene:message', cut.chat).addLabel('scene:punch', cut.punch).addLabel('scene:outro', cut.outro);
+tl.to({}, { duration: D }, 0);
+
+let lastSet = null;
+OM3.film(stage, tl, D, null, (t) => {
+  const c = camAt(t);
+  for (const k in SETS) SETS[k].g.visible = k === c.set;
+  stage.camera.position.copy(c.pos); stage.camera.lookAt(c.look); stage.camera.fov = c.fov; stage.camera.updateProjectionMatrix();
+  if (stage.bokeh) stage.bokeh.uniforms.focus.value = c.pos.distanceTo(c.look);
+  hero.root.visible = !((t >= cut.chat && t < cut.face) || (t >= cut.chat2 && t < cut.punch));
+  if (c.set === 'A') { heroUpdate(t); neuraUpdate(t); mailUpdate(t); officeEvening(t); phoneUpdate(t); finaleUpdate(t); }
+  neura.root.visible = c.set === 'A' && t < cut.meet;
+  if (c.set === 'B') meetingUpdate(t);
+  if (c.set === 'C') hrUpdate(t);
+  if (c.set === 'D') montageUpdate(t);
+  if (c.set === 'E') sendUpdate(t);
+  capsUpdate(t); platesUpdate(t); hostUpdate(t); outroUpdate(t);
+});
+OM3.region('hero', hero.root, stage, 'Герой');
+OM3.region('neura', neura.root, stage, 'Нейра');
+
+// ============ звук ============
+OM.music({ style: 'pizzicato', drop: 'punch', ending: 'button', end: D - 0.3, energy: { hook: 0.55, delegate: 0.55, spawn: 0.65, meeting: 0.6, hr: 0.8, burst: 0.95, send: 0.9, wait: 0.15, message: 0.45, punch: 1, outro: 0.7 } });
+const sfx = (n, at, o) => { if (at >= 0) OM.sfx(n, at, o); };
+sfx('whoosh', 0.0, { gain: 0.45 }); sfx('pop', 0.42, { gain: 0.5, note: 5 });
+sfx('tick', wd('d01', 7) - 0.05, { gain: 0.6 });
+sfx('whoosh', wd('d02', 2) - 0.05, { gain: 0.5 }); sfx('pop', wd('d02', 2) + 0.32, { gain: 0.6, note: 1 });
+sfx('glitch', wd('s01', 1), { gain: 0.25 });
+[0, 1, 2].forEach((i) => { sfx('pop', wd('s01', 4) - 0.05 + i * 0.2, { gain: 0.6, note: 3 + i * 2 }); sfx('boing', wd('s01', 4) + 0.5 + i * 0.2, { gain: 0.3 }); });
+sfx('whip', cut.meet, { gain: 0.5 });
+sfx('draw', wd('s02', 2) - 0.25, { dur: 0.35, gain: 0.6 }); sfx('draw', wd('s02', 4) - 0.1, { dur: 0.35, gain: 0.6 }); sfx('draw', wd('s02', 6) - 0.05, { dur: 0.45, gain: 0.7 });
+sfx('boing', wd('s03', 3) - 0.05, { gain: 0.6 }); [0, 1, 2, 3].forEach((i) => sfx('paper', wd('s03', 4) + 0.3 + i * 0.22, { gain: 0.6 }));
+sfx('whip', cut.hr, { gain: 0.5 });
+for (let x = cut.hr + 0.1; x < cut.mont - 0.2; x += 1 / 2.3) sfx('stamp', x + 0.1, { gain: 0.35 });
+sfx('count', wd('d04', 8) - 0.1, { dur: 1.3, gain: 0.45 });
+sfx('riser', cut.mont, { dur: 0.6, gain: 0.35 });
+[cut.mont, cut.m2, cut.m3, cut.m4].forEach((x, i) => { sfx('hit', x, { gain: 0.6 }); sfx('stamp', x + 0.05, { gain: 0.45 }); });
+sfx('ding', wd('d05', 11), { gain: 0.35, note: 5 });
+sfx('whip', cut.send, { gain: 0.45 });
+sfx('click', wd('s04', 1) - 0.2, { gain: 0.7 }); sfx('impact', wd('s04', 1) - 0.18, { gain: 0.45 });
+sfx('whoosh', wd('s04', 1) - 0.05, { gain: 0.6 }); for (let i = 0; i < 6; i++) sfx('paper', wd('s04', 1) + i * 0.17, { gain: 0.3 });
+sfx('whoosh', wd('s04', 2) - 0.35, { gain: 0.4 }); sfx('stamp', wd('s04', 4) - 0.02, { gain: 0.6 });
+for (let i = 0; i < 6; i++) sfx('tick', wd('d06', 0) + i * 0.15, { gain: 0.35 });
+[0, 1, 2].forEach((i) => sfx('tick', wd('d06', 2) + 0.15 + i * 0.5, { gain: 0.2 }));
+[0, 1, 2].forEach((i) => sfx('type', wd('d06', 4) - 0.1 + i * 0.22, { dur: 0.12, gain: 0.4 }));
+sfx('ding', st('d07') - 0.05, { gain: 0.5, note: 3 }); sfx('ding', wd('d07', 7) - 0.05, { gain: 0.4, note: 5 }); sfx('ding', wd('d07', 10) - 0.05, { gain: 0.4, note: 1 });
+sfx('whip', cut.face, { gain: 0.35 });
+sfx('thud', wd('d08', 6) + 0.1, { gain: 0.7 }); sfx('impact', wd('d08', 6) + 0.25, { gain: 0.6 }); sfx('subdrop', wd('d08', 6) + 0.25, { dur: 0.8, gain: 0.5 });
+sfx('pop', st('s05') - 0.05, { gain: 0.6, note: 5 });
+sfx('slide', wd('s05', 4) - 0.35, { dur: 0.8, gain: 0.3 }); sfx('thud', wd('s05', 4) + 0.5, { gain: 0.6 });
+sfx('chime', st('d09'), { gain: 0.45 }); sfx('pop', wd('d09', 6), { gain: 0.5, note: 5 });
+
+window.__timelines['film'] = tl;
+</script>
+</body>
+</html>
