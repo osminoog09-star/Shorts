@@ -1,0 +1,32 @@
+{
+ "text": "Звучит как ирония судьбы.",
+ "words": [
+  {
+   "w": "Звучит",
+   "start": 0.1,
+   "end": 0.676916
+  },
+  {
+   "w": "как",
+   "start": 0.676916,
+   "end": 0.869207
+  },
+  {
+   "w": "ирония",
+   "start": 0.86925,
+   "end": 1.253833
+  },
+  {
+   "w": "судьбы",
+   "start": 1.253833,
+   "end": 1.782666
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c3_02.mp3"
+}

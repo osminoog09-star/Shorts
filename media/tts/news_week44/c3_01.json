@@ -1,0 +1,22 @@
+{
+ "text": "Третья история. ИИ-агенты взломали компанию, которая делает ИИ.",
+ "words": [
+  {
+   "w": "Третья история.",
+   "start": 0.1,
+   "end": 2.3235577
+  },
+  {
+   "w": "ИИ-агенты взломали компанию, которая делает ИИ.",
+   "start": 2.2735577,
+   "end": 6.1076924
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/news_week44/c3_01.mp3"
+}

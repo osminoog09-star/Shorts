@@ -1,0 +1,47 @@
+{
+ "text": "То есть самое слабое звено снова человек.",
+ "words": [
+  {
+   "w": "То",
+   "start": 0.1,
+   "end": 0.26825
+  },
+  {
+   "w": "есть",
+   "start": 0.26825,
+   "end": 0.496625
+  },
+  {
+   "w": "самое",
+   "start": 0.496625,
+   "end": 0.89325
+  },
+  {
+   "w": "слабое",
+   "start": 0.89325,
+   "end": 1.301916
+  },
+  {
+   "w": "звено",
+   "start": 1.301916,
+   "end": 1.626416
+  },
+  {
+   "w": "снова",
+   "start": 1.626458,
+   "end": 1.986999
+  },
+  {
+   "w": "человек",
+   "start": 1.987,
+   "end": 2.636041
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c1_15.mp3"
+}

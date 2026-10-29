@@ -1,0 +1,37 @@
+{
+ "text": "И на этом что-то держится?",
+ "words": [
+  {
+   "w": "И",
+   "start": 0.1,
+   "end": 0.25625
+  },
+  {
+   "w": "на",
+   "start": 0.25625,
+   "end": 0.388458
+  },
+  {
+   "w": "этом",
+   "start": 0.388458,
+   "end": 0.664916
+  },
+  {
+   "w": "что-то",
+   "start": 0.664916,
+   "end": 0.977416
+  },
+  {
+   "w": "держится",
+   "start": 0.977416,
+   "end": 1.686541
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c2_06.mp3"
+}

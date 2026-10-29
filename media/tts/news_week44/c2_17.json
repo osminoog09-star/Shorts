@@ -1,0 +1,37 @@
+{
+ "text": "А сама OpenAI что-то пообещала?",
+ "words": [
+  {
+   "w": "А",
+   "start": 0.1,
+   "end": 0.280291
+  },
+  {
+   "w": "сама",
+   "start": 0.280291,
+   "end": 0.640874
+  },
+  {
+   "w": "OpenAI",
+   "start": 0.640875,
+   "end": 1.121625
+  },
+  {
+   "w": "что-то",
+   "start": 1.121625,
+   "end": 1.446125
+  },
+  {
+   "w": "пообещала",
+   "start": 1.446166,
+   "end": 2.299541
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c2_17.mp3"
+}

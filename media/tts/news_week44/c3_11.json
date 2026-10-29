@@ -1,0 +1,32 @@
+{
+ "text": "А уязвимые сервисы — чьи?",
+ "words": [
+  {
+   "w": "А",
+   "start": 0.1,
+   "end": 0.280291
+  },
+  {
+   "w": "уязвимые",
+   "start": 0.280291,
+   "end": 0.881249
+  },
+  {
+   "w": "сервисы",
+   "start": 0.88125,
+   "end": 1.49425
+  },
+  {
+   "w": "чьи",
+   "start": 1.614416,
+   "end": 2.083166
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c3_11.mp3"
+}

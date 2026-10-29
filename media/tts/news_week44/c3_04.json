@@ -1,0 +1,32 @@
+{
+ "text": "И как всё прошло?",
+ "words": [
+  {
+   "w": "И",
+   "start": 0.1,
+   "end": 0.280291
+  },
+  {
+   "w": "как",
+   "start": 0.280291,
+   "end": 0.520666
+  },
+  {
+   "w": "всё",
+   "start": 0.520666,
+   "end": 0.785082
+  },
+  {
+   "w": "прошло",
+   "start": 0.785083,
+   "end": 1.325958
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c3_04.mp3"
+}

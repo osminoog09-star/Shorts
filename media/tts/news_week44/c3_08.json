@@ -1,0 +1,37 @@
+{
+ "text": "А что им удалось увидеть?",
+ "words": [
+  {
+   "w": "А",
+   "start": 0.1,
+   "end": 0.280291
+  },
+  {
+   "w": "что",
+   "start": 0.280291,
+   "end": 0.520666
+  },
+  {
+   "w": "им",
+   "start": 0.520666,
+   "end": 0.628832
+  },
+  {
+   "w": "удалось",
+   "start": 0.628833,
+   "end": 1.061541
+  },
+  {
+   "w": "увидеть",
+   "start": 1.061541,
+   "end": 1.662499
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c3_08.mp3"
+}

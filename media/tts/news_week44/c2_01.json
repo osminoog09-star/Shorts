@@ -1,0 +1,22 @@
+{
+ "text": "Вторая история — из мира, где обычно ничего не взрывается. Математика.",
+ "words": [
+  {
+   "w": "Вторая история — из мира, где обычно ничего не взрывается.",
+   "start": 0.1,
+   "end": 4.6432693
+  },
+  {
+   "w": "Математика.",
+   "start": 4.5932693,
+   "end": 6.348077
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/news_week44/c2_01.mp3"
+}

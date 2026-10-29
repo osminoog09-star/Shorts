@@ -1,0 +1,47 @@
+{
+ "text": "То есть кто-то точно знал, что внутри.",
+ "words": [
+  {
+   "w": "То",
+   "start": 0.1,
+   "end": 0.26825
+  },
+  {
+   "w": "есть",
+   "start": 0.26825,
+   "end": 0.496625
+  },
+  {
+   "w": "кто-то",
+   "start": 0.496625,
+   "end": 0.833166
+  },
+  {
+   "w": "точно",
+   "start": 0.833166,
+   "end": 1.193749
+  },
+  {
+   "w": "знал",
+   "start": 1.19375,
+   "end": 1.530291
+  },
+  {
+   "w": "что",
+   "start": 1.6625,
+   "end": 1.890875
+  },
+  {
+   "w": "внутри",
+   "start": 1.890875,
+   "end": 2.383666
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c1_05.mp3"
+}

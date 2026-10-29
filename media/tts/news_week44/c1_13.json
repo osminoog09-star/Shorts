@@ -1,0 +1,47 @@
+{
+ "text": "И ведь это не одна банда, наверное?",
+ "words": [
+  {
+   "w": "И",
+   "start": 0.1,
+   "end": 0.280291
+  },
+  {
+   "w": "ведь",
+   "start": 0.280291,
+   "end": 0.448541
+  },
+  {
+   "w": "это",
+   "start": 0.448541,
+   "end": 0.628832
+  },
+  {
+   "w": "не",
+   "start": 0.628833,
+   "end": 0.749041
+  },
+  {
+   "w": "одна",
+   "start": 0.749041,
+   "end": 0.989416
+  },
+  {
+   "w": "банда",
+   "start": 0.989416,
+   "end": 1.398082
+  },
+  {
+   "w": "наверное",
+   "start": 1.530291,
+   "end": 2.323541
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c1_13.mp3"
+}
