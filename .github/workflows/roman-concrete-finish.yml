@@ -1,0 +1,77 @@
+name: Roman concrete finish (host + mix + join)
+# Склейка кусков из render-long + ведущий в углу (липсинк Rhubarb по голосу Димы) + звук → гейт 21:00 → GitHub Release
+on:
+  workflow_dispatch:
+    inputs:
+      base_run: { description: "ID запуска Render long video с кусками" }
+permissions:
+  contents: write
+  actions: read
+jobs:
+  finish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env: { P: longform/roman-concrete }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get -qq update && sudo apt-get -qq install -y ffmpeg unzip >/dev/null && pip install -q numpy
+      - uses: actions/download-artifact@v4
+        with: { path: chunks, pattern: chunk-*, merge-multiple: true, run-id: "${{ inputs.base_run }}", github-token: "${{ github.token }}" }
+      - name: Voice-only track + Rhubarb visemes + host windows
+        run: |
+          cd $P && python3 host_build.py voice && cd ../..
+          bash tools/lipsync.sh $P/audio/voice_only.wav $P/audio/visemes.json
+          cd $P && python3 host_build.py host audio/visemes.json
+      - name: Render host windows (transparent ProRes 4444)
+        working-directory: studio
+        run: |
+          npm install --no-audit --no-fund --silent
+          python3 - <<'PY' > ../windows.txt
+          import json; d=json.load(open('src/host_long.json'))
+          for i,w in enumerate(d['windows']): print(i, round(w['a']*30), round(w['b']*30))
+          PY
+          mkdir -p ../host
+          while read i a b; do
+            npx remotion render src/index.ts host-long ../host/w$i.mov --frames=$a-$b --codec=prores --prores-profile=4444 --pixel-format=yuva444p10le --concurrency=4 --log=error
+            echo "$i $a" >> ../host/index.txt
+          done < ../windows.txt
+          ls -la ../host
+      - name: Mix audio
+        run: cd $P && python3 cues.py && python3 audio.py mix audio/cues.json audio/roman_mix.wav && ffmpeg -v error -y -i audio/roman_mix.wav -c:a aac -b:a 192k audio/roman_mix.m4a
+      - name: Join chunks + overlay host + audio
+        run: |
+          ls chunks | sort | sed "s#^#file '$PWD/chunks/#; s#\$#'#" > list.txt
+          ffmpeg -v error -y -f concat -safe 0 -i list.txt -c copy film_noaudio.mp4
+          python3 - <<'PY' > fc.sh
+          import shlex
+          ins=['-i','film_noaudio.mp4']; fc=[]; last='0:v'
+          rows=[l.split() for l in open('host/index.txt')]
+          for k,(i,a) in enumerate(rows):
+              t=int(a)/30; ins+=['-itsoffset',f'{t:.3f}','-i',f'host/w{i}.mov']
+              out=f'v{k}'; fc.append(f'[{last}][{k+1}:v]overlay=eof_action=pass:format=auto[{out}]'); last=out
+          ins+=['-i','longform/roman-concrete/audio/roman_mix.m4a']
+          print('ffmpeg -v error -y '+' '.join(map(shlex.quote,ins))+' -filter_complex '+shlex.quote(';'.join(fc))+f' -map [{last}] -map {len(rows)+1}:a -shortest -c:v libx264 -preset medium -crf 21 -maxrate 6000k -bufsize 12000k -pix_fmt yuv420p -r 30 -c:a aac -b:a 192k -movflags +faststart rel/roman-concrete.mp4')
+          PY
+          mkdir -p rel && bash fc.sh
+          ffprobe -v error -show_entries format=duration,size:stream=width,height,r_frame_rate,codec_name -of default=nw=1 rel/roman-concrete.mp4 | tee $P/out_info.txt
+          ffmpeg -v error -y -i rel/roman-concrete.mp4 -vf "fps=1/20,scale=480:-1,tile=6x12" -frames:v 1 $P/contact.jpg
+          for t in 3 40 100 300 600 900 1200; do ffmpeg -v error -y -ss $t -i rel/roman-concrete.mp4 -frames:v 1 -vf scale=960:-1 $P/check_$t.jpg; done
+          ffmpeg -v error -i rel/roman-concrete.mp4 -f null - && echo "decode OK"
+      - name: Enforce 21-minute gate
+        run: python3 scripts/qa/longform_duration_gate.py rel/roman-concrete.mp4
+      - name: Release upload
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          TAG=long-roman-concrete
+          gh release view $TAG >/dev/null 2>&1 || gh release create $TAG --title "$TAG" --notes "Длинное видео: Римский бетон"
+          gh release upload $TAG rel/roman-concrete.mp4 --clobber
+          echo "https://github.com/${{ github.repository }}/releases/download/$TAG/roman-concrete.mp4" > $P/release_url.txt
+      - name: Commit info
+        run: |
+          git config user.name render-bot; git config user.email render-bot@users.noreply.github.com
+          git add $P/out_info.txt $P/contact.jpg $P/check_*.jpg $P/release_url.txt $P/audio/cues.json studio/src/host_long.json
+          git commit -qm "finish: roman-concrete host+mix+join" && for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && exit 0; sleep 7; done
