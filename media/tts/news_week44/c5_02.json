@@ -1,0 +1,37 @@
+{
+ "text": "Это которая генерирует целые миры?",
+ "words": [
+  {
+   "w": "Это",
+   "start": 0.1,
+   "end": 0.376458
+  },
+  {
+   "w": "которая",
+   "start": 0.376458,
+   "end": 0.797124
+  },
+  {
+   "w": "генерирует",
+   "start": 0.797125,
+   "end": 1.374041
+  },
+  {
+   "w": "целые",
+   "start": 1.374041,
+   "end": 1.758666
+  },
+  {
+   "w": "миры",
+   "start": 1.758666,
+   "end": 2.143291
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c5_02.mp3"
+}

@@ -1,0 +1,37 @@
+{
+ "text": "А кто вообще столько платит?",
+ "words": [
+  {
+   "w": "А",
+   "start": 0.1,
+   "end": 0.292291
+  },
+  {
+   "w": "кто",
+   "start": 0.292291,
+   "end": 0.520666
+  },
+  {
+   "w": "вообще",
+   "start": 0.520666,
+   "end": 0.953374
+  },
+  {
+   "w": "столько",
+   "start": 0.953375,
+   "end": 1.313958
+  },
+  {
+   "w": "платит",
+   "start": 1.313958,
+   "end": 1.902916
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c4_10.mp3"
+}

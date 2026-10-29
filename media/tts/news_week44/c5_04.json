@@ -1,0 +1,47 @@
+{
+ "text": "А чем это отличается от прошлой версии?",
+ "words": [
+  {
+   "w": "А",
+   "start": 0.1,
+   "end": 0.280291
+  },
+  {
+   "w": "чем",
+   "start": 0.280291,
+   "end": 0.484624
+  },
+  {
+   "w": "это",
+   "start": 0.484625,
+   "end": 0.640875
+  },
+  {
+   "w": "отличается",
+   "start": 0.640875,
+   "end": 1.362
+  },
+  {
+   "w": "от",
+   "start": 1.362,
+   "end": 1.554291
+  },
+  {
+   "w": "прошлой",
+   "start": 1.554333,
+   "end": 1.926916
+  },
+  {
+   "w": "версии",
+   "start": 1.926916,
+   "end": 2.599999
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c5_04.mp3"
+}

@@ -1,0 +1,32 @@
+{
+ "text": "Бухгалтерия — страшнее любого ИИ.",
+ "words": [
+  {
+   "w": "Бухгалтерия",
+   "start": 0.1,
+   "end": 1.001458
+  },
+  {
+   "w": "страшнее",
+   "start": 1.121625,
+   "end": 1.6745
+  },
+  {
+   "w": "любого",
+   "start": 1.6745,
+   "end": 2.179291
+  },
+  {
+   "w": "ИИ",
+   "start": 2.179333,
+   "end": 2.407708
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c4_09.mp3"
+}

@@ -1,0 +1,37 @@
+{
+ "text": "Звучит как конец разработчиков игр.",
+ "words": [
+  {
+   "w": "Звучит",
+   "start": 0.1,
+   "end": 0.652875
+  },
+  {
+   "w": "как",
+   "start": 0.652875,
+   "end": 0.821125
+  },
+  {
+   "w": "конец",
+   "start": 0.821166,
+   "end": 1.229791
+  },
+  {
+   "w": "разработчиков",
+   "start": 1.229791,
+   "end": 1.974999
+  },
+  {
+   "w": "игр",
+   "start": 1.975,
+   "end": 2.395666
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c5_08.mp3"
+}
