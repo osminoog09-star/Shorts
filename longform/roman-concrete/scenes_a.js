@@ -122,10 +122,10 @@ export function s02(t) {
   clear2d();
   title('РИМСКИЙ БЕТОН', 120, 250, t, 0.3, { size: 120, align: 'left' });
   title('который чинит себя сам', 120, 360, t, 0.9, { size: 72, align: 'left', color: PURPLE });
-  const c1 = cue('s02', 'чинить', 0, 3), c2 = cue('s02', 'почему', 0, 4.5), c3 = cue('s02', 'строители', 0, 6.5);
-  pill('как он себя чинит', 125, 520, t, c1, { dot: '#86dcbc', align: 'left' });
-  pill('почему наш так не умеет', 125, 620, t, c2, { dot: RED, align: 'left' });
-  pill('что можно взять сегодня', 125, 720, t, c3, { dot: '#ffdc7a', align: 'left' });
+  const cc = (w, n, f) => cue('s02', w, n, 0.6 + f * ((window.VDUR && window.VDUR.s02) || 24));
+  const L = [['как стоит купол без прута', 'купол', 0, 0.2, '#ffdc7a'], ['почему наш бетон ржавеет', 'почему', 0, 0.33, RED], ['маяк английского инженера', 'английский', 0, 0.45, '#8fd0e6'],
+    ['что достали буром со дна моря', 'буром', 0, 0.6, '#8fd0e6'], ['кучи рабочих в Помпеях', 'кучи', 0, 0.72, '#e9b97f'], ['и три мифа о римском бетоне', 'мифа', 0, 0.85, '#86dcbc']];
+  L.forEach(([tx, w, n, f, dot], i) => pill(tx, 125, 470 + i * 88, t, cc(w, n, f), { dot, align: 'left', size: 36 }));
 }
 
 // ───────── s03. Пантеон ─────────
@@ -196,7 +196,7 @@ export function s03(t) {
 }
 
 // ───────── s04. Гавани и Плиний ─────────
-const SEA = (() => {
+export const SEA = (() => {
   const S = newScene({ bg: 0xcfe6f5, floor: false, key: [6, 12, 4], shadowSize: 18 });
   const sea = waves(80, 50, 90, gloss(0x7fc0db, { roughness: 0.15 })); S.scene.add(sea);
   const pr = pier(4); pr.position.set(-1, 0.2, 0); S.scene.add(pr);
@@ -227,7 +227,7 @@ export function s04(t) {
 }
 
 // ───────── s04b. Кесария: технология, а не чудо ─────────
-const CAES = (() => {
+export const CAES = (() => {
   const S = newScene({ bg: 0xd6eaf4, floor: false, key: [6, 12, 4], shadowSize: 18 });
   const sea = waves(80, 50, 90, gloss(0x79bcd8, { roughness: 0.15 })); S.scene.add(sea);
   const brk = new THREE.Group(); S.scene.add(brk);
@@ -315,7 +315,7 @@ export function s06(t) {
   clear2d();
   shot(t, [
     [0, (lt, k) => { orbit(S.cam, v3(-3.2, 1.2, 0.5), lerp(11, 8.5, k), lerp(0.55, 0.3, k), 0.16); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(-3.5, 1, 1), 0.0009) });
-      chapter(2, 'Рецепт', t, 0.2, 5); }],
+      chapter(3, 'Рецепт', t, 0.2, 5); }],
     [tL, (lt, k) => { orbit(S.cam, v3(0.8, 0.6, 1.6), lerp(8, 6.5, k), lerp(-0.1, 0.12, k), 0.18); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0.3, 0.5, 1.8), 0.0012) });
       pill('известняк + огонь → негашёная известь', 125, 230, t, tL + 0.2, { dot: RED, align: 'left' }); }],
     [tA, (lt, k) => { orbit(S.cam, v3(4, 2.5, -3), lerp(19, 16, k), lerp(0.15, -0.1, k), 0.13); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(5, 2, -5), 0.0005) });

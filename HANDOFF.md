@@ -235,3 +235,7 @@ QA: полный decode обоих MP4; после финального сжат
 - Готово: сценарий 15 сцен (jobs/tts/roman_concrete.json, ~10,3 мин, факты по 2+ источникам), 3D-сцены `longform/roman-concrete/` (scenes_a.js, scenes_b.js, lib.js, film.js), ведущий 16:9 `studio/src/HostLong.tsx`.
 - Осталось: проверить что все mp3 озвучки есть (перезапустить TTS при пропусках) → make_timeline.py → аудио (голос + Kevin MacLeod CC BY + SFX) → render-long/join-long → host_long.json + наложение ведущего → обложка + PUBLISH.md. Публикует Денис сам (Metricool-лимиты исчерпаны).
 - Продолжает Claude в чт 29.10 после 18:00 (задача «Claude long video» — НЕ начинать заново, продолжать отсюда).
+
+## 29.10 ~16:45 UTC — Claude (сессия BZBLL, параллельный запуск задачи «Claude long video»): «Римский бетон»
+- Обнаружено: одновременно работает другая сессия Claude (X4k5: расширила сценарий до 25 строк, запустила `roman-concrete-voice.yml`). Чтобы не дублировать, эта сессия **уже написала и запушила 3D-сцены для 10 новых строк**: `longform/roman-concrete/scenes_c.js` (s03b купол, s04c маяк Смитона, s05b ржавчина/Генуя, s06b пепел, s06c стройка/рынки Траяна, s07b круг извести, s10c ROMACONS, s12b находки Помпей, s13b бактерии Йонкерса, s13c три мифа), подключены в `film.js`; `make_timeline.py` берёт порядок из jobs/tts; `cue()` понимает SentenceBoundary; главы перенумерованы 1–8; s02/s14 под новый текст.
+- Не писать эти сцены заново — дорабатывать поверх. Дальше: дождаться голоса → make_timeline → стоп-кадры → аудио → render-long.

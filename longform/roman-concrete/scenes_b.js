@@ -93,7 +93,7 @@ export function s09(t) {
   clear2d();
   shot(t, [
     [0, (lt, k) => { orbit(S.cam, v3(-4.8, 2, -1.2), lerp(7, 5.5, k), lerp(0.2, 0.05, k), 0.12); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(-4.8, 2.2, -1.2), 0.0012) });
-      chapter(3, 'Горячее смешивание', t, 0.2, 5.5); pill('Приверно · фрагмент ≈ 2 см', 125, 980, t, 2.2, { dot: RED, align: 'left', size: 38, out: tT - 0.2 }); }],
+      chapter(4, 'Горячее смешивание', t, 0.2, 5.5); pill('Приверно · фрагмент ≈ 2 см', 125, 980, t, 2.2, { dot: RED, align: 'left', size: 38, out: tT - 0.2 }); }],
     [tT, (lt, k) => { orbit(S.cam, v3(-4.8, 2.2, -1.2), lerp(3.2, 2.6, k), 0.05, 0.05); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(-4.8, 2.2, -1.25), 0.002, 0.014) });
       pill('Рим завоевал город в IV в. до н. э.', 125, 980, t, Math.max(0, tT - 6), { dot: '#e9b97f', align: 'left', size: 36, out: tT }); title('карбонат кальция,', 120, 220, t, tT + 0.6, { size: 84, align: 'left' }); title('рождённый в жару', 120, 320, t, tT + 1.4, { size: 100, align: 'left', color: RED }); }],
     [tDry, (lt, k) => { orbit(S.cam, v3(2, 0.6, 1), lerp(8, 6.5, k), lerp(0.35, 0.1, k), 0.45); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(2, 0.5, 1), 0.0012) });
@@ -209,7 +209,7 @@ export function s11(t) {
   shot(t, [
     [0, (lt, k) => { const S = CORE; S.sea.userData.update(t, 0.9); S.core.position.y = lerp(-1.0, 2.0, easeInOut(seg(t, 2.5, tSw - 1))); S.core.rotation.y = t * 2;
       orbit(S.cam, v3(0, 1.8, 0.4), lerp(12, 9.5, k), lerp(0.6, 0.35, k), 0.15); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 2, 0.4), 0.0008) });
-      chapter(4, 'Море', t, 0.2, 5.0); pill('Мари Джексон · Университет Юты · 2017', 125, 980, t, tJ, { dot: '#8fd0e6', align: 'left', size: 36, out: tSw - 0.2 }); pill('керн римского причала · Тоскана', 125, 880, t, tJ + 1.4, { dot: '#8fd0e6', align: 'left', size: 36, out: tSw - 0.2 }); }],
+      pill('Мари Джексон · Университет Юты · 2017', 125, 980, t, tJ, { dot: '#8fd0e6', align: 'left', size: 36, out: tSw - 0.2 }); pill('керн римского причала · Тоскана', 125, 880, t, tJ + 1.4, { dot: '#8fd0e6', align: 'left', size: 36, out: tSw - 0.2 }); }],
     [tSw, (lt, k) => { const S = PORE; const g = 0;
       S.plates.forEach((b, i) => b.scale.setScalar(0.001)); S.fibers.forEach((f) => (f.scale.y = 0.001));
       S.sw.userData.ps.forEach((p, i) => { const ph = (t * 0.25 + hash(i)) % 1; const a = hash(i + 1) * 6.28; p.position.set(Math.cos(a) * lerp(3.4, 0.6, ph), lerp(2.5, -2.5, hash(i + 2)) * (1 - ph * 0.5), Math.sin(a) * lerp(3.4, 0.6, ph)); });
@@ -263,7 +263,7 @@ export function s12(t) {
   shot(t, [
     [0, (lt, k) => { const S = VOLC; S.ash.userData.update(t, 0.6 + 2 * smooth(seg(t, tV, tV + 3))); S.sea.userData.update(t, 0.5);
       orbit(S.cam, v3(0, 3.5, -2), lerp(40, 32, k), lerp(0.25, -0.1, k), 0.2); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 3, -2), 0.0004), vig: 0.22 + 0.15 * smooth(seg(t, tV, tV + 3)) });
-      chapter(5, 'Помпеи', t, 0.2, 5.0); pill('79 год н. э. · Везувий', 125, 980, t, tV, { dot: RED, align: 'left', size: 40 }); }],
+      chapter(6, 'Помпеи', t, 0.2, 5.0); pill('79 год н. э. · Везувий', 125, 980, t, tV, { dot: RED, align: 'left', size: 40 }); }],
     [tSt, (lt, k) => { const S = SITE; const fall = smooth(seg(t, tSt, tSt + 4));
       S.ash.userData.ps.forEach((p, i) => { const ph = (t * 0.35 + hash(i)) % 1; p.position.set((hash(i + 1) - 0.5) * 14, lerp(8, 0.1, ph), (hash(i + 2) - 0.5) * 10); p.visible = ph < 0.98; });
       S.blanket.material.opacity = 0.35 * fall; S.lbl.forEach((l) => (l.visible = false));
@@ -304,7 +304,7 @@ export function s13(t) {
   clear2d();
   shot(t, [
     [0, (lt, k) => { orbit(S.cam, v3(0, 3, 0), lerp(24, 19, k), lerp(0.5, 0.25, k), 0.18); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 2.5, 3), 0.0005) });
-      chapter(6, 'Что дальше', t, 0.2, 5.0); }],
+      chapter(7, 'Что дальше', t, 0.2, 5.0); }],
     [tNo, (lt, k) => { orbit(S.cam, v3(0, 2, 3), lerp(14, 12, k), lerp(-0.5, -0.3, k), 0.12); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 2, 3), 0.0006) });
       bars([{ label: 'прочность', v: 1, color: '#a9d6ff', text: 'современный' }, { label: 'долговечность', v: 1, color: '#a9e6cf', text: 'римский' }], 120, 230, t, tNo + 0.2, { w: 620 }); }],
     [tR, (lt, k) => { orbit(S.cam, v3(0, 1.5, 3.7), lerp(7, 5.5, k), lerp(0.25, 0.05, k), 0.08); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 1.5, 3.7), 0.0014) });
@@ -320,15 +320,16 @@ export function s13(t) {
 // ───────── s14. Финал ─────────
 export function s14(t) {
   const id = 's14';
-  const tB = cue(id, 'бетон', 0, 5), tQ = cue(id, 'думаешь', 0, 9), tSub = cue(id, 'подпишись', 0, 17), tThx = cue(id, 'спасибо', 0, 21), end = 34;
+  const tB = cue(id, 'бетон', 0, 5), tQ = cue(id, 'думаешь', 0, 9), tNx = cue(id, 'следующей', 0, 15), tSub = cue(id, 'подпишись', 0, 22), tThx = cue(id, 'спасибо', 0, 27), end = ((window.VDUR && window.VDUR.s14) || 36) + 4.4;
   const S = PAN; S.scene.background.set(new THREE.Color(0xdbe9f3).lerp(new THREE.Color(0xf7d6b8), smooth(seg(t, 0, 8))));
   orbit(S.cam, v3(-3, 4.5, 0), lerp(30, 24, easeIO2(seg(t, 0, 20))), lerp(0.7, 0.2, easeIO2(seg(t, 0, 25))), 0.12);
   render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 4, 2), 0.0005), fade: 0.5 * easeIn(seg(t, end - 2.5, end)) });
   clear2d();
   pill('известь', 125, 230, t, 0.6, { dot: '#ffffff', align: 'left', out: tQ - 0.3 }); pill('+ вулканический пепел', 125, 330, t, 1.6, { dot: '#8f8783', align: 'left', out: tQ - 0.3 }); pill('+ вода', 125, 430, t, 2.6, { dot: '#8fd0e6', align: 'left', out: tQ - 0.3 }); pill('+ горячее смешивание', 125, 530, t, 3.6, { dot: RED, align: 'left', out: tQ - 0.3 });
   title('= бетон, который чинит себя', 120, 680, t, tB, { size: 72, align: 'left', color: PURPLE, out: tQ - 0.3 });
-  title('дома, которые сами', 120, 260, t, tQ, { size: 90, align: 'left', out: tSub - 0.3 }); title('залечивают трещины?', 120, 370, t, tQ + 0.5, { size: 90, align: 'left', color: RED, out: tSub - 0.3 });
-  pill('пиши в комментариях 👇', 125, 490, t, tQ + 3.0, { dot: MINT, align: 'left', out: tSub - 0.3 });
+  title('дома, которые сами', 120, 260, t, tQ, { size: 90, align: 'left', out: tNx - 0.3 }); title('залечивают трещины?', 120, 370, t, tQ + 0.5, { size: 90, align: 'left', color: RED, out: tNx - 0.3 });
+  pill('пиши в комментариях 👇', 125, 490, t, tQ + 3.0, { dot: MINT, align: 'left', out: tNx - 0.3 });
+  pill('в следующей серии', 125, 230, t, tNx, { dot: PURPLE, align: 'left', size: 38, out: tSub - 0.3 }); title('сейсмоскоп Чжан Хэна', 120, 360, t, tNx + 0.8, { size: 84, align: 'left', out: tSub - 0.3 });
   pill('ПОДПИСАТЬСЯ', 125, 300, t, tSub, { bg: '#ff3b3b', color: '#ffffff', size: 60, align: 'left', weight: 900, padX: 50, padY: 26 });
   title('спасибо за лайк и просмотр ❤', 120, 520, t, tThx, { size: 70, align: 'left' });
 }

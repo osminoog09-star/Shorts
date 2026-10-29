@@ -8,8 +8,14 @@ export const VO = 0.6;
 export function cue(id, word, nth = 0, fb = 9999) {
   const ws = (window.WORDS && window.WORDS[id]) || [];
   const w = word.toLowerCase();
+  const norm = (x) => x.toLowerCase().replace(/[«»"',.!?:;—…()]/g, '');
   let k = 0;
-  for (const x of ws) { if (x.w.toLowerCase().replace(/[«»"',.!?:;—]/g, '').startsWith(w)) { if (k === nth) return VO + x.start; k++; } }
+  for (const x of ws) {
+    // WordBoundary: одно слово; SentenceBoundary: фраза — время слова интерполируем по позиции символа
+    const parts = x.w.split(/\s+/).filter(Boolean); const L = x.w.length || 1; let pos = 0;
+    for (const p of parts) { const at = x.w.indexOf(p, pos); pos = at + p.length;
+      if (norm(p).startsWith(w)) { if (k === nth) return VO + x.start + (parts.length > 1 ? (at / L) * (x.end - x.start) : 0); k++; } }
+  }
   return fb;
 }
 export const dof = (cam, tg, ap = 0.0009, mb = 0.01) => ({ focus: cam.position.distanceTo(tg), aperture: ap, maxblur: mb });
