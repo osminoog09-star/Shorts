@@ -16,3 +16,7 @@
 2. Use pinned huashu-motion with deterministic timeline to replace static keyframes with 10+ real animated beats; preserve approved HostCorner, new Rhubarb visemes and CTA.
 3. Full QA: 1080×1920 full-bleed, safe zones, 16+ sampled frames, listening, ffprobe/decode, music/asset licenses, owner artistic review. Only then export final MP4.
 4. No publishing, no scheduling, no changes to other agents' work. The present pilot is silent, not publishable.
+
+
+### Camera-motion improvement / actual additional artifact
+After the original static pilot, created a **46.00 s 1080×1920 24fps H.264 deterministic zoom/pan camera animatic** from eight original coded keyframes: `serve_visual_animatic_camera_NO_VOICE_NO_GO.mp4`, 3,479,785 bytes, SHA256 `ee2c554ed5c08e83ab250d620a62e12030ad1b403f60da3486055f7bd9270404`. Full FFmpeg decode PASS. This is a **visual NO-GO preview**, no Dima audio, no approved host, no lip-sync; camera movement alone is not complete scene animation. Included in refreshed conversation ZIP, not committed to GitHub binary storage.
