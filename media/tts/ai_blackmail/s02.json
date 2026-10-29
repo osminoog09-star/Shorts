@@ -1,0 +1,22 @@
+{
+ "text": "Это не фильм. Это официальный отчёт компании Энтропик о модели Клод Опус четыре.",
+ "words": [
+  {
+   "w": "Это не фильм.",
+   "start": 0.1,
+   "end": 1.8245369
+  },
+  {
+   "w": "Это официальный отчёт компании Энтропик о модели Клод Опус четыре.",
+   "start": 1.7745369,
+   "end": 6.4273144
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+8%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/ai_blackmail/s02.mp3"
+}
