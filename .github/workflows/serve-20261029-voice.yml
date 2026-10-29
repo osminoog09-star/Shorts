@@ -32,7 +32,7 @@ jobs:
         continue-on-error: true
         with:
           name: serve-s4d25-dima-voice-no-go
-          run-id: 40857014538
+          run-id: 40857889753
           github-token: ${{ github.token }}
           path: work/serve_20261029
       - name: Probe short Dmitry/Svetlana speech and voice listing
@@ -47,7 +47,7 @@ jobs:
           p=pathlib.Path('work/serve_20261029')
           m=json.loads((p/'voice_manifest.json').read_text())
           playlist=p/'segments.txt'
-          playlist.write_text(''.join("file '"+str(pathlib.Path(s['source_file']).resolve())+"'\\n" for s in m))
+          playlist.write_text(''.join("file '"+str(pathlib.Path(s['source_file']).resolve())+"'"+chr(10) for s in m))
           subprocess.run(['ffmpeg','-y','-v','error','-f','concat','-safe','0','-i',str(playlist),'-c:a','libmp3lame','-q:a','2',str(p/'serve_DIMA_full.mp3')],check=True)
           PY
       - uses: actions/upload-artifact@v4
