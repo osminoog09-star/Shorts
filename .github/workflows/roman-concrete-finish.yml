@@ -41,7 +41,7 @@ jobs:
           done < ../windows.txt
           ls -la ../host
       - name: Mix audio
-        run: cd $P && python3 cues.py && python3 audio.py mix audio/cues.json audio/roman_mix.wav && ffmpeg -v error -y -i audio/roman_mix.wav -c:a aac -b:a 192k audio/roman_mix.m4a
+        run: cd $P && python3 cues.py && python3 audio.py mix audio/cues.json audio/roman_mix.wav && ffmpeg -v error -y -i audio/roman_mix.wav -af loudnorm=I=-15:TP=-1.5:LRA=11 -ar 48000 -c:a aac -b:a 192k audio/roman_mix.m4a
       - name: Join chunks + overlay host + audio
         run: |
           ls chunks | sort | sed "s#^#file '$PWD/chunks/#; s#\$#'#" > list.txt
