@@ -1,0 +1,23 @@
+{
+  "status": "OWNER_REVIEW",
+  "duration_seconds": 1609.976,
+  "segments": 69,
+  "voices": {
+    "ru-RU-DmitryNeural": 65,
+    "ru-RU-SvetlanaNeural": 4
+  },
+  "first_and_last_voice": "ru-RU-DmitryNeural",
+  "unknown_voice_ids": 0,
+  "audio_provenance": "exact per-segment edge-tts metadata, text and duration validated",
+  "music": "original procedural, no third-party recording",
+  "audio_loudness_lufs": -16.23,
+  "true_peak_dbfs": -1.52,
+  "source_check": "om check --source: 0 errors, 1 false-positive real-material warning (images load in JS; decoded source cards inspected)",
+  "visual_samples": 22,
+  "publication": "not uploaded or scheduled",
+  "pending": [
+    "Full subjective listening and artistic lip-sync review",
+    "Final public-use rights review of press assets"
+  ],
+  "limitations": "Technical checks and provider sentence metadata do not certify subjective pronunciation, pacing or lip-sync quality."
+}

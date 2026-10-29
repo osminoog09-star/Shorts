@@ -1,16 +1,9 @@
-# M1lash: новости 27–29.10.2026
+# M1lash: новости 27–29 октября 2026
 
-Авторский большой выпуск в смешанной подаче: реальные публикации и материалы + 2D-схемы и сценки. Статус **NO-GO: нет реального голоса Димы**, см. STATUS.md. Озвученное видео >=21:00 пока не создано.
+**Аудио восстановлено: версия для просмотра 26:50, Дима и Света, собственная музыка/SFX.**
 
-- narration.md — сценарий 3501 слово.
-- sources.json — факты, источники, ограничения.
-- treatment.md / REFERENCE_NOTES.md — режиссура и исследование подходов.
-- film.js / index.html — детерминированная кодовая анимация.
-- build_host.tsx — утверждённый Narrator2; новый липсинк возможен только после готового аудио.
-- materials/RIGHTS.md — источники изображений и нерешённые вопросы прав.
-- tools/native.cjs — нативный Canvas-рендер без браузера.
-- tools/visual_study.cjs — 48-секундная проба, не выпуск.
+Master narration: narration_RELEASE.md. Current status: STATUS.md / STATUS_AUDIO_RECOVERED.md. Publication metadata: PUBLISH.md. Eight news/science chapters with real source fragments and coded 2D animation. Actual timing in full_data.js and MIX_manifest.json; old data.js contains estimates only.
 
-Зависимости npm фиксируются lockfile. Для полной локальной репликации нужны vendor/om.js и gsap.min.js из закреплённого huashu-motion, шрифт DejaVuSans, source material files по указанным URL, data.js с расчётным таймлайном. Виземы не синтезируются из громкости. Перед полным рендером data.js должен быть заменён фактическим таймлайном по реальному звуку, а режимы сцен назначены по смыслу каждого абзаца.
+Tools: tts_sweep.py validates whole provider sentence metadata and physical audio duration; mix_audio.py builds the editorial mix; prepare_full.py creates timing/subtitles; host_sync.py uses Rhubarb phonetic; render_batch.py renders deterministic Full HD chunks and assembles AV. Native Canvas renderer avoids unavailable local browser sockets. Node dependencies pinned in package-lock.json; approved character uses studio/src/Narrator2.tsx.
 
-Не публиковать пробу как полноценный ролик. Автоматическая публикация выключена. Ни длительность сценария, ни success CI не доказывают наличие аудио или финальное качество.
+Full source check: zero errors. Pending owner listening/artistic review and final press-asset rights review. No automatic publication.

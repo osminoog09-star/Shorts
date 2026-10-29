@@ -1,6 +1,6 @@
 """Original score and effects under exact approved Dima/Sveta narration."""
 from pathlib import Path
-import numpy as np, json, subprocess, wave,sys
+import numpy as np, json, subprocess, wave,sys,hashlib
 R=Path(__file__).resolve().parent.parent; SR=48000
 job=json.loads((R/'tts_job.json').read_text()); selected=job['lines']
 if '--opening' in sys.argv:selected=[l for l in selected if l['chapter']==0]
@@ -10,7 +10,7 @@ chunks=[];manifest=[];offset=0
 for l in selected:
  p=R/'audio_verified'/(l['id']+'.mp3');m=p.with_suffix('.json')
  if not p.exists() or not m.exists():raise SystemExit('MISSING '+l['id'])
- meta=json.loads(m.read_text());assert meta['voice_id']==l['voice'] and meta['text']==l['text']
+ meta=dict(json.loads(m.read_text()),source_file=str(p),source_sha256=hashlib.sha256(p.read_bytes()).hexdigest());assert meta['voice_id']==l['voice'] and meta['text']==l['text']
  a=np.frombuffer(subprocess.check_output(['ffmpeg','-v','error','-i',str(p),'-f','f32le','-ac','1','-ar',str(SR),'-']),dtype=np.float32)
  
  # Editorial cut: omit single-source fresh Hera observation; retain DART context corroborated by NASA and ESA.
