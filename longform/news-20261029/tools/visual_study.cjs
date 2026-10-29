@@ -1,5 +1,5 @@
 const {sandbox,canvas,fs}=require('./native.cjs'),{spawn}=require('child_process');
-setTimeout(async()=>{const D=sandbox.NEWS_DATA,first=D.segments.filter(s=>s.first&&s.chapter>0&&s.chapter<9),dur=48,fps=30;
+(async()=>{for(let k=0;!sandbox.READY&&k<1000;k++)await new Promise(r=>setTimeout(r,20));if(!sandbox.READY)throw Error('Assets not loaded');const D=sandbox.NEWS_DATA,first=D.segments.filter(s=>s.first&&s.chapter>0&&s.chapter<9),dur=48,fps=30;
 const ff=spawn('ffmpeg',['-v','error','-y','-f','image2pipe','-vcodec','mjpeg','-framerate',String(fps),'-i','-','-an','-c:v','libx264','-preset','fast','-crf','21','-threads','3','-pix_fmt','yuv420p','-movflags','+faststart','out/M1lash_VISUAL_STUDY_NO_VOICE.mp4'],{stdio:['pipe','inherit','inherit']});
 let start=Date.now();for(let f=0;f<dur*fps;f++){let n=Math.floor(f/fps/6),l=f/fps%6,s=first[n],t=s.start+(l<2?l:6+l-2);sandbox.renderAt(t);let g=canvas.getContext('2d');g.fillStyle='#14283e';g.fillRect(0,0,1920,54);g.fillStyle='#fff';g.font='22px News Sans';g.fillText('ВИЗУАЛЬНАЯ ПРОБА · БЕЗ ОЗВУЧКИ · НЕ ПОЛНЫЙ ВЫПУСК',70,36);const b=canvas.toBuffer('image/jpeg',90);if(!ff.stdin.write(b))await new Promise(r=>ff.stdin.once('drain',r));if(f%180===0)console.log('shot',n+1,'sec',Math.round((Date.now()-start)/1000));}
-ff.stdin.end();await new Promise(r=>ff.once('close',r));console.log('rendered 48 sec');},1500);
+ff.stdin.end();await new Promise(r=>ff.once('close',r));console.log('rendered 48 sec');})();
