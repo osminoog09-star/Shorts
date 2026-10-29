@@ -20,14 +20,14 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install "edge-tts>=7,<8"
-      - run: python scripts/tts_job.py jobs/tts/news_long_20261029_ru.json
+      - run: python scripts/news_20261029_tts_sentence.py
       - name: Verify every segment and exact voice
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
           j=json.loads(Path('jobs/tts/news_long_20261029_ru.json').read_text())
-          d=Path('media/tts/news_long_20261029_ru')
+          d=Path('longform/news-20261029/audio')
           for line in j['lines']:
               a=d/(line['id']+'.mp3');m=d/(line['id']+'.json')
               assert a.exists() and a.stat().st_size>1024,a
@@ -39,13 +39,13 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: news-long-20261029-dima-sveta
-          path: media/tts/news_long_20261029_ru
+          path: longform/news-20261029/audio
           if-no-files-found: error
       - name: Save narration
         run: |
           git config user.name tts-bot
           git config user.email tts-bot@users.noreply.github.com
-          git add media/tts/news_long_20261029_ru
+          git add longform/news-20261029/audio
           if ! git diff --cached --quiet; then
             git commit -m "tts: verified news longform Dima and Sveta"
             git pull --rebase
