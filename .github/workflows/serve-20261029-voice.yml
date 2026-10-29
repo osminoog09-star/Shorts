@@ -1,0 +1,58 @@
+name: Serve S4-D25 Dima voice proof (NO PUBLICATION)
+on:
+  push:
+    branches: [codex/serve-s4d25-voice-20261029]
+    paths:
+      - scripts/serve_20261029_dima.py
+      - scripts/serve_20261029_diagnose_tts.py
+      - .github/workflows/serve-20261029-voice.yml
+  pull_request:
+    paths:
+      - scripts/serve_20261029_dima.py
+      - .github/workflows/serve-20261029-voice.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          pip install 'edge-tts>=7,<8'
+      - name: Restore verified partial Dmitry segments from previous run
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: serve-s4d25-dima-voice-no-go
+          run-id: 40857889753
+          github-token: ${{ github.token }}
+          path: work/serve_20261029
+      - name: Probe short Dmitry/Svetlana speech and voice listing
+        run: python scripts/serve_20261029_diagnose_tts.py
+      - name: Synthesize DmitryNeural and verify source voice IDs
+        run: python scripts/serve_20261029_dima.py
+      - name: Join ten voice segments into review audio
+        if: success()
+        run: |
+          python - <<'PY'
+          import json,pathlib,subprocess
+          p=pathlib.Path('work/serve_20261029')
+          m=json.loads((p/'voice_manifest.json').read_text())
+          playlist=p/'segments.txt'
+          playlist.write_text(''.join("file '"+str(pathlib.Path(s['source_file']).resolve())+"'"+chr(10) for s in m))
+          subprocess.run(['ffmpeg','-y','-v','error','-f','concat','-safe','0','-i',str(playlist),'-c:a','libmp3lame','-q:a','2',str(p/'serve_DIMA_full.mp3')],check=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: serve-s4d25-dima-voice-no-go
+          path: work/serve_20261029/
+          if-no-files-found: warn
