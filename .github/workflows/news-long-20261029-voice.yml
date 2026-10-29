@@ -1,0 +1,53 @@
+name: News long 20261029 approved voices
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/news-long-20261029-voice.yml'
+      - 'jobs/tts/news_long_20261029_ru.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install "edge-tts>=7,<8"
+      - run: python scripts/tts_job.py jobs/tts/news_long_20261029_ru.json
+      - name: Verify every segment and exact voice
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          j=json.loads(Path('jobs/tts/news_long_20261029_ru.json').read_text())
+          d=Path('media/tts/news_long_20261029_ru')
+          for line in j['lines']:
+              a=d/(line['id']+'.mp3');m=d/(line['id']+'.json')
+              assert a.exists() and a.stat().st_size>1024,a
+              meta=json.loads(m.read_text())
+              assert meta['voice_id']==line.get('voice',j['voice'])
+              assert meta['text']==line['text']
+          print('Verified',len(j['lines']),'actual audio files')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: news-long-20261029-dima-sveta
+          path: media/tts/news_long_20261029_ru
+          if-no-files-found: error
+      - name: Save narration
+        run: |
+          git config user.name tts-bot
+          git config user.email tts-bot@users.noreply.github.com
+          git add media/tts/news_long_20261029_ru
+          if ! git diff --cached --quiet; then
+            git commit -m "tts: verified news longform Dima and Sveta"
+            git pull --rebase
+            git push
+          fi
