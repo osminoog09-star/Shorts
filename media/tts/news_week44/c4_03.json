@@ -1,0 +1,22 @@
+{
+ "text": "Муравей. Мило.",
+ "words": [
+  {
+   "w": "Муравей",
+   "start": 0.1,
+   "end": 0.86925
+  },
+  {
+   "w": "Мило",
+   "start": 1.744708,
+   "end": 2.345666
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c4_03.mp3"
+}

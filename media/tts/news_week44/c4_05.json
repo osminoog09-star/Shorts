@@ -1,0 +1,42 @@
+{
+ "text": "Рост больше чем в десять раз?",
+ "words": [
+  {
+   "w": "Рост",
+   "start": 0.1,
+   "end": 0.532708
+  },
+  {
+   "w": "больше",
+   "start": 0.532708,
+   "end": 0.929333
+  },
+  {
+   "w": "чем",
+   "start": 0.929333,
+   "end": 1.157708
+  },
+  {
+   "w": "в",
+   "start": 1.157708,
+   "end": 1.2057489
+  },
+  {
+   "w": "десять",
+   "start": 1.20575,
+   "end": 1.554291
+  },
+  {
+   "w": "раз",
+   "start": 1.554333,
+   "end": 1.950958
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c4_05.mp3"
+}
