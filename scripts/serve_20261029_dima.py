@@ -20,17 +20,20 @@ async def main():
  for i,s in enumerate(lines):
   path=P/f"dima_{i:02}.mp3"
   last_error=None
-  for attempt in range(3):
-   try:
-    await asyncio.wait_for(edge_tts.Communicate(s,"ru-RU-DmitryNeural",rate="+0%").save(str(path)),timeout=35)
-    if path.stat().st_size<1000:raise RuntimeError("Empty TTS file")
-    last_error=None
-    break
-   except Exception as exc:
-    last_error=exc
-    if path.exists():path.unlink()
-    print(f"Edge TTS attempt {attempt+1}/3 for segment {i} failed: {type(exc).__name__}",flush=True)
-    await asyncio.sleep(2*(attempt+1))
+  if path.exists() and path.stat().st_size>1000:
+   print(f"Reusing cached segment {i}",flush=True)
+  else:
+   for attempt in range(12):
+    try:
+     await asyncio.wait_for(edge_tts.Communicate(s,"ru-RU-DmitryNeural",rate="+0%").save(str(path)),timeout=35)
+     if path.stat().st_size<1000:raise RuntimeError("Empty TTS file")
+     last_error=None
+     break
+    except Exception as exc:
+     last_error=exc
+     if path.exists():path.unlink()
+     print(f"Edge TTS attempt {attempt+1}/12 for segment {i} failed: {type(exc).__name__}",flush=True)
+     await asyncio.sleep(min(18,2*(attempt+1)))
   if last_error:raise RuntimeError("DmitryNeural unavailable; NO-GO, no fallback") from last_error
   if path.stat().st_size<1000:raise RuntimeError(f"Empty TTS {i}")
   p=subprocess.run(["ffprobe","-v","error","-show_entries","format=duration","-of","default=noprint_wrappers=1:nokey=1",str(path)],capture_output=True,text=True,check=True)
