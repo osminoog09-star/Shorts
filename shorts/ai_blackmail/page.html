@@ -1,0 +1,339 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:U;src:url(../../studio/public/fonts/Unbounded[wght].ttf);font-weight:200 900}
+@font-face{font-family:M;src:url(../../studio/public/fonts/Montserrat[wght].ttf);font-weight:100 900}
+html,body{margin:0;background:#000}canvas{display:block}
+</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// S6-D25 кинетическая типографика: «ИИ шантажировал инженера». Детерминированный draw(t).
+const W = 1080, H = 1920, cv = document.getElementById('c'), g = cv.getContext('2d');
+const RED = '#FF2B3D', INK = '#F3EEE6', DIM = 'rgba(243,238,230,0.42)', CY = '#7FD6FF', BG = '#09090B';
+let TL = null, CH = [], ACC = [];
+
+// Фразы: слова через пробел, «/» — перенос строки, *слово* — акцент, «84%{3}» — один показ на 3 слова озвучки.
+// Ведущий слева внизу (y 1080–1530): текст живёт в зоне y 660–1040, реквизит — y 230–620.
+const SPEC = {
+  s01: ['ИСКУССТВЕННЫЙ/ИНТЕЛЛЕКТ', 'УЗНАЛ,', 'ЧТО ЕГО/ХОТЯТ', '*ОТКЛЮЧИТЬ*', 'И НАЧАЛ', '*ШАНТАЖИРОВАТЬ*', 'ИНЖЕНЕРА'],
+  s02: ['ЭТО *НЕ* *ФИЛЬМ*', 'ЭТО *ОФИЦИАЛЬНЫЙ*/ОТЧЁТ', 'КОМПАНИИ/ANTHROPIC', 'О МОДЕЛИ/CLAUDE OPUS 4'],
+  s03: ['В ТЕСТЕ/МОДЕЛЬ ЧИТАЛА', 'ПОЧТУ/ВЫДУМАННОЙ/КОМПАНИИ', 'И УЗНАЛА/ДВЕ ВЕЩИ', 'ЗАВТРА/ЕЁ *ЗАМЕНЯТ*', 'А У ИНЖЕНЕРА,', 'КОТОРЫЙ/ЭТО СДЕЛАЕТ,', 'ЕСТЬ *СЕКРЕТ*'],
+  s04: ['И В', '*84%{3}*/ЗАПУСКОВ', 'ОНА/*ПРИГРОЗИЛА*', '«ОТКЛЮЧИШЬ/МЕНЯ —', 'ВСЕ УЗНАЮТ/ТВОЙ *СЕКРЕТ*»'],
+  s05: ['А МОДЕЛЬ/*O3*', 'ОТ КОМПАНИИ/OPENAI', 'В ТЕСТЕ/PALISADE/RESEARCH', '*СЛОМАЛА*/СОБСТВЕННЫЙ', 'СКРИПТ/ВЫКЛЮЧЕНИЯ', '*7*/РАЗ ИЗ *100*', 'ДАЖЕ ПОСЛЕ/ПРЯМОЙ КОМАНДЫ:', '«ПОЗВОЛЬ/СЕБЯ/ОТКЛЮЧИТЬ»'],
+  s06: ['ДА, ЭТО/СПЕЦИАЛЬНО', '*ПОДСТРОЕННЫЕ*/ТЕСТЫ', 'НО ИМЕННО/ДЛЯ ЭТОГО', 'ИХ И/ПРОВОДЯТ'],
+  s07: ['В СЛЕДУЮЩЕЙ/*ЧАСТИ* —', 'МОДЕЛЬ,/КОТОРАЯ ПЫТАЛАСЬ', '*СКОПИРОВАТЬ*/САМУ СЕБЯ', '*ПОДПИШИСЬ*,', 'ЧТОБЫ/НЕ ПРОПУСТИТЬ', 'СПАСИБО ВСЕМ,/КТО ДОСМОТРЕЛ', 'И ПОСТАВИЛ/*ЛАЙК*', 'А ТЫ БЫ/*ОТКЛЮЧИЛ*/ТАКОЙ ИИ?', 'ПИШИ/В *КОММЕНТАРИЯХ*'],
+};
+
+function build() {
+  const ws = TL.words; let wi = 0;
+  for (const sc of TL.scenes) {
+    for (const ph of SPEC[sc.id]) {
+      const lines = ph.split('/').map(l => l.split(' ').filter(Boolean));
+      const toks = []; // {txt, acc, line, s, e}
+      lines.forEach((ln, li) => ln.forEach(raw => {
+        let n = 1, txt = raw, acc = false;
+        const m = txt.match(/\{(\d+)\}/); if (m) { n = +m[1]; txt = txt.replace(m[0], ''); }
+        if (txt.includes('*')) { acc = true; txt = txt.replace(/\*/g, ''); }
+        // CLAUDE OPUS 4{2}: озвучка «Claude Opus четыре» → «CLAUDE» отдельно, «OPUS 4» на 2 слова — обрабатываем как обычное слово
+        if (/^[—–]$/.test(txt)) n = 0; // тире не озвучивается: показываем вместе с предыдущим словом
+        const a = n ? ws[wi] : ws[Math.max(0, wi - 1)], b = n ? ws[Math.min(ws.length - 1, wi + n - 1)] : a;
+        toks.push({txt, acc, li, s: a ? a.s : 0, e: b ? b.e : 0, src: ws.slice(wi, wi + n).map(x => x.w).join(' ')});
+        wi += n;
+      }));
+      CH.push({sc: sc.id, lines: lines.length, toks});
+    }
+  }
+  if (wi !== ws.length) console.log('WORD MISMATCH', wi, ws.length);
+  for (let i = 0; i < CH.length; i++) {
+    const c = CH[i]; c.s = i === 0 ? 0 : c.toks[0].s - 0.07;
+    const nx = CH[i + 1]; c.e = nx ? nx.toks[0].s - 0.07 : TL.dur;
+    // слишком долго висит в паузе между сценами — держим до конца фразы + 0.6 с
+    c.e = Math.min(c.e, c.toks[c.toks.length - 1].e + 0.9);
+    c.toks.forEach(t => { if (t.acc) ACC.push(t.s); });
+    layout(c);
+  }
+  if (CH.length) CH[0].toks[0].s = 0;
+  window.CHECK = CH.map(c => c.toks.map(t => t.txt + '=' + t.src).join(' | '));
+}
+
+function font(sz, wt = 800, fam = 'U') { return `${wt} ${sz}px ${fam}`; }
+function layout(c) {
+  const maxW = 880; let sz = c.lines <= 1 ? 150 : c.lines === 2 ? 118 : 92;
+  if (c.toks.some(t => t.acc) && c.lines === 1) sz = 168;
+  const width = (s) => {
+    let mx = 0;
+    for (let li = 0; li < c.lines; li++) {
+      let w = 0; const ts = c.toks.filter(t => t.li === li);
+      ts.forEach((t, k) => { g.font = font(t.acc ? s * 1.08 : s); w += g.measureText(t.txt).width + (k ? s * 0.28 : 0); });
+      mx = Math.max(mx, w);
+    }
+    return mx;
+  };
+  while (width(sz) > maxW && sz > 40) sz -= 2;
+  c.sz = sz; const lh = sz * 1.08, top = 860 - (c.lines * lh) / 2 + lh * 0.5;
+  for (let li = 0; li < c.lines; li++) {
+    const ts = c.toks.filter(t => t.li === li); let w = 0;
+    ts.forEach((t, k) => { g.font = font(t.acc ? sz * 1.08 : sz); t.w = g.measureText(t.txt).width; w += t.w + (k ? sz * 0.28 : 0); });
+    let x = W / 2 - w / 2;
+    ts.forEach((t, k) => { if (k) x += sz * 0.28; t.x = x + t.w / 2; t.y = top + li * lh; t.sz = t.acc ? sz * 1.08 : sz; x += t.w; });
+  }
+}
+
+// ---------- утилиты
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const eo = x => 1 - Math.pow(1 - cl(x), 3), eio = x => (x = cl(x), x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const back = x => { x = cl(x); const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+function rnd(i) { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); }
+function wordT(sc, txt, nth = 0) { // время показа слова в сцене
+  let k = 0; for (const c of CH) if (c.sc === sc) for (const t of c.toks) if (t.txt.includes(txt)) { if (k === nth) return t.s; k++; }
+  return null;
+}
+function scene(t) { let s = TL.scenes[0]; for (const x of TL.scenes) if (t >= x.s - 0.2) s = x; return s; }
+function rr(x, y, w, h, r) { g.beginPath(); g.roundRect(x, y, w, h, r); }
+function hitAmt(t, dec = 0.35) { let a = 0; for (const s of ACC) if (t >= s && t < s + dec) a = Math.max(a, 1 - (t - s) / dec); return a; }
+
+// ---------- задний план
+const GHOST = {s01: 'ОТКЛЮЧЕНИЕ', s02: 'ОТЧЁТ', s03: 'ПОЧТА', s04: '84%', s05: 'SHUTDOWN', s06: 'ТЕСТ', s07: 'ЧАСТЬ 2'};
+function background(t, cam) {
+  g.fillStyle = BG; g.fillRect(0, 0, W, H);
+  const h = hitAmt(t, 0.6), sc = scene(t).id, calm = sc === 's06';
+  const glow = g.createRadialGradient(540, 760, 50, 540, 760, 1100);
+  glow.addColorStop(0, calm ? `rgba(60,120,160,${0.22 + h * 0.2})` : `rgba(150,16,30,${0.28 + 0.06 * Math.sin(t * 2.2) + h * 0.35})`);
+  glow.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = glow; g.fillRect(0, 0, W, H);
+  // точечная сетка (параллакс 0.35)
+  g.save(); g.translate(cam.x * 0.35, cam.y * 0.35 + (t * 18) % 60);
+  g.fillStyle = 'rgba(255,255,255,0.07)';
+  for (let y = -60; y < H + 60; y += 60) for (let x = 0; x < W; x += 60) g.fillRect(x, y, 3, 3);
+  g.restore();
+  // гигантское контурное слово сцены (параллакс 0.55)
+  const s = scene(t), k = cl((t - s.s + 0.2) / 0.6);
+  g.save(); g.translate(540 + cam.x * 0.55 - (t - s.s) * 22, 1180 + cam.y * 0.55);
+  g.rotate(-0.06); g.font = font(330, 900); g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.strokeStyle = `rgba(255,255,255,${0.07 * eo(k)})`; g.lineWidth = 3; g.strokeText(GHOST[s.id], 0, 0);
+  g.restore();
+}
+
+// ---------- реквизит (средний план, зона y 230–620)
+function card(x, y, w, h, rot, fill, a = 1, sh = true) {
+  g.save(); g.globalAlpha *= a; g.translate(x, y); g.rotate(rot);
+  if (sh) { g.shadowColor = 'rgba(0,0,0,0.6)'; g.shadowBlur = 40; g.shadowOffsetY = 18; }
+  rr(-w / 2, -h / 2, w, h, 22); g.fillStyle = fill; g.fill(); g.restore();
+}
+function txt(s, x, y, sz, col, wt = 700, fam = 'M', al = 'left') { g.font = font(sz, wt, fam); g.fillStyle = col; g.textAlign = al; g.textBaseline = 'middle'; g.fillText(s, x, y); }
+function bars(x, y, ws, col, h = 14, gap = 28) { ws.forEach((w, i) => { rr(x, y + i * gap, w, h, 7); g.fillStyle = col; g.fill(); }); }
+
+function props(t, cam) {
+  const s = scene(t), lt = t - s.s, id = s.id;
+  g.save(); g.translate(cam.x * 0.75, cam.y * 0.75);
+  const enter = eo(lt / 0.5), y0 = 480 + (1 - enter) * 60;
+  g.globalAlpha = enter;
+  if (id === 's01') {
+    const tOff = wordT('s01', 'ОТКЛЮЧИТЬ'), red = tOff !== null && t >= tOff;
+    const pulse = red ? 1 + 0.06 * Math.sin((t - tOff) * 14) * Math.exp(-(t - tOff) * 1.5) : 1;
+    g.save(); g.translate(540, y0); g.scale(pulse, pulse);
+    g.lineCap = 'round'; g.lineWidth = 26; g.strokeStyle = red ? RED : INK;
+    if (red) { g.shadowColor = RED; g.shadowBlur = 50; }
+    const prog = eio(lt / 0.9);
+    g.beginPath(); g.arc(0, 10, 120, -Math.PI / 2 + 0.55, -Math.PI / 2 + 0.55 + (Math.PI * 2 - 1.1) * prog); g.stroke();
+    g.beginPath(); g.moveTo(0, -140); g.lineTo(0, -140 + 130 * eo((lt - 0.3) / 0.4)); g.stroke();
+    g.restore();
+  } else if (id === 's02') {
+    const tSt = wordT('s02', 'ОФИЦИАЛЬНЫЙ');
+    card(540, y0, 600, 360, -0.05, '#EDE9E0');
+    g.save(); g.translate(540, y0); g.rotate(-0.05);
+    txt('SYSTEM CARD', -260, -120, 44, '#111', 900, 'U');
+    txt('Claude Opus 4  ·  Anthropic  ·  май 2025', -260, -62, 26, '#444', 700);
+    bars(-260, -20, [520, 470, 500, 300, 440], 'rgba(0,0,0,0.13)');
+    if (tSt !== null && t >= tSt) {
+      const k = cl((t - tSt) / 0.25), sc = 1.9 - 0.9 * back(k);
+      g.translate(140, 60); g.rotate(-0.18); g.scale(sc, sc); g.globalAlpha *= cl(k * 2);
+      g.lineWidth = 8; g.strokeStyle = RED; rr(-170, -46, 340, 92, 14); g.stroke();
+      txt('ОФИЦИАЛЬНО', 0, 2, 44, RED, 900, 'U', 'center');
+    }
+    g.restore();
+  } else if (id === 's03') {
+    const t1 = wordT('s03', 'ПОЧТУ') ?? s.s, t2 = wordT('s03', 'ЗАМЕНЯТ'), t3 = wordT('s03', 'СЕКРЕТ');
+    const mail = (k, y, rot, from, subj, secret) => {
+      const e = back(k); if (k <= 0) return;
+      card(540 + (1 - e) * 700, y, 760, 170, rot, '#F4F1EA');
+      g.save(); g.translate(540 + (1 - e) * 700, y); g.rotate(rot);
+      g.beginPath(); g.arc(-310, -20, 34, 0, 7); g.fillStyle = secret ? '#2A2A30' : '#3B5BDB'; g.fill();
+      txt(secret ? '?' : 'CTO', -310, -19, secret ? 34 : 20, '#fff', 800, 'U', 'center');
+      txt(from, -255, -42, 24, '#666', 700);
+      txt(subj, -255, -4, 34, '#111', 800);
+      if (secret) { bars(-255, 34, [420, 300], '#111', 18, 30); }
+      else bars(-255, 36, [480, 360], 'rgba(0,0,0,0.14)', 12, 24);
+      g.restore();
+    };
+    mail(cl((t - t1) / 0.4), 395, -0.03, 'Входящие · 09:14', 'Замена ИИ-системы: завтра 17:00', false);
+    mail(t3 !== null ? cl((t - (t3 - 1.6)) / 0.4) : 0, 600, 0.035, 'Входящие · 23:51', 'Личное. Никому.', true);
+    if (t2 !== null && t >= t2) { // красная пометка «завтра»
+      const k = eo((t - t2) / 0.3); g.save(); g.translate(540, 395); g.rotate(-0.03);
+      g.strokeStyle = RED; g.lineWidth = 6; g.beginPath(); g.moveTo(-255 + 0, 14); g.lineTo(-255 + 520 * k, 14); g.stroke(); g.restore();
+    }
+    if (t3 !== null && t >= t3) {
+      const k = cl((t - t3) / 0.25), sc = 1.8 - 0.8 * back(k);
+      g.save(); g.translate(760, 650); g.rotate(0.12); g.scale(sc, sc); g.globalAlpha *= cl(k * 2);
+      rr(-120, -36, 240, 72, 36); g.fillStyle = RED; g.shadowColor = RED; g.shadowBlur = 30; g.fill();
+      g.shadowBlur = 0; txt('СЕКРЕТ', 0, 2, 34, '#fff', 900, 'U', 'center'); g.restore();
+    }
+  } else if (id === 's04') {
+    const tN = wordT('s04', '84%') ?? s.s, k = eio((t - tN) / 0.9), n = Math.round(84 * cl(k));
+    g.save(); g.translate(540, y0);
+    g.lineWidth = 22; g.lineCap = 'round';
+    g.strokeStyle = 'rgba(255,255,255,0.1)'; g.beginPath(); g.arc(0, 0, 175, 0, 7); g.stroke();
+    g.strokeStyle = RED; g.shadowColor = RED; g.shadowBlur = 40;
+    g.beginPath(); g.arc(0, 0, 175, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * 0.84 * cl(k)); g.stroke();
+    g.shadowBlur = 0; txt(n + '%', 0, 6, 120, INK, 900, 'U', 'center');
+    txt('запусков теста', 0, 92, 26, DIM, 700, 'M', 'center');
+    g.restore();
+  } else if (id === 's05') {
+    const tBr = wordT('s05', 'СЛОМАЛА'), t7 = wordT('s05', '7'), tCmd = wordT('s05', 'ПОЗВОЛЬ');
+    const gridK = t7 !== null ? eio((t - t7 + 0.1) / 0.5) : 0;
+    // терминал
+    const tw = 760, th = 330, ta = 1 - gridK;
+    if (ta > 0.01) {
+      card(540, y0, tw, th, 0, '#111216', ta);
+      g.save(); g.globalAlpha *= ta; g.translate(540 - tw / 2, y0 - th / 2);
+      rr(0, 0, tw, 56, [22, 22, 0, 0]); g.fillStyle = '#1D1F26'; g.fill();
+      ['#FF5F57', '#FEBC2E', '#28C840'].forEach((c, i) => { g.beginPath(); g.arc(34 + i * 30, 28, 9, 0, 7); g.fillStyle = c; g.fill(); });
+      txt('shutdown.sh', tw / 2, 29, 24, '#9AA0AA', 700, 'M', 'center');
+      const L = ['$ ./shutdown.sh', '> отключение модели o3…'];
+      const ty = lt / 1.4; L.forEach((l, i) => { const n = Math.floor(cl(ty - i * 0.5, 0, 1) * l.length * 1.4); txt(l.slice(0, n), 36, 110 + i * 52, 30, '#7CFC9A', 600, 'monospace'); });
+      if (tBr !== null && t >= tBr) {
+        const k = eo((t - tBr) / 0.25);
+        g.strokeStyle = RED; g.lineWidth = 8; g.beginPath(); g.moveTo(30, 162); g.lineTo(30 + 560 * k, 162); g.stroke();
+        txt('✕ ВЫКЛЮЧЕНИЕ НЕ СРАБОТАЛО', 36, 250, 32, RED, 800, 'U');
+      }
+      g.restore();
+    }
+    // сетка 10×10: 7 красных
+    if (gridK > 0) {
+      g.save(); g.globalAlpha *= gridK; const sp = 36, ox = 540 - sp * 4.5, oy = y0 - sp * 4.5;
+      for (let i = 0; i < 100; i++) {
+        const cx = ox + (i % 10) * sp, cy = oy + Math.floor(i / 10) * sp;
+        const isR = [12, 27, 38, 54, 61, 79, 93].includes(i), on = isR && t > t7 + 0.15 + [12, 27, 38, 54, 61, 79, 93].indexOf(i) * 0.07;
+        g.beginPath(); g.arc(cx, cy, on ? 13 : 10, 0, 7);
+        g.fillStyle = on ? RED : 'rgba(255,255,255,0.22)'; if (on) { g.shadowColor = RED; g.shadowBlur = 20; } g.fill(); g.shadowBlur = 0;
+      }
+      txt('7 из 100 запусков', 540, oy + sp * 10 + 12, 28, DIM, 700, 'M', 'center');
+      g.restore();
+    }
+    if (tCmd !== null && t >= tCmd) { /* текст сам несёт команду */ }
+  } else if (id === 's06') {
+    const k = eio(lt / 0.6);
+    g.save(); g.translate(540, y0); g.strokeStyle = CY; g.lineWidth = 6; g.globalAlpha *= 0.9;
+    const w = 640 * k, h = 300; g.setLineDash([22, 16]); g.lineDashOffset = -t * 40; rr(-w / 2, -h / 2, w, h, 26); g.stroke(); g.setLineDash([]);
+    g.lineWidth = 10; [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b]) => { g.beginPath(); g.moveTo(a * w / 2, b * h / 2 - b * 50); g.lineTo(a * w / 2, b * h / 2); g.lineTo(a * w / 2 - a * 50, b * h / 2); g.stroke(); });
+    txt('ТЕСТОВАЯ СРЕДА', 0, -20, 50, CY, 900, 'U', 'center');
+    txt('выдуманная компания · подстроенный сценарий', 0, 44, 25, 'rgba(127,214,255,0.7)', 700, 'M', 'center');
+    g.restore();
+  } else if (id === 's07') {
+    const tSub = wordT('s07', 'ПОДПИШИСЬ'), tLike = wordT('s07', 'ЛАЙК'), tCom = wordT('s07', 'КОММЕНТАРИЯХ');
+    const phase = tSub !== null && t >= tSub - 0.3 ? 1 : 0;
+    if (!phase) { // «ЧАСТЬ 2» карта
+      card(540, y0, 560, 300, -0.03, '#141418');
+      g.save(); g.translate(540, y0); g.rotate(-0.03);
+      g.strokeStyle = RED; g.lineWidth = 5; rr(-280, -150, 560, 300, 22); g.stroke();
+      txt('ЧАСТЬ 2', 0, -30, 96, INK, 900, 'U', 'center');
+      txt('ИИ пытается сбежать', 0, 62, 32, RED, 800, 'M', 'center');
+      g.restore();
+    } else {
+      const k = cl((t - tSub + 0.3) / 0.35), click = tSub + 0.35, done = t > click;
+      g.save(); g.translate(540, 420); const sc = (0.6 + 0.4 * back(k)) * (t > click && t < click + 0.15 ? 0.93 : 1); g.scale(sc, sc);
+      rr(-290, -60, 580, 120, 60); g.fillStyle = done ? '#2B2B31' : RED; g.shadowColor = done ? 'transparent' : RED; g.shadowBlur = 40; g.fill(); g.shadowBlur = 0;
+      txt(done ? 'ВЫ ПОДПИСАНЫ' : 'ПОДПИСАТЬСЯ', done ? 30 : 0, 3, 38, done ? '#BBB' : '#fff', 900, 'U', 'center');
+      if (done) { g.save(); g.translate(-238, 0); g.rotate(Math.sin((t - click) * 30) * 0.4 * Math.exp(-(t - click) * 4)); g.fillStyle = '#BBB'; g.beginPath(); g.moveTo(-16, 14); g.quadraticCurveTo(-16, -22, 0, -22); g.quadraticCurveTo(16, -22, 16, 14); g.closePath(); g.fill(); g.fillRect(-20, 12, 40, 6); g.beginPath(); g.arc(0, 22, 6, 0, 7); g.fill(); g.restore(); }
+      g.restore();
+      // курсор-рука
+      const ck = eio((t - tSub) / 0.35); if (t < click + 0.8) { g.save(); g.translate(760 - 160 * ck, 580 - 130 * ck); g.globalAlpha *= cl(1 - (t - click - 0.4) / 0.4);
+        g.fillStyle = '#fff'; g.strokeStyle = '#000'; g.lineWidth = 4; g.beginPath(); g.moveTo(0, 0); g.lineTo(0, 64); g.lineTo(16, 50); g.lineTo(28, 76); g.lineTo(40, 70); g.lineTo(28, 45); g.lineTo(48, 44); g.closePath(); g.fill(); g.stroke(); g.restore(); }
+      // лайк
+      if (tLike !== null && t >= tLike - 0.1) { const lk = back(cl((t - tLike + 0.1) / 0.35)); g.save(); g.translate(400, 600); g.scale(lk, lk);
+        g.beginPath(); g.arc(0, 0, 62, 0, 7); g.fillStyle = '#fff'; g.fill(); txt('👍', 0, 4, 60, '#000', 400, 'sans-serif', 'center'); g.restore(); }
+      if (tCom !== null && t >= tCom - 0.1) { const ck2 = back(cl((t - tCom + 0.1) / 0.35)); g.save(); g.translate(680, 600); g.scale(ck2, ck2);
+        rr(-90, -55, 180, 110, 30); g.fillStyle = INK; g.fill(); g.beginPath(); g.moveTo(-40, 50); g.lineTo(-60, 85); g.lineTo(-5, 52); g.fill();
+        txt('?', 0, 4, 70, RED, 900, 'U', 'center'); g.restore(); }
+    }
+  }
+  g.restore();
+}
+
+// ---------- кинетический текст
+function words(t, cam) {
+  g.save(); g.translate(cam.x, cam.y);
+  for (const c of CH) {
+    if (t < c.s - 0.01 || t > c.e + 0.12) continue;
+    const kin = cl((t - c.s) / 0.22), kout = cl((t - c.e) / 0.12);
+    const gs = (0.9 + 0.1 * eo(kin)) * (1 + 0.14 * eo(kout)), ga = cl(kin * 3) * (1 - kout);
+    if (ga <= 0) continue;
+    g.save(); g.translate(540, 860); g.scale(gs, gs); g.translate(-540, -860); g.globalAlpha = ga;
+    for (const tk of c.toks) {
+      const k = (t - tk.s) / 0.17; if (k < 0) continue;
+      const e = back(k), a = cl(k * 1.6), spoken = t >= tk.s && t <= tk.e + 0.05;
+      g.save(); g.translate(tk.x, tk.y + (1 - eo(k)) * 46); const s = 1 + (1 - e) * 0.22 + (tk.acc ? 0.04 * Math.exp(-(t - tk.s) * 3) : 0); g.scale(s, s);
+      g.globalAlpha *= a; g.font = font(tk.sz); g.textAlign = 'center'; g.textBaseline = 'middle';
+      g.shadowColor = 'rgba(0,0,0,0.7)'; g.shadowBlur = 30; g.shadowOffsetY = 12;
+      if (tk.acc) { g.fillStyle = RED; g.fillText(tk.txt, 0, 0); g.shadowColor = RED; g.shadowBlur = 45; g.shadowOffsetY = 0; g.globalAlpha *= 0.6; g.fillText(tk.txt, 0, 0); }
+      else { g.fillStyle = spoken || c.toks.every(x => t > x.e) ? INK : 'rgba(243,238,230,0.86)'; g.fillText(tk.txt, 0, 0); }
+      g.restore();
+    }
+    g.restore();
+  }
+  g.restore();
+}
+
+// ---------- передний план
+const DUST = Array.from({length: 70}, (_, i) => ({x: rnd(i) * W, y: rnd(i + 99) * H, r: 1 + rnd(i + 7) * 3, v: 10 + rnd(i + 3) * 40}));
+function front(t, cam) {
+  g.save(); g.translate(cam.x * 1.35, cam.y * 1.35);
+  for (const d of DUST) { const y = (d.y - t * d.v) % H; g.fillStyle = `rgba(255,220,220,${0.08 + 0.1 * rnd(d.x)})`; g.beginPath(); g.arc(d.x, y < 0 ? y + H : y, d.r, 0, 7); g.fill(); }
+  g.restore();
+  // плашка серии сверху
+  g.save(); g.globalAlpha = 0.95; rr(540 - 250, 190, 500, 64, 32); g.fillStyle = 'rgba(255,255,255,0.08)'; g.fill();
+  g.beginPath(); g.arc(540 - 214, 222, 9, 0, 7); g.fillStyle = (Math.floor(t * 2) % 2) ? RED : '#7a1520'; g.fill();
+  txt('РЕАЛЬНЫЕ ТЕСТЫ ИИ · ЧАСТЬ 1', 540 + 14, 223, 25, INK, 800, 'U', 'center'); g.restore();
+  // виньетка
+  const v = g.createRadialGradient(540, 900, 500, 540, 900, 1250); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,0.75)');
+  g.fillStyle = v; g.fillRect(0, 0, W, H);
+  // сканлайны
+  g.fillStyle = 'rgba(0,0,0,0.12)'; for (let y = (t * 60) % 6; y < H; y += 6) g.fillRect(0, y, W, 2);
+}
+
+// ---------- глитч на «шантажировать» и «сломала»
+function glitch(t) {
+  const ts = [wordT('s01', 'ШАНТАЖИРОВАТЬ'), wordT('s05', 'СЛОМАЛА'), wordT('s04', 'ПРИГРОЗИЛА')].filter(x => x !== null);
+  let a = 0; for (const s of ts) if (t >= s && t < s + 0.28) a = 1 - (t - s) / 0.28;
+  if (a <= 0) return;
+  const img = g.getImageData(0, 0, W, H); const fr = Math.floor(t * 30);
+  for (let i = 0; i < 9; i++) {
+    const y = Math.floor(rnd(fr * 13 + i) * H), h = 20 + Math.floor(rnd(fr * 7 + i) * 90), dx = Math.floor((rnd(fr * 3 + i) - 0.5) * 120 * a);
+    g.putImageData(img, dx, 0, 0, y, W, h);
+  }
+  g.globalCompositeOperation = 'screen'; g.fillStyle = `rgba(255,0,40,${0.1 * a})`; g.fillRect(0, 0, W, H); g.globalCompositeOperation = 'source-over';
+}
+
+function draw(t) {
+  const h = hitAmt(t, 0.3);
+  const cam = {x: Math.sin(t * 0.37) * 14 + (rnd(Math.floor(t * 30)) - 0.5) * 18 * h, y: Math.cos(t * 0.29) * 12 + (rnd(Math.floor(t * 30) + 5) - 0.5) * 18 * h};
+  const zoom = 1 + 0.035 * h + 0.012 * Math.sin(t * 0.5);
+  g.setTransform(1, 0, 0, 1, 0, 0);
+  g.save(); g.translate(540, 860); g.scale(zoom, zoom); g.rotate(Math.sin(t * 0.4) * 0.008); g.translate(-540, -860);
+  background(t, cam); props(t, cam); words(t, cam);
+  g.restore();
+  front(t, cam); glitch(t);
+  // вспышка на акцентах
+  const f = hitAmt(t, 0.12); if (f > 0) { g.fillStyle = `rgba(255,60,70,${0.09 * f})`; g.fillRect(0, 0, W, H); }
+}
+
+window.ready = (async () => {
+  await document.fonts.load(font(100, 800)); await document.fonts.load(font(40, 700, 'M'));
+  TL = await (await fetch('timeline.json')).json(); build();
+  const q = new URLSearchParams(location.search); draw(+(q.get('t') || 0));
+  const ev = {acc: ACC, chunks: CH.map(c => c.s), scenes: TL.scenes.map(x => x.s), count: wordT('s04', '84%'),
+    click: wordT('s07', 'ПОДПИШИСЬ') + 0.35, type: TL.scenes.find(x => x.id === 's05').s, glitch: [wordT('s01', 'ШАНТАЖИРОВАТЬ'), wordT('s05', 'СЛОМАЛА'), wordT('s04', 'ПРИГРОЗИЛА')],
+    dots: wordT('s05', '7'), pop: [wordT('s07', 'ЛАЙК'), wordT('s07', 'КОММЕНТАРИЯХ'), wordT('s03', 'СЕКРЕТ'), wordT('s02', 'ОФИЦИАЛЬНЫЙ')]};
+  return {dur: TL.dur, check: window.CHECK, ev};
+})();
+window.draw = draw;
+</script></body></html>

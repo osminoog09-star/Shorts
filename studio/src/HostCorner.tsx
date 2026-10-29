@@ -6,7 +6,7 @@ import D from './host_corner.json';
 
 const VIS: Record<string, number> = {A: 0, B: 0.3, C: 0.55, D: 0.95, E: 0.65, F: 0.35, G: 0.25, H: 0.55, X: 0};
 // позы по времени (сек): хук — показывает, рассказ — говорит, шутка — фейспалм → смех, финал — смех
-const SEG: [number, NPose][] = [[0, 'point'], [2.6, 'talk'], [17.2, 'facepalm'], [19.0, 'laugh'], [20.0, 'talk'], [23.6, 'laugh']];
+const SEG: [number, NPose][] = (D as any).seg ?? [[0, 'point'], [2.6, 'talk'], [17.2, 'facepalm'], [19.0, 'laugh'], [20.0, 'talk'], [23.6, 'laugh']];
 
 export const HostCorner: React.FC = () => {
   const f = useCurrentFrame(); const t = f / 30;
@@ -17,7 +17,7 @@ export const HostCorner: React.FC = () => {
   const v = (n: number) => VIS[(D.visemes as string)[n] || 'X'] ?? 0;
   const mouth = Math.max(0, (v(f) * 2 + v(f - 1) + v(f + 1)) / 4);
   const pop = spring({frame: f - 4, fps: 30, config: {damping: 14}});
-  const big = t > 17.2 && t < 20 ? 1.25 : 1;
+  const big = !(D as any).seg && t > 17.2 && t < 20 ? 1.25 : 1;
   const bigS = spring({frame: f - (t > 17.2 ? 17.2 * 30 : 0), fps: 30, config: {damping: 16}});
   const sc = (0.6 + 0.4 * pop) * (big === 1 ? 1 : 1 + 0.25 * Math.min(1, bigS));
   const X = 40, Y = 1080, Wc = 380, Hc = 450;
