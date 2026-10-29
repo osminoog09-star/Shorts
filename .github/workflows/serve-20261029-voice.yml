@@ -4,6 +4,7 @@ on:
     branches: [codex/serve-s4d25-voice-20261029]
     paths:
       - scripts/serve_20261029_dima.py
+      - scripts/serve_20261029_diagnose_tts.py
       - .github/workflows/serve-20261029-voice.yml
   pull_request:
     paths:
@@ -25,10 +26,13 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg
           pip install 'edge-tts>=7,<8'
+      - name: Probe short Dmitry/Svetlana speech and voice listing
+        run: python scripts/serve_20261029_diagnose_tts.py
       - name: Synthesize DmitryNeural and verify source voice IDs
         run: python scripts/serve_20261029_dima.py
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: serve-s4d25-dima-voice-no-go
           path: work/serve_20261029/
-          if-no-files-found: error
+          if-no-files-found: warn
