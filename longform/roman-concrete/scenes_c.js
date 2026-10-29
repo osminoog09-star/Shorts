@@ -70,9 +70,12 @@ const DRUM = (() => {
   dome.position.y = Hh; S.scene.add(dome); dome.castShadow = true;
   const gold = gloss(0xe0b04a, { metalness: 0.7, roughness: 0.3, clearcoat: 0.5 });
   const steps = []; for (let i = 0; i < 5; i++) { const r = R1 + 0.25 - i * 0.18; const s = cyl(r, 0.32, concrete({ base: '#d8cbb9', seed: 412 + i }), 64); s.position.y = Hh + 0.16 + i * 0.32; s.scale.set(1 - i * 0.045, 1, 1 - i * 0.045); S.scene.add(s); steps.push(s); }
-  // вертикальные трещины
+  // вертикальные трещины: тонкие трубки по поверхности купола вдоль меридианов
   const cracks = []; const cm = matte(0x3b3732);
-  for (let i = 0; i < 8; i++) { const a = (i / 8) * Math.PI * 2 + 0.39; const g = new THREE.Group(); for (let k = 0; k < 6; k++) { const ph = 0.05 + k * 0.12; const r = (R1 - 0.15); const p1 = new THREE.Vector3(Math.sin(a + (hash(i * 9 + k) - 0.5) * 0.04) * Math.cos(ph) * r, Hh + Math.sin(ph) * r, Math.cos(a) * Math.cos(ph) * r); const m = rbox(0.06, 0.9, 0.06, cm, 0.02); m.position.copy(p1); m.lookAt(0, Hh, 0); m.rotateX(Math.PI / 2 - ph); g.add(m); } S.scene.add(g); cracks.push(g); }
+  for (let i = 0; i < 8; i++) { const a0 = (i / 8) * Math.PI * 2 + 0.39; const pts = []; const r = R1 - 0.17;
+    for (let k = 0; k <= 10; k++) { const ph = 0.02 + k * 0.075; const a = a0 + (hash(i * 13 + k) - 0.5) * 0.05; pts.push(new THREE.Vector3(Math.sin(a) * Math.cos(ph) * r, Hh + Math.sin(ph) * r, Math.cos(a) * Math.cos(ph) * r)); }
+    const g = new THREE.Group(); const seg = 5; for (let q = 0; q < seg; q++) { const sub = pts.slice(q * 2, q * 2 + 3); const tb = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(sub), 12, 0.035, 5), cm); g.add(tb); }
+    S.scene.add(g); cracks.push(g); }
   const oc = new THREE.Mesh(new THREE.TorusGeometry(1.0, 0.18, 10, 40), concrete({ base: '#d0c2ae', seed: 419 })); oc.rotation.x = Math.PI / 2; oc.position.y = Hh + (R1 - 0.2) * Math.cos(0.13) * 0 + (R1 - 0.2) * Math.sin(Math.PI / 2 - 0.13); S.scene.add(oc);
   const people = []; for (let i = 0; i < 3; i++) { const g = new THREE.Group(); const b = new THREE.Mesh(new THREE.CapsuleGeometry(0.14, 0.5, 6, 12), matte([C.coral, C.lav, C.mint][i])); b.position.y = 0.42; g.add(b); const h = sphere(0.11, matte(0xf1c9a8)); h.position.y = 0.86; g.add(h); g.position.set(8 + i * 0.7, 0, 3 - i * 0.9); S.scene.add(shadowAll(g)); people.push(g); }
   return { ...S, piers, dome, steps, cracks, gold, concreteDome: dome.material };
@@ -172,7 +175,8 @@ const DOVE = (() => {
   const geo = new THREE.ExtrudeGeometry(sh, { depth: 0.6, bevelEnabled: true, bevelSize: 0.03, bevelThickness: 0.03, bevelSegments: 2 });
   const blocks = []; for (let i = 0; i < 7; i++) { const m = new THREE.Mesh(geo, gm); m.castShadow = m.receiveShadow = true; m.rotation.x = -Math.PI / 2; const flip = i % 2; m.rotation.z = flip ? Math.PI : 0; m.position.set((i - 3) * 1.0, 0, flip ? 0.1 : -0.1); S.scene.add(m); blocks.push(m); }
   const pails = []; for (let i = 0; i < 3; i++) { const b = bucket(); b.position.set(-3 + i * 1.4, -0.5, -2.6); S.scene.add(b); const w = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.38, 0.05, 28), gloss(0x7fc0db, { roughness: 0.1 })); w.position.set(-3 + i * 1.4, 0.0, -2.6); S.scene.add(w); const l = sphere(0.18, matte([0xf3efe6, 0xe8dfcc, 0xd8d0c4][i]), 14); l.position.set(-3 + i * 1.4, 0.02, -2.6); S.scene.add(l); pails.push(l); }
-  return { ...S, blocks, pails };
+  const extra = S.scene.children.filter((o) => o.position.z < -2); const hideP = (h) => extra.forEach((o) => (o.visible = !h));
+  return { ...S, blocks, pails, hideP };
 })();
 export function s04c(t) {
   const id = 's04c', S = EDDY;
@@ -204,11 +208,11 @@ export function s04c(t) {
       pill('маяк №1 · Генри Уинстенли', 125, 230, t, tW + 0.3, { dot: SAND, align: 'left', size: 40 }); stamp('1703 · ВЕЛИКАЯ БУРЯ', 1300, 320, t, tStorm + 0.6, { size: 56 }); }],
     [tBurn, (lt, k) => { orbit(S.cam, v3(0, 3.5, 0), lerp(14, 12, k), lerp(-0.4, -0.2, k), 0.14); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 3, 0), 0.0006) });
       pill('маяк №2 · деревянный', 125, 230, t, tBurn + 0.3, { dot: SAND, align: 'left', size: 40 }); stamp('СГОРЕЛ · 1755', 1300, 320, t, tBurn + 2.4, { size: 60 }); }],
-    [tSm, (lt, k) => { const D = DOVE; D.pails.forEach((p, i) => { const sink = i === 2 ? 0 : easeIn(seg(t, tSm + 3 + i, tSm + 6 + i)); p.position.y = 0.02 - sink * 0.0; p.scale.setScalar(i === 2 ? 1 : Math.max(0.02, 1 - sink)); });
+    [tSm, (lt, k) => { const D = DOVE; D.hideP(false); D.pails.forEach((p, i) => { const sink = i === 2 ? 0 : easeIn(seg(t, tSm + 3 + i, tSm + 6 + i)); p.position.y = 0.02 - sink * 0.0; p.scale.setScalar(i === 2 ? 1 : Math.max(0.02, 1 - sink)); });
       orbit(D.cam, v3(-1.6, -0.1, -2.6), lerp(7, 5.5, k), lerp(0.2, -0.1, k), 0.45); render(D.scene, D.cam, { time: t, ...dof(D.cam, v3(-1.6, 0, -2.6), 0.0016) });
       title('Джон Смитон', 120, 230, t, tSm + 0.3, { size: 100, align: 'left' }); pill('опыты: какая известь твердеет под водой', 125, 340, t, tSm + 1.6, { dot: SKY, align: 'left', size: 40 });
       pill('гидравлическая известь ✓', 125, 440, t, tLime + 0.2, { dot: MINT, align: 'left', size: 44 }); }],
-    [tDove, (lt, k) => { const D = DOVE; D.blocks.forEach((b, i) => { const kk = easeOut(seg(t, tDove + 0.5 + i * 0.25, tDove + 1.3 + i * 0.25)); b.position.z = (i % 2 ? 0.1 : -0.1) + (1 - kk) * (i % 2 ? 2.5 : -2.5); });
+    [tDove, (lt, k) => { const D = DOVE; D.hideP(true); D.blocks.forEach((b, i) => { const kk = easeOut(seg(t, tDove + 0.5 + i * 0.25, tDove + 1.3 + i * 0.25)); b.position.z = (i % 2 ? 0.1 : -0.1) + (1 - kk) * (i % 2 ? 2.5 : -2.5); });
       orbit(D.cam, v3(0, 0, 0), lerp(9, 7, k), lerp(0.3, -0.2, k), 0.85); render(D.scene, D.cam, { time: t, ...dof(D.cam, v3(0, 0, 0), 0.001) });
       title('«ласточкин хвост»', 120, 230, t, tDove + 0.6, { size: 90, align: 'left' }); pill('гранитные блоки сцеплены, как пазл', 125, 340, t, tDove + 1.6, { dot: SAND, align: 'left', size: 40 }); }],
     [tLit, (lt, k) => { orbit(S.cam, v3(0, 3.5, 0), lerp(22, 17, k), lerp(0.7, 0.3, k), 0.15); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 3.5, 0), 0.0005) });
@@ -230,7 +234,7 @@ const BRIDGE = (() => {
     const deck = rbox(8.8, 0.5, 2.0, cm, 0.05); deck.position.y = 6; g.add(deck);
     const legA = rbox(0.6, 6, 0.6, cm, 0.05); legA.position.set(0, 3, 0); g.add(legA);
     const twr = new THREE.Group(); g.add(twr); for (const s of [-1, 1]) { const l = rbox(0.4, 6, 0.4, cm, 0.05); l.position.set(s * 0.9, 9, 0); l.rotation.z = -s * 0.15; twr.add(l); }
-    const stays = []; for (const s of [-1, 1]) { const st = rbox(0.12, 6.0, 0.18, cm, 0.04); st.position.set(s * 2.4, 9, 0); st.rotation.z = s * 0.95; g.add(st); stays.push(st); }
+    const stays = []; for (const s of [-1, 1]) { const st = rbox(0.12, 6.6, 0.18, cm, 0.04); st.position.set(s * 2.0, 8.9, 0); st.rotation.z = s * 0.65; g.add(st); stays.push(st); }
     shadowAll(g); spans.push({ g, deck, stays });
   }
   const houses = []; for (let i = 0; i < 10; i++) { const h = 1.2 + hash(i) * 2; const b = rbox(1.6, h, 1.4, matte([0xf2d7b6, 0xe9c9a8, 0xf0e2c8][i % 3]), 0.1); b.position.set(-12 + i * 2.6, h / 2, -5); S.scene.add(b); houses.push(b); }
@@ -263,7 +267,7 @@ export function s05b(t) {
   clear2d();
   shot(t, [
     [0, (lt, k) => { const S = BEAM; beamAt(S, t, 0.3, smooth(seg(t, 1, tR + 3)), 0, 1); S.b.bars.forEach((b, i) => { if (i < 4) b.scale.set(1 + 1.3 * smooth(seg(t, tR, tR + 4)), 1, 1 + 1.3 * smooth(seg(t, tR, tR + 4))); });
-      orbit(S.cam, v3(-1.5, -0.65, 0.6), lerp(4.5, 3.4, k), lerp(-1.2, -0.9, k), 0.15); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(-3.5, -0.65, 0.6), 0.0018) });
+      orbit(S.cam, v3(0.6, -0.2, 1.1), lerp(7.5, 6, k), lerp(0.45, 0.25, k), 0.1); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, -0.2, 1.1), 0.001) });
       title('ржавчина', 120, 230, t, 0.3, { size: 110, align: 'left', color: '#b4572d', out: tCyc - 0.2 }); title('занимает больше места, чем сталь', 120, 340, t, 1.2, { size: 60, align: 'left', out: tCyc - 0.2 });
       pill('прут раздувается и распирает бетон', 125, 450, t, tR + 0.6, { dot: RED, align: 'left', size: 40, out: tCyc - 0.2 }); }],
     [tCyc, (lt, k) => { const S = BEAM; beamAt(S, t, 1, 1, easeIn(seg(t, tCyc + 1, tCyc + 4)), 1); orbit(S.cam, v3(0, 0.3, 0), lerp(11, 9.5, k), lerp(0.55, 0.4, k), 0.12); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 0.3, 1.1), 0.0006), vig: 0.3 });
@@ -294,7 +298,7 @@ const GLASS = (() => {
   mk(si, 14, 0x8fb8ff, 0.12, 470); mk(al, 10, 0xc7b8ff, 0.12, 480); mk(ca, 14, 0xffffff, 0.14, 490);
   const xt = []; for (let i = 0; i < 26; i++) { const c = crystal(0.14 + hash(i) * 0.12, [0xffe7a3, 0xa9e6cf, 0xf3d1ff][i % 3]); c.position.set((hash(i + 500) - 0.5) * 5, (hash(i + 510) - 0.5) * 3, (hash(i + 520) - 0.5) * 2); c.rotation.set(hash(i) * 3, hash(i + 1) * 3, 0); S.scene.add(c); xt.push(c); }
   const lbl = [textSprite('кремний', { size: 54, bg: '#d9e6ff', scale: 0.9 }), textSprite('алюминий', { size: 54, bg: '#e6ddff', scale: 0.9 }), textSprite('кальций (известь)', { size: 54, scale: 0.9 })];
-  lbl[0].position.set(-2.6, 1.9, 0.5); lbl[1].position.set(0.2, 2.2, 0.5); lbl[2].position.set(2.6, 1.7, 0.5); lbl.forEach((l) => S.scene.add(l));
+  lbl[0].position.set(-2.2, 1.25, 0.5); lbl[1].position.set(0.1, 1.45, 0.5); lbl[2].position.set(2.2, 1.2, 0.5); lbl.forEach((l) => S.scene.add(l));
   return { ...S, drops_, si, al, ca, xt, lbl };
 })();
 export function s06b(t) {
@@ -345,7 +349,7 @@ const WALLS = (() => {
   const tes = mk(4); for (let r = 0; r < 12; r++) for (let c = 0; c < 6; c++) { const b = rbox(0.48, 0.2, 0.16, brick(), 0.02); b.position.set(-1.3 + c * 0.52 + (r % 2) * 0.26 - 0.13, -1.4 + r * 0.245, 0.05); if (Math.abs(b.position.x) < 1.55) tes.add(b); }
   shadowAll(S.scene);
   const labels = ['opus incertum', 'opus reticulatum', 'opus testaceum'].map((s) => textSprite(s, { size: 56, scale: 1.0 }));
-  labels.forEach((l, i) => { l.position.set(-4 + i * 4, 3.85, 0.2); S.scene.add(l); });
+  labels.forEach((l, i) => { l.position.set(-4 + i * 4, 3.55, 0.2); S.scene.add(l); });
   return { ...S, inc, ret, tes, labels };
 })();
 const MARKET = (() => {
@@ -375,7 +379,7 @@ export function s06c(t) {
       pill('не сплошная опалубка, как сейчас', 125, 230, t, tPour + 0.3, { dot: RED, align: 'left', size: 40 }); pill('две облицовки + слои раствора и камней «с кулак»', 125, 330, t, tPour + 3.0, { dot: SAND, align: 'left', size: 38 });
       pill('облицовка = форма + защита', 125, 430, t, tSk + 0.2, { dot: MINT, align: 'left', size: 40 }); }],
     [tInc, (lt, k) => { const S = WALLS; const x = t < tRet ? -4 : t < tTes ? 0 : 4; S.labels.forEach((l, i) => popScale(l, t, [tInc, tRet, tTes][i] + 0.3));
-      const cx = lerp(S.cam.position.x || x, x, 1); orbit(S.cam, v3(x, 1.8, 0), lerp(7.5, 6.5, seg(t, tInc, tMk)), lerp(-0.12, 0.12, (t * 0.05) % 1), 0.05); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(x, 1.8, 0), 0.0012) });
+      const cx = lerp(S.cam.position.x || x, x, 1); orbit(S.cam, v3(x, 1.9, 0), lerp(9, 8.2, seg(t, tInc, tMk)), lerp(-0.12, 0.12, (t * 0.05) % 1), 0.05); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(x, 1.8, 0), 0.0012) });
       title('облицовка датирует стену', 120, 230, t, tInc + 0.2, { size: 72, align: 'left', out: tRet - 0.2 });
       pill('неровные камни · самая ранняя', 125, 900, t, tInc + 1.0, { dot: SAND, align: 'left', size: 38, out: tRet - 0.2 });
       pill('≈ с 100 г. до н. э. · квадраты туфа ромбами', 125, 900, t, tRet + 0.4, { dot: SAND, align: 'left', size: 38, out: tTes - 0.2 });
@@ -401,7 +405,7 @@ const LIME = (() => {
   const wall = rbox(2.2, 1.4, 0.4, matte(0xf1ece2), 0.06); wall.position.set(0, 0.7, -1.5); g3.add(wall); const co2 = []; for (let i = 0; i < 10; i++) { const s = sphere(0.08, gloss(0xb8c4d6, { transparent: true, opacity: 0.8 }), 10); g3.add(s); co2.push(s); }
   [g0, g1, g2, g3].forEach((g, i) => { g.position.set(Math.sin(a(i)) * R, 0, Math.cos(a(i)) * R); S.scene.add(shadowAll(g)); st.push(g); });
   const lbl = ['известняк · CaCO₃', 'печь ≈ 900 °C', 'негашёная · CaO', 'гашёная · Ca(OH)₂'].map((s) => textSprite(s, { size: 52, scale: 0.9 }));
-  lbl.forEach((l, i) => { l.position.set(Math.sin(a(i)) * R, i === 1 ? 3.4 : 2.3, Math.cos(a(i)) * R); S.scene.add(l); });
+  lbl.forEach((l, i) => { l.position.set(Math.sin(a(i)) * R, i === 1 ? 2.6 : 1.7, Math.cos(a(i)) * R); S.scene.add(l); });
   const path = new THREE.Mesh(new THREE.TorusGeometry(R, 0.06, 8, 120), matte(0xd8c9f2)); path.rotation.x = Math.PI / 2; path.position.y = 0.03; S.scene.add(path);
   return { ...S, st, ksm, ql, steam, wat, co2, lbl, R, kl };
 })();
@@ -499,7 +503,7 @@ const FINDS = (() => {
   const tr = trowel(); tr.position.set(2.8, 0.05, 1.0); tr.rotation.y = -0.7; S.scene.add(tr);
   const pum = new THREE.Mesh(new THREE.IcosahedronGeometry(0.7, 2), stone({ base: '#d8d2c6', dots: '#a39c90', dots2: '#f3efe7', n: 1400, seed: 801, rough: 0.9 }, { bumpScale: 3 })); pum.position.set(0, 1.4, -1.6); S.scene.add(pum);
   const px = []; for (let i = 0; i < 22; i++) { const c = crystal(0.07 + hash(i) * 0.06, [0xa9e6cf, 0xffe7a3, 0xffffff][i % 3]); const th = hash(i * 3) * 6.28, ph = hash(i * 5) * 3.14; c.position.set(Math.sin(ph) * Math.cos(th) * 0.74, 1.4 + Math.cos(ph) * 0.74, -1.6 + Math.sin(ph) * Math.sin(th) * 0.74); c.lookAt(0, 1.4, -1.6); S.scene.add(c); px.push(c); }
-  const flasks = []; for (let i = 0; i < 2; i++) { const f = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.45, 1.0, 24, 1, true), new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 0.85, roughness: 0.05, transparent: true, opacity: 0.5, side: THREE.DoubleSide })); f.position.set(3.4 + i * 1.1, 0.5, -1.2); S.scene.add(f); const liq = new THREE.Mesh(new THREE.CylinderGeometry(0.36, 0.43, 0.4, 24), gloss(i ? 0xe8706a : 0x86dcbc, { transparent: true, opacity: 0.85 })); liq.position.set(3.4 + i * 1.1, 0.22, -1.2); S.scene.add(liq); flasks.push(liq); }
+  const flasks = []; for (let i = 0; i < 2; i++) { const f = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.45, 1.0, 24, 1, true), gloss(0xeaf4ff, { transparent: true, opacity: 0.28, side: THREE.DoubleSide, depthWrite: false })); f.position.set(3.4 + i * 1.1, 0.5, -1.2); S.scene.add(f); const liq = new THREE.Mesh(new THREE.CylinderGeometry(0.36, 0.43, 0.4, 24), gloss(i ? 0xe8706a : 0x86dcbc, { transparent: true, opacity: 0.85 })); liq.position.set(3.4 + i * 1.1, 0.22, -1.2); S.scene.add(liq); flasks.push(liq); const tg = textSprite(i ? 'горячая' : 'заранее', { size: 48, scale: 0.55 }); tg.position.set(3.4 + i * 1.1, 1.25, -1.2); S.scene.add(tg); }
   const bk = book(10); bk.position.set(-2.8, 0.1, 1.6); bk.scale.setScalar(0.5); bk.rotation.y = 0.4; S.scene.add(bk);
   const glow = new THREE.PointLight(0xff9a40, 0, 6, 1.6); glow.position.set(-2.8, 1.0, 1.6); S.scene.add(glow);
   return { ...S, plumb, weights, sq, pum, px, flasks, glow };
@@ -530,10 +534,10 @@ export function s12b(t) {
 const BIO = (() => {
   const S = newScene({ bg: 0xe2ecf0, floorY: -1.6, key: [4, 9, 6], keyI: 3.0 });
   const cm = concrete({ base: '#c9c6c0', seed: 830 });
-  const L = rbox(3, 3, 3, cm, 0.1); L.position.set(-1.62, 0, 0); S.scene.add(L); const R = rbox(3, 3, 3, cm, 0.1); R.position.set(1.62, 0, 0); S.scene.add(R);
-  const sp = []; for (let i = 0; i < 26; i++) { const s = new THREE.Mesh(new THREE.CapsuleGeometry(0.06, 0.14, 4, 10), gloss(0xc7b8ff, { emissive: 0x9a7bff, emissiveIntensity: 0.0 })); s.position.set((hash(i) - 0.5) * 0.18, (hash(i + 1) - 0.5) * 2.6, (hash(i + 2) - 0.5) * 2.6); s.rotation.set(hash(i) * 3, hash(i + 3) * 3, 0); S.scene.add(s); sp.push(s); }
-  const food = []; for (let i = 0; i < 14; i++) { const s = sphere(0.05, gloss(0xffe7a3), 10); s.position.set((hash(i + 40) - 0.5) * 0.18, (hash(i + 41) - 0.5) * 2.6, (hash(i + 42) - 0.5) * 2.6); S.scene.add(s); food.push(s); }
-  const xt = []; for (let i = 0; i < 40; i++) { const c = crystal(0.09 + hash(i) * 0.05); c.position.set((hash(i + 70) - 0.5) * 0.14, (hash(i + 71) - 0.5) * 2.8, (hash(i + 72) - 0.5) * 2.8); c.rotation.set(hash(i) * 3, hash(i + 1) * 3, 0); S.scene.add(c); xt.push(c); }
+  const L = rbox(3, 3, 3, cm, 0.1); L.position.set(-1.78, 0, 0); S.scene.add(L); const R = rbox(3, 3, 3, cm, 0.1); R.position.set(1.78, 0, 0); S.scene.add(R);
+  const sp = []; for (let i = 0; i < 26; i++) { const s = new THREE.Mesh(new THREE.CapsuleGeometry(0.06, 0.14, 4, 10), gloss(0xc7b8ff, { emissive: 0x9a7bff, emissiveIntensity: 0.0 })); s.position.set((hash(i) - 0.5) * 0.3, (hash(i + 1) - 0.5) * 2.6, 1.4 - hash(i + 2) * 1.6); s.rotation.set(hash(i) * 3, hash(i + 3) * 3, 0); S.scene.add(s); sp.push(s); }
+  const food = []; for (let i = 0; i < 14; i++) { const s = sphere(0.05, gloss(0xffe7a3), 10); s.position.set((hash(i + 40) - 0.5) * 0.3, (hash(i + 41) - 0.5) * 2.6, 1.4 - hash(i + 42) * 1.6); S.scene.add(s); food.push(s); }
+  const xt = []; for (let i = 0; i < 40; i++) { const c = crystal(0.09 + hash(i) * 0.05); c.position.set((hash(i + 70) - 0.5) * 0.32, (hash(i + 71) - 0.5) * 2.8, 1.45 - hash(i + 72) * 2.0); c.rotation.set(hash(i) * 3, hash(i + 1) * 3, 0); S.scene.add(c); xt.push(c); }
   const wat = drops(30, 0x8fd0e6, 0.06); S.scene.add(wat);
   const lab = rbox(5, 0.2, 3, matte(0xf4f4f8), 0.06); lab.position.set(5.5, -1.5, -2); S.scene.add(lab); const mic = microscope(); mic.position.set(5.5, -1.4, -2); mic.rotation.y = -0.5; S.scene.add(mic);
   return { ...S, L, R, sp, food, xt, wat };
@@ -545,15 +549,15 @@ export function s13b(t) {
   S.sp.forEach((s, i) => { s.material.emissiveIntensity = wake * (0.6 + 0.4 * Math.sin(t * 4 + i)); s.scale.setScalar(1 + wake * 0.4); s.visible = heal < 0.95; });
   S.food.forEach((f) => (f.visible = t > tSp && heal < 0.5));
   S.xt.forEach((c, i) => c.scale.setScalar(Math.max(0.001, clamp(heal * 1.5 - hash(i) * 0.5))));
-  S.wat.userData.ps.forEach((p, i) => { const ph = (t * 0.6 + hash(i)) % 1; p.position.set((hash(i) - 0.5) * 0.12, lerp(2.2, -1.2, ph), (hash(i + 1) - 0.5) * 2.4); p.visible = t > tW && t < tH + 2; });
+  S.wat.userData.ps.forEach((p, i) => { const ph = (t * 0.6 + hash(i)) % 1; p.position.set((hash(i) - 0.5) * 0.2, lerp(2.2, -1.2, ph), 1.3 - hash(i + 1) * 1.5); p.visible = t > tW && t < tH + 2; });
   clear2d();
   shot(t, [
     [0, (lt, k) => { orbit(S.cam, v3(0, 0, 0), lerp(13, 10, k), lerp(0.55, 0.35, k), 0.25); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 0, 0), 0.0008) });
       title('другой путь:', 120, 230, t, 0.3, { size: 96, align: 'left' }); title('бетон с бактериями', 120, 340, t, 0.8, { size: 90, align: 'left', color: PURPLE });
       pill('Хенк Йонкерс · TU Delft · с 2006', 125, 470, t, tJ + 0.4, { dot: SKY, align: 'left', size: 40 }); }],
-    [tSp, (lt, k) => { orbit(S.cam, v3(0, 0, 0), lerp(5, 3.8, k), lerp(1.2, 1.45, k), 0.15); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 0, 0), 0.002) });
+    [tSp, (lt, k) => { orbit(S.cam, v3(0, 0, 1.0), lerp(5, 4, k), lerp(0.25, 0.1, k), 0.12); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 0, 1.2), 0.0016) });
       pill('споры, которые выдерживают щёлочь', 125, 230, t, tSp + 0.4, { dot: '#c7b8ff', align: 'left', size: 40 }); pill('+ еда для них', 125, 330, t, tSp + 2.6, { dot: '#ffe7a3', align: 'left', size: 40 }); title('спят', 120, 500, t, tSl, { size: 100, align: 'left', color: '#8a86a0', out: tW }); }],
-    [tW, (lt, k) => { orbit(S.cam, v3(0, 0, 0), lerp(4, 3.2, k), lerp(1.35, 1.55, k), lerp(0.1, 0.3, k)); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 0, 0), 0.002) });
+    [tW, (lt, k) => { orbit(S.cam, v3(0, 0, 1.0), lerp(4, 3.2, k), lerp(-0.2, 0.05, k), lerp(0.1, 0.35, k)); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 0, 1.2), 0.0016) });
       pill('вода → просыпаются, едят', 125, 230, t, tW + 0.6, { dot: SKY, align: 'left', size: 40 }); pill('выделяют известняк · CaCO₃', 125, 330, t, tLs + 0.2, { dot: MINT, align: 'left', size: 40 }); title('трещина зарастает', 120, 500, t, tH + 0.2, { size: 84, align: 'left', color: PURPLE }); }],
     [tWay, (lt, k) => { const C2 = CUBE; C2.cube.rotation.set(0.35, t * 0.3, 0); orbit(C2.cam, v3(0, 0, 0), lerp(9, 7.5, k), 0.4, 0.25); render(C2.scene, C2.cam, { time: t, ...dof(C2.cam, v3(0, 0, 0), 0.0012) });
       title('пути разные —', 120, 230, t, tWay + 0.2, { size: 96, align: 'left' }); title('химия одна', 120, 340, t, tWay + 0.8, { size: 96, align: 'left', color: MINT });
