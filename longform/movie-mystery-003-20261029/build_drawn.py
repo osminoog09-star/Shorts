@@ -7,7 +7,7 @@ def captions(s):
  ends=[];at=0
  for w in words:at+=len(norm(w['text']));ends.append(at)
  result=[];at=0
- for phrase in re.split(r'(?<=[,.!?;:])\s+',text):
+ for phrase in re.split(r'(?<=[,.!?;:])\s+|(?<=[.!?]»)\s+',text):
   n=len(norm(phrase));start=bisect.bisect_right(ends,at);at+=n;end=min(len(words)-1,bisect.bisect_left(ends,at))
   if start>=len(words):continue
   # The movie's spoken answer must never appear in the captions.
