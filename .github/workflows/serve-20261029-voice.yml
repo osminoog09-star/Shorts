@@ -5,6 +5,10 @@ on:
     paths:
       - scripts/serve_20261029_dima.py
       - .github/workflows/serve-20261029-voice.yml
+  pull_request:
+    paths:
+      - scripts/serve_20261029_dima.py
+      - .github/workflows/serve-20261029-voice.yml
   workflow_dispatch:
 permissions:
   contents: read
