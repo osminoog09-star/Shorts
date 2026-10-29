@@ -1,0 +1,27 @@
+name: M1lash modern movie mystery exact Dima
+on:
+  push:
+    branches: [codex/drawn-explainers-20261028]
+    paths: [.github/workflows/mystery-003-voice.yml, longform/movie-mystery-003-20261029/voice.py, longform/movie-mystery-003-20261029/script_private.txt]
+permissions:
+  contents: read
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: longform/movie-mystery-003-20261029
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install edge-tts==7.3.1
+      - run: python longform/movie-mystery-003-20261029/voice.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mystery-003-exact-Dima
+          path: longform/movie-mystery-003-20261029/build
+          if-no-files-found: error
+          retention-days: 30
