@@ -241,5 +241,13 @@
    "start": 20.879333,
    "end": 21.456249
   }
- ]
+ ],
+ "timing": "word",
+ "speaker": "dima",
+ "voice_id": "ru-RU-DmitryNeural",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "source_file": "media/tts/roman_concrete/s01.mp3",
+ "duration": 22.296
 }
