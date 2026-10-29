@@ -1,0 +1,37 @@
+{
+  "pass": true,
+  "issues": [],
+  "shots": 150,
+  "duration": 1609.976,
+  "regressions": [
+    {
+      "t": 22.267,
+      "shot": "c00p00_2",
+      "pass": true
+    },
+    {
+      "t": 50.533,
+      "shot": "c00p01_2",
+      "pass": true
+    },
+    {
+      "t": 61.2,
+      "shot": "c00p02_1",
+      "pass": true
+    },
+    {
+      "t": 88.8,
+      "shot": "c01p00_2",
+      "pass": true
+    },
+    {
+      "t": 121.95,
+      "shot": "c01p01_2",
+      "pass": true
+    }
+  ],
+  "voices": [
+    "ru-RU-DmitryNeural",
+    "ru-RU-SvetlanaNeural"
+  ]
+}

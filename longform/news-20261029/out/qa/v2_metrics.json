@@ -1,0 +1,513 @@
+{
+  "video": "M1lash_News_V2_Quality_26m50.mp4",
+  "frames_sampled": 24149,
+  "fps": 15,
+  "max_adjacent_difference": 165.99,
+  "adjacent_diff_p99": 6.69,
+  "large_change_peaks": [
+    {
+      "t": 3.333,
+      "difference": 50.75
+    },
+    {
+      "t": 16.8,
+      "difference": 54.24
+    },
+    {
+      "t": 22.4,
+      "difference": 34.78
+    },
+    {
+      "t": 27.6,
+      "difference": 125.78
+    },
+    {
+      "t": 45.667,
+      "difference": 43.72
+    },
+    {
+      "t": 50.667,
+      "difference": 151.84
+    },
+    {
+      "t": 56.6,
+      "difference": 28.12
+    },
+    {
+      "t": 82.8,
+      "difference": 30.35
+    },
+    {
+      "t": 88.867,
+      "difference": 22.0
+    },
+    {
+      "t": 97.733,
+      "difference": 71.84
+    },
+    {
+      "t": 109.467,
+      "difference": 45.88
+    },
+    {
+      "t": 122.067,
+      "difference": 57.43
+    },
+    {
+      "t": 130.4,
+      "difference": 26.15
+    },
+    {
+      "t": 142.8,
+      "difference": 27.52
+    },
+    {
+      "t": 155.467,
+      "difference": 46.43
+    },
+    {
+      "t": 175.733,
+      "difference": 76.97
+    },
+    {
+      "t": 180.8,
+      "difference": 67.81
+    },
+    {
+      "t": 191.667,
+      "difference": 29.74
+    },
+    {
+      "t": 208.4,
+      "difference": 78.34
+    },
+    {
+      "t": 219.067,
+      "difference": 46.92
+    },
+    {
+      "t": 239.267,
+      "difference": 150.15
+    },
+    {
+      "t": 246.4,
+      "difference": 128.74
+    },
+    {
+      "t": 256.067,
+      "difference": 86.57
+    },
+    {
+      "t": 263.4,
+      "difference": 69.89
+    },
+    {
+      "t": 277.8,
+      "difference": 33.55
+    },
+    {
+      "t": 284.933,
+      "difference": 28.51
+    },
+    {
+      "t": 303.667,
+      "difference": 29.1
+    },
+    {
+      "t": 318.867,
+      "difference": 40.11
+    },
+    {
+      "t": 330.067,
+      "difference": 48.0
+    },
+    {
+      "t": 345.333,
+      "difference": 44.61
+    },
+    {
+      "t": 354.533,
+      "difference": 29.16
+    },
+    {
+      "t": 365.333,
+      "difference": 40.2
+    },
+    {
+      "t": 375.667,
+      "difference": 81.17
+    },
+    {
+      "t": 389.067,
+      "difference": 44.48
+    },
+    {
+      "t": 399.267,
+      "difference": 18.81
+    },
+    {
+      "t": 411.867,
+      "difference": 39.23
+    },
+    {
+      "t": 424.933,
+      "difference": 81.74
+    },
+    {
+      "t": 432.467,
+      "difference": 60.63
+    },
+    {
+      "t": 449.533,
+      "difference": 24.87
+    },
+    {
+      "t": 459.6,
+      "difference": 138.82
+    },
+    {
+      "t": 472.4,
+      "difference": 63.03
+    },
+    {
+      "t": 482.133,
+      "difference": 52.56
+    },
+    {
+      "t": 490.733,
+      "difference": 74.19
+    },
+    {
+      "t": 499.4,
+      "difference": 114.04
+    },
+    {
+      "t": 512.2,
+      "difference": 22.05
+    },
+    {
+      "t": 525.267,
+      "difference": 35.98
+    },
+    {
+      "t": 533.4,
+      "difference": 28.93
+    },
+    {
+      "t": 541.2,
+      "difference": 21.93
+    },
+    {
+      "t": 554.533,
+      "difference": 29.46
+    },
+    {
+      "t": 563.067,
+      "difference": 43.85
+    },
+    {
+      "t": 580.067,
+      "difference": 39.65
+    },
+    {
+      "t": 596.467,
+      "difference": 141.95
+    },
+    {
+      "t": 615.467,
+      "difference": 20.57
+    },
+    {
+      "t": 628.067,
+      "difference": 65.39
+    },
+    {
+      "t": 635.8,
+      "difference": 51.66
+    },
+    {
+      "t": 645.6,
+      "difference": 20.66
+    },
+    {
+      "t": 653.533,
+      "difference": 26.92
+    },
+    {
+      "t": 663.733,
+      "difference": 51.55
+    },
+    {
+      "t": 670.733,
+      "difference": 35.22
+    },
+    {
+      "t": 681.133,
+      "difference": 46.4
+    },
+    {
+      "t": 691.867,
+      "difference": 46.12
+    },
+    {
+      "t": 701.8,
+      "difference": 45.53
+    },
+    {
+      "t": 709.467,
+      "difference": 57.95
+    },
+    {
+      "t": 712.867,
+      "difference": 46.84
+    },
+    {
+      "t": 727.667,
+      "difference": 62.82
+    },
+    {
+      "t": 738.8,
+      "difference": 22.19
+    },
+    {
+      "t": 755.2,
+      "difference": 117.15
+    },
+    {
+      "t": 766.067,
+      "difference": 146.1
+    },
+    {
+      "t": 777.533,
+      "difference": 62.53
+    },
+    {
+      "t": 786.4,
+      "difference": 92.19
+    },
+    {
+      "t": 796.2,
+      "difference": 69.61
+    },
+    {
+      "t": 808.4,
+      "difference": 54.31
+    },
+    {
+      "t": 826.267,
+      "difference": 32.44
+    },
+    {
+      "t": 831.933,
+      "difference": 26.36
+    },
+    {
+      "t": 846.733,
+      "difference": 35.47
+    },
+    {
+      "t": 853.267,
+      "difference": 81.5
+    },
+    {
+      "t": 861.267,
+      "difference": 48.49
+    },
+    {
+      "t": 878.333,
+      "difference": 29.53
+    },
+    {
+      "t": 885.867,
+      "difference": 28.18
+    },
+    {
+      "t": 902.867,
+      "difference": 35.1
+    },
+    {
+      "t": 915.0,
+      "difference": 29.8
+    },
+    {
+      "t": 930.733,
+      "difference": 42.57
+    },
+    {
+      "t": 940.2,
+      "difference": 28.74
+    },
+    {
+      "t": 956.467,
+      "difference": 38.08
+    },
+    {
+      "t": 964.6,
+      "difference": 36.36
+    },
+    {
+      "t": 981.0,
+      "difference": 41.8
+    },
+    {
+      "t": 989.867,
+      "difference": 27.84
+    },
+    {
+      "t": 999.667,
+      "difference": 25.46
+    },
+    {
+      "t": 1015.0,
+      "difference": 49.69
+    },
+    {
+      "t": 1024.2,
+      "difference": 46.18
+    },
+    {
+      "t": 1034.667,
+      "difference": 46.61
+    },
+    {
+      "t": 1041.267,
+      "difference": 101.95
+    },
+    {
+      "t": 1053.333,
+      "difference": 112.3
+    },
+    {
+      "t": 1062.533,
+      "difference": 46.2
+    },
+    {
+      "t": 1078.0,
+      "difference": 47.87
+    },
+    {
+      "t": 1090.6,
+      "difference": 80.61
+    },
+    {
+      "t": 1106.4,
+      "difference": 111.09
+    },
+    {
+      "t": 1117.533,
+      "difference": 58.81
+    },
+    {
+      "t": 1131.4,
+      "difference": 86.32
+    },
+    {
+      "t": 1144.933,
+      "difference": 114.52
+    },
+    {
+      "t": 1156.8,
+      "difference": 74.72
+    },
+    {
+      "t": 1173.467,
+      "difference": 56.65
+    },
+    {
+      "t": 1186.667,
+      "difference": 46.32
+    },
+    {
+      "t": 1189.867,
+      "difference": 100.35
+    },
+    {
+      "t": 1202.867,
+      "difference": 22.01
+    },
+    {
+      "t": 1224.133,
+      "difference": 24.77
+    },
+    {
+      "t": 1234.933,
+      "difference": 32.57
+    },
+    {
+      "t": 1239.667,
+      "difference": 88.67
+    },
+    {
+      "t": 1252.2,
+      "difference": 59.4
+    },
+    {
+      "t": 1264.467,
+      "difference": 33.52
+    },
+    {
+      "t": 1278.533,
+      "difference": 31.32
+    },
+    {
+      "t": 1294.867,
+      "difference": 38.22
+    },
+    {
+      "t": 1309.8,
+      "difference": 35.89
+    },
+    {
+      "t": 1320.733,
+      "difference": 36.24
+    },
+    {
+      "t": 1338.733,
+      "difference": 38.97
+    },
+    {
+      "t": 1350.067,
+      "difference": 38.04
+    },
+    {
+      "t": 1363.0,
+      "difference": 165.99
+    },
+    {
+      "t": 1465.867,
+      "difference": 24.47
+    },
+    {
+      "t": 1481.267,
+      "difference": 160.62
+    },
+    {
+      "t": 1493.467,
+      "difference": 149.18
+    },
+    {
+      "t": 1507.0,
+      "difference": 34.98
+    },
+    {
+      "t": 1516.4,
+      "difference": 158.28
+    },
+    {
+      "t": 1531.467,
+      "difference": 72.77
+    },
+    {
+      "t": 1539.667,
+      "difference": 132.71
+    },
+    {
+      "t": 1560.133,
+      "difference": 34.13
+    }
+  ],
+  "short_luminance_pulses": [],
+  "black_frames": 0,
+  "white_frames": 0,
+  "method": "160x90 luma at15fps; short pulse is >25/255 from two-sided baseline returning within 5 frames; candidate detector, not medical certification"
+}

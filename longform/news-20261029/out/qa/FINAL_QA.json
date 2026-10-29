@@ -1,0 +1,13 @@
+{
+  "full_decode": "PASS",
+  "audio_packet_hash_identical": true,
+  "audio_hash": "SHA256=c90921efc00cbc91db076aebf0fdd738350f8a0335c2f7c087447237ef026399",
+  "sha256": "943c7ac63695dd5798094c11ad7a0d10029471b232a0259ec4b66d76d1443f35",
+  "status": "OWNER_REVIEW",
+  "voices_unchanged": [
+    "ru-RU-DmitryNeural",
+    "ru-RU-SvetlanaNeural"
+  ],
+  "duration_seconds": 1609.976,
+  "size_bytes": 240275335
+}

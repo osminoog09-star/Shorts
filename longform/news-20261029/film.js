@@ -49,7 +49,7 @@ function gateAction(q,t,local,dur){room(t,true);const u=clamp(local/Math.max(2,d
 function camera(q,t){let l=clamp(t-q.start,0,q.end-q.start),dur=q.end-q.start,cut=Math.min(4.4,dur*.48),close=dur>8&&l>=cut,wide=['d','rocks','bank','t','q','end'].includes(q.mode);let e=ease((l-(close?cut:0))/(close?Math.max(2,dur-cut):Math.min(dur,4.4)));let z=wide?1.02+.025*e:close?1.16+.10*e:1.025+.10*e;if(q.id==='c00p00_0')z=1.03+.30*ease(l)-.15*ease((l-1.2)/1.3);let fx=q.mode==='route'?950+clamp(l/dur)*140:q.world===5?1000:q.world===4?900:960,fy=540,dx=(close?-1:1)*(e-.5)*100;let tx=clamp(960+dx-z*fx,W-W*z,0),ty=clamp(540-z*fy,H-H*z,0);g.translate(tx,ty);g.scale(z,z);}
 
 function verificationAction(q,t,local,dur){room(t,true);box(730,300,420,440,'#f0eadd',24);text('ПРОВЕРКА',940,390,46,INK,'center');for(let i=0;i<3;i++){let u=ease(clamp((local-i*1.7)/Math.max(3,dur-4)));let x=240+u*1300,y=470+i*100;paper(x-60,y-65,130,150,i%2?GOLD:CYAN,0);if(u>.72){circ(1510,y,28,CYAN);line(1496,y,1506,y+9,INK,6);line(1506,y+9,1528,y-13,INK,6)}}label('Условия модели',170,260,GOLD);label('Проверяемое свойство',1260,260,CYAN);text('Учебная схема · результат зависит от требований',960,840,28,'#e1ebdf','center');}
-function editAction(q,t,local,dur){drawWorld(6,t,0,0);for(let i=0;i<3;i++){let u=ease(clamp((local-i*1.1)/Math.max(3,dur*.65)));let x=420+i*500,y=170+u*(360+i*55);paper(x,y,200,140,[CYAN,GOLD,CORAL][i],0);text(['КАДР','ЗВУК','ТИТР'][i],x+100,y+117,29,INK,'center')}text('СМЫСЛ → КАДР → ПОРЯДОК',960,190,54,'#fff','center');}
+function editAction(q,t,local,dur){drawWorld(6,t,0,0);for(let i=0;i<3;i++){let u=ease(clamp((local-i*1.1)/Math.max(3,dur*.65)));let x=420+i*500,y=170+u*(360+i*55);paper(x,y,200,140,[CYAN,GOLD,CORAL][i],0);text(['КАДР','ЗВУК','ТИТР'][i],x+100,y+117,29,INK,'center')}}
 function customWorld(q,t,s){let l=clamp(t-q.start,0,q.end-q.start),dur=q.end-q.start,mode=q.mode,ch=q.world;
  if(q.world===3&&['2','3'].includes(mode)){verificationAction(q,t,l,dur);return}
  if(mode==='edit'){editAction(q,t,l,dur);return}
@@ -77,7 +77,7 @@ const ls=wrapLines(q.title,1410,60),sub=wrapLines(q.subtitle,1390,32,400),tw=Mat
 const h=ls.length*69+sub.length*44+51;box(40,30,Math.min(1510,tw+70),h,'#102235ec',18,null);let y=103;ls.forEach((l,i)=>text(l,70,y+i*69,60,'#f7f0df'));y+=ls.length*69-28;sub.forEach((l,i)=>text(l,72,y+32+i*44,32,'#bfd6d8','left',400));
 // A small brand mark, without a permanent news-panel layout.
 text('M1LASH',1850,75,25,([3,6,8].includes(q.world)||['t','q','end','f'].includes(q.mode))?'#b7d2d6':INK,'right');
-if(!['t','q','end'].includes(q.mode)&&s.speaker==='dima'&&!['bank','stairs','rocks','route','edit'].includes(q.mode)&&!(q.world===3&&['2','3'].includes(q.mode))&&(q.world!==6||q.sourceImage)){liveHost(t,s,1560,724,.88)}
+if(!['t','q','end'].includes(q.mode)&&s.speaker==='dima'&&!['bank','stairs','rocks','route','edit'].includes(q.mode)&&!(q.world===3&&(['2','3'].includes(q.mode)||['c03p02','c03p03'].includes(s.id)))&&(q.world!==6||q.sourceImage)){liveHost(t,s,1560,724,.88)}
 if(q.mode==='q')label('СВЕТЛАНА',1480,900,GOLD);
 const credit=ev?ev[0]+' · '+ev[1]:q.world===8?'Авторская схема · масштаб и скорость условные':q.mode==='f'?'Редакционное уточнение · '+META[q.chapter][1]:'Авторская 2D-иллюстрация · '+META[q.chapter][1];
 g.font='400 22px "News Sans"';let cw=Math.min(1500,g.measureText(credit).width+36);box(40,1020,cw,43,'#102235df',8,null);text(credit,58,1049,22,'#d5e0dc','left',400);g.restore();}

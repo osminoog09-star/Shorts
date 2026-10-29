@@ -1,0 +1,2597 @@
+{
+  "video": "M1lash_News_26m50_Dima_Sveta.mp4",
+  "frames_sampled": 24150,
+  "fps": 15,
+  "max_adjacent_difference": 167.63,
+  "adjacent_diff_p99": 91.04,
+  "large_change_peaks": [
+    {
+      "t": 6.0,
+      "difference": 136.34
+    },
+    {
+      "t": 6.667,
+      "difference": 134.79
+    },
+    {
+      "t": 7.067,
+      "difference": 120.36
+    },
+    {
+      "t": 13.0,
+      "difference": 99.26
+    },
+    {
+      "t": 13.133,
+      "difference": 67.28
+    },
+    {
+      "t": 16.0,
+      "difference": 55.39
+    },
+    {
+      "t": 19.667,
+      "difference": 132.23
+    },
+    {
+      "t": 22.267,
+      "difference": 147.13
+    },
+    {
+      "t": 22.4,
+      "difference": 142.5
+    },
+    {
+      "t": 29.0,
+      "difference": 94.78
+    },
+    {
+      "t": 35.533,
+      "difference": 142.07
+    },
+    {
+      "t": 42.0,
+      "difference": 90.87
+    },
+    {
+      "t": 48.533,
+      "difference": 130.8
+    },
+    {
+      "t": 50.533,
+      "difference": 142.02
+    },
+    {
+      "t": 50.667,
+      "difference": 147.75
+    },
+    {
+      "t": 57.267,
+      "difference": 87.32
+    },
+    {
+      "t": 61.2,
+      "difference": 147.15
+    },
+    {
+      "t": 61.333,
+      "difference": 53.81
+    },
+    {
+      "t": 67.333,
+      "difference": 126.31
+    },
+    {
+      "t": 67.933,
+      "difference": 97.17
+    },
+    {
+      "t": 68.333,
+      "difference": 132.38
+    },
+    {
+      "t": 74.333,
+      "difference": 95.73
+    },
+    {
+      "t": 74.467,
+      "difference": 157.72
+    },
+    {
+      "t": 80.933,
+      "difference": 108.79
+    },
+    {
+      "t": 87.467,
+      "difference": 155.72
+    },
+    {
+      "t": 88.733,
+      "difference": 145.5
+    },
+    {
+      "t": 88.867,
+      "difference": 144.78
+    },
+    {
+      "t": 95.533,
+      "difference": 156.75
+    },
+    {
+      "t": 102.0,
+      "difference": 107.48
+    },
+    {
+      "t": 108.533,
+      "difference": 154.86
+    },
+    {
+      "t": 115.0,
+      "difference": 96.21
+    },
+    {
+      "t": 121.533,
+      "difference": 155.44
+    },
+    {
+      "t": 121.933,
+      "difference": 153.2
+    },
+    {
+      "t": 122.067,
+      "difference": 154.37
+    },
+    {
+      "t": 128.667,
+      "difference": 111.38
+    },
+    {
+      "t": 135.2,
+      "difference": 158.76
+    },
+    {
+      "t": 141.667,
+      "difference": 99.74
+    },
+    {
+      "t": 148.2,
+      "difference": 159.81
+    },
+    {
+      "t": 154.667,
+      "difference": 110.66
+    },
+    {
+      "t": 155.333,
+      "difference": 146.95
+    },
+    {
+      "t": 155.467,
+      "difference": 148.07
+    },
+    {
+      "t": 162.133,
+      "difference": 166.43
+    },
+    {
+      "t": 162.467,
+      "difference": 134.69
+    },
+    {
+      "t": 168.467,
+      "difference": 117.55
+    },
+    {
+      "t": 168.6,
+      "difference": 107.4
+    },
+    {
+      "t": 175.133,
+      "difference": 167.63
+    },
+    {
+      "t": 180.667,
+      "difference": 153.18
+    },
+    {
+      "t": 180.8,
+      "difference": 152.02
+    },
+    {
+      "t": 187.4,
+      "difference": 117.93
+    },
+    {
+      "t": 193.8,
+      "difference": 90.02
+    },
+    {
+      "t": 200.4,
+      "difference": 127.34
+    },
+    {
+      "t": 206.8,
+      "difference": 93.26
+    },
+    {
+      "t": 208.267,
+      "difference": 152.47
+    },
+    {
+      "t": 208.4,
+      "difference": 145.23
+    },
+    {
+      "t": 215.0,
+      "difference": 104.25
+    },
+    {
+      "t": 221.533,
+      "difference": 140.85
+    },
+    {
+      "t": 228.0,
+      "difference": 102.54
+    },
+    {
+      "t": 234.533,
+      "difference": 134.45
+    },
+    {
+      "t": 239.133,
+      "difference": 144.13
+    },
+    {
+      "t": 239.267,
+      "difference": 154.22
+    },
+    {
+      "t": 245.867,
+      "difference": 111.45
+    },
+    {
+      "t": 246.267,
+      "difference": 136.71
+    },
+    {
+      "t": 252.267,
+      "difference": 99.12
+    },
+    {
+      "t": 252.4,
+      "difference": 158.78
+    },
+    {
+      "t": 255.933,
+      "difference": 152.33
+    },
+    {
+      "t": 256.067,
+      "difference": 147.17
+    },
+    {
+      "t": 262.733,
+      "difference": 136.11
+    },
+    {
+      "t": 269.2,
+      "difference": 84.37
+    },
+    {
+      "t": 275.733,
+      "difference": 124.21
+    },
+    {
+      "t": 282.2,
+      "difference": 88.93
+    },
+    {
+      "t": 284.8,
+      "difference": 147.47
+    },
+    {
+      "t": 284.933,
+      "difference": 154.7
+    },
+    {
+      "t": 291.6,
+      "difference": 129.17
+    },
+    {
+      "t": 298.067,
+      "difference": 88.8
+    },
+    {
+      "t": 304.6,
+      "difference": 140.16
+    },
+    {
+      "t": 311.067,
+      "difference": 92.76
+    },
+    {
+      "t": 317.6,
+      "difference": 128.94
+    },
+    {
+      "t": 318.733,
+      "difference": 142.28
+    },
+    {
+      "t": 318.867,
+      "difference": 142.78
+    },
+    {
+      "t": 325.467,
+      "difference": 109.0
+    },
+    {
+      "t": 332.0,
+      "difference": 163.36
+    },
+    {
+      "t": 338.467,
+      "difference": 114.9
+    },
+    {
+      "t": 345.0,
+      "difference": 151.42
+    },
+    {
+      "t": 345.2,
+      "difference": 142.49
+    },
+    {
+      "t": 345.333,
+      "difference": 142.28
+    },
+    {
+      "t": 351.867,
+      "difference": 88.83
+    },
+    {
+      "t": 358.467,
+      "difference": 126.48
+    },
+    {
+      "t": 364.867,
+      "difference": 92.42
+    },
+    {
+      "t": 371.467,
+      "difference": 118.37
+    },
+    {
+      "t": 375.533,
+      "difference": 142.6
+    },
+    {
+      "t": 375.667,
+      "difference": 154.78
+    },
+    {
+      "t": 382.2,
+      "difference": 83.03
+    },
+    {
+      "t": 388.8,
+      "difference": 119.85
+    },
+    {
+      "t": 395.2,
+      "difference": 78.31
+    },
+    {
+      "t": 399.133,
+      "difference": 142.48
+    },
+    {
+      "t": 399.267,
+      "difference": 153.55
+    },
+    {
+      "t": 405.867,
+      "difference": 94.3
+    },
+    {
+      "t": 412.4,
+      "difference": 134.19
+    },
+    {
+      "t": 418.867,
+      "difference": 98.75
+    },
+    {
+      "t": 424.8,
+      "difference": 153.83
+    },
+    {
+      "t": 424.933,
+      "difference": 142.69
+    },
+    {
+      "t": 431.467,
+      "difference": 82.06
+    },
+    {
+      "t": 438.067,
+      "difference": 132.43
+    },
+    {
+      "t": 444.467,
+      "difference": 86.49
+    },
+    {
+      "t": 449.4,
+      "difference": 153.6
+    },
+    {
+      "t": 449.533,
+      "difference": 143.12
+    },
+    {
+      "t": 456.133,
+      "difference": 125.08
+    },
+    {
+      "t": 462.533,
+      "difference": 79.05
+    },
+    {
+      "t": 469.133,
+      "difference": 116.97
+    },
+    {
+      "t": 472.133,
+      "difference": 142.43
+    },
+    {
+      "t": 472.333,
+      "difference": 68.3
+    },
+    {
+      "t": 478.333,
+      "difference": 47.22
+    },
+    {
+      "t": 478.933,
+      "difference": 76.02
+    },
+    {
+      "t": 479.333,
+      "difference": 47.22
+    },
+    {
+      "t": 485.333,
+      "difference": 84.87
+    },
+    {
+      "t": 491.933,
+      "difference": 91.67
+    },
+    {
+      "t": 498.333,
+      "difference": 78.81
+    },
+    {
+      "t": 499.267,
+      "difference": 55.89
+    },
+    {
+      "t": 499.4,
+      "difference": 57.16
+    },
+    {
+      "t": 505.933,
+      "difference": 66.51
+    },
+    {
+      "t": 506.067,
+      "difference": 111.02
+    },
+    {
+      "t": 512.533,
+      "difference": 77.31
+    },
+    {
+      "t": 518.933,
+      "difference": 72.69
+    },
+    {
+      "t": 519.067,
+      "difference": 92.14
+    },
+    {
+      "t": 525.133,
+      "difference": 57.73
+    },
+    {
+      "t": 525.267,
+      "difference": 28.15
+    },
+    {
+      "t": 531.867,
+      "difference": 90.25
+    },
+    {
+      "t": 538.267,
+      "difference": 78.88
+    },
+    {
+      "t": 544.867,
+      "difference": 75.09
+    },
+    {
+      "t": 551.267,
+      "difference": 69.91
+    },
+    {
+      "t": 554.4,
+      "difference": 28.99
+    },
+    {
+      "t": 554.533,
+      "difference": 29.98
+    },
+    {
+      "t": 561.067,
+      "difference": 78.92
+    },
+    {
+      "t": 561.533,
+      "difference": 48.6
+    },
+    {
+      "t": 567.533,
+      "difference": 67.53
+    },
+    {
+      "t": 567.667,
+      "difference": 74.94
+    },
+    {
+      "t": 574.067,
+      "difference": 69.11
+    },
+    {
+      "t": 579.933,
+      "difference": 28.83
+    },
+    {
+      "t": 580.067,
+      "difference": 57.12
+    },
+    {
+      "t": 586.6,
+      "difference": 58.85
+    },
+    {
+      "t": 586.733,
+      "difference": 54.68
+    },
+    {
+      "t": 593.267,
+      "difference": 61.45
+    },
+    {
+      "t": 593.4,
+      "difference": 98.68
+    },
+    {
+      "t": 596.333,
+      "difference": 28.02
+    },
+    {
+      "t": 596.467,
+      "difference": 28.13
+    },
+    {
+      "t": 603.067,
+      "difference": 74.95
+    },
+    {
+      "t": 603.467,
+      "difference": 66.16
+    },
+    {
+      "t": 609.467,
+      "difference": 73.94
+    },
+    {
+      "t": 609.6,
+      "difference": 88.72
+    },
+    {
+      "t": 616.067,
+      "difference": 62.76
+    },
+    {
+      "t": 622.467,
+      "difference": 65.02
+    },
+    {
+      "t": 622.6,
+      "difference": 109.36
+    },
+    {
+      "t": 627.933,
+      "difference": 29.33
+    },
+    {
+      "t": 628.067,
+      "difference": 30.0
+    },
+    {
+      "t": 634.667,
+      "difference": 59.72
+    },
+    {
+      "t": 641.2,
+      "difference": 85.04
+    },
+    {
+      "t": 645.267,
+      "difference": 59.69
+    },
+    {
+      "t": 645.4,
+      "difference": 50.17
+    },
+    {
+      "t": 651.4,
+      "difference": 98.5
+    },
+    {
+      "t": 651.933,
+      "difference": 62.56
+    },
+    {
+      "t": 658.533,
+      "difference": 84.84
+    },
+    {
+      "t": 664.933,
+      "difference": 64.65
+    },
+    {
+      "t": 670.6,
+      "difference": 100.24
+    },
+    {
+      "t": 670.733,
+      "difference": 111.18
+    },
+    {
+      "t": 677.4,
+      "difference": 116.46
+    },
+    {
+      "t": 677.733,
+      "difference": 101.86
+    },
+    {
+      "t": 683.733,
+      "difference": 83.96
+    },
+    {
+      "t": 683.867,
+      "difference": 79.03
+    },
+    {
+      "t": 690.267,
+      "difference": 66.05
+    },
+    {
+      "t": 690.4,
+      "difference": 118.36
+    },
+    {
+      "t": 696.867,
+      "difference": 85.72
+    },
+    {
+      "t": 701.667,
+      "difference": 109.91
+    },
+    {
+      "t": 701.8,
+      "difference": 110.18
+    },
+    {
+      "t": 708.333,
+      "difference": 78.01
+    },
+    {
+      "t": 714.933,
+      "difference": 100.19
+    },
+    {
+      "t": 721.333,
+      "difference": 74.89
+    },
+    {
+      "t": 727.533,
+      "difference": 109.43
+    },
+    {
+      "t": 727.667,
+      "difference": 106.49
+    },
+    {
+      "t": 734.333,
+      "difference": 107.02
+    },
+    {
+      "t": 740.8,
+      "difference": 76.91
+    },
+    {
+      "t": 747.333,
+      "difference": 105.06
+    },
+    {
+      "t": 753.8,
+      "difference": 71.8
+    },
+    {
+      "t": 755.067,
+      "difference": 106.69
+    },
+    {
+      "t": 755.2,
+      "difference": 112.31
+    },
+    {
+      "t": 758.0,
+      "difference": 112.46
+    },
+    {
+      "t": 758.133,
+      "difference": 105.51
+    },
+    {
+      "t": 764.8,
+      "difference": 96.07
+    },
+    {
+      "t": 765.867,
+      "difference": 103.67
+    },
+    {
+      "t": 766.067,
+      "difference": 109.34
+    },
+    {
+      "t": 772.667,
+      "difference": 91.7
+    },
+    {
+      "t": 779.067,
+      "difference": 75.9
+    },
+    {
+      "t": 785.667,
+      "difference": 98.42
+    },
+    {
+      "t": 792.067,
+      "difference": 75.68
+    },
+    {
+      "t": 796.067,
+      "difference": 110.41
+    },
+    {
+      "t": 796.2,
+      "difference": 107.54
+    },
+    {
+      "t": 802.8,
+      "difference": 94.74
+    },
+    {
+      "t": 803.2,
+      "difference": 104.74
+    },
+    {
+      "t": 809.2,
+      "difference": 78.19
+    },
+    {
+      "t": 815.8,
+      "difference": 92.12
+    },
+    {
+      "t": 822.2,
+      "difference": 71.54
+    },
+    {
+      "t": 826.133,
+      "difference": 104.53
+    },
+    {
+      "t": 826.267,
+      "difference": 139.7
+    },
+    {
+      "t": 832.867,
+      "difference": 108.83
+    },
+    {
+      "t": 839.267,
+      "difference": 82.81
+    },
+    {
+      "t": 845.867,
+      "difference": 105.87
+    },
+    {
+      "t": 852.267,
+      "difference": 84.12
+    },
+    {
+      "t": 853.067,
+      "difference": 140.24
+    },
+    {
+      "t": 853.267,
+      "difference": 142.21
+    },
+    {
+      "t": 859.867,
+      "difference": 128.78
+    },
+    {
+      "t": 866.267,
+      "difference": 92.64
+    },
+    {
+      "t": 872.867,
+      "difference": 128.14
+    },
+    {
+      "t": 878.2,
+      "difference": 147.76
+    },
+    {
+      "t": 878.333,
+      "difference": 149.45
+    },
+    {
+      "t": 884.933,
+      "difference": 106.36
+    },
+    {
+      "t": 891.467,
+      "difference": 161.34
+    },
+    {
+      "t": 897.933,
+      "difference": 109.55
+    },
+    {
+      "t": 902.733,
+      "difference": 142.53
+    },
+    {
+      "t": 902.867,
+      "difference": 141.79
+    },
+    {
+      "t": 909.467,
+      "difference": 98.3
+    },
+    {
+      "t": 916.0,
+      "difference": 132.35
+    },
+    {
+      "t": 922.467,
+      "difference": 95.41
+    },
+    {
+      "t": 929.0,
+      "difference": 131.21
+    },
+    {
+      "t": 930.6,
+      "difference": 140.41
+    },
+    {
+      "t": 930.733,
+      "difference": 146.85
+    },
+    {
+      "t": 937.267,
+      "difference": 88.09
+    },
+    {
+      "t": 943.867,
+      "difference": 117.63
+    },
+    {
+      "t": 950.267,
+      "difference": 85.39
+    },
+    {
+      "t": 956.333,
+      "difference": 141.07
+    },
+    {
+      "t": 956.467,
+      "difference": 143.22
+    },
+    {
+      "t": 963.0,
+      "difference": 95.62
+    },
+    {
+      "t": 969.6,
+      "difference": 119.08
+    },
+    {
+      "t": 976.0,
+      "difference": 92.84
+    },
+    {
+      "t": 980.867,
+      "difference": 146.74
+    },
+    {
+      "t": 981.0,
+      "difference": 147.9
+    },
+    {
+      "t": 987.6,
+      "difference": 90.93
+    },
+    {
+      "t": 994.133,
+      "difference": 142.55
+    },
+    {
+      "t": 999.467,
+      "difference": 147.74
+    },
+    {
+      "t": 999.6,
+      "difference": 42.75
+    },
+    {
+      "t": 1005.6,
+      "difference": 69.11
+    },
+    {
+      "t": 1006.2,
+      "difference": 62.5
+    },
+    {
+      "t": 1012.733,
+      "difference": 88.39
+    },
+    {
+      "t": 1019.2,
+      "difference": 62.85
+    },
+    {
+      "t": 1024.067,
+      "difference": 45.3
+    },
+    {
+      "t": 1024.2,
+      "difference": 47.77
+    },
+    {
+      "t": 1030.733,
+      "difference": 50.8
+    },
+    {
+      "t": 1031.2,
+      "difference": 71.93
+    },
+    {
+      "t": 1037.2,
+      "difference": 91.01
+    },
+    {
+      "t": 1037.333,
+      "difference": 72.57
+    },
+    {
+      "t": 1043.733,
+      "difference": 51.74
+    },
+    {
+      "t": 1050.333,
+      "difference": 74.41
+    },
+    {
+      "t": 1053.2,
+      "difference": 46.29
+    },
+    {
+      "t": 1053.333,
+      "difference": 48.69
+    },
+    {
+      "t": 1059.933,
+      "difference": 67.12
+    },
+    {
+      "t": 1066.467,
+      "difference": 96.38
+    },
+    {
+      "t": 1072.933,
+      "difference": 67.58
+    },
+    {
+      "t": 1077.867,
+      "difference": 46.79
+    },
+    {
+      "t": 1078.0,
+      "difference": 46.82
+    },
+    {
+      "t": 1084.533,
+      "difference": 51.81
+    },
+    {
+      "t": 1091.133,
+      "difference": 72.63
+    },
+    {
+      "t": 1097.533,
+      "difference": 50.95
+    },
+    {
+      "t": 1104.133,
+      "difference": 74.32
+    },
+    {
+      "t": 1106.267,
+      "difference": 47.05
+    },
+    {
+      "t": 1106.4,
+      "difference": 47.72
+    },
+    {
+      "t": 1109.8,
+      "difference": 47.93
+    },
+    {
+      "t": 1110.0,
+      "difference": 45.79
+    },
+    {
+      "t": 1116.6,
+      "difference": 77.36
+    },
+    {
+      "t": 1117.4,
+      "difference": 46.33
+    },
+    {
+      "t": 1117.533,
+      "difference": 48.38
+    },
+    {
+      "t": 1124.2,
+      "difference": 97.07
+    },
+    {
+      "t": 1130.667,
+      "difference": 68.78
+    },
+    {
+      "t": 1137.2,
+      "difference": 97.79
+    },
+    {
+      "t": 1143.667,
+      "difference": 68.67
+    },
+    {
+      "t": 1144.733,
+      "difference": 48.04
+    },
+    {
+      "t": 1144.933,
+      "difference": 48.16
+    },
+    {
+      "t": 1151.533,
+      "difference": 77.22
+    },
+    {
+      "t": 1151.933,
+      "difference": 70.84
+    },
+    {
+      "t": 1157.933,
+      "difference": 109.9
+    },
+    {
+      "t": 1164.533,
+      "difference": 76.04
+    },
+    {
+      "t": 1170.933,
+      "difference": 52.79
+    },
+    {
+      "t": 1173.267,
+      "difference": 45.56
+    },
+    {
+      "t": 1173.467,
+      "difference": 46.75
+    },
+    {
+      "t": 1180.067,
+      "difference": 77.11
+    },
+    {
+      "t": 1186.467,
+      "difference": 53.91
+    },
+    {
+      "t": 1193.067,
+      "difference": 77.73
+    },
+    {
+      "t": 1199.467,
+      "difference": 56.37
+    },
+    {
+      "t": 1202.667,
+      "difference": 46.32
+    },
+    {
+      "t": 1202.8,
+      "difference": 67.89
+    },
+    {
+      "t": 1208.8,
+      "difference": 100.94
+    },
+    {
+      "t": 1209.333,
+      "difference": 73.42
+    },
+    {
+      "t": 1215.933,
+      "difference": 108.06
+    },
+    {
+      "t": 1222.333,
+      "difference": 72.15
+    },
+    {
+      "t": 1224.0,
+      "difference": 137.81
+    },
+    {
+      "t": 1224.133,
+      "difference": 146.11
+    },
+    {
+      "t": 1230.733,
+      "difference": 105.25
+    },
+    {
+      "t": 1231.133,
+      "difference": 109.86
+    },
+    {
+      "t": 1237.133,
+      "difference": 90.47
+    },
+    {
+      "t": 1237.267,
+      "difference": 149.2
+    },
+    {
+      "t": 1243.733,
+      "difference": 106.31
+    },
+    {
+      "t": 1250.267,
+      "difference": 149.6
+    },
+    {
+      "t": 1252.067,
+      "difference": 144.07
+    },
+    {
+      "t": 1252.2,
+      "difference": 147.11
+    },
+    {
+      "t": 1258.867,
+      "difference": 149.47
+    },
+    {
+      "t": 1265.333,
+      "difference": 106.54
+    },
+    {
+      "t": 1271.867,
+      "difference": 149.75
+    },
+    {
+      "t": 1278.4,
+      "difference": 146.22
+    },
+    {
+      "t": 1278.533,
+      "difference": 145.44
+    },
+    {
+      "t": 1285.2,
+      "difference": 130.83
+    },
+    {
+      "t": 1291.667,
+      "difference": 87.66
+    },
+    {
+      "t": 1298.2,
+      "difference": 129.49
+    },
+    {
+      "t": 1304.667,
+      "difference": 87.11
+    },
+    {
+      "t": 1309.667,
+      "difference": 142.2
+    },
+    {
+      "t": 1309.8,
+      "difference": 146.23
+    },
+    {
+      "t": 1316.467,
+      "difference": 126.91
+    },
+    {
+      "t": 1316.867,
+      "difference": 109.08
+    },
+    {
+      "t": 1322.8,
+      "difference": 109.65
+    },
+    {
+      "t": 1329.467,
+      "difference": 126.56
+    },
+    {
+      "t": 1335.867,
+      "difference": 87.75
+    },
+    {
+      "t": 1338.533,
+      "difference": 146.52
+    },
+    {
+      "t": 1338.733,
+      "difference": 146.72
+    },
+    {
+      "t": 1345.333,
+      "difference": 125.63
+    },
+    {
+      "t": 1351.733,
+      "difference": 86.94
+    },
+    {
+      "t": 1358.333,
+      "difference": 126.75
+    },
+    {
+      "t": 1362.867,
+      "difference": 144.51
+    },
+    {
+      "t": 1363.0,
+      "difference": 146.61
+    },
+    {
+      "t": 1369.533,
+      "difference": 78.83
+    },
+    {
+      "t": 1376.133,
+      "difference": 115.17
+    },
+    {
+      "t": 1379.8,
+      "difference": 146.11
+    },
+    {
+      "t": 1380.0,
+      "difference": 48.01
+    },
+    {
+      "t": 1386.0,
+      "difference": 24.82
+    },
+    {
+      "t": 1386.6,
+      "difference": 107.44
+    },
+    {
+      "t": 1387.0,
+      "difference": 27.42
+    },
+    {
+      "t": 1392.733,
+      "difference": 49.18
+    },
+    {
+      "t": 1392.867,
+      "difference": 34.17
+    },
+    {
+      "t": 1399.4,
+      "difference": 72.07
+    },
+    {
+      "t": 1406.0,
+      "difference": 107.83
+    },
+    {
+      "t": 1412.4,
+      "difference": 69.73
+    },
+    {
+      "t": 1415.133,
+      "difference": 31.09
+    },
+    {
+      "t": 1415.267,
+      "difference": 31.36
+    },
+    {
+      "t": 1421.933,
+      "difference": 134.41
+    },
+    {
+      "t": 1428.4,
+      "difference": 93.87
+    },
+    {
+      "t": 1434.933,
+      "difference": 130.03
+    },
+    {
+      "t": 1441.4,
+      "difference": 91.93
+    },
+    {
+      "t": 1441.667,
+      "difference": 32.45
+    },
+    {
+      "t": 1441.8,
+      "difference": 31.81
+    },
+    {
+      "t": 1448.4,
+      "difference": 103.16
+    },
+    {
+      "t": 1448.8,
+      "difference": 25.06
+    },
+    {
+      "t": 1454.8,
+      "difference": 87.35
+    },
+    {
+      "t": 1454.933,
+      "difference": 139.79
+    },
+    {
+      "t": 1461.4,
+      "difference": 101.71
+    },
+    {
+      "t": 1465.733,
+      "difference": 31.62
+    },
+    {
+      "t": 1465.867,
+      "difference": 30.76
+    },
+    {
+      "t": 1472.467,
+      "difference": 98.27
+    },
+    {
+      "t": 1479.0,
+      "difference": 141.41
+    },
+    {
+      "t": 1485.467,
+      "difference": 101.33
+    },
+    {
+      "t": 1492.0,
+      "difference": 142.9
+    },
+    {
+      "t": 1493.333,
+      "difference": 31.5
+    },
+    {
+      "t": 1493.467,
+      "difference": 33.88
+    },
+    {
+      "t": 1498.267,
+      "difference": 33.96
+    },
+    {
+      "t": 1498.4,
+      "difference": 29.16
+    },
+    {
+      "t": 1505.0,
+      "difference": 97.27
+    },
+    {
+      "t": 1505.4,
+      "difference": 24.77
+    },
+    {
+      "t": 1506.867,
+      "difference": 48.56
+    },
+    {
+      "t": 1507.0,
+      "difference": 30.14
+    },
+    {
+      "t": 1513.667,
+      "difference": 135.96
+    },
+    {
+      "t": 1520.133,
+      "difference": 91.83
+    },
+    {
+      "t": 1526.667,
+      "difference": 134.87
+    },
+    {
+      "t": 1531.333,
+      "difference": 32.17
+    },
+    {
+      "t": 1531.467,
+      "difference": 31.35
+    },
+    {
+      "t": 1538.0,
+      "difference": 78.03
+    },
+    {
+      "t": 1544.6,
+      "difference": 111.5
+    },
+    {
+      "t": 1551.067,
+      "difference": 74.36
+    },
+    {
+      "t": 1557.6,
+      "difference": 113.39
+    },
+    {
+      "t": 1560.0,
+      "difference": 31.62
+    },
+    {
+      "t": 1560.133,
+      "difference": 34.37
+    },
+    {
+      "t": 1566.8,
+      "difference": 141.51
+    },
+    {
+      "t": 1567.133,
+      "difference": 26.04
+    },
+    {
+      "t": 1573.133,
+      "difference": 46.69
+    },
+    {
+      "t": 1580.0,
+      "difference": 94.67
+    },
+    {
+      "t": 1586.467,
+      "difference": 63.98
+    },
+    {
+      "t": 1593.0,
+      "difference": 95.21
+    },
+    {
+      "t": 1603.267,
+      "difference": 86.21
+    },
+    {
+      "t": 1609.667,
+      "difference": 55.83
+    }
+  ],
+  "short_luminance_pulses": [
+    {
+      "t": 19.533,
+      "luminance": 172.1,
+      "baseline": 213.65
+    },
+    {
+      "t": 22.267,
+      "luminance": 69.68,
+      "baseline": 210.78
+    },
+    {
+      "t": 35.4,
+      "luminance": 169.02,
+      "baseline": 219.94
+    },
+    {
+      "t": 41.933,
+      "luminance": 117.23,
+      "baseline": 213.78
+    },
+    {
+      "t": 48.4,
+      "luminance": 158.45,
+      "baseline": 208.06
+    },
+    {
+      "t": 50.533,
+      "luminance": 69.79,
+      "baseline": 210.9
+    },
+    {
+      "t": 57.2,
+      "luminance": 126.82,
+      "baseline": 214.05
+    },
+    {
+      "t": 80.867,
+      "luminance": 97.57,
+      "baseline": 211.05
+    },
+    {
+      "t": 87.333,
+      "luminance": 151.62,
+      "baseline": 210.14
+    },
+    {
+      "t": 88.733,
+      "luminance": 69.36,
+      "baseline": 210.17
+    },
+    {
+      "t": 101.933,
+      "luminance": 105.28,
+      "baseline": 217.78
+    },
+    {
+      "t": 108.4,
+      "luminance": 159.17,
+      "baseline": 216.88
+    },
+    {
+      "t": 121.933,
+      "luminance": 68.84,
+      "baseline": 222.22
+    },
+    {
+      "t": 128.6,
+      "luminance": 101.6,
+      "baseline": 217.93
+    },
+    {
+      "t": 135.067,
+      "luminance": 155.57,
+      "baseline": 216.96
+    },
+    {
+      "t": 154.6,
+      "luminance": 101.55,
+      "baseline": 216.89
+    },
+    {
+      "t": 155.333,
+      "luminance": 69.07,
+      "baseline": 212.71
+    },
+    {
+      "t": 162.0,
+      "luminance": 148.32,
+      "baseline": 217.11
+    },
+    {
+      "t": 180.667,
+      "luminance": 70.02,
+      "baseline": 221.86
+    },
+    {
+      "t": 200.267,
+      "luminance": 174.85,
+      "baseline": 217.69
+    },
+    {
+      "t": 206.8,
+      "luminance": 136.83,
+      "baseline": 216.79
+    },
+    {
+      "t": 221.4,
+      "luminance": 156.11,
+      "baseline": 217.72
+    },
+    {
+      "t": 227.933,
+      "luminance": 118.47,
+      "baseline": 216.86
+    },
+    {
+      "t": 245.8,
+      "luminance": 101.54,
+      "baseline": 217.95
+    },
+    {
+      "t": 255.933,
+      "luminance": 69.36,
+      "baseline": 217.06
+    },
+    {
+      "t": 262.6,
+      "luminance": 168.63,
+      "baseline": 213.59
+    },
+    {
+      "t": 275.6,
+      "luminance": 158.24,
+      "baseline": 201.23
+    },
+    {
+      "t": 282.133,
+      "luminance": 124.88,
+      "baseline": 207.44
+    },
+    {
+      "t": 284.8,
+      "luminance": 68.82,
+      "baseline": 216.55
+    },
+    {
+      "t": 291.467,
+      "luminance": 159.99,
+      "baseline": 213.85
+    },
+    {
+      "t": 298.0,
+      "luminance": 118.91,
+      "baseline": 207.67
+    },
+    {
+      "t": 304.467,
+      "luminance": 170.5,
+      "baseline": 213.72
+    },
+    {
+      "t": 311.0,
+      "luminance": 126.66,
+      "baseline": 219.49
+    },
+    {
+      "t": 317.467,
+      "luminance": 160.0,
+      "baseline": 213.19
+    },
+    {
+      "t": 318.733,
+      "luminance": 69.42,
+      "baseline": 208.08
+    },
+    {
+      "t": 325.4,
+      "luminance": 98.84,
+      "baseline": 207.91
+    },
+    {
+      "t": 338.4,
+      "luminance": 104.6,
+      "baseline": 219.64
+    },
+    {
+      "t": 344.867,
+      "luminance": 141.01,
+      "baseline": 213.66
+    },
+    {
+      "t": 358.333,
+      "luminance": 184.06,
+      "baseline": 219.84
+    },
+    {
+      "t": 364.867,
+      "luminance": 131.36,
+      "baseline": 213.74
+    },
+    {
+      "t": 371.333,
+      "luminance": 172.1,
+      "baseline": 207.97
+    },
+    {
+      "t": 382.2,
+      "luminance": 137.62,
+      "baseline": 220.0
+    },
+    {
+      "t": 388.667,
+      "luminance": 170.32,
+      "baseline": 213.79
+    },
+    {
+      "t": 395.2,
+      "luminance": 129.74,
+      "baseline": 207.85
+    },
+    {
+      "t": 399.133,
+      "luminance": 69.88,
+      "baseline": 213.84
+    },
+    {
+      "t": 405.8,
+      "luminance": 113.82,
+      "baseline": 213.96
+    },
+    {
+      "t": 412.267,
+      "luminance": 154.63,
+      "baseline": 207.73
+    },
+    {
+      "t": 424.8,
+      "luminance": 69.45,
+      "baseline": 214.08
+    },
+    {
+      "t": 431.467,
+      "luminance": 126.06,
+      "baseline": 207.9
+    },
+    {
+      "t": 444.467,
+      "luminance": 133.72,
+      "baseline": 219.68
+    },
+    {
+      "t": 449.4,
+      "luminance": 69.13,
+      "baseline": 213.87
+    },
+    {
+      "t": 462.533,
+      "luminance": 141.3,
+      "baseline": 219.77
+    },
+    {
+      "t": 469.0,
+      "luminance": 174.05,
+      "baseline": 213.74
+    },
+    {
+      "t": 478.867,
+      "luminance": 167.93,
+      "baseline": 119.45
+    },
+    {
+      "t": 491.8,
+      "luminance": 107.34,
+      "baseline": 78.37
+    },
+    {
+      "t": 499.267,
+      "luminance": 68.89,
+      "baseline": 116.22
+    },
+    {
+      "t": 512.467,
+      "luminance": 149.11,
+      "baseline": 77.81
+    },
+    {
+      "t": 531.733,
+      "luminance": 105.49,
+      "baseline": 77.82
+    },
+    {
+      "t": 544.8,
+      "luminance": 165.68,
+      "baseline": 117.24
+    },
+    {
+      "t": 567.6,
+      "luminance": 166.14,
+      "baseline": 122.63
+    },
+    {
+      "t": 586.6,
+      "luminance": 69.02,
+      "baseline": 117.93
+    },
+    {
+      "t": 603.0,
+      "luminance": 147.3,
+      "baseline": 77.77
+    },
+    {
+      "t": 609.533,
+      "luminance": 175.25,
+      "baseline": 122.32
+    },
+    {
+      "t": 616.0,
+      "luminance": 158.16,
+      "baseline": 117.21
+    },
+    {
+      "t": 641.133,
+      "luminance": 172.15,
+      "baseline": 118.99
+    },
+    {
+      "t": 651.933,
+      "luminance": 114.41,
+      "baseline": 167.91
+    },
+    {
+      "t": 658.467,
+      "luminance": 83.55,
+      "baseline": 167.61
+    },
+    {
+      "t": 664.933,
+      "luminance": 107.64,
+      "baseline": 162.69
+    },
+    {
+      "t": 677.267,
+      "luminance": 121.05,
+      "baseline": 172.65
+    },
+    {
+      "t": 690.267,
+      "luminance": 121.27,
+      "baseline": 168.5
+    },
+    {
+      "t": 696.8,
+      "luminance": 87.57,
+      "baseline": 173.22
+    },
+    {
+      "t": 701.667,
+      "luminance": 68.96,
+      "baseline": 173.48
+    },
+    {
+      "t": 708.333,
+      "luminance": 97.87,
+      "baseline": 165.29
+    },
+    {
+      "t": 714.8,
+      "luminance": 141.06,
+      "baseline": 169.43
+    },
+    {
+      "t": 721.333,
+      "luminance": 104.36,
+      "baseline": 171.34
+    },
+    {
+      "t": 727.533,
+      "luminance": 70.02,
+      "baseline": 169.58
+    },
+    {
+      "t": 740.733,
+      "luminance": 97.97,
+      "baseline": 174.72
+    },
+    {
+      "t": 747.2,
+      "luminance": 129.54,
+      "baseline": 170.71
+    },
+    {
+      "t": 753.733,
+      "luminance": 93.59,
+      "baseline": 168.72
+    },
+    {
+      "t": 755.067,
+      "luminance": 69.08,
+      "baseline": 169.28
+    },
+    {
+      "t": 758.0,
+      "luminance": 69.39,
+      "baseline": 170.17
+    },
+    {
+      "t": 764.667,
+      "luminance": 136.28,
+      "baseline": 168.4
+    },
+    {
+      "t": 765.867,
+      "luminance": 69.82,
+      "baseline": 170.78
+    },
+    {
+      "t": 772.533,
+      "luminance": 127.17,
+      "baseline": 165.5
+    },
+    {
+      "t": 779.067,
+      "luminance": 104.5,
+      "baseline": 169.45
+    },
+    {
+      "t": 785.533,
+      "luminance": 138.17,
+      "baseline": 171.36
+    },
+    {
+      "t": 792.067,
+      "luminance": 107.04,
+      "baseline": 173.51
+    },
+    {
+      "t": 796.067,
+      "luminance": 69.09,
+      "baseline": 167.33
+    },
+    {
+      "t": 802.733,
+      "luminance": 80.63,
+      "baseline": 168.26
+    },
+    {
+      "t": 815.667,
+      "luminance": 143.56,
+      "baseline": 172.5
+    },
+    {
+      "t": 822.2,
+      "luminance": 104.71,
+      "baseline": 167.22
+    },
+    {
+      "t": 832.733,
+      "luminance": 170.51,
+      "baseline": 203.07
+    },
+    {
+      "t": 839.267,
+      "luminance": 139.23,
+      "baseline": 204.19
+    },
+    {
+      "t": 845.733,
+      "luminance": 167.62,
+      "baseline": 202.89
+    },
+    {
+      "t": 852.267,
+      "luminance": 133.12,
+      "baseline": 202.35
+    },
+    {
+      "t": 853.067,
+      "luminance": 70.11,
+      "baseline": 206.95
+    },
+    {
+      "t": 859.733,
+      "luminance": 175.39,
+      "baseline": 210.83
+    },
+    {
+      "t": 872.733,
+      "luminance": 172.38,
+      "baseline": 208.65
+    },
+    {
+      "t": 878.2,
+      "luminance": 68.73,
+      "baseline": 214.92
+    },
+    {
+      "t": 891.333,
+      "luminance": 140.64,
+      "baseline": 208.49
+    },
+    {
+      "t": 897.8,
+      "luminance": 178.03,
+      "baseline": 210.06
+    },
+    {
+      "t": 902.733,
+      "luminance": 69.76,
+      "baseline": 205.22
+    },
+    {
+      "t": 909.4,
+      "luminance": 116.12,
+      "baseline": 208.84
+    },
+    {
+      "t": 915.867,
+      "luminance": 153.95,
+      "baseline": 209.97
+    },
+    {
+      "t": 922.4,
+      "luminance": 120.32,
+      "baseline": 210.7
+    },
+    {
+      "t": 928.867,
+      "luminance": 151.11,
+      "baseline": 209.47
+    },
+    {
+      "t": 930.6,
+      "luminance": 69.65,
+      "baseline": 208.93
+    },
+    {
+      "t": 937.267,
+      "luminance": 134.27,
+      "baseline": 210.16
+    },
+    {
+      "t": 943.733,
+      "luminance": 184.93,
+      "baseline": 210.66
+    },
+    {
+      "t": 950.267,
+      "luminance": 132.41,
+      "baseline": 209.36
+    },
+    {
+      "t": 956.333,
+      "luminance": 68.77,
+      "baseline": 205.18
+    },
+    {
+      "t": 963.0,
+      "luminance": 131.65,
+      "baseline": 210.88
+    },
+    {
+      "t": 976.0,
+      "luminance": 125.52,
+      "baseline": 208.78
+    },
+    {
+      "t": 980.867,
+      "luminance": 69.94,
+      "baseline": 214.88
+    },
+    {
+      "t": 994.0,
+      "luminance": 159.07,
+      "baseline": 208.57
+    },
+    {
+      "t": 1006.133,
+      "luminance": 157.22,
+      "baseline": 108.75
+    },
+    {
+      "t": 1012.6,
+      "luminance": 139.71,
+      "baseline": 108.56
+    },
+    {
+      "t": 1019.133,
+      "luminance": 156.18,
+      "baseline": 107.37
+    },
+    {
+      "t": 1024.067,
+      "luminance": 69.99,
+      "baseline": 106.33
+    },
+    {
+      "t": 1030.733,
+      "luminance": 146.48,
+      "baseline": 108.72
+    },
+    {
+      "t": 1043.733,
+      "luminance": 146.85,
+      "baseline": 106.97
+    },
+    {
+      "t": 1050.267,
+      "luminance": 163.17,
+      "baseline": 105.18
+    },
+    {
+      "t": 1053.2,
+      "luminance": 69.45,
+      "baseline": 106.07
+    },
+    {
+      "t": 1059.867,
+      "luminance": 159.75,
+      "baseline": 108.84
+    },
+    {
+      "t": 1066.333,
+      "luminance": 143.07,
+      "baseline": 108.53
+    },
+    {
+      "t": 1072.867,
+      "luminance": 159.13,
+      "baseline": 106.96
+    },
+    {
+      "t": 1077.867,
+      "luminance": 69.11,
+      "baseline": 106.16
+    },
+    {
+      "t": 1084.533,
+      "luminance": 147.63,
+      "baseline": 108.39
+    },
+    {
+      "t": 1091.067,
+      "luminance": 163.69,
+      "baseline": 108.5
+    },
+    {
+      "t": 1097.533,
+      "luminance": 145.79,
+      "baseline": 107.35
+    },
+    {
+      "t": 1104.067,
+      "luminance": 163.16,
+      "baseline": 105.58
+    },
+    {
+      "t": 1106.267,
+      "luminance": 69.86,
+      "baseline": 105.79
+    },
+    {
+      "t": 1109.8,
+      "luminance": 69.76,
+      "baseline": 107.12
+    },
+    {
+      "t": 1116.533,
+      "luminance": 167.48,
+      "baseline": 108.42
+    },
+    {
+      "t": 1117.4,
+      "luminance": 69.09,
+      "baseline": 108.27
+    },
+    {
+      "t": 1124.067,
+      "luminance": 142.86,
+      "baseline": 108.8
+    },
+    {
+      "t": 1130.6,
+      "luminance": 160.36,
+      "baseline": 108.51
+    },
+    {
+      "t": 1137.067,
+      "luminance": 142.31,
+      "baseline": 106.97
+    },
+    {
+      "t": 1143.6,
+      "luminance": 159.63,
+      "baseline": 105.55
+    },
+    {
+      "t": 1144.733,
+      "luminance": 70.04,
+      "baseline": 106.29
+    },
+    {
+      "t": 1151.467,
+      "luminance": 166.08,
+      "baseline": 108.41
+    },
+    {
+      "t": 1164.467,
+      "luminance": 165.63,
+      "baseline": 107.35
+    },
+    {
+      "t": 1170.933,
+      "luminance": 147.3,
+      "baseline": 105.62
+    },
+    {
+      "t": 1173.267,
+      "luminance": 68.98,
+      "baseline": 105.78
+    },
+    {
+      "t": 1180.0,
+      "luminance": 166.78,
+      "baseline": 108.31
+    },
+    {
+      "t": 1186.467,
+      "luminance": 149.18,
+      "baseline": 108.88
+    },
+    {
+      "t": 1193.0,
+      "luminance": 166.44,
+      "baseline": 107.44
+    },
+    {
+      "t": 1199.467,
+      "luminance": 149.45,
+      "baseline": 105.2
+    },
+    {
+      "t": 1209.333,
+      "luminance": 131.61,
+      "baseline": 201.12
+    },
+    {
+      "t": 1215.8,
+      "luminance": 173.85,
+      "baseline": 200.96
+    },
+    {
+      "t": 1222.333,
+      "luminance": 133.44,
+      "baseline": 201.02
+    },
+    {
+      "t": 1224.0,
+      "luminance": 69.68,
+      "baseline": 204.12
+    },
+    {
+      "t": 1230.667,
+      "luminance": 103.64,
+      "baseline": 207.55
+    },
+    {
+      "t": 1243.667,
+      "luminance": 103.62,
+      "baseline": 208.18
+    },
+    {
+      "t": 1250.133,
+      "luminance": 141.29,
+      "baseline": 208.14
+    },
+    {
+      "t": 1252.067,
+      "luminance": 68.71,
+      "baseline": 207.84
+    },
+    {
+      "t": 1258.733,
+      "luminance": 142.69,
+      "baseline": 207.69
+    },
+    {
+      "t": 1265.267,
+      "luminance": 103.55,
+      "baseline": 208.17
+    },
+    {
+      "t": 1271.733,
+      "luminance": 141.43,
+      "baseline": 208.27
+    },
+    {
+      "t": 1278.467,
+      "luminance": 69.71,
+      "baseline": 208.0
+    },
+    {
+      "t": 1285.067,
+      "luminance": 160.17,
+      "baseline": 208.43
+    },
+    {
+      "t": 1291.6,
+      "luminance": 120.23,
+      "baseline": 208.12
+    },
+    {
+      "t": 1298.067,
+      "luminance": 158.92,
+      "baseline": 207.75
+    },
+    {
+      "t": 1304.6,
+      "luminance": 120.86,
+      "baseline": 207.85
+    },
+    {
+      "t": 1309.667,
+      "luminance": 70.03,
+      "baseline": 208.28
+    },
+    {
+      "t": 1316.333,
+      "luminance": 159.97,
+      "baseline": 208.49
+    },
+    {
+      "t": 1329.333,
+      "luminance": 160.23,
+      "baseline": 207.72
+    },
+    {
+      "t": 1335.867,
+      "luminance": 122.34,
+      "baseline": 208.47
+    },
+    {
+      "t": 1338.533,
+      "luminance": 68.7,
+      "baseline": 208.3
+    },
+    {
+      "t": 1345.2,
+      "luminance": 162.35,
+      "baseline": 207.59
+    },
+    {
+      "t": 1351.733,
+      "luminance": 122.45,
+      "baseline": 207.38
+    },
+    {
+      "t": 1358.2,
+      "luminance": 163.74,
+      "baseline": 208.21
+    },
+    {
+      "t": 1362.867,
+      "luminance": 69.79,
+      "baseline": 208.72
+    },
+    {
+      "t": 1369.533,
+      "luminance": 132.05,
+      "baseline": 207.55
+    },
+    {
+      "t": 1376.0,
+      "luminance": 174.52,
+      "baseline": 207.87
+    },
+    {
+      "t": 1386.467,
+      "luminance": 79.22,
+      "baseline": 45.28
+    },
+    {
+      "t": 1392.733,
+      "luminance": 69.81,
+      "baseline": 41.21
+    },
+    {
+      "t": 1399.4,
+      "luminance": 110.49,
+      "baseline": 43.89
+    },
+    {
+      "t": 1405.867,
+      "luminance": 69.29,
+      "baseline": 41.61
+    },
+    {
+      "t": 1412.4,
+      "luminance": 110.24,
+      "baseline": 40.87
+    },
+    {
+      "t": 1415.133,
+      "luminance": 68.95,
+      "baseline": 41.51
+    },
+    {
+      "t": 1421.8,
+      "luminance": 95.9,
+      "baseline": 41.6
+    },
+    {
+      "t": 1428.333,
+      "luminance": 134.78,
+      "baseline": 40.99
+    },
+    {
+      "t": 1434.8,
+      "luminance": 99.82,
+      "baseline": 43.16
+    },
+    {
+      "t": 1441.333,
+      "luminance": 133.85,
+      "baseline": 43.5
+    },
+    {
+      "t": 1448.333,
+      "luminance": 144.11,
+      "baseline": 40.96
+    },
+    {
+      "t": 1454.8,
+      "luminance": 109.32,
+      "baseline": 40.64
+    },
+    {
+      "t": 1461.333,
+      "luminance": 143.82,
+      "baseline": 43.74
+    },
+    {
+      "t": 1465.733,
+      "luminance": 68.99,
+      "baseline": 41.45
+    },
+    {
+      "t": 1472.4,
+      "luminance": 143.63,
+      "baseline": 43.2
+    },
+    {
+      "t": 1478.867,
+      "luminance": 103.86,
+      "baseline": 43.91
+    },
+    {
+      "t": 1485.4,
+      "luminance": 142.16,
+      "baseline": 41.5
+    },
+    {
+      "t": 1491.867,
+      "luminance": 103.51,
+      "baseline": 40.75
+    },
+    {
+      "t": 1493.333,
+      "luminance": 69.36,
+      "baseline": 42.99
+    },
+    {
+      "t": 1504.933,
+      "luminance": 139.58,
+      "baseline": 43.16
+    },
+    {
+      "t": 1506.867,
+      "luminance": 68.76,
+      "baseline": 38.93
+    },
+    {
+      "t": 1513.533,
+      "luminance": 97.64,
+      "baseline": 41.0
+    },
+    {
+      "t": 1520.067,
+      "luminance": 137.37,
+      "baseline": 43.28
+    },
+    {
+      "t": 1526.533,
+      "luminance": 97.13,
+      "baseline": 43.72
+    },
+    {
+      "t": 1531.333,
+      "luminance": 69.74,
+      "baseline": 41.48
+    },
+    {
+      "t": 1538.0,
+      "luminance": 118.1,
+      "baseline": 43.25
+    },
+    {
+      "t": 1544.467,
+      "luminance": 74.43,
+      "baseline": 43.91
+    },
+    {
+      "t": 1551.0,
+      "luminance": 114.99,
+      "baseline": 41.48
+    },
+    {
+      "t": 1557.467,
+      "luminance": 74.18,
+      "baseline": 40.78
+    },
+    {
+      "t": 1560.0,
+      "luminance": 69.79,
+      "baseline": 42.98
+    },
+    {
+      "t": 1566.667,
+      "luminance": 103.29,
+      "baseline": 43.83
+    },
+    {
+      "t": 1579.867,
+      "luminance": 103.0,
+      "baseline": 70.61
+    },
+    {
+      "t": 1586.4,
+      "luminance": 132.73,
+      "baseline": 70.14
+    },
+    {
+      "t": 1592.867,
+      "luminance": 102.1,
+      "baseline": 69.62
+    },
+    {
+      "t": 1603.2,
+      "luminance": 154.57,
+      "baseline": 69.99
+    },
+    {
+      "t": 1609.667,
+      "luminance": 125.01,
+      "baseline": 69.97
+    }
+  ],
+  "black_frames": 0,
+  "white_frames": 0,
+  "method": "160x90 luma at15fps; short pulse is >25/255 from two-sided baseline returning within 5 frames; candidate detector, not medical certification"
+}

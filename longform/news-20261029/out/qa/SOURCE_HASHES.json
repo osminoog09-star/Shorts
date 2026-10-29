@@ -1,0 +1,12 @@
+{
+  "source_sha256": {
+    "film.js": "a11e78c88a9c320045c10d8d3e32378a9840f1074d5bd5585fc985f808fd2ccb",
+    "shot_plan.js": "d0bdd8da17c43235f211133d6d7320f479e1bf76b74359e36244c5cba069659a",
+    "full_data.js": "090e266b27f55de16c6aee93f4f1d54c4a6ba54a8a5c8b98094973737230033e",
+    "tools/render_raw.cjs": "4078e49b8214979e0e8829a62a3ca8b395dd3e11f311122f3d0239ad6d203db0",
+    "tools/render_motion_all.py": "a4c2cad6729def1fdf3f723a74de31197d9aa6c2711d6dff7ca2530f2ab00bf6",
+    "tools/native.cjs": "4912216d133d182620e0faf01a93803e7ae2a05bbe664fddbd2de419bb9ee21b"
+  },
+  "final_mp4_sha256": "943c7ac63695dd5798094c11ad7a0d10029471b232a0259ec4b66d76d1443f35",
+  "build": "Global motion render; parts2/5 incrementally rebuilt after localized layout corrections. Unchanged parts render identically with final source. RGBA→H264CRF16 intermediates→H264CRF18veryfast, originalAAC copied."
+}

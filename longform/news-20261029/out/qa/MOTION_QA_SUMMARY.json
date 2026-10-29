@@ -1,0 +1,10 @@
+{
+  "single_frame_pops_absent": true,
+  "hard_cuts_detected": 128,
+  "mean_motion": 0.449,
+  "peak_motion": 5.7,
+  "flat_opening_flag": false,
+  "barely_moves_flag": false,
+  "reading_hold_flag": true,
+  "limitations": "Motion thresholds come from short launch films; evidence-reading holds in a long narrated news program are deliberate. This is not an audience-retention guarantee."
+}
