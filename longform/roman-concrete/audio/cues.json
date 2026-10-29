@@ -1,0 +1,686 @@
+{
+ "duration": 1313.9,
+ "voice": [
+  {
+   "file": "../../media/tts/roman_concrete/s01.mp3",
+   "at": 0.6
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s02.mp3",
+   "at": 24.6
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s03.mp3",
+   "at": 52.12
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s03b.mp3",
+   "at": 94.64
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s04.mp3",
+   "at": 196.47
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s04b.mp3",
+   "at": 226.08
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s04c.mp3",
+   "at": 267.04
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s05.mp3",
+   "at": 350.94
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s05b.mp3",
+   "at": 411.13
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s06.mp3",
+   "at": 477.77
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s06b.mp3",
+   "at": 505.44
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s06c.mp3",
+   "at": 559.7
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s07.mp3",
+   "at": 653.87
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s07b.mp3",
+   "at": 678.23
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s08.mp3",
+   "at": 738.08
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s09.mp3",
+   "at": 767.98
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s10.mp3",
+   "at": 817.56
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s10c.mp3",
+   "at": 866.9
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s11.mp3",
+   "at": 918.06
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s12.mp3",
+   "at": 982.69
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s12b.mp3",
+   "at": 1047.44
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s13.mp3",
+   "at": 1115.07
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s13b.mp3",
+   "at": 1161.19
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s13c.mp3",
+   "at": 1206.04
+  },
+  {
+   "file": "../../media/tts/roman_concrete/s14.mp3",
+   "at": 1275.56
+  }
+ ],
+ "music": {
+  "gain": 0.2,
+  "beds": [
+   {
+    "file": "../../media/music/Investigations.mp3",
+    "from": 0,
+    "to": 51.52,
+    "gain": 1.189
+   },
+   {
+    "file": "../../media/music/Echoes of Time v2.mp3",
+    "from": 51.52,
+    "to": 195.87,
+    "gain": 0.851
+   },
+   {
+    "file": "../../media/music/Lightless Dawn.mp3",
+    "from": 195.87,
+    "to": 350.34,
+    "gain": 2.985
+   },
+   {
+    "file": "../../media/music/Ossuary 6 - Air.mp3",
+    "from": 350.34,
+    "to": 477.17,
+    "gain": 2.113
+   },
+   {
+    "file": "../../media/music/Clean Soul.mp3",
+    "from": 477.17,
+    "to": 737.48,
+    "gain": 2.57
+   },
+   {
+    "file": "../../media/music/Mesmerize.mp3",
+    "from": 737.48,
+    "to": 866.3,
+    "gain": 3.846
+   },
+   {
+    "file": "../../media/music/Spy Glass.mp3",
+    "from": 866.3,
+    "to": 982.09,
+    "gain": 0.902
+   },
+   {
+    "file": "../../media/music/Investigations.mp3",
+    "from": 982.09,
+    "to": 1114.47,
+    "gain": 1.189
+   },
+   {
+    "file": "../../media/music/Inspired.mp3",
+    "from": 1114.47,
+    "to": 1313.9,
+    "gain": 0.484
+   }
+  ]
+ },
+ "sfx": [
+  {
+   "name": "whoosh",
+   "at": 51.57,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 52.02,
+   "gain": 0.3
+  },
+  {
+   "name": "whoosh",
+   "at": 266.49,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 266.94,
+   "gain": 0.3
+  },
+  {
+   "name": "whoosh",
+   "at": 477.22,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 477.67,
+   "gain": 0.3
+  },
+  {
+   "name": "whoosh",
+   "at": 767.43,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 767.88,
+   "gain": 0.3
+  },
+  {
+   "name": "whoosh",
+   "at": 866.35,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 866.8,
+   "gain": 0.3
+  },
+  {
+   "name": "whoosh",
+   "at": 982.14,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 982.59,
+   "gain": 0.3
+  },
+  {
+   "name": "whoosh",
+   "at": 1114.52,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 1114.97,
+   "gain": 0.3
+  },
+  {
+   "name": "whoosh",
+   "at": 1205.49,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 1205.94,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 4.34,
+   "gain": 0.5
+  },
+  {
+   "name": "bam",
+   "at": 7.453,
+   "gain": 0.25
+  },
+  {
+   "name": "riser",
+   "at": 17.042,
+   "gain": 0.3
+  },
+  {
+   "name": "chord",
+   "at": 21.479,
+   "gain": 0.45
+  },
+  {
+   "name": "pop",
+   "at": 32.695,
+   "gain": 0.45
+  },
+  {
+   "name": "pop",
+   "at": 35.101,
+   "gain": 0.45
+  },
+  {
+   "name": "pop",
+   "at": 36.304,
+   "gain": 0.45
+  },
+  {
+   "name": "pop",
+   "at": 40.371,
+   "gain": 0.45
+  },
+  {
+   "name": "pop",
+   "at": 43.293,
+   "gain": 0.45
+  },
+  {
+   "name": "pop",
+   "at": 45.03,
+   "gain": 0.45
+  },
+  {
+   "name": "bam",
+   "at": 105.509,
+   "gain": 0.3
+  },
+  {
+   "name": "crunch",
+   "at": 110.32,
+   "gain": 0.4
+  },
+  {
+   "name": "pop",
+   "at": 114.933,
+   "gain": 0.4
+  },
+  {
+   "name": "scan",
+   "at": 134.768,
+   "gain": 0.4
+  },
+  {
+   "name": "crunch",
+   "at": 156.982,
+   "gain": 0.5
+  },
+  {
+   "name": "ding",
+   "at": 166.354,
+   "gain": 0.45
+  },
+  {
+   "name": "chord",
+   "at": 170.0,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 181.399,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 181.599,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 181.799,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 181.999,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 182.199,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 182.399,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 182.599,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 182.799,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 182.999,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 183.199,
+   "gain": 0.3
+  },
+  {
+   "name": "ding",
+   "at": 188.694,
+   "gain": 0.4
+  },
+  {
+   "name": "splash",
+   "at": 205.39,
+   "gain": 0.4
+  },
+  {
+   "name": "splash",
+   "at": 250.902,
+   "gain": 0.35
+  },
+  {
+   "name": "thunder",
+   "at": 291.561,
+   "gain": 0.8
+  },
+  {
+   "name": "crunch",
+   "at": 292.27,
+   "gain": 0.5
+  },
+  {
+   "name": "whoosh",
+   "at": 298.905,
+   "gain": 0.4
+  },
+  {
+   "name": "bubbles",
+   "at": 307.708,
+   "gain": 0.5
+  },
+  {
+   "name": "ding",
+   "at": 310.876,
+   "gain": 0.45
+  },
+  {
+   "name": "pop",
+   "at": 317.018,
+   "gain": 0.3
+  },
+  {
+   "name": "riser",
+   "at": 321.542,
+   "gain": 0.35
+  },
+  {
+   "name": "chord",
+   "at": 325.239,
+   "gain": 0.5
+  },
+  {
+   "name": "whoosh",
+   "at": 336.874,
+   "gain": 0.4
+  },
+  {
+   "name": "crunch",
+   "at": 366.928,
+   "gain": 0.5
+  },
+  {
+   "name": "crunch",
+   "at": 421.625,
+   "gain": 0.5
+  },
+  {
+   "name": "scan",
+   "at": 429.413,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 464.425,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 464.575,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 464.725,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 464.875,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 465.025,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 465.175,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 465.325,
+   "gain": 0.3
+  },
+  {
+   "name": "tick",
+   "at": 465.475,
+   "gain": 0.3
+  },
+  {
+   "name": "thunder",
+   "at": 507.953,
+   "gain": 0.25
+  },
+  {
+   "name": "scan",
+   "at": 519.223,
+   "gain": 0.35
+  },
+  {
+   "name": "ding",
+   "at": 530.647,
+   "gain": 0.45
+  },
+  {
+   "name": "splash",
+   "at": 554.695,
+   "gain": 0.35
+  },
+  {
+   "name": "bam",
+   "at": 568.802,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 598.667,
+   "gain": 0.4
+  },
+  {
+   "name": "pop",
+   "at": 606.103,
+   "gain": 0.4
+  },
+  {
+   "name": "crunch",
+   "at": 619.041,
+   "gain": 0.4
+  },
+  {
+   "name": "whoosh",
+   "at": 621.013,
+   "gain": 0.4
+  },
+  {
+   "name": "pop",
+   "at": 627.262,
+   "gain": 0.4
+  },
+  {
+   "name": "chord",
+   "at": 634.267,
+   "gain": 0.35
+  },
+  {
+   "name": "riser",
+   "at": 687.156,
+   "gain": 0.3
+  },
+  {
+   "name": "splash",
+   "at": 697.923,
+   "gain": 0.5
+  },
+  {
+   "name": "bubbles",
+   "at": 703.809,
+   "gain": 0.6
+  },
+  {
+   "name": "ding",
+   "at": 731.489,
+   "gain": 0.4
+  },
+  {
+   "name": "scan",
+   "at": 889.623,
+   "gain": 0.5
+  },
+  {
+   "name": "bubbles",
+   "at": 897.326,
+   "gain": 0.6
+  },
+  {
+   "name": "pop",
+   "at": 901.208,
+   "gain": 0.4
+  },
+  {
+   "name": "pop",
+   "at": 911.212,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 911.562,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 911.912,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 912.262,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 912.612,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 912.962,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 913.312,
+   "gain": 0.3
+  },
+  {
+   "name": "pop",
+   "at": 1067.536,
+   "gain": 0.4
+  },
+  {
+   "name": "scan",
+   "at": 1077.13,
+   "gain": 0.4
+  },
+  {
+   "name": "ding",
+   "at": 1092.021,
+   "gain": 0.4
+  },
+  {
+   "name": "chord",
+   "at": 1110.014,
+   "gain": 0.35
+  },
+  {
+   "name": "bubbles",
+   "at": 1182.31,
+   "gain": 0.5
+  },
+  {
+   "name": "ding",
+   "at": 1184.269,
+   "gain": 0.4
+  },
+  {
+   "name": "bam",
+   "at": 1212.46,
+   "gain": 0.35
+  },
+  {
+   "name": "bam",
+   "at": 1228.782,
+   "gain": 0.35
+  },
+  {
+   "name": "bam",
+   "at": 1248.253,
+   "gain": 0.35
+  },
+  {
+   "name": "crunch",
+   "at": 1254.858,
+   "gain": 0.4
+  },
+  {
+   "name": "chord",
+   "at": 1261.854,
+   "gain": 0.4
+  },
+  {
+   "name": "chord",
+   "at": 1302.434,
+   "gain": 0.5
+  },
+  {
+   "name": "ding",
+   "at": 1306.341,
+   "gain": 0.5
+  }
+ ]
+}
