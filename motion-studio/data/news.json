@@ -1,17 +1,75 @@
 {
-  "status": "partial",
-  "updated_at": "2026-10-28T22:35:13.825078Z",
-  "last_attempt_at": "2026-10-28T22:35:13.825078Z",
-  "feeds_ok": 6,
-  "feeds_failed": 1,
-  "errors": [
-    {
-      "source": "NASA Technology",
-      "error_type": "HTTPError"
-    }
-  ],
+  "status": "success",
+  "updated_at": "2026-10-29T12:59:55.086455Z",
+  "last_attempt_at": "2026-10-29T12:59:55.086455Z",
+  "feeds_ok": 7,
+  "feeds_failed": 0,
+  "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "1509a3fb520a602cf8",
+      "title": "SpaceX no longer needs NASA, and that's a problem for America's space agency",
+      "url": "https://arstechnica.com/space/2026/10/spacex-no-longer-needs-nasa-and-thats-a-problem-for-americas-space-agency/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-29T11:00:08Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d62a8f09dced3dd919",
+      "title": "AI has come for Arizona’s water",
+      "url": "https://www.theverge.com/cs/features/1016650/arizona-water-data-center-tsmc",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-29T10:00:04Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "2d88ce8f7f5eb856fd",
+      "title": "Caltech Names Artemis II Commander Reid Wiseman as NASA JPL Deputy",
+      "url": "https://www.nasa.gov/centers-and-facilities/jpl/caltech-names-artemis-ii-commander-reid-wiseman-as-nasa-jpl-deputy/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-10-29T02:49:59Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "3b64f2126ca310fc1a",
+      "title": "Adam Mosseri says negativity around AI is ‘going to get worse’",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1021644/adam-mosseri-instagram-ai-negativity",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-28T23:05:39Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "9c5b37f8dc98b8bf71",
+      "title": "ULA's Vulcan rocket is set to return to flight on Friday the 13th",
+      "url": "https://arstechnica.com/space/2026/10/ulas-vulcan-rocket-is-set-to-return-to-flight-on-friday-the-13th/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T22:51:15Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "0c9c5da2c2166495f0",
+      "title": "As US ties fray, Europe plans first undersea cable link to Greenland",
+      "url": "https://arstechnica.com/gadgets/2026/10/as-us-ties-fray-europe-plans-first-undersea-cable-link-to-greenland/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T22:35:50Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "86bc1d0d410b0a423b",
+      "title": "Peptide peddlers cheer as RFK Jr. unilaterally grants access, overruling FDA",
+      "url": "https://arstechnica.com/health/2026/10/peptide-peddlers-cheer-as-rfk-jr-unilaterally-grants-access-overruling-fda/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-28T22:17:15Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "0c8f9ce2d60c8e0dbc",
       "title": "Microsoft just shared Azure’s actual revenue in dollars: $33.2 billion",
@@ -580,6 +638,15 @@
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
+      "id": "37742d3845ce7f7bb0",
+      "title": "Your Robot’s Safety Functions Already Work. What If the Input Lies?",
+      "url": "https://spectrum.ieee.org/ai-robot-safety-cybersecurity-vicone",
+      "category": "robotics",
+      "source": "IEEE Spectrum Robotics",
+      "published_at": "2026-10-27T16:14:39Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
       "id": "991356d9e9385200ab",
       "title": "Firefox’s Smart Window adds AI form filling and webpage monitoring",
       "url": "https://www.theverge.com/ai-artificial-intelligence/1019551/firefox-smart-window-ai-fill-forms",
@@ -658,78 +725,6 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-10-27T13:32:57Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "394a6978fc806c2ecf",
-      "title": "Sculpture re-creates odd optical effects of famed Lycurgus Cup",
-      "url": "https://arstechnica.com/science/2026/10/scientists-recreate-the-1600-year-old-recipe-of-lycurgus-cup/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-27T13:32:35Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5a64346a893a1a98da",
-      "title": "US officials want Section 702 renewed before damaging court ruling goes public",
-      "url": "https://arstechnica.com/tech-policy/2026/10/us-officials-want-section-702-renewed-before-damaging-court-ruling-goes-public/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-27T13:22:16Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "840f2acb14a494b9a8",
-      "title": "Opera introduces a new web standard to let users deploy AI locally in their browser",
-      "url": "https://techcrunch.com/2026/10/27/opera-introduces-a-new-web-standard-to-let-users-deploy-ai-locally-in-their-browser/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-27T13:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0ba745f0c4950a3a19",
-      "title": "General Compute raises $100 million Series A, countering the neocloud disaster narrative",
-      "url": "https://techcrunch.com/2026/10/27/general-compute-raises-100-million-series-a-countering-the-neocloud-disaster-narrative/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-27T13:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "72e188139d84668672",
-      "title": "Nvidia backs Indian startup helping companies run AI models with fewer GPUs",
-      "url": "https://techcrunch.com/2026/10/27/nvidia-backs-indian-startup-helping-companies-run-ai-models-with-fewer-gpus/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-27T11:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "10515f024c670e2822",
-      "title": "Data center backlash is uniting America",
-      "url": "https://www.theverge.com/policy/1019152/data-centers-midterm-elections",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-10-27T10:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "53cb4bae6e918f63c0",
-      "title": "How a Johnson Mentor Shapes the Next Generation of NASA Talent",
-      "url": "https://www.nasa.gov/general/how-a-johnson-mentor-shapes-the-next-generation-of-nasa-talent/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-10-27T07:07:51Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "939d943fc8f0d3999b",
-      "title": "How OpenAI turned its coding tools into dots, an always-on personal assistant",
-      "url": "https://techcrunch.com/2026/10/26/how-openai-turned-its-coding-tools-into-dots-an-always-on-personal-assistant/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-27T02:00:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
