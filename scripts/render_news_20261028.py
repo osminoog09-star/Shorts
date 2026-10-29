@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """M1lash / 28 Oct 2026: verified AI news. Original animated pen drawings, local procedural score.
 Render only; publication is manual. The accepted short outro is mandatory."""
-import asyncio, json, math, os, random, shutil, subprocess, wave
+import asyncio, json, math, os, random, shutil, subprocess, wave, hashlib
 from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -45,38 +45,20 @@ def duration(path):
 
 async def synth():
  import edge_tts
- all_data=[]; offsets=[]; at=0.0; edge_failed=False
+ all_data=[]; offsets=[]; at=0.0
  for i,s in enumerate(SCENES):
   dest=WORK/("speech_%02d.mp3"%i)
-  err=RuntimeError('Edge voice blocked') if edge_failed else None
-  for attempt in range(2) if not edge_failed else range(0):
+  # The author's voice is a release invariant; never substitute another engine.
+  for attempt in range(2):
    try:
     await asyncio.wait_for(edge_tts.Communicate(s["text"],"ru-RU-DmitryNeural",rate="+11%").save(str(dest)),timeout=42)
-    if dest.stat().st_size < 700:raise RuntimeError("Tiny TTS file")
-    err=None;break
+    if not dest.exists() or dest.stat().st_size < 700: raise RuntimeError("Tiny TTS file")
+    break
    except Exception as ex:
-    err=ex
-    if dest.exists():dest.unlink()
-    await asyncio.sleep((attempt+1)*3)
-  wav=WORK/("speech_%02d.wav"%i)
-  if err is not None:
-   edge_failed=True
-   # Stable offline Russian Dmitri voice; no mix of multiple narrators.
-   from urllib.request import urlretrieve
-   model=WORK/"ru_RU-dmitri-medium.onnx"
-   config=WORK/"ru_RU-dmitri-medium.onnx.json"
-   base="https://huggingface.co/rhasspy/piper-voices/resolve/main/ru/ru_RU/dmitri/medium/"
-   if not model.exists():urlretrieve(base+model.name,str(model))
-   if not config.exists():urlretrieve(base+config.name,str(config))
-   if model.stat().st_size<50000000:raise RuntimeError("Piper model incomplete")
-   rawwav=WORK/("piper_%02d.wav"%i)
-   p=subprocess.run(["python","-m","piper","--model",str(model),"--output_file",str(rawwav)],
-                    input=s["text"],capture_output=True,text=True)
-   if p.returncode or not rawwav.exists():raise RuntimeError("Piper TTS failed: "+p.stderr[-800:])
-   run("ffmpeg","-y","-v","error","-i",rawwav,"-ar",SR,"-ac",1,"-c:a","pcm_s16le",wav)
-   print("Piper offline Dmitri, segment",i,flush=True)
-  else:
-   run("ffmpeg","-y","-v","error","-i",dest,"-ar",SR,"-ac",1,"-c:a","pcm_s16le",wav)
+    dest.unlink(missing_ok=True)
+    if attempt == 1: raise RuntimeError(f"VOICE NO-GO: Dmitry unavailable at segment {i}; no fallback") from ex
+    await asyncio.sleep(3)
+  run("ffmpeg","-y","-v","error","-i",dest,"-ar",SR,"-ac",1,"-c:a","pcm_s16le",wav)
   with wave.open(str(wav),"rb") as f:
    arr=np.frombuffer(f.readframes(f.getnframes()),dtype=np.int16).astype(np.float32)/32768
   peak=np.max(np.abs(arr))
@@ -241,9 +223,23 @@ def render_main(offsets,total,audio_file):
   if proc.poll() is None:proc.kill()
  return outfile
 
+def verify_outro():
+ # Previous visual approval does not confirm the narrator's new voice.
+ attestation=ROOT/"publishing"/"approved_outros"/"dima-short.json"
+ if not attestation.is_file():
+  raise RuntimeError("VOICE NO-GO: verified Dima outro attestation missing")
+ data=json.loads(attestation.read_text(encoding="utf-8"))
+ if not (data.get("approved") is True and data.get("human_audio_review") is True
+         and data.get("speaker")=="dima" and data.get("voice_id")=="ru-RU-DmitryNeural"
+         and data.get("engine")=="edge-tts" and isinstance(data.get("sha256"),str)):
+  raise RuntimeError("VOICE NO-GO: unauthorized outro provenance")
+ if hashlib.sha256(OUTRO.read_bytes()).hexdigest()!=data["sha256"]:
+  raise RuntimeError("VOICE NO-GO: outro hash mismatch")
+
 def compose(main):
  if not OUTRO.is_file() or OUTRO.stat().st_size<100000:
   raise RuntimeError("Approved host outro missing; abort instead of substituting")
+ verify_outro()
  OUT.parent.mkdir(parents=True,exist_ok=True)
  run("ffmpeg","-y","-v","error","-i",main,"-i",OUTRO,
      "-filter_complex",
@@ -272,7 +268,7 @@ def qa(path):
       "-frames:v","1",WORK/f"check_{j}.png")
  (WORK/"audit.json").write_text(json.dumps({"duration":meta["format"]["duration"],
      "size":meta["format"]["size"],"dimensions":"1080x1920","codec":"H264/AAC",
-     "full_decode":"pass","sources":SOURCES,"voice":"DmitryNeural if available, otherwise Piper ru_RU-dmitri-medium; approved studio outro"},
+     "full_decode":"pass","sources":SOURCES,"voice":"ru-RU-DmitryNeural only; attested Dima outro"},
     ensure_ascii=False,indent=2))
  print("QA PASS",json.dumps(meta),flush=True)
 

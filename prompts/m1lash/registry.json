@@ -1,0 +1,211 @@
+{
+  "schema": 1,
+  "purpose": "EXPERIMENTAL X style recipes only; official S1-S9 are unchanged",
+  "owner_rule": "all new longform >=1260 seconds",
+  "styles": [
+    {
+      "id": "X01",
+      "name": "Кинодокументалистика: макро",
+      "slug": "doc-cinematic",
+      "format": "long",
+      "depth": "D3",
+      "visual": "Крупная фактурная 3D-реконструкция реального механизма, естественные материалы, физически правдоподобный свет, стыки, винты, крошечные детали, мягкая глубина резкости, выразительный силуэт.",
+      "motion": "Плавные смены крупного макро/среднего/общего, раскрытие механизма через причинное действие и движение деталей.",
+      "negative": "Схематичные мультяшные шестерни, псевдоисторические факты, бесконечная панорама.",
+      "quality": [
+        "original characters and assets",
+        "readable on a phone",
+        "visual must demonstrate spoken claim",
+        "no unlicensed material",
+        "do not reproduce other artist work"
+      ]
+    },
+    {
+      "id": "X02",
+      "name": "Роботы: техно-разбор",
+      "slug": "technical-cutaway",
+      "format": "long",
+      "depth": "D3",
+      "visual": "Промышленный робот с читаемым скелетом и приводами, снятыми частями оболочки, промаркированными реальными узлами, реалистичными движениями суставов и механическими ограничителями.",
+      "motion": "Переход от реального устройства к 3D-разрезу и демонстрации движения шаг за шагом.",
+      "negative": "Фальшивая сложная механика, нереалистичные контакты, произвольные интерфейсы.",
+      "quality": [
+        "original characters and assets",
+        "readable on a phone",
+        "visual must demonstrate spoken claim",
+        "no unlicensed material",
+        "do not reproduce other artist work"
+      ]
+    },
+    {
+      "id": "X03",
+      "name": "Расследование ИИ",
+      "slug": "journalist-board",
+      "format": "short",
+      "depth": "D25",
+      "visual": "Современная редакционная композиция с оригинальными карточками первоисточников, таймлайном, документами и крупными проверяемыми цифрами.",
+      "motion": "Ритмично раскрывать доказательства, показывать, что заявлено, что проверено, а что ещё неизвестно.",
+      "negative": "Нечитаемые документы, фальшивые скриншоты СМИ, имитация официальных брендов.",
+      "quality": [
+        "original characters and assets",
+        "readable on a phone",
+        "visual must demonstrate spoken claim",
+        "no unlicensed material",
+        "do not reproduce other artist work"
+      ]
+    },
+    {
+      "id": "X04",
+      "name": "Инженерный чертёж",
+      "slug": "blueprint-motion",
+      "format": "long",
+      "depth": "D25",
+      "visual": "Тёмно-синий инженерный чертёж, белые и оранжевые точные контуры, размерные линии и выноски только там, где они реально объясняют устройство.",
+      "motion": "Разложить сложный механизм на составляющие, последовательно собрать его и показать результат.",
+      "negative": "Мнимые схемы, случайные мерцающие цифры, перегруженные подписи.",
+      "quality": [
+        "original characters and assets",
+        "readable on a phone",
+        "visual must demonstrate spoken claim",
+        "no unlicensed material",
+        "do not reproduce other artist work"
+      ]
+    },
+    {
+      "id": "X05",
+      "name": "Историческая реконструкция",
+      "slug": "historical-reconstruction",
+      "format": "long",
+      "depth": "D3",
+      "visual": "Землистые натуральные материалы, стилизованная музейная реконструкция эпохи с различимыми предметами, следами времени, мягким кинематографичным светом.",
+      "motion": "Смена географии, эпох и деталей через осмысленные исторические действия.",
+      "negative": "Ложная историческая точность, копирование кадров фильмов, неизвестная атрибуция.",
+      "quality": [
+        "original characters and assets",
+        "readable on a phone",
+        "visual must demonstrate spoken claim",
+        "no unlicensed material",
+        "do not reproduce other artist work"
+      ]
+    },
+    {
+      "id": "X06",
+      "name": "Бумажное расследование",
+      "slug": "paper-investigation",
+      "format": "short",
+      "depth": "D25",
+      "visual": "Бумажные слои, газетная графика собственной разработки, карандашные стрелки, сканирование источников, свет от настольной лампы, видимая фактура.",
+      "motion": "Движения бумажных документов и акцентов синхронно с диктором, без долгих заставок.",
+      "negative": "Фальшивые цитаты, мелкая типографика, одинаковые страницы.",
+      "quality": [
+        "original characters and assets",
+        "readable on a phone",
+        "visual must demonstrate spoken claim",
+        "no unlicensed material",
+        "do not reproduce other artist work"
+      ]
+    },
+    {
+      "id": "X07",
+      "name": "Космос: научная визуализация",
+      "slug": "scientific-space",
+      "format": "long",
+      "depth": "D3",
+      "visual": "Сдержанная астрономическая визуализация, орбиты и масштабы с условными пояснениями, правдоподобные звёздные поля и освещение, контрастные приборные подписи.",
+      "motion": "Чередование общего масштаба, движения камеры, схем орбит и научных источников.",
+      "negative": "Псевдокосмос ради красивой заставки, нереальные размеры без маркировки.",
+      "quality": [
+        "original characters and assets",
+        "readable on a phone",
+        "visual must demonstrate spoken claim",
+        "no unlicensed material",
+        "do not reproduce other artist work"
+      ]
+    },
+    {
+      "id": "X08",
+      "name": "Мир ИИ-агентов",
+      "slug": "agent-flow",
+      "format": "short",
+      "depth": "D25",
+      "visual": "Абстрактные визуальные агенты в виде понятных узлов и процессов, проверяемые названия операций, чистая интерфейсная графика с ясной последовательностью действий.",
+      "motion": "Каждый агент получает задачу, выполняет реальное действие и выдаёт объяснимый результат/ошибку.",
+      "negative": "Фейковые действия AI без доказательств, декоративные бессмысленные потоки.",
+      "quality": [
+        "original characters and assets",
+        "readable on a phone",
+        "visual must demonstrate spoken claim",
+        "no unlicensed material",
+        "do not reproduce other artist work"
+      ]
+    },
+    {
+      "id": "X09",
+      "name": "Скетч: робот и человек",
+      "slug": "robot-sitcom",
+      "format": "short",
+      "depth": "D3",
+      "visual": "Оригинальные герои с повторяемыми узнаваемыми моделями, камерная комедийная постановка, выраженная реакция, естественные руки, мебель и реквизит.",
+      "motion": "Подготовка, поступок, физический контакт, асимметричная реакция, комедийная пауза и развязка.",
+      "negative": "Клон персонажей, круги вместо кистей, синусоидальное подпрыгивание.",
+      "quality": [
+        "original characters and assets",
+        "readable on a phone",
+        "visual must demonstrate spoken claim",
+        "no unlicensed material",
+        "do not reproduce other artist work"
+      ]
+    },
+    {
+      "id": "X10",
+      "name": "Миниатюрная 3D-лаборатория",
+      "slug": "tabletop-lab",
+      "format": "long",
+      "depth": "D3",
+      "visual": "Миниатюрная физическая лаборатория, матовая пластмасса, металл и стекло, аккуратный свет и предметы с достоверной геометрией, сечение объекта.",
+      "motion": "Смена стенда, прибора, приближений, механически понятное взаимодействие и демонстрация эксперимента.",
+      "negative": "Игрушечная бессмысленная механика, резкие необъяснимые повороты камеры.",
+      "quality": [
+        "original characters and assets",
+        "readable on a phone",
+        "visual must demonstrate spoken claim",
+        "no unlicensed material",
+        "do not reproduce other artist work"
+      ]
+    },
+    {
+      "id": "X11",
+      "name": "Цифровая безопасность",
+      "slug": "security-incident",
+      "format": "short",
+      "depth": "D25",
+      "visual": "Авторские простые схемы сетей и изоляции с ясным разделением тестовой среды и внешней, красные акценты только для подтверждённого инцидента.",
+      "motion": "Показать границу безопасности, ошибку конфигурации, следствие и отсутствие доказательств о намерениях ИИ.",
+      "negative": "Пугающие выдуманные кадры взлома, мифический самосознательный ИИ.",
+      "quality": [
+        "original characters and assets",
+        "readable on a phone",
+        "visual must demonstrate spoken claim",
+        "no unlicensed material",
+        "do not reproduce other artist work"
+      ]
+    },
+    {
+      "id": "X12",
+      "name": "Научный анимированный журнал",
+      "slug": "science-editorial",
+      "format": "long",
+      "depth": "D25",
+      "visual": "Динамичная научная инфографика с крупными цифрами, собственными диаграммами, 3D-объектами и чередованием насыщенных иллюстраций.",
+      "motion": "После каждого тезиса проверяемый график или эксперимент, смена масштаба без шаблонной монотонности.",
+      "negative": "Стоковые слайдшоу, недостоверные графики, декоративный мусор.",
+      "quality": [
+        "original characters and assets",
+        "readable on a phone",
+        "visual must demonstrate spoken claim",
+        "no unlicensed material",
+        "do not reproduce other artist work"
+      ]
+    }
+  ]
+}

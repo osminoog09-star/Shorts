@@ -18,7 +18,8 @@ def probe(path):
     if rc:raise RuntimeError("ffprobe failed: "+err[-500:])
     return json.loads(out)
 
-def analyze(path, seconds=35, target_silence=3.0):
+def analyze(path, seconds=35, target_silence=3.0, profile='auto'):
+    if profile not in ('auto','short','long'): raise ValueError('Invalid profile')
     path=Path(path); metadata=probe(path); duration=float(metadata["format"]["duration"])
     streams=metadata["streams"]; videos=[s for s in streams if s["codec_type"]=="video"]
     audios=[s for s in streams if s["codec_type"]=="audio"]
@@ -27,7 +28,16 @@ def analyze(path, seconds=35, target_silence=3.0):
     if not videos: findings.append({"severity":"P0","issue":"no video stream"})
     if not audios: findings.append({"severity":"P0","issue":"no audio stream"})
     checks["resolution"]=f'{videos[0].get("width")}x{videos[0].get("height")}' if videos else None
-    if videos and videos[0].get("width",0)<1920:findings.append({"severity":"P1","issue":"below full HD (quality target)"})
+    if videos:
+        w,h=videos[0].get("width",0),videos[0].get("height",0)
+        kind=profile if profile!='auto' else ('short' if h>w else 'long')
+        checks["profile"]=kind
+        min_w,min_h=(1080,1920) if kind=='short' else (1920,1080)
+        if (h<=w if kind=='short' else w<=h):
+            findings.append({"severity":"P0","issue":f"wrong orientation for {kind}"})
+        if w<min_w or h<min_h:
+            findings.append({"severity":"P1","issue":f"below {kind} target: {w}x{h} vs {min_w}x{min_h}"})
+
     checks["streams"]= [{"type":s["codec_type"],"duration":s.get("duration"),"codec":s.get("codec_name")} for s in streams]
     for s in streams:
         if "duration" in s:
@@ -56,7 +66,8 @@ def analyze(path, seconds=35, target_silence=3.0):
       "-vf","blackdetect=d=0.5:pix_th=0.08,freezedetect=n=-60dB:d=2.0","-an","-f","null","-"],timeout=160)
     checks["tail_black_events"]=re.findall(r"black_start:[^\n]+",err)[-12:]
     checks["tail_freeze_events"]=re.findall(r"freeze_(?:start|end):[^\n]+",err)[-12:]
-    sha=hashlib.file_digest(path.open("rb"),"sha256").hexdigest()
+    with path.open("rb") as src:
+        sha=hashlib.file_digest(src,"sha256").hexdigest()
     checks["sha256"]=sha
     checks["duration_seconds"]=round(duration,3)
     checks["qa_scope"]="metadata, full technical decode and automated tail diagnostics; HUMAN artistic review still required"
@@ -64,10 +75,10 @@ def analyze(path, seconds=35, target_silence=3.0):
             "technical_pass":not any(x["severity"]=="P0" for x in findings)}
 
 if __name__=="__main__":
-    p=argparse.ArgumentParser();p.add_argument("input");p.add_argument("--json-out");p.add_argument("--strict",action="store_true")
+    p=argparse.ArgumentParser();p.add_argument("input");p.add_argument("--json-out");p.add_argument("--strict",action="store_true");p.add_argument("--profile",choices=["auto","short","long"],default="auto")
     a=p.parse_args()
     if not shutil.which("ffprobe") or not shutil.which("ffmpeg"):raise SystemExit("FFmpeg and ffprobe required")
-    result=analyze(a.input)
+    result=analyze(a.input,profile=a.profile)
     out=json.dumps(result,ensure_ascii=False,indent=2)
     if a.json_out:Path(a.json_out).write_text(out,encoding="utf-8")
     print(out)
