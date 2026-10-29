@@ -1,0 +1,57 @@
+name: M1lash X59 evening radar internal preview NO GO
+on:
+  push:
+    branches:
+      - radar/2026-10-29-evening-x59
+    paths:
+      - scripts/render_x59_radar_preview.py
+      - .github/workflows/x59-radar-preview.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install FFmpeg, fonts and original preview dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip install -q "numpy>=1.26,<3" "Pillow>=10,<13" "edge-tts>=7,<8"
+      - name: Render original pixel-art internal preview, genuine Dmitry only
+        run: python scripts/render_x59_radar_preview.py
+      - name: Verify no-go preview file, voice and full decode
+        run: |
+          test -s work/x59_20261029/x59_s5d25_INTERNAL_PREVIEW_NO_GO.mp4
+          test -s work/x59_20261029/voice_manifest.json
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('work/x59_20261029')
+          m=json.loads((p/'voice_manifest.json').read_text())
+          assert len(m['segments'])==8
+          assert all(s['voice_id']=='ru-RU-DmitryNeural' and s['speaker']=='dima' for s in m['segments'])
+          q=json.loads((p/'qa.json').read_text())
+          assert q['status']=='NO_GO_PREVIEW'
+          assert q['dimensions']=='1080x1920'
+          print('Dima source/metadata and technical preview checks PASS; host lip sync NOT PASSED')
+          PY
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height -of json work/x59_20261029/x59_s5d25_INTERNAL_PREVIEW_NO_GO.mp4
+          ffmpeg -v error -i work/x59_20261029/x59_s5d25_INTERNAL_PREVIEW_NO_GO.mp4 -f null -
+      - name: Archive internal preview and QA (no YouTube publication)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m1lash-x59-s5d25-internal-preview-no-go
+          path: |
+            work/x59_20261029/*.mp4
+            work/x59_20261029/qa.json
+            work/x59_20261029/qa_*.jpg
+            work/x59_20261029/voice_manifest.json
+            work/x59_20261029/dima_*.mp3
+          if-no-files-found: warn
+          retention-days: 30
