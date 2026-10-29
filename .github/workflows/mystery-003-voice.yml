@@ -7,6 +7,10 @@ permissions:
   contents: read
 jobs:
   voice:
+    strategy:
+      fail-fast: false
+      matrix:
+        attempt: [original, clean_a, clean_b]
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -16,12 +20,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - run: pip install edge-tts==7.3.1
-      - run: python longform/movie-mystery-003-20261029/voice.py
+      - env:
+          CLEAN_PUNCTUATION: ${{ matrix.attempt != 'original' && '1' || '0' }}
+        run: python longform/movie-mystery-003-20261029/voice.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: mystery-003-exact-Dima
+          name: mystery-003-exact-Dima-${{ matrix.attempt }}
           path: longform/movie-mystery-003-20261029/build
           if-no-files-found: error
           retention-days: 30
