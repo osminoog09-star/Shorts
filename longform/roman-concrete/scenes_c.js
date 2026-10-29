@@ -84,7 +84,7 @@ export function s03b(t) {
   const id = 's03b';
   const tIn = fc(id, 'там', 0, 0.06), tAg = fc(id, 'агриппа', 1, 0.11), tTr = fc(id, 'судя', 0, 0.18), tAd = fc(id, 'старую', 0, 0.25),
     tDome = fc(id, 'теперь', 0, 0.29), tVoid = fc(id, 'пустоты', 0, 0.37), tSteps = fc(id, 'снаружи', 0, 0.44), tCr = fc(id, 'вертикальные', 0, 0.52),
-    tFell = fc(id, 'купол', 2, 0.62), tGold = fc(id, 'снаружи', 1, 0.66), tUrb = fc(id, 'семнадцатом', 0, 0.78), tQ = fc(id, 'по', 0, 0.91), end = 200;
+    tFell = fc(id, 'треснул', 0, 0.62), tGold = fc(id, 'снаружи', 1, 0.66), tUrb = fc(id, 'семнадцатом', 0, 0.78), tQ = fc(id, 'ходила', 0, 0.91), end = 200;
   clear2d();
   shot(t, [
     [0, (lt, k) => { const S = FAC; orbit(S.cam, v3(0, 5, 0), lerp(30, 24, easeIO2(k)), lerp(0.35, 0.12, k), lerp(0.05, 0.12, k)); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 6, 0), 0.0005) });
@@ -181,7 +181,7 @@ const DOVE = (() => {
 export function s04c(t) {
   const id = 's04c', S = EDDY;
   const tRock = fc(id, 'плимута', 0, 0.12), tW = fc(id, 'первый', 0, 0.2), tStorm = fc(id, 'великая', 0, 0.25), tBurn = fc(id, 'второй', 0, 0.31), tSm = fc(id, 'тогда', 0, 0.36),
-    tLime = fc(id, 'нашёл', 0, 0.45), tDove = fc(id, 'башню', 0, 0.52), tLit = fc(id, 'шестнадцатого', 0, 0.6), tMove = fc(id, 'убрали', 0, 0.71), tFather = fc(id, 'смитона', 1, 0.85), end = 200;
+    tLime = fc(id, 'нашёл', 0, 0.45), tDove = fc(id, 'башню', 0, 0.52), tLit = fc(id, 'шестнадцатого', 0, 0.6), tMove = fc(id, 'убрали', 0, 0.71), tFather = fc(id, 'отцом', 0, 0.85), end = 200;
   const amp = t > tStorm && t < tStorm + 6 ? 2.0 : 1.1;
   S.sea.userData.update(t, amp); const hh = S.sea.userData.h;
   S.ship.position.set(9 - t * 0.05, hh(9, 6, t, amp) + 0.1, 6);
@@ -262,7 +262,7 @@ function cycle2d(items, cx, cy, r, t, t0, { size = 38 } = {}) {
 }
 export function s05b(t) {
   const id = 's05b';
-  const tR = fc(id, 'прут', 0, 0.1), tCyc = fc(id, 'появляются', 0, 0.18), tG = fc(id, 'четырнадцатого', 0, 0.27), tInv = fc(id, 'итальянские', 0, 0.4), tSym = fc(id, 'но', 0, 0.5),
+  const tR = fc(id, 'прут', 0, 0.1), tCyc = fc(id, 'появляются', 0, 0.18), tG = fc(id, 'четырнадцатого', 0, 0.27), tInv = fc(id, 'итальянские', 0, 0.4), tSym = fc(id, 'символом', 0, 0.5),
     tMuch = fc(id, 'бетона', 1, 0.66), tUN = fc(id, 'данным', 0, 0.7), tSec = fc(id, 'второе', 0, 0.8), tPer = fc(id, 'почти', 0, 0.9), end = 200;
   clear2d();
   shot(t, [
@@ -282,7 +282,7 @@ export function s05b(t) {
       title('сила — от стали,', 120, 560, t, tSym + 1.0, { size: 84, align: 'left' }); title('а сталь боится воды', 120, 665, t, tSym + 1.6, { size: 84, align: 'left', color: '#b4572d' }); }],
     [tMuch, (lt, k) => { const S = PILE; S.blocks.forEach((b, i) => { const kk = easeOut(seg(t, tMuch + 0.4 + i * 0.03, tMuch + 0.9 + i * 0.03)); b.scale.setScalar(Math.max(0.01, kk)); });
       orbit(S.cam, v3(0, 1.6, 0), lerp(15, 12, k), lerp(0.7, 0.4, k), 0.28); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 1.6, 0), 0.0007) });
-      counter(Math.round(lerp(0, 12, easeOut(seg(t, tUN, tUN + 2)))) + ' млрд т', 120, 330, { size: 150, align: 'left', color: PURPLE }); title('бетона в год · ООН', 130, 420, t, tUN + 0.6, { size: 54, align: 'left' });
+      if (t > tUN - 0.2) counter(Math.round(lerp(1, 12, easeOut(seg(t, tUN, tUN + 2)))) + ' млрд т', 120, 330, { size: 150, align: 'left', color: PURPLE }); title('бетона в год · ООН', 130, 420, t, tUN + 0.6, { size: 54, align: 'left' });
       pill('№2 по объёму после воды', 125, 560, t, tSec, { dot: SKY, align: 'left', size: 42 }); pill('≈ 3 т на каждого жителя Земли', 125, 660, t, tPer, { dot: SAND, align: 'left', size: 42 }); }],
   ], end);
 }
@@ -368,7 +368,7 @@ const MARKET = (() => {
 export function s06c(t) {
   const id = 's06c';
   const tOp = fc(id, 'сам', 0, 0.02), tCm = fc(id, 'отсюда', 0, 0.08), tDate = fc(id, 'появился', 0, 0.11), tPour = fc(id, 'его', 0, 0.15), tSk = fc(id, 'облицовка', 0, 0.25),
-    tInc = fc(id, 'самая', 0, 0.33), tRet = fc(id, 'примерно', 0, 0.39), tVit = fc(id, 'витрувий', 0, 0.48), tTes = fc(id, 'после', 0, 0.54), tMk = fc(id, 'бетон', 1, 0.63), tApo = fc(id, 'их', 0, 0.72), tMall = fc(id, 'его', 1, 0.86), end = 200;
+    tInc = fc(id, 'самая', 0, 0.33), tRet = fc(id, 'примерно', 0, 0.39), tVit = fc(id, 'витрувий', 0, 0.48), tTes = fc(id, 'после', 0, 0.54), tMk = fc(id, 'рынки', 0, 0.63), tApo = fc(id, 'их', 0, 0.72), tMall = fc(id, 'его', 1, 0.86), end = 200;
   clear2d();
   const B = BUILD; const grow = clamp(seg(t, tPour, tSk + 4) * 8.5);
   B.skins.forEach(({ b, r }) => (b.visible = r < grow + 0.5)); B.core.forEach(({ m, st, r }) => { m.visible = r < grow - 0.3; st.visible = r < grow; });
@@ -471,7 +471,7 @@ function medMap(t, t0, pins, { x = 1080, y = 250, w = 760, h = 430 } = {}) {
 }
 export function s10c(t) {
   const id = 's10c';
-  const tHow = fc(id, 'но', 0, 0.06), tTeam = fc(id, 'в', 0, 0.2), tIt = fc(id, 'итальянская', 0, 0.36), tDr = fc(id, 'команда', 0, 0.48), tUw = fc(id, 'иногда', 0, 0.6), tCo = fc(id, 'две', 0, 0.68), tAll = fc(id, 'потом', 0, 0.85), end = 200;
+  const tHow = fc(id, 'но', 0, 0.06), tTeam = fc(id, 'учёные', 0, 0.2), tIt = fc(id, 'итальянская', 0, 0.36), tDr = fc(id, 'команда', 0, 0.48), tUw = fc(id, 'иногда', 0, 0.6), tCo = fc(id, 'козы', 0, 0.68), tAll = fc(id, 'потом', 0, 0.85), end = 200;
   clear2d();
   shot(t, [
     [0, (lt, k) => { const S = SEA; S.sea.userData.update(t, 1.0); orbit(S.cam, v3(-1, 1, 0), lerp(26, 18, easeIO2(k)), lerp(0.9, 0.5, k), lerp(0.3, 0.14, k)); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(-1, 1, 0), 0.0005) });
@@ -510,7 +510,7 @@ const FINDS = (() => {
 })();
 export function s12b(t) {
   const id = 's12b';
-  const tSite = fc(id, 'в', 0, 0.06), tPiles = fc(id, 'остались', 0, 0.22), tTools = fc(id, 'среди', 0, 0.27), tIso = fc(id, 'чтобы', 0, 0.39), tHot = fc(id, 'и', 2, 0.53), tPum = fc(id, 'нашёлся', 0, 0.62), tGrow = fc(id, 'они', 0, 0.74), tVit = fc(id, 'а', 1, 0.82), end = 200;
+  const tSite = fc(id, 'в', 0, 0.06), tPiles = fc(id, 'остались', 0, 0.22), tTools = fc(id, 'среди', 0, 0.27), tIso = fc(id, 'чтобы', 0, 0.39), tHot = fc(id, 'горячей', 0, 0.53), tPum = fc(id, 'нашёлся', 0, 0.62), tGrow = fc(id, 'они', 0, 0.74), tVit = fc(id, 'витрувия', 0, 0.82), end = 200;
   clear2d();
   const F = FINDS;
   shot(t, [
@@ -544,7 +544,7 @@ const BIO = (() => {
 })();
 export function s13b(t) {
   const id = 's13b', S = BIO;
-  const tJ = fc(id, 'с', 0, 0.1), tSp = fc(id, 'в', 1, 0.3), tSl = fc(id, 'споры', 1, 0.46), tW = fc(id, 'когда', 0, 0.5), tLs = fc(id, 'тот', 0, 0.62), tH = fc(id, 'трещина', 1, 0.7), tWay = fc(id, 'пути', 0, 0.76), tR = fc(id, 'римляне', 0, 0.88), end = 200;
+  const tJ = fc(id, 'с', 0, 0.1), tSp = fc(id, 'в', 1, 0.3), tSl = fc(id, 'споры', 1, 0.46), tW = fc(id, 'когда', 0, 0.5), tLs = fc(id, 'тот', 0, 0.62), tH = fc(id, 'зарастает', 0, 0.7), tWay = fc(id, 'пути', 0, 0.76), tR = fc(id, 'римляне', 0, 0.88), end = 200;
   const wake = smooth(seg(t, tW + 1, tW + 3)); const heal = easeOut(seg(t, tLs, tH + 4));
   S.sp.forEach((s, i) => { s.material.emissiveIntensity = wake * (0.6 + 0.4 * Math.sin(t * 4 + i)); s.scale.setScalar(1 + wake * 0.4); s.visible = heal < 0.95; });
   S.food.forEach((f) => (f.visible = t > tSp && heal < 0.5));
@@ -578,7 +578,7 @@ const RUINS = (() => {
 })();
 export function s13c(t) {
   const id = 's13c';
-  const t1 = fc(id, 'миф', 0, 0.05), tN1 = fc(id, 'нет', 0, 0.1), tRw = fc(id, 'римский', 1, 0.2), t2 = fc(id, 'миф', 1, 0.28), tN2 = fc(id, 'тоже', 0, 0.33), tGap = fc(id, 'не', 1, 0.42), t3 = fc(id, 'миф', 2, 0.52), tSurv = fc(id, 'это', 0, 0.58), tFall = fc(id, 'огромное', 0, 0.66), tPan = fc(id, 'даже', 0, 0.76), tPh = fc(id, 'в', 3, 0.8), tCh = fc(id, 'церковь', 0, 0.92), end = 200;
+  const t1 = fc(id, 'миф', 0, 0.05), tN1 = fc(id, 'нет', 0, 0.1), tRw = fc(id, 'римский', 1, 0.2), t2 = fc(id, 'второй', 0, 0.28), tN2 = fc(id, 'тоже', 0, 0.33), tGap = fc(id, 'хватало', 0, 0.42), t3 = fc(id, 'третий', 0, 0.52), tSurv = fc(id, 'выжившего', 0, 0.58), tFall = fc(id, 'огромное', 0, 0.66), tPan = fc(id, 'даже', 0, 0.76), tPh = fc(id, 'шестьсот', 0, 0.8), tCh = fc(id, 'церковь', 0, 0.92), end = 200;
   clear2d();
   shot(t, [
     [0, (lt, k) => { const S = CUBE; S.cube.rotation.set(0.35, t * 0.3, 0); orbit(S.cam, v3(-2, 0, 0), lerp(10, 8.5, k), -0.4, 0.2); render(S.scene, S.cam, { time: t, ...dof(S.cam, v3(0, 0, 0), 0.0012) });

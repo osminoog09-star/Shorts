@@ -150,7 +150,7 @@ const DOME = (() => {
 })();
 export function s03(t) {
   const id = 's03';
-  const tCup = cue(id, 'купол', 0, 6), tWorld = cue(id, 'самый', 0, 9), tOc = cue(id, 'окулус', 0, 14), tLight = cue(id, 'легче', 0, 19), tCof = cue(id, 'изнутри', 0, 26), tEnd = cue(id, 'девятнадцать', 1, 33), end = 46;
+  const tCup = cue(id, 'купол', 0, 6), tWorld = cue(id, 'самый', 0, 9), tOc = cue(id, 'окулус', 0, 14), tLight = cue(id, 'легче', 0, 19), tCof = cue(id, 'изнутри', 0, 26), tEnd = cue(id, 'девятнадцать', 0, 33), end = 46;
   clear2d();
   shot(t, [
     [0, (lt, k) => {

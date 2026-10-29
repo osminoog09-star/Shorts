@@ -75,7 +75,7 @@ function thermo(x, y, k, t, t0) {
 }
 export function s09(t) {
   const id = 's09', S = HOT;
-  const tT = cue(id, 'анализ', 0, 8), tDry = cue(id, 'негашёную', 0, 13), tW = cue(id, 'потом', 0, 16), tH = cue(id, 'реакция', 0, 19), tN = cue(id, 'это', 1, 24), tC = cue(id, 'запасы', 0, 30), end = 40;
+  const tT = cue(id, 'анализ', 0, 8), tDry = cue(id, 'негашёную', 0, 13), tW = cue(id, 'потом', 0, 16), tH = cue(id, 'реакция', 0, 19), tN = cue(id, 'назвали', 0, 24), tC = cue(id, 'запасы', 0, 30), end = 40;
   // сухие кучи сливаются, вода, нагрев
   const merge = easeInOut(seg(t, tDry + 0.5, tDry + 2.5));
   S.limeP.position.x = lerp(-0.9, -0.25, merge); S.ashP.position.x = lerp(0.9, 0.25, merge);
@@ -133,7 +133,7 @@ const HEAL = (() => {
 })();
 export function s10(t) {
   const id = 's10', S = HEAL;
-  const tCr = cue(id, 'трещина', 0, 4), tW = cue(id, 'вода', 0, 6), tD = cue(id, 'растворяет', 0, 9), tCO = cue(id, 'углекислым', 0, 13), tF = cue(id, 'зарастает', 0, 18), tLab = cue(id, 'это', 1, 21),
+  const tCr = cue(id, 'трещина', 0, 4), tW = cue(id, 'вода', 0, 6), tD = cue(id, 'растворяет', 0, 9), tCO = cue(id, 'углекислым', 0, 13), tF = cue(id, 'зарастает', 0, 18), tLab = cue(id, 'проверили', 0, 21),
     t2w = cue(id, 'через', 0, 30), tNo = cue(id, 'без', 0, 36), tPub = cue(id, 'работу', 0, 41), end = 52;
   // трещина и её зарастание
   const open = easeOut(seg(t, tCr, tCr + 1.2)) * (1 - easeInOut(seg(t, tF, tF + 3)) * 0.85);
