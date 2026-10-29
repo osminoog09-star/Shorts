@@ -1,0 +1,47 @@
+{
+ "text": "А на письмо кто ответит? Открываем вакансию!",
+ "words": [
+  {
+   "w": "А",
+   "start": 0.1,
+   "end": 0.302375
+  },
+  {
+   "w": "на",
+   "start": 0.302375,
+   "end": 0.421416
+  },
+  {
+   "w": "письмо",
+   "start": 0.421416,
+   "end": 0.802374
+  },
+  {
+   "w": "кто",
+   "start": 0.802375,
+   "end": 1.028583
+  },
+  {
+   "w": "ответит",
+   "start": 1.028583,
+   "end": 1.623833
+  },
+  {
+   "w": "Открываем",
+   "start": 2.419041,
+   "end": 3.097624
+  },
+  {
+   "w": "вакансию",
+   "start": 3.097625,
+   "end": 3.847625
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+5%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/ai_office_test_20261029_codex/s08.mp3"
+}

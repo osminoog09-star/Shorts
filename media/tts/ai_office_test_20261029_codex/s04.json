@@ -1,0 +1,22 @@
+{
+ "text": "Один изучает встречи. Второй проверяет, существует ли десять.",
+ "words": [
+  {
+   "w": "Один изучает встречи.",
+   "start": 0.1,
+   "end": 2.552381
+  },
+  {
+   "w": "Второй проверяет, существует ли десять.",
+   "start": 2.502381,
+   "end": 5.8476192
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+5%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/ai_office_test_20261029_codex/s04.mp3"
+}

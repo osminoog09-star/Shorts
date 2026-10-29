@@ -1,0 +1,22 @@
+{
+ "text": "Подпишись! И спасибо всем, кто досмотрел и поставил лайк.",
+ "words": [
+  {
+   "w": "Подпишись!",
+   "start": 0.1,
+   "end": 1.7547619
+  },
+  {
+   "w": "И спасибо всем, кто досмотрел и поставил лайк.",
+   "start": 1.7047619,
+   "end": 5.5857144
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+5%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/ai_office_test_20261029_codex/s10.mp3"
+}

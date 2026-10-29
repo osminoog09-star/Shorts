@@ -1,0 +1,27 @@
+{
+ "text": "Кого сократим? Человека. Он единственный получает зарплату.",
+ "words": [
+  {
+   "w": "Кого сократим?",
+   "start": 0.1,
+   "end": 2.0404762
+  },
+  {
+   "w": "Человека.",
+   "start": 1.9904762,
+   "end": 3.5857143
+  },
+  {
+   "w": "Он единственный получает зарплату.",
+   "start": 3.5857144,
+   "end": 6.5738097
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+5%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/ai_office_test_20261029_codex/s07.mp3"
+}

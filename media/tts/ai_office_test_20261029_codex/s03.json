@@ -1,0 +1,17 @@
+{
+ "text": "Для точного ответа я собрал команду агентов.",
+ "words": [
+  {
+   "w": "Для точного ответа я собрал команду агентов.",
+   "start": 0.1,
+   "end": 3.8380954
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+5%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/ai_office_test_20261029_codex/s03.mp3"
+}

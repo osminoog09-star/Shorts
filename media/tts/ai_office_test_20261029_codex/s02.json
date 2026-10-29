@@ -1,0 +1,42 @@
+{
+ "text": "Встреча в десять? Просто напиши: да.",
+ "words": [
+  {
+   "w": "Встреча",
+   "start": 0.1,
+   "end": 0.730958
+  },
+  {
+   "w": "в",
+   "start": 0.730958,
+   "end": 0.802374
+  },
+  {
+   "w": "десять",
+   "start": 0.802375,
+   "end": 1.338083
+  },
+  {
+   "w": "Просто",
+   "start": 2.133333,
+   "end": 2.549999
+  },
+  {
+   "w": "напиши",
+   "start": 2.55,
+   "end": 3.014291
+  },
+  {
+   "w": "да",
+   "start": 3.288083,
+   "end": 3.585708
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+5%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/ai_office_test_20261029_codex/s02.mp3"
+}
