@@ -14,7 +14,7 @@ s=json.loads((B/'short_92_timeline.json').read_text())['scenes'][0];D=s['duratio
 norm=lambda x:x.lower().strip('«».,!?:;')
 def when(w,n=1):return [x['offset']/1e7 for x in s['words']if norm(x['text'])==norm(w)][n-1]
 # Each crop follows the actual principal face/hand, not a fixed central window.
-shots=[(0,510,780),(1.25,30,1260),(when('роботизированной'),34,980),(when('Через'),55,640),(when('Учёные'),294,970),(when('снова'),210,960),(when('встречу'),347,1090),(when('На'),230,320),(when('Но'),358,780),(when('Но',2),361,800),(when('железная'),389,740),(when('Пока'),480,1000),(when('ему'),510,780),(when('Угадал'),530,960),(when('Подпишись'),436,1000)]
+shots=[(0,510,780),(1.25,30,1260),(when('роботизированной'),34,980),(when('Через'),50,960),(when('Через')+2.8,55,640),(when('Учёные'),50,960),(when('снова'),210,960),(when('встречу'),347,1090),(when('На'),358,780),(when('Но'),347,1090),(when('Я'),358,780),(when('Но',2),360,800),(when('повод'),347,1090),(when('железная'),389,740),(when('Пока'),480,1000),(when('ему'),510,780),(when('Угадал'),530,960),(when('Угадал')+2,436,1000),(when('Подпишись'),440,1000)]
 shots.sort();O=B/'movie_parts';O.mkdir(exist_ok=True);ps=[];log=[]
 for i,(at,st,cx)in enumerate(shots):
  end=shots[i+1][0]if i+1<len(shots)else D;d=end-at
