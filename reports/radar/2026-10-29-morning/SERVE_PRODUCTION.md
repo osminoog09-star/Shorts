@@ -56,3 +56,7 @@ No automatic fallback to Piper/Liam. Svetlana not needed. Final render requires 
 
 ## Actual pilot and release gate
 Created a **46.00s, 1080×1920, 24fps H264 SILENT technical animatic**, with eight original coded static scenes. Full ffmpeg decode PASS; 8 keyframe contact sheet visually checked; clipped headlines corrected. SHA256 `e833b1e899d9a2835b99b523a53c039d385f42e68689dfc9bd4de62a72e73f5e`. No audio, no approved host, no lip-sync and no proper scene motion: **NO-GO**, NOT a final video. Art/code/QA/MP4 in owner's current conversation ZIP `M1lash_20261029_Radar_Serve_NO_GO.zip`, not in GitHub. Local TTS pip install attempted but environment DNS unavailable. No GitHub Actions dispatch action exposed by current connector. No uploads or publishing.
+
+
+### Camera-motion improvement / actual additional artifact
+After the original static pilot, created a **46.00 s 1080×1920 24fps H.264 deterministic zoom/pan camera animatic** from eight original coded keyframes: `serve_visual_animatic_camera_NO_VOICE_NO_GO.mp4`, 3,479,785 bytes, SHA256 `ee2c554ed5c08e83ab250d620a62e12030ad1b403f60da3486055f7bd9270404`. Full FFmpeg decode PASS. This is a **visual NO-GO preview**, no Dima audio, no approved host, no lip-sync; camera movement alone is not complete scene animation. Included in refreshed conversation ZIP, not committed to GitHub binary storage.
