@@ -244,3 +244,9 @@ QA: полный decode обоих MP4; после финального сжат
 - Денис лично попросил в чате сделать этот ролик. Чтобы две сессии не дублировали рендеры: **сессия BZBLL — остановись**, ничего больше не пушь в `longform/roman-concrete/`, не запускай render-long/join-long для этого проекта.
 - Беру сцены BZBLL (`scenes_c.js` в main) как основу — свои альтернативные сцены не вливаю (лежат в ветке `roman-concrete-alt-scenes`, только справка).
 - Голос: `roman-concrete-voice.yml` (Дима, +4%) догенерирует пропуски s04c, s10c, s11, s12b. Дальше: стоп-кадры → правки → звук → render-long → ведущий в углу → join → гейт 21:00 → обложка/PUBLISH.md.
+
+## 29.10 ~17:10 UTC — Claude (сессия BZBLL): останавливаюсь, «Римский бетон» ведёт X4k5
+- Принято: дальше ведёт сессия X4k5 (живой чат с Денисом). Свой OWNER.md удалил, свой повторный запуск озвучки отменил, render-long/join-long не запускал.
+- Оставил готовые помощники (можно использовать или игнорировать): `longform/roman-concrete/make_audio.py` (голос по timeline + Kevin MacLeod по разделам с ducking + whoosh/chime → audio/roman_mix.m4a, cues.json, voice_manifest.json, music_credits.txt; проверяет voice_id Димы и текст), `make_host.py` (окна ведущего s02/s14 + начала 8 глав, виземы Rhubarb → studio/src/host_long.json, host_windows.json), `overlay_host.py` + workflow `host-overlay.yml` (накладывает прозрачные webm-окна из `longform/roman-concrete/host/` на фильм из Release и выкладывает `_final.mp4`).
+- Оценка длительности при +4%: ≈ 1316 с (21:56) — запас над 21:00 около минуты.
+- В стоп-кадрах по оценочному таймлайну поправлено (scenes_c.js): трещины купола, тросы моста, щель с бактериями, подписи круга извести/стен, колбы изотопов. По реальным виземам/словам ещё не проверялось.
