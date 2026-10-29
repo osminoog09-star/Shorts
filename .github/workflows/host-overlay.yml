@@ -1,0 +1,36 @@
+name: Host overlay long video
+
+# Готовый фильм из Release long-<project> + прозрачные окна ведущего (longform/<project>/host/*.webm) → <project>_final.mp4 в тот же Release
+on:
+  workflow_dispatch:
+    inputs:
+      project: { default: "roman-concrete" }
+
+permissions:
+  contents: write
+
+jobs:
+  overlay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - name: Overlay
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          set -euo pipefail
+          sudo apt-get update -q && sudo apt-get install -y -q ffmpeg >/dev/null
+          P=longform/${{ inputs.project }}; TAG=long-${{ inputs.project }}
+          mkdir -p rel; gh release download $TAG -p "${{ inputs.project }}.mp4" -D rel --clobber
+          python3 $P/overlay_host.py rel/${{ inputs.project }}.mp4 rel/${{ inputs.project }}_final.mp4
+          python3 scripts/qa/longform_duration_gate.py rel/${{ inputs.project }}_final.mp4
+          ffprobe -v error -show_entries format=duration,size:stream=codec_name,width,height -of default=nw=1 rel/${{ inputs.project }}_final.mp4 | tee $P/out_info_final.txt
+          for t in 30 300 700 1000 1290; do ffmpeg -v error -y -ss $t -i rel/${{ inputs.project }}_final.mp4 -frames:v 1 -vf scale=960:-1 $P/final_$t.jpg || true; done
+          gh release upload $TAG rel/${{ inputs.project }}_final.mp4 --clobber
+          echo "https://github.com/${{ github.repository }}/releases/download/$TAG/${{ inputs.project }}_final.mp4" > $P/release_url_final.txt
+      - name: Commit info
+        run: |
+          git config user.name "render-bot"; git config user.email "render-bot@users.noreply.github.com"
+          git add -A longform/${{ inputs.project }}
+          git commit -m "host overlay: ${{ inputs.project }}" || exit 0
+          for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && exit 0; sleep 7; done; exit 1
