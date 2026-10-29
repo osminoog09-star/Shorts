@@ -162,7 +162,9 @@ def draw_frame(idx,local,t,txt):
  text_center(d,205,SMALL[idx],f_small,BLUE)
  # Subtitle zone y=760..860, full bleed background behind, readable and away from right-side controls.
  d.rectangle((18,765,520,878),fill=(7,15,29))
- words=txt.split(); chunks=[' '.join(words[j:j+6]) for j in range(0,len(words),6)]\n chunk=chunks[min(len(chunks)-1,int(local*len(chunks)))]\n lines=wrap(d,chunk,f_sub,475)
+ words=txt.split(); chunks=[' '.join(words[j:j+6]) for j in range(0,len(words),6)]
+ chunk=chunks[min(len(chunks)-1,int(local*len(chunks)))]
+ lines=wrap(d,chunk,f_sub,475)
  if len(lines)>3:
   lines=wrap(d,chunk,ImageFont.truetype(FONT,19),475);sf=ImageFont.truetype(FONT,19)
  else:sf=f_sub
