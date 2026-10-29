@@ -1,0 +1,37 @@
+{
+ "text": "Принято. Задача сложная. Собираю команду.",
+ "words": [
+  {
+   "w": "Принято",
+   "start": 0.1,
+   "end": 0.782875
+  },
+  {
+   "w": "Задача",
+   "start": 1.624083,
+   "end": 2.237499
+  },
+  {
+   "w": "сложная",
+   "start": 2.2375,
+   "end": 3.105541
+  },
+  {
+   "w": "Собираю",
+   "start": 3.962041,
+   "end": 4.587041
+  },
+  {
+   "w": "команду",
+   "start": 4.587041,
+   "end": 5.235207
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+8%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/ai_bureaucracy_claude/s01.mp3"
+}

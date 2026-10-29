@@ -1,0 +1,42 @@
+{
+ "text": "Предлагаю создать рабочую группу по точке.",
+ "words": [
+  {
+   "w": "Предлагаю",
+   "start": 0.1,
+   "end": 0.655541
+  },
+  {
+   "w": "создать",
+   "start": 0.655541,
+   "end": 1.049041
+  },
+  {
+   "w": "рабочую",
+   "start": 1.049083,
+   "end": 1.500458
+  },
+  {
+   "w": "группу",
+   "start": 1.500458,
+   "end": 1.847666
+  },
+  {
+   "w": "по",
+   "start": 1.847666,
+   "end": 1.974999
+  },
+  {
+   "w": "точке",
+   "start": 1.975,
+   "end": 2.507416
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+8%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/ai_bureaucracy_claude/s03.mp3"
+}

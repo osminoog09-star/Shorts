@@ -1,0 +1,47 @@
+{
+ "text": "Коллеги, вопрос: «да» — с точкой или без?",
+ "words": [
+  {
+   "w": "Коллеги",
+   "start": 0.1,
+   "end": 0.620833
+  },
+  {
+   "w": "вопрос",
+   "start": 0.748166,
+   "end": 1.211124
+  },
+  {
+   "w": "да",
+   "start": 1.488875,
+   "end": 1.755083
+  },
+  {
+   "w": "с",
+   "start": 1.986583,
+   "end": 2.067583
+  },
+  {
+   "w": "точкой",
+   "start": 2.067583,
+   "end": 2.495833
+  },
+  {
+   "w": "или",
+   "start": 2.495833,
+   "end": 2.750458
+  },
+  {
+   "w": "без",
+   "start": 2.750458,
+   "end": 3.132416
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+8%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/ai_bureaucracy_claude/s02.mp3"
+}

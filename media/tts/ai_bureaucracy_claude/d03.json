@@ -1,0 +1,42 @@
+{
+ "text": "Через минуту у них уже совещание.",
+ "words": [
+  {
+   "w": "Через",
+   "start": 0.1,
+   "end": 0.424083
+  },
+  {
+   "w": "минуту",
+   "start": 0.424083,
+   "end": 0.817583
+  },
+  {
+   "w": "у",
+   "start": 0.817583,
+   "end": 0.979624
+  },
+  {
+   "w": "них",
+   "start": 0.979625,
+   "end": 1.280541
+  },
+  {
+   "w": "уже",
+   "start": 1.280541,
+   "end": 1.500457
+  },
+  {
+   "w": "совещание",
+   "start": 1.500458,
+   "end": 2.322208
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+8%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/ai_bureaucracy_claude/d03.mp3"
+}

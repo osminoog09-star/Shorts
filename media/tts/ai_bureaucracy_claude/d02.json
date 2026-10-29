@@ -1,0 +1,27 @@
+{
+ "text": "Отдаю это нейросети.",
+ "words": [
+  {
+   "w": "Отдаю",
+   "start": 0.1,
+   "end": 0.701833
+  },
+  {
+   "w": "это",
+   "start": 0.701833,
+   "end": 0.991166
+  },
+  {
+   "w": "нейросети",
+   "start": 0.991208,
+   "end": 1.766666
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+8%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/ai_bureaucracy_claude/d02.mp3"
+}
