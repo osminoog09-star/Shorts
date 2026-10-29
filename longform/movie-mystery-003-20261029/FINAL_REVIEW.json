@@ -1,0 +1,16 @@
+{
+  "run_id": 40853264493,
+  "artifact_id": 12888935048,
+  "status": "RELEASE_CANDIDATE",
+  "duration": "47.466667",
+  "sha256": "288bf33c51ee69f1f170f2dd11260e1f76302bfec822012e3b7c38e84c111f7e",
+  "native_source_check": "0 errors 0 warnings",
+  "native_qa": "no single-frame pops; no stretch >=1s without motion",
+  "decode": "PASS in full CI export",
+  "public_metadata_and_actual_srt_spoilers": "PASS",
+  "sampled_actual_export_frames": 15,
+  "integrated_lufs": -15.3,
+  "true_peak_dbfs": -1.4,
+  "subjective_full_watch_listen": "not certified",
+  "publication": "not published or scheduled"
+}
