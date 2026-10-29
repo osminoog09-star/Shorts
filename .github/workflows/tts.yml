@@ -17,7 +17,7 @@ concurrency:
 jobs:
   tts:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -56,6 +56,7 @@ jobs:
           PY
           done
       - name: Commit verified output
+        if: always()
         run: |
           set -euo pipefail
           git config user.name tts-bot
