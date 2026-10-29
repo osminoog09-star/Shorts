@@ -1,0 +1,30 @@
+name: Serve S4-D25 Dima voice proof (NO PUBLICATION)
+on:
+  push:
+    branches: [codex/serve-s4d25-voice-20261029]
+    paths:
+      - scripts/serve_20261029_dima.py
+      - .github/workflows/serve-20261029-voice.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          pip install 'edge-tts>=7,<8'
+      - name: Synthesize DmitryNeural and verify source voice IDs
+        run: python scripts/serve_20261029_dima.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: serve-s4d25-dima-voice-no-go
+          path: work/serve_20261029/
+          if-no-files-found: error
