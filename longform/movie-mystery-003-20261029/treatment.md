@@ -1,0 +1,11 @@
+# Replacement movie mystery treatment
+
+Owner rejected the previous silent film as too old; replace only that Short. Select a real live-action science-fiction short released in2012, within2010–2026. Preserve approved Narrator2, exact Dima CTA/reveal and native1080×1920. Do not publish automatically or replace other videos.
+
+Chosen direction: causal suspense edit, hybrid. Three considered approaches: A robot-claw flash-forward → breakup → memory overwrite → failed apology (selected); B action-only chase (weak context); C plot explainer with diagrams (would obscure the actual film request). Real licensed footage occupies the entire frame. First frame already shows danger; first cut within1.3s. Strong burst on the failed line and the grab. Narrator appears for the approved CTA only. Avoid long banners and repeated studio intros.
+
+Energy: hook8 → setup5 → memory reconstruction6 → awkward apology4 → grab9 → external attack8 → question5 → author CTA/reveal4. Spoken timing drives source changes. Use short-caption chunks and a restrained cyan/rose accent matching the channel. Dark translucent subtitle plate, safe left65/right195, y1360. Header only first2.5s; source/kind labels hidden from the film image. No title/year/cast in public fields or pixels.
+
+Narration is our Russian retelling and one translated/adapted line, clearly disclosed as such, not a licensed original Russian dub. One Dima voice file for narration+CTA+last title, same Edge ru-RU-DmitryNeural +0%. Rhubarb recalculated for the complete audio. Original English soundtrack AND the separately ND-licensed OST are discarded; own procedural tense score ducked under speech. A proper CC BY3 attribution remains in the public description using the rightsholder's prescribed title-neutral line.
+
+Keyframes: immediate claw danger; scientists' reconstruction controls; failed apology face; final author card over non-credit footage. Inspect reframing of the girl, arm, male face and robot grip at15+ points. No horizontal window, bars, end credits or letterbox. Full decode, native source checks/QA, measured loudness/peaks, voice identity, SRT and public-field spoiler scan. No claim of a complete subjective listen without actually doing it.

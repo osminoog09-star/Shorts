@@ -1,0 +1,97 @@
+name: M1lash modern movie mystery 003 full production
+on:
+  push:
+    branches: [codex/drawn-explainers-20261028]
+    paths: [.github/workflows/mystery-003-render.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            longform/movie-mystery-003-20261029
+            studio/src/Narrator2.tsx
+            tools/movie_edit
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prepare exact tools and original engine
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core libcairo2
+          pip install edge-tts==7.3.1 cairosvg
+          git clone --depth 1 https://github.com/alchaincyf/huashu-motion.git /tmp/huashu-motion
+          git -C /tmp/huashu-motion fetch --depth 1 origin 52467f99c602b76ba86d511d37acdfe93fa1e16e
+          git -C /tmp/huashu-motion checkout --detach 52467f99c602b76ba86d511d37acdfe93fa1e16e
+          curl --fail -L -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.13.0/Rhubarb-Lip-Sync-1.13.0-Linux.zip
+          unzip -q /tmp/rhubarb.zip -d /tmp/rhubarb
+          cd longform/movie-mystery-003-20261029
+          npm ci --ignore-scripts
+          npm rebuild esbuild
+      - uses: actions/download-artifact@v4
+        with:
+          name: mystery-003-exact-Dima-clean_a
+          run-id: 40850608992
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: longform/movie-mystery-003-20261029/build
+      - name: Original host artwork and actual lip cues
+        env:
+          RHUBARB: /tmp/rhubarb/Rhubarb-Lip-Sync-1.13.0-Linux/rhubarb
+        run: |
+          cd longform/movie-mystery-003-20261029
+          ./node_modules/.bin/esbuild host.tsx --bundle --platform=node --external:react --external:react-dom/server --outfile=build/host.cjs
+          node build/host.cjs
+          python native_prepare.py --ids=92
+      - name: Build two native compositions
+        env:
+          HUASHU_ROOT: /tmp/huashu-motion
+        run: |
+          cd longform/movie-mystery-003-20261029
+          python movie.py
+          python build_drawn.py --ids=92
+      - name: Native checks, keyframes and full render
+        env:
+          HUASHU_ROOT: /tmp/huashu-motion
+        run: |
+          P=longform/movie-mystery-003-20261029/build/native/scene_92
+          node /tmp/huashu-motion/cli/om.js learn suspense rhythm sound
+          node /tmp/huashu-motion/cli/om.js check "$P" --source
+          node /tmp/huashu-motion/cli/om.js still "$P" --at 0,1.5,5,10,15,20,25,30,35,40,44,46
+          node /tmp/huashu-motion/cli/om.js sound "$P"
+          node /tmp/huashu-motion/cli/om.js render "$P" --fps 30 --workers 4
+          node /tmp/huashu-motion/cli/om.js qa "$P"
+      - name: Finish and check actual export
+        run: |
+          cd longform/movie-mystery-003-20261029
+          python finish.py
+          cd ../..
+          python tools/movie_edit/validate_mystery.py longform/movie-mystery-003-20261029/mystery_release_private.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: M1lash_Movie_Mystery_003_RU
+          path: |
+            longform/movie-mystery-003-20261029/build/release
+            longform/movie-mystery-003-20261029/build/native/scene_92/index-*.png
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mystery-003-production-private
+          path: |
+            longform/movie-mystery-003-20261029/build/voice_92.*
+            longform/movie-mystery-003-20261029/build/short_92_timeline.json
+            longform/movie-mystery-003-20261029/build/shots_private.json
+            longform/movie-mystery-003-20261029/mystery_release_private.json
+          retention-days: 30
