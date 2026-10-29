@@ -354,9 +354,9 @@ const S6 = (() => {
   const fence = new THREE.Group(); S.scene.add(fence); for (let i = 0; i < 24; i++) { const p = rbox(0.08, 1.6, 0.08, metal(0x9aa0ab), 0.02); p.position.set(-11.5 + i, 0.8, -5.5); fence.add(p); } const w = rbox(24, 1.4, 0.02, matte(0x9aa0ab, { transparent: true, opacity: 0.35 }), 0.01); w.position.set(0, 0.8, -5.5); fence.add(w);
   const houses = []; [[-7, 2], [-3.5, 2.6], [0, 2.2], [3.5, 2.7], [7, 2.1], [-5, 6.5], [-1.5, 7], [2, 6.6], [5.5, 7]].forEach(([x, z], j) => { const h = P.house([0xfdf3e3, 0xe9f1ff, 0xfff0f3, 0xf0fbf3][j % 4], [C.coral, C.sky, C.lav, C.sage][j % 4]); h.position.set(x, 0, z); h.rotation.y = Math.PI + (hash(j) - 0.5) * 0.2; S.scene.add(h); houses.push(h); });
   const rings = P.soundRings(5, C.coral); rings.g.position.set(0, 2.2, -8); rings.g.rotation.x = Math.PI / 2; rings.g.scale.setScalar(3); S.scene.add(rings.g);
-  const env = P.envelope(); env.position.set(0.4, 2.3, 4.3); env.scale.setScalar(0.9); S.scene.add(env);
+  const env = P.envelope(); env.position.set(0.4, 3.4, 4.3); env.scale.setScalar(0.9); S.scene.add(env);
   const sign = P.saleSign(); sign.position.set(1.5, 0, 3.6); S.scene.add(sign);
-  const doc = new THREE.Group(); S.scene.add(doc); doc.position.set(-0.4, 2.4, 4.4);
+  const doc = new THREE.Group(); S.scene.add(doc); doc.position.set(-0.4, 3.5, 4.4);
   const d1 = rbox(1.2, 1.6, 0.03, matte(0xfdfbf6), 0.03); doc.add(d1);
   const t1 = textSprite('ОТКАЗ ОТ ИСКА', { size: 42, color: '#ffffff', bg: '#e8706a', scale: 0.55 }); t1.position.set(0, 0.4, 0.04); doc.add(t1);
   for (let i = 0; i < 5; i++) { const l = rbox(0.9, 0.05, 0.01, matte(0xcfcbd9), 0.01); l.position.set(0, 0.05 - i * 0.2, 0.03); doc.add(l); }
@@ -367,7 +367,7 @@ const S6 = (() => {
 const CAMS6 = [
   (cam, k) => { dolly(cam, v3(0, 1.5, -1), 26, 22, 0.2, -0.05, 0.38, 0.3, k); return v3(0, 1.5, -1); },
   (cam, k) => { dolly(cam, v3(0, 3, -9), 14, 12, -0.5, -0.2, 0.2, 0.14, k); return v3(0, 3, -9); },
-  (cam, k) => { dolly(cam, v3(0, 1.4, 2.6), 9, 8, 0.4, 0.1, 0.15, 0.1, k); return v3(0, 1.4, 2.6); },
+  (cam, k) => { dolly(cam, v3(0, 1.4, 2.6), 15, 14, 0.4, 0.1, 0.55, 0.5, k); return v3(0, 1.4, 2.6); },
   (cam, k) => { dolly(cam, v3(0, 0.5, 3), 16, 15, 3.0, 2.7, 0.3, 0.25, k); return v3(0, 0.5, 3); },
 ];
 export function c6(ct, L) {
@@ -379,7 +379,7 @@ export function c6(ct, L) {
   const tD = at(L, 'c6_05', 'условие', 0, 1e9); popScale(S.doc, ct, tD, 0.8, new THREE.Vector3(1, 1, 1)); S.doc.rotation.y = Math.sin(ct * 0.8) * 0.15;
   popScale(S.sign, ct, at(L, 'c6_05', 'купить', 0, 1e9), 0.8, new THREE.Vector3(1, 1, 1));
   let tg;
-  if (i === 4 || i === 5 || i === 6) { orbit(S.cam, v3(0.3, 1.8, 4), lerp(7, 6, clamp(L.lt / 8)), 0.3 - L.lt * 0.02, 0.12); tg = v3(0.3, 2, 4.3); }
+  if (i === 4 || i === 5 || i === 6) { orbit(S.cam, v3(0.3, 3.4, 4.3), lerp(7, 6, clamp(L.lt / 8)), 0.3 - L.lt * 0.02, 0.5); tg = v3(0.3, 3.4, 4.3); }
   else if (i === 7) { orbit(S.cam, v3(0, 2.5, -9), 13, -0.35 + L.lt * 0.03, 0.22); tg = v3(0, 2.5, -9); }
   else tg = camFor(L, CAMS6, S, ct);
   render(S.scene, S.cam, { time: ct, ...dofOf(S.cam, tg) });

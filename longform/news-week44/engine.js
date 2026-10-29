@@ -49,7 +49,7 @@ renderer.setPixelRatio(1);
 renderer.setSize(W, H, false);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 0.95;
+renderer.toneMappingExposure = 0.82;
 renderer.shadowMap.enabled = !(window.DBG || {}).noShadow;
 renderer.shadowMap.type = THREE.VSMShadowMap;
 renderer.localClippingEnabled = true;
@@ -67,6 +67,7 @@ const grade = new ShaderPass({
   fragmentShader: `uniform sampler2D tDiffuse; uniform float time, vig, flash, fade; varying vec2 vUv;
     float h(vec2 p){ return fract(sin(dot(p, vec2(12.9898,78.233)))*43758.5453); }
     void main(){ vec4 c=texture2D(tDiffuse,vUv); vec2 d=vUv-.5; d.x*=${(W / H * 0.9).toFixed(3)};
+      float l=dot(c.rgb,vec3(.299,.587,.114)); c.rgb=mix(vec3(l),c.rgb,1.22); c.rgb=(c.rgb-.55)*1.14+.52;
       c.rgb*=1.-vig*smoothstep(.35,1.05,length(d));
       c.rgb+=(h(vUv*vec2(${W}.,${H}.)+fract(time*7.))-.5)*.022;
       c.rgb=mix(c.rgb, vec3(1.), flash); c.rgb=mix(c.rgb, vec3(0.965,0.937,0.902), fade);
@@ -108,7 +109,7 @@ export function studio(scene, { bg = C.cream, floor = true, floorY = -2, key = [
   scene.background = new THREE.Color(bg);
   scene.fog = new THREE.Fog(bg, 55, 140);
   scene.add(new THREE.HemisphereLight(0xffffff, 0xd9cbbb, fill));
-  const k = new THREE.DirectionalLight(0xfff4e8, keyI); k.position.set(...key); k.castShadow = true;
+  const k = new THREE.DirectionalLight(0xfff4e8, keyI * 1.25); k.position.set(...key); k.castShadow = true;
   k.shadow.mapSize.set(1024, 1024); k.shadow.radius = 9; k.shadow.blurSamples = 16; k.shadow.bias = -0.0004;
   const s = k.shadow.camera; s.left = -shadowSize; s.right = shadowSize; s.top = shadowSize; s.bottom = -shadowSize; s.near = 0.5; s.far = 40;
   scene.add(k); scene.add(k.target);

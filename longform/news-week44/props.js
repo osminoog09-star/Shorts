@@ -118,7 +118,7 @@ export function board(lines = ['SAT', '2ⁿ', 'ETH?']) {
   const g = new THREE.Group();
   const frame = rbox(5.2, 3.2, 0.2, wood0(), 0.08); g.add(frame);
   const face = rbox(4.9, 2.9, 0.06, matte(0x2f4d45, { roughness: 0.95 }), 0.04); face.position.z = 0.1; g.add(face);
-  lines.forEach((tx, i) => { const s = textSprite(tx, { size: 80, color: '#f3efe2', bg: null, font: 'Rubik', weight: 700, scale: 0.9 }); s.position.set(-1.15 + (i % 2) * 2.3, 0.6 - Math.floor(i / 2) * 1.0, 0.2); g.add(s); });
+  lines.forEach((tx, i) => { const s = textSprite(tx, { size: 80, color: '#f3efe2', bg: null, font: 'Rubik', weight: 700, scale: 0.9 }); s.position.set(-1.15 + (i % 2) * 2.3, 0.6 - Math.floor(i / 2) * 1.0, 0.2); s.material.depthTest = false; s.renderOrder = 5; g.add(s); });
   const tray = rbox(4.6, 0.1, 0.3, wood0(), 0.03); tray.position.set(0, -1.62, 0.18); g.add(tray);
   const chalk = cyl(0.04, 0.4, matte(0xffffff), 10); chalk.rotation.z = Math.PI / 2; chalk.position.set(1.2, -1.53, 0.2); g.add(chalk);
   return shadowAll(g);
