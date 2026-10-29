@@ -213,7 +213,7 @@ export function ant() { // муравей-талисман тикера ANT (с�
 export function tickerBoard(text = 'ANT') {
   const g = new THREE.Group();
   const b = rbox(4.6, 1.5, 0.3, gloss(0x2b2a3a), 0.2); g.add(b);
-  const t = textSprite(text, { size: 150, color: '#86dcbc', bg: null, font: 'RMono', weight: 400, scale: 1.2 }); t.position.set(-0.9, 0, 0.22); g.add(t);
+  const t = textSprite(text, { size: 150, color: '#86dcbc', bg: null, font: 'RMono', weight: 400, scale: 1.2 }); t.position.set(-0.9, 0, 0.22); t.material.depthTest = false; t.renderOrder = 5; g.add(t);
   const arr = new THREE.Mesh(new THREE.ConeGeometry(0.32, 0.55, 3), glow(0x86dcbc)); arr.position.set(1.55, 0.05, 0.22); g.add(arr);
   return shadowAll(g);
 }
