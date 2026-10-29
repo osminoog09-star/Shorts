@@ -50,7 +50,7 @@ async def voice():
      if attempt==11:raise
      await asyncio.sleep(3+attempt*.8)
   seconds=dur(dest);segments.append(dict(id=f'{i:02d}',speaker='dima',voice_id='ru-RU-DmitryNeural',engine='Microsoft Edge TTS',rate='+8%',source_file=str(dest.relative_to(ROOT)),start=round(start,3),end=round(start+seconds,3),duration=round(seconds,3)))
-  start+=seconds+.17
+  start+=seconds
  # Join audio using a filter graph; no accidental literal newline in concat list
  manifest={'segments':segments,'voice_id':'ru-RU-DmitryNeural','total_duration':round(start,3),'status':'PREVIEW_NO_GO_MISSING_APPROVED_HOST_LIPSYNC'}
  (WORK/'voice_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
@@ -172,7 +172,7 @@ def draw_frame(idx,local,t,txt):
 def render_video(segments):
  timeline=[];at=0
  for i,s in enumerate(segments):
-  n=max(1,round((s['duration']+.12)*FPS));timeline.append((i,at,at+n,n));at+=n
+  n=max(1,round(s['duration']*FPS));timeline.append((i,at,at+n,n));at+=n
  video=WORK/'silent.mp4'
  cmd=['ffmpeg','-y','-v','error','-f','rawvideo','-pix_fmt','rgb24','-s',f'{W}x{H}','-r',str(FPS),'-i','-','-vf','scale=1080:1920:flags=neighbor,format=yuv420p','-c:v','libx264','-preset','veryfast','-crf','20','-r',str(FPS),str(video)]
  p=subprocess.Popen(cmd,stdin=subprocess.PIPE,stderr=subprocess.PIPE)
