@@ -1,0 +1,37 @@
+{
+ "text": "Там стоит дата-центр Илона Маска?",
+ "words": [
+  {
+   "w": "Там",
+   "start": 0.1,
+   "end": 0.340375
+  },
+  {
+   "w": "стоит",
+   "start": 0.340375,
+   "end": 0.664875
+  },
+  {
+   "w": "дата-центр",
+   "start": 0.664916,
+   "end": 1.410082
+  },
+  {
+   "w": "Илона",
+   "start": 1.410083,
+   "end": 1.794708
+  },
+  {
+   "w": "Маска",
+   "start": 1.794708,
+   "end": 2.311541
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c6_02.mp3"
+}
