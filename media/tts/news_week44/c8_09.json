@@ -1,0 +1,42 @@
+{
+ "text": "А какие у них планы дальше?",
+ "words": [
+  {
+   "w": "А",
+   "start": 0.1,
+   "end": 0.26825
+  },
+  {
+   "w": "какие",
+   "start": 0.26825,
+   "end": 0.652875
+  },
+  {
+   "w": "у",
+   "start": 0.652875,
+   "end": 0.725
+  },
+  {
+   "w": "них",
+   "start": 0.725,
+   "end": 0.941333
+  },
+  {
+   "w": "планы",
+   "start": 0.941333,
+   "end": 1.301916
+  },
+  {
+   "w": "дальше",
+   "start": 1.301916,
+   "end": 1.830749
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c8_09.mp3"
+}

@@ -1,0 +1,37 @@
+{
+ "text": "И как дела у роботов?",
+ "words": [
+  {
+   "w": "И",
+   "start": 0.1,
+   "end": 0.292291
+  },
+  {
+   "w": "как",
+   "start": 0.292291,
+   "end": 0.544707
+  },
+  {
+   "w": "дела",
+   "start": 0.544708,
+   "end": 0.917291
+  },
+  {
+   "w": "у",
+   "start": 0.917291,
+   "end": 1.061541
+  },
+  {
+   "w": "роботов",
+   "start": 1.061541,
+   "end": 1.674541
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c7_03.mp3"
+}

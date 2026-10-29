@@ -1,0 +1,37 @@
+{
+ "text": "А сколько стоит такой робот?",
+ "words": [
+  {
+   "w": "А",
+   "start": 0.1,
+   "end": 0.280291
+  },
+  {
+   "w": "сколько",
+   "start": 0.280291,
+   "end": 0.628832
+  },
+  {
+   "w": "стоит",
+   "start": 0.628833,
+   "end": 1.013458
+  },
+  {
+   "w": "такой",
+   "start": 1.013458,
+   "end": 1.313958
+  },
+  {
+   "w": "робот",
+   "start": 1.313958,
+   "end": 1.794708
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c7_11.mp3"
+}

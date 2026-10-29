@@ -1,0 +1,32 @@
+{
+ "text": "Опять ловить ракету башней?",
+ "words": [
+  {
+   "w": "Опять",
+   "start": 0.1,
+   "end": 0.55675
+  },
+  {
+   "w": "ловить",
+   "start": 0.55675,
+   "end": 0.905291
+  },
+  {
+   "w": "ракету",
+   "start": 0.905291,
+   "end": 1.289916
+  },
+  {
+   "w": "башней",
+   "start": 1.289916,
+   "end": 1.902916
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c8_02.mp3"
+}

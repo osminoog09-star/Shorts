@@ -1,0 +1,27 @@
+{
+ "text": "А когда полёт?",
+ "words": [
+  {
+   "w": "А",
+   "start": 0.1,
+   "end": 0.280291
+  },
+  {
+   "w": "когда",
+   "start": 0.280291,
+   "end": 0.640874
+  },
+  {
+   "w": "полёт",
+   "start": 0.640875,
+   "end": 1.241833
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c8_07.mp3"
+}

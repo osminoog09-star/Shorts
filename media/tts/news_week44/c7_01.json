@@ -1,0 +1,37 @@
+{
+ "text": "Седьмая — моя любимая тема. Роботы!",
+ "words": [
+  {
+   "w": "Седьмая",
+   "start": 0.1,
+   "end": 0.809125
+  },
+  {
+   "w": "моя",
+   "start": 1.0375,
+   "end": 1.325958
+  },
+  {
+   "w": "любимая",
+   "start": 1.325958,
+   "end": 1.782708
+  },
+  {
+   "w": "тема",
+   "start": 1.782708,
+   "end": 2.287499
+  },
+  {
+   "w": "Роботы",
+   "start": 3.150958,
+   "end": 3.872124
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c7_01.mp3"
+}

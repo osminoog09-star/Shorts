@@ -1,0 +1,17 @@
+{
+ "text": "Пока!",
+ "words": [
+  {
+   "w": "Пока",
+   "start": 0.1,
+   "end": 0.676916
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c9_06.mp3"
+}

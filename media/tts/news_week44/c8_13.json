@@ -1,0 +1,42 @@
+{
+ "text": "Если поймают — это будет видео года.",
+ "words": [
+  {
+   "w": "Если",
+   "start": 0.1,
+   "end": 0.544708
+  },
+  {
+   "w": "поймают",
+   "start": 0.544708,
+   "end": 1.097583
+  },
+  {
+   "w": "это",
+   "start": 1.398083,
+   "end": 1.602416
+  },
+  {
+   "w": "будет",
+   "start": 1.602416,
+   "end": 1.890874
+  },
+  {
+   "w": "видео",
+   "start": 1.890875,
+   "end": 2.251458
+  },
+  {
+   "w": "года",
+   "start": 2.251458,
+   "end": 2.660124
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c8_13.mp3"
+}
