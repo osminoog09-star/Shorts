@@ -254,3 +254,8 @@ QA: полный decode обоих MP4; после финального сжат
 - Готово: `videos/ai_blackmail_ru.mp4` (1080×1920, 30 fps, 63,9 с), исходники `shorts/ai_blackmail/` (page.html — кинетическая типографика, render.mjs, build.py, audio.py), текст для загрузки — `shorts/ai_blackmail/PUBLISH.md`.
 - Голос Dmitry (TTS-джоб ai_blackmail, ускорен ×1,1), тайминги s02/s05/s07 — через whisper (edge-tts отдал только SentenceBoundary). Музыка Kevin MacLeod «Hidden Agenda» CC BY. Ведущий — HostCorner (поддерживает `seg` в host_corner.json).
 - Статус: НЕ опубликовано, Денис загружает сам. Это «Часть 1» — обещана часть 2 про модель, которая пыталась скопировать себя (Apollo Research, o1 / self-exfiltration; факты проверить перед сценарием).
+
+## 30.10 01:10 — Claude: длинное «Новости недели 26–29.10» (news-week44)
+- По просьбе Дениса: свой выпуск, темы не пересекаются с news-20261029 (GPT). 24:03, Дима + Света, 10 глав, 3D (движок roman-concrete), факты — FACTS.md (≥2 источника).
+- Озвучка: jobs/tts/news_week44.json (135 реплик, готово). Рендер: render-long 40969339133 (+патч кусков 18–23: 40969755899, исправлен тикер ANT) → news-week44-finish.yml (ведущий + музыка + гейт 21:00 → Release long-news-week44).
+- Публикует Денис сам; PUBLISH.md (главы, источники, музыка), обложка thumb.png. НЕ опубликовано.
