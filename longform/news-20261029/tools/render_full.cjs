@@ -1,0 +1,5 @@
+process.env.NEWS_DATA_FILE='full_data.js';
+const {sandbox,canvas,fs,root}=require('./native.cjs'),{spawn}=require('child_process'),path=require('path');
+(async()=>{while(!sandbox.READY)await new Promise(r=>setTimeout(r,20));let fps=30,d=sandbox.NEWS_DATA.duration,part=Number(process.argv[2]),parts=6,total=Math.ceil(d*fps),from=Math.floor(total*part/parts),to=Math.floor(total*(part+1)/parts);fs.mkdirSync('out/chunks',{recursive:true});
+const p=spawn('ffmpeg',['-v','error','-y','-f','image2pipe','-vcodec','mjpeg','-framerate','30','-i','-','-an','-c:v','libx264','-preset','ultrafast','-crf','21','-threads','1','-pix_fmt','yuv420p',`out/chunks/part_${part}.mp4`],{stdio:['pipe','inherit','inherit']});
+for(let f=from;f<to;f++){sandbox.renderAt(f/fps);let b=canvas.toBuffer('image/jpeg',90);if(!p.stdin.write(b))await new Promise(r=>p.stdin.once('drain',r));if((f-from)%1800===0)console.log('part',part,Math.round((f-from)/(to-from)*100)+'%');}p.stdin.end();await new Promise((r,j)=>p.once('close',c=>c?j(Error('encode failed')):r()));console.log('PART DONE',part);})();

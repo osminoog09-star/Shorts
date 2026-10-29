@@ -1,0 +1,5 @@
+process.env.NEWS_DATA_FILE='opening_data.js';
+const {sandbox,canvas,fs}=require('./native.cjs'),{spawn}=require('child_process');
+(async()=>{while(!sandbox.READY)await new Promise(r=>setTimeout(r,20));let fps=30,d=sandbox.NEWS_DATA.duration;
+const p=spawn('ffmpeg',['-v','error','-y','-f','image2pipe','-vcodec','mjpeg','-framerate','30','-i','-','-i','out/M1lash_Opening_Dima_MIX.mp3','-c:v','libx264','-preset','fast','-crf','21','-threads','3','-pix_fmt','yuv420p','-c:a','aac','-b:a','192k','-shortest','-movflags','+faststart','out/M1lash_News_Opening_DIMA_SOUND.mp4'],{stdio:['pipe','inherit','inherit']});
+for(let f=0;f<Math.ceil(d*fps);f++){sandbox.renderAt(f/fps);let g=canvas.getContext('2d');g.fillStyle='#14283e';g.fillRect(0,0,1920,52);g.fillStyle='#fff';g.font='22px News Sans';g.fillText('ФРАГМЕНТ БОЛЬШОГО ВЫПУСКА · ДИМА',70,35);let b=canvas.toBuffer('image/jpeg',90);if(!p.stdin.write(b))await new Promise(r=>p.stdin.once('drain',r));if(f%300===0)console.log('render',f,'/',Math.ceil(d*fps));}p.stdin.end();await new Promise(r=>p.once('close',r));console.log('OPENING RENDERED');})();
