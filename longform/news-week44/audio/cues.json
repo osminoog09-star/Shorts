@@ -1,0 +1,1037 @@
+{
+ "duration": 1442.594,
+ "voice": [
+  {
+   "file": "../../media/tts/news_week44/c0_01.mp3",
+   "at": 0.35
+  },
+  {
+   "file": "../../media/tts/news_week44/c0_02.mp3",
+   "at": 16.074
+  },
+  {
+   "file": "../../media/tts/news_week44/c0_03.mp3",
+   "at": 19.15
+  },
+  {
+   "file": "../../media/tts/news_week44/c0_04.mp3",
+   "at": 26.69
+  },
+  {
+   "file": "../../media/tts/news_week44/c0_05.mp3",
+   "at": 41.478
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_01.mp3",
+   "at": 54.15
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_02.mp3",
+   "at": 67.234
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_03.mp3",
+   "at": 71.414
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_04.mp3",
+   "at": 82.794
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_05.mp3",
+   "at": 106.558
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_06.mp3",
+   "at": 110.114
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_07.mp3",
+   "at": 125.79
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_08.mp3",
+   "at": 130.834
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_09.mp3",
+   "at": 152.894
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_10.mp3",
+   "at": 157.626
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_11.mp3",
+   "at": 174.022
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_12.mp3",
+   "at": 176.882
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_13.mp3",
+   "at": 193.998
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_14.mp3",
+   "at": 197.578
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_15.mp3",
+   "at": 225.254
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_16.mp3",
+   "at": 228.93
+  },
+  {
+   "file": "../../media/tts/news_week44/c1_17.mp3",
+   "at": 236.374
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_01.mp3",
+   "at": 255.358
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_02.mp3",
+   "at": 262.058
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_03.mp3",
+   "at": 265.566
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_04.mp3",
+   "at": 276.514
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_05.mp3",
+   "at": 281.366
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_06.mp3",
+   "at": 304.986
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_07.mp3",
+   "at": 307.918
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_08.mp3",
+   "at": 322.466
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_09.mp3",
+   "at": 326.934
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_10.mp3",
+   "at": 343.738
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_11.mp3",
+   "at": 363.83
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_12.mp3",
+   "at": 370.554
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_13.mp3",
+   "at": 377.494
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_14.mp3",
+   "at": 384.002
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_15.mp3",
+   "at": 397.806
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_16.mp3",
+   "at": 404.218
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_17.mp3",
+   "at": 421.55
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_18.mp3",
+   "at": 425.082
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_19.mp3",
+   "at": 445.39
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_20.mp3",
+   "at": 456.938
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_21.mp3",
+   "at": 461.526
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_22.mp3",
+   "at": 481.858
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_23.mp3",
+   "at": 488.078
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_24.mp3",
+   "at": 494.202
+  },
+  {
+   "file": "../../media/tts/news_week44/c2_25.mp3",
+   "at": 499.726
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_01.mp3",
+   "at": 520.27
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_02.mp3",
+   "at": 526.73
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_03.mp3",
+   "at": 529.758
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_04.mp3",
+   "at": 549.826
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_05.mp3",
+   "at": 552.398
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_06.mp3",
+   "at": 571.626
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_07.mp3",
+   "at": 573.838
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_08.mp3",
+   "at": 590.21
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_09.mp3",
+   "at": 593.094
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_10.mp3",
+   "at": 614.362
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_11.mp3",
+   "at": 627.734
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_12.mp3",
+   "at": 630.978
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_13.mp3",
+   "at": 646.006
+  },
+  {
+   "file": "../../media/tts/news_week44/c3_14.mp3",
+   "at": 652.106
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_01.mp3",
+   "at": 670.37
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_02.mp3",
+   "at": 675.678
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_03.mp3",
+   "at": 686.77
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_04.mp3",
+   "at": 690.35
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_05.mp3",
+   "at": 703.386
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_06.mp3",
+   "at": 706.51
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_07.mp3",
+   "at": 716.594
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_08.mp3",
+   "at": 721.422
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_09.mp3",
+   "at": 742.714
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_10.mp3",
+   "at": 746.174
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_11.mp3",
+   "at": 749.25
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_12.mp3",
+   "at": 764.59
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_13.mp3",
+   "at": 776.378
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_14.mp3",
+   "at": 780.198
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_15.mp3",
+   "at": 806.506
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_16.mp3",
+   "at": 820.862
+  },
+  {
+   "file": "../../media/tts/news_week44/c4_17.mp3",
+   "at": 826.194
+  },
+  {
+   "file": "../../media/tts/news_week44/c5_01.mp3",
+   "at": 843.81
+  },
+  {
+   "file": "../../media/tts/news_week44/c5_02.mp3",
+   "at": 852.502
+  },
+  {
+   "file": "../../media/tts/news_week44/c5_03.mp3",
+   "at": 855.914
+  },
+  {
+   "file": "../../media/tts/news_week44/c5_04.mp3",
+   "at": 875.79
+  },
+  {
+   "file": "../../media/tts/news_week44/c5_05.mp3",
+   "at": 879.586
+  },
+  {
+   "file": "../../media/tts/news_week44/c5_06.mp3",
+   "at": 897.134
+  },
+  {
+   "file": "../../media/tts/news_week44/c5_07.mp3",
+   "at": 900.882
+  },
+  {
+   "file": "../../media/tts/news_week44/c5_08.mp3",
+   "at": 910.294
+  },
+  {
+   "file": "../../media/tts/news_week44/c5_09.mp3",
+   "at": 913.85
+  },
+  {
+   "file": "../../media/tts/news_week44/c5_10.mp3",
+   "at": 934.998
+  },
+  {
+   "file": "../../media/tts/news_week44/c5_11.mp3",
+   "at": 939.058
+  },
+  {
+   "file": "../../media/tts/news_week44/c6_01.mp3",
+   "at": 956.05
+  },
+  {
+   "file": "../../media/tts/news_week44/c6_02.mp3",
+   "at": 966.542
+  },
+  {
+   "file": "../../media/tts/news_week44/c6_03.mp3",
+   "at": 970.026
+  },
+  {
+   "file": "../../media/tts/news_week44/c6_04.mp3",
+   "at": 988.246
+  },
+  {
+   "file": "../../media/tts/news_week44/c6_05.mp3",
+   "at": 991.394
+  },
+  {
+   "file": "../../media/tts/news_week44/c6_06.mp3",
+   "at": 1003.95
+  },
+  {
+   "file": "../../media/tts/news_week44/c6_07.mp3",
+   "at": 1007.746
+  },
+  {
+   "file": "../../media/tts/news_week44/c6_08.mp3",
+   "at": 1023.062
+  },
+  {
+   "file": "../../media/tts/news_week44/c6_09.mp3",
+   "at": 1037.61
+  },
+  {
+   "file": "../../media/tts/news_week44/c6_10.mp3",
+   "at": 1040.35
+  },
+  {
+   "file": "../../media/tts/news_week44/c6_11.mp3",
+   "at": 1056.722
+  },
+  {
+   "file": "../../media/tts/news_week44/c6_12.mp3",
+   "at": 1064.934
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_01.mp3",
+   "at": 1076.022
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_02.mp3",
+   "at": 1081.138
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_03.mp3",
+   "at": 1092.326
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_04.mp3",
+   "at": 1095.186
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_05.mp3",
+   "at": 1111.654
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_06.mp3",
+   "at": 1116.482
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_07.mp3",
+   "at": 1140.51
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_08.mp3",
+   "at": 1146.01
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_09.mp3",
+   "at": 1168.166
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_10.mp3",
+   "at": 1173.666
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_11.mp3",
+   "at": 1187.23
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_12.mp3",
+   "at": 1190.21
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_13.mp3",
+   "at": 1199.55
+  },
+  {
+   "file": "../../media/tts/news_week44/c7_14.mp3",
+   "at": 1207.042
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_01.mp3",
+   "at": 1223.554
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_02.mp3",
+   "at": 1232.87
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_03.mp3",
+   "at": 1235.946
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_04.mp3",
+   "at": 1251.862
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_05.mp3",
+   "at": 1257.242
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_06.mp3",
+   "at": 1274.502
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_07.mp3",
+   "at": 1292.842
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_08.mp3",
+   "at": 1295.246
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_09.mp3",
+   "at": 1313.85
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_10.mp3",
+   "at": 1316.878
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_11.mp3",
+   "at": 1338.026
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_12.mp3",
+   "at": 1344.558
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_13.mp3",
+   "at": 1358.314
+  },
+  {
+   "file": "../../media/tts/news_week44/c8_14.mp3",
+   "at": 1362.158
+  },
+  {
+   "file": "../../media/tts/news_week44/c9_01.mp3",
+   "at": 1372.046
+  },
+  {
+   "file": "../../media/tts/news_week44/c9_02.mp3",
+   "at": 1385.01
+  },
+  {
+   "file": "../../media/tts/news_week44/c9_03.mp3",
+   "at": 1393.03
+  },
+  {
+   "file": "../../media/tts/news_week44/c9_04.mp3",
+   "at": 1408.346
+  },
+  {
+   "file": "../../media/tts/news_week44/c9_05.mp3",
+   "at": 1421.022
+  },
+  {
+   "file": "../../media/tts/news_week44/c9_06.mp3",
+   "at": 1436.722
+  }
+ ],
+ "music": {
+  "gain": 0.2,
+  "beds": [
+   {
+    "file": "../../media/music/Volatile Reaction.mp3",
+    "from": 0.0,
+    "to": 51.55,
+    "gain": 0.295
+   },
+   {
+    "file": "../../media/music/Spy Glass.mp3",
+    "from": 51.55,
+    "to": 252.758,
+    "gain": 0.902
+   },
+   {
+    "file": "../../media/music/Mesmerize.mp3",
+    "from": 252.758,
+    "to": 517.67,
+    "gain": 3.846
+   },
+   {
+    "file": "../../media/music/Hidden Agenda.mp3",
+    "from": 517.67,
+    "to": 667.77,
+    "gain": 1.585
+   },
+   {
+    "file": "../../media/music/Crypto.mp3",
+    "from": 667.77,
+    "to": 841.21,
+    "gain": 0.861
+   },
+   {
+    "file": "../../media/music/Dreamy Flashback.mp3",
+    "from": 841.21,
+    "to": 953.45,
+    "gain": 0.733
+   },
+   {
+    "file": "../../media/music/Lightless Dawn.mp3",
+    "from": 953.45,
+    "to": 1073.422,
+    "gain": 2.985
+   },
+   {
+    "file": "../../media/music/Inspired.mp3",
+    "from": 1073.422,
+    "to": 1220.954,
+    "gain": 0.484
+   },
+   {
+    "file": "../../media/music/Impact Prelude.mp3",
+    "from": 1220.954,
+    "to": 1369.446,
+    "gain": 0.912
+   },
+   {
+    "file": "../../media/music/Clean Soul.mp3",
+    "from": 1369.446,
+    "to": 1442.594,
+    "gain": 2.57
+   }
+  ]
+ },
+ "sfx": [
+  {
+   "name": "whoosh",
+   "at": 51.6,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 52.05,
+   "gain": 0.32
+  },
+  {
+   "name": "whoosh",
+   "at": 252.808,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 253.258,
+   "gain": 0.32
+  },
+  {
+   "name": "whoosh",
+   "at": 517.72,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 518.17,
+   "gain": 0.32
+  },
+  {
+   "name": "whoosh",
+   "at": 667.82,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 668.27,
+   "gain": 0.32
+  },
+  {
+   "name": "whoosh",
+   "at": 841.26,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 841.71,
+   "gain": 0.32
+  },
+  {
+   "name": "whoosh",
+   "at": 953.5,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 953.95,
+   "gain": 0.32
+  },
+  {
+   "name": "whoosh",
+   "at": 1073.472,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 1073.922,
+   "gain": 0.32
+  },
+  {
+   "name": "whoosh",
+   "at": 1221.004,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 1221.454,
+   "gain": 0.32
+  },
+  {
+   "name": "whoosh",
+   "at": 1369.496,
+   "gain": 0.45
+  },
+  {
+   "name": "ding",
+   "at": 1369.946,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 0.45,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 4.234,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 10.46,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 96.219,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 120.236,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 77.017,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 137.483,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 165.283,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 202.159,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 209.191,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 210.128,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 243.263,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 317.379,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 333.396,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 486.273,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 272.174,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 294.986,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 388.972,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 411.624,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 435.048,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 604.646,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 635.379,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 536.292,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 597.182,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 658.743,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 693.405,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 709.841,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 683.661,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 679.815,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 695.482,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 710.875,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 727.097,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 751.378,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 832.542,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 867.863,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 904.177,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 906.509,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 920.335,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 946.987,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 994.066,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 997.586,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 995.268,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 985.292,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 1028.821,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 1096.524,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 1123.972,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 1130.57,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 1192.582,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 1280.443,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 1283.568,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 1268.001,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 1352.182,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 1414.201,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 1422.612,
+   "gain": 0.32
+  },
+  {
+   "name": "pop",
+   "at": 1425.868,
+   "gain": 0.32
+  },
+  {
+   "name": "bam",
+   "at": 0.45,
+   "gain": 0.3
+  },
+  {
+   "name": "crunch",
+   "at": 96.219,
+   "gain": 0.5
+  },
+  {
+   "name": "crunch",
+   "at": 212.4,
+   "gain": 0.4
+  },
+  {
+   "name": "crunch",
+   "at": 317.379,
+   "gain": 0.35
+  },
+  {
+   "name": "ding",
+   "at": 333.396,
+   "gain": 0.4
+  },
+  {
+   "name": "ding",
+   "at": 683.661,
+   "gain": 0.45
+  },
+  {
+   "name": "splash",
+   "at": 904.177,
+   "gain": 0.35
+  },
+  {
+   "name": "bam",
+   "at": 1028.821,
+   "gain": 0.3
+  },
+  {
+   "name": "thunder",
+   "at": 1280.443,
+   "gain": 0.6
+  },
+  {
+   "name": "thunder",
+   "at": 1283.568,
+   "gain": 0.35
+  },
+  {
+   "name": "chord",
+   "at": 1422.612,
+   "gain": 0.5
+  },
+  {
+   "name": "ding",
+   "at": 1425.868,
+   "gain": 0.45
+  }
+ ]
+}
