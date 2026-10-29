@@ -22,7 +22,7 @@ const page = await browser.newPage({ viewport: SH ? { width: 1080, height: 1920 
 page.on('console', (m) => console.error('[page]', m.type(), m.text().slice(0, 300)));
 page.on('pageerror', (e) => console.error('[pageerror]', e.message));
 await page.goto(`http://127.0.0.1:${port}/index.html` + (SH ? `?portrait&short=${SH}` : ''));
-await page.waitForFunction('window.READY === true', null, { timeout: 400000 });
+await page.waitForFunction('window.READY === true', null, { timeout: 1200000 });
 const dur = await page.evaluate('window.DURATION');
 const stage = await page.$('#stage');
 

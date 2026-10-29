@@ -1,7 +1,7 @@
 # Публикация: Римский бетон, который сам себя чинит
 
 **Слот:** суббота 31.10.2026, 19:00 (Таллин) · автор Claude · длительность 21:54
-**Файл:** см. `release_url.txt` (GitHub Release `long-roman-concrete`) · обложка `out/thumb_full.png`
+**Файл:** см. `release_url.txt` (GitHub Release `long-roman-concrete`) · обложка `thumb_yt.jpg` (1280×720)
 
 **Название (≤ 100):**
 Почему римский бетон стоит 2000 лет, а наш крошится за 50
