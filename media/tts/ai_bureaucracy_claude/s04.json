@@ -1,0 +1,37 @@
+{
+ "text": "Всем — приглашения. Начальника — в копию.",
+ "words": [
+  {
+   "w": "Всем",
+   "start": 0.1,
+   "end": 0.632416
+  },
+  {
+   "w": "приглашения",
+   "start": 0.84075,
+   "end": 1.847708
+  },
+  {
+   "w": "Начальника",
+   "start": 2.700458,
+   "end": 3.545374
+  },
+  {
+   "w": "в",
+   "start": 3.823166,
+   "end": 3.915749
+  },
+  {
+   "w": "копию",
+   "start": 3.91575,
+   "end": 4.587041
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+8%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/ai_bureaucracy_claude/s04.mp3"
+}

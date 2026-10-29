@@ -1,0 +1,47 @@
+{
+ "text": "Жду час. Тишина. И тут пишет начальник.",
+ "words": [
+  {
+   "w": "Жду",
+   "start": 0.1,
+   "end": 0.551375
+  },
+  {
+   "w": "час",
+   "start": 0.551375,
+   "end": 0.979625
+  },
+  {
+   "w": "Тишина",
+   "start": 1.762958,
+   "end": 2.387958
+  },
+  {
+   "w": "И",
+   "start": 3.186583,
+   "end": 3.418041
+  },
+  {
+   "w": "тут",
+   "start": 3.418041,
+   "end": 3.672666
+  },
+  {
+   "w": "пишет",
+   "start": 3.672666,
+   "end": 4.008332
+  },
+  {
+   "w": "начальник",
+   "start": 4.008333,
+   "end": 4.656499
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+8%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/ai_bureaucracy_claude/d06.mp3"
+}

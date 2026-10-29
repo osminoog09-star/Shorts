@@ -1,0 +1,47 @@
+{
+ "text": "Шеф! Повестка на девять: точка после «да».",
+ "words": [
+  {
+   "w": "Шеф",
+   "start": 0.1,
+   "end": 0.690291
+  },
+  {
+   "w": "Повестка",
+   "start": 1.508333,
+   "end": 2.029166
+  },
+  {
+   "w": "на",
+   "start": 2.029166,
+   "end": 2.156499
+  },
+  {
+   "w": "девять",
+   "start": 2.1565,
+   "end": 2.619458
+  },
+  {
+   "w": "точка",
+   "start": 2.793041,
+   "end": 3.151832
+  },
+  {
+   "w": "после",
+   "start": 3.151833,
+   "end": 3.591666
+  },
+  {
+   "w": "да",
+   "start": 3.765291,
+   "end": 4.054624
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+8%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/ai_bureaucracy_claude/s05.mp3"
+}
