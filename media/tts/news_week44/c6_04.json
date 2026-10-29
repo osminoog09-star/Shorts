@@ -1,0 +1,32 @@
+{
+ "text": "И что сделала компания?",
+ "words": [
+  {
+   "w": "И",
+   "start": 0.1,
+   "end": 0.280291
+  },
+  {
+   "w": "что",
+   "start": 0.280291,
+   "end": 0.520666
+  },
+  {
+   "w": "сделала",
+   "start": 0.520666,
+   "end": 0.941332
+  },
+  {
+   "w": "компания",
+   "start": 0.941333,
+   "end": 1.890833
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_week44/c6_04.mp3"
+}
