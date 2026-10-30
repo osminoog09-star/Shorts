@@ -27,3 +27,9 @@ HyperFrames CLI ставится отдельно (`npx hyperframes …`, см. 
 | 10 | Marketing Skills (6 из 52) | mkt-social, mkt-video, mkt-content-strategy, mkt-copywriting, mkt-marketing-ideas, mkt-marketing-psychology | coreyhaines31/marketingskills | заголовки, хуки, контент-план, психология удержания. Остальные 46 (SaaS/продажи) не ставили |
 
 Правило: тексты для зрителя (названия, описания, сценарии) после написания прогонять через humanizer; разбор референса — через watch, выводы — в m1lash-reference-analysis.
+
+### Дополнение 30.10: Marketing Skills — все 52
+Решение Дениса 30.10: поставить весь пакет coreyhaines31/marketingskills, а не 6. Папки `mkt-*` (имя скила = `mkt-` + оригинальное). Внутри ссылки вида «see copywriting» означают `mkt-copywriting`. Пакет заточен под SaaS — для канала в первую очередь: mkt-social, mkt-video, mkt-content-strategy, mkt-copywriting, mkt-copy-editing, mkt-marketing-ideas, mkt-marketing-psychology, mkt-ab-testing, mkt-image, mkt-influencer-marketing, mkt-launch.
+
+### Программы из тех же шортсов (ставятся на ПК, не скилы)
+PersonaLive, OpenHands, MuMuAINovel — скрипты в `scripts/pc/`, строки в `LOCAL_PC_PLAN.md`. Remotion уже в `studio/` и `remotion-*`.
