@@ -56,13 +56,14 @@
       "id": "pretend_bot3_gpt",
       "kind": "short",
       "author": "GPT",
-      "status": "ready",
+      "status": "review",
       "slot": null,
       "style": "S6-D25",
       "mp4": "videos/pretend_bot3_gpt_ru_v3.mp4",
       "publish_md": "shorts/pretend_bot_3_gpt/PUBLISH.md",
       "title": "ИИ доказал, что я робот 💀 | Притворись ботом 3 #shorts",
-      "note": "V3 MP4 49,532 с, полный декод и 14 контрольных кадров PASS; готов к PRIVATE upload без publish_at. YouTube ID ещё не подтверждён, публичной даты нет."
+      "note": "Приватно загружен 31.10; YouTube ID CmOu0xXc0UI. V3 49,532 с, FFmpeg full decode PASS, контрольные кадры проверены, голоса Дима+Света. Только просмотр Дениса; publish_at НЕ назначен.",
+      "youtube_id": "CmOu0xXc0UI"
     },
     {
       "id": "request_ernesto",
