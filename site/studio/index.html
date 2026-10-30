@@ -420,9 +420,13 @@ function openSettings(){
   const t=tok();
   openSheet(`<h2 style="font-size:18px">Настройки и управление</h2>
     <section class="card" style="margin-bottom:12px"><h2>Управление с сайта</h2>${t?'<p class="chip c-ok">Токен сохранён в этом браузере ✓</p>':'<p class="muted" style="margin-top:0">Чтобы работали кнопки «Одобрить», «Заливаем», «В идеи» и «Обновить», один раз добавь GitHub-токен. Он хранится только на этом устройстве.</p>'}
-      <ol class="steps"><li>Открой <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → новый fine-grained токен</a>.</li><li>Название: <b>M1lash студия</b>, срок: 1 год.</li><li>Repository access → <b>Only select repositories</b> → <b>Shorts</b>.</li><li>Permissions → Repository: <b>Contents — Read and write</b> и <b>Actions — Read and write</b>.</li><li>Generate token → скопируй и вставь сюда.</li></ol>
+      <ol class="steps"><li>Открой <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → новый fine-grained токен</a>.</li><li>Название: <b>M1lash студия</b>, срок: 1 год.</li><li>Repository access → <b>Only select repositories</b> → <b>Shorts</b>.</li><li>Permissions → Repository: <b>Contents</b>, <b>Actions</b> и <b>Secrets</b> — везде <b>Read and write</b>. (Уже есть токен без Secrets? Открой его в GitHub → Edit → добавь Secrets.)</li><li>Generate token → скопируй и вставь сюда.</li></ol>
       <label class="f" style="margin-top:12px">Токен<input class="t" id="tokIn" type="password" autocomplete="off" placeholder="github_pat_…"></label>
       <div class="row" style="margin-top:10px"><button class="btn pri" id="tokSave">Сохранить и проверить</button>${t?'<button class="btn" id="tokDel">Удалить токен</button>':""}</div></section>
+    <section class="card" style="margin-bottom:12px"><h2>Ключи (одним нажатием)</h2>
+      <div class="idea"><b>🔐 Ключ подписи виджета</b><p>Нужен один раз: тогда обновления виджета будут ставиться поверх. Ключ создаётся в этом браузере, шифруется и уходит только в секреты GitHub — больше нигде не хранится.</p><div class="row"><button class="btn pri" id="mkKey">Создать ключ и собрать виджет</button></div></div>
+      <div class="idea" style="margin-top:10px"><b>🔑 Ключ YouTube (для комментариев)</b><p>Открой <a href="https://developers.google.com/oauthplayground/" target="_blank" rel="noopener">OAuth Playground</a> (⚙️ → свои client ID/secret M1lash Studio), отметь 4 доступа: <code>youtube.upload</code>, <code>youtube.force-ssl</code>, <code>youtube.readonly</code>, <code>yt-analytics.readonly</code> → Authorize → Exchange → скопируй <b>Refresh token</b> сюда.</p><label class="f">Refresh token<input class="t" id="ytTok" type="password" autocomplete="off" placeholder="1//0…"></label><div class="row" style="margin-top:8px"><button class="btn pri" id="ytSave">Сохранить в GitHub и проверить</button></div></div>
+      <p class="muted" style="font-size:12px;margin:10px 0 0" id="keyLog"></p></section>
     <section class="card" style="margin-bottom:12px"><h2>Обновить сейчас</h2><div class="row"><button class="btn" data-run="youtube-pulse.yml">⚡ Живые цифры и комменты</button><button class="btn" data-run="youtube-analytics.yml">📊 Полная аналитика</button><button class="btn" data-run="motion-pages.yml">🌐 Пересобрать сайт</button></div><p class="muted" style="font-size:12px;margin:10px 0 0">Само обновляется: живые цифры — каждый час, аналитика — каждый день в 10:20.</p></section>
     <section class="card"><h2>Приложение</h2><a class="btn pri" href="${esc((D&&D.app||{}).apk||"#")}">📱 Скачать виджет для Android ${D&&D.app?"v"+esc(D.app.name):""}</a><p class="muted" style="font-size:12px;margin:10px 0 0">Виджет растягивается от 1×1 до 4×4. Новые версии приложение предложит само.</p></section>
     <div class="row" style="margin-top:14px"><button class="btn" data-close>Закрыть</button></div>`);
@@ -477,6 +481,31 @@ async function hero3d(){
   const vis=()=>{if(!document.hidden&&run&&!reduce)requestAnimationFrame(loop)};document.addEventListener("visibilitychange",vis);
   gl={stop(){run=false;ro.disconnect();removeEventListener("pointermove",mv);removeEventListener("pointermove",move);removeEventListener("pointerup",up);removeEventListener("deviceorientation",or);document.removeEventListener("visibilitychange",vis);R.dispose()}};
 }
+/* ---------- секреты GitHub: шифрование в браузере (sealed box) ---------- */
+let cryptoP=null;
+function loadCrypto(){return cryptoP||(cryptoP=new Promise((res,rej)=>{const s=document.createElement("script");s.src="i/m1crypto.js";s.onload=()=>res(window.M1Crypto);s.onerror=()=>rej(new Error("не загрузилось шифрование"));document.head.appendChild(s)}))}
+const u8=b=>Uint8Array.from(atob(b),c=>c.charCodeAt(0));const b64u8=a=>{let s="";a.forEach(c=>s+=String.fromCharCode(c));return btoa(s)};
+async function setSecret(name,value){
+  const C=await loadCrypto();const pk=await gh("/actions/secrets/public-key");
+  const enc=C.seal(new TextEncoder().encode(value),u8(pk.key));
+  await gh("/actions/secrets/"+name,{method:"PUT",body:JSON.stringify({encrypted_value:b64u8(enc),key_id:pk.key_id})});
+}
+async function secretExists(name){try{await gh("/actions/secrets/"+name);return true}catch(e){if(/404/.test(e.message))return false;throw e}}
+const klog=m=>{const e=$("#keyLog");if(e)e.textContent=m};
+async function makeSigningKey(btn){
+  if(await secretExists("WIDGET_KEYSTORE_B64")&&btn.dataset.sure!=="1"){btn.dataset.sure="1";btn.disabled=false;btn.textContent="Ключ уже есть — всё равно заменить?";klog("Внимание: новый ключ = виджет придётся один раз переустановить.");return}
+  klog("Создаю ключ RSA-2048… (10–30 секунд)");const C=await loadCrypto(),F=C.forge;
+  const kp=await new Promise((res,rej)=>F.pki.rsa.generateKeyPair({bits:2048,workers:-1},(e,k)=>e?rej(e):res(k)));
+  const c=F.pki.createCertificate();c.publicKey=kp.publicKey;c.serialNumber="01"+Date.now().toString(16);c.validity.notBefore=new Date();c.validity.notAfter=new Date(Date.now()+30*365*864e5);
+  const at=[{name:"commonName",value:"M1lash Widget"}];c.setSubject(at);c.setIssuer(at);c.sign(kp.privateKey,F.md.sha256.create());
+  const pass=b64u8(crypto.getRandomValues(new Uint8Array(24))).replace(/[^A-Za-z0-9]/g,"").slice(0,28);
+  const p12=F.pkcs12.toPkcs12Asn1(kp.privateKey,[c],pass,{algorithm:"aes256",friendlyName:"m1lash"});
+  const b64=F.util.encode64(F.asn1.toDer(p12).getBytes());
+  klog("Шифрую и сохраняю в секреты GitHub…");
+  await setSecret("WIDGET_KEYSTORE_B64",b64);await setSecret("WIDGET_KEYSTORE_PASSWORD",pass);
+  await dispatch("android-widget.yml");klog("Готово ✓ Ключ сохранён, виджет собирается (~5 мин). Потом удали старый виджет и поставь новый с сайта — дальше обновления пойдут поверх.");
+  toast("Ключ подписи создан ✓");btn.textContent="Готово ✓";
+}
 let threeP=0;function loadThree(){if(threeP)return;threeP=1;const s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";s.onload=()=>{if(tab==="home")hero3d()};document.head.appendChild(s)}
 
 /* ---------- навигация и события ---------- */
@@ -522,6 +551,8 @@ document.addEventListener("click",async e=>{
       D.ideas=D.ideas||{ideas:[]};(D.ideas.ideas=D.ideas.ideas||[]).push(idea);el.textContent="В идеях ✓";toast("Заявка добавлена в идеи ✓")})}
   if(el=q("[data-run]")){if(!needTok())return;return act(el,async()=>{await dispatch(el.dataset.run);toast("Запущено — обновится через 2–5 минут");el.disabled=false})}
   if(el=q("#tokSave")){const v=$("#tokIn").value.trim();if(!v)return;store.set("m1-gh",v);return act(el,async()=>{try{await gh("")}catch(err){store.set("m1-gh",null);throw err}toast("Токен работает ✓");openSettings()})}
+  if(el=q("#mkKey")){if(!needTok())return;return act(el,()=>makeSigningKey(el))}
+  if(el=q("#ytSave")){if(!needTok())return;const v=$("#ytTok").value.trim();if(!v)return toast("Вставь refresh token");return act(el,async()=>{klog("Шифрую и сохраняю…");await setSecret("YOUTUBE_REFRESH_TOKEN_RU",v);$("#ytTok").value="";await dispatch("youtube-auth-check.yml").catch(()=>{});await dispatch("youtube-pulse.yml");klog("Сохранено ✓ Проверка и сбор комментариев запущены — через пару минут загляни во «Зрители».");toast("Ключ YouTube обновлён ✓");el.textContent="Сохранено ✓"})}
   if(q("#tokDel")){store.set("m1-gh",null);toast("Токен удалён");return openSettings()}
 });
 $("#scrim").onclick=closeSheet;
