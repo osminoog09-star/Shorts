@@ -87,6 +87,8 @@ jobs:
             out/cat-nebula-s7d25-REVIEW.mp4
             out/qa.json
             out/qa_frames/
+            studio/public/cat_nebula/dima_*.mp3
+            studio/public/cat_nebula/dima_*_part*.mp3
             studio/public/cat_nebula/manifest.json
             studio/public/cat_nebula/mouth.json
           if-no-files-found: warn
