@@ -80,7 +80,9 @@ def main():
         videos += [v for v in result.get("items", []) if v.get("status", {}).get("privacyStatus") == "public"]
     seeds = {key: set(cfg[key].get("seed", [])) for key in keys}
     wanted = {key: [] for key in keys}
+    excluded = set(cfg.get("_exclude", []))
     for v in videos:
+        if v["id"] in excluded: continue  # live/undetermined: preserve on channel, do not put in themed playlists
         k = category(v, seeds)
         if k in wanted: wanted[k].append(v)
     for key, items in wanted.items():
@@ -92,6 +94,14 @@ def main():
                  json={"snippet": {"playlistId": playlist_id, "position": 0,
                                    "resourceId": {"kind": "youtube#video", "videoId": v["id"]}}})
             print("ADDED", v["id"], "->", cfg[key]["title"])
+    # Repair only the three verified misclassifications inserted by this script into our NEW Humor playlist.
+    # Deleting a playlist item does NOT delete/hide the YouTube video; legacy RU/ENG playlists are untouched.
+    cleanup = set(cfg.get("_exclude", [])) | {"2Ych7OkX1vc"}
+    if "humor" in cfg and cfg["humor"].get("id"):
+        for item in pages("/playlistItems", token, part="id,contentDetails", playlistId=cfg["humor"]["id"]):
+            if item["contentDetails"]["videoId"] in cleanup:
+                call("DELETE", "/playlistItems", token, params={"id": item["id"]})
+                print("REMOVED_WRONG_HUMOR_MEMBERSHIP", item["contentDetails"]["videoId"])
     print("PLAYLISTS_OK", {k: cfg[k]["id"] for k in keys}, "public uploads scanned:", len(videos))
 
 if __name__ == "__main__":
