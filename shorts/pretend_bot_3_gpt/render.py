@@ -4,7 +4,7 @@ import json, math, subprocess, wave, os, pathlib, random
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 R=pathlib.Path(__file__).resolve().parents[2]
-OUT=R/"videos"/"pretend_bot3_gpt_ru.mp4"
+OUT=R/"videos"/"pretend_bot3_gpt_ru_v2.mp4"
 HERE=pathlib.Path(__file__).resolve().parent
 TTS=R/"media"/"tts"/"pretend_bot3_gpt"
 JOB=R/"jobs"/"tts"/"pretend_bot3_gpt.json"
