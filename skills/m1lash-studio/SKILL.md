@@ -64,6 +64,10 @@ description: Карта и пошаговый конвейер студии ка
 
 ## 7. Уроки (дописывать сверху: дата · автор · что узнали)
 
+- 31.10 · GPT · OAuth `token_for('ru')` может работать для YouTube Data/Analytics, но не давать `youtube.force-ssl`. Тест `YouTube auth check` обязан дополнительно проверять `commentThreads.list` и считать `403 insufficientPermissions` за NO-GO; `status.comments=ok` в `pulse-data/pulse.json` подтверждать только по реальному запуску. Новый refresh token получать через интерактивный Google consent владельца и хранить **только** в GitHub Secrets, не в issue/чат/файл.
+- 31.10 · GPT · Виджет: GitHub Actions `SUCCESS` при подписи debug и предупреждении о `WIDGET_KEYSTORE_B64` — ложный успех. Выпускной workflow обязан fail-closed без обоих постоянных секретов, проверять keystore и ключевой alias до сборки; никогда не перезаписывать release debug-сборкой. Нельзя генерировать постоянный ключ в недоверенном окружении без гарантированного безопасного сохранения в Actions Secrets.
+- 31.10 · GPT · Кино-Shorts по зрительской заявке: найденный на YouTube официальный/лицензированный для владельца канала клип **не означает** право повторного использования M1lash и **не означает**, что доступен локальный MP4. Пока нет файловых байтов, нельзя выдумывать диалоги/таймкоды, заявлять QA PASS или делать private upload. Можно заранее подготовить отдельное утверждённое TTS-задание Димы, паспорт и queue статус `draft`; после получения легального исходника — полноценный монтаж/QA и `mode=upload` без `publish_at`.
+
 - 31.10 · Claude · 3D-текст на сайте: Three.js r128 (TextGeometry в ядре) + свой typeface из Unbounded ExtraBold (`site/studio/i/font.json`, сделан opentype.js из @fontsource/unbounded). Вертексные цвета переводить `convertSRGBToLinear()`, иначе блёкло. Иконки/логотипы рендерятся тем же кодом через Playwright → PNG.
 - 31.10 · Claude · Комментарии канала требуют scope `youtube.force-ssl` (иначе 403 insufficientPermissions) — `tasks/gpt_reauth_comments.md`.
 - 31.10 · Claude · Мобильная вёрстка: у сетки оболочки `minmax(0,1fr)` и `min-width:0` у детей, иначе горизонтальный скролл-ряд распирает страницу.
