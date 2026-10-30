@@ -347,7 +347,7 @@ function videos(){
 function queue(){
   let s=`<section class="card reveal"><h2>Ждёт твоего «ок» <span class="cnt">${D.review.length}</span></h2>`+(D.review.length?`<div class="grid">${D.review.map(r=>`<div class="idea"><div class="row">${r.video_id?`<div class="th" style="width:120px"><img src="https://i.ytimg.com/vi/${esc(r.video_id)}/mqdefault.jpg" alt=""></div>`:""}<div style="flex:1;min-width:0"><b>${esc(r.title)}</b><p>Залит приватно — посмотри в Studio и реши.</p></div></div><div class="row">${r.video_id?`<a class="btn sm" target="_blank" rel="noopener" href="https://studio.youtube.com/video/${esc(r.video_id)}/edit">Открыть в Studio</a>`:""}${r.manifest?`<button class="btn sm pri" data-ok="${esc(r.id)}">Заливаем →</button>`:""}</div></div>`).join("")}</div>`:`<div class="empty">Пока ничего не ждёт. Когда агент зальёт ролик приватно, он появится здесь и придёт уведомление в виджет.</div>`)+`</section>`;
   const days={};D.plan.forEach(p=>(days[p.date]=days[p.date]||[]).push(p));
-  s+=`<section class="card reveal"><h2>Ближайшие 14 дней</h2>`+(D.plan.length?Object.entries(days).map(([d,sl])=>`<div class="goal"><div class="tp"><b>${dshort(d)}</b></div>${sl.map(x=>`<div class="row"><span class="chip">${esc(x.time)}</span>${x.title?`<span>${esc(x.title)}</span>`:`<span class="muted">${esc(x.what||"слот")} — нужен ролик</span>`}${x.status==="scheduled"?'<span class="chip c-ok">запланирован</span>':x.status==="пусто"?'<span class="chip c-warn">пусто</span>':`<span class="chip">${esc(x.status)}</span>`}</div>`).join("")}</div>`).join(""):`<div class="empty">Сетка пуста.</div>`)+`</section>`;
+  s+=`<section class="card reveal"><h2>Сетка на 7 дней</h2>`+(D.plan.length?Object.entries(days).map(([d,sl])=>`<div class="goal"><div class="tp"><b>${dshort(d)}</b></div>${sl.map(x=>`<div class="row"><span class="chip">${esc(x.time)}</span>${x.title?`<span>${esc(x.title)}</span>`:`<span class="muted">${esc(x.what||"слот")} — нужен ролик</span>`}${x.status==="scheduled"?'<span class="chip c-ok">запланирован</span>':x.status==="пусто"?'<span class="chip c-warn">пусто</span>':`<span class="chip">${esc(x.status)}</span>`}</div>`).join("")}</div>`).join(""):`<div class="empty">Сетка пуста.</div>`)+`</section>`;
   return s;
 }
 function ideas(){
@@ -489,7 +489,14 @@ function okHint(){
   const S=bestSlots("short"),bars=row.length?`<div style="display:flex;gap:2px;align-items:flex-end;height:34px;margin:6px 0">${row.map((x,h)=>`<i title="${h}:00" style="flex:1;height:${Math.max(6,x/peak*100)}%;border-radius:3px;background:${h===d.getHours()?"var(--pink)":"color-mix(in srgb,var(--muted) 35%,transparent)"}"></i>`).join("")}</div><div class="axis"><span>0:00</span><span>12:00</span><span>23:00</span></div>`:"";
   el.innerHTML=`Активность аудитории в это время: <b>${Math.round(v/peak*100)}%</b> от пика недели${d<new Date()?' · <span class="down">время уже прошло</span>':""}${S.best?` · авто рекомендует: <b>${slotLabel(S.best.t)}</b>`:""}${bars}`;
 }
+// время в формате, который принимает youtube_direct.py: с таллинским смещением (+02:00/+03:00)
+function tallinnISO(ms){
+  const d=new Date(ms),f=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Tallinn",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23",timeZoneName:"longOffset"});
+  const p=Object.fromEntries(f.formatToParts(d).map(x=>[x.type,x.value]));const off=(p.timeZoneName||"GMT+02:00").replace("GMT","")||"+00:00";
+  return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}:00${off}`;
+}
 async function doSchedule(id,iso){
+  iso=tallinnISO(new Date(iso).getTime());
   const mf=`publishing/queue/${id}.json`;
   await editJSON(mf,m=>{m.publish_at=iso},`publish: ${id} → ${iso} (Денис: заливаем, с сайта)`);
   await dispatch("youtube-direct.yml",{manifest:mf,execute:"true",mode:"schedule"});

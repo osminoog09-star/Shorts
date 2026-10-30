@@ -244,6 +244,9 @@ def main():
         if m.get("publish_at"):
             taken.append({"id": mf.stem, "at": m["publish_at"], "kind": (m.get("metadata") or {}).get("type")})
     kinds = {mf.stem: ((load(str(mf.relative_to(ROOT)), {}) or {}).get("metadata") or {}).get("type") for mf in (ROOT / "publishing" / "queue").glob("*.json")}
+    pending = {mf.stem for mf in (ROOT / "publishing" / "queue").glob("*.json")
+               if (load(str(mf.relative_to(ROOT)), {}) or {}).get("publish_at")}
+    review = [r for r in review if r["id"] not in pending]
     merged = {}
     for r in review:
         m = merged.setdefault(r["id"], {})
