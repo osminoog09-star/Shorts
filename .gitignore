@@ -4,3 +4,4 @@ studio/voices
 studio/out
 __pycache__/
 publishing/studio/dist/
+site/studio/data.json

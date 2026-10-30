@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Студия M1lash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Пульт канала: сверху вкладки по важности (План → Что делать → Сводка → Ролики). Данные — data.json, обновляется сам. */
+:root{
+  --bg:#f3f2f7;--panel:#fff;--ink:#17161f;--muted:#666478;--line:#e1dfea;--soft:#ecebf4;
+  --blue:#2f7cf6;--pink:#e5408e;--ok:#1f8f5a;--okbg:#e2f4ea;--warn:#a86a00;--warnbg:#fbefd6;--bad:#c23a3a;--badbg:#fbe3e3;--info:#2f63c9;--infobg:#e3ecfb;
+  --f-d:"Unbounded","Golos Text",system-ui,sans-serif;--f-b:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;--f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#111019;--panel:#1a1924;--ink:#efeef6;--muted:#9c9ab0;--line:#2c2a3a;--soft:#22212e;--blue:#5c9bff;--pink:#ff5fa8;--ok:#5fd39a;--okbg:#173426;--warn:#f0b54a;--warnbg:#3a2d12;--bad:#ff7b7b;--badbg:#3b1a1d;--info:#86aefc;--infobg:#1b2a47;color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-b);padding-top:env(safe-area-inset-top,0px)}
+.wrap{max-width:1000px;margin:0 auto;padding-block:18px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:20px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.mark{width:40px;height:40px;border-radius:10px;padding:3px;background:linear-gradient(135deg,var(--blue),var(--pink))}
+.mark span{display:grid;place-items:center;width:100%;height:100%;border-radius:8px;background:var(--panel);font:700 15px var(--f-d)}
+h1{font:700 clamp(20px,5vw,28px)/1.1 var(--f-d);margin:0}
+.sub{color:var(--muted);font-size:13px;margin:2px 0 0}
+nav{display:flex;gap:6px;flex-wrap:wrap;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding-block:8px;z-index:5}
+nav button{font:600 14px var(--f-b);border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+nav button:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.badge{display:inline-grid;place-items:center;min-width:20px;height:20px;border-radius:10px;background:var(--pink);color:#fff;font:600 11px var(--f-m);margin-left:6px;padding:0 6px}
+h2{font:700 13px var(--f-d);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.grid{display:grid;gap:14px}
+.kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.kpi .n{font:700 26px/1.1 var(--f-d);font-variant-numeric:tabular-nums}
+.kpi .l{color:var(--muted);font-size:13px}
+.chip{display:inline-block;font:600 11px var(--f-m);border-radius:6px;padding:3px 7px;background:var(--soft);color:var(--muted)}
+.c-ok{background:var(--okbg);color:var(--ok)}.c-warn{background:var(--warnbg);color:var(--warn)}.c-bad{background:var(--badbg);color:var(--bad)}.c-info{background:var(--infobg);color:var(--info)}
+.day{display:grid;grid-template-columns:86px minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.day:first-child{border-top:0}
+.day .d{font-weight:600}.day .d small{display:block;color:var(--muted);font:12px var(--f-m)}
+.slot{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;padding:3px 0}
+.slot .t{font:600 12px var(--f-m);color:var(--muted);width:42px}
+.slot .w{min-width:0}
+.today .d{color:var(--pink)}
+ul.clean{margin:0;padding-left:18px;display:grid;gap:6px}
+.rec{display:grid;gap:4px;padding:12px 14px;border-radius:12px;background:var(--soft)}
+.rec b{font-weight:600}
+.bars{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:150px minmax(0,1fr) 60px;gap:10px;align-items:center;font-size:14px}
+.bar .track{height:12px;border-radius:6px;background:var(--soft);overflow:hidden}
+.bar .fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--pink));border-radius:6px}
+.bar .v{font:600 13px var(--f-m);text-align:right;font-variant-numeric:tabular-nums}
+.spark{width:100%;height:120px;display:block}
+.tablebox{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:13px}
+th,td{padding:8px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font:600 11px var(--f-m);color:var(--muted);text-transform:uppercase;letter-spacing:.05em;cursor:pointer;white-space:nowrap}
+td.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+th.num{text-align:right}
+td a{color:var(--ink);text-decoration:none}td a:hover{text-decoration:underline}
+select{font:500 13px var(--f-b);padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.muted{color:var(--muted)}
+pre.week{white-space:pre-wrap;font:13px/1.5 var(--f-b);margin:0;max-height:360px;overflow:auto}
+footer{color:var(--muted);font:12px var(--f-m)}
+@media (max-width:560px){.bar{grid-template-columns:110px minmax(0,1fr) 50px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><div class="mark"><span>M1</span></div><div><h1>Студия M1lash</h1><p class="sub" id="asof">загрузка…</p></div></header>
+  <nav role="tablist">
+    <button role="tab" data-t="plan">План</button>
+    <button role="tab" data-t="todo">Что делать</button>
+    <button role="tab" data-t="sum">Сводка</button>
+    <button role="tab" data-t="vids">Ролики</button>
+  </nav>
+  <main id="view"></main>
+  <footer>Обновляется сам после ежедневной аналитики · источник: репо osminoog09-star/Shorts</footer>
+</div>
+<script>
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const num=n=>n==null?"—":Number(n).toLocaleString("ru-RU");
+const DAYS=["Вс","Пн","Вт","Ср","Чт","Пт","Сб"];
+let D=null, tab="plan", sortKey="published", sortDir=-1, fmtFilter="";
+try{tab=localStorage.getItem("m1-tab")||"plan"}catch(e){}
+
+function statusChip(s){
+  const m={"scheduled":["запланирован","c-ok"],"uploaded":["ждёт твоего ок","c-warn"],"review":["ждёт просмотра","c-warn"],"ready":["готов","c-info"],"draft":["черновик","c-bad"],"пусто":["пусто",""]};
+  const [t,c]=m[s]||[s,""];return `<span class="chip ${c}">${esc(t)}</span>`;
+}
+function plan(){
+  const days={};D.plan.forEach(p=>(days[p.date]=days[p.date]||[]).push(p));
+  const today=new Date().toISOString().slice(0,10);
+  const empty=D.plan.filter(p=>p.status==="пусто").length;
+  let h=`<div class="grid">`;
+  if(D.review.length) h+=`<section class="card"><h2>Ждёт твоего «ок»</h2><ul class="clean">${D.review.map(r=>`<li>${r.video_id?`<a href="https://studio.youtube.com/video/${esc(r.video_id)}/edit" target="_blank" rel="noopener">${esc(r.title)}</a>`:esc(r.title)} — посмотри и напиши «заливаем»</li>`).join("")}</ul></section>`;
+  h+=`<section class="card"><h2>Следующие 14 дней · пустых слотов: ${empty}</h2>`;
+  Object.entries(days).forEach(([d,slots])=>{
+    const dt=new Date(d+"T12:00:00");
+    h+=`<div class="day ${d===today?"today":""}"><div class="d">${DAYS[dt.getDay()]}<small>${d.slice(8)}.${d.slice(5,7)}</small></div><div>${slots.map(s=>`<div class="slot"><span class="t">${s.time}</span><span class="w">${s.title?esc(s.title):`<span class="muted">${esc(s.what)}</span>`}</span><span class="chip">${esc(s.who)}</span>${statusChip(s.status)}</div>`).join("")}</div></div>`;
+  });
+  return h+`</section></div>`;
+}
+function todo(){
+  const f=D.formats.filter(x=>x.n>0);
+  const best=f[0], ret=[...f].filter(x=>x.avg_avp!=null).sort((a,b)=>b.avg_avp-a.avg_avp)[0], subs=[...f].sort((a,b)=>b.subs-a.subs)[0], worst=f[f.length-1];
+  let h=`<div class="grid"><section class="card"><h2>Решения на неделю (по цифрам)</h2><div class="grid">`;
+  if(best) h+=`<div class="rec"><b>Больше всего: ${esc(best.format)}</b><span class="muted">в среднем ${num(best.avg_views)} просмотров на ролик — ставь в лучшие слоты (10:00).</span></div>`;
+  if(ret) h+=`<div class="rec"><b>Лучше всего досматривают: ${esc(ret.format)}</b><span class="muted">${ret.avg_avp}% досмотра — формат для серий и воронки в длинные.</span></div>`;
+  if(subs) h+=`<div class="rec"><b>Больше всего подписок: ${esc(subs.format)}</b><span class="muted">+${subs.subs} подписчиков — именно это растит канал.</span></div>`;
+  if(worst&&worst!==best) h+=`<div class="rec"><b>Слабее всего: ${esc(worst.format)}</b><span class="muted">${num(worst.avg_views)} в среднем — делать реже или менять подачу.</span></div>`;
+  h+=`</div></section>`;
+  const L=D.learn;
+  h+=`<section class="card"><h2>База знаний (learnings.md)</h2>`+
+    (L.works.length?`<p><b>Работает</b></p><ul class="clean">${L.works.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"")+
+    (L.fails.length?`<p><b>Не работает</b></p><ul class="clean">${L.fails.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"")+
+    (L.hyp.length?`<p><b>Проверяем</b></p><ul class="clean">${L.hyp.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"")+`</section>`;
+  h+=`<section class="card"><h2>Правила, которые работают сейчас</h2><ul class="clean"><li>Первый кадр — событие, хук за 2 секунды.</li><li>Shorts 30–45 с + финал 2–3 с, не больше 2 в день (10:00 и 16:00).</li><li>Длинное = кино-разбор 8–12 мин, перед ним 2–3 кино-Shorts по тому же фильму со ссылкой «Связанное видео».</li><li>Каждый ролик сначала приватно тебе — дата только после «заливаем».</li></ul></section>`;
+  if(D.weekly.name) h+=`<section class="card"><h2>Недельный отчёт ${esc(D.weekly.name)}</h2><pre class="week">${esc(D.weekly.text)}</pre></section>`;
+  return h+`</div>`;
+}
+function sum(){
+  const pub=D.videos.filter(v=>v.privacy==="public");
+  const top=[...pub].sort((a,b)=>(b.views||0)-(a.views||0))[0];
+  const daily=D.daily.slice(-28);
+  const max=Math.max(1,...daily.map(d=>d.views||0));
+  const W=600,H=120,step=daily.length>1?W/(daily.length-1):W;
+  const pts=daily.map((d,i)=>`${(i*step).toFixed(1)},${(H-8-(d.views||0)/max*(H-24)).toFixed(1)}`).join(" ");
+  const week=daily.slice(-7).reduce((s,d)=>s+(d.views||0),0);
+  let h=`<div class="grid"><div class="kpis">
+    <div class="card kpi"><div class="n">${num(D.channel.subs)}</div><div class="l">подписчиков</div></div>
+    <div class="card kpi"><div class="n">${num(D.channel.views)}</div><div class="l">просмотров всего</div></div>
+    <div class="card kpi"><div class="n">${num(week)}</div><div class="l">просмотров за 7 дней</div></div>
+    <div class="card kpi"><div class="n">${num(D.channel.videos)}</div><div class="l">видео</div></div></div>`;
+  if(daily.length>1) h+=`<section class="card"><h2>Просмотры по дням</h2><svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Просмотры по дням"><polyline points="${pts}" fill="none" stroke="var(--pink)" stroke-width="2.5" vector-effect="non-scaling-stroke"/></svg><p class="muted" style="margin:6px 0 0;font-size:12px">${esc(daily[0].day)} — ${esc(daily[daily.length-1].day)} · пик ${num(max)}</p></section>`;
+  const mx=Math.max(1,...D.formats.map(f=>f.avg_views));
+  h+=`<section class="card"><h2>Средние просмотры по форматам</h2><div class="bars">${D.formats.map(f=>`<div class="bar"><span>${esc(f.format)} <span class="muted">·${f.n}</span></span><div class="track"><div class="fill" style="width:${(f.avg_views/mx*100).toFixed(1)}%"></div></div><span class="v">${num(f.avg_views)}</span></div>`).join("")}</div></section>`;
+  if(top) h+=`<section class="card"><h2>Лучший ролик</h2><a href="https://youtu.be/${esc(top.id)}" target="_blank" rel="noopener">${esc(top.title)}</a> — ${num(top.views)} просмотров, ${num(top.likes)} лайков</section>`;
+  return h+`</div>`;
+}
+function vids(){
+  const fmts=[...new Set(D.videos.map(v=>v.format))];
+  let list=D.videos.filter(v=>!fmtFilter||v.format===fmtFilter);
+  list=[...list].sort((a,b)=>{const x=a[sortKey],y=b[sortKey];return (x==null)-(y==null)||(x>y?1:x<y?-1:0)*sortDir});
+  const col=(k,t,n)=>`<th class="${n?"num":""}" data-k="${k}">${t}${sortKey===k?(sortDir>0?" ↑":" ↓"):""}</th>`;
+  return `<section class="card"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px"><h2 style="margin:0">Все ролики · ${list.length}</h2><select id="ff" aria-label="Формат"><option value="">Все форматы</option>${fmts.map(f=>`<option ${f===fmtFilter?"selected":""}>${esc(f)}</option>`).join("")}</select></div><div class="tablebox"><table><thead><tr>${col("published","Дата")}${col("title","Ролик")}${col("format","Формат")}${col("views","Просм.",1)}${col("avp","Досмотр %",1)}${col("subs","Подп.",1)}${col("likes","Лайки",1)}</tr></thead><tbody>${list.map(v=>`<tr><td class="num">${esc((v.published||"").slice(5,10).split("-").reverse().join("."))}</td><td><a href="https://youtu.be/${esc(v.id)}" target="_blank" rel="noopener">${esc(v.title)}</a>${v.privacy!=="public"?` <span class="chip c-warn">${esc(v.privacy)}</span>`:""}</td><td><span class="chip">${esc(v.format)}</span></td><td class="num">${num(v.views)}</td><td class="num">${v.avp==null?"—":Math.round(v.avp)}</td><td class="num">${num(v.subs)}</td><td class="num">${num(v.likes)}</td></tr>`).join("")}</tbody></table></div></section>`;
+}
+function render(){
+  document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===tab));
+  const r=D.review.length; const pb=document.querySelector('[data-t="plan"]'); pb.innerHTML="План"+(r?`<span class="badge">${r}</span>`:"");
+  document.getElementById("view").innerHTML={plan,todo,sum,vids}[tab]();
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("nav button"); if(b){tab=b.dataset.t;try{localStorage.setItem("m1-tab",tab)}catch(_){}render();return}
+  const th=e.target.closest("th[data-k]"); if(th){const k=th.dataset.k; if(sortKey===k)sortDir*=-1; else {sortKey=k;sortDir=-1} render()}
+});
+document.addEventListener("change",e=>{if(e.target.id==="ff"){fmtFilter=e.target.value;render()}});
+fetch("data.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{D=d;document.getElementById("asof").textContent=`Обновлено ${d.built} · аналитика по ${d.analytics_as_of||"—"}`;render()}).catch(()=>{document.getElementById("view").innerHTML='<p class="card">Данные ещё не собраны. Они появятся после ближайшей ежедневной аналитики.</p>'});
+</script>
+</body>
+</html>

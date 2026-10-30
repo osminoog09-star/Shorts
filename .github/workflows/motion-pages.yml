@@ -1,8 +1,11 @@
 name: Motion Studio · GitHub Pages
 on:
+  workflow_run:
+    workflows: ['YouTube Analytics daily', 'YouTube Analytics', 'YouTube · daily analytics']
+    types: [completed]
   push:
     branches: [main]
-    paths: ['motion-studio/**', '.github/workflows/motion-pages.yml', '.github/workflows/m1lash-news-radar.yml', '.github/workflows/motion-trends.yml']
+    paths: ['motion-studio/**', 'site/**', 'scripts/build_studio_site.py', 'publishing/queue.json', 'publishing/receipts/**', 'reports/learnings.md', 'reports/weekly/**', '.github/workflows/motion-pages.yml', '.github/workflows/m1lash-news-radar.yml', '.github/workflows/motion-trends.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -30,6 +33,8 @@ jobs:
           mkdir -p _site
           cp motion-studio/index.html motion-studio/privacy.html motion-studio/studio-v2.js motion-studio/studio-v2.css motion-studio/renderer.html motion-studio/app.js motion-studio/style.css motion-studio/world.json _site/
           cp -r motion-studio/data _site/data
+          python3 scripts/build_studio_site.py
+          mkdir -p _site/studio && cp site/studio/index.html site/studio/data.json _site/studio/
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

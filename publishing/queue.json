@@ -6,36 +6,39 @@
       "id": "ai_blackmail",
       "kind": "short",
       "author": "Claude",
-      "status": "ready",
+      "status": "published",
       "slot": null,
       "style": "S6-D25",
       "mp4": "videos/ai_blackmail_ru.mp4",
       "publish_md": "shorts/ai_blackmail/PUBLISH.md",
-      "note": "Часть 1 из 2. Голос Дима, музыка Kevin MacLeod CC BY."
+      "note": "Часть 1 из 2. Голос Дима, музыка Kevin MacLeod CC BY.",
+      "youtube_id": "UTvk61Gos1M"
     },
     {
       "id": "pixel_alarm",
       "kind": "short",
       "author": "Claude",
-      "status": "review",
+      "status": "published",
       "slot": null,
       "style": "S5-D2",
       "mp4": "videos/pixel_alarm_ru.mp4",
       "publish_md": null,
       "title": "ИИ-будильник",
-      "note": "Ждёт твоего просмотра. Без ведущего в углу (решение 30.10). Паспорт допишу после «ок»."
+      "note": "Ждёт твоего просмотра. Без ведущего в углу (решение 30.10). Паспорт допишу после «ок».",
+      "youtube_id": "tGpma37GZ0w"
     },
     {
       "id": "news_week44",
       "kind": "long",
       "author": "Claude",
-      "status": "ready",
+      "status": "published",
       "slot": null,
       "style": "3D",
       "mp4": "https://github.com/osminoog09-star/Shorts/releases/download/long-news-week44/news-week44.mp4",
       "thumb": "longform/news-week44/thumb.png",
       "publish_md": "longform/news-week44/PUBLISH.md",
-      "note": "24:02, гейт 21:00 пройден. Дима и Света."
+      "note": "24:02, гейт 21:00 пройден. Дима и Света.",
+      "youtube_id": "oTe1dEelJPs"
     },
     {
       "id": "ai_news_2026_10_28",
