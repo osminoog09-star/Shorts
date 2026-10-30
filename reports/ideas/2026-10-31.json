@@ -50,9 +50,11 @@
       "title": "Заявка @ErnestoMarsel: Сделай момент со смехом Уолтера в подвале в конце 11 серии 4 сезона. Желательно в оригинал",
       "why": "Комментарий зрителя, ❤️ 1. Упомянуть автора в ролике.",
       "film": null,
-      "status": "approved",
+      "status": "in_work",
       "comment_id": "UgzjWH-22iCp0unTh-p4AaABAg",
-      "video_id": "XANzL3z9wqY"
+      "video_id": "XANzL3z9wqY",
+      "production_file": "shorts/request_ernesto_crawlspace/README.md",
+      "source_status": "waiting_owner_screen_recording"
     }
   ]
 }
