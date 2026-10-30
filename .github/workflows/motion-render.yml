@@ -75,6 +75,15 @@ jobs:
                           subprocess.run(['python','scripts/tts_job.py',str(tts_job)],check=True)
                   subprocess.run(['python',str(script)],check=True)
                   if not output.is_file() or output.stat().st_size<200000:raise RuntimeError('Python render did not produce MP4')
+                  # Full decode & formal stream gate before any review-only save.
+                  import json as jsonmod
+                  probe=jsonmod.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,codec_name,width,height','-of','json',str(output)]))
+                  duration=float(probe['format']['duration'])
+                  vs=[v for v in probe['streams'] if v['codec_type']=='video']
+                  au=[a for a in probe['streams'] if a['codec_type']=='audio']
+                  if not vs or not au or vs[0].get('width')!=1080 or vs[0].get('height')!=1920 or not 33<=duration<=65:raise RuntimeError('NO-GO: video profile, audio or duration invalid')
+                  subprocess.run(['ffmpeg','-v','error','-i',str(output),'-f','null','-'],check=True)
+                  print('Full MP4 decode OK; seconds=',duration,flush=True)
                   Path('motion-output').mkdir(exist_ok=True)
                   import shutil
                   shutil.copy2(output,Path('motion-output')/output.name)
@@ -103,6 +112,9 @@ jobs:
                   if not video.is_file():raise RuntimeError('Expected review MP4 missing')
                   subprocess.run(['git','add','--',str(video)],check=True)
           PY
+          # Temporary synthesized speech must not block rebase when TTS-bot added it upstream.
+          git restore -- media/tts/ || true
+          git clean -fd -- media/tts/ || true
           if ! git diff --cached --quiet; then
             git config user.name "m1lash-render-bot"
             git config user.email "m1lash-render-bot@users.noreply.github.com"
