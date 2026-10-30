@@ -1,0 +1,26 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>M1lash виджет</title>
+<style>
+:root{--bg:#111019;--ink:#efeef6;--muted:#9c9ab0;--pink:#ff5fa8;--warn:#f0b54a}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font:14px/1.35 system-ui,-apple-system,"Segoe UI",sans-serif;padding:12px;display:grid;gap:8px;align-content:start}
+a{color:inherit;text-decoration:none}
+.row{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.n{font-weight:700;font-size:22px;font-variant-numeric:tabular-nums}.l{color:var(--muted);font-size:11px}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.next{border-top:1px solid #2c2a3a;padding-top:6px;font-size:13px}
+.warn{color:var(--warn);font-weight:600}
+.t{color:var(--muted);font:600 11px ui-monospace,Menlo,monospace}
+</style></head><body>
+<a href="./" id="w">загрузка…</a>
+<script>
+const num=n=>n==null?"—":Number(n).toLocaleString("ru-RU");
+fetch("data.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{
+  const wk=(d.daily||[]).slice(-7).reduce((s,x)=>s+(x.views||0),0);
+  const now=new Date().toISOString().slice(0,10);
+  const nxt=d.plan.filter(p=>p.date>=now).slice(0,3);
+  document.getElementById("w").innerHTML=`<div class="row"><b>M1lash</b><span class="l">${d.built}</span></div>
+  <div class="kp"><div><div class="n">${num(d.channel.subs)}</div><div class="l">подписчики</div></div><div><div class="n">${num(wk)}</div><div class="l">просм. 7 дн</div></div><div><div class="n">${num(d.channel.views)}</div><div class="l">всего</div></div></div>
+  ${d.review.length?`<div class="warn">Ждёт твоего «ок»: ${d.review.length}</div>`:""}
+  <div class="next">${nxt.map(p=>`<div class="row"><span><span class="t">${p.date.slice(8)}.${p.date.slice(5,7)} ${p.time}</span> ${p.title||p.what}</span><span class="l">${p.status}</span></div>`).join("")}</div>`;
+}).catch(()=>{document.getElementById("w").textContent="нет данных"});
+</script></body></html>
