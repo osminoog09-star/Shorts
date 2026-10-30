@@ -61,7 +61,15 @@ jobs:
                       stem=tts_job.stem
                       voice_dir=Path('media/tts')/stem
                       ref=json.loads(tts_job.read_text(encoding='utf-8'))
-                      missing=any(not (voice_dir/(l['id']+'.mp3')).is_file() for l in ref['lines'])
+                      def needs_voice(l):
+                          mp3=voice_dir/(l['id']+'.mp3')
+                          meta=voice_dir/(l['id']+'.json')
+                          if not mp3.is_file() or not meta.is_file():return True
+                          try:
+                              m=json.loads(meta.read_text(encoding='utf-8'))
+                              return m.get('text')!=l['text'] or m.get('voice_id')!=l.get('voice',ref['voice']) or m.get('rate')!=l.get('rate',ref.get('rate','+0%'))
+                          except (OSError,ValueError):return True
+                      missing=any(needs_voice(l) for l in ref['lines'])
                       if missing:
                           print('Approved TTS assets missing; requesting via existing validated script',flush=True)
                           subprocess.run(['python','scripts/tts_job.py',str(tts_job)],check=True)
