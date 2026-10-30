@@ -35,10 +35,10 @@
       "status": "proposed",
       "kind": "experiment",
       "format": "Shorts",
-      "title": "Закреп-комментарий с вопросом vs без закрепа",
-      "hypothesis": "Закреп поднимет комментарии",
-      "metric": "comments",
-      "control": "ролик без закрепа"
+      "title": "Кино-Shorts 25–30 с vs 40–45 с",
+      "hypothesis": "Короче — выше досмотр и повторы",
+      "metric": "averageViewPercentage",
+      "control": "кино-Shorts 40+ с"
     }
   ]
 }
