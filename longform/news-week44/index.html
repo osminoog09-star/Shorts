@@ -19,7 +19,7 @@ html,body{margin:0;background:#000}
 await Promise.all(['900 40px Rubik','700 40px Rubik','600 40px Rubik','40px RMono','40px Neucha','700 40px NSerif'].map(f=>document.fonts.load(f,'АБВabcΗΛΙΟΣ')));
 const Q = new URLSearchParams(location.search);
 let F, renderAt;
-if (false) {}
+if (Q.get('short')) { F = await import('./film.js'); window.DURATION = await F.initShort(Q.get('short')); renderAt = F.renderShort; }
 else { F = await import('./film.js'); window.renderThumb = F.thumb; window.DURATION = await F.init(); renderAt = F.renderAt; }
 window.renderAt = renderAt;
 window.READY = true;

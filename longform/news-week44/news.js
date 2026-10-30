@@ -1,6 +1,7 @@
 // 2D-оверлеи выпуска: плашка главы, говорящий, карточки фактов, цифры, цитаты, источники
 import { ctx, W, H, CSS, clamp, lerp, seg, easeOut, easeIn, easeInOut, spring } from './engine.js';
 
+const PT = H > W; // вертикальная нарезка
 export const INK = '#2b2a3a', RED = '#e8706a', LAV = '#7a63e6', MINT = '#2fae86', SKY = '#3f8fd8';
 function rr(x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
 function inOut(t, t0, t1, a = 0.9, b = 0.45) { const k = spring(seg(t, t0, t0 + a) * 1.2, 8, 6), fo = t1 == null ? 0 : easeIn(seg(t, t1 - b, t1)); return { k, a: clamp(k) * (1 - fo), vis: k > 0.001 && fo < 1 }; }
@@ -42,10 +43,10 @@ export function speaker(sp, talking, t, t0) {
   const name = sp === 'S' ? 'СВЕТА' : 'ДИМА', col = sp === 'S' ? '#ff98b1' : '#8cc8ff';
   ctx.save(); ctx.globalAlpha = a * 0.96;
   ctx.font = '800 30px "Rubik"'; const tw = ctx.measureText(name).width; const w = tw + 140;
-  rr(56, H - 116, w, 64, 32); ctx.fillStyle = 'rgba(43,42,58,0.78)'; ctx.fill();
-  ctx.beginPath(); ctx.arc(90, H - 84, 18, 0, Math.PI * 2); ctx.fillStyle = col; ctx.fill();
-  ctx.fillStyle = '#fff'; ctx.fillText(name, 120, H - 73);
-  for (let i = 0; i < 4; i++) { const h = talking ? 8 + 18 * Math.abs(Math.sin(t * (7 + i * 2.3) + i)) : 6; rr(132 + tw + i * 12, H - 84 - h / 2, 7, h, 3.5); ctx.fillStyle = col; ctx.fill(); }
+  const by = PT ? 1000 : H - 116; rr(56, by, w, 64, 32); ctx.fillStyle = 'rgba(43,42,58,0.78)'; ctx.fill();
+  ctx.beginPath(); ctx.arc(90, by + 32, 18, 0, Math.PI * 2); ctx.fillStyle = col; ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.fillText(name, 120, by + 43);
+  for (let i = 0; i < 4; i++) { const h = talking ? 8 + 18 * Math.abs(Math.sin(t * (7 + i * 2.3) + i)) : 6; rr(132 + tw + i * 12, by + 32 - h / 2, 7, h, 3.5); ctx.fillStyle = col; ctx.fill(); }
   ctx.restore();
 }
 
@@ -122,17 +123,30 @@ export function source(text, t, t0, t1) {
   const { a, vis } = inOut(t, t0, t1, 0.5, 0.3); if (!vis) return;
   ctx.save(); ctx.globalAlpha = a * 0.92; ctx.font = '600 24px "Rubik"';
   const s = 'Источник: ' + text; const w = ctx.measureText(s).width + 40;
-  rr(56, H - 170, w, 40, 20); ctx.fillStyle = 'rgba(255,255,255,0.85)'; ctx.fill();
-  ctx.fillStyle = '#5a5870'; ctx.fillText(s, 76, H - 142); ctx.restore();
+  const sy = PT ? 940 : H - 170; rr(56, sy, w, 40, 20); ctx.fillStyle = 'rgba(255,255,255,0.85)'; ctx.fill();
+  ctx.fillStyle = '#5a5870'; ctx.fillText(s, 76, sy + 28); ctx.restore();
 }
 
 // Крупное слово-удар по центру сверху (кинетика)
 export function punch(text, x, y, t, t0, t1, { size = 120, color = '#ffffff', bg = RED, rot = -0.04 } = {}) {
   const { a, k, vis } = inOut(t, t0, t1, 0.6, 0.35); if (!vis) return;
+  if (PT) x = W / 2;
   ctx.save(); ctx.globalAlpha = a; ctx.translate(x, y); ctx.rotate(rot); const s = lerp(1.6, 1, clamp(k)); ctx.scale(s, s);
   ctx.font = `900 ${size}px "Rubik"`; const tw = ctx.measureText(text).width;
   ctx.shadowColor = 'rgba(40,30,70,0.25)'; ctx.shadowBlur = 40; ctx.shadowOffsetY = 14;
   rr(-tw / 2 - 40, -size * 0.85, tw + 80, size * 1.2, 26); ctx.fillStyle = bg; ctx.fill(); ctx.shadowColor = 'transparent';
   ctx.fillStyle = color; ctx.textAlign = 'center'; ctx.fillText(text, 0, size * 0.25);
   ctx.restore();
+}
+
+// Крупный текст-хук для вертикали: строки по центру, каждая на своей плашке
+export function hook(lines, t, t0, t1, { y = 330, size = 84 } = {}) {
+  lines.forEach((l, i) => {
+    const { a, k, vis } = inOut(t, t0 + i * 0.18, t1, 0.6, 0.35); if (!vis) return;
+    ctx.save(); ctx.globalAlpha = a; ctx.translate(W / 2, y + i * size * 1.32); const s = lerp(1.4, 1, clamp(k)); ctx.scale(s, s); ctx.rotate(i % 2 ? 0.02 : -0.02);
+    ctx.font = `900 ${size}px "Rubik"`; const tw = ctx.measureText(l.t).width;
+    ctx.shadowColor = 'rgba(40,30,70,0.25)'; ctx.shadowBlur = 36; ctx.shadowOffsetY = 12;
+    rr(-tw / 2 - 34, -size * 0.85, tw + 68, size * 1.18, 22); ctx.fillStyle = l.bg || '#ffffff'; ctx.fill(); ctx.shadowColor = 'transparent';
+    ctx.fillStyle = l.c || INK; ctx.textAlign = 'center'; ctx.fillText(l.t, 0, size * 0.22); ctx.restore();
+  });
 }

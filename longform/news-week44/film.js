@@ -39,3 +39,26 @@ export function renderAt(t) {
     }
   }
 }
+
+// ───────── вертикальные нарезки (shorts/<имя>.json) ─────────
+import { clear2d, ctx as C2, W as SW } from './engine.js';
+import { hook as hookText, punch as punchText } from './news.js';
+let SH = null;
+export async function initShort(name) {
+  await init();
+  SH = await (await fetch(`./shorts/${name}.json`)).json();
+  let t = 0; SH.pieces.forEach((p) => { p.at = t; p.len = p.kind === 'seg' ? p.to - p.from : p.dur; t += p.len; });
+  return SH.duration;
+}
+export function renderShort(t) {
+  let p = SH.pieces[0]; for (const q of SH.pieces) if (t >= q.at) p = q;
+  const lt = t - p.at;
+  if (p.kind === 'seg') { renderAt(p.from + lt); return; }
+  renderAt(p.longAt + lt * 0.6); clear2d();
+  if (p.kind === 'hook') hookText(p.lines, lt, 0.05, p.dur + 0.3);
+  else {
+    hookText([{ t: 'ПОЛНЫЙ ВЫПУСК', bg: '#2b2a3a', c: '#ffffff' }, { t: '— НА КАНАЛЕ', bg: '#ffdc7a' }], lt, 0.1, p.dur + 1, { y: 330, size: 76 });
+    punchText('ПОДПИШИСЬ', SW / 2, 700, lt, p.sub ?? p.dur * 0.62, p.dur + 1, { size: 96 });
+    punchText('СПАСИБО ЗА ЛАЙК ♥', SW / 2, 860, lt, (p.sub ?? p.dur * 0.62) + 1.1, p.dur + 1, { size: 58, bg: '#2b2a3a', rot: 0.03 });
+  }
+}
