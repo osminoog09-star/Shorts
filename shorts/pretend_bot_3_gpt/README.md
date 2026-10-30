@@ -15,7 +15,7 @@
 - Voice job: `jobs/tts/pretend_bot3_gpt.json`
 - Synthesized approved files: `media/tts/pretend_bot3_gpt/s01..s12.mp3`
 - Source: `shorts/pretend_bot_3_gpt/render.py`
-- Output: `videos/pretend_bot3_gpt_ru.mp4` **только после успешного CI-рендера**
+- Output: `videos/pretend_bot3_gpt_ru_v2.mp4` **создано и проверено, run 41135608358**
 - Existing general workflow: `.github/workflows/motion-render.yml`; job `jobs/motion/pretend_bot3_gpt.json`
 - Publishing passport: `shorts/pretend_bot_3_gpt/PUBLISH.md`
 
