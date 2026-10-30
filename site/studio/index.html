@@ -287,6 +287,8 @@ function todoItems(){
   const rq=cflags("request").filter(c=>!seen.has(c.id)); if(rq.length) it.push(["🙋","c-pink",`Новые заявки зрителей: ${rq.length}`,"сделать ролик по просьбе",()=>{fSeg="request";go("fans")}]);
   const tm=cflags("to_me").filter(c=>!seen.has(c.id)); if(tm.length) it.push(["💬","c-info",`Тебе написали: ${tm.length}`,esc(clean(tm[0].text)).slice(0,70),()=>{fSeg="to_me";go("fans")}]);
   const ideas=((D.ideas||{}).ideas||[]).filter(i=>(i.status||"proposed")==="proposed"); if(ideas.length) it.push(["💡","c-info",`Идеи на одобрение: ${ideas.length}`,esc(ideas[0].title).slice(0,70),()=>{iSeg="ideas";go("ideas")}]);
+  const filled=D.plan.filter(p=>p.title).length+D.review.length, bufDays=filled/1.8;
+  if(bufDays<2) it.push(["📦","c-warn",`Запас роликов: ${bufDays.toFixed(1).replace(".",",")} дн.`,`нужно ≥ 3 дней по сетке — ${D.plan.filter(p=>!p.title).length} пустых слотов на неделю`,()=>{vSeg="queue";go("videos")}]);
   const age=D.analytics_as_of?(Date.now()-new Date(D.analytics_as_of+"T12:00:00"))/864e5:9; if(age>3.5) it.push(["⚠️","c-bad","Аналитика устарела",`данные по ${dshort(D.analytics_as_of)} — запусти обновление`,()=>openSettings()]);
   if(L&&L.fresh_short) it.push(["🆕","c-ok",`Свежий Shorts: ${num(L.fresh_short.views)} просм.`,`${L.fresh_short.views_1h>0?"+"+num(L.fresh_short.views_1h)+" за час · ":"вышел "+ago(L.fresh_short.published)+" назад · "}${esc(L.fresh_short.title).slice(0,60)}`,()=>openVideo(L.fresh_short.id)]);
   return it;
@@ -345,7 +347,7 @@ function videos(){
 function queue(){
   let s=`<section class="card reveal"><h2>Ждёт твоего «ок» <span class="cnt">${D.review.length}</span></h2>`+(D.review.length?`<div class="grid">${D.review.map(r=>`<div class="idea"><div class="row">${r.video_id?`<div class="th" style="width:120px"><img src="https://i.ytimg.com/vi/${esc(r.video_id)}/mqdefault.jpg" alt=""></div>`:""}<div style="flex:1;min-width:0"><b>${esc(r.title)}</b><p>Залит приватно — посмотри в Studio и реши.</p></div></div><div class="row">${r.video_id?`<a class="btn sm" target="_blank" rel="noopener" href="https://studio.youtube.com/video/${esc(r.video_id)}/edit">Открыть в Studio</a>`:""}${r.manifest?`<button class="btn sm pri" data-ok="${esc(r.id)}">Заливаем →</button>`:""}</div></div>`).join("")}</div>`:`<div class="empty">Пока ничего не ждёт. Когда агент зальёт ролик приватно, он появится здесь и придёт уведомление в виджет.</div>`)+`</section>`;
   const days={};D.plan.forEach(p=>(days[p.date]=days[p.date]||[]).push(p));
-  s+=`<section class="card reveal"><h2>Ближайшие 14 дней</h2>`+(D.plan.length?Object.entries(days).map(([d,sl])=>`<div class="goal"><div class="tp"><b>${dshort(d)}</b></div>${sl.map(x=>`<div class="row"><span class="chip">${esc(x.time)}</span><span>${esc(x.title)}</span>${x.status==="scheduled"?'<span class="chip c-ok">запланирован</span>':`<span class="chip">${esc(x.status)}</span>`}</div>`).join("")}</div>`).join(""):`<div class="empty">Расписание ещё не выбрано — сюда попадут ролики после твоего «Заливаем».</div>`)+`</section>`;
+  s+=`<section class="card reveal"><h2>Ближайшие 14 дней</h2>`+(D.plan.length?Object.entries(days).map(([d,sl])=>`<div class="goal"><div class="tp"><b>${dshort(d)}</b></div>${sl.map(x=>`<div class="row"><span class="chip">${esc(x.time)}</span>${x.title?`<span>${esc(x.title)}</span>`:`<span class="muted">${esc(x.what||"слот")} — нужен ролик</span>`}${x.status==="scheduled"?'<span class="chip c-ok">запланирован</span>':x.status==="пусто"?'<span class="chip c-warn">пусто</span>':`<span class="chip">${esc(x.status)}</span>`}</div>`).join("")}</div>`).join(""):`<div class="empty">Сетка пуста.</div>`)+`</section>`;
   return s;
 }
 function ideas(){
@@ -435,35 +437,57 @@ function openSettings(){
 function bestSlots(kind){
   const B=D.best_times||{},R=B.rules||{short_hours:[10,16],long_hours:[19],max_shorts_per_day:2,min_gap_hours:6,min_lead_hours:2,horizon_days:3,near_best_ratio:.85},heat=B.heat||{};
   const hours=kind==="long"?R.long_hours:R.short_hours, now=Date.now();
-  const taken=[...(D.taken||[]).map(x=>({t:new Date(x.at).getTime(),kind:x.kind||"short"})),...(D.plan||[]).map(p=>({t:new Date(p.date+"T"+p.time+":00").getTime(),kind:"short"}))];
+  const taken=[...(D.taken||[]).map(x=>({t:new Date(x.at).getTime(),kind:x.kind||"short"})),...(D.plan||[]).filter(p=>p.title).map(p=>({t:new Date(p.date+"T"+p.time+":00").getTime(),kind:p.what==="кино-разбор"?"long":"short"}))];
   // поправка по нашим роликам: средние просмотры Shorts, вышедших в этот слот (±2 ч), если таких ≥4
-  const own={};const pub=D.videos.filter(v=>v.privacy==="public"&&v.published&&(v.duration||0)<=180);const all=avg(pub.map(v=>v.views));
-  hours.forEach(h=>{const a=pub.filter(v=>Math.abs(new Date(v.published).getHours()-h)<=2).map(v=>v.views);own[h]=a.length>=4&&all?Math.max(.85,Math.min(1.15,avg(a)/all)):1});
+  const pub=D.videos.filter(v=>v.privacy==="public"&&v.published&&(v.duration||0)<=180);const FA=fmtAvg();
+  const rel=v=>{const a=(FA[v.format]||{}).views;return a?(v.views||0)/a:null};
+  const samples=h=>pub.filter(v=>Math.abs(new Date(v.published).getHours()-h)<=1).map(rel).filter(x=>x!=null);
+  const own={};const xh=kind==="long"?[]:(R.explore_hours||[]);
+  [...hours,...xh].forEach(h=>{const a=samples(h);own[h]=a.length>=(R.explore_min_samples||4)?Math.max(.8,Math.min(1.25,avg(a))):1});
   const c=[];
-  for(let d=0;d<=R.horizon_days;d++)for(const h of hours){
+  for(let d=0;d<=R.horizon_days;d++)for(const h of [...hours,...xh]){const explore=!hours.includes(h);
     const x=new Date();x.setDate(x.getDate()+d);x.setHours(h,0,0,0);const t=x.getTime();
     if(t<now+R.min_lead_hours*36e5)continue;
     const sameDay=taken.filter(y=>new Date(y.t).toDateString()===x.toDateString()&&y.kind!=="long");
     if(kind!=="long"&&sameDay.length>=R.max_shorts_per_day)continue;
     if(taken.some(y=>Math.abs(y.t-t)<R.min_gap_hours*36e5))continue;
     const dow=((x.getDay()+6)%7)+1, v=((heat[dow]||[])[h]||5000)*own[h];
-    c.push({t,score:v,dow});
+    c.push({t,score:v,dow,explore,h});
   }
-  if(!c.length)return{best:null,list:[]};
+  const xs=c.filter(x=>x.explore);const main=c.filter(x=>!x.explore);
+  if(!main.length&&!xs.length)return{best:null,list:[]};
+  // нужен ли тест времени: в каком-то тестовом часу мало данных и за 7 дней тестов было меньше нормы
+  const weekAgo=Date.now()-7*864e5;
+  const testsThisWeek=[...pub.filter(v=>new Date(v.published).getTime()>weekAgo).map(v=>new Date(v.published).getHours()),...taken.filter(y=>y.t>weekAgo).map(y=>new Date(y.t).getHours())].filter(h=>xh.includes(h)).length;
+  const needTest=xh.filter(h=>samples(h).length<(R.explore_min_samples||4)).length>0&&testsThisWeek<(R.explore_per_week||2);
+  return pickBest(main.length?main:xs,xs,needTest,R);
+}
+function pickBest(c,xs,needTest,R){
+  const now=Date.now();
   const top=Math.max(...c.map(x=>x.score));
   const win=c.filter(x=>x.t<=now+(R.pick_window_hours||48)*36e5), pool=win.length?win:c, ptop=Math.max(...pool.map(x=>x.score));
-  const best=pool.find(x=>x.score>=ptop*(R.near_best_ratio||.85));
-  return{best,list:c.sort((a,b)=>a.t-b.t).slice(0,6),top};
+  let best=pool.find(x=>x.score>=ptop*(R.near_best_ratio||.85));
+  const xwin=xs.filter(x=>x.t<=now+(R.pick_window_hours||48)*36e5&&x.score>=ptop*(R.explore_min_ratio||.6)).sort((a,b)=>a.t-b.t);
+  if(needTest&&xwin.length)best=xwin[0];
+  const list=[...new Map([...c,...xs].map(x=>[x.t,x])).values()].sort((a,b)=>a.t-b.t).slice(0,8);
+  return{best,list,top:Math.max(top,...xs.map(x=>x.score)),needTest};
 }
 const DW=["вс","пн","вт","ср","чт","пт","сб"];
 const slotLabel=t=>{const d=new Date(t),td=new Date();const k=Math.round((new Date(d.toDateString())-new Date(td.toDateString()))/864e5);return(k===0?"сегодня":k===1?"завтра":k===2?"послезавтра":DW[d.getDay()]+" "+dshort(d.toISOString()))+" в "+String(d.getHours()).padStart(2,"0")+":00"};
 const toLocal=t=>{const d=new Date(t);return new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,16)};
 function openOk(id){
   const r=D.review.find(x=>x.id===id)||{},kind=r.kind||"short",S=bestSlots(kind);
-  const auto=S.best?`<div class="idea" style="border-color:color-mix(in srgb,var(--pink) 45%,var(--line))"><div class="row"><span class="chip c-pink">⚡ Авто · рекомендую</span></div><b style="font-size:20px">${slotLabel(S.best.t)}</b><p>Самый ранний слот в ближайшие 48 ч, где активность аудитории ≥ 85% от лучшего в этом окне (по Metricool и нашим роликам). Правила: Shorts в 10:00/16:00, не больше 2 в день, ≥ 6 ч между роликами.</p><button class="btn pri" data-okat="${S.best.t}" data-id="${esc(id)}">Поставить на ${slotLabel(S.best.t)}</button></div>`:`<div class="empty">Свободных слотов на 3 дня нет — выбери время вручную.</div>`;
-  const alt=S.list.length>1?`<p class="muted" style="font-size:12px;margin:12px 0 6px">Другие слоты (активность аудитории):</p><div class="row">${S.list.map(x=>`<button class="btn sm${S.best&&x.t===S.best.t?" pri":""}" data-okat="${x.t}" data-id="${esc(id)}">${slotLabel(x.t)} · ${Math.round(x.score/S.top*100)}%</button>`).join("")}</div>`:"";
+  const auto=S.best?`<div class="idea" style="border-color:color-mix(in srgb,var(--pink) 45%,var(--line))"><div class="row"><span class="chip c-pink">⚡ Авто · рекомендую</span>${S.best.explore?'<span class="chip c-info">🧪 тест времени</span>':""}</div><b style="font-size:20px">${slotLabel(S.best.t)}</b><p>${S.best.explore?"Эксперимент со временем: в этом часе у нас мало данных, а тестов на этой неделе было меньше двух. Так находим, вдруг другой час работает лучше. Не хочешь — выбери слот ниже.":"Самый ранний слот в ближайшие 48 ч, где активность аудитории ≥ 85% от лучшего в этом окне (Metricool + наши ролики, с поправкой на результаты прошлых тестов). Правила: Shorts в 10:00/16:00, ≤ 2 в день, ≥ 6 ч между роликами."}</p><button class="btn pri" data-okat="${S.best.t}" data-id="${esc(id)}">Поставить на ${slotLabel(S.best.t)}</button></div>`:`<div class="empty">Свободных слотов на 3 дня нет — выбери время вручную.</div>`;
+  const alt=S.list.length>1?`<p class="muted" style="font-size:12px;margin:12px 0 6px">Другие слоты (активность аудитории):</p><div class="row">${S.list.map(x=>`<button class="btn sm${S.best&&x.t===S.best.t?" pri":""}" data-okat="${x.t}" data-id="${esc(id)}">${x.explore?"🧪 ":""}${slotLabel(x.t)} · ${Math.round(x.score/S.top*100)}%</button>`).join("")}</div>`:"";
   openSheet(`<h2 style="font-size:18px">Заливаем: когда открыть ролик?</h2><p class="muted" style="margin-top:0">${esc(r.title||id)}<br>Ролик уже на YouTube приватно — YouTube сам опубликует его в выбранное время.</p>${auto}${alt}
-    <div class="idea" style="margin-top:12px"><b>✋ Своё время</b><label class="f">Дата и время<input class="t" type="datetime-local" id="okAt" value="${S.best?toLocal(S.best.t):toLocal(Date.now()+864e5)}"></label><div class="row"><button class="btn" id="okGo" data-id="${esc(id)}">Поставить на это время</button><button class="btn" data-close>Отмена</button></div></div>`);
+    <div class="idea" style="margin-top:12px"><b>✋ Своё время</b><label class="f">Дата и время — можно любой момент<input class="t" type="datetime-local" id="okAt" step="60" value="${S.best?toLocal(S.best.t):toLocal(Date.now()+864e5)}"></label><div id="okHint" class="muted" style="font-size:12.5px"></div><div class="row"><button class="btn" id="okGo" data-id="${esc(id)}">Поставить на это время</button><button class="btn" data-close>Отмена</button></div></div>`);
+  setTimeout(okHint,0);
+}
+function okHint(){
+  const el=$("#okHint"),inp=$("#okAt");if(!el||!inp||!inp.value)return;const d=new Date(inp.value),B=D.best_times||{},heat=B.heat||{};
+  const dow=((d.getDay()+6)%7)+1,row=heat[dow]||[],v=row[d.getHours()]||0,peak=Math.max(1,...Object.values(heat).flat());
+  const S=bestSlots("short"),bars=row.length?`<div style="display:flex;gap:2px;align-items:flex-end;height:34px;margin:6px 0">${row.map((x,h)=>`<i title="${h}:00" style="flex:1;height:${Math.max(6,x/peak*100)}%;border-radius:3px;background:${h===d.getHours()?"var(--pink)":"color-mix(in srgb,var(--muted) 35%,transparent)"}"></i>`).join("")}</div><div class="axis"><span>0:00</span><span>12:00</span><span>23:00</span></div>`:"";
+  el.innerHTML=`Активность аудитории в это время: <b>${Math.round(v/peak*100)}%</b> от пика недели${d<new Date()?' · <span class="down">время уже прошло</span>':""}${S.best?` · авто рекомендует: <b>${slotLabel(S.best.t)}</b>`:""}${bars}`;
 }
 async function doSchedule(id,iso){
   const mf=`publishing/queue/${id}.json`;
@@ -590,6 +614,7 @@ document.addEventListener("click",async e=>{
 });
 $("#scrim").onclick=closeSheet;
 document.addEventListener("change",e=>{if(e.target.id==="vsort"){vSort=e.target.value;render()}});
+document.addEventListener("input",e=>{if(e.target.id==="okAt")okHint()});
 $("#refresh").onclick=async()=>{const b=$("#refresh");b.classList.add("spin");if(tok()){try{await dispatch("youtube-pulse.yml");toast("Запустил сбор живых цифр — обновится через пару минут")}catch(e){toast("Не вышло: "+e.message)}}await load(true);b.classList.remove("spin")};
 document.addEventListener("pointermove",e=>{const c=e.target.closest&&e.target.closest(".chart");document.querySelectorAll(".chart .tip").forEach(t=>{if(!c||!c.contains(t))t.style.opacity=0});if(!c)return;const pts=CH[+c.dataset.ci];if(!pts)return;const r=c.getBoundingClientRect(),i=Math.max(0,Math.min(pts.length-1,Math.round((e.clientX-r.left)/r.width*(pts.length-1))));const t=c.querySelector(".tip");t.style.left=(i/(pts.length-1)*100)+"%";t.textContent=`${dshort(pts[i].x)}: ${num(pts[i].y)}`;t.style.opacity=1});
 async function load(quiet){

@@ -1,5 +1,5 @@
 {
- "_readme": "Лучшее время публикации для режима «Авто» на сайте студии. heat: день недели (1=пн…7=вс) → 24 значения по часам (Europe/Tallinn) — активность аудитории канала по Metricool (brand 7605462). Обновлять раз в 1–2 недели через Metricool getBestTimeToPostByNetwork. rules — из AGENTS.md §5.",
+ "_readme": "Лучшее время публикации для режима «Авто» на сайте студии. heat: день недели (1=пн…7=вс) → 24 значения по часам (Europe/Tallinn) — активность аудитории канала по Metricool (brand 7605462). Обновлять раз в 1–2 недели через Metricool getBestTimeToPostByNetwork. rules — из AGENTS.md §5. Эксперименты со временем (решение Дениса 31.10): «Авто» 2 раза в неделю ставит Shorts в тестовый час (explore_hours), пока в нём < explore_min_samples роликов; итог считается как просмотры ролика / среднее его формата и сам подмешивается в рекомендации.",
  "updated": "2026-10-31",
  "source": "Metricool getBestTimeToPostByNetwork (youtube)",
  "rules": {
@@ -15,7 +15,15 @@
   "min_lead_hours": 2,
   "horizon_days": 3,
   "near_best_ratio": 0.85,
-  "pick_window_hours": 48
+  "pick_window_hours": 48,
+  "explore_hours": [
+   8,
+   13,
+   19
+  ],
+  "explore_per_week": 2,
+  "explore_min_samples": 4,
+  "explore_min_ratio": 0.6
  },
  "heat": {
   "1": [

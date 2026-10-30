@@ -17,14 +17,14 @@ OUT = ROOT / "site" / "studio" / "data.json"
 TZ = ZoneInfo("Europe/Tallinn")
 
 # AGENTS.md §5 — день недели (0=пн) -> [(время, что, кто)]
-GRID = {
-    0: [("10:00", "скетч", "Claude"), ("16:00", "нарезка 2 к субботнему", "Claude")],
-    1: [("10:00", "новости ИИ", "Codex")],
-    2: [("10:00", "скетч", "Codex"), ("19:00", "длинное", "Codex")],
-    3: [("10:00", "кино-Shorts", "Claude"), ("16:00", "нарезка 1", "Codex")],
-    4: [("10:00", "скетч", "Claude"), ("16:00", "нарезка 2", "Codex")],
-    5: [("10:00", "скетч", "Codex"), ("19:00", "длинное", "Claude")],
-    6: [("10:00", "Топ-5 недели", "Claude"), ("16:00", "нарезка 1", "Claude")],
+GRID = {  # AGENTS.md §5 (решение Дениса 31.10) — менять вместе
+    0: [("10:00", "Shorts"), ("16:00", "Shorts")],
+    1: [("10:00", "новости ИИ"), ("16:00", "Shorts")],
+    2: [("10:00", "Shorts"), ("16:00", "Shorts")],
+    3: [("10:00", "Shorts"), ("16:00", "кино-Shorts воронки")],
+    4: [("10:00", "Shorts"), ("16:00", "кино-Shorts воронки")],
+    5: [("16:00", "Shorts"), ("19:00", "кино-разбор")],
+    6: [("16:00", "Shorts")],
 }
 
 
@@ -145,13 +145,28 @@ def main():
         if q.get("slot"):
             d, t = q["slot"].split("T")
             scheduled.setdefault((d, t[:5]), {"title": q.get("title") or q["id"], "status": q.get("status")})
-    # Решение Дениса 30.10: шаблон сетки пока не показываем (расписание ещё не выбрано) —
-    # только реально запланированные/залитые ролики на ближайшие 14 дней.
+    # Сетка AGENTS §5 на 7 дней: занятые слоты + пустые (их надо заполнить).
+    for mf in sorted((ROOT / "publishing" / "queue").glob("*.json")):
+        m = load(str(mf.relative_to(ROOT)), {}) or {}
+        if m.get("publish_at"):
+            local = dt.datetime.fromisoformat(m["publish_at"].replace("Z", "+00:00")).astimezone(TZ)
+            scheduled[(local.date().isoformat(), local.strftime("%H:%M"))] = {
+                "title": (m.get("metadata") or {}).get("title") or mf.stem, "status": "scheduled"}
     plan = []
-    for (date, time), hit in sorted(scheduled.items()):
-        if today.isoformat() <= date <= (today + dt.timedelta(days=14)).isoformat():
-            plan.append({"date": date, "time": time, "what": "", "who": "",
-                         "title": hit["title"], "status": hit["status"], "video_id": hit.get("video_id")})
+    now_local = dt.datetime.now(TZ)
+    for i in range(7):
+        day = today + dt.timedelta(days=i)
+        slots = {tm: what for tm, what in GRID[day.weekday()]}
+        for (d, tm), hit in scheduled.items():
+            if d == day.isoformat():
+                slots.setdefault(tm, "")
+        for tm in sorted(slots):
+            if i == 0 and tm <= now_local.strftime("%H:%M") and (day.isoformat(), tm) not in scheduled:
+                continue
+            hit = scheduled.get((day.isoformat(), tm))
+            plan.append({"date": day.isoformat(), "time": tm, "what": slots[tm], "who": "",
+                         "title": hit["title"] if hit else None, "status": hit["status"] if hit else "пусто",
+                         "video_id": hit.get("video_id") if hit else None})
 
     review = [{"id": k, "video_id": r.get("video_id"), "title": r.get("title") or k, "manifest": f"publishing/queue/{k}.json"} for k, r in receipts.items()
               if r.get("status") == "uploaded" and not r.get("publish_at_utc")]
