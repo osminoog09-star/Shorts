@@ -2,7 +2,7 @@ plugins { id("com.android.application"); id("org.jetbrains.kotlin.android") }
 android {
     namespace = "ee.m1lash.widget"
     compileSdk = 34
-    defaultConfig { applicationId = "ee.m1lash.widget"; minSdk = 26; targetSdk = 34; versionCode = 5; versionName = "1.4" }
+    defaultConfig { applicationId = "ee.m1lash.widget"; minSdk = 26; targetSdk = 34; versionCode = 6; versionName = "1.5" }
     // Постоянный ключ из секретов (иначе Android не примет обновление поверх). Без секрета — debug (только для проверки сборки).
     val ks = System.getenv("WIDGET_KEYSTORE")
     signingConfigs {

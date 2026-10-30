@@ -11,12 +11,26 @@
         <provider android:name="androidx.core.content.FileProvider" android:authorities="ee.m1lash.widget.files" android:exported="false" android:grantUriPermissions="true">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/files" />
         </provider>
-        <receiver android:name=".StudioWidget" android:exported="true" android:label="M1lash студия">
+        <receiver android:name=".StudioWidget" android:exported="true" android:label="M1lash 4×4">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="ee.m1lash.widget.REFRESH" />
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info" />
+        </receiver>
+        <receiver android:name=".StudioWidgetM" android:exported="true" android:label="M1lash 4×2">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="ee.m1lash.widget.REFRESH" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info_m" />
+        </receiver>
+        <receiver android:name=".StudioWidgetS" android:exported="true" android:label="M1lash 2×2">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="ee.m1lash.widget.REFRESH" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info_s" />
         </receiver>
     </application>
 </manifest>

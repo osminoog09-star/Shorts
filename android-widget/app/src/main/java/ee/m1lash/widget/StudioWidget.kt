@@ -22,8 +22,10 @@ import kotlin.concurrent.thread
 
 const val SITE = "https://osminoog09-star.github.io/Shorts/studio/"
 
-class StudioWidget : AppWidgetProvider() {
+open class StudioWidget : AppWidgetProvider() {
     override fun onUpdate(ctx: Context, mgr: AppWidgetManager, ids: IntArray) = refresh(ctx)
+
+    override fun onAppWidgetOptionsChanged(ctx: Context, mgr: AppWidgetManager, id: Int, o: android.os.Bundle) = refresh(ctx)
 
     override fun onReceive(ctx: Context, intent: Intent) {
         super.onReceive(ctx, intent)
@@ -35,10 +37,21 @@ class StudioWidget : AppWidgetProvider() {
         thread {
             try {
                 val data = runCatching { load() }.getOrNull()
-                val views = render(ctx, data)
                 if (data != null) runCatching { Notifier.check(ctx, data) }
                 val mgr = AppWidgetManager.getInstance(ctx)
-                mgr.updateAppWidget(ComponentName(ctx, StudioWidget::class.java), views)
+                // Универсально: каждый экземпляр любого размера получает раскладку по своей текущей высоте.
+                for (cls in listOf(StudioWidget::class.java, StudioWidgetM::class.java, StudioWidgetS::class.java))
+                    for (id in mgr.getAppWidgetIds(ComponentName(ctx, cls))) {
+                        val h = mgr.getAppWidgetOptions(id).getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT, 0)
+                        val w = mgr.getAppWidgetOptions(id).getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 0)
+                        val layout = when {
+                            h in 1..139 || (w in 1..180) -> R.layout.widget_s
+                            h in 140..259 -> R.layout.widget_m
+                            h == 0 -> defaultLayout(cls)
+                            else -> R.layout.widget
+                        }
+                        mgr.updateAppWidget(id, render(ctx, data, layout))
+                    }
             } finally { pending.finish() }
         }
     }
@@ -49,12 +62,18 @@ class StudioWidget : AppWidgetProvider() {
         return c.inputStream.bufferedReader().use { JSONObject(it.readText()) }
     }
 
-    private fun render(ctx: Context, d: JSONObject?): RemoteViews {
-        val v = RemoteViews(ctx.packageName, R.layout.widget)
+    private fun defaultLayout(c: Class<*>) = when (c) {
+        StudioWidgetS::class.java -> R.layout.widget_s
+        StudioWidgetM::class.java -> R.layout.widget_m
+        else -> R.layout.widget
+    }
+
+    private fun render(ctx: Context, d: JSONObject?, layout: Int): RemoteViews {
+        val v = RemoteViews(ctx.packageName, layout)
         val open = PendingIntent.getActivity(ctx, 0, Intent(Intent.ACTION_VIEW, Uri.parse(SITE)),
             PendingIntent.FLAG_IMMUTABLE)
         v.setOnClickPendingIntent(R.id.root, open)
-        val ref = PendingIntent.getBroadcast(ctx, 1, Intent(ctx, StudioWidget::class.java).setAction(ACTION),
+        val ref = PendingIntent.getBroadcast(ctx, 1, Intent(ctx, javaClass).setAction(ACTION),
             PendingIntent.FLAG_IMMUTABLE)
         v.setOnClickPendingIntent(R.id.refresh, ref)
         if (d == null) { v.setTextViewText(R.id.next, "Нет связи — нажми ⟳"); return v }
@@ -140,3 +159,6 @@ class StudioWidget : AppWidgetProvider() {
 
     companion object { const val ACTION = "ee.m1lash.widget.REFRESH" }
 }
+
+class StudioWidgetM : StudioWidget()
+class StudioWidgetS : StudioWidget()
