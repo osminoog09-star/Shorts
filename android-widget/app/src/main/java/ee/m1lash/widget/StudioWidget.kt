@@ -40,11 +40,12 @@ open class StudioWidget : AppWidgetProvider() {
                 if (data != null) runCatching { Notifier.check(ctx, data) }
                 val mgr = AppWidgetManager.getInstance(ctx)
                 // Универсально: каждый экземпляр любого размера получает раскладку по своей текущей высоте.
-                for (cls in listOf(StudioWidget::class.java, StudioWidgetM::class.java, StudioWidgetS::class.java))
+                for (cls in listOf(StudioWidget::class.java, StudioWidgetM::class.java, StudioWidgetS::class.java, StudioWidgetXS::class.java))
                     for (id in mgr.getAppWidgetIds(ComponentName(ctx, cls))) {
                         val h = mgr.getAppWidgetOptions(id).getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT, 0)
                         val w = mgr.getAppWidgetOptions(id).getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 0)
                         val layout = when {
+                            (h in 1..99 && w in 1..139) || (w in 1..89) -> R.layout.widget_xs
                             h in 1..139 || (w in 1..180) -> R.layout.widget_s
                             h in 140..259 -> R.layout.widget_m
                             h == 0 -> defaultLayout(cls)
@@ -64,6 +65,7 @@ open class StudioWidget : AppWidgetProvider() {
 
     private fun defaultLayout(c: Class<*>) = when (c) {
         StudioWidgetS::class.java -> R.layout.widget_s
+        StudioWidgetXS::class.java -> R.layout.widget_xs
         StudioWidgetM::class.java -> R.layout.widget_m
         else -> R.layout.widget
     }
@@ -97,7 +99,7 @@ open class StudioWidget : AppWidgetProvider() {
         if (daily != null && daily.length() > 1) v.setImageViewBitmap(R.id.chart, chart(daily))
         val live = d.optJSONObject("live")
         if (live != null) {
-            val r = live.optJSONArray("recent")?.optJSONObject(0)
+            val r = live.optJSONObject("fresh_short") ?: live.optJSONArray("recent")?.optJSONObject(0)
             val h24 = live.optLong("views_24h")
             v.setTextViewText(R.id.fresh, (if (r != null) "🆕 ${r.optString("title").replace(Regex("\\s*#\\S+"), "")} — ${nf.format(r.optLong("views"))} · +${nf.format(r.optLong("views_1h"))} за час\n" else "") +
                 "⏱ за 24 ч: +${nf.format(h24)} просм. · +${live.optLong("subs_24h")} подп.")
@@ -114,6 +116,17 @@ open class StudioWidget : AppWidgetProvider() {
                 (if (!base.isNull("eta_days") && eta > 0) " · ≈$eta дн" else ""))
             v.setProgressBar(R.id.ypp_bar, 1000, minOf(pSubs, pViews).toInt().coerceIn(0, 1000).coerceAtLeast(8), false)
         }
+        val evx = d.optJSONObject("events")
+        val todo = mutableListOf<String>()
+        val rv = d.optJSONArray("review")?.length() ?: 0
+        if (rv > 0) todo += "⏳ ждёт «ок»: $rv"
+        val rq = evx?.optInt("requests_24h") ?: 0
+        if (rq > 0) todo += "🙋 заявки: $rq"
+        val tm = evx?.optInt("to_me_24h") ?: 0
+        if (tm > 0) todo += "💬 тебе: $tm"
+        val pi = d.optJSONObject("ideas")?.optJSONArray("ideas")?.let { a -> (0 until a.length()).count { a.getJSONObject(it).optString("status", "proposed") == "proposed" } } ?: 0
+        if (pi > 0) todo += "💡 идеи: $pi"
+        v.setTextViewText(R.id.today, if (todo.isEmpty()) "✨ Сегодня спокойно" else "Сегодня: " + todo.joinToString(" · "))
         val ev = d.optJSONObject("events")
         val top = ev?.optJSONObject("top_recent")
         v.setTextViewText(R.id.top, if (top != null) "🏆 ${top.optString("title")} — ${nf.format(top.optLong("views"))}" else "")
@@ -162,3 +175,4 @@ open class StudioWidget : AppWidgetProvider() {
 
 class StudioWidgetM : StudioWidget()
 class StudioWidgetS : StudioWidget()
+class StudioWidgetXS : StudioWidget()

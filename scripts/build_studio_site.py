@@ -66,6 +66,15 @@ def main():
         r = load(str(p.relative_to(ROOT)), {}) or {}
         receipts[p.stem] = r
 
+    traffic = ((latest.get("traffic") or {}).get("videos") or {})
+    csv_rows = {}
+    try:
+        import csv as _csv
+        with open(ROOT / "reports/videos.csv", encoding="utf-8") as f:
+            for r in _csv.DictReader(f):
+                csv_rows[r.get("video_id")] = r
+    except OSError:
+        pass
     videos = []
     an = latest.get("videos", {}) or {}
     for inv in latest.get("inventory", []):
@@ -97,6 +106,11 @@ def main():
             "avd": a.get("averageViewDuration"), "subs": a.get("subscribersGained"),
             "likes": a.get("likes") if a.get("likes") is not None else int(stats.get("likeCount", 0) or 0),
             "comments": a.get("comments"), "shares": a.get("shares"),
+            "thumb": f"https://i.ytimg.com/vi/{vid}/mqdefault.jpg",
+            "traffic": {r.get("insightTrafficSourceType"): r.get("views") for r in traffic.get(vid, []) if r.get("views")},
+            "v48": int(csv_rows.get(vid, {}).get("views_48h") or 0) or None,
+            "v7d": int(csv_rows.get(vid, {}).get("views_7d") or 0) or None,
+            "engaged_views": a.get("engagedViews"),
         })
     videos = [v for v in videos if (v["duration"] or 0) > 0]
 
@@ -139,7 +153,7 @@ def main():
             plan.append({"date": date, "time": time, "what": "", "who": "",
                          "title": hit["title"], "status": hit["status"], "video_id": hit.get("video_id")})
 
-    review = [{"id": k, "video_id": r.get("video_id"), "title": k} for k, r in receipts.items()
+    review = [{"id": k, "video_id": r.get("video_id"), "title": r.get("title") or k, "manifest": f"publishing/queue/{k}.json"} for k, r in receipts.items()
               if r.get("status") == "uploaded" and not r.get("publish_at_utc")]
     review += [{"id": q["id"], "title": q.get("title") or q["id"], "video_id": None}
                for q in queue if q.get("status") == "review"]
@@ -178,9 +192,33 @@ def main():
         live = {"t": cur["t"], "subs": cur["subs"], "views": cur["views"],
                 "views_1h": cur["views"] - ago(1)["views"], "views_24h": cur["views"] - ago(24)["views"],
                 "subs_24h": cur["subs"] - ago(24)["subs"],
+                "span_h": round((dt.datetime.fromisoformat(cur["t"]) - dt.datetime.fromisoformat(ago(24)["t"])).total_seconds() / 3600, 2),
                 "recent": [{**r, "views": cur["videos"].get(r["id"], 0),
                             "views_1h": cur["videos"].get(r["id"], 0) - ago(1)["videos"].get(r["id"], cur["videos"].get(r["id"], 0))}
                            for r in rec]}
+    if live:
+        dur = {r["id"]: seconds(r.get("duration")) for r in (pulse.get("recent") or [])}
+        cur = snaps[-1]
+        prev = snaps[-2] if len(snaps) > 1 else cur
+        shorts = [r for r in (pulse.get("recent") or []) if (dur.get(r["id"]) or 0) and dur[r["id"]] <= 180]
+        if shorts:
+            r = shorts[0]
+            live["fresh_short"] = {"id": r["id"], "title": re.sub(r"\s*#\S+", "", r["title"]).strip(),
+                                   "views": cur["videos"].get(r["id"], 0),
+                                   "views_1h": cur["videos"].get(r["id"], 0) - prev["videos"].get(r["id"], cur["videos"].get(r["id"], 0)),
+                                   "published": r.get("published")}
+    comments = pulse.get("comments") or []
+    day_ago = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=24)).isoformat()
+    events["requests_24h"] = sum(1 for c in comments if "request" in c.get("flags", []) and (c.get("published") or "") >= day_ago[:19])
+    events["to_me_24h"] = sum(1 for c in comments if "to_me" in c.get("flags", []) and (c.get("published") or "") >= day_ago[:19])
+    exp = []
+    try:
+        for line in (ROOT / "reports/experiments.md").read_text(encoding="utf-8").splitlines():
+            cells = [c.strip() for c in line.strip().strip("|").split("|")]
+            if line.startswith("|") and len(cells) >= 8 and cells[0] not in ("Старт",) and not set(cells[0]) <= set("-: "):
+                exp.append(dict(zip(["start", "hypothesis", "videos", "control", "metric", "h48", "d7", "verdict"], cells[:8])))
+    except OSError:
+        pass
     ypp = load("reports/youtube/ypp.json")
     if ypp and live:
         ypp["live_subs"] = live["subs"]
@@ -198,7 +236,7 @@ def main():
         "learn": {"works": section(learn_md, "Работает"), "fails": section(learn_md, "Не работает"),
                   "hyp": section(learn_md, "Гипотезы на проверку")},
         "weekly": {"name": weekly[-1].stem if weekly else None, "text": weekly_txt},
-        "ideas": ideas, "events": events, "app": app, "ypp": ypp, "live": live,
+        "ideas": ideas, "events": events, "app": app, "ypp": ypp, "live": live, "comments": comments, "experiments": exp,
         "playlists": {k: v.get("id") for k, v in playlists.items() if isinstance(v, dict)},
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)

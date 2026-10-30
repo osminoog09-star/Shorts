@@ -32,5 +32,12 @@
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info_s" />
         </receiver>
+        <receiver android:name=".StudioWidgetXS" android:exported="true" android:label="M1lash 1×1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="ee.m1lash.widget.REFRESH" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info_xs" />
+        </receiver>
     </application>
 </manifest>

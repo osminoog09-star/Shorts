@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/root"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center"
+    android:background="@drawable/bg" android:padding="6dp">
+    <TextView android:id="@+id/subs" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textColor="#F1F0F7" android:textStyle="bold" android:textSize="22sp"/>
+    <TextView android:id="@+id/delta" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="M1LASH" android:textColor="#FF7AB8" android:textSize="10sp" android:textStyle="bold"/>
+    <TextView android:id="@+id/updated" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone"/>
+    <TextView android:id="@+id/refresh" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone"/>
+    <TextView android:id="@+id/week" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone"/>
+    <TextView android:id="@+id/total" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone"/>
+    <ImageView android:id="@+id/chart" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone"/>
+    <TextView android:id="@+id/fresh" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone"/>
+    <TextView android:id="@+id/ypp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone"/>
+    <ProgressBar android:id="@+id/ypp_bar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone"/>
+    <TextView android:id="@+id/today" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone"/>
+    <TextView android:id="@+id/top" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone"/>
+    <TextView android:id="@+id/idea" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone"/>
+    <TextView android:id="@+id/review" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone"/>
+    <TextView android:id="@+id/next" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone"/>
+</LinearLayout>

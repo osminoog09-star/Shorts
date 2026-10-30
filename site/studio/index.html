@@ -7,284 +7,502 @@
 <title>Студия M1lash</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
-<meta name="theme-color" content="#17161f">
+<meta name="theme-color" content="#0d0c14">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
-/* Пульт канала: сверху вкладки по важности (План → Что делать → Сводка → Ролики). Данные — data.json, обновляется сам. */
+/* Студия M1lash v2 (30.10.2026): приложение из 5 разделов — Обзор · Ролики · Идеи · Зрители · Деньги.
+   Данные: data.json (собирает scripts/build_studio_site.py). Действия — GitHub API с токеном, который хранится только в этом браузере. */
 :root{
-  --bg:#f3f2f7;--panel:#fff;--ink:#17161f;--muted:#666478;--line:#e1dfea;--soft:#ecebf4;
-  --blue:#2f7cf6;--pink:#e5408e;--ok:#1f8f5a;--okbg:#e2f4ea;--warn:#a86a00;--warnbg:#fbefd6;--bad:#c23a3a;--badbg:#fbe3e3;--info:#2f63c9;--infobg:#e3ecfb;
-  --f-d:"Unbounded","Golos Text",system-ui,sans-serif;--f-b:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;--f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;
-  color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--bg:#111019;--panel:#1a1924;--ink:#efeef6;--muted:#9c9ab0;--line:#2c2a3a;--soft:#22212e;--blue:#5c9bff;--pink:#ff5fa8;--ok:#5fd39a;--okbg:#173426;--warn:#f0b54a;--warnbg:#3a2d12;--bad:#ff7b7b;--badbg:#3b1a1d;--info:#86aefc;--infobg:#1b2a47;color-scheme:dark}}
-*{box-sizing:border-box}
+  --bg:#f4f3f8;--bg2:#ebe9f3;--panel:#ffffff;--panel2:#f7f6fb;--ink:#14131c;--muted:#686579;--faint:#9a97ab;--line:#e3e1ec;
+  --blue:#3b7bff;--pink:#f0479a;--violet:#8b5cf6;--ok:#18935c;--okbg:#ddf3e8;--warn:#a46a00;--warnbg:#fbefd4;--bad:#cf3b3b;--badbg:#fbe2e2;--info:#2f63c9;--infobg:#e1eafc;
+  --grad:linear-gradient(120deg,var(--blue),var(--violet) 55%,var(--pink));
+  --shadow:0 1px 0 rgba(255,255,255,.7) inset,0 10px 30px -14px rgba(30,20,60,.25),0 2px 6px -2px rgba(30,20,60,.08);
+  --r:20px;--f-d:"Unbounded","Golos Text",system-ui,sans-serif;--f-b:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;--f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --navh:68px;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0d0c14;--bg2:#13121c;--panel:#17161f;--panel2:#1d1c27;--ink:#f1f0f7;--muted:#a19eb3;--faint:#6f6c82;--line:#2a2837;
+  --blue:#5e95ff;--pink:#ff5fa8;--violet:#a78bfa;--ok:#4fd393;--okbg:#14301f;--warn:#f2b44a;--warnbg:#36290f;--bad:#ff7a7a;--badbg:#391a1d;--info:#8db1ff;--infobg:#18264a;
+  --shadow:0 1px 0 rgba(255,255,255,.05) inset,0 16px 40px -18px rgba(0,0,0,.7),0 2px 8px -2px rgba(0,0,0,.4);color-scheme:dark}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-b);padding-top:env(safe-area-inset-top,0px)}
-.wrap{max-width:1000px;margin:0 auto;padding-block:18px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:20px}
-header{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.app{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font:600 13px var(--f-b);color:var(--bg);background:var(--ink);border-radius:999px;padding:8px 14px;text-decoration:none}
-.app small{font:500 11px var(--f-m);opacity:.7}
-.mark{width:40px;height:40px;border-radius:10px;padding:3px;background:linear-gradient(135deg,var(--blue),var(--pink))}
-.mark span{display:grid;place-items:center;width:100%;height:100%;border-radius:8px;background:var(--panel);font:700 15px var(--f-d)}
-h1{font:700 clamp(20px,5vw,28px)/1.1 var(--f-d);margin:0}
-.sub{color:var(--muted);font-size:13px;margin:2px 0 0}
-nav{display:flex;gap:6px;flex-wrap:wrap;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding-block:8px;z-index:5}
-nav button{font:600 14px var(--f-b);border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
-nav button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-nav button:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-.badge{display:inline-grid;place-items:center;min-width:20px;height:20px;border-radius:10px;background:var(--pink);color:#fff;font:600 11px var(--f-m);margin-left:6px;padding:0 6px}
-h2{font:700 13px var(--f-d);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-b);min-height:100dvh;
+  background-image:radial-gradient(900px 500px at 100% -5%,color-mix(in srgb,var(--pink) 14%,transparent),transparent 60%),radial-gradient(700px 500px at -10% 10%,color-mix(in srgb,var(--blue) 12%,transparent),transparent 60%);background-attachment:fixed}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:8px}
+.num{font-variant-numeric:tabular-nums}
+.shell{display:grid;grid-template-columns:minmax(0,1fr);min-height:100dvh}
+.shell>div,main,main>*{min-width:0}
+.side{display:none}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 10px;
+  background:color-mix(in srgb,var(--bg) 78%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+.logo{width:36px;height:36px;border-radius:11px;padding:2px;background:var(--grad);flex:none;box-shadow:0 8px 20px -8px color-mix(in srgb,var(--pink) 70%,transparent)}
+.logo span{display:grid;place-items:center;width:100%;height:100%;border-radius:9px;background:var(--panel);font:800 13px var(--f-d)}
+.top .t{min-width:0;flex:1}
+.top b{display:block;font:700 15px/1.2 var(--f-d)}
+.top small{display:block;color:var(--muted);font:500 11px var(--f-m);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ib{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--panel);display:grid;place-items:center;flex:none}
+.ib svg{width:20px;height:20px}
+.ib.spin svg{animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+main{padding:16px 16px calc(var(--navh) + env(safe-area-inset-bottom,0px) + 28px);max-width:1120px;width:100%;margin:0 auto;display:grid;gap:18px;align-content:start}
+.bnav{position:fixed;left:10px;right:10px;bottom:calc(env(safe-area-inset-bottom,0px) + 10px);z-index:30;height:var(--navh);display:grid;grid-template-columns:repeat(5,1fr);
+  border-radius:24px;background:color-mix(in srgb,var(--panel) 80%,transparent);-webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6);border:1px solid color-mix(in srgb,var(--ink) 9%,transparent);box-shadow:0 18px 40px -16px rgba(0,0,0,.5)}
+.bnav button{border:0;background:none;display:grid;justify-items:center;align-content:center;gap:3px;font:600 10.5px var(--f-b);color:var(--faint);position:relative}
+.bnav svg{width:22px;height:22px}
+.bnav button[aria-current="page"]{color:var(--ink)}
+.bnav button[aria-current="page"] .ico{background:var(--grad);color:#fff;box-shadow:0 8px 18px -8px color-mix(in srgb,var(--pink) 80%,transparent)}
+.ico{width:44px;height:30px;border-radius:12px;display:grid;place-items:center;transition:background .25s}
+.dot{position:absolute;top:6px;right:calc(50% - 22px);min-width:17px;height:17px;padding:0 5px;border-radius:9px;background:var(--pink);color:#fff;font:700 10px/17px var(--f-m);text-align:center}
+@media (min-width:960px){
+  .shell{grid-template-columns:248px minmax(0,1fr)}
+  .side{display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100dvh;padding:22px 16px;border-right:1px solid var(--line);background:color-mix(in srgb,var(--panel) 55%,transparent);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+  .side .brand{display:flex;gap:10px;align-items:center;margin:0 6px 18px}
+  .side .brand b{font:800 16px var(--f-d)}
+  .side nav button{width:100%;display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:14px;border:0;background:none;font:600 14px var(--f-b);color:var(--muted);position:relative}
+  .side nav button svg{width:20px;height:20px}
+  .side nav button[aria-current="page"]{background:var(--panel);color:var(--ink);box-shadow:var(--shadow)}
+  .side nav button[aria-current="page"] svg{color:var(--pink)}
+  .side .dot{position:static;margin-left:auto}
+  .side .foot{margin-top:auto;display:grid;gap:8px}
+  .bnav{display:none}.top .menu{display:none}
+  main{padding:26px 32px 48px}
+}
+.sec-h{display:grid;gap:4px;margin:6px 2px 2px}
+.eyebrow{font:700 11px var(--f-m);letter-spacing:.14em;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;width:max-content}
+.sec-h h1{font:800 clamp(26px,7vw,40px)/1.05 var(--f-d);margin:0;letter-spacing:-.01em}
+.sec-h p{margin:0;color:var(--muted);font-size:14px;max-width:62ch}
+h2{font:700 15px/1.2 var(--f-d);margin:0 0 12px;display:flex;align-items:center;gap:8px}
+h2 .cnt{font:600 12px var(--f-m);color:var(--muted)}
+h2 a,h2 button.more{margin-left:auto;font:600 12px var(--f-b);color:var(--muted);text-decoration:none;border:0;background:none}
+.card{background:var(--panel);border:1px solid color-mix(in srgb,var(--ink) 7%,transparent);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
 .grid{display:grid;gap:14px}
-.kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
-.kpi .n{font:700 26px/1.1 var(--f-d);font-variant-numeric:tabular-nums}
-.kpi .l{color:var(--muted);font-size:13px}
-.chip{display:inline-block;font:600 11px var(--f-m);border-radius:6px;padding:3px 7px;background:var(--soft);color:var(--muted)}
-.c-ok{background:var(--okbg);color:var(--ok)}.c-warn{background:var(--warnbg);color:var(--warn)}.c-bad{background:var(--badbg);color:var(--bad)}.c-info{background:var(--infobg);color:var(--info)}
-.day{display:grid;grid-template-columns:86px minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid var(--line)}
-.day:first-child{border-top:0}
-.day .d{font-weight:600}.day .d small{display:block;color:var(--muted);font:12px var(--f-m)}
-.slot{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;padding:3px 0}
-.slot .t{font:600 12px var(--f-m);color:var(--muted);width:42px}
-.slot .w{min-width:0}
-.today .d{color:var(--pink)}
-ul.clean{margin:0;padding-left:18px;display:grid;gap:6px}
-.rec{display:grid;gap:4px;padding:12px 14px;border-radius:12px;background:var(--soft)}
-.rec b{font-weight:600}
-.bars{display:grid;gap:8px}
-.bar{display:grid;grid-template-columns:150px minmax(0,1fr) 60px;gap:10px;align-items:center;font-size:14px}
-.bar .track{height:12px;border-radius:6px;background:var(--soft);overflow:hidden}
-.bar .fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--pink));border-radius:6px}
-.bar .v{font:600 13px var(--f-m);text-align:right;font-variant-numeric:tabular-nums}
-.spark{width:100%;height:120px;display:block}
-.count{display:grid;gap:4px}.count .big{font:700 clamp(34px,9vw,54px)/1 var(--f-d);font-variant-numeric:tabular-nums;background:linear-gradient(90deg,var(--blue),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
-.goal{display:grid;gap:6px;padding:10px 0;border-top:1px solid var(--line)}.goal:first-of-type{border-top:0}
-.goal .top{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:14px}
-.goal .track{height:12px;border-radius:6px;background:var(--soft);overflow:hidden}.goal .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--blue),var(--pink))}
-.goal small{color:var(--muted);font-size:12px}
-.or{font:600 11px var(--f-m);color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:4px 0}
-.tablebox{overflow-x:auto}
-table{border-collapse:collapse;width:100%;min-width:680px;font-size:13px}
-th,td{padding:8px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-th{font:600 11px var(--f-m);color:var(--muted);text-transform:uppercase;letter-spacing:.05em;cursor:pointer;white-space:nowrap}
-td.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
-th.num{text-align:right}
-td a{color:var(--ink);text-decoration:none}td a:hover{text-decoration:underline}
-select{font:500 13px var(--f-b);padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.g2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.kpis{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:720px){.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.kpi{padding:14px 14px 12px;position:relative;overflow:hidden}
+.kpi .l{color:var(--muted);font:600 12px var(--f-b)}
+.kpi .n{font:800 clamp(22px,6vw,30px)/1.15 var(--f-d);margin-top:4px;letter-spacing:-.02em}
+.kpi .d{font:600 12px var(--f-m);margin-top:2px}
+.up{color:var(--ok)}.down{color:var(--bad)}.flat{color:var(--muted)}
+.chip{display:inline-flex;align-items:center;gap:4px;font:600 11px var(--f-m);border-radius:7px;padding:3px 7px;background:var(--panel2);color:var(--muted);white-space:nowrap}
+.c-ok{background:var(--okbg);color:var(--ok)}.c-warn{background:var(--warnbg);color:var(--warn)}.c-bad{background:var(--badbg);color:var(--bad)}.c-info{background:var(--infobg);color:var(--info)}.c-pink{background:color-mix(in srgb,var(--pink) 16%,transparent);color:var(--pink)}
 .muted{color:var(--muted)}
-pre.week{white-space:pre-wrap;font:13px/1.5 var(--f-b);margin:0;max-height:360px;overflow:auto}
-footer{color:var(--muted);font:12px var(--f-m)}
-@media (max-width:560px){.bar{grid-template-columns:110px minmax(0,1fr) 50px}}
-
-/* ===== 3D-слой (30.10): глянцевые фигуры Three.js на фоне + стекло, глубина, наклон ===== */
-#bg3d{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;pointer-events:none}
-body{background:radial-gradient(1200px 700px at 85% -10%,color-mix(in srgb,var(--pink) 22%,transparent),transparent 60%),radial-gradient(900px 600px at -10% 20%,color-mix(in srgb,var(--blue) 20%,transparent),transparent 60%),var(--bg);background-attachment:fixed}
-.wrap{position:relative;z-index:1}
-.card{background:color-mix(in srgb,var(--panel) 72%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);border:1px solid color-mix(in srgb,var(--ink) 10%,transparent);border-radius:22px;box-shadow:0 1px 0 color-mix(in srgb,#fff 14%,transparent) inset,0 18px 40px -18px rgba(0,0,0,.45),0 4px 12px -6px rgba(0,0,0,.25);transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
-.card.tilt:hover{box-shadow:0 1px 0 color-mix(in srgb,#fff 18%,transparent) inset,0 28px 60px -20px rgba(0,0,0,.55),0 0 0 1px color-mix(in srgb,var(--pink) 30%,transparent)}
-.kpi{position:relative;overflow:hidden}
-.kpi::after{content:"";position:absolute;inset:auto -30% -60% auto;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--pink) 45%,transparent),transparent 70%);filter:blur(6px);opacity:.6}
-.kpi .n{background:linear-gradient(180deg,var(--ink),color-mix(in srgb,var(--ink) 60%,var(--pink)));-webkit-background-clip:text;background-clip:text;color:transparent}
-nav{border-radius:24px;padding:6px;margin-inline:-6px;background:color-mix(in srgb,var(--bg) 55%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-nav button{background:color-mix(in srgb,var(--panel) 70%,transparent);transition:transform .2s,box-shadow .2s}
-nav button:active{transform:scale(.96)}
-nav button[aria-selected="true"]{background:linear-gradient(135deg,var(--blue),var(--pink));color:#fff;border-color:transparent;box-shadow:0 8px 24px -8px color-mix(in srgb,var(--pink) 70%,transparent)}
-.mark{box-shadow:0 10px 30px -8px color-mix(in srgb,var(--pink) 60%,transparent);animation:float 6s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-4px) rotate(-3deg)}}
-h1{background:linear-gradient(90deg,var(--ink),color-mix(in srgb,var(--ink) 55%,var(--blue)));-webkit-background-clip:text;background-clip:text;color:transparent}
-.app{box-shadow:0 10px 26px -10px color-mix(in srgb,var(--pink) 60%,transparent)}
-.fill,.goal .fill,.bar .fill{position:relative;overflow:hidden;box-shadow:0 0 14px color-mix(in srgb,var(--pink) 50%,transparent)}
-.fill::after,.goal .fill::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-100%);animation:shine 2.8s ease-in-out infinite}
-@keyframes shine{60%,100%{transform:translateX(100%)}}
-.rec{background:color-mix(in srgb,var(--soft) 70%,transparent);border:1px solid color-mix(in srgb,var(--ink) 6%,transparent)}
-.ring{--p:0;width:120px;height:120px;border-radius:50%;background:conic-gradient(from -90deg,var(--blue),var(--pink) calc(var(--p) * 1%),color-mix(in srgb,var(--muted) 22%,transparent) calc(var(--p) * 1%));display:grid;place-items:center;box-shadow:0 14px 34px -12px color-mix(in srgb,var(--pink) 60%,transparent),inset 0 2px 6px rgba(255,255,255,.15)}
-.ring>span{width:92px;height:92px;border-radius:50%;background:var(--panel);display:grid;place-items:center;text-align:center;font:700 18px/1.1 var(--f-d)}
-.ring small{display:block;font:500 10px var(--f-m);color:var(--muted)}
-.rings{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 4px}
-.reveal{opacity:0;transform:translateY(14px) scale(.985);animation:rv .6s cubic-bezier(.2,.8,.2,1) forwards}
-@keyframes rv{to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.reveal,.mark,.fill::after,.goal .fill::after{animation:none!important;opacity:1;transform:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:12px;padding:9px 14px;font:600 13px var(--f-b);border:1px solid var(--line);background:var(--panel);text-decoration:none;white-space:nowrap}
+.btn.pri{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 10px 22px -12px color-mix(in srgb,var(--pink) 80%,transparent)}
+.btn.sm{padding:6px 10px;font-size:12px;border-radius:10px}
+.btn:disabled{opacity:.5}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.seg{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px}
+.seg::-webkit-scrollbar{display:none}
+.seg button{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:8px 14px;font:600 13px var(--f-b);white-space:nowrap;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg button .c{font:600 11px var(--f-m);opacity:.7;margin-left:4px}
+.hero{position:relative;overflow:hidden;min-height:210px;padding:20px;display:grid;align-content:space-between;
+  background:radial-gradient(120% 120% at 100% 0%,color-mix(in srgb,var(--pink) 30%,transparent),transparent 55%),radial-gradient(90% 120% at 0% 100%,color-mix(in srgb,var(--blue) 26%,transparent),transparent 60%),var(--panel)}
+.hero canvas{position:absolute;right:-24px;top:0;width:52%;height:100%;pointer-events:none}
+@media (min-width:720px){.hero canvas{width:46%;right:0}}
+.hero .hi{position:relative;z-index:1;max-width:60%}
+.hero .hi small{color:var(--muted);font:600 12px var(--f-m)}
+.hero .hi h1{font:800 clamp(22px,6vw,34px)/1.1 var(--f-d);margin:4px 0 0}
+.hero .big{position:relative;z-index:1;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:18px}
+.hero .big .n{font:800 clamp(40px,12vw,64px)/1 var(--f-d);letter-spacing:-.03em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .big span{color:var(--muted);font-weight:600}
+.todo{display:grid;gap:8px}
+.todo button{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:12px;border-radius:16px;border:1px solid var(--line);background:var(--panel2)}
+.todo .ti{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;flex:none;font-size:18px}
+.todo b{display:block;font-size:14px}.todo small{color:var(--muted);font-size:12px}
+.todo .go{margin-left:auto;color:var(--faint)}
+.chart{position:relative}
+.chart svg{width:100%;height:170px;display:block;overflow:visible}
+.chart .tip{position:absolute;top:0;transform:translateX(-50%);background:var(--ink);color:var(--bg);font:600 11px var(--f-m);padding:4px 8px;border-radius:8px;pointer-events:none;white-space:nowrap;opacity:0;transition:opacity .15s}
+.axis{display:flex;justify-content:space-between;color:var(--faint);font:500 11px var(--f-m);margin-top:6px}
+.hs{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(200px,46%);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;scrollbar-width:none}
+.hs::-webkit-scrollbar{display:none}
+@media (min-width:720px){.hs{grid-auto-columns:minmax(220px,24%)}}
+.vc{scroll-snap-align:start;border:0;background:none;padding:0;text-align:left;display:grid;gap:6px;align-content:start}
+.th{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--panel2)}
+.th img{width:100%;height:100%;object-fit:cover;display:block}
+.th .dur{position:absolute;right:6px;bottom:6px;background:rgba(0,0,0,.72);color:#fff;font:600 10.5px var(--f-m);padding:2px 6px;border-radius:6px}
+.th .live{position:absolute;left:6px;top:6px;background:var(--pink);color:#fff;font:700 10px var(--f-m);padding:2px 6px;border-radius:6px}
+.vc b{font-size:13px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vc small{color:var(--muted);font:500 11.5px var(--f-m)}
+.vlist{display:grid;gap:10px}
+.vrow{display:grid;grid-template-columns:132px minmax(0,1fr);gap:12px;align-items:start;padding:10px;border-radius:18px;border:1px solid var(--line);background:var(--panel);text-align:left;width:100%}
+@media (min-width:720px){.vrow{grid-template-columns:168px minmax(0,1fr)}}
+.vrow .th{border-radius:12px}
+.vrow b{font-size:14px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vrow .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.vrow .stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;font:600 12px var(--f-m);color:var(--muted)}
+.vrow .stats span b{font:700 13px var(--f-m);color:var(--ink);display:inline}
+.bars{display:grid;gap:10px}
+.bar{display:grid;grid-template-columns:minmax(0,130px) minmax(0,1fr) 56px;gap:10px;align-items:center;font-size:13px}
+.bar .track{height:10px;border-radius:6px;background:var(--panel2);overflow:hidden}
+.bar .fill{height:100%;border-radius:6px;background:var(--grad)}
+.bar .v{font:600 12px var(--f-m);text-align:right}
+.idea{display:grid;gap:8px;padding:14px;border-radius:18px;border:1px solid var(--line);background:var(--panel2)}
+.idea b{font-size:14.5px;line-height:1.35}
+.idea p{margin:0;color:var(--muted);font-size:13px}
+.kanban{display:grid;gap:14px}
+@media (min-width:960px){.kanban{grid-template-columns:repeat(4,minmax(0,1fr));align-items:start}}
+.col h3{font:700 12px var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;display:flex;gap:6px}
+.cm{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;padding:14px;border-radius:18px;border:1px solid var(--line);background:var(--panel)}
+.cm img.av{width:40px;height:40px;border-radius:50%;background:var(--panel2)}
+.cm .h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.cm .h b{font-size:13.5px}.cm .h small{color:var(--faint);font:500 11px var(--f-m)}
+.cm p{margin:4px 0 8px;font-size:14px;white-space:pre-wrap;word-break:break-word}
+.cm .v{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--muted);margin-bottom:8px}
+.cm .v img{width:52px;height:29px;border-radius:6px;object-fit:cover}
+.ring{--p:0;width:112px;height:112px;border-radius:50%;flex:none;background:conic-gradient(from -90deg,var(--blue),var(--pink) calc(var(--p) * 1%),color-mix(in srgb,var(--muted) 20%,transparent) calc(var(--p) * 1%));display:grid;place-items:center}
+.ring>span{width:86px;height:86px;border-radius:50%;background:var(--panel);display:grid;place-items:center;text-align:center;font:800 17px/1.1 var(--f-d)}
+.ring small{display:block;font:600 9.5px var(--f-m);color:var(--muted)}
+.goal{display:grid;gap:6px;padding:12px 0;border-top:1px solid var(--line)}
+.goal:first-of-type{border-top:0;padding-top:0}
+.goal .tp{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:14px}
+.track{height:10px;border-radius:6px;background:var(--panel2);overflow:hidden}
+.track .fill{height:100%;border-radius:6px;background:var(--grad);min-width:6px}
+.or{font:700 10.5px var(--f-m);color:var(--faint);letter-spacing:.12em;text-transform:uppercase;padding:2px 0}
+input[type=range]{width:100%;accent-color:var(--pink)}
+.scrim{position:fixed;inset:0;background:rgba(5,4,10,.55);z-index:40;opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.open{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:92dvh;overflow:auto;background:var(--bg);border-radius:26px 26px 0 0;padding:10px 16px calc(env(safe-area-inset-bottom,0px) + 24px);transform:translateY(105%);transition:transform .35s cubic-bezier(.2,.8,.2,1);box-shadow:0 -20px 50px -20px rgba(0,0,0,.6)}
+.sheet.open{transform:none}
+.sheet .grab{width:44px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 12px}
+@media (min-width:960px){.sheet{left:50%;right:auto;width:640px;bottom:auto;top:50%;border-radius:26px;transform:translate(-50%,-46%) scale(.97);opacity:0;pointer-events:none;transition:transform .3s,opacity .3s}.sheet.open{transform:translate(-50%,-50%);opacity:1;pointer-events:auto}}
+.stat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (min-width:560px){.stat{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stat div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px}
+.stat small{color:var(--muted);font:600 11px var(--f-b);display:block}
+.stat b{font:800 18px var(--f-d)}
+.stat em{font:600 11px var(--f-m);font-style:normal;display:block}
+label.f{display:grid;gap:6px;font:600 13px var(--f-b)}
+input.t,select.t{font:500 14px var(--f-b);padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);width:100%}
+ol.steps{margin:0;padding-left:20px;display:grid;gap:6px;font-size:13.5px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(var(--navh) + env(safe-area-inset-bottom,0px) + 22px);transform:translate(-50%,20px);z-index:60;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:14px;font:600 13px var(--f-b);opacity:0;transition:.25s;max-width:92vw;text-align:center;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.empty{padding:22px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:18px}
+.reveal{animation:rv .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rv{from{opacity:0;transform:translateY(10px)}}
+.sk{height:120px;border-radius:var(--r);background:linear-gradient(90deg,var(--panel),var(--panel2),var(--panel));background-size:200% 100%;animation:sk 1.2s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){*,.reveal{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<canvas id="bg3d" aria-hidden="true"></canvas>
-<div class="wrap">
-  <header><div class="mark"><span>M1</span></div><div><h1>Студия M1lash</h1><p class="sub" id="asof">загрузка…</p></div><a class="app" id="app" href="https://github.com/osminoog09-star/Shorts/releases/download/widget/m1lash-widget.apk" download>📱 Виджет для Android <small id="appv"></small></a></header>
-  <nav role="tablist">
-    <button role="tab" data-t="plan">План</button>
-    <button role="tab" data-t="todo">Что делать</button>
-    <button role="tab" data-t="sum">Сводка</button>
-    <button role="tab" data-t="vids">Ролики</button>
-    <button role="tab" data-t="ypp">Монетизация</button>
-  </nav>
-  <main id="view"></main>
-  <footer>Обновляется сам после ежедневной аналитики · источник: репо osminoog09-star/Shorts</footer>
+<div class="shell">
+  <aside class="side" aria-label="Разделы">
+    <div class="brand"><div class="logo"><span>M1</span></div><b>Студия M1lash</b></div>
+    <nav id="sidenav"></nav>
+    <div class="foot">
+      <a class="btn" id="apk2" href="https://github.com/osminoog09-star/Shorts/releases/download/widget/m1lash-widget.apk">📱 Виджет Android <span class="muted" id="apkv2"></span></a>
+      <button class="btn" data-act="settings">⚙️ Настройки и управление</button>
+    </div>
+  </aside>
+  <div>
+    <header class="top">
+      <div class="logo"><span>M1</span></div>
+      <div class="t"><b id="ttl">Студия M1lash</b><small id="asof">загрузка…</small></div>
+      <button class="ib" id="refresh" aria-label="Обновить цифры"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg></button>
+      <button class="ib menu" data-act="settings" aria-label="Настройки"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></button>
+    </header>
+    <main id="view"><div class="sk"></div><div class="sk"></div></main>
+  </div>
 </div>
+<nav class="bnav" id="bnav" aria-label="Разделы"></nav>
+<div class="scrim" id="scrim"></div>
+<section class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div id="sheetBody"></div></section>
+<div class="toast" id="toast" role="status"></div>
 <script>
-const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const num=n=>n==null?"—":Number(n).toLocaleString("ru-RU");
-const DAYS=["Вс","Пн","Вт","Ср","Чт","Пт","Сб"];
-let D=null, tab="plan", sortKey="published", sortDir=-1, fmtFilter="";
-try{tab=localStorage.getItem("m1-tab")||"plan"}catch(e){}
+"use strict";
+const REPO="osminoog09-star/Shorts", CHANNEL="UC919eyHbOIgjsnH8z70pmZw";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const num=n=>n==null||isNaN(n)?"—":Number(n).toLocaleString("ru-RU");
+const short=n=>n==null?"—":n>=1e6?(n/1e6).toFixed(n>=1e7?0:1).replace(".",",")+" млн":n>=1e4?Math.round(n/1e3)+" тыс.":num(n);
+const MON=["янв","фев","мар","апр","мая","июн","июл","авг","сен","окт","ноя","дек"];
+const dshort=s=>{if(!s)return"—";const d=new Date(s.length<=10?s+"T12:00:00":s);return isNaN(d)?"—":d.getDate()+" "+MON[d.getMonth()]};
+const ago=s=>{if(!s)return"";const m=(Date.now()-new Date(s))/6e4;return m<60?Math.max(1,Math.round(m))+" мин":m<1440?Math.round(m/60)+" ч":Math.round(m/1440)+" дн"};
+const dur=s=>{if(!s)return"";const m=Math.floor(s/60),x=s%60;return m+":"+String(x).padStart(2,"0")};
+const pct=(a,b)=>!b||a==null?null:(a-b)/b*100;
+const delta=(p,base)=>base!=null&&base<500?'<span class="up">канал взлетел 🚀</span>':p==null?'<span class="flat">—</span>':p>300?`<span class="up">×${(1+p/100).toFixed(0)}</span>`:`<span class="${p>=0?"up":"down"}">${p>=0?"▲":"▼"} ${Math.abs(p).toFixed(0)}%</span>`;
+const store={get(k,d){try{return localStorage.getItem(k)??d}catch(e){return d}},set(k,v){try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}}};
+const ICON={
+ home:'<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+ play:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/>',
+ idea:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/>',
+ chat:'<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/>',
+ coin:'<circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .8-3 2s1.3 1.7 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/>'};
+const svg=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[k]}</svg>`;
+const TABS=[["home","Обзор","home"],["videos","Ролики","play"],["ideas","Идеи","idea"],["fans","Зрители","chat"],["money","Деньги","coin"]];
+const TRAFFIC={SHORTS:"Лента Shorts",YT_SEARCH:"Поиск YouTube",SUBSCRIBER:"Подписчики",YT_CHANNEL:"Страница канала",YT_OTHER_PAGE:"Другие страницы YouTube",RELATED_VIDEO:"Похожие видео",EXT_URL:"Внешние сайты",NO_LINK_OTHER:"Прямые/прочее",PLAYLIST:"Плейлисты",NOTIFICATION:"Уведомления",END_SCREEN:"Конечные заставки",HASHTAGS:"Хештеги",SOUND_PAGE:"Страница звука",YT_PLAYLIST_PAGE:"Плейлисты"};
+let D=null, tab=store.get("m1-tab2","home"); if(!TABS.some(t=>t[0]===tab))tab="home";
+let vFilter="all", vSort="published", iSeg="ideas", fSeg="all", vSeg="out";
+let seen=new Set();try{seen=new Set(JSON.parse(store.get("m1-seen-c","[]")))}catch(e){}
 
-function statusChip(s){
-  const m={"scheduled":["запланирован","c-ok"],"uploaded":["ждёт твоего ок","c-warn"],"review":["ждёт просмотра","c-warn"],"ready":["готов","c-info"],"draft":["черновик","c-bad"],"пусто":["пусто",""]};
-  const [t,c]=m[s]||[s,""];return `<span class="chip ${c}">${esc(t)}</span>`;
+/* ---------- GitHub API (токен хранится только в этом браузере) ---------- */
+const tok=()=>store.get("m1-gh","");
+async function gh(path,opt={}){
+  const t=tok(); if(!t)throw new Error("нет токена");
+  const r=await fetch("https://api.github.com/repos/"+REPO+path,{...opt,headers:{Authorization:"Bearer "+t,Accept:"application/vnd.github+json",...(opt.body?{"Content-Type":"application/json"}:{})}});
+  if(!r.ok)throw new Error("GitHub "+r.status);
+  return r.status===204?null:r.json();
 }
-function plan(){
-  const days={};D.plan.forEach(p=>(days[p.date]=days[p.date]||[]).push(p));
-  const today=new Date().toISOString().slice(0,10);
+const b64d=s=>new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\n/g,"")),c=>c.charCodeAt(0)));
+const b64e=s=>{const b=new TextEncoder().encode(s);let x="";b.forEach(c=>x+=String.fromCharCode(c));return btoa(x)};
+async function editJSON(path,fn,msg){
+  const f=await gh("/contents/"+path+"?ref=main"); const data=JSON.parse(b64d(f.content)); fn(data);
+  await gh("/contents/"+path,{method:"PUT",body:JSON.stringify({message:msg,content:b64e(JSON.stringify(data,null,2)+"\n"),sha:f.sha,branch:"main"})});
+  return data;
+}
+const dispatch=(wf,inputs={})=>gh("/actions/workflows/"+wf+"/dispatches",{method:"POST",body:JSON.stringify({ref:"main",inputs})});
+function needTok(){if(tok())return true;toast("Сначала добавь токен в ⚙️ Настройках");openSettings();return false}
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("on"),3200)}
 
-  let h=`<div class="grid">`;
-  if(D.review.length) h+=`<section class="card"><h2>Ждёт твоего «ок»</h2><ul class="clean">${D.review.map(r=>`<li>${r.video_id?`<a href="https://studio.youtube.com/video/${esc(r.video_id)}/edit" target="_blank" rel="noopener">${esc(r.title)}</a>`:esc(r.title)} — посмотри и напиши «заливаем»</li>`).join("")}</ul></section>`;
-  h+=`<section class="card"><h2>Ближайшие 14 дней</h2>`+(D.plan.length?"":`<p class="muted">Пока ничего не запланировано. Расписание ещё выбираем — сюда попадут ролики после твоего «заливаем».</p>`);
-  Object.entries(days).forEach(([d,slots])=>{
-    const dt=new Date(d+"T12:00:00");
-    h+=`<div class="day ${d===today?"today":""}"><div class="d">${DAYS[dt.getDay()]}<small>${d.slice(8)}.${d.slice(5,7)}</small></div><div>${slots.map(s=>`<div class="slot"><span class="t">${s.time}</span><span class="w">${s.title?esc(s.title):`<span class="muted">${esc(s.what)}</span>`}</span>${s.who?`<span class="chip">${esc(s.who)}</span>`:""}${statusChip(s.status)}</div>`).join("")}</div></div>`;
-  });
-  return h+`</section></div>`;
+/* ---------- расчёты ---------- */
+const avg=a=>{a=a.filter(x=>x!=null);return a.length?a.reduce((s,x)=>s+x,0)/a.length:null};
+function fmtAvg(){const m={};D.videos.filter(v=>v.privacy==="public").forEach(v=>{(m[v.format]=m[v.format]||[]).push(v)});const o={};for(const k in m){const a=m[k];o[k]={views:a.reduce((s,v)=>s+(v.views||0),0)/a.length,avp:avg(a.map(v=>v.avp)),subs:avg(a.map(v=>v.subs))}}return o}
+function weekCmp(){const s=((D.ypp&&D.ypp.shorts_daily_90)||[]).map(x=>x.all);if(s.length<14)return{w:null,p:null};return{w:s.slice(-7).reduce((a,b)=>a+b,0),p:s.slice(-14,-7).reduce((a,b)=>a+b,0)}}
+function cflags(f){return (D.comments||[]).filter(c=>f==="all"||(c.flags||[]).includes(f))}
+const clean=t=>String(t||"").replace(/\s*#\S+/g,"").trim();
+function todoItems(){
+  const it=[],L=D.live;
+  if(D.review.length) it.push(["⏳","c-warn",`Ждёт твоего «ок»: ${D.review.length}`,"посмотри и нажми «Заливаем»",()=>{vSeg="queue";go("videos")}]);
+  const rq=cflags("request").filter(c=>!seen.has(c.id)); if(rq.length) it.push(["🙋","c-pink",`Новые заявки зрителей: ${rq.length}`,"сделать ролик по просьбе",()=>{fSeg="request";go("fans")}]);
+  const tm=cflags("to_me").filter(c=>!seen.has(c.id)); if(tm.length) it.push(["💬","c-info",`Тебе написали: ${tm.length}`,esc(clean(tm[0].text)).slice(0,70),()=>{fSeg="to_me";go("fans")}]);
+  const ideas=((D.ideas||{}).ideas||[]).filter(i=>(i.status||"proposed")==="proposed"); if(ideas.length) it.push(["💡","c-info",`Идеи на одобрение: ${ideas.length}`,esc(ideas[0].title).slice(0,70),()=>{iSeg="ideas";go("ideas")}]);
+  const age=D.analytics_as_of?(Date.now()-new Date(D.analytics_as_of+"T12:00:00"))/864e5:9; if(age>3.5) it.push(["⚠️","c-bad","Аналитика устарела",`данные по ${dshort(D.analytics_as_of)} — запусти обновление`,()=>openSettings()]);
+  if(L&&L.fresh_short) it.push(["🆕","c-ok",`Свежий Shorts: ${num(L.fresh_short.views)} просм.`,`+${num(L.fresh_short.views_1h)} за час · ${esc(L.fresh_short.title).slice(0,60)}`,()=>openVideo(L.fresh_short.id)]);
+  return it;
 }
-function todo(){
-  const f=D.formats.filter(x=>x.n>0);
-  const best=f[0], ret=[...f].filter(x=>x.avg_avp!=null).sort((a,b)=>b.avg_avp-a.avg_avp)[0], subs=[...f].sort((a,b)=>b.subs-a.subs)[0], worst=f[f.length-1];
-  let h=`<div class="grid">`;
-  const I=D.ideas||{};
-  h+=`<section class="card"><h2>Идеи дня${I.date?" · "+esc(I.date):""}</h2>`+(I.summary?`<p class="muted" style="margin:0 0 10px">${esc(I.summary)}</p>`:"")+
-    ((I.ideas||[]).length?`<div class="grid">${I.ideas.map(x=>`<div class="rec"><b>${x.kind==="experiment"?'<span class="chip c-info">эксперимент</span> ':'<span class="chip c-ok">проверено</span> '}${esc(x.title)}</b><span class="muted">${esc(x.format||"")}${x.why?" · "+esc(x.why):""}${x.hypothesis?" · гипотеза: "+esc(x.hypothesis):""}${x.metric?" · метрика: "+esc(x.metric):""}</span><span class="chip">${esc(x.status||"proposed")}</span></div>`).join("")}</div>`:`<p class="muted">Первые идеи появятся после ближайшего ежедневного анализа.</p>`)+`</section>`;
-  h+=`<section class="card"><h2>Решения на неделю (по цифрам)</h2><div class="grid">`;
-  if(best) h+=`<div class="rec"><b>Больше всего: ${esc(best.format)}</b><span class="muted">в среднем ${num(best.avg_views)} просмотров на ролик — ставь в лучшие слоты (10:00).</span></div>`;
-  if(ret) h+=`<div class="rec"><b>Лучше всего досматривают: ${esc(ret.format)}</b><span class="muted">${ret.avg_avp}% досмотра — формат для серий и воронки в длинные.</span></div>`;
-  if(subs) h+=`<div class="rec"><b>Больше всего подписок: ${esc(subs.format)}</b><span class="muted">+${subs.subs} подписчиков — именно это растит канал.</span></div>`;
-  if(worst&&worst!==best) h+=`<div class="rec"><b>Слабее всего: ${esc(worst.format)}</b><span class="muted">${num(worst.avg_views)} в среднем — делать реже или менять подачу.</span></div>`;
-  h+=`</div></section>`;
-  const L=D.learn;
-  h+=`<section class="card"><h2>База знаний (learnings.md)</h2>`+
-    (L.works.length?`<p><b>Работает</b></p><ul class="clean">${L.works.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"")+
-    (L.fails.length?`<p><b>Не работает</b></p><ul class="clean">${L.fails.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"")+
-    (L.hyp.length?`<p><b>Проверяем</b></p><ul class="clean">${L.hyp.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"")+`</section>`;
-  h+=`<section class="card"><h2>Правила, которые работают сейчас</h2><ul class="clean"><li>Первый кадр — событие, хук за 2 секунды.</li><li>Shorts 30–45 с + финал 2–3 с, не больше 2 в день (10:00 и 16:00).</li><li>Длинное = кино-разбор 8–12 мин, перед ним 2–3 кино-Shorts по тому же фильму со ссылкой «Связанное видео».</li><li>Каждый ролик сначала приватно тебе — дата только после «заливаем».</li></ul></section>`;
-  if(D.weekly.name) h+=`<section class="card"><h2>Недельный отчёт ${esc(D.weekly.name)}</h2><pre class="week">${esc(D.weekly.text)}</pre></section>`;
-  return h+`</div>`;
-}
-function sum(){
-  const pub=D.videos.filter(v=>v.privacy==="public");
-  const top=[...pub].sort((a,b)=>(b.views||0)-(a.views||0))[0];
+
+/* ---------- разделы ---------- */
+const head=(eb,title,sub)=>`<div class="sec-h reveal"><span class="eyebrow">${eb}</span><h1>${title}</h1>${sub?`<p>${sub}</p>`:""}</div>`;
+function home(){
+  const L=D.live||{}, ch=D.channel, wc=weekCmp(), y=D.ypp, base=y&&y.tiers[0];
+  const h=new Date().getHours(), hi=h<5?"Доброй ночи":h<12?"Доброе утро":h<18?"Добрый день":"Добрый вечер";
   const daily=D.daily.slice(-28);
-  const max=Math.max(1,...daily.map(d=>d.views||0));
-  const W=600,H=120,step=daily.length>1?W/(daily.length-1):W;
-  const pts=daily.map((d,i)=>`${(i*step).toFixed(1)},${(H-8-(d.views||0)/max*(H-24)).toFixed(1)}`).join(" ");
-  const week=daily.slice(-7).reduce((s,d)=>s+(d.views||0),0);
-  let h=`<div class="grid"><div class="kpis">
-    <div class="card kpi"><div class="n">${num(D.channel.subs)}</div><div class="l">подписчиков</div></div>
-    <div class="card kpi"><div class="n">${num(D.channel.views)}</div><div class="l">просмотров всего</div></div>
-    <div class="card kpi"><div class="n">${num(week)}</div><div class="l">просмотров за 7 дней</div></div>
-    <div class="card kpi"><div class="n">${num(D.channel.videos)}</div><div class="l">видео</div></div></div>`;
-  if(daily.length>1) h+=`<section class="card"><h2>Просмотры по дням</h2><svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Просмотры по дням"><polyline points="${pts}" fill="none" stroke="var(--pink)" stroke-width="2.5" vector-effect="non-scaling-stroke"/></svg><p class="muted" style="margin:6px 0 0;font-size:12px">${esc(daily[0].day)} — ${esc(daily[daily.length-1].day)} · пик ${num(max)}</p></section>`;
-  const mx=Math.max(1,...D.formats.map(f=>f.avg_views));
-  h+=`<section class="card"><h2>Средние просмотры по форматам</h2><div class="bars">${D.formats.map(f=>`<div class="bar"><span>${esc(f.format)} <span class="muted">·${f.n}</span></span><div class="track"><div class="fill" style="width:${(f.avg_views/mx*100).toFixed(1)}%"></div></div><span class="v">${num(f.avg_views)}</span></div>`).join("")}</div></section>`;
-  if(top) h+=`<section class="card"><h2>Лучший ролик</h2><a href="https://youtu.be/${esc(top.id)}" target="_blank" rel="noopener">${esc(top.title)}</a> — ${num(top.views)} просмотров, ${num(top.likes)} лайков</section>`;
-  return h+`</div>`;
+  let s=`<section class="card hero reveal"><canvas id="c3d" aria-hidden="true"></canvas><div class="hi"><small>${dshort(new Date().toISOString())} · M1lash</small><h1>${hi}, Денис</h1></div>
+    <div class="big"><span class="n num">${num(ch.subs)}</span><span>подписчиков${L.subs_24h!=null?` · <span class="${L.subs_24h>0?"up":"flat"}">+${L.subs_24h} за 24 ч</span>`:""}</span></div></section>`;
+  const td=todoItems();
+  s+=`<section class="card reveal"><h2>Сегодня <span class="cnt">${td.length}</span></h2>${td.length?`<div class="todo">${td.map((t,i)=>`<button data-todo="${i}"><span class="ti ${t[1]}">${t[0]}</span><span><b>${t[2]}</b><small>${t[3]}</small></span><span class="go">›</span></button>`).join("")}</div>`:`<div class="empty">Всё спокойно — новых дел нет ✨</div>`}</section>`;
+  s+=`<div class="kpis reveal">
+    <div class="card kpi"><div class="l">${(L.span_h||0)>=20?"Просмотры за 24 ч":"Просмотры за "+Math.max(1,Math.round((L.span_h||0)*60))+" мин"}</div><div class="n num">+${num(L.views_24h)}</div><div class="d muted">+${num(L.views_1h)} за последний час</div></div>
+    <div class="card kpi"><div class="l">Shorts за 7 дней</div><div class="n num">${short(wc.w)}</div><div class="d">${delta(pct(wc.w,wc.p),wc.p)}${wc.p!=null&&wc.p>=500?' к прошлой неделе':''}</div></div>
+    <div class="card kpi"><div class="l">Всего просмотров</div><div class="n num">${short(ch.views)}</div><div class="d muted">${num(ch.videos)} видео</div></div>
+    <button class="card kpi" data-go="money" style="text-align:left"><div class="l">До монетизации</div><div class="n num">${base?Math.round(ch.subs/5)+"%":"—"}</div><div class="d muted">${num(ch.subs)}/500 подп. ›</div></button></div>`;
+  s+=`<section class="card reveal"><h2>Просмотры за 28 дней <span class="cnt">пик ${num(Math.max(0,...daily.map(d=>d.views||0)))}</span></h2>${chart(daily.map(d=>({x:d.day,y:d.views||0})))}</section>`;
+  s+=`<section class="reveal"><h2 style="margin-left:2px">Свежие ролики <button class="more" data-go="videos">все ›</button></h2><div class="hs">${freshList().map(vcard).join("")}</div></section>`;
+  const fa=Object.entries(fmtAvg()).sort((a,b)=>b[1].views-a[1].views), mx=Math.max(1,...fa.map(f=>f[1].views));
+  s+=`<section class="card reveal"><h2>Что заходит лучше всего</h2><div class="bars">${fa.map(([k,f])=>`<div class="bar"><span>${esc(k)}</span><div class="track"><div class="fill" style="width:${(f.views/mx*100).toFixed(1)}%"></div></div><span class="v">${short(Math.round(f.views))}</span></div>`).join("")}</div><p class="muted" style="font-size:12px;margin:10px 0 0">Средние просмотры на ролик по формату.</p></section>`;
+  return s;
 }
-function vids(){
-  const fmts=[...new Set(D.videos.map(v=>v.format))];
-  let list=D.videos.filter(v=>!fmtFilter||v.format===fmtFilter);
-  list=[...list].sort((a,b)=>{const x=a[sortKey],y=b[sortKey];return (x==null)-(y==null)||(x>y?1:x<y?-1:0)*sortDir});
-  const col=(k,t,n)=>`<th class="${n?"num":""}" data-k="${k}">${t}${sortKey===k?(sortDir>0?" ↑":" ↓"):""}</th>`;
-  return `<section class="card"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px"><h2 style="margin:0">Все ролики · ${list.length}</h2><select id="ff" aria-label="Формат"><option value="">Все форматы</option>${fmts.map(f=>`<option ${f===fmtFilter?"selected":""}>${esc(f)}</option>`).join("")}</select></div><div class="tablebox"><table><thead><tr>${col("published","Дата")}${col("title","Ролик")}${col("format","Формат")}${col("views","Просм.",1)}${col("avp","Досмотр %",1)}${col("subs","Подп.",1)}${col("likes","Лайки",1)}</tr></thead><tbody>${list.map(v=>`<tr><td class="num">${esc((v.published||"").slice(5,10).split("-").reverse().join("."))}</td><td><a href="https://youtu.be/${esc(v.id)}" target="_blank" rel="noopener">${esc(v.title)}</a>${v.privacy!=="public"?` <span class="chip c-warn">${esc(v.privacy)}</span>`:""}</td><td><span class="chip">${esc(v.format)}</span></td><td class="num">${num(v.views)}</td><td class="num">${v.avp==null?"—":Math.round(v.avp)}</td><td class="num">${num(v.subs)}</td><td class="num">${num(v.likes)}</td></tr>`).join("")}</tbody></table></div></section>`;
+function freshList(){
+  const L=D.live, byId=Object.fromEntries(D.videos.map(v=>[v.id,v])), out=[];
+  ((L&&L.recent)||[]).forEach(r=>{const v=byId[r.id]||{id:r.id,title:r.title,thumb:`https://i.ytimg.com/vi/${r.id}/mqdefault.jpg`,published:r.published};out.push({...v,views:r.views??v.views,h1:r.views_1h})});
+  D.videos.filter(v=>v.privacy==="public").forEach(v=>{if(out.length<8&&!out.some(o=>o.id===v.id))out.push(v)});
+  return out.slice(0,8);
 }
-function fdate(s){return s?s.slice(8)+"."+s.slice(5,7)+"."+s.slice(0,4):"—"}
-function eta(d){return d==null?'<span class="chip c-bad">при текущем темпе — не успеваем</span>':d===0?'<span class="chip c-ok">выполнено ✓</span>':`<span class="chip c-info">≈ ${num(d)} дн · ${fdate(new Date(Date.now()+d*864e5).toISOString().slice(0,10))}</span>`}
-function goal(g){const p=Math.max(1,g.pct);return `<div class="goal"><div class="top"><b>${esc(g.name)}</b>${eta(g.eta_days)}</div><div class="track"><div class="fill" style="width:${p}%"></div></div><small>${num(Math.round(g.current))} из ${num(g.target)} ${esc(g.unit)} · ${g.pct}%${g.need&&g.pct<100?" · "+esc(g.need):""}</small></div>`}
-function ypp(){
-  const Y=D.ypp;
-  if(!Y) return `<section class="card"><h2>До монетизации</h2><p class="muted">Цифры появятся после ближайшей ежедневной аналитики (10:20).</p></section>`;
-  const [b,f]=Y.tiers, P=Y.pace;
-  const lim=[b.subs.eta_days,Math.min(...b.paths.map(x=>x.eta_days??1e9))];
-  const bottleneck=(b.subs.eta_days??1e9)>=Math.min(...b.paths.map(x=>x.eta_days??1e9))?"подписчики":"просмотры Shorts";
-  let h=`<div class="grid"><section class="card count"><h2>До базовой монетизации</h2>`+
-    (b.eta_days===0?`<div class="big">Можно подавать заявку!</div><a href="https://studio.youtube.com/channel/UC919eyHbOIgjsnH8z70pmZw/monetization" target="_blank" rel="noopener">Открыть «Заработок» в YouTube Studio →</a>`
-    :b.eta_days!=null?`<div class="big">≈ ${num(b.eta_days)} дн</div><span class="muted">ориентировочно ${fdate(b.eta_date)}, если темп как сейчас · узкое место: <b>${bottleneck}</b></span>`
-    :`<div class="big">Темпа не хватает</div><span class="muted">узкое место: <b>${bottleneck}</b> — смотри «что нужно в день» ниже</span>`)+
-    `<div class="rings"><div class="ring" style="--p:${Math.max(1,b.subs.pct)}"><span>${Math.round(b.subs.pct)}%<small>подписчики</small></span></div><div class="ring" style="--p:${Math.max(1,b.paths[0].pct)}"><span>${b.paths[0].pct}%<small>просм. Shorts</small></span></div></div>`+
-    `<span class="muted" style="font-size:12px">Темп: +${P.subs_per_day} подп./день · ${num(P.shorts_views_per_day)} просм. Shorts/день · ${P.long_hours_per_day} ч длинных/день. Данные по ${fdate(Y.as_of)}.</span></section>`;
-  const tier=(t,extra)=>`<section class="card"><h2>${esc(t.title)}</h2>${goal(t.subs)}${t.uploads?`<div class="goal"><div class="top"><b>3 публичные загрузки за 90 дн</b>${t.uploads.ok?'<span class="chip c-ok">выполнено ✓</span>':'<span class="chip c-warn">'+t.uploads.current+' из 3</span>'}</div></div>`:""}<div class="or">и одно из двух</div>${t.paths.map(goal).join('<div class="or">или</div>')}${t.warn?`<p class="chip c-warn" style="display:block;margin-top:8px;white-space:normal">${esc(t.warn)}</p>`:""}${t.note?`<p class="muted" style="font-size:12px;margin:8px 0 0">${esc(t.note)}</p>`:""}${extra||""}</section>`;
-  h+=tier(b)+tier(f);
-  const s=Y.shorts_daily_90||[]; if(s.length>1){const W=600,H=140,mx=Math.max(1,...s.map(x=>x.views),33334);const st=W/(s.length-1);
-    const pts=s.map((x,i)=>`${(i*st).toFixed(1)},${(H-6-x.views/mx*(H-16)).toFixed(1)}`).join(" ");const ly=(H-6-33334/mx*(H-16)).toFixed(1);
-    h+=`<section class="card"><h2>Просмотры Shorts за 90 дней</h2><svg class="spark" style="height:140px" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Просмотры Shorts по дням"><line x1="0" x2="${W}" y1="${ly}" y2="${ly}" stroke="var(--ok)" stroke-dasharray="6 6" vector-effect="non-scaling-stroke"/><polyline points="${pts}" fill="none" stroke="var(--pink)" stroke-width="2.5" vector-effect="non-scaling-stroke"/></svg><p class="muted" style="margin:6px 0 0;font-size:12px">Зелёная линия — 33 334/день: такой темп 90 дней подряд = 3 млн (базовый порог).</p></section>`}
-  const sh=b.paths[0];
-  h+=`<section class="card"><h2>Что если поднять темп?</h2>
-    <label class="muted" style="font-size:13px">Засчитанных просмотров Shorts в день: <b id="wv">${num(P.shorts_views_per_day)}</b></label>
-    <input id="wi" type="range" min="500" max="150000" step="500" value="${Math.max(500,P.shorts_views_per_day)}" style="width:100%">
-    <label class="muted" style="font-size:13px">Новых подписчиков в день: <b id="sv">${P.subs_per_day}</b></label>
-    <input id="si" type="range" min="0.5" max="50" step="0.5" value="${Math.max(0.5,P.subs_per_day)}" style="width:100%">
-    <div id="wout" class="rec" style="margin-top:8px"></div></section>`;
-  setTimeout(()=>whatIf(sh.current,b.subs.current),0);
-  h+=`<section class="card"><h2>Что ускорит</h2><ul class="clean"><li>Подписки дают кино-Shorts и серии: делай продолжения и зови подписаться в финале.</li><li>Для 3 млн за 90 дней нужен стабильный поток ~33 тыс. просмотров в день — это 1–2 Shorts в день с хуком, а не редкие хиты.</li><li>Длинные (кино-разборы) копят часы для второго пути — каждый час длинного весит больше сотен просмотров Shorts.</li><li>Официальные цифры и кнопка заявки — YouTube Studio → «Заработок». Здесь прогноз; YouTube считает только «засчитанные» просмотры${Y.engaged_views?"":", а у нас пока все просмотры, поэтому прогноз оптимистичный"}.</li></ul></section>`;
-  return h+`</div>`;
+const vcard=v=>`<button class="vc" data-vid="${esc(v.id)}"><div class="th"><img loading="lazy" src="${esc(v.thumb)}" alt="">${v.h1>0?`<span class="live">+${num(v.h1)}/ч</span>`:""}${v.duration?`<span class="dur">${dur(v.duration)}</span>`:""}</div><b>${esc(clean(v.title))}</b><small>${num(v.views)} просм. · ${dshort(v.published)}</small></button>`;
+const CH=[];
+function chart(pts){
+  if(pts.length<2)return'<div class="empty">Мало данных</div>';
+  const W=640,H=170,mx=Math.max(1,...pts.map(p=>p.y)),st=W/(pts.length-1);
+  const P=pts.map((p,i)=>[i*st,H-10-p.y/mx*(H-26)]);
+  const line=P.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+","+p[1].toFixed(1)).join("");
+  const id="g"+CH.length;CH.push(pts);
+  return `<div class="chart" data-ci="${CH.length-1}"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="График просмотров"><defs><linearGradient id="${id}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--pink)" stop-opacity=".35"/><stop offset="1" stop-color="var(--pink)" stop-opacity="0"/></linearGradient><linearGradient id="${id}l" x1="0" x2="1"><stop offset="0" stop-color="var(--blue)"/><stop offset="1" stop-color="var(--pink)"/></linearGradient></defs>
+    <path d="${line}L${W},${H}L0,${H}Z" fill="url(#${id})"/><path d="${line}" fill="none" stroke="url(#${id}l)" stroke-width="3" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg><div class="tip"></div><div class="axis"><span>${dshort(pts[0].x)}</span><span>${dshort(pts[Math.floor(pts.length/2)].x)}</span><span>${dshort(pts.at(-1).x)}</span></div></div>`;
+}
+function videos(){
+  let s=head("Контент","Ролики","Все ролики канала с цифрами. Нажми на ролик — откроется подробная карточка.");
+  s+=`<div class="seg reveal">${[["out","Вышли",D.videos.length],["queue","Очередь и план",D.review.length+D.plan.length]].map(([k,t,c])=>`<button data-vseg="${k}" aria-pressed="${vSeg===k}">${t}<span class="c">${c}</span></button>`).join("")}</div>`;
+  if(vSeg==="queue") return s+queue();
+  const fm=["all","Кино-Shorts","Длинное",...new Set(D.videos.map(v=>v.format).filter(f=>!["Кино-Shorts","Длинное"].includes(f)))];
+  s+=`<div class="seg reveal">${fm.map(f=>`<button data-vf="${esc(f)}" aria-pressed="${vFilter===f}">${f==="all"?"Все":esc(f)}</button>`).join("")}</div>
+     <div class="row reveal"><select class="t" id="vsort" style="max-width:240px" aria-label="Сортировка">${[["published","Сначала новые"],["views","Больше просмотров"],["avp","Лучший досмотр"],["subs","Больше подписок"]].map(([k,t])=>`<option value="${k}" ${vSort===k?"selected":""}>${t}</option>`).join("")}</select></div>`;
+  const list=D.videos.filter(v=>vFilter==="all"||v.format===vFilter).sort((a,b)=>vSort==="published"?String(b.published).localeCompare(String(a.published)):(b[vSort]??-1)-(a[vSort]??-1));
+  s+=`<div class="vlist">${list.map(v=>`<button class="vrow reveal" data-vid="${esc(v.id)}"><div class="th"><img loading="lazy" src="${esc(v.thumb)}" alt="">${v.duration?`<span class="dur">${dur(v.duration)}</span>`:""}</div><div><b>${esc(clean(v.title))}</b><div class="meta"><span class="chip">${esc(v.format)}</span><span class="chip">${dshort(v.published)}</span>${v.privacy!=="public"?`<span class="chip c-warn">${esc(v.privacy)}</span>`:""}</div><div class="stats"><span><b>${short(v.views)}</b> просм.</span><span><b>${v.avp==null?"—":Math.round(v.avp)+"%"}</b> досмотр</span><span><b>${v.subs==null?"—":"+"+v.subs}</b> подп.</span></div></div></button>`).join("")||'<div class="empty">Нет роликов</div>'}</div>`;
+  return s;
+}
+function queue(){
+  let s=`<section class="card reveal"><h2>Ждёт твоего «ок» <span class="cnt">${D.review.length}</span></h2>`+(D.review.length?`<div class="grid">${D.review.map(r=>`<div class="idea"><div class="row">${r.video_id?`<div class="th" style="width:120px"><img src="https://i.ytimg.com/vi/${esc(r.video_id)}/mqdefault.jpg" alt=""></div>`:""}<div style="flex:1;min-width:0"><b>${esc(r.title)}</b><p>Залит приватно — посмотри в Studio и реши.</p></div></div><div class="row">${r.video_id?`<a class="btn sm" target="_blank" rel="noopener" href="https://studio.youtube.com/video/${esc(r.video_id)}/edit">Открыть в Studio</a>`:""}${r.manifest?`<button class="btn sm pri" data-ok="${esc(r.id)}">Заливаем →</button>`:""}</div></div>`).join("")}</div>`:`<div class="empty">Пока ничего не ждёт. Когда агент зальёт ролик приватно, он появится здесь и придёт уведомление в виджет.</div>`)+`</section>`;
+  const days={};D.plan.forEach(p=>(days[p.date]=days[p.date]||[]).push(p));
+  s+=`<section class="card reveal"><h2>Ближайшие 14 дней</h2>`+(D.plan.length?Object.entries(days).map(([d,sl])=>`<div class="goal"><div class="tp"><b>${dshort(d)}</b></div>${sl.map(x=>`<div class="row"><span class="chip">${esc(x.time)}</span><span>${esc(x.title)}</span>${x.status==="scheduled"?'<span class="chip c-ok">запланирован</span>':`<span class="chip">${esc(x.status)}</span>`}</div>`).join("")}</div>`).join(""):`<div class="empty">Расписание ещё не выбрано — сюда попадут ролики после твоего «Заливаем».</div>`)+`</section>`;
+  return s;
+}
+function ideas(){
+  const I=D.ideas||{}, list=I.ideas||[];
+  let s=head("Рост канала","Идеи и эксперименты",I.summary?esc(I.summary).replace(/\(\+(\d{3,})\s?%/,(m,p)=>`(×${Math.round(1+p/100)}`):"Каждый день по аналитике: ~70% проверенного и ~30% экспериментов.");
+  s+=`<div class="seg reveal">${[["ideas","Идеи дня",list.filter(i=>i.status!=="dropped").length],["exp","Эксперименты",D.experiments.length]].map(([k,t,c])=>`<button data-iseg="${k}" aria-pressed="${iSeg===k}">${t}<span class="c">${c}</span></button>`).join("")}</div>`;
+  if(iSeg==="exp") return s+`<div class="grid">${D.experiments.map(e=>`<div class="idea reveal"><div class="row"><span class="chip c-info">старт ${esc(e.start)}</span>${e.verdict?`<span class="chip c-ok">${esc(e.verdict)}</span>`:'<span class="chip c-warn">идёт</span>'}</div><b>${esc(e.hypothesis)}</b><p>Ролики: ${esc(e.videos)} · контроль: ${esc(e.control)} · метрика: ${esc(e.metric)}</p><div class="row"><span class="chip">48 ч: ${esc(e.h48||"—")}</span><span class="chip">7 д: ${esc(e.d7||"—")}</span></div></div>`).join("")||'<div class="empty">Экспериментов пока нет</div>'}</div>`;
+  const cols=[["proposed","Предложено"],["approved","Одобрено"],["in_work","В работе"],["done","Готово"]];
+  s+=`<div class="kanban">${cols.map(([k,t])=>{const a=list.filter(i=>(i.status||"proposed")===k);return `<div class="col reveal"><h3>${t} <span>${a.length}</span></h3><div class="grid">${a.map(ideaCard).join("")||'<div class="empty" style="padding:14px">пусто</div>'}</div></div>`}).join("")}</div>`;
+  const dr=list.filter(i=>i.status==="dropped").length;
+  return s+`<p class="muted reveal" style="font-size:12px">${I.date?`Идеи от ${dshort(I.date)} · ${I.author==="gpt"?"GPT":"собраны автоматически"}`:""}${dr?` · отклонено: ${dr}`:""}</p>`;
+}
+function ideaCard(i){
+  const st=i.status||"proposed", next={proposed:[["approved","Одобрить","pri"],["dropped","Отклонить",""]],approved:[["in_work","В работу","pri"]],in_work:[["done","Готово","pri"]],done:[]}[st]||[];
+  return `<div class="idea"><div class="row">${i.kind==="experiment"?'<span class="chip c-info">🧪 эксперимент</span>':i.kind==="request"?'<span class="chip c-pink">🙋 заявка</span>':'<span class="chip c-ok">✓ проверено</span>'}${i.format?`<span class="chip">${esc(i.format)}</span>`:""}</div><b>${esc(i.title)}</b><p>${esc(i.why||"")}${i.hypothesis?"Гипотеза: "+esc(i.hypothesis):""}${i.metric?` · метрика: ${esc(i.metric)}`:""}</p>${next.length?`<div class="row">${next.map(([to,t,c])=>`<button class="btn sm ${c}" data-idea="${esc(i.id)}" data-to="${to}">${t}</button>`).join("")}</div>`:""}</div>`;
+}
+function fans(){
+  const C=D.comments||[];
+  let s=head("Сообщество","Зрители","Комментарии канала: заявки на ролики, обращения к тебе, самые залайканные и интересные. Обновляется каждый час.");
+  const segs=[["all","Все"],["request","🙋 Заявки"],["to_me","💬 Тебе"],["top","🔥 Топ"],["interesting","✨ Интересные"]];
+  s+=`<div class="seg reveal">${segs.map(([k,t])=>`<button data-fseg="${k}" aria-pressed="${fSeg===k}">${t}<span class="c">${cflags(k).length}</span></button>`).join("")}</div>`;
+  if(!C.length) return s+`<div class="empty reveal">Комментарии появятся после ближайшего ежечасного сбора.</div>`;
+  const byId=Object.fromEntries(D.videos.map(v=>[v.id,v]));
+  let list=cflags(fSeg); if(fSeg==="top") list=[...list].sort((a,b)=>b.likes-a.likes);
+  list=list.slice(0,80);
+  s+=`<div class="grid">${list.map(c=>{const v=byId[c.video_id],f=c.flags||[];return `<article class="cm reveal"><img class="av" loading="lazy" src="${esc(c.avatar)}" alt="" referrerpolicy="no-referrer"><div><div class="h"><b>${esc(c.author)}</b><small>${ago(c.published)} назад</small>${!seen.has(c.id)?'<span class="chip c-pink">новое</span>':""}</div><p>${esc(c.text)}</p>${c.video_id?`<div class="v"><img loading="lazy" src="https://i.ytimg.com/vi/${esc(c.video_id)}/mqdefault.jpg" alt=""><span>${esc(clean(v?v.title:"ролик").slice(0,60))}</span></div>`:""}<div class="row"><span class="chip">❤️ ${num(c.likes)}</span>${c.replies?`<span class="chip">↩︎ ${c.replies}</span>`:""}${f.includes("request")?'<span class="chip c-pink">заявка</span>':""}${f.includes("to_me")?'<span class="chip c-info">тебе</span>':""}<button class="btn sm pri" data-c2i="${esc(c.id)}">В идеи</button><a class="btn sm" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=${esc(c.video_id)}&lc=${esc(c.id)}">Ответить</a></div></div></article>`}).join("")}</div>`;
+  setTimeout(()=>{list.forEach(c=>seen.add(c.id));store.set("m1-seen-c",JSON.stringify([...seen].slice(-600)))},2000);
+  return s;
+}
+const fdate=s=>s?dshort(s)+" "+s.slice(0,4):"—";
+function money(){
+  const Y=D.ypp; let s=head("Монетизация","Деньги","Сколько осталось до партнёрской программы YouTube и когда успеем при нынешнем темпе.");
+  if(!Y) return s+`<div class="empty">Цифры появятся после ежедневной аналитики.</div>`;
+  const [b,f]=Y.tiers,P=Y.pace,subs=D.channel.subs;
+  const bott=(b.subs.eta_days??1e9)>=Math.min(...b.paths.map(x=>x.eta_days??1e9))?"подписчики":"просмотры Shorts";
+  s+=`<section class="card hero reveal" style="min-height:auto"><div class="hi" style="max-width:none"><small>до базовой монетизации</small><h1 style="font-size:clamp(26px,7vw,44px)">${b.eta_days===0?"Можно подавать заявку!":b.eta_days!=null?`≈ ${num(b.eta_days)} дней`:"Нужно ускориться"}</h1><p class="muted" style="margin:6px 0 0">${b.eta_days?`примерно ${fdate(b.eta_date)} · `:""}узкое место: <b>${bott}</b></p></div>
+    <div class="row" style="margin-top:16px;gap:14px"><div class="ring" style="--p:${Math.max(1,Math.min(100,subs/5))}"><span>${Math.round(subs/5)}%<small>подписчики</small></span></div><div class="ring" style="--p:${Math.max(1,b.paths[0].pct)}"><span>${b.paths[0].pct}%<small>Shorts 90 дн</small></span></div></div>
+    <p class="muted" style="font-size:12px;margin:12px 0 0">Темп: +${P.subs_per_day} подп./день · ${num(P.shorts_views_per_day)} засчитанных просм. Shorts/день · данные по ${dshort(Y.as_of)}</p></section>`;
+  const goal=g=>`<div class="goal"><div class="tp"><b>${esc(g.name)}</b>${g.eta_days==null?'<span class="chip c-bad">при текущем темпе — нет</span>':g.eta_days===0?'<span class="chip c-ok">выполнено ✓</span>':`<span class="chip c-info">≈ ${num(g.eta_days)} дн</span>`}</div><div class="track"><div class="fill" style="width:${Math.max(1,g.pct)}%"></div></div><small class="muted">${num(Math.round(g.current))} из ${num(g.target)} ${esc(g.unit)} · ${g.pct}%${g.need&&g.pct<100?" · "+esc(g.need):""}</small></div>`;
+  const tier=t=>`<section class="card reveal"><h2>${esc(t.title)}</h2>${goal({...t.subs,current:subs,pct:Math.round(subs*1000/t.subs.target)/10})}${t.uploads?`<div class="goal"><div class="tp"><b>3 публичные загрузки за 90 дней</b>${t.uploads.ok?'<span class="chip c-ok">выполнено ✓</span>':`<span class="chip c-warn">${t.uploads.current} из 3</span>`}</div></div>`:""}<div class="or">и одно из двух</div>${t.paths.map(goal).join('<div class="or">или</div>')}${t.warn?`<p class="chip c-warn" style="white-space:normal;margin-top:10px">${esc(t.warn)}</p>`:""}${t.note?`<p class="muted" style="font-size:12px;margin:10px 0 0">${esc(t.note)}</p>`:""}</section>`;
+  s+=`<div class="g2">${tier(b)}${tier(f)}</div>`;
+  s+=`<section class="card reveal"><h2>Что если поднять темп?</h2><label class="f">Засчитанных просмотров Shorts в день: <b id="wv" class="num"></b><input id="wi" type="range" min="500" max="150000" step="500" value="${Math.max(500,P.shorts_views_per_day)}"></label><label class="f" style="margin-top:8px">Новых подписчиков в день: <b id="sv"></b><input id="si" type="range" min="0.5" max="50" step="0.5" value="${Math.max(.5,P.subs_per_day)}"></label><div id="wout" class="idea" style="margin-top:12px"></div></section>`;
+  s+=`<section class="card reveal"><h2>Как ускорить</h2><div class="grid"><div class="idea"><b>Поток, а не редкие хиты</b><p>Для 3 млн за 90 дней нужно ~33 тыс. засчитанных просмотров в день — стабильно 1–2 Shorts в день с сильным хуком.</p></div><div class="idea"><b>Подписки дают серии</b><p>Кино-Shorts частями и ролики по заявкам — зритель подписывается, чтобы не пропустить продолжение.</p></div><div class="idea"><b>Длинные копят часы</b><p>Каждый час кино-разбора весит больше сотен просмотров Shorts — второй путь к монетизации.</p></div></div><p class="muted" style="font-size:12px;margin:12px 0 0">Официальные цифры и кнопка заявки — <a href="https://studio.youtube.com/channel/${CHANNEL}/monetization" target="_blank" rel="noopener">YouTube Studio → «Заработок»</a>. Здесь прогноз по засчитанным просмотрам.</p></section>`;
+  setTimeout(()=>whatIf(b.paths[0].current,subs),0);
+  return s;
 }
 function whatIf(S,subs){
-  const wi=document.getElementById("wi"),si=document.getElementById("si");if(!wi)return;
-  const go=()=>{const r=+wi.value,s=+si.value;document.getElementById("wv").textContent=num(r);document.getElementById("sv").textContent=s;
-    const days=(target)=>{if(S>=target)return 0;for(let t=1;t<=730;t++){if(S*Math.max(0,1-t/90)+r*Math.min(t,90)>=target)return t}return null};
-    const d3=days(3e6),d10=days(1e7),ds5=Math.ceil(Math.max(0,500-subs)/s),ds10=Math.ceil(Math.max(0,1000-subs)/s);
-    const f=(a,b)=>a==null?"не успеваем":`≈ ${num(Math.max(a,b))} дн (${fdate(new Date(Date.now()+Math.max(a,b)*864e5).toISOString().slice(0,10))})`;
-    document.getElementById("wout").innerHTML=`<b>Базовая: ${f(d3,ds5)}</b><span class="muted">Полная: ${f(d10,ds10)}${r*90<3e6?" · для 3 млн нужно ≥ 33 334/день":""}</span>`};
+  const wi=$("#wi"),si=$("#si");if(!wi)return;
+  const go=()=>{const r=+wi.value,k=+si.value;$("#wv").textContent=num(r);$("#sv").textContent=k;
+    const days=t=>{if(S>=t)return 0;for(let d=1;d<=730;d++)if(S*Math.max(0,1-d/90)+r*Math.min(d,90)>=t)return d;return null};
+    const f=(a,b)=>a==null?"не успеваем":`≈ ${num(Math.max(a,b))} дн · ${fdate(new Date(Date.now()+Math.max(a,b)*864e5).toISOString().slice(0,10))}`;
+    $("#wout").innerHTML=`<b>Базовая: ${f(days(3e6),Math.ceil(Math.max(0,500-subs)/k))}</b><p>Полная: ${f(days(1e7),Math.ceil(Math.max(0,1000-subs)/k))}${r*90<3e6?" · для 3 млн нужно ≥ 33 334 в день":""}</p>`};
   wi.oninput=si.oninput=go;go();
 }
 
-/* 3D и движение */
-function fx(){
-  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document.querySelectorAll("#view .card").forEach((c,i)=>{c.classList.add("reveal");c.style.animationDelay=(i*60)+"ms"});
-  document.querySelectorAll("#view .kpi .n").forEach(el=>{const raw=el.textContent.replace(/\s/g,"");const n=+raw;if(!isFinite(n)||reduce||n<10)return;const t0=performance.now();const step=t=>{const k=Math.min(1,(t-t0)/900);el.textContent=num(Math.round(n*(1-Math.pow(1-k,3))));if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)});
-  if(!reduce&&matchMedia("(hover:hover) and (pointer:fine)").matches) document.querySelectorAll("#view .card").forEach(c=>{c.classList.add("tilt");
-    c.onpointermove=e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateX(${(-y*5).toFixed(2)}deg) rotateY(${(x*6).toFixed(2)}deg) translateZ(4px)`};
-    c.onpointerleave=()=>{c.style.transform=""}});
+/* ---------- листы: ролик, настройки, «заливаем» ---------- */
+function openVideo(id){
+  const v=D.videos.find(x=>x.id===id)||freshList().find(x=>x.id===id); if(!v)return;
+  const A=fmtAvg()[v.format]||{}, tr=Object.entries(v.traffic||{}).sort((a,b)=>b[1]-a[1]), tt=tr.reduce((s,x)=>s+x[1],0)||1;
+  const cmp=(x,a)=>x==null||!a?"":`<em class="${x>=a?"up":"down"}">${x>=a?"▲":"▼"} ${Math.abs(pct(x,a)).toFixed(0)}% к среднему</em>`;
+  openSheet(`<div class="th" style="border-radius:18px"><img src="${esc(v.thumb||`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`)}" alt=""></div>
+    <h2 style="font-size:18px;margin:14px 0 6px;display:block">${esc(clean(v.title))}</h2>
+    <div class="row" style="margin-bottom:14px">${v.format?`<span class="chip">${esc(v.format)}</span>`:""}<span class="chip">${dshort(v.published)}</span>${v.duration?`<span class="chip">${dur(v.duration)}</span>`:""}</div>
+    <div class="stat"><div><small>Просмотры</small><b class="num">${num(v.views)}</b>${cmp(v.views,A.views)}</div><div><small>Засчитанные</small><b class="num">${num(v.engaged_views)}</b></div><div><small>Досмотр</small><b>${v.avp==null?"—":Math.round(v.avp)+"%"}</b>${cmp(v.avp,A.avp)}</div><div><small>Ср. время</small><b>${v.avd==null?"—":dur(Math.round(v.avd))}</b></div><div><small>Подписки</small><b>${v.subs==null?"—":"+"+v.subs}</b>${cmp(v.subs,A.subs)}</div><div><small>Лайки</small><b>${num(v.likes)}</b></div><div><small>Комменты</small><b>${num(v.comments)}</b></div><div><small>Репосты</small><b>${num(v.shares)}</b></div></div>
+    ${v.v48||v.v7d?`<div class="row" style="margin-top:10px"><span class="chip">48 ч: ${num(v.v48)}</span><span class="chip">7 дней: ${num(v.v7d)}</span></div>`:""}
+    <h2 style="margin-top:18px">Откуда пришли зрители</h2>${tr.length?`<div class="bars">${tr.map(([k,x])=>`<div class="bar"><span>${esc(TRAFFIC[k]||k)}</span><div class="track"><div class="fill" style="width:${(x/tt*100).toFixed(1)}%"></div></div><span class="v">${Math.round(x/tt*100)}%</span></div>`).join("")}</div>`:'<p class="muted">Нет данных за последние 28 дней.</p>'}
+    <div class="row" style="margin-top:18px"><a class="btn pri" target="_blank" rel="noopener" href="https://youtu.be/${esc(v.id)}">Смотреть</a><a class="btn" target="_blank" rel="noopener" href="https://studio.youtube.com/video/${esc(v.id)}/analytics/tab-overview/period-default">Аналитика в Studio</a><button class="btn" data-close>Закрыть</button></div>`);
 }
-function bg3d(){
-  const cv=document.getElementById("bg3d");if(!window.THREE||!cv)return;
-  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches, dark=matchMedia("(prefers-color-scheme: dark)").matches;
+function openSheet(html){$("#sheetBody").innerHTML=html;$("#sheet").classList.add("open");$("#scrim").classList.add("open");$("#sheet").scrollTop=0}
+function closeSheet(){$("#sheet").classList.remove("open");$("#scrim").classList.remove("open")}
+function openSettings(){
+  const t=tok();
+  openSheet(`<h2 style="font-size:18px">Настройки и управление</h2>
+    <section class="card" style="margin-bottom:12px"><h2>Управление с сайта</h2>${t?'<p class="chip c-ok">Токен сохранён в этом браузере ✓</p>':'<p class="muted" style="margin-top:0">Чтобы работали кнопки «Одобрить», «Заливаем», «В идеи» и «Обновить», один раз добавь GitHub-токен. Он хранится только на этом устройстве.</p>'}
+      <ol class="steps"><li>Открой <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → новый fine-grained токен</a>.</li><li>Название: <b>M1lash студия</b>, срок: 1 год.</li><li>Repository access → <b>Only select repositories</b> → <b>Shorts</b>.</li><li>Permissions → Repository: <b>Contents — Read and write</b> и <b>Actions — Read and write</b>.</li><li>Generate token → скопируй и вставь сюда.</li></ol>
+      <label class="f" style="margin-top:12px">Токен<input class="t" id="tokIn" type="password" autocomplete="off" placeholder="github_pat_…"></label>
+      <div class="row" style="margin-top:10px"><button class="btn pri" id="tokSave">Сохранить и проверить</button>${t?'<button class="btn" id="tokDel">Удалить токен</button>':""}</div></section>
+    <section class="card" style="margin-bottom:12px"><h2>Обновить сейчас</h2><div class="row"><button class="btn" data-run="youtube-pulse.yml">⚡ Живые цифры и комменты</button><button class="btn" data-run="youtube-analytics.yml">📊 Полная аналитика</button><button class="btn" data-run="motion-pages.yml">🌐 Пересобрать сайт</button></div><p class="muted" style="font-size:12px;margin:10px 0 0">Само обновляется: живые цифры — каждый час, аналитика — каждый день в 10:20.</p></section>
+    <section class="card"><h2>Приложение</h2><a class="btn pri" href="${esc((D&&D.app||{}).apk||"#")}">📱 Скачать виджет для Android ${D&&D.app?"v"+esc(D.app.name):""}</a><p class="muted" style="font-size:12px;margin:10px 0 0">Виджет растягивается от 1×1 до 4×4. Новые версии приложение предложит само.</p></section>
+    <div class="row" style="margin-top:14px"><button class="btn" data-close>Закрыть</button></div>`);
+}
+function openOk(id){
+  const d=new Date(Date.now()+864e5);d.setHours(10,0,0,0);
+  const local=new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,16);
+  openSheet(`<h2 style="font-size:18px">Заливаем: когда открыть ролик?</h2><p class="muted">Ролик уже на YouTube приватно. YouTube сам опубликует его в выбранное время.</p><label class="f">Дата и время<input class="t" type="datetime-local" id="okAt" value="${local}"></label><div class="row" style="margin-top:14px"><button class="btn pri" id="okGo" data-id="${esc(id)}">Подтвердить «Заливаем»</button><button class="btn" data-close>Отмена</button></div>`);
+}
+
+/* ---------- 3D в шапке «Обзора» ---------- */
+let gl=null;
+function hero3d(){
+  const cv=$("#c3d"); if(!cv||!window.THREE)return;
+  if(gl)gl.stop();
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   let R;try{R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true,powerPreference:"low-power"})}catch(e){return}
-  R.setPixelRatio(Math.min(1.5,devicePixelRatio));R.outputEncoding=THREE.sRGBEncoding;
-  const S=new THREE.Scene(),C=new THREE.PerspectiveCamera(40,1,.1,100);C.position.set(0,0,12);
-  S.add(new THREE.HemisphereLight(0xffffff,dark?0x221a33:0xe8e4f5,dark?.9:1.1));
-  const k=new THREE.DirectionalLight(0xffffff,1.3);k.position.set(5,6,8);S.add(k);
-  const rim=new THREE.PointLight(0xff5fa8,1.4,30);rim.position.set(-6,-3,4);S.add(rim);
-  const mat=(c,r)=>new THREE.MeshPhysicalMaterial({color:c,roughness:r,metalness:.05,clearcoat:1,clearcoatRoughness:.15});
-  const parts=[
-    [new THREE.TorusKnotGeometry(1.1,.36,160,24),mat(0xff7fbf,.25),[4.2,2.6,-2]],
-    [new THREE.IcosahedronGeometry(1.2,1),mat(0x7aa8ff,.35),[-4.4,-1.6,-1]],
-    [new THREE.TorusGeometry(1,.38,32,96),mat(0xb79cff,.2),[3.6,-3.4,-3]],
-    [new THREE.SphereGeometry(.75,48,48),mat(0xffd28a,.3),[-3.2,3.4,-2.5]],
-    [new THREE.OctahedronGeometry(.8,0),mat(0x7fe0c0,.3),[.4,-5.2,-4]]];
-  const M=parts.map(([g,m,p],i)=>{const o=new THREE.Mesh(g,m);o.position.set(...p);o.userData={b:p.slice(),s:.6+i*.17};S.add(o);return o});
-  let tx=0,ty=0,cx=0,cy=0;
-  addEventListener("pointermove",e=>{tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5},{passive:true});
-  addEventListener("deviceorientation",e=>{if(e.gamma!=null){tx=Math.max(-.5,Math.min(.5,e.gamma/60));ty=Math.max(-.5,Math.min(.5,(e.beta-45)/60))}},{passive:true});
-  const size=()=>{const w=innerWidth,h=innerHeight;R.setSize(w,h,false);C.aspect=w/h;C.position.z=w<600?13:12;const nx=w<600?.5:1,ny=w<600?1.5:1;M.forEach(o=>{o.userData.x=o.userData.b[0]*nx;o.userData.y=o.userData.b[1]*ny});C.updateProjectionMatrix()};size();addEventListener("resize",size);
-  let sy=0;addEventListener("scroll",()=>{sy=scrollY},{passive:true});
-  const loop=t=>{t*=.001;cx+=(tx-cx)*.05;cy+=(ty-cy)*.05;
-    M.forEach((o,i)=>{const u=o.userData;o.rotation.x=t*.2*u.s+cy;o.rotation.y=t*.3*u.s+cx;o.position.y=u.y+Math.sin(t*u.s+i)*.35+sy*.002*(i%2?1:-1);o.position.x=u.x+cx*(1.2+i*.3)});
+  R.setPixelRatio(Math.min(2,devicePixelRatio));R.outputEncoding=THREE.sRGBEncoding;
+  const S=new THREE.Scene(),C=new THREE.PerspectiveCamera(35,1,.1,50);C.position.set(0,0,11);
+  S.add(new THREE.HemisphereLight(0xffffff,0x2a1840,.9));const k=new THREE.DirectionalLight(0xffffff,1.4);k.position.set(4,5,6);S.add(k);
+  const p1=new THREE.PointLight(0xff5fa8,2,20);p1.position.set(-4,-2,3);S.add(p1);const p2=new THREE.PointLight(0x5e95ff,1.6,20);p2.position.set(4,-3,2);S.add(p2);
+  const m=(c,r)=>new THREE.MeshPhysicalMaterial({color:c,roughness:r,metalness:.1,clearcoat:1,clearcoatRoughness:.1});
+  const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.25,.42,220,32),m(0xffb0d6,.22));S.add(knot);
+  const orb=new THREE.Mesh(new THREE.SphereGeometry(.38,48,48),m(0x9fc0ff,.25));S.add(orb);
+  const ring=new THREE.Mesh(new THREE.TorusGeometry(2.3,.05,16,120),m(0xc8b5ff,.3));ring.rotation.x=1.2;S.add(ring);
+  let tx=0,ty=0,cx=0,cy=0,run=true;
+  const mv=e=>{tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5};const or=e=>{if(e.gamma!=null){tx=Math.max(-.5,Math.min(.5,e.gamma/50));ty=Math.max(-.5,Math.min(.5,(e.beta-40)/60))}};
+  addEventListener("pointermove",mv,{passive:true});addEventListener("deviceorientation",or,{passive:true});
+  const size=()=>{const w=cv.clientWidth,h=cv.clientHeight;if(!w)return;R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix()};size();
+  const ro=new ResizeObserver(size);ro.observe(cv);
+  const loop=t=>{if(!run)return;t*=.001;cx+=(tx-cx)*.06;cy+=(ty-cy)*.06;
+    knot.rotation.set(t*.25+cy*1.2,t*.35+cx*1.5,0);orb.position.set(Math.cos(t*.9)*2.1,Math.sin(t*.9)*.9,Math.sin(t*.9)*1.2);ring.rotation.z=t*.15;
     R.render(S,C);if(!reduce&&!document.hidden)requestAnimationFrame(loop)};
-  requestAnimationFrame(loop);document.addEventListener("visibilitychange",()=>{if(!document.hidden&&!reduce)requestAnimationFrame(loop)});
+  requestAnimationFrame(loop);
+  const vis=()=>{if(!document.hidden&&run&&!reduce)requestAnimationFrame(loop)};document.addEventListener("visibilitychange",vis);
+  gl={stop(){run=false;ro.disconnect();removeEventListener("pointermove",mv);removeEventListener("deviceorientation",or);document.removeEventListener("visibilitychange",vis);R.dispose()}};
+}
+let threeP=0;function loadThree(){if(threeP)return;threeP=1;const s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";s.onload=()=>{if(tab==="home")hero3d()};document.head.appendChild(s)}
+
+/* ---------- навигация и события ---------- */
+const VIEWS={home,videos,ideas,fans,money};
+function badges(){return{fans:cflags("request").concat(cflags("to_me")).filter((c,i,a)=>!seen.has(c.id)&&a.findIndex(x=>x.id===c.id)===i).length,ideas:((D.ideas||{}).ideas||[]).filter(i=>(i.status||"proposed")==="proposed").length,videos:D.review.length}}
+function nav(){
+  const b=D?badges():{};
+  $("#bnav").innerHTML=TABS.map(([k,t,i])=>`<button data-tab="${k}" ${tab===k?'aria-current="page"':""}><span class="ico">${svg(i)}</span>${t}${b[k]?`<span class="dot">${b[k]}</span>`:""}</button>`).join("");
+  $("#sidenav").innerHTML=TABS.map(([k,t,i])=>`<button data-tab="${k}" ${tab===k?'aria-current="page"':""}>${svg(i)}${t}${b[k]?`<span class="dot">${b[k]}</span>`:""}</button>`).join("");
+  $("#ttl").textContent=tab==="home"?"Студия M1lash":TABS.find(t=>t[0]===tab)[1];
 }
 function render(){
-  document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===tab));
-  const r=D.review.length; const pb=document.querySelector('[data-t="plan"]'); pb.innerHTML="План"+(r?`<span class="badge">${r}</span>`:"");
-  document.getElementById("view").innerHTML=({plan,todo,sum,vids,ypp}[tab]||plan)();
-  fx();
+  if(gl){gl.stop();gl=null}
+  CH.length=0;$("#view").innerHTML=VIEWS[tab]();nav();
+  if(tab==="home"){window.THREE?hero3d():loadThree()}
 }
-document.addEventListener("click",e=>{
-  const b=e.target.closest("nav button"); if(b){tab=b.dataset.t;try{localStorage.setItem("m1-tab",tab)}catch(_){}render();return}
-  const th=e.target.closest("th[data-k]"); if(th){const k=th.dataset.k; if(sortKey===k)sortDir*=-1; else {sortKey=k;sortDir=-1} render()}
+function go(t){tab=t;store.set("m1-tab2",t);render();scrollTo({top:0,behavior:"smooth"})}
+async function act(el,fn){el.disabled=true;try{await fn()}catch(err){el.disabled=false;toast("Не вышло: "+err.message)}}
+document.addEventListener("click",async e=>{
+  const q=s=>e.target.closest(s);let el;
+  if(el=q("[data-tab]"))return go(el.dataset.tab);
+  if(el=q("[data-go]"))return go(el.dataset.go);
+  if(el=q("[data-todo]"))return todoItems()[+el.dataset.todo][4]();
+  if(el=q("[data-vid]"))return openVideo(el.dataset.vid);
+  if(el=q("[data-vf]")){vFilter=el.dataset.vf;return render()}
+  if(el=q("[data-vseg]")){vSeg=el.dataset.vseg;return render()}
+  if(el=q("[data-iseg]")){iSeg=el.dataset.iseg;return render()}
+  if(el=q("[data-fseg]")){fSeg=el.dataset.fseg;return render()}
+  if(q("[data-act=settings]"))return openSettings();
+  if(q("[data-close]"))return closeSheet();
+  if(el=q("[data-ok]")){if(needTok())openOk(el.dataset.ok);return}
+  if(el=q("#okGo"))return act(el,async()=>{const id=el.dataset.id,at=$("#okAt").value;if(!at)throw new Error("выбери дату");
+      const iso=new Date(at).toISOString().replace(/\.\d+Z$/,"Z"),mf=`publishing/queue/${id}.json`;
+      await editJSON(mf,m=>{m.publish_at=iso},`publish: ${id} → ${iso} (Денис: заливаем, с сайта)`);
+      await dispatch("youtube-direct.yml",{manifest:mf,execute:"true",mode:"schedule"});
+      closeSheet();toast("Дата назначена — YouTube откроет ролик сам ✓")});
+  if(el=q("[data-idea]")){if(!needTok())return;const id=el.dataset.idea,to=el.dataset.to;return act(el,async()=>{
+      await editJSON("reports/ideas/latest.json",d=>{(d.ideas||[]).forEach(i=>{if(i.id===id)i.status=to})},`ideas: ${id} → ${to} (Денис, с сайта)`);
+      D.ideas.ideas.forEach(i=>{if(i.id===id)i.status=to});render();toast(to==="approved"?"Одобрено — агенты возьмут в работу ✓":"Сохранено ✓")})}
+  if(el=q("[data-c2i]")){if(!needTok())return;const c=D.comments.find(x=>x.id===el.dataset.c2i);return act(el,async()=>{
+      const idea={id:new Date().toISOString().slice(0,10)+"-c"+c.id.slice(-6),kind:"request",format:"Кино-Shorts",title:`Заявка ${c.author}: ${c.text.slice(0,90)}`,why:`Комментарий зрителя, ❤️ ${c.likes}. Упомянуть автора в ролике.`,film:null,status:"approved",comment_id:c.id,video_id:c.video_id};
+      await editJSON("reports/ideas/latest.json",d=>{d.ideas=d.ideas||[];if(!d.ideas.some(i=>i.id===idea.id))d.ideas.push(idea)},`ideas: заявка зрителя ${c.author} (Денис, с сайта)`);
+      D.ideas=D.ideas||{ideas:[]};(D.ideas.ideas=D.ideas.ideas||[]).push(idea);el.textContent="В идеях ✓";toast("Заявка добавлена в идеи ✓")})}
+  if(el=q("[data-run]")){if(!needTok())return;return act(el,async()=>{await dispatch(el.dataset.run);toast("Запущено — обновится через 2–5 минут");el.disabled=false})}
+  if(el=q("#tokSave")){const v=$("#tokIn").value.trim();if(!v)return;store.set("m1-gh",v);return act(el,async()=>{try{await gh("")}catch(err){store.set("m1-gh",null);throw err}toast("Токен работает ✓");openSettings()})}
+  if(q("#tokDel")){store.set("m1-gh",null);toast("Токен удалён");return openSettings()}
 });
-document.addEventListener("change",e=>{if(e.target.id==="ff"){fmtFilter=e.target.value;render()}});
-fetch("data.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{D=d;document.getElementById("asof").textContent=`Обновлено ${d.built} · аналитика по ${d.analytics_as_of?fdate(d.analytics_as_of):"—"}`;if(d.app){document.getElementById("appv").textContent="v"+(d.app.name||d.app.version);if(d.app.apk)document.getElementById("app").href=d.app.apk}render()}).catch(()=>{document.getElementById("view").innerHTML='<p class="card">Данные ещё не собраны. Они появятся после ближайшей ежедневной аналитики.</p>'});
+$("#scrim").onclick=closeSheet;
+document.addEventListener("change",e=>{if(e.target.id==="vsort"){vSort=e.target.value;render()}});
+$("#refresh").onclick=async()=>{const b=$("#refresh");b.classList.add("spin");if(tok()){try{await dispatch("youtube-pulse.yml");toast("Запустил сбор живых цифр — обновится через пару минут")}catch(e){toast("Не вышло: "+e.message)}}await load(true);b.classList.remove("spin")};
+document.addEventListener("pointermove",e=>{const c=e.target.closest&&e.target.closest(".chart");document.querySelectorAll(".chart .tip").forEach(t=>{if(!c||!c.contains(t))t.style.opacity=0});if(!c)return;const pts=CH[+c.dataset.ci];if(!pts)return;const r=c.getBoundingClientRect(),i=Math.max(0,Math.min(pts.length-1,Math.round((e.clientX-r.left)/r.width*(pts.length-1))));const t=c.querySelector(".tip");t.style.left=(i/(pts.length-1)*100)+"%";t.textContent=`${dshort(pts[i].x)}: ${num(pts[i].y)}`;t.style.opacity=1});
+async function load(quiet){
+  try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});D=await r.json();D.comments=D.comments||[];D.experiments=D.experiments||[];D.review=D.review||[];D.plan=D.plan||[];
+    const L=D.live;$("#asof").textContent=`живые цифры ${L?ago(L.t)+" назад":"—"} · аналитика по ${dshort(D.analytics_as_of)}`;
+    if(D.app){$("#apkv2").textContent="v"+D.app.name;$("#apk2").href=D.app.apk}
+    render();if(quiet)toast("Данные обновлены")}
+  catch(e){$("#view").innerHTML='<div class="empty">Не удалось загрузить данные. Проверь интернет и нажми ⟳.</div>'}
+}
+load();
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer onload="bg3d()"></script>
 </body>
 </html>
