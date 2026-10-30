@@ -101,7 +101,7 @@ open class StudioWidget : AppWidgetProvider() {
         if (live != null) {
             val r = live.optJSONObject("fresh_short") ?: live.optJSONArray("recent")?.optJSONObject(0)
             val h24 = live.optLong("views_24h")
-            v.setTextViewText(R.id.fresh, (if (r != null) "🆕 ${r.optString("title").replace(Regex("\\s*#\\S+"), "")} — ${nf.format(r.optLong("views"))} · +${nf.format(r.optLong("views_1h"))} за час\n" else "") +
+            v.setTextViewText(R.id.fresh, (if (r != null) "🆕 ${r.optString("title").replace(Regex("\\s*#\\S+"), "")} — ${nf.format(r.optLong("views"))} ${if (r.optLong("views_1h") > 0) " · +" + nf.format(r.optLong("views_1h")) + " за час" else ""}\n" else "") +
                 "⏱ за 24 ч: +${nf.format(h24)} просм. · +${live.optLong("subs_24h")} подп.")
         } else v.setTextViewText(R.id.fresh, "")
         val y = d.optJSONObject("ypp")

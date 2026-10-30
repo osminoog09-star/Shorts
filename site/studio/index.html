@@ -7,6 +7,7 @@
 <title>Студия M1lash</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" href="i/favicon.png">
 <meta name="theme-color" content="#0d0c14">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +41,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 10px;
   background:color-mix(in srgb,var(--bg) 78%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
 .logo{width:36px;height:36px;border-radius:11px;padding:2px;background:var(--grad);flex:none;box-shadow:0 8px 20px -8px color-mix(in srgb,var(--pink) 70%,transparent)}
+.logo3{width:42px;height:42px;object-fit:contain;flex:none;filter:drop-shadow(0 6px 10px rgba(255,95,168,.35))}
+.side .brand{flex-direction:column;align-items:flex-start!important}
 .logo span{display:grid;place-items:center;width:100%;height:100%;border-radius:9px;background:var(--panel);font:800 13px var(--f-d)}
 .top .t{min-width:0;flex:1}
 .top b{display:block;font:700 15px/1.2 var(--f-d)}
@@ -110,9 +113,9 @@ h2 a,h2 button.more{margin-left:auto;font:600 12px var(--f-b);color:var(--muted)
 .seg button .c{font:600 11px var(--f-m);opacity:.7;margin-left:4px}
 .hero{position:relative;overflow:hidden;min-height:210px;padding:20px;display:grid;align-content:space-between;
   background:radial-gradient(120% 120% at 100% 0%,color-mix(in srgb,var(--pink) 30%,transparent),transparent 55%),radial-gradient(90% 120% at 0% 100%,color-mix(in srgb,var(--blue) 26%,transparent),transparent 60%),var(--panel)}
-.hero canvas{position:absolute;right:-24px;top:0;width:52%;height:100%;pointer-events:none}
-@media (min-width:720px){.hero canvas{width:46%;right:0}}
-.hero .hi{position:relative;z-index:1;max-width:60%}
+.hero canvas{display:block;width:calc(100% + 40px);margin:-20px -20px 0;height:clamp(150px,34vw,230px);touch-action:pan-y;cursor:grab}
+
+.hero .hi{position:relative;z-index:1}
 .hero .hi small{color:var(--muted);font:600 12px var(--f-m)}
 .hero .hi h1{font:800 clamp(22px,6vw,34px)/1.1 var(--f-d);margin:4px 0 0}
 .hero .big{position:relative;z-index:1;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:18px}
@@ -201,7 +204,7 @@ ol.steps{margin:0;padding-left:20px;display:grid;gap:6px;font-size:13.5px;color:
 <body>
 <div class="shell">
   <aside class="side" aria-label="Разделы">
-    <div class="brand"><div class="logo"><span>M1</span></div><b>Студия M1lash</b></div>
+    <div class="brand"><img src="i/wordmark.png" alt="M1lash" style="height:34px"><span class="eyebrow" style="margin-top:6px">studio</span></div>
     <nav id="sidenav"></nav>
     <div class="foot">
       <a class="btn" id="apk2" href="https://github.com/osminoog09-star/Shorts/releases/download/widget/m1lash-widget.apk">📱 Виджет Android <span class="muted" id="apkv2"></span></a>
@@ -210,7 +213,7 @@ ol.steps{margin:0;padding-left:20px;display:grid;gap:6px;font-size:13.5px;color:
   </aside>
   <div>
     <header class="top">
-      <div class="logo"><span>M1</span></div>
+      <img class="logo3" src="i/m1.png" alt="M1lash">
       <div class="t"><b id="ttl">Студия M1lash</b><small id="asof">загрузка…</small></div>
       <button class="ib" id="refresh" aria-label="Обновить цифры"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg></button>
       <button class="ib menu" data-act="settings" aria-label="Настройки"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></button>
@@ -283,7 +286,7 @@ function todoItems(){
   const tm=cflags("to_me").filter(c=>!seen.has(c.id)); if(tm.length) it.push(["💬","c-info",`Тебе написали: ${tm.length}`,esc(clean(tm[0].text)).slice(0,70),()=>{fSeg="to_me";go("fans")}]);
   const ideas=((D.ideas||{}).ideas||[]).filter(i=>(i.status||"proposed")==="proposed"); if(ideas.length) it.push(["💡","c-info",`Идеи на одобрение: ${ideas.length}`,esc(ideas[0].title).slice(0,70),()=>{iSeg="ideas";go("ideas")}]);
   const age=D.analytics_as_of?(Date.now()-new Date(D.analytics_as_of+"T12:00:00"))/864e5:9; if(age>3.5) it.push(["⚠️","c-bad","Аналитика устарела",`данные по ${dshort(D.analytics_as_of)} — запусти обновление`,()=>openSettings()]);
-  if(L&&L.fresh_short) it.push(["🆕","c-ok",`Свежий Shorts: ${num(L.fresh_short.views)} просм.`,`+${num(L.fresh_short.views_1h)} за час · ${esc(L.fresh_short.title).slice(0,60)}`,()=>openVideo(L.fresh_short.id)]);
+  if(L&&L.fresh_short) it.push(["🆕","c-ok",`Свежий Shorts: ${num(L.fresh_short.views)} просм.`,`${L.fresh_short.views_1h>0?"+"+num(L.fresh_short.views_1h)+" за час · ":"вышел "+ago(L.fresh_short.published)+" назад · "}${esc(L.fresh_short.title).slice(0,60)}`,()=>openVideo(L.fresh_short.id)]);
   return it;
 }
 
@@ -293,12 +296,13 @@ function home(){
   const L=D.live||{}, ch=D.channel, wc=weekCmp(), y=D.ypp, base=y&&y.tiers[0];
   const h=new Date().getHours(), hi=h<5?"Доброй ночи":h<12?"Доброе утро":h<18?"Добрый день":"Добрый вечер";
   const daily=D.daily.slice(-28);
-  let s=`<section class="card hero reveal"><canvas id="c3d" aria-hidden="true"></canvas><div class="hi"><small>${dshort(new Date().toISOString())} · M1lash</small><h1>${hi}, Денис</h1></div>
-    <div class="big"><span class="n num">${num(ch.subs)}</span><span>подписчиков${L.subs_24h!=null?` · <span class="${L.subs_24h>0?"up":"flat"}">+${L.subs_24h} за 24 ч</span>`:""}</span></div></section>`;
+  const sg=(L.span_h||0)>=20&&L.subs_24h!=null?` · <span class="${L.subs_24h>0?"up":"flat"}">${L.subs_24h>0?"+":""}${L.subs_24h} за 24 ч</span>`:"";
+  let s=`<section class="card hero reveal"><canvas id="c3d" aria-label="3D-логотип M1lash Studio"></canvas><div class="hi"><small>${dshort(new Date().toISOString())} · studio</small><h1>${hi}, Денис</h1></div>
+    <div class="big"><span class="n num">${num(ch.subs)}</span><span>подписчиков${sg}</span></div></section>`;
   const td=todoItems();
   s+=`<section class="card reveal"><h2>Сегодня <span class="cnt">${td.length}</span></h2>${td.length?`<div class="todo">${td.map((t,i)=>`<button data-todo="${i}"><span class="ti ${t[1]}">${t[0]}</span><span><b>${t[2]}</b><small>${t[3]}</small></span><span class="go">›</span></button>`).join("")}</div>`:`<div class="empty">Всё спокойно — новых дел нет ✨</div>`}</section>`;
   s+=`<div class="kpis reveal">
-    <div class="card kpi"><div class="l">${(L.span_h||0)>=20?"Просмотры за 24 ч":"Просмотры за "+Math.max(1,Math.round((L.span_h||0)*60))+" мин"}</div><div class="n num">+${num(L.views_24h)}</div><div class="d muted">+${num(L.views_1h)} за последний час</div></div>
+    ${(L.span_h||0)>=20?`<div class="card kpi"><div class="l">Просмотры за 24 ч</div><div class="n num">+${num(L.views_24h)}</div><div class="d muted">+${num(L.views_1h)} за последний час</div></div>`:`<div class="card kpi"><div class="l">Просмотры за ${dshort((daily.at(-1)||{}).day)}</div><div class="n num">${num((daily.at(-1)||{}).views)}</div><div class="d muted">${L.views_1h>0?"+"+num(L.views_1h)+" за последний час":"по аналитике YouTube"}</div></div>`}
     <div class="card kpi"><div class="l">Shorts за 7 дней</div><div class="n num">${short(wc.w)}</div><div class="d">${delta(pct(wc.w,wc.p),wc.p)}${wc.p!=null&&wc.p>=500?' к прошлой неделе':''}</div></div>
     <div class="card kpi"><div class="l">Всего просмотров</div><div class="n num">${short(ch.views)}</div><div class="d muted">${num(ch.videos)} видео</div></div>
     <button class="card kpi" data-go="money" style="text-align:left"><div class="l">До монетизации</div><div class="n num">${base?Math.round(ch.subs/5)+"%":"—"}</div><div class="d muted">${num(ch.subs)}/500 подп. ›</div></button></div>`;
@@ -361,7 +365,7 @@ function fans(){
   let s=head("Сообщество","Зрители","Комментарии канала: заявки на ролики, обращения к тебе, самые залайканные и интересные. Обновляется каждый час.");
   const segs=[["all","Все"],["request","🙋 Заявки"],["to_me","💬 Тебе"],["top","🔥 Топ"],["interesting","✨ Интересные"]];
   s+=`<div class="seg reveal">${segs.map(([k,t])=>`<button data-fseg="${k}" aria-pressed="${fSeg===k}">${t}<span class="c">${cflags(k).length}</span></button>`).join("")}</div>`;
-  if(!C.length) return s+`<div class="empty reveal">Комментарии появятся после ближайшего ежечасного сбора.</div>`;
+  if(!C.length) return s+`<div class="empty reveal">${(D.comments_status||"").includes("403")?"YouTube пока не даёт читать комментарии: нужно один раз переавторизовать ключ (задача для GPT: tasks/gpt_reauth_comments.md). После этого заявки появятся здесь сами.":"Комментарии появятся после ближайшего ежечасного сбора."}</div>`;
   const byId=Object.fromEntries(D.videos.map(v=>[v.id,v]));
   let list=cflags(fSeg); if(fSeg==="top") list=[...list].sort((a,b)=>b.likes-a.likes);
   list=list.slice(0,80);
@@ -429,30 +433,47 @@ function openOk(id){
 
 /* ---------- 3D в шапке «Обзора» ---------- */
 let gl=null;
-function hero3d(){
+let FONT=null;
+function buildLogo(THREE,font){
+  const G=new THREE.Group();
+  const grad=(geo,c1,c2,c3)=>{geo.computeBoundingBox();const b=geo.boundingBox,pos=geo.attributes.position,col=new Float32Array(pos.count*3);const A=new THREE.Color(c1).convertSRGBToLinear(),B=new THREE.Color(c2).convertSRGBToLinear(),C=new THREE.Color(c3).convertSRGBToLinear(),t=new THREE.Color();
+    for(let i=0;i<pos.count;i++){const k=(pos.getX(i)-b.min.x)/(b.max.x-b.min.x||1)*.85+(pos.getY(i)-b.min.y)/(b.max.y-b.min.y||1)*.15;if(k<.5)t.copy(A).lerp(B,k*2);else t.copy(B).lerp(C,(k-.5)*2);col[i*3]=t.r;col[i*3+1]=t.g;col[i*3+2]=t.b}
+    geo.setAttribute("color",new THREE.BufferAttribute(col,3));return geo};
+  const txt=(s,size,h,bev)=>{const g=new THREE.TextGeometry(s,{font,size,height:h,curveSegments:8,bevelEnabled:true,bevelThickness:bev,bevelSize:bev*.6,bevelSegments:4});g.center();return g};
+  G.add(new THREE.Mesh(grad(txt("M1lash",1,.42,.09),0x4f8bff,0x9b6bff,0xff4f9a),new THREE.MeshPhysicalMaterial({vertexColors:true,roughness:.3,metalness:.05,clearcoat:.8,clearcoatRoughness:.12})));
+  const sub=new THREE.Mesh(grad(txt("S T U D I O",.27,.12,.025),0x7fb0ff,0xb79bff,0xff8cc4),new THREE.MeshPhysicalMaterial({vertexColors:true,roughness:.3,clearcoat:.8}));sub.position.set(.55,-.92,.1);G.add(sub);
+  return G;
+}
+async function hero3d(){
   const cv=$("#c3d"); if(!cv||!window.THREE)return;
   if(gl)gl.stop();
+  try{if(!FONT)FONT=new THREE.Font(await (await fetch("i/font.json")).json())}catch(e){return}
+  if(!cv.isConnected)return;
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   let R;try{R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true,powerPreference:"low-power"})}catch(e){return}
   R.setPixelRatio(Math.min(2,devicePixelRatio));R.outputEncoding=THREE.sRGBEncoding;
-  const S=new THREE.Scene(),C=new THREE.PerspectiveCamera(35,1,.1,50);C.position.set(0,0,11);
-  S.add(new THREE.HemisphereLight(0xffffff,0x2a1840,.9));const k=new THREE.DirectionalLight(0xffffff,1.4);k.position.set(4,5,6);S.add(k);
-  const p1=new THREE.PointLight(0xff5fa8,2,20);p1.position.set(-4,-2,3);S.add(p1);const p2=new THREE.PointLight(0x5e95ff,1.6,20);p2.position.set(4,-3,2);S.add(p2);
-  const m=(c,r)=>new THREE.MeshPhysicalMaterial({color:c,roughness:r,metalness:.1,clearcoat:1,clearcoatRoughness:.1});
-  const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.25,.42,220,32),m(0xffb0d6,.22));S.add(knot);
-  const orb=new THREE.Mesh(new THREE.SphereGeometry(.38,48,48),m(0x9fc0ff,.25));S.add(orb);
-  const ring=new THREE.Mesh(new THREE.TorusGeometry(2.3,.05,16,120),m(0xc8b5ff,.3));ring.rotation.x=1.2;S.add(ring);
-  let tx=0,ty=0,cx=0,cy=0,run=true;
-  const mv=e=>{tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5};const or=e=>{if(e.gamma!=null){tx=Math.max(-.5,Math.min(.5,e.gamma/50));ty=Math.max(-.5,Math.min(.5,(e.beta-40)/60))}};
+  const S=new THREE.Scene(),C=new THREE.PerspectiveCamera(30,1,.1,50);
+  S.add(new THREE.HemisphereLight(0xffffff,0x2a1440,.28));const k=new THREE.DirectionalLight(0xffffff,.75);k.position.set(3,5,7);S.add(k);
+  const p1=new THREE.PointLight(0xff5fa8,.9,30);p1.position.set(-5,-2,4);S.add(p1);const p2=new THREE.PointLight(0x5e95ff,.9,30);p2.position.set(5,2,4);S.add(p2);
+  const logo=buildLogo(THREE,FONT);S.add(logo);
+  const gm=c=>new THREE.MeshPhysicalMaterial({color:c,roughness:.25,clearcoat:1,clearcoatRoughness:.1});
+  const orbs=[[.16,0xff5fa8,0],[.12,0x5e95ff,2.1],[.09,0xffc23d,4.2]].map(([r,c,ph])=>{const o=new THREE.Mesh(new THREE.SphereGeometry(r,32,32),gm(c));o.userData.ph=ph;S.add(o);return o});
+  const ring=new THREE.Mesh(new THREE.TorusGeometry(2.6,.018,12,160),gm(0xc8b5ff));ring.rotation.x=1.35;S.add(ring);
+  let tx=0,ty=0,cx=0,cy=0,run=true,drag=null,spin=0,vel=0;
+  const mv=e=>{if(drag==null){tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5}};
+  const or=e=>{if(e.gamma!=null){tx=Math.max(-.5,Math.min(.5,e.gamma/45));ty=Math.max(-.5,Math.min(.5,(e.beta-45)/60))}};
+  const down=e=>{drag=e.clientX;vel=0};const move=e=>{if(drag!=null){const d=(e.clientX-drag)/120;spin+=d;vel=d;drag=e.clientX}};const up=()=>{drag=null};
+  cv.addEventListener("pointerdown",down);addEventListener("pointermove",move,{passive:true});addEventListener("pointerup",up);
   addEventListener("pointermove",mv,{passive:true});addEventListener("deviceorientation",or,{passive:true});
-  const size=()=>{const w=cv.clientWidth,h=cv.clientHeight;if(!w)return;R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix()};size();
+  const size=()=>{const w=cv.clientWidth,h=cv.clientHeight;if(!w)return;R.setSize(w,h,false);C.aspect=w/h;C.position.set(0,0,Math.max(5.2,9.5/C.aspect+2.6));C.updateProjectionMatrix()};size();
   const ro=new ResizeObserver(size);ro.observe(cv);
-  const loop=t=>{if(!run)return;t*=.001;cx+=(tx-cx)*.06;cy+=(ty-cy)*.06;
-    knot.rotation.set(t*.25+cy*1.2,t*.35+cx*1.5,0);orb.position.set(Math.cos(t*.9)*2.1,Math.sin(t*.9)*.9,Math.sin(t*.9)*1.2);ring.rotation.z=t*.15;
+  const loop=t=>{if(!run)return;t*=.001;cx+=(tx-cx)*.06;cy+=(ty-cy)*.06;if(drag==null){vel*=.94;spin+=vel;spin*=.96}
+    logo.rotation.set(.1+cy*.5+Math.sin(t*.7)*.04,-.25+cx*.9+spin+Math.sin(t*.5)*.12,0);logo.position.y=Math.sin(t*1.1)*.06;
+    orbs.forEach((o,i)=>{const a=t*(.7+i*.15)+o.userData.ph;o.position.set(Math.cos(a)*2.6,Math.sin(a)*.55,Math.sin(a)*1.4)});ring.rotation.z=t*.12;
     R.render(S,C);if(!reduce&&!document.hidden)requestAnimationFrame(loop)};
   requestAnimationFrame(loop);
   const vis=()=>{if(!document.hidden&&run&&!reduce)requestAnimationFrame(loop)};document.addEventListener("visibilitychange",vis);
-  gl={stop(){run=false;ro.disconnect();removeEventListener("pointermove",mv);removeEventListener("deviceorientation",or);document.removeEventListener("visibilitychange",vis);R.dispose()}};
+  gl={stop(){run=false;ro.disconnect();removeEventListener("pointermove",mv);removeEventListener("pointermove",move);removeEventListener("pointerup",up);removeEventListener("deviceorientation",or);document.removeEventListener("visibilitychange",vis);R.dispose()}};
 }
 let threeP=0;function loadThree(){if(threeP)return;threeP=1;const s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";s.onload=()=>{if(tab==="home")hero3d()};document.head.appendChild(s)}
 
@@ -507,7 +528,7 @@ $("#refresh").onclick=async()=>{const b=$("#refresh");b.classList.add("spin");if
 document.addEventListener("pointermove",e=>{const c=e.target.closest&&e.target.closest(".chart");document.querySelectorAll(".chart .tip").forEach(t=>{if(!c||!c.contains(t))t.style.opacity=0});if(!c)return;const pts=CH[+c.dataset.ci];if(!pts)return;const r=c.getBoundingClientRect(),i=Math.max(0,Math.min(pts.length-1,Math.round((e.clientX-r.left)/r.width*(pts.length-1))));const t=c.querySelector(".tip");t.style.left=(i/(pts.length-1)*100)+"%";t.textContent=`${dshort(pts[i].x)}: ${num(pts[i].y)}`;t.style.opacity=1});
 async function load(quiet){
   try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});D=await r.json();D.comments=D.comments||[];D.experiments=D.experiments||[];D.review=D.review||[];D.plan=D.plan||[];
-    const L=D.live;$("#asof").textContent=`живые цифры ${L?ago(L.t)+" назад":"—"} · аналитика по ${dshort(D.analytics_as_of)}`;
+    const L=D.live;$("#asof").textContent=L?`обновлено ${ago(L.t)} назад`:`аналитика по ${dshort(D.analytics_as_of)}`;
     if(D.app){$("#apkv2").textContent="v"+D.app.name;$("#apk2").href=D.app.apk}
     render();if(quiet)toast("Данные обновлены")}
   catch(e){$("#view").innerHTML='<div class="empty">Не удалось загрузить данные. Проверь интернет и нажми ⟳.</div>'}

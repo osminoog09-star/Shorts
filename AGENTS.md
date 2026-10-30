@@ -142,7 +142,7 @@
 ## 14. Инфраструктура
 
 - Общие workflows лежат в `.github/workflows/`. Одноразовые — в `.github/workflows-archive/` (см. README там). Под новый выпуск отдельный `<выпуск>.yml` не заводить, использовать общие с параметрами: `tts`, `render-long`, `join-long`, `host-overlay`, `movie-edit-source`, `fetch`, `music`, `playlists`.
-- **Студия:** сайт `https://osminoog09-star.github.io/Shorts/studio/` (План · Что делать · Сводка · Ролики · Монетизация), Android-виджет `android-widget/` (2×2, 4×2, 4×4, уведомления, автообновление; APK — кнопка на сайте). Подпись APK — только постоянным ключом из секретов `WIDGET_KEYSTORE_B64`/`WIDGET_KEYSTORE_PASSWORD`, ключ в репо не класть. Карта и конвейер — скил `skills/m1lash-studio`, каждый агент дописывает туда «Уроки».
+- **Студия:** сайт `https://osminoog09-star.github.io/Shorts/studio/` (Обзор · Ролики · Идеи · Зрители · Деньги; кнопки «Одобрить», «Заливаем», «В идеи» через GitHub-токен Дениса в его браузере), Android-виджет `android-widget/` (1×1 … 4×4, уведомления, автообновление; APK — кнопка на сайте). Бренд — 3D-логотип «M1lash STUDIO» (шрифт Unbounded ExtraBold, градиент синий→фиолетовый→розовый; `site/studio/i/`). Подпись APK — только постоянным ключом из секретов `WIDGET_KEYSTORE_B64`/`WIDGET_KEYSTORE_PASSWORD`, ключ в репо не класть. Карта и конвейер — скил `skills/m1lash-studio`, каждый агент дописывает туда «Уроки».
 - Скилы: `skills/` (наши) и `skills/ext/` (внешние, список в `skills/ext/README.md`). Подключены через `.claude/skills/` (Claude) и `.agents/skills/` (Codex).
 - Программы для ПК Дениса (в ремонте) — в `LOCAL_PC_PLAN.md` и `scripts/pc/`.
 - После работы запиши в `HANDOFF.md` сверху: что сделано, где файлы, что осталось. Пушить в `main` можно.

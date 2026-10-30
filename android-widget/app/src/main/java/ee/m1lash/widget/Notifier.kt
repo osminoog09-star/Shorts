@@ -47,7 +47,7 @@ object Notifier {
         val open = PendingIntent.getActivity(ctx, 10 + id,
             if (update) Intent(ctx, UpdateActivity::class.java).putExtra("apk", url) else Intent(Intent.ACTION_VIEW, Uri.parse(url)),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-        val n = Notification.Builder(ctx, CH).setSmallIcon(android.R.drawable.ic_dialog_info)
+        val n = Notification.Builder(ctx, CH).setSmallIcon(R.drawable.ic_stat).setColor(0xFFFF5FA8.toInt())
             .setContentTitle(title).setContentText(text).setStyle(Notification.BigTextStyle().bigText(text))
             .setContentIntent(open).setAutoCancel(true).build()
         nm.notify(id, n)

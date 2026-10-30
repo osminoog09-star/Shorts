@@ -64,6 +64,10 @@ description: Карта и пошаговый конвейер студии ка
 
 ## 7. Уроки (дописывать сверху: дата · автор · что узнали)
 
+- 31.10 · Claude · 3D-текст на сайте: Three.js r128 (TextGeometry в ядре) + свой typeface из Unbounded ExtraBold (`site/studio/i/font.json`, сделан opentype.js из @fontsource/unbounded). Вертексные цвета переводить `convertSRGBToLinear()`, иначе блёкло. Иконки/логотипы рендерятся тем же кодом через Playwright → PNG.
+- 31.10 · Claude · Комментарии канала требуют scope `youtube.force-ssl` (иначе 403 insufficientPermissions) — `tasks/gpt_reauth_comments.md`.
+- 31.10 · Claude · Мобильная вёрстка: у сетки оболочки `minmax(0,1fr)` и `min-width:0` у детей, иначе горизонтальный скролл-ряд распирает страницу.
+
 - 31.10 · GPT · Качественный Shorts сначала синхронизировать по реальным MP3 Edge/Azure (`ru-RU-DmitryNeural` + `ru-RU-SvetlanaNeural`), затем строить кадры по таймлайну и обязательно делать полный decode/контактный лист реального MP4. В эпизоде `pretend_bot3_gpt` укорочены s02/s04: длительность 55,23 → 49,53 с. Не объявлять субъективное 8/10 без просмотра/прослушивания владельцем.
 - 31.10 · GPT · Если Python-рендер в GitHub Actions временно синтезирует отсутствующие MP3, они остаются **untracked**; параллельный TTS-bot может записать такие файлы в main, и `git pull --rebase` остановится. Перед rebase выполнить безопасный `git restore -- media/tts/` и `git clean -fd -- media/tts/`, НЕ стирая пользовательские видео и рабочие файлы. Общий workflow `motion-render.yml` теперь имеет аудио-метаданные + full-ffmpeg-decode gate.
 
