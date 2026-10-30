@@ -67,7 +67,7 @@ async def get_voice():
     await synth_one(sentence,mp3,attempts=5)
    except Exception:
     # Same verified Dmitry voice, same rate, shorter speech chunks; NO voice fallback.
-    parts=re.split(r'(?<=[.!?])\\s+',sentence)
+    parts=re.split(r'(?<=[.!?])\s+',sentence)
     if len(parts)<2:
      words=sentence.split()
      parts=[' '.join(words[:len(words)//2]),' '.join(words[len(words)//2:])]
