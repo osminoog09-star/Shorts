@@ -10,5 +10,6 @@
       "id": "end_b",
       "text": "Большой разбор — скоро на канале. Подпишись! И спасибо всем, кто досмотрел и поставил лайк. Что бы ты ответил? Старикам тут не место."
     }
-  ]
+  ],
+  "production_note": "Resume on current main: keep cached end_a; recover end_b after old-run add/add conflict. No voice fallback."
 }
