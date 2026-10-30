@@ -1,6 +1,6 @@
 # Идеи дня и эксперименты (решение Дениса 30.10)
 
-Каждый день после сбора аналитики Codex/GPT (автоматизация «M1lash — аналитика канала») пишет `reports/ideas/latest.json` (+ копию `YYYY-MM-DD.json`).
+Каждый день после сбора аналитики GitHub Actions пишет автоидеи (`scripts/ideas_auto.py`, `author: "auto"`), а Codex/GPT (регламент `tasks/gpt_daily_analytics.md`) заменяет их своими (`author: "gpt"`) в `reports/ideas/latest.json` (+ копия `YYYY-MM-DD.json`). Очередь экспериментов — `backlog.json`.
 Сайт студии и Android-виджет показывают идеи и шлют уведомление «новые идеи».
 
 ## Схема latest.json (v1)

@@ -17,7 +17,7 @@ description: Карта и пошаговый конвейер студии ка
 | Автоидеи (если GPT не написал) | `scripts/ideas_auto.py` + очередь экспериментов `reports/ideas/backlog.json` → `reports/ideas/latest.json` | в том же запуске |
 | Пульс (живые счётчики Data API) | `youtube-pulse.yml` → `scripts/youtube_pulse.py` → ветка `pulse-data`, `pulse.json` (72 ч) | каждый час :07 |
 | Сайт студии | `site/studio/index.html` + `scripts/build_studio_site.py` → `data.json`; деплой `motion-pages.yml` | после аналитики, пульса и пушей в site/reports |
-| Android-виджет + уведомления | `android-widget/` → `android-widget.yml` → релиз `widget`, `m1lash-widget.apk` | при пуше в android-widget/; приложение само сообщает о новой версии (`versionCode`) |
+| Android-виджет + уведомления | `android-widget/` → `android-widget.yml` → релиз `widget`, `m1lash-widget.apk`. Три варианта 2×2 / 4×2 / 4×4, раскладка по текущему размеру (`widget_s/m.xml`, все id во всех раскладках!). Уведомления: ждёт «ок», вышел ролик, всплеск, новые идеи, обновление | при пуше в android-widget/; новая версия = поднять `versionCode` → приложение само скачает и предложит установить (`UpdateActivity`). Подпись — секреты `WIDGET_KEYSTORE_*` |
 | Заливка / расписание | `youtube-direct.yml` (`mode=upload` приватно без даты → `mode=schedule` после «заливаем») | вручную агентом |
 | Плейлисты | `publishing/playlists.json` + `playlists.yml` | ежедневно |
 | Озвучка | workflow `TTS` (edge-tts, Дима/Света) | по запросу |
@@ -63,6 +63,11 @@ description: Карта и пошаговый конвейер студии ка
 Пороги и даты — в docstring `scripts/ypp_progress.py`. Считаем по `engagedViews` (засчитанные). С 01.02.2027 полный порог для новых заявок 20 млн Shorts / 8000 ч. Официально — Studio → «Заработок».
 
 ## 7. Уроки (дописывать сверху: дата · автор · что узнали)
+
+- 30.10 · Claude · `actions/checkout` берёт только main: чужую ветку тянуть `git fetch origin +ветка:refs/remotes/origin/ветка`, иначе `origin/ветка` не существует.
+- 30.10 · Claude · Debug-подпись в CI каждый раз новая → обновление APK поверх не ставится. Только постоянный ключ из секретов. Секреты из облачной сессии Claude не записать (прокси) — делает GPT/Денис.
+- 30.10 · Claude · RemoteViews: если раскладка без нужного id, а код в него пишет — виджет «не удалось загрузить». Держать все id во всех раскладках (лишние `gone`).
+- 30.10 · Claude · Сайт: Three.js r128 с cdnjs (нет CapsuleGeometry), проверка — Playwright + swiftshader, three.min.js подставлять из npm.
 
 - 30.10 · Claude · Засчитанные просмотры Shorts ≈ 50 % от всех. Последний день Analytics приходит нулями — отбрасывать.
 - 30.10 · Claude · Analytics API почасово бессмысленен (задержка), почасово — только Data API счётчики.
