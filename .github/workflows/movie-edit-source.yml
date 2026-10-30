@@ -7,8 +7,13 @@ on:
       - '.github/workflows/movie-edit-source.yml'
       - 'tools/movie_edit/source_manifest.py'
       - 'tools/movie_edit/source_urls.txt'
+      - 'tools/movie_edit/source_jobs/*.json'
   workflow_dispatch:
     inputs:
+      manifest:
+        description: "Optional tools/movie_edit/source_jobs/<job>.json; preserve original picture and audio"
+        required: false
+        type: string
       urls:
         description: 'Direct/public URLs, one per line, only footage you may reuse'
         required: false
@@ -26,6 +31,8 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - name: Install video tools
         run: |
           sudo apt-get update -qq
@@ -43,10 +50,23 @@ jobs:
         env:
           CLIP_URLS: ${{ inputs.urls }}
           TITLE: ${{ inputs.title }}
+          SOURCE_MANIFEST: ${{ inputs.manifest }}
+          SOURCE_BEFORE: ${{ github.event.before }}
+          SOURCE_EVENT: ${{ github.event_name }}
         run: |
           mkdir -p work/clips output
           python3 - <<'PY'
           import os, subprocess, pathlib, re
+          manifests=[]
+          if os.environ.get('SOURCE_MANIFEST'):
+              manifests=[os.environ['SOURCE_MANIFEST']]
+          elif os.environ.get('SOURCE_EVENT')=='push':
+              manifests=subprocess.check_output(['git','diff','--name-only',os.environ['SOURCE_BEFORE'],'HEAD','--','tools/movie_edit/source_jobs/']).decode().splitlines()
+          if manifests:
+              for manifest in manifests:
+                  if pathlib.Path(manifest).is_file():
+                      subprocess.run(['python3','tools/movie_edit/fetch_sources.py',manifest,'output/originals'],check=True)
+              raise SystemExit(0)
           raw=os.environ.get('CLIP_URLS','').strip()
           if not raw:
               raw=pathlib.Path('tools/movie_edit/source_urls.txt').read_text()
@@ -74,5 +94,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: movie-edit-draft
-          path: output/*.mp4
+          path: |
+            output/*.mp4
+            output/originals/
           retention-days: 7
