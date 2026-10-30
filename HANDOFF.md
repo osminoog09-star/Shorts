@@ -5,7 +5,8 @@
 - Подготовлены оригинальный Shorts-скрипт Binance, титры, таймлайн, voice manifest с пометкой planned, лицензии, метаданные: `production/research-20261030-binance/SHORTS_PREP_ONLY.md`. Никакого реального голоса или видео нет.
 - Подготовлен 24:30 документальный план «Чаша Ликурга» с 15 сценами, источниками British Museum, Sheffield 26.10 и peer-reviewed 2020, правами, 2 обложками и 2 Shorts: `production/research-20261030-lycurgus/LONGFORM_24M_PREP_ONLY.md`. Тему/слот не занимали.
 - Реально скачан утренний review artifact GitHub Actions 41012111838 / 12957514601. Локально ffprobe 1080x1920 30fps H264/AAC, 59.285 с; полный ffmpeg decode PASS; 16 контрольных кадров; звук mean -23.9 dB/peak -6.8 dB; в манифесте 7 сегментов ru-RU-DmitryNeural и 280 cues. **NO-GO**: импортируется HostCard вместо утверждённого HostCorner; вопрос перед CTA; финал 10.632 с; слишком статичные сцены, word timing не выровнен по речи; полного прослушивания нет. Отчёт `reports/quality/2026-10-30-cat-nebula-evening-review.md`. Видео не менял и не публиковал.
-- Кино-идеи с оценкой прав (без исходников/рендера): `production/research-20261030-mystery/CINEMA_IDEAS_INTERNAL.md` (Upgrade / Arrival), Content ID risk, не в публичных метаданных.\n- Следующее действие **после разрешения владельца снять паузу**: передать QA автору утренней ветки, подтвердить формат/стиль Binance, затем TTS/рендер через общие workflows, QA и ручная публикация Денисом. Не включать автопилот.
+- Кино-идеи с оценкой прав (без исходников/рендера): `production/research-20261030-mystery/CINEMA_IDEAS_INTERNAL.md` (Upgrade / Arrival), Content ID risk, не в публичных метаданных.
+- Следующее действие **после разрешения владельца снять паузу**: передать QA автору утренней ветки, подтвердить формат/стиль Binance, затем TTS/рендер через общие workflows, QA и ручная публикация Денисом. Не включать автопилот.
 
 ---
 
