@@ -27,7 +27,8 @@ headers = {"Authorization": "Bearer " + token}
 API = "https://www.googleapis.com/youtube/v3"
 
 def request(method, url, **kwargs):
-    r = requests.request(method, url, headers=headers, timeout=60, **kwargs)
+    request_headers = {**headers, **kwargs.pop("headers", {})}
+    r = requests.request(method, url, headers=request_headers, timeout=60, **kwargs)
     if not r.ok:
         raise RuntimeError("%s %s -> HTTP %s (%s)" % (method, url.split("?")[0], r.status_code, r.text[:220]))
     return r.json() if r.content else {}
