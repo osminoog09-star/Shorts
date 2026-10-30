@@ -32,13 +32,23 @@ REQUEST = re.compile(r"сдела|сним|разбер|разбор|можеш�
 TO_ME = re.compile(r"автор|m1lash|милаш|админ|\bты\b|\bтебе\b|\bтвой|\bтвои|спасибо|бро\b|канал", re.I)
 
 
+STATUS = {}
+
+
 def comments(s, channel_id, old):
     """Комментарии канала (последние ~100 тредов) + флаги: request / to_me / top / interesting."""
     r = s.get(API + "commentThreads", params=dict(part="snippet", allThreadsRelatedToChannelId=channel_id,
                                                    maxResults=100, order="time", textFormat="plainText"), timeout=30)
     if not r.ok:
-        print("pulse: comments unavailable, HTTP", r.status_code)
+        reason = ""
+        try:
+            reason = r.json()["error"]["errors"][0].get("reason", "")
+        except (ValueError, KeyError, IndexError):
+            pass
+        print("pulse: comments unavailable, HTTP", r.status_code, reason)
+        STATUS["comments"] = f"HTTP {r.status_code} {reason}".strip()
         return old
+    STATUS["comments"] = "ok"
     by_id = {c["id"]: c for c in old}
     for th in r.json().get("items", []):
         top = th["snippet"]["topLevelComment"]["snippet"]
@@ -90,6 +100,7 @@ def main(out):
                        "likes": int(v["statistics"].get("likeCount", 0)),
                        "comments": int(v["statistics"].get("commentCount", 0))} for v in public]
     data["comments"] = comments(s, ch["id"], data.get("comments") or [])
+    data["status"] = STATUS
     path.write_text(json.dumps(data, ensure_ascii=False) + "\n", encoding="utf-8")
     print("pulse:", st.get("subscriberCount"), "subs,", len(public), "recent public videos")
 
