@@ -8,10 +8,16 @@ on:
         required: true
         type: string
       execute:
-        description: "FALSE = validate only. TRUE = schedule a new YouTube upload."
+        description: "FALSE = validate only. TRUE = do it."
         required: true
         default: false
         type: boolean
+      mode:
+        description: "upload = залить приватно (без publish_at — на просмотр Денису); schedule = назначить дату уже залитому"
+        required: true
+        default: upload
+        type: choice
+        options: [upload, schedule]
 
 permissions:
   contents: write
@@ -35,12 +41,13 @@ jobs:
       - name: Install minimal requirements
         run: python -m pip install 'requests>=2.32,<3'
       - name: Validate manifest (NO upload)
+        if: inputs.mode == 'upload'
         env:
           MANIFEST: ${{ inputs.manifest }}
         run: python scripts/youtube_direct.py check --manifest "$MANIFEST"
       - name: Resolve reviewed MP4 source
         id: source
-        if: inputs.execute == true
+        if: inputs.execute == true && inputs.mode == 'upload'
         env:
           MANIFEST: ${{ inputs.manifest }}
           GH_TOKEN: ${{ github.token }}
@@ -67,7 +74,7 @@ jobs:
           print("MP4 ready, size=%d bytes" % output.stat().st_size)
           PY
       - name: Verify OAuth credentials and channel BEFORE reservation
-        if: inputs.execute == true
+        if: inputs.execute == true && inputs.mode == 'upload'
         env:
           MANIFEST: ${{ inputs.manifest }}
           VIDEO_FILE: ${{ steps.source.outputs.video_file }}
@@ -80,7 +87,7 @@ jobs:
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
         run: python scripts/youtube_direct.py preflight --manifest "$MANIFEST" --video-file "$VIDEO_FILE"
       - name: Persist no-retry reservation BEFORE upload
-        if: inputs.execute == true
+        if: inputs.execute == true && inputs.mode == 'upload'
         env:
           MANIFEST: ${{ inputs.manifest }}
         shell: bash
@@ -95,7 +102,7 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
       - name: Upload to verified YouTube channel (private/scheduled)
-        if: inputs.execute == true
+        if: inputs.execute == true && inputs.mode == 'upload'
         id: upload
         env:
           MANIFEST: ${{ inputs.manifest }}
@@ -108,8 +115,21 @@ jobs:
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
         run: python scripts/youtube_direct.py send --manifest "$MANIFEST" --video-file "$VIDEO_FILE"
+      - name: Schedule release of the reviewed private video
+        if: inputs.execute == true && inputs.mode == 'schedule'
+        id: schedule
+        env:
+          MANIFEST: ${{ inputs.manifest }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YOUTUBE_REFRESH_TOKEN_EN: ${{ secrets.YOUTUBE_REFRESH_TOKEN_EN }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python scripts/youtube_direct.py schedule --manifest "$MANIFEST"
       - name: Persist YouTube ID and URL
-        if: steps.upload.outcome == 'success'
+        if: steps.upload.outcome == 'success' || steps.schedule.outcome == 'success'
         env:
           MANIFEST: ${{ inputs.manifest }}
         shell: bash
@@ -117,7 +137,9 @@ jobs:
           set -euo pipefail
           RECEIPT="publishing/receipts/$(basename "$MANIFEST")"
           git add "$RECEIPT"
-          git commit -m "youtube: record scheduled upload $(basename "$MANIFEST")"
+          git config user.name youtube-direct-bot
+          git config user.email youtube-direct-bot@users.noreply.github.com
+          git commit -m "youtube: record ${{ inputs.mode }} $(basename "$MANIFEST")"
           git pull --rebase origin main
           git push origin HEAD:main
       - name: Keep receipt for manual recovery

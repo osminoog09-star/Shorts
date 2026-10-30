@@ -106,5 +106,36 @@ class DirectUploadTests(unittest.TestCase):
             uploader.validate(self.manifest(), self.channels)
 
 
+    def test_review_upload_without_publish_at(self):
+        data = self.manifest()
+        data.pop("publish_at", None)
+        lang, _, when = uploader.validate(data, self.channels)
+        self.assertEqual(lang, "ru")
+        self.assertIsNone(when)
+        path = uploader.QUEUE / "review.json"
+        path.write_text(json.dumps(data), encoding="utf-8")
+        uploader.validate_queue(path, data, self.channels)  # no slot checks for review uploads
+
+    def test_review_payload_has_no_publish_time(self):
+        data = self.manifest()
+        data.pop("publish_at", None)
+        sent = {}
+        class Init:
+            status_code = 200
+            headers = {"Location": "https://www.googleapis.com/upload/x"}
+        class Done:
+            ok = True
+            def json(self):
+                return {"id": "abcdefghijk"}
+        def post(url, **kw):
+            sent.update(kw["json"])
+            return Init()
+        with mock.patch.object(uploader.requests, "post", post), \
+             mock.patch.object(uploader.requests, "put", lambda *a, **k: Done()):
+            vid = uploader.youtube_upload(uploader.ROOT / "videos/test.mp4", data, None, "t")
+        self.assertEqual(vid, "abcdefghijk")
+        self.assertEqual(sent["status"]["privacyStatus"], "private")
+        self.assertNotIn("publishAt", sent["status"])
+
 if __name__ == "__main__":
     unittest.main()

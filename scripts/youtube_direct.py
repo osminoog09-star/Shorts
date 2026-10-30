@@ -3,6 +3,10 @@
 
 No background process. 'check' never uploads; 'reserve' persists a guard before
 'send'. Only the GitHub Actions workflow should run 'send' after reservation.
+
+Review flow (decision of the owner, 30.10.2026): a manifest WITHOUT publish_at is uploaded
+as a plain PRIVATE video for Denis to watch. After his "ok" the agent adds publish_at to the
+manifest and runs 'schedule', which only sets the release time of the already uploaded video.
 """
 import argparse
 import datetime as dt
@@ -119,7 +123,9 @@ def validate(data, channel_map, check_future=True):
     category = str(meta.get("category_id", "24"))
     if not category.isdigit():
         raise ValueError("category_id must be numeric")
-    publish_at = event_time(data.get("publish_at", ""))
+    if not data.get("publish_at"):
+        return lang, channel_id, None  # review upload: private, no release time yet
+    publish_at = event_time(data["publish_at"])
     if check_future and publish_at < dt.datetime.now(dt.timezone.utc) + dt.timedelta(minutes=45):
         raise ValueError("Publishing requires at least 45 minutes of lead time")
     return lang, channel_id, publish_at
@@ -127,13 +133,15 @@ def validate(data, channel_map, check_future=True):
 
 def validate_queue(current_path, current, channel_map):
     channel, _, when = validate(current, channel_map)
+    if when is None:
+        return
     today = when.astimezone(TZ).date()
     shorts = []
     for other_path in QUEUE.glob("*.json"):
         if other_path.resolve() == current_path.resolve():
             continue
         other = load_json(other_path)
-        if other.get("channel") != channel:
+        if other.get("channel") != channel or not other.get("publish_at"):
             continue
         other_when = event_time(other["publish_at"])
         if abs((other_when - when).total_seconds()) < 60:
@@ -195,11 +203,12 @@ def youtube_upload(video_path, data, publish_at, token):
         },
         "status": {
             "privacyStatus": "private",
-            "publishAt": publish_at.isoformat().replace("+00:00", "Z"),
             "selfDeclaredMadeForKids": meta["made_for_kids"],
             "containsSyntheticMedia": meta["contains_synthetic_media"]
         }
     }
+    if publish_at is not None:
+        payload["status"]["publishAt"] = publish_at.isoformat().replace("+00:00", "Z")
     size = video_path.stat().st_size
     response = requests.post("https://www.googleapis.com/upload/youtube/v3/videos",
         params={"uploadType": "resumable", "part": "snippet,status"},
@@ -224,9 +233,27 @@ def youtube_upload(video_path, data, publish_at, token):
     return result["id"]
 
 
+def youtube_schedule(video_id, data, publish_at, token):
+    """Set the release time of an already uploaded private video (status part only)."""
+    meta = data["metadata"]
+    body = {"id": video_id, "status": {
+        "privacyStatus": "private",
+        "publishAt": publish_at.isoformat().replace("+00:00", "Z"),
+        "selfDeclaredMadeForKids": meta["made_for_kids"],
+        "containsSyntheticMedia": meta["contains_synthetic_media"]}}
+    response = requests.put(API + "/videos", params={"part": "status"},
+                            headers={"Authorization": "Bearer " + token}, json=body, timeout=60)
+    if not response.ok:
+        raise RuntimeError("YouTube schedule update failed (HTTP %s)" % response.status_code)
+    got = response.json().get("status", {}).get("publishAt")
+    if not got:
+        raise RuntimeError("YouTube did not confirm publishAt; check Studio")
+    return got
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("operation", choices=["check", "preflight", "reserve", "send"])
+    parser.add_argument("operation", choices=["check", "preflight", "reserve", "send", "schedule"])
     parser.add_argument("--manifest", required=True)
     parser.add_argument("--video-file", default="")
     args = parser.parse_args()
@@ -236,12 +263,28 @@ def main():
     channel, expected_id, publish_at = validate(data, channels)
     validate_queue(file, data, channels)
     receipt = receipt_path(file)
+    when_text = publish_at.isoformat() if publish_at else "none (review upload, stays PRIVATE)"
+    if args.operation == "schedule":
+        if publish_at is None:
+            raise ValueError("Add publish_at to the manifest before scheduling")
+        if not receipt.exists():
+            raise ValueError("No receipt: the video was not uploaded through this tool")
+        prior = load_json(receipt)
+        vid = str(prior.get("video_id", ""))
+        if prior.get("status") not in ("uploaded", "scheduled") or not re.fullmatch(r"[A-Za-z0-9_-]{11}", vid):
+            raise ValueError("Receipt has no uploaded video ID: manual intervention required")
+        token = token_for(channel)
+        verify_channel(token, expected_id)
+        got = youtube_schedule(vid, data, publish_at, token)
+        atomic_json(receipt, {**prior, "status": "scheduled", "publish_at_utc": got})
+        print("YOUTUBE_SCHEDULE_OK https://youtu.be/%s publishAt=%s" % (vid, got))
+        return
     digest = hashlib.sha256(file.read_bytes()).hexdigest()
     if args.operation == "check":
         if receipt.exists():
             raise ValueError("Previously reserved/uploaded: " + str(receipt.relative_to(ROOT)))
         print("CHECK OK: channel=%s, publish_at=%s, mode=PRIVATE until scheduled release" %
-              (channel, publish_at.isoformat()))
+              (channel, when_text))
         print("Metricool appointments are NOT visible here: inspect its existing queue during migration.")
         return
     if args.operation == "preflight":
@@ -259,7 +302,7 @@ def main():
             raise ValueError("Receipt already exists; manual reconciliation required")
         atomic_json(receipt, {"status": "reserved", "manifest": str(file.relative_to(ROOT)),
                               "manifest_sha256": digest, "channel": channel,
-                              "publish_at_utc": publish_at.isoformat(),
+                              "publish_at_utc": publish_at.isoformat() if publish_at else None,
                               "note": "A reserved attempt must NEVER be automatically retried."})
         print("RESERVED " + str(receipt.relative_to(ROOT)))
         return

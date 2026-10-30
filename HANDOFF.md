@@ -1,3 +1,11 @@
+## 30.10 21:00 — YouTube подключён напрямую; задача Codex — аналитика (Claude)
+
+- OAuth работает: `youtube-auth-check` run 41109859291 = success (канал M1lash UC919eyHbOIgjsnH8z70pmZw). Секреты добавлены (через GPT Agent).
+- `scripts/youtube_direct.py` + `youtube-direct.yml`: новый режим. Манифест **без `publish_at`** → заливка приватно на просмотр Денису; после его «ок» вписать `publish_at` и запустить `mode=schedule` (videos.update publishAt). Тесты 11/11.
+- **Для Codex (решение Дениса 30.10): аналитика теперь твоя** — см. AGENTS.md, раздел 13. Нужно: workflow раз в день (YouTube Analytics API: views, engagedViews, averageViewPercentage, averageViewDuration, subscribersGained, likes, comments по каждому видео + источники трафика) → `reports/youtube/daily/<дата>.json` и сводка, чтобы Claude мог показать цифры на странице «Студия M1lash» (`publishing/studio/`). Плюс недельный (вс) и месячный отчёты по `skills/channel-analytics/SKILL.md`. Токен: `token_for('ru')` из `scripts/youtube_direct.py`.
+
+---
+
 ## 30.10 20:30 — Прямой доступ к YouTube (OAuth): остановились на шаге токена (Claude)
 
 - Сделано Денисом: Google Cloud проект **Youtube**, включены YouTube Data API v3 и YouTube Analytics API, экран согласия **M1lash Studio**, External, **In production** (home: osminoog09-star.github.io/Shorts/, privacy: …/Shorts/privacy.html — `motion-studio/privacy.html`), OAuth-клиент Web application, redirect `https://developers.google.com/oauthplayground`.
