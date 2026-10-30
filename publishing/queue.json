@@ -51,6 +51,18 @@
       "publish_md": null,
       "title": "ИИ совершил научный прорыв? $3 МЛРД для Meta и опасный сбой!",
       "note": "Не публиковать: озвучен Piper, а не Димой, финал с Liam. Нужна переозвучка через Azure."
+    },
+    {
+      "id": "pretend_bot3_gpt",
+      "kind": "short",
+      "author": "GPT",
+      "status": "draft",
+      "slot": null,
+      "style": "S6-D25",
+      "mp4": "videos/pretend_bot3_gpt_ru.mp4",
+      "publish_md": "shorts/pretend_bot_3_gpt/PUBLISH.md",
+      "title": "ИИ доказал, что я робот 💀 | Притворись ботом 3 #shorts",
+      "note": "Идёт сборка с Димой/Светой и QA. YouTube не загружен; публикация только после ручного просмотра."
     }
   ]
 }
