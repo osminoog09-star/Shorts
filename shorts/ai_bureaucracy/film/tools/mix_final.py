@@ -11,11 +11,11 @@ voice, bed = FILM / 'assets/voice/voice.wav', FILM / 'assets/sound.wav'
 dur = json.loads((FILM / 'assets/voice/timeline.js').read_text()[11:-2])['total']
 
 fc = (
-    "[1:a]aresample=48000,pan=stereo|c0=c0|c1=c0,loudnorm=I=-15:TP=-2:LRA=7,asplit=2[v][key];"
-    "[2:a]aresample=48000,volume=0.62[bed];"
+    "[1:a]aresample=48000,pan=stereo|c0=c0|c1=c0,loudnorm=I=-15:TP=-2:LRA=7,aresample=48000,asplit=2[v][key];"
+    "[2:a]aresample=48000,volume=0.85[bed];"
     # дакинг: под речью музыка/эффекты уходят примерно на 8–10 дБ, между репликами возвращаются
-    "[bed][key]sidechaincompress=threshold=0.025:ratio=7:attack=12:release=320:makeup=1[duck];"
-    "[v][duck]amix=inputs=2:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=9,"
+    "[bed][key]sidechaincompress=threshold=0.04:ratio=3.5:attack=15:release=350:makeup=1[duck];"
+    "[v][duck]amix=inputs=2:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=9,aresample=48000,"
     f"atrim=0:{dur},afade=t=out:st={dur - 0.35}:d=0.35[a]"
 )
 subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(src), '-i', str(voice), '-i', str(bed),
