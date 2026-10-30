@@ -1,0 +1,93 @@
+name: Cat Nebula S7-D25 — REVIEW ONLY (NO PUBLICATION)
+on:
+  push:
+    branches:
+      - radar/2026-10-30-cat-nebula
+    paths:
+      - shorts/cat_nebula_20261030/**
+      - studio/src/CatNebulaEntry.tsx
+      - studio/src/cat_nebula_timeline.json
+      - .github/workflows/cat-nebula-review-20261030.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cat-nebula-review
+  cancel-in-progress: true
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install render and TTS dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg unzip curl
+          python -m pip install --upgrade edge-tts requests pillow numpy
+      - name: Install pinned Rhubarb 1.14.0 (Russian phonetic recognizer)
+        run: |
+          curl --fail --location --retry 3 --output /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip
+          mkdir -p /tmp/rhubarb
+          unzip -q /tmp/rhubarb.zip -d /tmp/rhubarb
+          BIN="$(find /tmp/rhubarb -type f -name rhubarb | head -1)"
+          test -n "$BIN"
+          chmod +x "$BIN"
+          echo "$(dirname "$BIN")" >> "$GITHUB_PATH"
+          "$BIN" --version
+      - name: Download 4 ESA CC BY 4.0 photos, synthesize Dmitry, compute real Rhubarb cues
+        run: python shorts/cat_nebula_20261030/build.py
+      - name: Render Remotion 1080x1920 with approved HostCard
+        run: |
+          mkdir -p out
+          cd studio
+          npm install --no-audit --no-fund
+          npx remotion browser ensure
+          npx remotion render src/CatNebulaEntry.tsx cat-nebula-ru ../out/cat-nebula-s7d25-REVIEW.mp4 --codec h264 --crf 20 --concurrency 2
+      - name: Decode and metadata QA (not a release gate)
+        run: |
+          ffmpeg -v error -i out/cat-nebula-s7d25-REVIEW.mp4 -f null -
+          python - <<'PY'
+          import json,subprocess,pathlib
+          p='out/cat-nebula-s7d25-REVIEW.mp4'
+          meta=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams','-show_format','-of','json',p]))
+          v=next(s for s in meta['streams'] if s['codec_type']=='video')
+          a=next(s for s in meta['streams'] if s['codec_type']=='audio')
+          assert (v['width'],v['height'])==(1080,1920)
+          assert v['codec_name']=='h264' and a['codec_name']=='aac'
+          dur=float(meta['format']['duration'])
+          assert 30<dur<75, dur
+          manifest=json.loads(pathlib.Path('studio/public/cat_nebula/manifest.json').read_text())
+          assert manifest['voice_id']=='ru-RU-DmitryNeural'
+          assert manifest['rhubarb_cues']>20
+          assert all(s['voice_id']=='ru-RU-DmitryNeural' for s in manifest['segments'])
+          assert manifest['release_ready'] is False
+          pathlib.Path('out/qa.json').write_text(json.dumps({'width':1080,'height':1920,'duration':dur,'video':'h264','audio':'aac','voice_id':manifest['voice_id'],'mouth_cues':manifest['rhubarb_cues'],'full_decode':'PASS','manual_visual_audio_review':'PENDING','release_ready':False},indent=2))
+          print('AUTOMATED QA PASS, HUMAN QA PENDING',dur)
+          PY
+      - name: Extract contact frames for manual visual review
+        if: success()
+        run: |
+          mkdir -p out/qa_frames
+          for t in 0 3 9 16 25 35 43; do
+            ffmpeg -y -v error -ss "$t" -i out/cat-nebula-s7d25-REVIEW.mp4 -frames:v 1 "out/qa_frames/frame_${t}.jpg" || true
+          done
+      - name: Upload review artifact (never publish)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cat-nebula-s7d25-review-NO-GO
+          path: |
+            out/cat-nebula-s7d25-REVIEW.mp4
+            out/qa.json
+            out/qa_frames/
+            studio/public/cat_nebula/manifest.json
+            studio/public/cat_nebula/mouth.json
+          if-no-files-found: warn
+          retention-days: 30
