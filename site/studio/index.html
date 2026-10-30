@@ -431,11 +431,47 @@ function openSettings(){
     <section class="card"><h2>Приложение</h2><a class="btn pri" href="${esc((D&&D.app||{}).apk||"#")}">📱 Скачать виджет для Android ${D&&D.app?"v"+esc(D.app.name):""}</a><p class="muted" style="font-size:12px;margin:10px 0 0">Виджет растягивается от 1×1 до 4×4. Новые версии приложение предложит само.</p></section>
     <div class="row" style="margin-top:14px"><button class="btn" data-close>Закрыть</button></div>`);
 }
-function openOk(id){
-  const d=new Date(Date.now()+864e5);d.setHours(10,0,0,0);
-  const local=new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,16);
-  openSheet(`<h2 style="font-size:18px">Заливаем: когда открыть ролик?</h2><p class="muted">Ролик уже на YouTube приватно. YouTube сам опубликует его в выбранное время.</p><label class="f">Дата и время<input class="t" type="datetime-local" id="okAt" value="${local}"></label><div class="row" style="margin-top:14px"><button class="btn pri" id="okGo" data-id="${esc(id)}">Подтвердить «Заливаем»</button><button class="btn" data-close>Отмена</button></div>`);
+/* ---------- «Авто»: лучшее ближайшее время по активности аудитории + правилам канала ---------- */
+function bestSlots(kind){
+  const B=D.best_times||{},R=B.rules||{short_hours:[10,16],long_hours:[19],max_shorts_per_day:2,min_gap_hours:6,min_lead_hours:2,horizon_days:3,near_best_ratio:.85},heat=B.heat||{};
+  const hours=kind==="long"?R.long_hours:R.short_hours, now=Date.now();
+  const taken=[...(D.taken||[]).map(x=>({t:new Date(x.at).getTime(),kind:x.kind||"short"})),...(D.plan||[]).map(p=>({t:new Date(p.date+"T"+p.time+":00").getTime(),kind:"short"}))];
+  // поправка по нашим роликам: средние просмотры Shorts, вышедших в этот слот (±2 ч), если таких ≥4
+  const own={};const pub=D.videos.filter(v=>v.privacy==="public"&&v.published&&(v.duration||0)<=180);const all=avg(pub.map(v=>v.views));
+  hours.forEach(h=>{const a=pub.filter(v=>Math.abs(new Date(v.published).getHours()-h)<=2).map(v=>v.views);own[h]=a.length>=4&&all?Math.max(.85,Math.min(1.15,avg(a)/all)):1});
+  const c=[];
+  for(let d=0;d<=R.horizon_days;d++)for(const h of hours){
+    const x=new Date();x.setDate(x.getDate()+d);x.setHours(h,0,0,0);const t=x.getTime();
+    if(t<now+R.min_lead_hours*36e5)continue;
+    const sameDay=taken.filter(y=>new Date(y.t).toDateString()===x.toDateString()&&y.kind!=="long");
+    if(kind!=="long"&&sameDay.length>=R.max_shorts_per_day)continue;
+    if(taken.some(y=>Math.abs(y.t-t)<R.min_gap_hours*36e5))continue;
+    const dow=((x.getDay()+6)%7)+1, v=((heat[dow]||[])[h]||5000)*own[h];
+    c.push({t,score:v,dow});
+  }
+  if(!c.length)return{best:null,list:[]};
+  const top=Math.max(...c.map(x=>x.score));
+  const win=c.filter(x=>x.t<=now+(R.pick_window_hours||48)*36e5), pool=win.length?win:c, ptop=Math.max(...pool.map(x=>x.score));
+  const best=pool.find(x=>x.score>=ptop*(R.near_best_ratio||.85));
+  return{best,list:c.sort((a,b)=>a.t-b.t).slice(0,6),top};
 }
+const DW=["вс","пн","вт","ср","чт","пт","сб"];
+const slotLabel=t=>{const d=new Date(t),td=new Date();const k=Math.round((new Date(d.toDateString())-new Date(td.toDateString()))/864e5);return(k===0?"сегодня":k===1?"завтра":k===2?"послезавтра":DW[d.getDay()]+" "+dshort(d.toISOString()))+" в "+String(d.getHours()).padStart(2,"0")+":00"};
+const toLocal=t=>{const d=new Date(t);return new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,16)};
+function openOk(id){
+  const r=D.review.find(x=>x.id===id)||{},kind=r.kind||"short",S=bestSlots(kind);
+  const auto=S.best?`<div class="idea" style="border-color:color-mix(in srgb,var(--pink) 45%,var(--line))"><div class="row"><span class="chip c-pink">⚡ Авто · рекомендую</span></div><b style="font-size:20px">${slotLabel(S.best.t)}</b><p>Самый ранний слот в ближайшие 48 ч, где активность аудитории ≥ 85% от лучшего в этом окне (по Metricool и нашим роликам). Правила: Shorts в 10:00/16:00, не больше 2 в день, ≥ 6 ч между роликами.</p><button class="btn pri" data-okat="${S.best.t}" data-id="${esc(id)}">Поставить на ${slotLabel(S.best.t)}</button></div>`:`<div class="empty">Свободных слотов на 3 дня нет — выбери время вручную.</div>`;
+  const alt=S.list.length>1?`<p class="muted" style="font-size:12px;margin:12px 0 6px">Другие слоты (активность аудитории):</p><div class="row">${S.list.map(x=>`<button class="btn sm${S.best&&x.t===S.best.t?" pri":""}" data-okat="${x.t}" data-id="${esc(id)}">${slotLabel(x.t)} · ${Math.round(x.score/S.top*100)}%</button>`).join("")}</div>`:"";
+  openSheet(`<h2 style="font-size:18px">Заливаем: когда открыть ролик?</h2><p class="muted" style="margin-top:0">${esc(r.title||id)}<br>Ролик уже на YouTube приватно — YouTube сам опубликует его в выбранное время.</p>${auto}${alt}
+    <div class="idea" style="margin-top:12px"><b>✋ Своё время</b><label class="f">Дата и время<input class="t" type="datetime-local" id="okAt" value="${S.best?toLocal(S.best.t):toLocal(Date.now()+864e5)}"></label><div class="row"><button class="btn" id="okGo" data-id="${esc(id)}">Поставить на это время</button><button class="btn" data-close>Отмена</button></div></div>`);
+}
+async function doSchedule(id,iso){
+  const mf=`publishing/queue/${id}.json`;
+  await editJSON(mf,m=>{m.publish_at=iso},`publish: ${id} → ${iso} (Денис: заливаем, с сайта)`);
+  await dispatch("youtube-direct.yml",{manifest:mf,execute:"true",mode:"schedule"});
+  (D.taken=D.taken||[]).push({id,at:iso,kind:"short"});closeSheet();toast("Дата назначена — YouTube откроет ролик сам ✓");
+}
+
 
 /* ---------- 3D в шапке «Обзора» ---------- */
 let gl=null;
@@ -537,11 +573,8 @@ document.addEventListener("click",async e=>{
   if(q("[data-act=settings]"))return openSettings();
   if(q("[data-close]"))return closeSheet();
   if(el=q("[data-ok]")){if(needTok())openOk(el.dataset.ok);return}
-  if(el=q("#okGo"))return act(el,async()=>{const id=el.dataset.id,at=$("#okAt").value;if(!at)throw new Error("выбери дату");
-      const iso=new Date(at).toISOString().replace(/\.\d+Z$/,"Z"),mf=`publishing/queue/${id}.json`;
-      await editJSON(mf,m=>{m.publish_at=iso},`publish: ${id} → ${iso} (Денис: заливаем, с сайта)`);
-      await dispatch("youtube-direct.yml",{manifest:mf,execute:"true",mode:"schedule"});
-      closeSheet();toast("Дата назначена — YouTube откроет ролик сам ✓")});
+  if(el=q("[data-okat]"))return act(el,()=>doSchedule(el.dataset.id,new Date(+el.dataset.okat).toISOString().replace(/\.\d+Z$/,"Z")));
+  if(el=q("#okGo"))return act(el,async()=>{const at=$("#okAt").value;if(!at)throw new Error("выбери дату");if(new Date(at)<new Date())throw new Error("время уже прошло");await doSchedule(el.dataset.id,new Date(at).toISOString().replace(/\.\d+Z$/,"Z"))});
   if(el=q("[data-idea]")){if(!needTok())return;const id=el.dataset.idea,to=el.dataset.to;return act(el,async()=>{
       await editJSON("reports/ideas/latest.json",d=>{(d.ideas||[]).forEach(i=>{if(i.id===id)i.status=to})},`ideas: ${id} → ${to} (Денис, с сайта)`);
       D.ideas.ideas.forEach(i=>{if(i.id===id)i.status=to});render();toast(to==="approved"?"Одобрено — агенты возьмут в работу ✓":"Сохранено ✓")})}

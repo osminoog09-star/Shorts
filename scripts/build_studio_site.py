@@ -222,6 +222,23 @@ def main():
     ypp = load("reports/youtube/ypp.json")
     if ypp and live:
         ypp["live_subs"] = live["subs"]
+    # Занятые слоты для режима «Авто»: publish_at из манифестов очереди (будущие).
+    taken = []
+    for mf in sorted((ROOT / "publishing" / "queue").glob("*.json")):
+        m = load(str(mf.relative_to(ROOT)), {}) or {}
+        if m.get("publish_at"):
+            taken.append({"id": mf.stem, "at": m["publish_at"], "kind": (m.get("metadata") or {}).get("type")})
+    kinds = {mf.stem: ((load(str(mf.relative_to(ROOT)), {}) or {}).get("metadata") or {}).get("type") for mf in (ROOT / "publishing" / "queue").glob("*.json")}
+    merged = {}
+    for r in review:
+        m = merged.setdefault(r["id"], {})
+        for k, v in r.items():
+            if v and (k not in m or not m[k] or (k == "title" and m[k] == r["id"])):
+                m[k] = v
+    review = list(merged.values())
+    for r in review:
+        r["kind"] = kinds.get(r["id"]) or "short"
+        r["manifest"] = r.get("manifest") or (f"publishing/queue/{r['id']}.json" if r["id"] in kinds else None)
     ch = latest.get("channel_statistics", {}) or {}
     daily = latest.get("recent_daily_views", []) or []
     out = {
@@ -236,7 +253,7 @@ def main():
         "learn": {"works": section(learn_md, "Работает"), "fails": section(learn_md, "Не работает"),
                   "hyp": section(learn_md, "Гипотезы на проверку")},
         "weekly": {"name": weekly[-1].stem if weekly else None, "text": weekly_txt},
-        "ideas": ideas, "events": events, "app": app, "ypp": ypp, "live": live, "comments": comments, "comments_status": (pulse.get("status") or {}).get("comments"), "experiments": exp,
+        "ideas": ideas, "events": events, "app": app, "ypp": ypp, "best_times": load("publishing/best_times.json"), "taken": taken, "live": live, "comments": comments, "comments_status": (pulse.get("status") or {}).get("comments"), "experiments": exp,
         "playlists": {k: v.get("id") for k, v in playlists.items() if isinstance(v, dict)},
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
