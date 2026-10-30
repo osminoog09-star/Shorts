@@ -8,7 +8,11 @@ on:
       job:
         description: "Job basename without .json, e.g. samsung_teaser"
         required: true
-        default: "samsung_teaser"
+        default: "voice_check"
+      engine:
+        description: "auto = Azure если есть ключ, иначе edge; azure | edge — принудительно"
+        required: false
+        default: "auto"
 permissions:
   contents: write
 concurrency:
@@ -25,10 +29,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install -q "edge-tts>=7,<8"
+      - run: pip install -q "edge-tts>=7,<8" "azure-cognitiveservices-speech>=1.40,<2"
       - name: Synthesize selected job only
         shell: bash
         env:
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+          TTS_ENGINE: ${{ inputs.engine || 'auto' }}
           SELECTED_JOB: ${{ inputs.job }}
           EVENT_NAME: ${{ github.event_name }}
           BEFORE_SHA: ${{ github.event.before }}

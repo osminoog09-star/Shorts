@@ -33,3 +33,12 @@ for p in (root / "jobs" / "tts").glob("*.json"):
     checked += 1
 assert checked > 0, "No job fixtures found"
 print(f"PASS: Dima/Sveta policy and {checked} existing TTS jobs")
+
+# Azure backend (30.10.2026): offline checks — SSML escaping and engine choice without secrets.
+import os
+import tts_azure
+s = tts_azure.build_ssml("Шутка <тег> & всё", DIMA, "+10%", "+0Hz")
+assert "&lt;тег&gt; &amp;" in s and 'name="ru-RU-DmitryNeural"' in s and 'rate="+10%"' in s
+os.environ.pop("AZURE_SPEECH_KEY", None)
+assert not tts_azure.available()
+print("PASS: Azure SSML builder and engine fallback")

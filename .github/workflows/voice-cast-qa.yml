@@ -4,6 +4,7 @@ on:
     paths:
       - "scripts/voice_cast.py"
       - "scripts/tts_job.py"
+      - "scripts/tts_azure.py"
       - "scripts/qa/test_voice_cast.py"
       - "jobs/tts/**"
       - ".github/workflows/voice-cast-qa.yml"
@@ -11,6 +12,7 @@ on:
     paths:
       - "scripts/voice_cast.py"
       - "scripts/tts_job.py"
+      - "scripts/tts_azure.py"
       - "scripts/qa/test_voice_cast.py"
       - "jobs/tts/**"
       - ".github/workflows/voice-cast-qa.yml"
@@ -25,6 +27,6 @@ jobs:
         with:
           python-version: "3.11"
       - name: Syntax check
-        run: python -m py_compile scripts/voice_cast.py scripts/tts_job.py scripts/qa/test_voice_cast.py
+        run: python -m py_compile scripts/voice_cast.py scripts/tts_job.py scripts/tts_azure.py scripts/qa/test_voice_cast.py
       - name: Validate cast against production jobs
         run: python scripts/qa/test_voice_cast.py

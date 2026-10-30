@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Озвучка через edge-tts (запускается в GitHub Actions, где есть интернет).
+"""Озвучка Димы/Светы (запускается в GitHub Actions, где есть интернет).
+
+Движок: Azure Speech, если заданы AZURE_SPEECH_KEY и AZURE_SPEECH_REGION (решение 30.10.2026),
+иначе edge-tts. Голос один и тот же; движок выбирается на весь джоб, внутри ролика не смешивается.
+TTS_ENGINE=azure|edge принудительно (azure без ключа -> ошибка, без подмены).
+У строки может быть поле "ssml" (разметка внутри <voice>: <break time="300ms"/>, <emphasis>) — только для Azure.
 
 Вход: jobs/tts/<name>.json
   {"voice": "ru-RU-DmitryNeural", "rate": "+0%", "pitch": "+0Hz",
@@ -8,15 +13,17 @@
 """
 import asyncio
 import json
+import os
 import sys
 from pathlib import Path
 
-import edge_tts
 from voice_cast import APPROVED, validate_job
+import tts_azure
 
 
 async def one(text, voice, rate, pitch, mp3, meta, boundary="WordBoundary"):
     # boundary влияет только на метаданные таймингов, голос тот же (не fallback голоса)
+    import edge_tts  # noqa: PLC0415
     try:
         com = edge_tts.Communicate(text, voice, rate=rate, pitch=pitch, boundary=boundary)
     except TypeError:
@@ -37,19 +44,36 @@ async def one(text, voice, rate, pitch, mp3, meta, boundary="WordBoundary"):
                                 "source_file": str(mp3)}, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
+def pick_engine() -> str:
+    want = os.environ.get("TTS_ENGINE", "auto").lower()
+    if want == "azure":
+        if not tts_azure.available():
+            raise RuntimeError("NO-GO: TTS_ENGINE=azure, but AZURE_SPEECH_KEY/REGION are not set")
+        return tts_azure.ENGINE
+    if want == "edge":
+        return "edge-tts"
+    return tts_azure.ENGINE if tts_azure.available() else "edge-tts"
+
+
 async def main(job_path: str):
     job = json.loads(Path(job_path).read_text(encoding="utf-8"))
     lines = validate_job(job)  # fail BEFORE writing any new audio
+    ssml_by_id = {ln.get("id"): ln.get("ssml") for ln in job["lines"]}
+    engine = pick_engine()
+    print("engine", engine, flush=True)
     out = Path("media/tts") / Path(job_path).stem
     out.mkdir(parents=True, exist_ok=True)
     for ident, text, voice, rate, pitch in lines:
+        ssml = ssml_by_id.get(ident)
+        if ssml and engine != tts_azure.ENGINE:
+            raise RuntimeError(f"NO-GO: line {ident} needs SSML, which only Azure supports")
         mp3 = out / f"{ident}.mp3"
         meta = out / f"{ident}.json"
         if mp3.is_file() and mp3.stat().st_size >= 1024 and meta.is_file():
             try:
                 old = json.loads(meta.read_text(encoding="utf-8"))
                 if (old.get("text") == text and old.get("voice_id") == voice
-                        and old.get("engine") == "edge-tts" and old.get("rate") == rate
+                        and old.get("engine") == engine and old.get("ssml") == ssml_by_id.get(ident) and old.get("rate") == rate
                         and old.get("pitch") == pitch):
                     print("cached", ident, voice, flush=True)
                     continue
@@ -59,8 +83,12 @@ async def main(job_path: str):
             try:
                 mp3.unlink(missing_ok=True)
                 meta.unlink(missing_ok=True)
-                mode = "WordBoundary" if attempt < 2 else "SentenceBoundary"
-                await asyncio.wait_for(one(text, voice, rate, pitch, mp3, meta, mode), 90)
+                if engine == tts_azure.ENGINE:
+                    await asyncio.wait_for(asyncio.to_thread(
+                        tts_azure.synth, text, voice, rate, pitch, mp3, meta, APPROVED[voice], ssml), 120)
+                else:
+                    mode = "WordBoundary" if attempt < 2 else "SentenceBoundary"
+                    await asyncio.wait_for(one(text, voice, rate, pitch, mp3, meta, mode), 90)
                 print("ok", ident, voice, flush=True)
                 break
             except Exception as ex:  # noqa: BLE001
