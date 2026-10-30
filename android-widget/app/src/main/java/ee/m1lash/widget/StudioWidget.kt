@@ -76,6 +76,25 @@ class StudioWidget : AppWidgetProvider() {
             }
         }
         if (daily != null && daily.length() > 1) v.setImageViewBitmap(R.id.chart, chart(daily))
+        val live = d.optJSONObject("live")
+        if (live != null) {
+            val r = live.optJSONArray("recent")?.optJSONObject(0)
+            val h24 = live.optLong("views_24h")
+            v.setTextViewText(R.id.fresh, (if (r != null) "🆕 ${r.optString("title").replace(Regex("\\s*#\\S+"), "")} — ${nf.format(r.optLong("views"))} · +${nf.format(r.optLong("views_1h"))} за час\n" else "") +
+                "⏱ за 24 ч: +${nf.format(h24)} просм. · +${live.optLong("subs_24h")} подп.")
+        } else v.setTextViewText(R.id.fresh, "")
+        val y = d.optJSONObject("ypp")
+        val base = y?.optJSONArray("tiers")?.optJSONObject(0)
+        if (base != null) {
+            val subsNow = if (y.has("live_subs")) y.optLong("live_subs") else base.getJSONObject("subs").optLong("current")
+            val sh = base.getJSONArray("paths").getJSONObject(0)
+            val pSubs = subsNow * 1000 / 500
+            val pViews = (sh.optDouble("current") * 1000 / sh.optDouble("target")).toLong()
+            val eta = base.optInt("eta_days", -1)
+            v.setTextViewText(R.id.ypp, "💰 Монетизация: $subsNow/500 подп. · ${nf.format(sh.optLong("current"))}/3 млн Shorts" +
+                (if (!base.isNull("eta_days") && eta > 0) " · ≈$eta дн" else ""))
+            v.setProgressBar(R.id.ypp_bar, 1000, minOf(pSubs, pViews).toInt().coerceIn(0, 1000).coerceAtLeast(8), false)
+        }
         val ev = d.optJSONObject("events")
         val top = ev?.optJSONObject("top_recent")
         v.setTextViewText(R.id.top, if (top != null) "🏆 ${top.optString("title")} — ${nf.format(top.optLong("views"))}" else "")

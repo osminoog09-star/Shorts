@@ -166,12 +166,30 @@ def main():
     vc = re.search(r"versionCode = (\d+)", gradle)
     app = {"version": int(vc.group(1)) if vc else 0,
            "apk": "https://github.com/osminoog09-star/Shorts/releases/download/widget/m1lash-widget.apk"}
+    pulse = load("reports/youtube/pulse.json", {}) or {}
+    snaps = pulse.get("snapshots") or []
+    live = None
+    if snaps:
+        cur = snaps[-1]
+        def ago(h):
+            return snaps[-1 - h] if len(snaps) > h else snaps[0]
+        rec = (pulse.get("recent") or [])[:3]
+        live = {"t": cur["t"], "subs": cur["subs"], "views": cur["views"],
+                "views_1h": cur["views"] - ago(1)["views"], "views_24h": cur["views"] - ago(24)["views"],
+                "subs_24h": cur["subs"] - ago(24)["subs"],
+                "recent": [{**r, "views": cur["videos"].get(r["id"], 0),
+                            "views_1h": cur["videos"].get(r["id"], 0) - ago(1)["videos"].get(r["id"], cur["videos"].get(r["id"], 0))}
+                           for r in rec]}
+    ypp = load("reports/youtube/ypp.json")
+    if ypp and live:
+        ypp["live_subs"] = live["subs"]
     ch = latest.get("channel_statistics", {}) or {}
     daily = latest.get("recent_daily_views", []) or []
     out = {
         "built": dt.datetime.now(TZ).strftime("%d.%m.%Y %H:%M"),
         "analytics_as_of": latest.get("last_observed_view_day"),
-        "channel": {"subs": int(ch.get("subscriberCount", 0) or 0), "views": int(ch.get("viewCount", 0) or 0),
+        "channel": {"subs": live["subs"] if live else int(ch.get("subscriberCount", 0) or 0),
+                    "views": live["views"] if live else int(ch.get("viewCount", 0) or 0),
                     "videos": int(ch.get("videoCount", 0) or 0)},
         "daily": daily, "formats": formats,
         "videos": sorted(videos, key=lambda v: v["published"] or "", reverse=True),
@@ -179,7 +197,7 @@ def main():
         "learn": {"works": section(learn_md, "Работает"), "fails": section(learn_md, "Не работает"),
                   "hyp": section(learn_md, "Гипотезы на проверку")},
         "weekly": {"name": weekly[-1].stem if weekly else None, "text": weekly_txt},
-        "ideas": ideas, "events": events, "app": app, "ypp": load("reports/youtube/ypp.json"),
+        "ideas": ideas, "events": events, "app": app, "ypp": ypp, "live": live,
         "playlists": {k: v.get("id") for k, v in playlists.items() if isinstance(v, dict)},
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)

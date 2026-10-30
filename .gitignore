@@ -8,3 +8,4 @@ site/studio/data.json
 android-widget/.gradle/
 android-widget/build/
 android-widget/app/build/
+reports/youtube/pulse.json

@@ -1,7 +1,7 @@
 name: Motion Studio · GitHub Pages
 on:
   workflow_run:
-    workflows: ['YouTube Analytics daily', 'YouTube Analytics', 'YouTube · daily analytics']
+    workflows: ['YouTube Analytics daily', 'YouTube Analytics', 'YouTube · daily analytics', 'YouTube · hourly pulse']
     types: [completed]
   push:
     branches: [main]
@@ -33,6 +33,7 @@ jobs:
           mkdir -p _site
           cp motion-studio/index.html motion-studio/privacy.html motion-studio/studio-v2.js motion-studio/studio-v2.css motion-studio/renderer.html motion-studio/app.js motion-studio/style.css motion-studio/world.json _site/
           cp -r motion-studio/data _site/data
+          git fetch -q origin pulse-data && git show origin/pulse-data:pulse.json > reports/youtube/pulse.json || true
           python3 scripts/build_studio_site.py
           mkdir -p _site/studio && cp site/studio/index.html site/studio/data.json site/studio/widget.html site/studio/manifest.webmanifest site/studio/icon-192.png site/studio/icon-512.png _site/studio/
           touch _site/.nojekyll
