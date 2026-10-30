@@ -47,20 +47,39 @@ def get_images():
   with Image.open(dst) as im:
    assert min(im.size)>=750, f'{name}: insufficient resolution {im.size}'
   print('PHOTO OK',name,dst.stat().st_size,credit)
-async def get_voice():
+async def synth_one(text, mp3, attempts=6):
  import edge_tts
+ for attempt in range(1,attempts+1):
+  try:
+   await edge_tts.Communicate(text,VOICE,rate=RATE).save(str(mp3))
+   if mp3.stat().st_size<1000: raise RuntimeError('Empty speech')
+   return
+  except Exception as exc:
+   mp3.unlink(missing_ok=True)
+   if attempt==attempts: raise RuntimeError(f'Dmitry TTS failed after {attempts}: {exc}') from exc
+   await asyncio.sleep(2.0+attempt*.65)
+async def get_voice():
+ import re
  for i,(_,sentence) in enumerate(LINES):
   mp3=PUBLIC/f'dima_{i:02}.mp3'
   if not (mp3.exists() and mp3.stat().st_size>1000):
-   for attempt in range(1,13):
-    try:
-     await edge_tts.Communicate(sentence,VOICE,rate=RATE).save(str(mp3))
-     if mp3.stat().st_size<1000: raise RuntimeError('Empty speech')
-     break
-    except Exception as exc:
-     mp3.unlink(missing_ok=True)
-     if attempt==12: raise RuntimeError(f'Dmitry TTS failed segment {i}: {exc}') from exc
-     await asyncio.sleep(1.4+attempt*.3)
+   try:
+    await synth_one(sentence,mp3,attempts=5)
+   except Exception:
+    # Same verified Dmitry voice, same rate, shorter speech chunks; NO voice fallback.
+    parts=re.split(r'(?<=[.!?])\\s+',sentence)
+    if len(parts)<2:
+     words=sentence.split()
+     parts=[' '.join(words[:len(words)//2]),' '.join(words[len(words)//2:])]
+    files=[]
+    for j,part in enumerate(parts):
+     dest=PUBLIC/f'dima_{i:02}_part{j}.mp3'
+     await synth_one(part,dest,attempts=12)
+     files.append(dest)
+    cmd=['ffmpeg','-y','-v','error']
+    for f in files: cmd+=['-i',str(f)]
+    cmd+=['-filter_complex',''.join(f'[{j}:a]' for j in range(len(files)))+f'concat=n={len(files)}:v=0:a=1[out]','-map','[out]','-c:a','libmp3lame','-q:a','2',str(mp3)]
+    run(*cmd)
   run('ffmpeg','-y','-v','error','-i',str(mp3),'-ar',str(SR),'-ac','1','-c:a','pcm_s16le',str(PUBLIC/f'dima_{i:02}.wav'))
 def join_audio():
  chunks=[]; timeline=[]; pos=0
