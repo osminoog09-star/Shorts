@@ -521,6 +521,7 @@ function officeEvening(t) {
   A.win.paneN.material.opacity = isEve ? 1 : 0;
   A.key.intensity = isEve ? 1.3 : 2.6; A.key.color.set(isEve ? '#c7d2ff' : '#fff1de');
   A.fill.intensity = (isEve ? 0.45 : 0.7) * 1.75;
+  A.front.intensity = isEve ? 0.7 : 1.1;
   A.lamp.intensity = isEve ? 2.2 : 0.0;
   // часы: «жду час» — стрелки крутятся
   const spin = prog(t, wd('d06', 0), 0.9);

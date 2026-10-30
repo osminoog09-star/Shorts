@@ -101,8 +101,9 @@
 
     const fill = new T.HemisphereLight('#fff6ec', '#7b6a5e', 0.7); g.add(fill);
     const key = keyLight(g, [0, 0.8, 0], 3.2, '#fff1de', 2.6, [2.4, 4.5, 3.6]);
+    const front = rimLight(g, '#fff4ea', 1.1, [0.3, 1.6, 4], [0, 1.2, -0.6]);
     rimLight(g, '#9fd0ff', 1.3, [-3, 3, -3]);
-    return { g, door: hinge, clock: { hourH, minH }, win: { pane, paneN }, lamp: bulbL, phone, pscr, lap, glowScreen, fill, key, mug };
+    return { g, door: hinge, clock: { hourH, minH }, win: { pane, paneN }, lamp: bulbL, phone, pscr, lap, glowScreen, fill, key, front, mug };
   };
 
   // ================= B: переговорка =================
