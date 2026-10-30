@@ -1,0 +1,53 @@
+{
+  "_readme": "Очередь паспортов публикации для страницы «Студия M1lash» (AGENTS.md, раздел 6). Каждый агент добавляет сюда свой готовый ролик и пишет рядом PUBLISH.md (разделы: ## Название, ## Описание, ## Теги, ## Закреп, ## Настройки). status: draft | review | ready | published. slot: \"2026-11-01T10:00\" по Таллину или null. Страница пересобирается: python3 publishing/studio/build.py",
+  "paused": true,
+  "items": [
+    {
+      "id": "ai_blackmail",
+      "kind": "short",
+      "author": "Claude",
+      "status": "ready",
+      "slot": null,
+      "style": "S6-D25",
+      "mp4": "videos/ai_blackmail_ru.mp4",
+      "publish_md": "shorts/ai_blackmail/PUBLISH.md",
+      "note": "Часть 1 из 2. Голос Дима, музыка Kevin MacLeod CC BY."
+    },
+    {
+      "id": "pixel_alarm",
+      "kind": "short",
+      "author": "Claude",
+      "status": "review",
+      "slot": null,
+      "style": "S5-D2",
+      "mp4": "videos/pixel_alarm_ru.mp4",
+      "publish_md": null,
+      "title": "ИИ-будильник",
+      "note": "Ждёт твоего просмотра. Без ведущего в углу (решение 30.10). Паспорт допишу после «ок»."
+    },
+    {
+      "id": "news_week44",
+      "kind": "long",
+      "author": "Claude",
+      "status": "ready",
+      "slot": null,
+      "style": "3D",
+      "mp4": "https://github.com/osminoog09-star/Shorts/releases/download/long-news-week44/news-week44.mp4",
+      "thumb": "longform/news-week44/thumb.png",
+      "publish_md": "longform/news-week44/PUBLISH.md",
+      "note": "24:02, гейт 21:00 пройден. Дима и Света."
+    },
+    {
+      "id": "ai_news_2026_10_28",
+      "kind": "short",
+      "author": "Codex",
+      "status": "draft",
+      "slot": null,
+      "style": "S1-D25",
+      "mp4": "videos/m1lash_ai_news_2026_10_28_ru.mp4",
+      "publish_md": null,
+      "title": "ИИ совершил научный прорыв? $3 МЛРД для Meta и опасный сбой!",
+      "note": "Не публиковать: озвучен Piper, а не Димой, финал с Liam. Нужна переозвучка через Azure."
+    }
+  ]
+}

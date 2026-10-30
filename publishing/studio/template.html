@@ -1,0 +1,210 @@
+<title>Студия M1lash</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Монтажный стол канала: неделя слотов сверху, ниже паспорта роликов — карточка = один ролик, всё копируется одним нажатием. */
+:root{
+  --bg:#f3f2f7; --panel:#ffffff; --ink:#17161f; --muted:#666478; --line:#e1dfea;
+  --blue:#2f7cf6; --pink:#e5408e; --soft:#ecebf4;
+  --ok:#1f8f5a; --okbg:#e2f4ea; --warn:#a86a00; --warnbg:#fbefd6; --bad:#c23a3a; --badbg:#fbe3e3; --info:#2f63c9; --infobg:#e3ecfb;
+  --f-display:"Unbounded","Golos Text",system-ui,sans-serif;
+  --f-body:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111019; --panel:#1a1924; --ink:#efeef6; --muted:#9c9ab0; --line:#2c2a3a; --soft:#22212e;
+  --blue:#5c9bff; --pink:#ff5fa8;
+  --ok:#5fd39a; --okbg:#173426; --warn:#f0b54a; --warnbg:#3a2d12; --bad:#ff7b7b; --badbg:#3b1a1d; --info:#86aefc; --infobg:#1b2a47;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111019; --panel:#1a1924; --ink:#efeef6; --muted:#9c9ab0; --line:#2c2a3a; --soft:#22212e;
+  --blue:#5c9bff; --pink:#ff5fa8;
+  --ok:#5fd39a; --okbg:#173426; --warn:#f0b54a; --warnbg:#3a2d12; --bad:#ff7b7b; --badbg:#3b1a1d; --info:#86aefc; --infobg:#1b2a47;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-body)}
+.wrap{max-width:980px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:28px}
+header{display:grid;gap:10px}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:40px;height:40px;border-radius:10px;padding:3px;background:linear-gradient(135deg,var(--blue),var(--pink))}
+.mark span{display:grid;place-items:center;width:100%;height:100%;border-radius:8px;background:var(--panel);font:700 15px var(--f-display);color:var(--ink)}
+h1{font:700 clamp(22px,5vw,30px)/1.1 var(--f-display);margin:0;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0;font-size:14px}
+.pause{display:flex;gap:10px;align-items:flex-start;background:var(--warnbg);color:var(--warn);border-radius:12px;padding:12px 14px;font-weight:500}
+.pause b{font-family:var(--f-display);font-size:12px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;padding-top:2px}
+h2{font:700 13px var(--f-display);letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px;color:var(--muted)}
+/* неделя */
+.weekbox{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+table.week{border-collapse:collapse;width:100%;min-width:520px;font-size:13px}
+.week th,.week td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.week tr:last-child td{border-bottom:0}
+.week thead th{font:600 12px var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.week td.day{font-weight:600;white-space:nowrap;width:1%}
+.week td.day small{display:block;color:var(--muted);font:400 12px var(--f-mono)}
+.week tr.today td.day{color:var(--pink)}
+.cell{display:grid;gap:2px}
+.cell .who{font:400 11px var(--f-mono);color:var(--muted)}
+.cell .what{font-weight:500}
+.cell.empty .what{color:var(--muted);font-weight:400}
+.cell.none{color:var(--line)}
+/* фильтры */
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tabs button{font:500 13px var(--f-body);border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tabs button:focus-visible,.copy:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.tabs .n{font-family:var(--f-mono);opacity:.7;margin-left:4px}
+/* паспорт */
+.list{display:grid;gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;display:grid;grid-template-columns:150px minmax(0,1fr);overflow:hidden}
+.card.long{grid-template-columns:240px minmax(0,1fr)}
+.thumb{background:var(--soft);display:grid;place-items:center;min-height:100%;position:relative}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb .ph{font:600 12px var(--f-mono);color:var(--muted);padding:12px;text-align:center}
+.body{padding:14px 16px;display:grid;gap:12px;min-width:0}
+.top{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{font:600 11px var(--f-mono);border-radius:6px;padding:3px 7px;background:var(--soft);color:var(--muted);letter-spacing:.02em}
+.st-ready{background:var(--okbg);color:var(--ok)} .st-review{background:var(--infobg);color:var(--info)}
+.st-draft{background:var(--badbg);color:var(--bad)} .st-published{background:var(--soft);color:var(--muted)}
+.title{font:600 17px/1.3 var(--f-body);margin:0;text-wrap:balance}
+.note{font-size:13px;color:var(--muted);margin:0}
+.st-draft-note{color:var(--bad)}
+.field{display:grid;gap:4px;min-width:0}
+.fhead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.flabel{font:600 11px var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.copy{font:600 12px var(--f-body);border:1px solid var(--line);background:var(--soft);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer}
+.copy.done{background:var(--okbg);color:var(--ok);border-color:transparent}
+.val{margin:0;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere;background:var(--soft);border-radius:10px;padding:8px 10px}
+.val.clip{max-height:9.5em;overflow:auto}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:600 13px var(--f-body);text-decoration:none;border-radius:10px;padding:8px 12px;background:var(--ink);color:var(--bg)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.remind{font-size:13px;border-top:1px dashed var(--line);padding-top:10px;color:var(--muted);margin:0}
+.empty-list{color:var(--muted);background:var(--panel);border:1px dashed var(--line);border-radius:14px;padding:18px}
+footer{color:var(--muted);font-size:12px;font-family:var(--f-mono)}
+@media (max-width:560px){.card,.card.long{grid-template-columns:1fr}.thumb{max-height:220px}.card:not(.long) .thumb img{object-fit:contain;max-height:220px;background:var(--soft)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="brand"><div class="mark"><span>M1</span></div><div><h1>Студия M1lash</h1><p class="sub">Готовые ролики для ручной заливки в YouTube Studio</p></div></div>
+    <div class="pause" id="pause" hidden><b>Пауза</b><span>Производство остановлено, пока настраиваем студию. Новые ролики в слоты не ставятся.</span></div>
+  </header>
+
+  <section>
+    <h2>Неделя</h2>
+    <div class="weekbox"><table class="week" id="week"><thead><tr><th>День</th><th>10:00</th><th>16:00</th><th>19:00</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section>
+    <h2>Паспорта роликов</h2>
+    <div class="tabs" id="tabs" role="toolbar" aria-label="Фильтр по статусу"></div>
+    <div class="list" id="list"></div>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+const DATA = /*__DATA__*/[];
+const META = /*__META__*/{};
+const ST = {ready:"Готово к заливке",review:"Ждёт просмотра",draft:"Черновик",published:"Вышло"};
+const KIND = {short:"Shorts",cut:"Нарезка",long:"Длинное",movie:"Кино-Shorts"};
+// сетка из AGENTS.md, раздел 5; индекс = getDay() (0 — вс)
+const GRID = {
+  1:[["скетч","Claude"],["нарезка 2","Claude"],null],
+  2:[["новости ИИ","Codex"],null,null],
+  3:[["скетч","Codex"],null,["длинное","Codex"]],
+  4:[["новости ИИ","Claude"],["нарезка 1","Codex"],null],
+  5:[["скетч","Claude"],["нарезка 2","Codex"],null],
+  6:[["скетч","Codex"],null,["длинное","Claude"]],
+  0:[["Топ-5 недели","Claude"],["нарезка 1","Claude"],null]
+};
+const TIMES = ["10:00","16:00","19:00"];
+const DAYS = ["Вс","Пн","Вт","Ср","Чт","Пт","Сб"];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function tallinnNow(){
+  const p = new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Tallinn",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
+  return new Date(p + "T12:00:00");
+}
+function ymd(d){return d.toISOString().slice(0,10)}
+
+function renderWeek(){
+  const tb = document.querySelector("#week tbody");
+  const start = tallinnNow();
+  const rows = [];
+  for(let i=0;i<7;i++){
+    const d = new Date(start); d.setDate(start.getDate()+i);
+    const key = ymd(d), dow = d.getDay();
+    const cells = TIMES.map((t,j) => {
+      const plan = GRID[dow][j];
+      const hit = DATA.find(x => x.slot && x.slot.startsWith(key+"T"+t));
+      if(hit) return `<td><div class="cell"><span class="what">${esc(hit.title||hit.id)}</span><span class="chip st-${hit.status}">${ST[hit.status]||hit.status}</span></div></td>`;
+      if(!plan) return `<td class="cell none" aria-label="нет слота">·</td>`;
+      return `<td><div class="cell empty"><span class="what">${esc(plan[0])}</span><span class="who">${esc(plan[1])} · ${META.paused?"пауза":"свободно"}</span></div></td>`;
+    }).join("");
+    rows.push(`<tr class="${i===0?"today":""}"><td class="day">${DAYS[dow]}<small>${d.getDate().toString().padStart(2,"0")}.${(d.getMonth()+1).toString().padStart(2,"0")}</small></td>${cells}</tr>`);
+  }
+  tb.innerHTML = rows.join("");
+}
+
+let filter = "all";
+try{ filter = localStorage.getItem("m1-filter") || "all"; }catch(e){}
+
+function renderTabs(){
+  const order = ["all","ready","review","draft","published"];
+  const count = s => s==="all" ? DATA.length : DATA.filter(x=>x.status===s).length;
+  document.getElementById("tabs").innerHTML = order.map(s =>
+    `<button type="button" data-f="${s}" aria-pressed="${filter===s}">${s==="all"?"Все":ST[s]}<span class="n">${count(s)}</span></button>`).join("");
+}
+
+function field(label, text, cls){
+  if(!text) return "";
+  return `<div class="field"><div class="fhead"><span class="flabel">${label}</span><button class="copy" type="button" data-copy="${esc(text)}">Копировать</button></div><p class="val ${cls||""}">${esc(text)}</p></div>`;
+}
+
+function renderList(){
+  const items = DATA.filter(x => filter==="all" || x.status===filter);
+  const el = document.getElementById("list");
+  if(!items.length){ el.innerHTML = `<p class="empty-list">Здесь пока пусто. Готовые ролики появятся, когда агенты добавят их в <code>publishing/queue.json</code>.</p>`; return; }
+  el.innerHTML = items.map(x => {
+    const slot = x.slot ? x.slot.replace("T"," ") : "слот не назначен";
+    const thumb = x.thumb ? `<img src="${x.thumb}" alt="Кадр: ${esc(x.title)}">` : `<span class="ph">${x.kind==="long"?"16:9":"9:16"}<br>нет превью</span>`;
+    const remind = x.kind==="long"
+      ? "В YouTube Studio: конечная заставка и подсказки на Shorts канала; отметка «синтетический контент»."
+      : (x.kind==="cut" ? "В YouTube Studio: «Связанное видео» → длинное; ссылка на длинное в первом комментарии." : "В YouTube Studio: «Не для детей», отметка «синтетический контент».");
+    return `<article class="card ${x.kind==="long"?"long":""}">
+      <div class="thumb">${thumb}</div>
+      <div class="body">
+        <div class="top"><span class="chip st-${x.status}">${ST[x.status]||x.status}</span><span class="chip">${KIND[x.kind]||x.kind}</span><span class="chip">${esc(x.author)}</span>${x.style?`<span class="chip">${esc(x.style)}</span>`:""}<span class="chip">${esc(slot)}</span></div>
+        <h3 class="title">${esc(x.title||x.id)}</h3>
+        ${x.note?`<p class="note ${x.status==="draft"?"st-draft-note":""}">${esc(x.note)}</p>`:""}
+        ${field("Название", x.title)}
+        ${field("Описание", x.description, "clip")}
+        ${field("Теги", x.tags)}
+        ${field("Закреп", x.pinned)}
+        <div class="actions">${x.mp4?`<a class="btn" href="${esc(x.mp4)}" target="_blank" rel="noopener">Открыть MP4</a>`:""}${x.youtube_id?`<a class="btn ghost" href="https://youtu.be/${esc(x.youtube_id)}" target="_blank" rel="noopener">На YouTube</a>`:""}</div>
+        ${x.status==="ready"?`<p class="remind">${remind}</p>`:""}
+      </div></article>`;
+  }).join("");
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-f]");
+  if(t){ filter = t.dataset.f; try{localStorage.setItem("m1-filter",filter)}catch(_){} renderTabs(); renderList(); return; }
+  const c = e.target.closest(".copy");
+  if(c){
+    const text = c.dataset.copy;
+    const ok = () => { c.textContent = "Скопировано"; c.classList.add("done"); setTimeout(()=>{c.textContent="Копировать";c.classList.remove("done")},1600); };
+    const fallback = () => { const p = c.closest(".field").querySelector(".val"); const r = document.createRange(); r.selectNodeContents(p); const s = getSelection(); s.removeAllRanges(); s.addRange(r); c.textContent = "Выделено — скопируй"; };
+    try{ navigator.clipboard.writeText(text).then(ok, fallback); }catch(_){ fallback(); }
+  }
+});
+
+document.getElementById("pause").hidden = !META.paused;
+document.getElementById("foot").textContent = "Собрано " + (META.built || "") + " · источник: publishing/queue.json";
+renderWeek(); renderTabs(); renderList();
+</script>

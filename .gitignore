@@ -3,3 +3,4 @@ studio/node_modules
 studio/voices
 studio/out
 __pycache__/
+publishing/studio/dist/
