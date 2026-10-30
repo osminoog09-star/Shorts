@@ -54,6 +54,17 @@ jobs:
                   output=Path(spec.get('output',''))
                   if not script.as_posix().startswith('shorts/') or script.suffix!='.py' or not script.is_file():raise ValueError('Invalid approved render script')
                   if not output.as_posix().startswith('videos/') or output.suffix!='.mp4':raise ValueError('Invalid output path')
+                  # If source speech was not committed by the TTS workflow yet,
+                  # synthesize the same whitelisted Dima/Sveta job locally in CI.
+                  tts_job=Path(spec.get('tts_job',''))
+                  if tts_job.as_posix().startswith('jobs/tts/') and tts_job.suffix=='.json' and tts_job.is_file():
+                      stem=tts_job.stem
+                      voice_dir=Path('media/tts')/stem
+                      ref=json.loads(tts_job.read_text(encoding='utf-8'))
+                      missing=any(not (voice_dir/(l['id']+'.mp3')).is_file() for l in ref['lines'])
+                      if missing:
+                          print('Approved TTS assets missing; requesting via existing validated script',flush=True)
+                          subprocess.run(['python','scripts/tts_job.py',str(tts_job)],check=True)
                   subprocess.run(['python',str(script)],check=True)
                   if not output.is_file() or output.stat().st_size<200000:raise RuntimeError('Python render did not produce MP4')
                   Path('motion-output').mkdir(exist_ok=True)
