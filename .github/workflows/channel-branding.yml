@@ -1,0 +1,38 @@
+name: M1lash channel branding
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'publishing/branding/channel.json'
+      - 'scripts/channel_branding.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: channel-branding
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'requests>=2.32,<3'
+      - name: Apply banner and channel branding to verified M1lash
+        env:
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+        run: python scripts/channel_branding.py
+      - name: Persist non-secret result
+        run: |
+          git config user.name channel-branding-bot
+          git config user.email channel-branding-bot@users.noreply.github.com
+          git add publishing/branding/status.json
+          git diff --cached --quiet && exit 0
+          git commit -m "channel: verify banner and metadata on YouTube"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && exit 0; sleep 5; done
+          exit 1
