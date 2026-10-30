@@ -1,0 +1,37 @@
+{
+ "text": "Ты уверен? Ты выглядишь уставшим.",
+ "words": [
+  {
+   "w": "Ты",
+   "start": 0.1,
+   "end": 0.338083
+  },
+  {
+   "w": "уверен",
+   "start": 0.338083,
+   "end": 0.945208
+  },
+  {
+   "w": "Ты",
+   "start": 1.811916,
+   "end": 2.026207
+  },
+  {
+   "w": "выглядишь",
+   "start": 2.026208,
+   "end": 2.585708
+  },
+  {
+   "w": "уставшим",
+   "start": 2.585708,
+   "end": 3.323791
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+5%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/pixel_alarm_ru/s08.mp3"
+}

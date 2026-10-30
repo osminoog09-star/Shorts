@@ -1,0 +1,27 @@
+{
+ "text": "Лезу в настройки. Кнопка: выключить ИИ. Жму.",
+ "words": [
+  {
+   "w": "Лезу в настройки.",
+   "start": 0.1,
+   "end": 2.1795454
+  },
+  {
+   "w": "Кнопка: выключить ИИ.",
+   "start": 2.1295454,
+   "end": 4.5613635
+  },
+  {
+   "w": "Жму.",
+   "start": 4.5613635,
+   "end": 5.9022725
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+10%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/pixel_alarm_ru/s07.mp3"
+}

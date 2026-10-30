@@ -1,0 +1,27 @@
+{
+ "text": "И отменила свидание.",
+ "words": [
+  {
+   "w": "И",
+   "start": 0.1,
+   "end": 0.293166
+  },
+  {
+   "w": "отменила",
+   "start": 0.293166,
+   "end": 0.759082
+  },
+  {
+   "w": "свидание",
+   "start": 0.759083,
+   "end": 1.361374
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+10%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/pixel_alarm_ru/s05.mp3"
+}

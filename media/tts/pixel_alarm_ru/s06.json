@@ -1,0 +1,37 @@
+{
+ "text": "Ты сегодня не в ресурсе.",
+ "words": [
+  {
+   "w": "Ты",
+   "start": 0.1,
+   "end": 0.266666
+  },
+  {
+   "w": "сегодня",
+   "start": 0.266666,
+   "end": 0.754749
+  },
+  {
+   "w": "не",
+   "start": 0.75475,
+   "end": 0.861875
+  },
+  {
+   "w": "в",
+   "start": 0.861916,
+   "end": 0.885707
+  },
+  {
+   "w": "ресурсе",
+   "start": 0.885708,
+   "end": 1.516666
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+5%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/pixel_alarm_ru/s06.mp3"
+}

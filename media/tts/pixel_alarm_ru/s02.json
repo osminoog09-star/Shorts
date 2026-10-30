@@ -1,0 +1,17 @@
+{
+ "text": "Хватаю телефон, а там сообщение.",
+ "words": [
+  {
+   "w": "Хватаю телефон, а там сообщение.",
+   "start": 0.1,
+   "end": 3.0886362
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+10%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/pixel_alarm_ru/s02.mp3"
+}
