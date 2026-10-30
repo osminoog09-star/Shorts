@@ -9,7 +9,7 @@ on:
         required: true
         default: 'jobs/motion/demo.json'
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: motion-render
   cancel-in-progress: false
@@ -19,10 +19,12 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install 'edge-tts>=7,<8' 'playwright>=1.48,<2' 'requests>=2.32,<3'
+      - run: pip install 'edge-tts>=7,<8' 'playwright>=1.48,<2' 'requests>=2.32,<3' 'pillow>=10,<12' 'numpy>=1.26,<3'
       - run: python -m playwright install --with-deps chromium
       - name: Install MP4 encoder
         run: |
@@ -45,8 +47,50 @@ jobs:
           for job in jobs[:2]:
               p=Path(job)
               if p.parent.as_posix()!='jobs/motion' or p.suffix!='.json' or not p.is_file():raise ValueError('Invalid job path')
-              subprocess.run(['python','motion-studio/automation/render.py',str(p),'motion-output'],check=True)
+              import json
+              spec=json.loads(p.read_text(encoding='utf-8'))
+              if spec.get('renderer')=='python':
+                  script=Path(spec.get('script',''))
+                  output=Path(spec.get('output',''))
+                  if not script.as_posix().startswith('shorts/') or script.suffix!='.py' or not script.is_file():raise ValueError('Invalid approved render script')
+                  if not output.as_posix().startswith('videos/') or output.suffix!='.mp4':raise ValueError('Invalid output path')
+                  subprocess.run(['python',str(script)],check=True)
+                  if not output.is_file() or output.stat().st_size<200000:raise RuntimeError('Python render did not produce MP4')
+                  Path('motion-output').mkdir(exist_ok=True)
+                  import shutil
+                  shutil.copy2(output,Path('motion-output')/output.name)
+              else:
+                  subprocess.run(['python','motion-studio/automation/render.py',str(p),'motion-output'],check=True)
           PY
+      - name: Save new review-only MP4 into repo when explicitly requested
+        env:
+          BEFORE: ${{ github.event.before }}
+          REQUESTED_JOB: ${{ inputs.job }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import subprocess,os,json
+          from pathlib import Path
+          if os.environ.get('REQUESTED_JOB'):
+              jobs=[os.environ['REQUESTED_JOB']]
+          else:
+              jobs=subprocess.check_output(['git','diff','--name-only',os.environ['BEFORE'],'HEAD','--','jobs/motion/']).decode().splitlines()
+          for p in jobs[:2]:
+              path=Path(p)
+              if path.parent.as_posix()!='jobs/motion' or path.suffix!='.json' or not path.is_file():continue
+              cfg=json.loads(path.read_text())
+              if cfg.get('renderer')=='python' and cfg.get('save_review_mp4'):
+                  video=Path(cfg['output'])
+                  if not video.is_file():raise RuntimeError('Expected review MP4 missing')
+                  subprocess.run(['git','add','--',str(video)],check=True)
+          PY
+          if ! git diff --cached --quiet; then
+            git config user.name "m1lash-render-bot"
+            git config user.email "m1lash-render-bot@users.noreply.github.com"
+            git commit -m "video: save private-review MP4"
+            git pull -q --rebase origin main
+            git push origin HEAD:main
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
