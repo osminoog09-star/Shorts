@@ -1,0 +1,6 @@
+{
+  "action": "private_upload_once",
+  "manifest": "publishing/queue/pretend_bot3_gpt.json",
+  "sha256": "53dc3cfa971a4081fcecd0ba7fd2c38e6672417fca729328a5e875b489bc86dd",
+  "private_only": true
+}
