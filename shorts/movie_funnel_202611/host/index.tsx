@@ -1,0 +1,14 @@
+import React from 'react';
+import {Composition,registerRoot,AbsoluteFill,useCurrentFrame} from 'remotion';
+import {HostCorner} from './HostCorner';
+import A from '../audio/end_a.json';
+import B from '../audio/end_b.json';
+import VA from './host_data.json';
+import VB from './host_data_b.json';
+const Ending: React.FC<{take:'a'|'b'}> = ({take}) => { const t=useCurrentFrame()/30;
+ const C=take==='b'?B:A; const reveal=C.words.find(w=>w.w==='Старикам')!.start;
+ const words=C.words.filter(w=>w.start<reveal && t>=w.start && t<w.end+0.14);
+ return <AbsoluteFill><HostCorner data={take==='b'?VB:VA}/>{t<reveal && <div style={{position:'absolute',left:80,right:140,top:650,textAlign:'center',fontFamily:'DejaVu Sans',fontWeight:900,fontSize:72,color:'#fff',textShadow:'0 4px 18px #000'}}>{words.map(w=><span key={w.start} style={{display:'inline-block',marginRight:'.18em',color:w.w==='Подпишись'?'#e9bb55':'white',transform:`translateY(${Math.max(0,1-(t-w.start)/.16)*10}px) scale(${1+Math.max(0,1-(t-w.start)/.16)*.1})`}}>{w.w.toUpperCase()}</span>)}</div>}</AbsoluteFill>;
+};
+const Root=()=> <><Composition id="FunnelEndingA" component={Ending} defaultProps={{take:'a' as const}} width={1080} height={1920} fps={30} durationInFrames={402}/><Composition id="FunnelEndingB" component={Ending} defaultProps={{take:'b' as const}} width={1080} height={1920} fps={30} durationInFrames={395}/></>;
+registerRoot(Root);

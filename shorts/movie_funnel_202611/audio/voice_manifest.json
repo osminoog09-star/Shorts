@@ -1,0 +1,29 @@
+{
+  "tts_success_run": 41116949032,
+  "segments": [
+    {
+      "id": "end_a",
+      "speaker": "dima",
+      "voice_id": "ru-RU-DmitryNeural",
+      "engine": "edge-tts",
+      "rate": "+4%",
+      "source_file": "media/tts/movie_funnel_202611/end_a.mp3",
+      "duration_seconds": 13.392,
+      "lip_sync": "end_a_visemes.json",
+      "spoken_reveal_start_seconds": 11.059625,
+      "qa": "metadata and viseme generation checked; subjective listening pending"
+    },
+    {
+      "id": "end_b",
+      "speaker": "dima",
+      "voice_id": "ru-RU-DmitryNeural",
+      "engine": "edge-tts",
+      "rate": "+4%",
+      "source_file": "media/tts/movie_funnel_202611/end_b.mp3",
+      "duration_seconds": 13.152,
+      "lip_sync": "end_b_visemes.json",
+      "spoken_reveal_start_seconds": 10.807208,
+      "qa": "metadata and viseme generation checked; subjective listening pending"
+    }
+  ]
+}

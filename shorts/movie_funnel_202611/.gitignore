@@ -1,0 +1,5 @@
+node_modules/
+.remotion/
+host/*.mov
+audio/*.mp3
+host/*.png

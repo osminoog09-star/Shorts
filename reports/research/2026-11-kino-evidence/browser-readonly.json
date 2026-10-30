@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-30",
+  "scope": "Read-only YouTube; maximum 40 minutes, 3–4 competitors; no login/reactions/comments/subscriptions/purchases",
+  "ended_early": true,
+  "duration_minutes_measured": null,
+  "opened_video_ids": [
+    "wNmrfRUnPfk",
+    "DUmEBFY5aa8",
+    "g95tFuNadYU",
+    "PedXpNtVbwQ"
+  ],
+  "asr_export_available": [
+    "wNmrfRUnPfk",
+    "g95tFuNadYU",
+    "PedXpNtVbwQ"
+  ],
+  "asr_export_unavailable": [
+    "DUmEBFY5aa8"
+  ],
+  "video_observation": "Observed buffering / currentTime=0 / readyState=0. No actual visual sequence or listening certified.",
+  "all_film_audio_and_picture_ratios": null,
+  "remaining_competitors": "not confirmed",
+  "publication_actions": []
+}

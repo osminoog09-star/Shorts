@@ -1,0 +1,51 @@
+{
+  "status": "BLOCKED_SOURCE",
+  "shorts_final_mp4": false,
+  "youtube_uploads": [],
+  "completed_checks": {
+    "voice_id": "ru-RU-DmitryNeural",
+    "tts_engine": "edge-tts",
+    "tts_run": 41116949032,
+    "rhubarb": "phonetic A+B generated",
+    "sampled_png": "A neutral and CTA visually inspected",
+    "metadata": "two sets of 7 hashtags and 10 tags, no film title in public draft fields"
+  },
+  "alpha_overlays": [
+    {
+      "take": "a",
+      "prores_decode": "PASS",
+      "duration_seconds": 13.4,
+      "codec": "prores",
+      "pixel_format": "yuva444p12le",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "frames": "402",
+      "vp9_alpha_decode": "PASS using libvpx-vp9 + alphaextract"
+    },
+    {
+      "take": "b",
+      "prores_decode": "PASS",
+      "duration_seconds": 13.166667,
+      "codec": "prores",
+      "pixel_format": "yuva444p12le",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "frames": "395",
+      "vp9_alpha_decode": "PASS using libvpx-vp9 + alphaextract"
+    }
+  ],
+  "pending": [
+    "RU film source acquisition",
+    "actual film scene/crop/kinetic-caption timing",
+    "music selection/license",
+    "complete subjective audio/video QA",
+    "mystery release validation with actual finished exports",
+    "private upload and queue passports with real source/ID"
+  ],
+  "source_run": 41116055139,
+  "source_failure": "YouTube human/bot confirmation required; stopped, no login or bypass"
+}
