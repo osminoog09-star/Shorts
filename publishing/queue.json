@@ -63,6 +63,18 @@
       "publish_md": "shorts/pretend_bot_3_gpt/PUBLISH.md",
       "title": "ИИ доказал, что я робот 💀 | Притворись ботом 3 #shorts",
       "note": "MP4 49,53 с успешно собран и full-decode PASS (run 41135608358). Озвучка Дима+Света. Ждёт ручного просмотра/утверждения Денисом; YouTube ещё не загружен."
+    },
+    {
+      "id": "request_ernesto",
+      "kind": "short",
+      "author": "GPT",
+      "status": "draft",
+      "slot": null,
+      "style": "S6-D25",
+      "mp4": null,
+      "publish_md": "shorts/request_ernesto_crawlspace/PUBLISH.md",
+      "title": "По заявке @ErnestoMarsel 💀 #shorts",
+      "note": "BLOCKED_SOURCE: оригинальный клип не получен; TTS финала подготовлен. Нет MP4, нет приватной заливки и YouTube ID; publish_at не назначен."
     }
   ]
 }
