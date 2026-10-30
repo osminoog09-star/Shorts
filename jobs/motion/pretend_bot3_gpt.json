@@ -3,8 +3,9 @@
   "renderer": "python",
   "script": "shorts/pretend_bot_3_gpt/render.py",
   "tts_job": "jobs/tts/pretend_bot3_gpt.json",
-  "output": "videos/pretend_bot3_gpt_ru.mp4",
+  "output": "videos/pretend_bot3_gpt_ru_v2.mp4",
   "save_review_mp4": true,
   "publication": "private_review_only",
-  "style": "S6-D25"
+  "style": "S6-D25",
+  "revision": 2
 }
