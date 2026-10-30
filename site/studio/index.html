@@ -52,8 +52,14 @@ main{padding:16px 16px calc(var(--navh) + env(safe-area-inset-bottom,0px) + 28px
   border-radius:24px;background:color-mix(in srgb,var(--panel) 80%,transparent);-webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6);border:1px solid color-mix(in srgb,var(--ink) 9%,transparent);box-shadow:0 18px 40px -16px rgba(0,0,0,.5)}
 .bnav button{border:0;background:none;display:grid;justify-items:center;align-content:center;gap:3px;font:600 10.5px var(--f-b);color:var(--faint);position:relative}
 .bnav svg{width:22px;height:22px}
+.i3{display:block;width:30px;height:30px;object-fit:contain;filter:saturate(.25) brightness(.8);opacity:.7;transition:transform .35s cubic-bezier(.3,1.6,.5,1),filter .3s,opacity .3s}
+.bnav button[aria-current="page"] .i3,.side nav button[aria-current="page"] .i3{filter:none;opacity:1;transform:translateY(-6px) scale(1.25) rotate(-6deg);filter:drop-shadow(0 8px 10px rgba(255,95,168,.45))}
+.i3.sm{width:24px;height:24px}
+.i3.big{width:84px;height:84px;filter:drop-shadow(0 16px 20px rgba(120,60,200,.45));opacity:1;animation:bob 4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px) rotate(4deg)}}
+.sec-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .bnav button[aria-current="page"]{color:var(--ink)}
-.bnav button[aria-current="page"] .ico{background:var(--grad);color:#fff;box-shadow:0 8px 18px -8px color-mix(in srgb,var(--pink) 80%,transparent)}
+.bnav button[aria-current="page"] .ico{background:none}
 .ico{width:44px;height:30px;border-radius:12px;display:grid;place-items:center;transition:background .25s}
 .dot{position:absolute;top:6px;right:calc(50% - 22px);min-width:17px;height:17px;padding:0 5px;border-radius:9px;background:var(--pink);color:#fff;font:700 10px/17px var(--f-m);text-align:center}
 @media (min-width:960px){
@@ -77,6 +83,8 @@ main{padding:16px 16px calc(var(--navh) + env(safe-area-inset-bottom,0px) + 28px
 h2{font:700 15px/1.2 var(--f-d);margin:0 0 12px;display:flex;align-items:center;gap:8px}
 h2 .cnt{font:600 12px var(--f-m);color:var(--muted)}
 h2 a,h2 button.more{margin-left:auto;font:600 12px var(--f-b);color:var(--muted);text-decoration:none;border:0;background:none}
+.card:active,.vrow:active,.todo button:active,.vc:active{transform:scale(.985)}
+.card,.vrow,.todo button,.vc{transition:transform .2s}
 .card{background:var(--panel);border:1px solid color-mix(in srgb,var(--ink) 7%,transparent);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
 .grid{display:grid;gap:14px}
 .g2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
@@ -234,6 +242,8 @@ const ICON={
  idea:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/>',
  chat:'<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/>',
  coin:'<circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .8-3 2s1.3 1.7 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/>'};
+const I3={home:'home',play:'play',idea:'idea',chat:'chat',coin:'coin'};
+const ic3=(k,c='')=>`<img class="i3 ${c}" src="i/${I3[k]}.png" alt="" width="96" height="96">`;
 const svg=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[k]}</svg>`;
 const TABS=[["home","Обзор","home"],["videos","Ролики","play"],["ideas","Идеи","idea"],["fans","Зрители","chat"],["money","Деньги","coin"]];
 const TRAFFIC={SHORTS:"Лента Shorts",YT_SEARCH:"Поиск YouTube",SUBSCRIBER:"Подписчики",YT_CHANNEL:"Страница канала",YT_OTHER_PAGE:"Другие страницы YouTube",RELATED_VIDEO:"Похожие видео",EXT_URL:"Внешние сайты",NO_LINK_OTHER:"Прямые/прочее",PLAYLIST:"Плейлисты",NOTIFICATION:"Уведомления",END_SCREEN:"Конечные заставки",HASHTAGS:"Хештеги",SOUND_PAGE:"Страница звука",YT_PLAYLIST_PAGE:"Плейлисты"};
@@ -278,7 +288,7 @@ function todoItems(){
 }
 
 /* ---------- разделы ---------- */
-const head=(eb,title,sub)=>`<div class="sec-h reveal"><span class="eyebrow">${eb}</span><h1>${title}</h1>${sub?`<p>${sub}</p>`:""}</div>`;
+const head=(eb,title,sub)=>{const k=(TABS.find(x=>x[0]===tab)||[])[2];return `<div class="sec-h reveal"><div class="sec-row"><div><span class="eyebrow">${eb}</span><h1>${title}</h1></div>${k?ic3(k,"big"):""}</div>${sub?`<p>${sub}</p>`:""}</div>`};
 function home(){
   const L=D.live||{}, ch=D.channel, wc=weekCmp(), y=D.ypp, base=y&&y.tiers[0];
   const h=new Date().getHours(), hi=h<5?"Доброй ночи":h<12?"Доброе утро":h<18?"Добрый день":"Добрый вечер";
@@ -451,8 +461,8 @@ const VIEWS={home,videos,ideas,fans,money};
 function badges(){return{fans:cflags("request").concat(cflags("to_me")).filter((c,i,a)=>!seen.has(c.id)&&a.findIndex(x=>x.id===c.id)===i).length,ideas:((D.ideas||{}).ideas||[]).filter(i=>(i.status||"proposed")==="proposed").length,videos:D.review.length}}
 function nav(){
   const b=D?badges():{};
-  $("#bnav").innerHTML=TABS.map(([k,t,i])=>`<button data-tab="${k}" ${tab===k?'aria-current="page"':""}><span class="ico">${svg(i)}</span>${t}${b[k]?`<span class="dot">${b[k]}</span>`:""}</button>`).join("");
-  $("#sidenav").innerHTML=TABS.map(([k,t,i])=>`<button data-tab="${k}" ${tab===k?'aria-current="page"':""}>${svg(i)}${t}${b[k]?`<span class="dot">${b[k]}</span>`:""}</button>`).join("");
+  $("#bnav").innerHTML=TABS.map(([k,t,i])=>`<button data-tab="${k}" ${tab===k?'aria-current="page"':""}><span class="ico">${ic3(i)}</span>${t}${b[k]?`<span class="dot">${b[k]}</span>`:""}</button>`).join("");
+  $("#sidenav").innerHTML=TABS.map(([k,t,i])=>`<button data-tab="${k}" ${tab===k?'aria-current="page"':""}>${ic3(i,"sm")}${t}${b[k]?`<span class="dot">${b[k]}</span>`:""}</button>`).join("");
   $("#ttl").textContent=tab==="home"?"Студия M1lash":TABS.find(t=>t[0]===tab)[1];
 }
 function render(){
