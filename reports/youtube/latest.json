@@ -492,8 +492,8 @@
   "unsupported_metrics": [],
   "schema_version": 1,
   "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
-  "snapshot_date": "2026-10-30",
-  "fetched_at": "2026-10-30T21:15:26.521334+00:00",
+  "snapshot_date": "2026-10-31",
+  "fetched_at": "2026-10-30T22:10:03.844512+00:00",
   "inventory": [
     {
       "video_id": "oTe1dEelJPs",
@@ -712,8 +712,8 @@
       "duration": "PT1M14S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "3066",
-        "likeCount": "184",
+        "viewCount": "3090",
+        "likeCount": "187",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
