@@ -158,6 +158,14 @@ def main():
             spike = {"day": latest["recent_daily_views"][-1]["day"], "views": vals[-1], "avg7": round(base)}
     events = {"last_video": {"id": pubs[-1]["id"], "title": pubs[-1]["title"]} if pubs else None,
               "ideas_date": ideas.get("date"), "ideas_count": len(ideas.get("ideas", [])), "spike": spike}
+    cutoff = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=14)).isoformat()
+    fresh = [v for v in pubs if v["published"] >= cutoff and v["views"]]
+    top = max(fresh, key=lambda v: v["views"]) if fresh else None
+    events["top_recent"] = {"title": re.sub(r"\s*#\S+", "", top["title"]).strip(), "views": top["views"]} if top else None
+    gradle = (ROOT / "android-widget/app/build.gradle.kts").read_text(encoding="utf-8")
+    vc = re.search(r"versionCode = (\d+)", gradle)
+    app = {"version": int(vc.group(1)) if vc else 0,
+           "apk": "https://github.com/osminoog09-star/Shorts/releases/download/widget/m1lash-widget.apk"}
     ch = latest.get("channel_statistics", {}) or {}
     daily = latest.get("recent_daily_views", []) or []
     out = {
@@ -171,7 +179,7 @@ def main():
         "learn": {"works": section(learn_md, "Работает"), "fails": section(learn_md, "Не работает"),
                   "hyp": section(learn_md, "Гипотезы на проверку")},
         "weekly": {"name": weekly[-1].stem if weekly else None, "text": weekly_txt},
-        "ideas": ideas, "events": events,
+        "ideas": ideas, "events": events, "app": app,
         "playlists": {k: v.get("id") for k, v in playlists.items() if isinstance(v, dict)},
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)

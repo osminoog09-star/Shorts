@@ -6,6 +6,9 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.net.Uri
 import android.view.View
 import android.widget.RemoteViews
@@ -63,6 +66,24 @@ class StudioWidget : AppWidgetProvider() {
         var week = 0L
         if (daily != null) for (i in maxOf(0, daily.length() - 7) until daily.length()) week += daily.getJSONObject(i).optLong("views")
         v.setTextViewText(R.id.week, nf.format(week))
+        if (daily != null && daily.length() >= 14) {
+            var prev = 0L
+            for (i in daily.length() - 14 until daily.length() - 7) prev += daily.getJSONObject(i).optLong("views")
+            if (prev > 0) {
+                val pct = (week - prev) * 100 / prev
+                v.setTextViewText(R.id.delta, "7 дней · " + (if (pct >= 0) "▲" else "▼") + " ${kotlin.math.abs(pct)} %")
+                v.setTextColor(R.id.delta, if (pct >= 0) 0xFF5FD38D.toInt() else 0xFFFF6B6B.toInt())
+            }
+        }
+        if (daily != null && daily.length() > 1) v.setImageViewBitmap(R.id.chart, chart(daily))
+        val ev = d.optJSONObject("events")
+        val top = ev?.optJSONObject("top_recent")
+        v.setTextViewText(R.id.top, if (top != null) "🏆 ${top.optString("title")} — ${nf.format(top.optLong("views"))}" else "")
+        val ideas = d.optJSONObject("ideas")?.optJSONArray("ideas")
+        if (ideas != null && ideas.length() > 0) {
+            val first = ideas.getJSONObject(0)
+            v.setTextViewText(R.id.idea, "💡 Идей: ${ideas.length()} · ${first.optString("title")}")
+        } else v.setTextViewText(R.id.idea, "")
         v.setTextViewText(R.id.updated, d.optString("built"))
         val review = d.optJSONArray("review")?.length() ?: 0
         if (review > 0) {
@@ -82,6 +103,20 @@ class StudioWidget : AppWidgetProvider() {
         }
         v.setTextViewText(R.id.next, if (lines.isEmpty()) "Слотов нет" else lines.joinToString("\n"))
         return v
+    }
+
+    private fun chart(a: org.json.JSONArray): Bitmap {
+        val n = minOf(14, a.length()); val w = 700; val h = 110
+        val vals = (a.length() - n until a.length()).map { a.getJSONObject(it).optLong("views").toFloat() }
+        val max = maxOf(1f, vals.maxOrNull() ?: 1f)
+        val b = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888); val c = Canvas(b)
+        val p = Paint(Paint.ANTI_ALIAS_FLAG); val gap = 6f; val bw = (w - gap * (n - 1)) / n
+        vals.forEachIndexed { i, x ->
+            p.color = if (i >= n - 7) 0xFFFF5FA8.toInt() else 0x66FF5FA8
+            val top = h - maxOf(4f, x / max * (h - 4))
+            c.drawRoundRect(i * (bw + gap), top, i * (bw + gap) + bw, h.toFloat(), 6f, 6f, p)
+        }
+        return b
     }
 
     companion object { const val ACTION = "ee.m1lash.widget.REFRESH" }
