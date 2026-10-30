@@ -1,0 +1,32 @@
+{
+ "text": "Подпишись! И спасибо всем, кто досмотрел и поставил лайк. Узнал сериал? Во все тяжкие.",
+ "words": [
+  {
+   "w": "Подпишись!",
+   "start": 0.1,
+   "end": 1.6795454
+  },
+  {
+   "w": "И спасибо всем, кто досмотрел и поставил лайк.",
+   "start": 1.6295454,
+   "end": 5.3340907
+  },
+  {
+   "w": "Узнал сериал?",
+   "start": 5.3340907,
+   "end": 7.1522724
+  },
+  {
+   "w": "Во все тяжкие.",
+   "start": 7.1522725,
+   "end": 9.0613633
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+10%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/request_ernesto_crawlspace/outro_reveal.mp3"
+}
