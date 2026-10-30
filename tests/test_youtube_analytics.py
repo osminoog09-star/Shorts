@@ -21,6 +21,7 @@ class AnalyticsTests(unittest.TestCase):
         rows = client.query(date(2026,1,1), date(2026,1,2), 'video', ['views'])
         self.assertEqual(len(rows), 201)
         self.assertEqual(calls[1]['startIndex'], 201)
+        self.assertEqual(calls[0]['sort'], '-views')
 
     def test_unsupported_and_zero(self):
         client = Client('fake')

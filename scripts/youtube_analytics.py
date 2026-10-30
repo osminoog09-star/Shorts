@@ -47,8 +47,8 @@ class Client:
 
     def query(self, start, end, dimensions, metrics, filters=None):
         params = dict(ids='channel==MINE', startDate=str(start), endDate=str(end),
-                      dimensions=dimensions, metrics=','.join(metrics), maxResults=200,
-                      sort=dimensions)
+                      dimensions=dimensions, metrics=','.join((['views'] if dimensions == 'video' and 'views' not in metrics else []) + list(metrics)), maxResults=200,
+                      sort='-views' if dimensions == 'video' else dimensions)
         if filters:
             params['filters'] = filters
         rows = []
@@ -68,13 +68,13 @@ class Client:
             try:
                 rows = self.query(start, end, dimensions, [metric], filters)
             except ApiError as exc:
-                if exc.status != 400:
+                if exc.status != 400 or metric == 'views':
                     raise
                 missing.append(metric)
                 continue
             for row in rows:
                 key = row[dimensions]
-                merged.setdefault(key, {dimensions: key, **dict.fromkeys(metrics)}).update(row)
+                merged.setdefault(key, {dimensions: key, **dict.fromkeys(metrics)}).update({metric: row.get(metric)})
         return list(merged.values()), missing
 
 
