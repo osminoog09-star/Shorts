@@ -164,7 +164,8 @@ def main():
     events["top_recent"] = {"title": re.sub(r"\s*#\S+", "", top["title"]).strip(), "views": top["views"]} if top else None
     gradle = (ROOT / "android-widget/app/build.gradle.kts").read_text(encoding="utf-8")
     vc = re.search(r"versionCode = (\d+)", gradle)
-    app = {"version": int(vc.group(1)) if vc else 0,
+    vn = re.search(r'versionName = "([^"]+)"', gradle)
+    app = {"version": int(vc.group(1)) if vc else 0, "name": vn.group(1) if vn else "",
            "apk": "https://github.com/osminoog09-star/Shorts/releases/download/widget/m1lash-widget.apk"}
     pulse = load("reports/youtube/pulse.json", {}) or {}
     snaps = pulse.get("snapshots") or []
