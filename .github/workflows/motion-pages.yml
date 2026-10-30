@@ -28,7 +28,7 @@ jobs:
       - name: Prepare only browser assets
         run: |
           mkdir -p _site
-          cp motion-studio/index.html motion-studio/studio-v2.js motion-studio/studio-v2.css motion-studio/renderer.html motion-studio/app.js motion-studio/style.css motion-studio/world.json _site/
+          cp motion-studio/index.html motion-studio/privacy.html motion-studio/studio-v2.js motion-studio/studio-v2.css motion-studio/renderer.html motion-studio/app.js motion-studio/style.css motion-studio/world.json _site/
           cp -r motion-studio/data _site/data
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
