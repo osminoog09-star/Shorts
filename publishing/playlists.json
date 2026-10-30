@@ -17,5 +17,71 @@
     "description": "Разбираем великие сцены и персонажей кино: почему это работает.",
     "id": "PLdFzvptW-NVI",
     "seed": []
+  },
+  "bot_series": {
+    "title": "Притворись ботом",
+    "description": "Мини-сериал о человеке, который пытался доказать ИИ, что он не робот. Новые серии M1lash.",
+    "id": null,
+    "seed": [
+      "6g-0gS9lSkI",
+      "wmnrIivD1HE",
+      "Wn5dNQsrpxk",
+      "CmOu0xXc0UI"
+    ]
+  },
+  "ai_news": {
+    "title": "Новости ИИ",
+    "description": "Новости искусственного интеллекта, роботов и технологий — проверяем факты и объясняем главное.",
+    "id": null,
+    "seed": [
+      "oTe1dEelJPs",
+      "3XxxiR2Zxb8",
+      "dsp3ZOrwTkc",
+      "UPEDaeR0O_c",
+      "pOqCGUpn9lU"
+    ]
+  },
+  "ai_sketch": {
+    "title": "ИИ-скетчи",
+    "description": "Короткие комедии о нейросетях, роботах и технологиях — без серьёзных лиц.",
+    "id": null,
+    "seed": [
+      "UTvk61Gos1M",
+      "tGpma37GZ0w",
+      "-xjlegO4ZzQ",
+      "6wh9nvwtWT0",
+      "uDbIq2IzlzM",
+      "bZkIDNIRoxo",
+      "FOOO2vAwUqk",
+      "bUNtjpCanl4",
+      "KAhupG0LgRo",
+      "E5MsBkrW94s",
+      "DfhrXx_10FM"
+    ]
+  },
+  "science_history": {
+    "title": "Наука и история",
+    "description": "Античные механизмы, загадки инженерии, планеты, техника и наука — просто и наглядно.",
+    "id": null,
+    "seed": [
+      "4PYRNmbopwo",
+      "OpMT1DWymCA",
+      "F5-BqfTnA_w",
+      "rTpeumT8wlg",
+      "FHkGd1cA1gc",
+      "s7YVEyinxDE"
+    ]
+  },
+  "humor": {
+    "title": "Юмор",
+    "description": "Весёлые истории, собаки, игры и короткие смешные моменты от M1lash.",
+    "id": null,
+    "seed": [
+      "7l4EOB02DSg",
+      "1As0yonBV9Q",
+      "nxFUh8vQiSM",
+      "xyGpIVUBWd8",
+      "FTq9Ohgh0VU"
+    ]
   }
 }
