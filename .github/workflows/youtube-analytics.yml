@@ -8,6 +8,7 @@ on:
     paths:
       - scripts/youtube_analytics.py
       - scripts/ideas_auto.py
+      - scripts/ypp_progress.py
       - .github/workflows/youtube-analytics.yml
 permissions:
   contents: write
@@ -35,6 +36,13 @@ jobs:
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
         run: python scripts/youtube_analytics.py
+      - name: Monetization progress (YPP) + forecast
+        continue-on-error: true
+        env:
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+        run: python scripts/ypp_progress.py
       - name: Auto ideas of the day (skips if GPT already wrote today's)
         run: python scripts/ideas_auto.py
       - name: Save reports without overwriting concurrent work

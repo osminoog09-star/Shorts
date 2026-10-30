@@ -58,6 +58,12 @@ ul.clean{margin:0;padding-left:18px;display:grid;gap:6px}
 .bar .fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--pink));border-radius:6px}
 .bar .v{font:600 13px var(--f-m);text-align:right;font-variant-numeric:tabular-nums}
 .spark{width:100%;height:120px;display:block}
+.count{display:grid;gap:4px}.count .big{font:700 clamp(34px,9vw,54px)/1 var(--f-d);font-variant-numeric:tabular-nums;background:linear-gradient(90deg,var(--blue),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.goal{display:grid;gap:6px;padding:10px 0;border-top:1px solid var(--line)}.goal:first-of-type{border-top:0}
+.goal .top{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:14px}
+.goal .track{height:12px;border-radius:6px;background:var(--soft);overflow:hidden}.goal .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--blue),var(--pink))}
+.goal small{color:var(--muted);font-size:12px}
+.or{font:600 11px var(--f-m);color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:4px 0}
 .tablebox{overflow-x:auto}
 table{border-collapse:collapse;width:100%;min-width:680px;font-size:13px}
 th,td{padding:8px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
@@ -80,6 +86,7 @@ footer{color:var(--muted);font:12px var(--f-m)}
     <button role="tab" data-t="todo">Что делать</button>
     <button role="tab" data-t="sum">Сводка</button>
     <button role="tab" data-t="vids">Ролики</button>
+    <button role="tab" data-t="ypp">Монетизация</button>
   </nav>
   <main id="view"></main>
   <footer>Обновляется сам после ежедневной аналитики · источник: репо osminoog09-star/Shorts</footer>
@@ -156,10 +163,32 @@ function vids(){
   const col=(k,t,n)=>`<th class="${n?"num":""}" data-k="${k}">${t}${sortKey===k?(sortDir>0?" ↑":" ↓"):""}</th>`;
   return `<section class="card"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px"><h2 style="margin:0">Все ролики · ${list.length}</h2><select id="ff" aria-label="Формат"><option value="">Все форматы</option>${fmts.map(f=>`<option ${f===fmtFilter?"selected":""}>${esc(f)}</option>`).join("")}</select></div><div class="tablebox"><table><thead><tr>${col("published","Дата")}${col("title","Ролик")}${col("format","Формат")}${col("views","Просм.",1)}${col("avp","Досмотр %",1)}${col("subs","Подп.",1)}${col("likes","Лайки",1)}</tr></thead><tbody>${list.map(v=>`<tr><td class="num">${esc((v.published||"").slice(5,10).split("-").reverse().join("."))}</td><td><a href="https://youtu.be/${esc(v.id)}" target="_blank" rel="noopener">${esc(v.title)}</a>${v.privacy!=="public"?` <span class="chip c-warn">${esc(v.privacy)}</span>`:""}</td><td><span class="chip">${esc(v.format)}</span></td><td class="num">${num(v.views)}</td><td class="num">${v.avp==null?"—":Math.round(v.avp)}</td><td class="num">${num(v.subs)}</td><td class="num">${num(v.likes)}</td></tr>`).join("")}</tbody></table></div></section>`;
 }
+function fdate(s){return s?s.slice(8)+"."+s.slice(5,7)+"."+s.slice(0,4):"—"}
+function eta(d){return d==null?'<span class="chip c-bad">при текущем темпе — не успеваем</span>':d===0?'<span class="chip c-ok">выполнено ✓</span>':`<span class="chip c-info">≈ ${num(d)} дн · ${fdate(new Date(Date.now()+d*864e5).toISOString().slice(0,10))}</span>`}
+function goal(g){const p=Math.max(1,g.pct);return `<div class="goal"><div class="top"><b>${esc(g.name)}</b>${eta(g.eta_days)}</div><div class="track"><div class="fill" style="width:${p}%"></div></div><small>${num(Math.round(g.current))} из ${num(g.target)} ${esc(g.unit)} · ${g.pct}%${g.need&&g.pct<100?" · "+esc(g.need):""}</small></div>`}
+function ypp(){
+  const Y=D.ypp;
+  if(!Y) return `<section class="card"><h2>До монетизации</h2><p class="muted">Цифры появятся после ближайшей ежедневной аналитики (10:20).</p></section>`;
+  const [b,f]=Y.tiers, P=Y.pace;
+  const lim=[b.subs.eta_days,Math.min(...b.paths.map(x=>x.eta_days??1e9))];
+  const bottleneck=(b.subs.eta_days??1e9)>=Math.min(...b.paths.map(x=>x.eta_days??1e9))?"подписчики":"просмотры Shorts";
+  let h=`<div class="grid"><section class="card count"><h2>До базовой монетизации</h2>`+
+    (b.eta_days===0?`<div class="big">Можно подавать заявку!</div><a href="https://studio.youtube.com/channel/UC919eyHbOIgjsnH8z70pmZw/monetization" target="_blank" rel="noopener">Открыть «Заработок» в YouTube Studio →</a>`
+    :b.eta_days!=null?`<div class="big">≈ ${num(b.eta_days)} дн</div><span class="muted">ориентировочно ${fdate(b.eta_date)}, если темп как сейчас · узкое место: <b>${bottleneck}</b></span>`
+    :`<div class="big">Темпа не хватает</div><span class="muted">узкое место: <b>${bottleneck}</b> — смотри «что нужно в день» ниже</span>`)+
+    `<span class="muted" style="font-size:12px">Темп: +${P.subs_per_day} подп./день · ${num(P.shorts_views_per_day)} просм. Shorts/день · ${P.long_hours_per_day} ч длинных/день. Данные по ${fdate(Y.as_of)}.</span></section>`;
+  const tier=(t,extra)=>`<section class="card"><h2>${esc(t.title)}</h2>${goal(t.subs)}${t.uploads?`<div class="goal"><div class="top"><b>3 публичные загрузки за 90 дн</b>${t.uploads.ok?'<span class="chip c-ok">выполнено ✓</span>':'<span class="chip c-warn">'+t.uploads.current+' из 3</span>'}</div></div>`:""}<div class="or">и одно из двух</div>${t.paths.map(goal).join('<div class="or">или</div>')}${t.warn?`<p class="chip c-warn" style="display:block;margin-top:8px;white-space:normal">${esc(t.warn)}</p>`:""}${t.note?`<p class="muted" style="font-size:12px;margin:8px 0 0">${esc(t.note)}</p>`:""}${extra||""}</section>`;
+  h+=tier(b)+tier(f);
+  const s=Y.shorts_daily_90||[]; if(s.length>1){const W=600,H=140,mx=Math.max(1,...s.map(x=>x.views),33334);const st=W/(s.length-1);
+    const pts=s.map((x,i)=>`${(i*st).toFixed(1)},${(H-6-x.views/mx*(H-16)).toFixed(1)}`).join(" ");const ly=(H-6-33334/mx*(H-16)).toFixed(1);
+    h+=`<section class="card"><h2>Просмотры Shorts за 90 дней</h2><svg class="spark" style="height:140px" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Просмотры Shorts по дням"><line x1="0" x2="${W}" y1="${ly}" y2="${ly}" stroke="var(--ok)" stroke-dasharray="6 6" vector-effect="non-scaling-stroke"/><polyline points="${pts}" fill="none" stroke="var(--pink)" stroke-width="2.5" vector-effect="non-scaling-stroke"/></svg><p class="muted" style="margin:6px 0 0;font-size:12px">Зелёная линия — 33 334/день: такой темп 90 дней подряд = 3 млн (базовый порог).</p></section>`}
+  h+=`<section class="card"><h2>Что ускорит</h2><ul class="clean"><li>Подписки дают кино-Shorts и серии: делай продолжения и зови подписаться в финале.</li><li>Для 3 млн за 90 дней нужен стабильный поток ~33 тыс. просмотров в день — это 1–2 Shorts в день с хуком, а не редкие хиты.</li><li>Длинные (кино-разборы) копят часы для второго пути — каждый час длинного весит больше сотен просмотров Shorts.</li><li>Официальные цифры и кнопка заявки — YouTube Studio → «Заработок». Здесь прогноз; YouTube считает только «засчитанные» просмотры${Y.engaged_views?"":", а у нас пока все просмотры, поэтому прогноз оптимистичный"}.</li></ul></section>`;
+  return h+`</div>`;
+}
 function render(){
   document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===tab));
   const r=D.review.length; const pb=document.querySelector('[data-t="plan"]'); pb.innerHTML="План"+(r?`<span class="badge">${r}</span>`:"");
-  document.getElementById("view").innerHTML={plan,todo,sum,vids}[tab]();
+  document.getElementById("view").innerHTML=({plan,todo,sum,vids,ypp}[tab]||plan)();
 }
 document.addEventListener("click",e=>{
   const b=e.target.closest("nav button"); if(b){tab=b.dataset.t;try{localStorage.setItem("m1-tab",tab)}catch(_){}render();return}
