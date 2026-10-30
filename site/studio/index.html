@@ -184,8 +184,25 @@ function ypp(){
   const s=Y.shorts_daily_90||[]; if(s.length>1){const W=600,H=140,mx=Math.max(1,...s.map(x=>x.views),33334);const st=W/(s.length-1);
     const pts=s.map((x,i)=>`${(i*st).toFixed(1)},${(H-6-x.views/mx*(H-16)).toFixed(1)}`).join(" ");const ly=(H-6-33334/mx*(H-16)).toFixed(1);
     h+=`<section class="card"><h2>Просмотры Shorts за 90 дней</h2><svg class="spark" style="height:140px" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Просмотры Shorts по дням"><line x1="0" x2="${W}" y1="${ly}" y2="${ly}" stroke="var(--ok)" stroke-dasharray="6 6" vector-effect="non-scaling-stroke"/><polyline points="${pts}" fill="none" stroke="var(--pink)" stroke-width="2.5" vector-effect="non-scaling-stroke"/></svg><p class="muted" style="margin:6px 0 0;font-size:12px">Зелёная линия — 33 334/день: такой темп 90 дней подряд = 3 млн (базовый порог).</p></section>`}
+  const sh=b.paths[0];
+  h+=`<section class="card"><h2>Что если поднять темп?</h2>
+    <label class="muted" style="font-size:13px">Засчитанных просмотров Shorts в день: <b id="wv">${num(P.shorts_views_per_day)}</b></label>
+    <input id="wi" type="range" min="500" max="150000" step="500" value="${Math.max(500,P.shorts_views_per_day)}" style="width:100%">
+    <label class="muted" style="font-size:13px">Новых подписчиков в день: <b id="sv">${P.subs_per_day}</b></label>
+    <input id="si" type="range" min="0.5" max="50" step="0.5" value="${Math.max(0.5,P.subs_per_day)}" style="width:100%">
+    <div id="wout" class="rec" style="margin-top:8px"></div></section>`;
+  setTimeout(()=>whatIf(sh.current,b.subs.current),0);
   h+=`<section class="card"><h2>Что ускорит</h2><ul class="clean"><li>Подписки дают кино-Shorts и серии: делай продолжения и зови подписаться в финале.</li><li>Для 3 млн за 90 дней нужен стабильный поток ~33 тыс. просмотров в день — это 1–2 Shorts в день с хуком, а не редкие хиты.</li><li>Длинные (кино-разборы) копят часы для второго пути — каждый час длинного весит больше сотен просмотров Shorts.</li><li>Официальные цифры и кнопка заявки — YouTube Studio → «Заработок». Здесь прогноз; YouTube считает только «засчитанные» просмотры${Y.engaged_views?"":", а у нас пока все просмотры, поэтому прогноз оптимистичный"}.</li></ul></section>`;
   return h+`</div>`;
+}
+function whatIf(S,subs){
+  const wi=document.getElementById("wi"),si=document.getElementById("si");if(!wi)return;
+  const go=()=>{const r=+wi.value,s=+si.value;document.getElementById("wv").textContent=num(r);document.getElementById("sv").textContent=s;
+    const days=(target)=>{if(S>=target)return 0;for(let t=1;t<=730;t++){if(S*Math.max(0,1-t/90)+r*Math.min(t,90)>=target)return t}return null};
+    const d3=days(3e6),d10=days(1e7),ds5=Math.ceil(Math.max(0,500-subs)/s),ds10=Math.ceil(Math.max(0,1000-subs)/s);
+    const f=(a,b)=>a==null?"не успеваем":`≈ ${num(Math.max(a,b))} дн (${fdate(new Date(Date.now()+Math.max(a,b)*864e5).toISOString().slice(0,10))})`;
+    document.getElementById("wout").innerHTML=`<b>Базовая: ${f(d3,ds5)}</b><span class="muted">Полная: ${f(d10,ds10)}${r*90<3e6?" · для 3 млн нужно ≥ 33 334/день":""}</span>`};
+  wi.oninput=si.oninput=go;go();
 }
 function render(){
   document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===tab));
@@ -197,7 +214,7 @@ document.addEventListener("click",e=>{
   const th=e.target.closest("th[data-k]"); if(th){const k=th.dataset.k; if(sortKey===k)sortDir*=-1; else {sortKey=k;sortDir=-1} render()}
 });
 document.addEventListener("change",e=>{if(e.target.id==="ff"){fmtFilter=e.target.value;render()}});
-fetch("data.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{D=d;document.getElementById("asof").textContent=`Обновлено ${d.built} · аналитика по ${d.analytics_as_of||"—"}`;if(d.app){document.getElementById("appv").textContent="v"+(d.app.name||d.app.version);if(d.app.apk)document.getElementById("app").href=d.app.apk}render()}).catch(()=>{document.getElementById("view").innerHTML='<p class="card">Данные ещё не собраны. Они появятся после ближайшей ежедневной аналитики.</p>'});
+fetch("data.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{D=d;document.getElementById("asof").textContent=`Обновлено ${d.built} · аналитика по ${d.analytics_as_of?fdate(d.analytics_as_of):"—"}`;if(d.app){document.getElementById("appv").textContent="v"+(d.app.name||d.app.version);if(d.app.apk)document.getElementById("app").href=d.app.apk}render()}).catch(()=>{document.getElementById("view").innerHTML='<p class="card">Данные ещё не собраны. Они появятся после ближайшей ежедневной аналитики.</p>'});
 </script>
 </body>
 </html>
