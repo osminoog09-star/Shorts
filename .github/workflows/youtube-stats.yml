@@ -1,0 +1,33 @@
+name: YouTube · channel stats snapshot (read-only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: youtube-stats
+  cancel-in-progress: false
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'requests>=2.32,<3'
+      - name: Snapshot (no uploads, no edits)
+        env:
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+        run: python scripts/youtube_stats.py
+      - name: Commit snapshot
+        run: |
+          git config user.name youtube-stats-bot
+          git config user.email youtube-stats-bot@users.noreply.github.com
+          git add reports/youtube
+          git diff --cached --quiet && exit 0
+          git commit -m "youtube: stats snapshot"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && exit 0; sleep 5; done
+          exit 1
