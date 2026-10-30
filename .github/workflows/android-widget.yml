@@ -16,9 +16,14 @@ jobs:
         with: { distribution: temurin, java-version: '17' }
       - uses: gradle/actions/setup-gradle@v4
         with: { gradle-version: '8.7' }
-      - name: Build APK
+      - name: Build APK (постоянный ключ из секретов, если он есть)
         working-directory: android-widget
-        run: gradle --no-daemon :app:assembleRelease
+        env:
+          KS_B64: ${{ secrets.WIDGET_KEYSTORE_B64 }}
+          WIDGET_KEYSTORE_PASSWORD: ${{ secrets.WIDGET_KEYSTORE_PASSWORD }}
+        run: |
+          if [ -n "$KS_B64" ]; then echo "$KS_B64" | base64 -d > "$RUNNER_TEMP/m1w.jks"; export WIDGET_KEYSTORE="$RUNNER_TEMP/m1w.jks"; else echo "::warning::WIDGET_KEYSTORE_B64 не задан — подпись debug, автообновление поверх не сработает"; fi
+          gradle --no-daemon :app:assembleRelease
       - name: Publish release
         env: { GH_TOKEN: '${{ github.token }}' }
         run: |

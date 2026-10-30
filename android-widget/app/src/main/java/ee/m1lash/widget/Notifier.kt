@@ -35,16 +35,18 @@ object Notifier {
         val app = d.optJSONObject("app")
         val mine = runCatching { @Suppress("DEPRECATION") ctx.packageManager.getPackageInfo(ctx.packageName, 0).versionCode.toLong() }.getOrDefault(0L)
         if (app != null && app.optLong("version") > mine && app.optLong("version") != p.getLong("app", 0))
-            send(ctx, 5, "Обновление виджета M1lash", "Нажми, чтобы скачать новую версию", app.optString("apk"))
+            send(ctx, 5, "Обновление M1lash ${app.optString("name")}", "Нажми — скачаю и предложу установить", app.optString("apk"), update = true)
         p.edit().putLong("app", app?.optLong("version") ?: 0).putBoolean("init", true).putStringSet("review", reviewIds.toSet())
             .putString("last", last?.optString("id") ?: "").putString("spike", spike?.optString("day") ?: "")
             .putString("ideas", ideasDate).apply()
     }
 
-    private fun send(ctx: Context, id: Int, title: String, text: String, url: String = SITE) {
+    private fun send(ctx: Context, id: Int, title: String, text: String, url: String = SITE, update: Boolean = false) {
         val nm = ctx.getSystemService(NotificationManager::class.java)
         nm.createNotificationChannel(NotificationChannel(CH, "Студия M1lash", NotificationManager.IMPORTANCE_DEFAULT))
-        val open = PendingIntent.getActivity(ctx, 10 + id, Intent(Intent.ACTION_VIEW, Uri.parse(url)), PendingIntent.FLAG_IMMUTABLE)
+        val open = PendingIntent.getActivity(ctx, 10 + id,
+            if (update) Intent(ctx, UpdateActivity::class.java).putExtra("apk", url) else Intent(Intent.ACTION_VIEW, Uri.parse(url)),
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         val n = Notification.Builder(ctx, CH).setSmallIcon(android.R.drawable.ic_dialog_info)
             .setContentTitle(title).setContentText(text).setStyle(Notification.BigTextStyle().bigText(text))
             .setContentIntent(open).setAutoCancel(true).build()
