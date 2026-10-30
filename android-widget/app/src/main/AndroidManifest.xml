@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application android:label="M1lash" android:icon="@mipmap/ic_launcher" android:allowBackup="false">
+        <activity android:name=".OpenActivity" android:exported="true" android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+        </activity>
+        <receiver android:name=".StudioWidget" android:exported="true" android:label="M1lash студия">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="ee.m1lash.widget.REFRESH" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info" />
+        </receiver>
+    </application>
+</manifest>

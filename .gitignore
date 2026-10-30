@@ -5,3 +5,6 @@ studio/out
 __pycache__/
 publishing/studio/dist/
 site/studio/data.json
+android-widget/.gradle/
+android-widget/build/
+android-widget/app/build/

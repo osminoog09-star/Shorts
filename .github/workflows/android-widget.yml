@@ -1,0 +1,27 @@
+name: Android widget APK
+on:
+  push:
+    branches: [main]
+    paths: ['android-widget/**', '.github/workflows/android-widget.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '17' }
+      - uses: gradle/actions/setup-gradle@v4
+        with: { gradle-version: '8.7' }
+      - name: Build APK
+        working-directory: android-widget
+        run: gradle --no-daemon :app:assembleRelease
+      - name: Publish release
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          cp android-widget/app/build/outputs/apk/release/app-release.apk m1lash-widget.apk
+          gh release delete widget --yes --cleanup-tag 2>/dev/null || true
+          gh release create widget m1lash-widget.apk --title "M1lash виджет" --notes "Android-виджет студии M1lash. Скачать APK на телефон и установить."
