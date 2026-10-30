@@ -1,3 +1,12 @@
+## 30.10 20:30 — Прямой доступ к YouTube (OAuth): остановились на шаге токена (Claude)
+
+- Сделано Денисом: Google Cloud проект **Youtube**, включены YouTube Data API v3 и YouTube Analytics API, экран согласия **M1lash Studio**, External, **In production** (home: osminoog09-star.github.io/Shorts/, privacy: …/Shorts/privacy.html — `motion-studio/privacy.html`), OAuth-клиент Web application, redirect `https://developers.google.com/oauthplayground`.
+- Не сделано: обмен кода на refresh token в OAuth Playground дал **401** — почти наверняка испорчен Client secret при вставке с телефона (пробел после `GOCSPX-`). Секреты `YOUTUBE_OAUTH_CLIENT_ID`, `YOUTUBE_OAUTH_CLIENT_SECRET`, `YOUTUBE_REFRESH_TOKEN_RU` в GitHub ещё не добавлены; проверка `youtube-auth-check` (run 41107173404) — failure, ожидаемо.
+- Дальше: Playground → шестерёнка (свои ключи, без пробелов) → scopes `youtube youtube.upload yt-analytics.readonly` → Authorize → Exchange → 3 секрета → запустить `youtube-auth-check`. Денис продолжит с компа/спокойно.
+- Открыто (не решено Денисом): публикация приватной заливкой с таймером и ежедневная аналитика на странице студии; перезапуск эксперимента стилей и образцы 5 с во всех 9 стилях (страница «Стили M1lash»).
+
+---
+
 ## 30.10 — Настройка студии: единый свод правил, чистка workflows, новые скилы (Claude)
 
 - **Решения Дениса 30.10** (grill-me): голос Дима/Света через **Azure Speech** (до подключения — workflow `TTS`); публикация пока **вручную Денисом** через страницу «Студия M1lash»; кино-Shorts публикуем, **риск по правам принят**; **производство на паузе**, пока настраиваем.
