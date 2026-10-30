@@ -71,10 +71,12 @@ export function fact(label, text, x, y, t, t0, t1, { w = 760, color = RED, size 
 // Большая цифра с подписью (счётчик набегает)
 export function bigNum(value, suffix, label, x, y, t, t0, t1, { color = INK, size = 190, prefix = '', dec = 0, from = 0 } = {}) {
   const { a, k, vis } = inOut(t, t0, t1); if (!vis) return;
+  if (PT) { size = Math.min(size, 150); }
   const run = easeOut(seg(t, t0, t0 + 1.2)); const v = lerp(from, value, run);
   const txt = prefix + (dec ? v.toFixed(dec).replace('.', ',') : Math.round(v).toLocaleString('ru-RU')) + suffix;
   ctx.save(); ctx.globalAlpha = a; ctx.translate(x, y + 24 * (1 - clamp(k)));
-  ctx.font = `900 ${size}px "Rubik"`; const tw = ctx.measureText(txt).width;
+  ctx.font = `900 ${size}px "Rubik"`; let tw = ctx.measureText(txt).width;
+  if (PT && tw > W - 260) { size *= (W - 260) / tw; ctx.font = `900 ${size}px "Rubik"`; tw = ctx.measureText(txt).width; }
   ctx.font = '700 40px "Rubik"'; const L = wrap(label, Math.max(tw, 620)); const lw = Math.max(...L.map((l) => ctx.measureText(l).width));
   const w = Math.max(tw, lw) + 100, h = size * 1.05 + L.length * 50 + 60;
   ctx.shadowColor = 'rgba(40,30,70,0.2)'; ctx.shadowBlur = 44; ctx.shadowOffsetY = 16;

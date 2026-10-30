@@ -10,7 +10,7 @@ SHORTS = {
  'heist': {'hook': ('aH', 55.0, [{'t': 'СЕРВЕРЫ ДЛЯ ИИ'}, {'t': 'НА $13 МЛН', 'bg': '#e8706a', 'c': '#fff'}, {'t': 'ИСЧЕЗЛИ НА ТРАССЕ'}]),
            'seg': (82.55, 110.0), 'outro': ('aO', 232.0), 'bed': 'Spy Glass.mp3'},
  'hack':  {'hook': ('bH', 520.6, [{'t': 'ИИ-АГЕНТЫ'}, {'t': 'ВЗЛОМАЛИ', 'bg': '#e8706a', 'c': '#fff'}, {'t': 'СОЗДАТЕЛЕЙ ИИ'}]),
-           'seg': (552.15, 590.0), 'outro': ('bO', 650.0), 'bed': 'Hidden Agenda.mp3'},
+           'seg': (552.15, 590.0), 'outro': ('bO', 596.0), 'bed': 'Hidden Agenda.mp3'},
 }
 def dur(p): return float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', str(p)]))
 def load(p, ss=0.0, t=None):
