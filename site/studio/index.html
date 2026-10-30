@@ -78,9 +78,39 @@ select{font:500 13px var(--f-b);padding:6px 10px;border-radius:8px;border:1px so
 pre.week{white-space:pre-wrap;font:13px/1.5 var(--f-b);margin:0;max-height:360px;overflow:auto}
 footer{color:var(--muted);font:12px var(--f-m)}
 @media (max-width:560px){.bar{grid-template-columns:110px minmax(0,1fr) 50px}}
+
+/* ===== 3D-слой (30.10): глянцевые фигуры Three.js на фоне + стекло, глубина, наклон ===== */
+#bg3d{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;pointer-events:none}
+body{background:radial-gradient(1200px 700px at 85% -10%,color-mix(in srgb,var(--pink) 22%,transparent),transparent 60%),radial-gradient(900px 600px at -10% 20%,color-mix(in srgb,var(--blue) 20%,transparent),transparent 60%),var(--bg);background-attachment:fixed}
+.wrap{position:relative;z-index:1}
+.card{background:color-mix(in srgb,var(--panel) 72%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);border:1px solid color-mix(in srgb,var(--ink) 10%,transparent);border-radius:22px;box-shadow:0 1px 0 color-mix(in srgb,#fff 14%,transparent) inset,0 18px 40px -18px rgba(0,0,0,.45),0 4px 12px -6px rgba(0,0,0,.25);transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.card.tilt:hover{box-shadow:0 1px 0 color-mix(in srgb,#fff 18%,transparent) inset,0 28px 60px -20px rgba(0,0,0,.55),0 0 0 1px color-mix(in srgb,var(--pink) 30%,transparent)}
+.kpi{position:relative;overflow:hidden}
+.kpi::after{content:"";position:absolute;inset:auto -30% -60% auto;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--pink) 45%,transparent),transparent 70%);filter:blur(6px);opacity:.6}
+.kpi .n{background:linear-gradient(180deg,var(--ink),color-mix(in srgb,var(--ink) 60%,var(--pink)));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{border-radius:24px;padding:6px;margin-inline:-6px;background:color-mix(in srgb,var(--bg) 55%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+nav button{background:color-mix(in srgb,var(--panel) 70%,transparent);transition:transform .2s,box-shadow .2s}
+nav button:active{transform:scale(.96)}
+nav button[aria-selected="true"]{background:linear-gradient(135deg,var(--blue),var(--pink));color:#fff;border-color:transparent;box-shadow:0 8px 24px -8px color-mix(in srgb,var(--pink) 70%,transparent)}
+.mark{box-shadow:0 10px 30px -8px color-mix(in srgb,var(--pink) 60%,transparent);animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-4px) rotate(-3deg)}}
+h1{background:linear-gradient(90deg,var(--ink),color-mix(in srgb,var(--ink) 55%,var(--blue)));-webkit-background-clip:text;background-clip:text;color:transparent}
+.app{box-shadow:0 10px 26px -10px color-mix(in srgb,var(--pink) 60%,transparent)}
+.fill,.goal .fill,.bar .fill{position:relative;overflow:hidden;box-shadow:0 0 14px color-mix(in srgb,var(--pink) 50%,transparent)}
+.fill::after,.goal .fill::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-100%);animation:shine 2.8s ease-in-out infinite}
+@keyframes shine{60%,100%{transform:translateX(100%)}}
+.rec{background:color-mix(in srgb,var(--soft) 70%,transparent);border:1px solid color-mix(in srgb,var(--ink) 6%,transparent)}
+.ring{--p:0;width:120px;height:120px;border-radius:50%;background:conic-gradient(from -90deg,var(--blue),var(--pink) calc(var(--p) * 1%),color-mix(in srgb,var(--muted) 22%,transparent) calc(var(--p) * 1%));display:grid;place-items:center;box-shadow:0 14px 34px -12px color-mix(in srgb,var(--pink) 60%,transparent),inset 0 2px 6px rgba(255,255,255,.15)}
+.ring>span{width:92px;height:92px;border-radius:50%;background:var(--panel);display:grid;place-items:center;text-align:center;font:700 18px/1.1 var(--f-d)}
+.ring small{display:block;font:500 10px var(--f-m);color:var(--muted)}
+.rings{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 4px}
+.reveal{opacity:0;transform:translateY(14px) scale(.985);animation:rv .6s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rv{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.reveal,.mark,.fill::after,.goal .fill::after{animation:none!important;opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<canvas id="bg3d" aria-hidden="true"></canvas>
 <div class="wrap">
   <header><div class="mark"><span>M1</span></div><div><h1>Студия M1lash</h1><p class="sub" id="asof">загрузка…</p></div><a class="app" id="app" href="https://github.com/osminoog09-star/Shorts/releases/download/widget/m1lash-widget.apk" download>📱 Виджет для Android <small id="appv"></small></a></header>
   <nav role="tablist">
@@ -178,6 +208,7 @@ function ypp(){
     (b.eta_days===0?`<div class="big">Можно подавать заявку!</div><a href="https://studio.youtube.com/channel/UC919eyHbOIgjsnH8z70pmZw/monetization" target="_blank" rel="noopener">Открыть «Заработок» в YouTube Studio →</a>`
     :b.eta_days!=null?`<div class="big">≈ ${num(b.eta_days)} дн</div><span class="muted">ориентировочно ${fdate(b.eta_date)}, если темп как сейчас · узкое место: <b>${bottleneck}</b></span>`
     :`<div class="big">Темпа не хватает</div><span class="muted">узкое место: <b>${bottleneck}</b> — смотри «что нужно в день» ниже</span>`)+
+    `<div class="rings"><div class="ring" style="--p:${Math.max(1,b.subs.pct)}"><span>${Math.round(b.subs.pct)}%<small>подписчики</small></span></div><div class="ring" style="--p:${Math.max(1,b.paths[0].pct)}"><span>${b.paths[0].pct}%<small>просм. Shorts</small></span></div></div>`+
     `<span class="muted" style="font-size:12px">Темп: +${P.subs_per_day} подп./день · ${num(P.shorts_views_per_day)} просм. Shorts/день · ${P.long_hours_per_day} ч длинных/день. Данные по ${fdate(Y.as_of)}.</span></section>`;
   const tier=(t,extra)=>`<section class="card"><h2>${esc(t.title)}</h2>${goal(t.subs)}${t.uploads?`<div class="goal"><div class="top"><b>3 публичные загрузки за 90 дн</b>${t.uploads.ok?'<span class="chip c-ok">выполнено ✓</span>':'<span class="chip c-warn">'+t.uploads.current+' из 3</span>'}</div></div>`:""}<div class="or">и одно из двух</div>${t.paths.map(goal).join('<div class="or">или</div>')}${t.warn?`<p class="chip c-warn" style="display:block;margin-top:8px;white-space:normal">${esc(t.warn)}</p>`:""}${t.note?`<p class="muted" style="font-size:12px;margin:8px 0 0">${esc(t.note)}</p>`:""}${extra||""}</section>`;
   h+=tier(b)+tier(f);
@@ -204,10 +235,48 @@ function whatIf(S,subs){
     document.getElementById("wout").innerHTML=`<b>Базовая: ${f(d3,ds5)}</b><span class="muted">Полная: ${f(d10,ds10)}${r*90<3e6?" · для 3 млн нужно ≥ 33 334/день":""}</span>`};
   wi.oninput=si.oninput=go;go();
 }
+
+/* 3D и движение */
+function fx(){
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll("#view .card").forEach((c,i)=>{c.classList.add("reveal");c.style.animationDelay=(i*60)+"ms"});
+  document.querySelectorAll("#view .kpi .n").forEach(el=>{const raw=el.textContent.replace(/\s/g,"");const n=+raw;if(!isFinite(n)||reduce||n<10)return;const t0=performance.now();const step=t=>{const k=Math.min(1,(t-t0)/900);el.textContent=num(Math.round(n*(1-Math.pow(1-k,3))));if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)});
+  if(!reduce&&matchMedia("(hover:hover) and (pointer:fine)").matches) document.querySelectorAll("#view .card").forEach(c=>{c.classList.add("tilt");
+    c.onpointermove=e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateX(${(-y*5).toFixed(2)}deg) rotateY(${(x*6).toFixed(2)}deg) translateZ(4px)`};
+    c.onpointerleave=()=>{c.style.transform=""}});
+}
+function bg3d(){
+  const cv=document.getElementById("bg3d");if(!window.THREE||!cv)return;
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches, dark=matchMedia("(prefers-color-scheme: dark)").matches;
+  let R;try{R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true,powerPreference:"low-power"})}catch(e){return}
+  R.setPixelRatio(Math.min(1.5,devicePixelRatio));R.outputEncoding=THREE.sRGBEncoding;
+  const S=new THREE.Scene(),C=new THREE.PerspectiveCamera(40,1,.1,100);C.position.set(0,0,12);
+  S.add(new THREE.HemisphereLight(0xffffff,dark?0x221a33:0xe8e4f5,dark?.9:1.1));
+  const k=new THREE.DirectionalLight(0xffffff,1.3);k.position.set(5,6,8);S.add(k);
+  const rim=new THREE.PointLight(0xff5fa8,1.4,30);rim.position.set(-6,-3,4);S.add(rim);
+  const mat=(c,r)=>new THREE.MeshPhysicalMaterial({color:c,roughness:r,metalness:.05,clearcoat:1,clearcoatRoughness:.15});
+  const parts=[
+    [new THREE.TorusKnotGeometry(1.1,.36,160,24),mat(0xff7fbf,.25),[4.2,2.6,-2]],
+    [new THREE.IcosahedronGeometry(1.2,1),mat(0x7aa8ff,.35),[-4.4,-1.6,-1]],
+    [new THREE.TorusGeometry(1,.38,32,96),mat(0xb79cff,.2),[3.6,-3.4,-3]],
+    [new THREE.SphereGeometry(.75,48,48),mat(0xffd28a,.3),[-3.2,3.4,-2.5]],
+    [new THREE.OctahedronGeometry(.8,0),mat(0x7fe0c0,.3),[.4,-5.2,-4]]];
+  const M=parts.map(([g,m,p],i)=>{const o=new THREE.Mesh(g,m);o.position.set(...p);o.userData={b:p.slice(),s:.6+i*.17};S.add(o);return o});
+  let tx=0,ty=0,cx=0,cy=0;
+  addEventListener("pointermove",e=>{tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5},{passive:true});
+  addEventListener("deviceorientation",e=>{if(e.gamma!=null){tx=Math.max(-.5,Math.min(.5,e.gamma/60));ty=Math.max(-.5,Math.min(.5,(e.beta-45)/60))}},{passive:true});
+  const size=()=>{const w=innerWidth,h=innerHeight;R.setSize(w,h,false);C.aspect=w/h;C.position.z=w<600?13:12;const nx=w<600?.5:1,ny=w<600?1.5:1;M.forEach(o=>{o.userData.x=o.userData.b[0]*nx;o.userData.y=o.userData.b[1]*ny});C.updateProjectionMatrix()};size();addEventListener("resize",size);
+  let sy=0;addEventListener("scroll",()=>{sy=scrollY},{passive:true});
+  const loop=t=>{t*=.001;cx+=(tx-cx)*.05;cy+=(ty-cy)*.05;
+    M.forEach((o,i)=>{const u=o.userData;o.rotation.x=t*.2*u.s+cy;o.rotation.y=t*.3*u.s+cx;o.position.y=u.y+Math.sin(t*u.s+i)*.35+sy*.002*(i%2?1:-1);o.position.x=u.x+cx*(1.2+i*.3)});
+    R.render(S,C);if(!reduce&&!document.hidden)requestAnimationFrame(loop)};
+  requestAnimationFrame(loop);document.addEventListener("visibilitychange",()=>{if(!document.hidden&&!reduce)requestAnimationFrame(loop)});
+}
 function render(){
   document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===tab));
   const r=D.review.length; const pb=document.querySelector('[data-t="plan"]'); pb.innerHTML="План"+(r?`<span class="badge">${r}</span>`:"");
   document.getElementById("view").innerHTML=({plan,todo,sum,vids,ypp}[tab]||plan)();
+  fx();
 }
 document.addEventListener("click",e=>{
   const b=e.target.closest("nav button"); if(b){tab=b.dataset.t;try{localStorage.setItem("m1-tab",tab)}catch(_){}render();return}
@@ -216,5 +285,6 @@ document.addEventListener("click",e=>{
 document.addEventListener("change",e=>{if(e.target.id==="ff"){fmtFilter=e.target.value;render()}});
 fetch("data.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{D=d;document.getElementById("asof").textContent=`Обновлено ${d.built} · аналитика по ${d.analytics_as_of?fdate(d.analytics_as_of):"—"}`;if(d.app){document.getElementById("appv").textContent="v"+(d.app.name||d.app.version);if(d.app.apk)document.getElementById("app").href=d.app.apk}render()}).catch(()=>{document.getElementById("view").innerHTML='<p class="card">Данные ещё не собраны. Они появятся после ближайшей ежедневной аналитики.</p>'});
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer onload="bg3d()"></script>
 </body>
 </html>
