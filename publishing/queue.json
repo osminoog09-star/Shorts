@@ -1,6 +1,6 @@
 {
   "_readme": "Очередь паспортов публикации для страницы «Студия M1lash» (AGENTS.md, раздел 6). Каждый агент добавляет сюда свой готовый ролик и пишет рядом PUBLISH.md (разделы: ## Название, ## Описание, ## Теги, ## Закреп, ## Настройки). status: draft | review | ready | published. slot: \"2026-11-01T10:00\" по Таллину или null. Страница пересобирается: python3 publishing/studio/build.py",
-  "paused": true,
+  "paused": false,
   "items": [
     {
       "id": "ai_blackmail",
