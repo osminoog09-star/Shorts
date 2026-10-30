@@ -17,3 +17,13 @@
 HyperFrames CLI ставится отдельно (`npx hyperframes …`, см. hyperframes-cli/SKILL.md) — только когда понадобится.
 Правило: для превью/обложек/титров/аутро сначала смотри frontend-design + taste-skill, для движения — emil-animate,
 для Remotion-кода — remotion-best-practices. Стиль/глубину ролика всё равно спрашиваем у Дениса (AGENTS.md).
+
+## Из шортсов @mcdenil_ (30.10.2026)
+
+| # | Что | Папки | Источник | Зачем нам |
+|---|---|---|---|---|
+| 08 | /watch | watch | taoufik123-collab/claude-watch | «смотрит» видео: кадр на каждую склейку, темп (склеек/мин), разбор хука 0–10 с, расшифровка. Для разбора чужих и своих Shorts. Нужны ffmpeg, yt-dlp; для Whisper — `GROQ_API_KEY` или `OPENAI_API_KEY` в `~/.config/watch/.env`, без ключа — `--no-whisper` (только субтитры YouTube). В облачной сессии YouTube не качается — только загруженные файлы |
+| 09 | Humanizer | humanizer | blader/humanizer | убирает признаки «нейросетевого» текста: описания, сценарии, посты |
+| 10 | Marketing Skills (6 из 52) | mkt-social, mkt-video, mkt-content-strategy, mkt-copywriting, mkt-marketing-ideas, mkt-marketing-psychology | coreyhaines31/marketingskills | заголовки, хуки, контент-план, психология удержания. Остальные 46 (SaaS/продажи) не ставили |
+
+Правило: тексты для зрителя (названия, описания, сценарии) после написания прогонять через humanizer; разбор референса — через watch, выводы — в m1lash-reference-analysis.
