@@ -4,7 +4,7 @@ import json, math, subprocess, wave, os, pathlib, random
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 R=pathlib.Path(__file__).resolve().parents[2]
-OUT=R/"videos"/"pretend_bot3_gpt_ru_v2.mp4"
+OUT=R/"videos"/"pretend_bot3_gpt_ru_v3.mp4"
 HERE=pathlib.Path(__file__).resolve().parent
 TTS=R/"media"/"tts"/"pretend_bot3_gpt"
 JOB=R/"jobs"/"tts"/"pretend_bot3_gpt.json"
@@ -130,8 +130,9 @@ def captcha(d,t,retry):
  rr(d,(348,679,479,710),BLUE,8)
  d.text((352,685),"ПРОВЕРИТЬ",font=font(16),fill=WHITE)
  if retry:
-  rr(d,(48,722,492,776),RED,13)
-  text(d,"ОПЯТЬ НЕВЕРНО",733,BG,28,400)
+  # Keep the retry alert strictly above the subtitle safe zone (y >= 760).
+  rr(d,(48,721,492,755),RED,10)
+  text(d,"ОПЯТЬ НЕВЕРНО",726,BG,23,400)
 def robot(d,t,yes=False):
  rr(d,(30,215,510,720),"#1C3447",29,CYAN,4)
  text(d,"ИИ-ПОМОЩНИК",253,CYAN,31,430)
