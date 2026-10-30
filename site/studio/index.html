@@ -98,13 +98,13 @@ function statusChip(s){
 function plan(){
   const days={};D.plan.forEach(p=>(days[p.date]=days[p.date]||[]).push(p));
   const today=new Date().toISOString().slice(0,10);
-  const empty=D.plan.filter(p=>p.status==="пусто").length;
+
   let h=`<div class="grid">`;
   if(D.review.length) h+=`<section class="card"><h2>Ждёт твоего «ок»</h2><ul class="clean">${D.review.map(r=>`<li>${r.video_id?`<a href="https://studio.youtube.com/video/${esc(r.video_id)}/edit" target="_blank" rel="noopener">${esc(r.title)}</a>`:esc(r.title)} — посмотри и напиши «заливаем»</li>`).join("")}</ul></section>`;
-  h+=`<section class="card"><h2>Следующие 14 дней · пустых слотов: ${empty}</h2>`;
+  h+=`<section class="card"><h2>Ближайшие 14 дней</h2>`+(D.plan.length?"":`<p class="muted">Пока ничего не запланировано. Расписание ещё выбираем — сюда попадут ролики после твоего «заливаем».</p>`);
   Object.entries(days).forEach(([d,slots])=>{
     const dt=new Date(d+"T12:00:00");
-    h+=`<div class="day ${d===today?"today":""}"><div class="d">${DAYS[dt.getDay()]}<small>${d.slice(8)}.${d.slice(5,7)}</small></div><div>${slots.map(s=>`<div class="slot"><span class="t">${s.time}</span><span class="w">${s.title?esc(s.title):`<span class="muted">${esc(s.what)}</span>`}</span><span class="chip">${esc(s.who)}</span>${statusChip(s.status)}</div>`).join("")}</div></div>`;
+    h+=`<div class="day ${d===today?"today":""}"><div class="d">${DAYS[dt.getDay()]}<small>${d.slice(8)}.${d.slice(5,7)}</small></div><div>${slots.map(s=>`<div class="slot"><span class="t">${s.time}</span><span class="w">${s.title?esc(s.title):`<span class="muted">${esc(s.what)}</span>`}</span>${s.who?`<span class="chip">${esc(s.who)}</span>`:""}${statusChip(s.status)}</div>`).join("")}</div></div>`;
   });
   return h+`</section></div>`;
 }

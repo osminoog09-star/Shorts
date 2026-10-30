@@ -131,14 +131,13 @@ def main():
         if q.get("slot"):
             d, t = q["slot"].split("T")
             scheduled.setdefault((d, t[:5]), {"title": q.get("title") or q["id"], "status": q.get("status")})
+    # Решение Дениса 30.10: шаблон сетки пока не показываем (расписание ещё не выбрано) —
+    # только реально запланированные/залитые ролики на ближайшие 14 дней.
     plan = []
-    for i in range(14):
-        d = today + dt.timedelta(days=i)
-        for time, what, who in GRID[d.weekday()]:
-            hit = scheduled.get((d.isoformat(), time))
-            plan.append({"date": d.isoformat(), "time": time, "what": what, "who": who,
-                         "title": hit["title"] if hit else None, "status": hit["status"] if hit else "пусто",
-                         "video_id": hit.get("video_id") if hit else None})
+    for (date, time), hit in sorted(scheduled.items()):
+        if today.isoformat() <= date <= (today + dt.timedelta(days=14)).isoformat():
+            plan.append({"date": date, "time": time, "what": "", "who": "",
+                         "title": hit["title"], "status": hit["status"], "video_id": hit.get("video_id")})
 
     review = [{"id": k, "video_id": r.get("video_id"), "title": k} for k, r in receipts.items()
               if r.get("status") == "uploaded" and not r.get("publish_at_utc")]
