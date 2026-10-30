@@ -1,8 +1,10 @@
 {
-  "status": "reserved",
+  "status": "uploaded",
   "manifest": "publishing/queue/pretend_bot3_gpt.json",
   "manifest_sha256": "9acbef46377becc3a4e1dadaa1f4e3f40fe90d7fc48daeea176c5269f1bd6070",
   "channel": "ru",
   "publish_at_utc": null,
-  "note": "A reserved attempt must NEVER be automatically retried."
+  "note": "A reserved attempt must NEVER be automatically retried.",
+  "video_id": "CmOu0xXc0UI",
+  "video_url": "https://youtu.be/CmOu0xXc0UI"
 }
