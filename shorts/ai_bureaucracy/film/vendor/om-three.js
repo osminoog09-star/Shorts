@@ -39,7 +39,7 @@
   //   bloom: { strength, radius, threshold }, fog: [near, far], shadows, units: 'px' })
   OM3.stage = function (canvas, o = {}) {
     const THREE = T(), [W, H] = size();
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: !o.background, preserveDrawingBuffer: true });
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: o.antialias ?? true, alpha: !o.background, preserveDrawingBuffer: true });
     renderer.setPixelRatio(1);
     renderer.setSize(W, H, false);
     renderer.outputColorSpace = THREE.SRGBColorSpace;

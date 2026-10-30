@@ -131,7 +131,7 @@
     const pot = K.cyl(0.18, 0.14, 0.35, K.M('#e8794f', { r: 0.6 }), 24); pot.position.set(-1.9, 0.175, -1.7); g.add(pot);
     for (let i = 0; i < 9; i++) { const lf = K.sph(0.13, K.M('#4fae6c', { r: 0.5 }), 12); lf.scale.set(0.6, 1.6, 0.4); lf.position.set(-1.9 + Math.sin(i * 0.7) * 0.12, 0.6 + (i % 3) * 0.12, -1.7 + Math.cos(i * 0.7) * 0.1); lf.rotation.z = Math.sin(i * 0.7) * 0.7; g.add(lf); }
     const cooler = K.rbox(0.36, 0.9, 0.34, 0.05, K.M('#f4f6fa', { r: 0.35 })); cooler.position.set(1.9, 0.45, -1.9); g.add(cooler);
-    const bottle = K.cyl(0.15, 0.15, 0.42, new T.MeshPhysicalMaterial({ color: '#9fd8ff', roughness: 0.05, transmission: 0.6, transparent: true, opacity: 0.7 }), 24); bottle.position.set(1.9, 1.11, -1.9); g.add(bottle);
+    const bottle = K.cyl(0.15, 0.15, 0.42, new T.MeshPhysicalMaterial({ color: '#9fd8ff', roughness: 0.05, transparent: true, opacity: 0.6 }), 24); bottle.position.set(1.9, 1.11, -1.9); g.add(bottle);
     // часы-плакат «ПЛАН»
     const fill = new T.HemisphereLight('#fff1e2', '#5a4a40', 0.45); g.add(fill);
     keyLight(g, [0, 0.8, 0], 3.5, '#ffe9cf', 1.8, [1.8, 5, 3.5]);
@@ -211,7 +211,7 @@
     const btnG = new T.Group(); btnG.position.y = 0.98; g.add(btnG);
     const btn = K.mesh(new T.SphereGeometry(0.28, 48, 24, 0, Math.PI * 2, 0, Math.PI / 2), K.M('#ff3b4f', { r: 0.18, cc: 1 })); btn.scale.y = 0.55; btnG.add(btn);
     // пневмотруба
-    const tube = K.cyl(0.32, 0.32, 3.5, new T.MeshPhysicalMaterial({ color: '#cfefff', roughness: 0.05, transmission: 0.5, transparent: true, opacity: 0.35 }), 40); tube.position.set(0.9, 2.2, -1.2); g.add(tube);
+    const tube = K.cyl(0.32, 0.32, 3.5, new T.MeshPhysicalMaterial({ color: '#cfefff', roughness: 0.05, transparent: true, opacity: 0.3 }), 40); tube.position.set(0.9, 2.2, -1.2); g.add(tube);
     const collar = K.cyl(0.38, 0.38, 0.18, K.M('#c9ced8', { r: 0.2, m: 0.9 }), 40); collar.position.set(0.9, 0.5, -1.2); g.add(collar);
     const fill = new T.HemisphereLight('#c8d4ff', '#2a2440', 0.9); g.add(fill);
     keyLight(g, [0, 0.8, 0], 3, '#ffe9d6', 2.6, [2, 5, 3]);

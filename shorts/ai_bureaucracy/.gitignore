@@ -1,3 +1,6 @@
 film/out/
 film/.om/
 film/tools/host/node_modules/
+tts/*.mp3
+tts/d0*.json
+tts/s0*.json

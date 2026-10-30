@@ -82,7 +82,7 @@ const wd = (id, i) => SEG[id].words[i].s;
 const D = VO.total;
 
 // ============ сцена ============
-const stage = OM3.stage(document.getElementById('gl'), { background: '#10131f', env: 'room', exposure: 1.0, fov: 34, dof: { aperture: 0.0016, maxblur: 0.006 } });
+const stage = OM3.stage(document.getElementById('gl'), { background: '#10131f', env: 'room', exposure: 1.0, fov: 34, antialias: !window.__FASTAA, dof: { aperture: 0.0016, maxblur: 0.006 } });
 stage.scene.environmentIntensity = 0.55;
 const R = stage.renderer; R.shadowMap.type = THREE.PCFSoftShadowMap;
 const A = WORLD.office(); stage.add(A.g);
@@ -231,7 +231,7 @@ const lawyer = KIT.bot({ color: '#c3b2ff', tie: '#ff4d6d', glasses: true }); Dm.
 const analyst = KIT.bot({ color: '#ffe08a' }); Dm.g.add(analyst.root);
 const smileTex = KIT.canvasTex(512, 512, (g) => { g.fillStyle = '#ffd23f'; g.beginPath(); g.arc(256, 256, 230, 0, 7); g.fill(); g.fillStyle = '#161826'; g.beginPath(); g.arc(180, 210, 28, 0, 7); g.arc(332, 210, 28, 0, 7); g.fill(); g.lineWidth = 22; g.strokeStyle = '#161826'; g.beginPath(); g.moveTo(170, 345); g.lineTo(342, 330); g.stroke(); g.font = `900 120px ${KIT.FONT}`; g.fillStyle = '#e0273f'; g.fillText('?', 400, 140); });
 const smileCard = KIT.plane(0.32, 0.32, smileTex.tex); smileCard.position.set(-0.32, 0.95, 0.35); Dm.g.add(smileCard);
-const magn = new THREE.Group(); { const rimM = KIT.mesh(new THREE.TorusGeometry(0.11, 0.018, 12, 40), KIT.M('#2b2b35', { r: 0.3, m: 0.5 })); magn.add(rimM); const gl = KIT.mesh(new THREE.CircleGeometry(0.105, 40), new THREE.MeshPhysicalMaterial({ color: '#dff4ff', transmission: 0.7, roughness: 0.02, transparent: true, opacity: 0.35 })); magn.add(gl); const hdl = KIT.caps(0.02, 0.14, KIT.M('#7a4a2c', { r: 0.4 })); hdl.position.set(0.1, -0.15, 0); hdl.rotation.z = 0.6; magn.add(hdl); }
+const magn = new THREE.Group(); { const rimM = KIT.mesh(new THREE.TorusGeometry(0.11, 0.018, 12, 40), KIT.M('#2b2b35', { r: 0.3, m: 0.5 })); magn.add(rimM); const gl = KIT.mesh(new THREE.CircleGeometry(0.105, 40), new THREE.MeshPhysicalMaterial({ color: '#dff4ff', roughness: 0.02, transparent: true, opacity: 0.35 })); magn.add(gl); const hdl = KIT.caps(0.02, 0.14, KIT.M('#7a4a2c', { r: 0.4 })); hdl.position.set(0.1, -0.15, 0); hdl.rotation.z = 0.6; magn.add(hdl); }
 magn.scale.setScalar(0.7); Dm.g.add(magn);
 const meetBot = KIT.bot({ color: '#9fd3ff', tie: '#2b6bff' }); Dm.g.add(meetBot.root);
 const bell = new THREE.Group(); { const bb = KIT.mesh(new THREE.SphereGeometry(0.11, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2), KIT.M('#d9b44a', { r: 0.18, m: 0.95 })); bell.add(bb); const bp = KIT.cyl(0.13, 0.13, 0.02, KIT.M('#2b2b35', { r: 0.4 }), 32); bp.position.y = -0.01; bell.add(bp); const kn = KIT.sph(0.025, KIT.M('#d9b44a', { r: 0.2, m: 0.95 }), 12); kn.position.y = 0.11; bell.add(kn); }
@@ -520,7 +520,7 @@ function officeEvening(t) {
   const isEve = t >= cut.wait;
   A.win.paneN.material.opacity = isEve ? 1 : 0;
   A.key.intensity = isEve ? 1.3 : 2.6; A.key.color.set(isEve ? '#c7d2ff' : '#fff1de');
-  A.fill.intensity = isEve ? 0.45 : 0.7;
+  A.fill.intensity = (isEve ? 0.45 : 0.7) * 1.75;
   A.lamp.intensity = isEve ? 2.2 : 0.0;
   // часы: «жду час» — стрелки крутятся
   const spin = prog(t, wd('d06', 0), 0.9);
@@ -673,6 +673,16 @@ tl.addLabel('scene:meeting', cut.meet).addLabel('scene:hr', cut.hr).addLabel('sc
   .addLabel('scene:wait', cut.wait).addLabel('scene:message', cut.chat).addLabel('scene:punch', cut.punch).addLabel('scene:outro', cut.outro);
 tl.to({}, { duration: D }, 0);
 
+// Рендер-бюджет: 2 ядра без GPU — карта окружения стоила ~60 % времени кадра. Заменяем её мягким
+// заполняющим светом, а MeshPhysical (clearcoat) → MeshStandard с теми же цветами и шероховатостью.
+stage.scene.environment = null;
+stage.scene.traverse((o) => {
+  if (o.isMesh && o.material && o.material.isMeshPhysicalMaterial) {
+    const m = o.material;
+    o.material = new THREE.MeshStandardMaterial({ color: m.color, map: m.map, roughness: Math.max(0.22, m.roughness * 0.9), metalness: m.metalness * 0.6, transparent: m.transparent, opacity: m.opacity, side: m.side });
+  }
+  if (o.isHemisphereLight) o.intensity *= 1.75;
+});
 let lastSet = null;
 OM3.film(stage, tl, D, null, (t) => {
   const c = camAt(t);

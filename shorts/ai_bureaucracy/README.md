@@ -18,8 +18,12 @@ RHUBARB_DIR=/tmp/rhubarb bash ../../../tools/lipsync.sh assets/voice/dima.wav as
 python3 tools/make_lipsync.py                                     # виземы ведущего + огибающая для ботов
 (cd tools/host && npm install && npx esbuild host_entry.tsx --bundle --minify --format=iife \
    --define:process.env.NODE_ENV='"production"' --outfile=../../assets/js/host.js)
-cd ../../.. && ./scripts/huashu-motion render shorts/ai_bureaucracy/film   # картинка + om sound
-cd shorts/ai_bureaucracy/film && python3 tools/mix_final.py out/<последний рендер>.mp4 ../../../videos/ai_bureaucracy_claude_ru.mp4
+cd ../../.. && ./scripts/huashu-motion sound shorts/ai_bureaucracy/film && cd shorts/ai_bureaucracy/film   # музыка + эффекты
+# картинка: либо целиком `om render` (на 2 ядрах без GPU не укладывается в 2 ч), либо возобновляемо кусками:
+for a in $(seq 0 250 1709); do node tools/render_frames.mjs $a $((a+250>1709?1709:a+250)) out/frames; done
+ffmpeg -framerate 30 -i out/frames/f%05d.jpg -c:v libx264 -preset medium -crf 17 -pix_fmt yuv420p \
+  -vf scale=out_color_matrix=bt709:out_range=tv -colorspace bt709 -color_primaries bt709 -color_trc bt709 out/picture.mp4
+python3 tools/mix_final.py out/picture.mp4 ../../../videos/ai_bureaucracy_claude_ru.mp4
 ```
 
 Нужны Node ≥ 22, ffmpeg, Chrome/Chromium (`OM_CHROME=...` если не в стандартном пути).
