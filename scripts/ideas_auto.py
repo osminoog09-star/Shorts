@@ -22,8 +22,11 @@ def main():
         cur = json.loads((IDEAS / "latest.json").read_text(encoding="utf-8"))
     except (OSError, ValueError):
         pass
-    if cur.get("date") == today and cur.get("author") != "auto":
-        print("ideas: GPT уже написал идеи на сегодня — не трогаю"); return
+    # Идеи GPT/Дениса не перезаписываем, пока им меньше 2 суток; одобренные Денисом не трогаем никогда.
+    fresh = cur.get("date") and (dt.date.fromisoformat(today) - dt.date.fromisoformat(cur["date"][:10])).days <= 1
+    if cur.get("author") != "auto" and fresh:
+        print("ideas: свежие идеи GPT — не трогаю"); return
+    kept = [i for i in cur.get("ideas", []) if i.get("status") not in (None, "proposed")]
     d = json.loads((ROOT / "reports/youtube/latest.json").read_text(encoding="utf-8"))
     titles = {i["video_id"]: (i.get("title") or "", i.get("duration") or "") for i in d.get("inventory", [])}
     rows = []
@@ -68,7 +71,7 @@ def main():
     trend = f"{(last7 - prev7) * 100 // prev7:+d} % к прошлой неделе" if prev7 else "нет базы для сравнения"
     out = {"date": today, "author": "auto",
            "summary": f"Автоидеи по аналитике до {d.get('last_observed_view_day')}: 7 дней — {last7} просмотров ({trend}).",
-           "ideas": ideas}
+           "ideas": ideas + [i for i in kept if i["id"] not in {x["id"] for x in ideas}]}
     IDEAS.mkdir(parents=True, exist_ok=True)
     for p in (IDEAS / "latest.json", IDEAS / f"{today}.json"):
         p.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
