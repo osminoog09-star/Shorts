@@ -65,17 +65,27 @@ if not banner_url or not banner_url.startswith("https://"):
     raise SystemExit("NO-GO: banner upload returned no usable URL")
 updated=request("PUT",API+"/channels",params={"part":"brandingSettings"},
                 json={"id":RU_ID,"brandingSettings":{"channel":newchan,"image":{"bannerExternalUrl":banner_url}}})
-check=channel()
-checkchan=check.get("brandingSettings",{}).get("channel",{})
-assert checkchan.get("description")==cfg["description"], "Description not persisted"
-assert checkchan.get("unsubscribedTrailer")==cfg["trailer_video_id"], "Trailer not persisted"
-image=check.get("brandingSettings",{}).get("image",{})
-if not (image.get("bannerImageUrl") or image.get("bannerExternalUrl") or image.get("bannerMobileImageUrl")):
-    raise RuntimeError("Banner confirmation unavailable: check manually in Studio")
-result={"status":"verified","timestamp_utc":datetime.now(timezone.utc).isoformat(),
-        "channel_id":RU_ID,"channel_name":cur["snippet"]["title"],
-        "description_verified":True,"trailer_verified":True,
-        "banner_confirmed_by_api":True,"keywords_verified":cfg["keywords"][0] in checkchan.get("keywords","")}
-if not result["keywords_verified"]: raise RuntimeError("Keywords did not persist")
+# YouTube may return stale brandingSettings for a short time after channels.update.
+import time
+state={}
+for attempt in range(6):
+    check=channel()
+    checkchan=check.get("brandingSettings",{}).get("channel",{})
+    current_description=checkchan.get("description") or check.get("snippet",{}).get("description","")
+    image=check.get("brandingSettings",{}).get("image",{})
+    state={
+      "description_verified": current_description.strip()==cfg["description"].strip(),
+      "trailer_verified": checkchan.get("unsubscribedTrailer")==cfg["trailer_video_id"],
+      "banner_confirmed_by_api": bool(image.get("bannerImageUrl") or image.get("bannerExternalUrl") or image.get("bannerMobileImageUrl")),
+      "keywords_verified": cfg["keywords"][0] in checkchan.get("keywords",""),
+    }
+    print("BRANDING_READBACK",attempt+1,state,"fields",sorted(checkchan.keys()),"snippet_desc",bool(check.get("snippet",{}).get("description")))
+    if all(state.values()): break
+    time.sleep(3)
+result={"status":"verified" if all(state.values()) else "partial",
+        "timestamp_utc":datetime.now(timezone.utc).isoformat(),
+        "channel_id":RU_ID,"channel_name":cur["snippet"]["title"],**state}
 (ROOT/"publishing/branding/status.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+if result["status"]!="verified":
+    raise RuntimeError("YouTube returned a partial branding readback; no success claim")
 print("CHANNEL_BRANDING_VERIFIED",result["channel_name"],"banner=YES","trailer=YES","description=YES","keywords=YES")
