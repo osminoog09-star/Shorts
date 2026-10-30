@@ -2,8 +2,8 @@
   "channel": "ru",
   "source": {
     "type": "repo",
-    "path": "videos/pretend_bot3_gpt_ru_v2.mp4",
-    "sha256": "01f45e2da48f55e42478764ddfad21848b3bbb26be165cb5020c43e0258eb724"
+    "path": "videos/pretend_bot3_gpt_ru_v3.mp4",
+    "sha256": "53dc3cfa971a4081fcecd0ba7fd2c38e6672417fca729328a5e875b489bc86dd"
   },
   "metadata": {
     "type": "short",
