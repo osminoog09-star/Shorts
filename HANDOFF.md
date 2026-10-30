@@ -1,3 +1,11 @@
+## 31.10.2026 · GPT — контроль опубликованного с сайта расписания после утреннего прогона
+
+- Владелец через сайт назначил `pretend_bot3_gpt`: **воскресенье 01.11.2026, 16:00 Europe/Tallinn**. Актуальный `publishing/queue/pretend_bot3_gpt.json` содержит `publish_at: 2026-11-01T16:00:00+02:00`.
+- Проверено фактическое завершение `youtube-direct.yml mode=schedule`: [run 41143928913](https://github.com/osminoog09-star/Shorts/actions/runs/41143928913) **SUCCESS**, шаг «Schedule release of the reviewed private video» SUCCESS; `publishing/receipts/pretend_bot3_gpt.json` теперь `status=scheduled`, `publish_at_utc=2026-11-01T14:00:00Z`, YouTube ID `CmOu0xXc0UI`. Предыдущие неуспешные попытки расписания устранены коммитом сайта `b25aa3d50e5a`; **ничего повторно не загружать и не планировать**.
+- Утренний аналитический прогон уже завершён коммитами `b49c96aa9`, `911628a04`, запись в HANDOFF создана; новый материал по кино пока зависит от исходника Дениса. Токены/секреты не трогались.
+
+---
+
 ## 31.10.2026 01:02 EET · GPT — утренний продюсерский прогон
 
 - **Озвучка после коммита:** workflow [TTS run 41142246350](https://github.com/osminoog09-star/Shorts/actions/runs/41142246350) завершён SUCCESS. Реальный `media/tts/mystery_tempo_20261031/outro_reveal.mp3` создан; манифест подтвердил `ru-RU-DmitryNeural`, `edge-tts`, `+8%`. Это только готовый голос финала, не готовый кино-Shorts.
