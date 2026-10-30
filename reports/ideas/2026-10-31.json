@@ -54,7 +54,8 @@
       "comment_id": "UgzjWH-22iCp0unTh-p4AaABAg",
       "video_id": "XANzL3z9wqY",
       "production_file": "shorts/request_ernesto_crawlspace/README.md",
-      "source_status": "waiting_owner_screen_recording"
+      "source_status": "waiting_owner_screen_recording",
+      "production_note": "Нужен настоящий фрагмент; звук финала готов, но нет MP4, QA, YouTube upload и youtube_id. Поле video_id относится к видео с исходным комментарием, а не к готовому ролику."
     }
   ]
 }

@@ -56,13 +56,13 @@
       "id": "pretend_bot3_gpt",
       "kind": "short",
       "author": "GPT",
-      "status": "review",
-      "slot": null,
+      "status": "scheduled",
+      "slot": "2026-11-01T16:00:00+02:00",
       "style": "S6-D25",
       "mp4": "videos/pretend_bot3_gpt_ru_v3.mp4",
       "publish_md": "shorts/pretend_bot_3_gpt/PUBLISH.md",
       "title": "ИИ доказал, что я робот 💀 | Притворись ботом 3 #shorts",
-      "note": "Приватно загружен 31.10; YouTube ID CmOu0xXc0UI. V3 49,532 с, FFmpeg full decode PASS, контрольные кадры проверены, голоса Дима+Света. Только просмотр Дениса; publish_at НЕ назначен.",
+      "note": "Запланирован Денисом через сайт: 01.11.2026 16:00 Europe/Tallinn. YouTube schedule SUCCESS (run 41143928913), receipt status=scheduled, video ID CmOu0xXc0UI. Повторно не загружать и не назначать дату.",
       "youtube_id": "CmOu0xXc0UI"
     },
     {

@@ -361,7 +361,7 @@ function ideas(){
   return s+`<p class="muted reveal" style="font-size:12px">${I.date?`Идеи от ${dshort(I.date)} · ${I.author==="gpt"?"GPT":"собраны автоматически"}`:""}${dr?` · отклонено: ${dr}`:""}</p>`;
 }
 function ideaCard(i){
-  const st=i.status||"proposed", next={proposed:[["approved","Одобрить","pri"],["dropped","Отклонить",""]],approved:[["in_work","В работу","pri"]],in_work:[["done","Готово","pri"]],done:[]}[st]||[];
+  const st=i.status||"proposed", hasVerifiedUpload=!!i.youtube_id, next={proposed:[["approved","Одобрить","pri"],["dropped","Отклонить",""]],approved:[["in_work","В работу","pri"]],in_work:hasVerifiedUpload?[["done","Готово","pri"]]:[],done:[]}[st]||[];
   return `<div class="idea"><div class="row">${i.kind==="experiment"?'<span class="chip c-info">🧪 эксперимент</span>':i.kind==="request"?'<span class="chip c-pink">🙋 заявка</span>':'<span class="chip c-ok">✓ проверено</span>'}${i.format?`<span class="chip">${esc(i.format)}</span>`:""}</div><b>${esc(i.title)}</b><p>${esc(i.why||"")}${i.hypothesis?"Гипотеза: "+esc(i.hypothesis):""}${i.metric?` · метрика: ${esc(i.metric)}`:""}</p>${next.length?`<div class="row">${next.map(([to,t,c])=>`<button class="btn sm ${c}" data-idea="${esc(i.id)}" data-to="${to}">${t}</button>`).join("")}</div>`:""}</div>`;
 }
 function fans(){
@@ -607,7 +607,8 @@ document.addEventListener("click",async e=>{
   if(el=q("[data-okat]"))return act(el,()=>doSchedule(el.dataset.id,new Date(+el.dataset.okat).toISOString().replace(/\.\d+Z$/,"Z")));
   if(el=q("#okGo"))return act(el,async()=>{const at=$("#okAt").value;if(!at)throw new Error("выбери дату");if(new Date(at)<new Date())throw new Error("время уже прошло");await doSchedule(el.dataset.id,new Date(at).toISOString().replace(/\.\d+Z$/,"Z"))});
   if(el=q("[data-idea]")){if(!needTok())return;const id=el.dataset.idea,to=el.dataset.to;return act(el,async()=>{
-      await editJSON("reports/ideas/latest.json",d=>{(d.ideas||[]).forEach(i=>{if(i.id===id)i.status=to})},`ideas: ${id} → ${to} (Денис, с сайта)`);
+      if(to==="done"&&!D.ideas?.ideas?.find(i=>i.id===id)?.youtube_id)throw new Error("NO-GO: нет ID нового залитого ролика; исходное video_id комментария не подтверждает готовность");
+      await editJSON("reports/ideas/latest.json",d=>{(d.ideas||[]).forEach(i=>{if(i.id===id){if(to==="done"&&!i.youtube_id)throw new Error("NO-GO: нет youtube_id");i.status=to}})},`ideas: ${id} → ${to} (Денис, с сайта)`);
       D.ideas.ideas.forEach(i=>{if(i.id===id)i.status=to});render();toast(to==="approved"?"Одобрено — агенты возьмут в работу ✓":"Сохранено ✓")})}
   if(el=q("[data-c2i]")){if(!needTok())return;const c=D.comments.find(x=>x.id===el.dataset.c2i);return act(el,async()=>{
       const idea={id:new Date().toISOString().slice(0,10)+"-c"+c.id.slice(-6),kind:"request",format:"Кино-Shorts",title:`Заявка ${c.author}: ${c.text.slice(0,90)}`,why:`Комментарий зрителя, ❤️ ${c.likes}. Упомянуть автора в ролике.`,film:null,status:"approved",comment_id:c.id,video_id:c.video_id};

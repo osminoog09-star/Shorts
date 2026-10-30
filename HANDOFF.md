@@ -1,3 +1,11 @@
+## 31.10.2026 · GPT — пункт 3: синхронизация статусов M1lash Studio
+
+- Исправлена ложная отметка **«Готово»** у идеи-заявки @ErnestoMarsel: `reports/ideas/latest.json` и `2026-10-31.json` теперь `in_work`, `source_status=waiting_owner_screen_recording`; исходное поле `video_id=XANzL3z9wqY` — видео, под которым оставлен комментарий, **не** ID готового Shorts. Новый `youtube_id` отсутствует, поскольку нет MP4 / QA / upload.
+- `pretend_bot3_gpt` в `publishing/queue.json` теперь `scheduled` / `slot=2026-11-01T16:00:00+02:00` / `youtube_id=CmOu0xXc0UI`. Основание — подтверждённые `publishing/queue/pretend_bot3_gpt.json`, receipt `status=scheduled`, [schedule run 41143928913](https://github.com/osminoog09-star/Shorts/actions/runs/41143928913) SUCCESS. Паспорт `shorts/pretend_bot_3_gpt/PUBLISH.md` обновлён. **Ни upload, ни schedule повторно не запускались; время не менялось.**
+- В `site/studio/index.html` закрыт путь ложного `in_work → done`: кнопка «Готово» становится доступна только при `youtube_id` нового ролика, обработчик повторно проверяет поле перед записью. `video_id` исходного комментария больше не считается подтверждением производства. Другие одобренные идеи не изменены.
+
+---
+
 ## 31.10.2026 · GPT — контроль опубликованного с сайта расписания после утреннего прогона
 
 - Владелец через сайт назначил `pretend_bot3_gpt`: **воскресенье 01.11.2026, 16:00 Europe/Tallinn**. Актуальный `publishing/queue/pretend_bot3_gpt.json` содержит `publish_at: 2026-11-01T16:00:00+02:00`.

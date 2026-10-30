@@ -1,6 +1,6 @@
 # Паспорт публикации — «Притворись ботом», серия 3
 
-**Статус:** PRIVATE REVIEW — 31.10.2026. Проверено: [YouTube receipt](https://github.com/osminoog09-star/Shorts/blob/main/publishing/receipts/pretend_bot3_gpt.json), YouTube ID `CmOu0xXc0UI`. Видеофайл доступен только владельцу/авторизованным лицам: https://youtu.be/CmOu0xXc0UI . **Дата/публичный выпуск не назначены** — только после «заливаем».
+**Статус:** SCHEDULED / PRIVATE UNTIL RELEASE — 31.10.2026. Проверено: [YouTube receipt](https://github.com/osminoog09-star/Shorts/blob/main/publishing/receipts/pretend_bot3_gpt.json), YouTube ID `CmOu0xXc0UI`. Видеофайл доступен только владельцу/авторизованным лицам: https://youtu.be/CmOu0xXc0UI . **Денис нажал «Заливаем» на сайте:** YouTube запланировал 01.11.2026, 16:00 Europe/Tallinn (14:00 UTC); [schedule run 41143928913](https://github.com/osminoog09-star/Shorts/actions/runs/41143928913) SUCCESS.
 
 ## Название
 ИИ доказал, что я робот 💀 | Притворись ботом 3 #shorts
@@ -23,5 +23,5 @@
 - Стиль S6-D25, только графика/анимация + голос, без ведущего.
 - Голоса: Дима `ru-RU-DmitryNeural` и Света `ru-RU-SvetlanaNeural` (второй голос только для системы).
 - Музыка/SFX — оригинальные, синтезированы кодом.
-- Статус публикации: **review** (приватно на YouTube, 31.10.2026); `publish_at` отсутствует.
-- Публично не загружать и повторно приватно не заливать: receipt уже содержит YouTube ID. До отдельного «заливаем» не ставить слот и не включать autoPublish.
+- Статус публикации: **scheduled**; `publish_at: 2026-11-01T16:00:00+02:00`, `publish_at_utc: 2026-11-01T14:00:00Z`; доступ private до запланированного выхода.
+- **Не трогать назначенное время и не загружать снова:** receipt уже содержит YouTube ID. Срок утверждён владельцем через сайт.
