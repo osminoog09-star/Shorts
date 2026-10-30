@@ -1,0 +1,27 @@
+{
+ "text": "Всё началось с одной галочки. «Я не робот». Ну, думаю, легко.",
+ "words": [
+  {
+   "w": "Всё началось с одной галочки.",
+   "start": 0.1,
+   "end": 2.6558035
+  },
+  {
+   "w": "Я не робот».",
+   "start": 2.6058035,
+   "end": 4.536607
+  },
+  {
+   "w": "Ну, думаю, легко.",
+   "start": 4.5366071,
+   "end": 7.1370535
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+12%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/pretend_bot3_gpt/s02.mp3"
+}

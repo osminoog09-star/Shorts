@@ -1,0 +1,22 @@
+{
+ "text": "То есть я нанял бота, чтобы доказать, что я не бот. Гениально!",
+ "words": [
+  {
+   "w": "То есть я нанял бота, чтобы доказать, что я не бот.",
+   "start": 0.1,
+   "end": 3.8276785
+  },
+  {
+   "w": "Гениально!",
+   "start": 3.7776785,
+   "end": 5.3513392
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+12%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/pretend_bot3_gpt/s09.mp3"
+}

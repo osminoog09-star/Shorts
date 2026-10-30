@@ -1,0 +1,47 @@
+{
+ "text": "Готово. За ноль целых ноль одну секунду.",
+ "words": [
+  {
+   "w": "Готово",
+   "start": 0.1,
+   "end": 0.803125
+  },
+  {
+   "w": "За",
+   "start": 1.623666,
+   "end": 1.891499
+  },
+  {
+   "w": "ноль",
+   "start": 1.8915,
+   "end": 2.092375
+  },
+  {
+   "w": "целых",
+   "start": 2.092416,
+   "end": 2.527666
+  },
+  {
+   "w": "ноль",
+   "start": 2.527666,
+   "end": 2.773207
+  },
+  {
+   "w": "одну",
+   "start": 2.773208,
+   "end": 3.085708
+  },
+  {
+   "w": "секунду",
+   "start": 3.085708,
+   "end": 3.677208
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+12%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/pretend_bot3_gpt/s06.mp3"
+}

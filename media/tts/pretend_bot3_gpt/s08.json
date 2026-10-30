@@ -1,0 +1,37 @@
+{
+ "text": "Обнаружен бот! Ваш доступ заблокирован.",
+ "words": [
+  {
+   "w": "Обнаружен",
+   "start": 0.1,
+   "end": 0.769625
+  },
+  {
+   "w": "бот",
+   "start": 0.769625,
+   "end": 1.182583
+  },
+  {
+   "w": "Ваш",
+   "start": 1.969625,
+   "end": 2.304458
+  },
+  {
+   "w": "доступ",
+   "start": 2.304458,
+   "end": 2.695083
+  },
+  {
+   "w": "заблокирован",
+   "start": 2.695083,
+   "end": 3.453999
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+12%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/pretend_bot3_gpt/s08.mp3"
+}

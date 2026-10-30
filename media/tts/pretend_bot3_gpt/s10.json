@@ -1,0 +1,47 @@
+{
+ "text": "Для разблокировки докажите, что вы не робот.",
+ "words": [
+  {
+   "w": "Для",
+   "start": 0.1,
+   "end": 0.390166
+  },
+  {
+   "w": "разблокировки",
+   "start": 0.390166,
+   "end": 1.026332
+  },
+  {
+   "w": "докажите",
+   "start": 1.026333,
+   "end": 1.550874
+  },
+  {
+   "w": "что",
+   "start": 1.78525,
+   "end": 1.963833
+  },
+  {
+   "w": "вы",
+   "start": 1.963833,
+   "end": 2.053124
+  },
+  {
+   "w": "не",
+   "start": 2.053125,
+   "end": 2.142416
+  },
+  {
+   "w": "робот",
+   "start": 2.142416,
+   "end": 2.599999
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+12%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/pretend_bot3_gpt/s10.mp3"
+}

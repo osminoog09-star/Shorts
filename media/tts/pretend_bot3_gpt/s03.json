@@ -1,0 +1,37 @@
+{
+ "text": "Выберите все квадраты со светофорами.",
+ "words": [
+  {
+   "w": "Выберите",
+   "start": 0.1,
+   "end": 0.646875
+  },
+  {
+   "w": "все",
+   "start": 0.646875,
+   "end": 0.870083
+  },
+  {
+   "w": "квадраты",
+   "start": 0.870083,
+   "end": 1.327666
+  },
+  {
+   "w": "со",
+   "start": 1.327666,
+   "end": 1.461582
+  },
+  {
+   "w": "светофорами",
+   "start": 1.461625,
+   "end": 2.265208
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+12%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/pretend_bot3_gpt/s03.mp3"
+}

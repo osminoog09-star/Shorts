@@ -1,0 +1,22 @@
+{
+ "text": "Подпишись! И спасибо всем, кто досмотрел и поставил лайк!",
+ "words": [
+  {
+   "w": "Подпишись!",
+   "start": 0.1,
+   "end": 1.6513392
+  },
+  {
+   "w": "И спасибо всем, кто досмотрел и поставил лайк!",
+   "start": 1.6013392,
+   "end": 5.2508927
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+12%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/pretend_bot3_gpt/s12.mp3"
+}

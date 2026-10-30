@@ -1,0 +1,42 @@
+{
+ "text": "И сайт наконец поверил, что я...",
+ "words": [
+  {
+   "w": "И",
+   "start": 0.1,
+   "end": 0.300875
+  },
+  {
+   "w": "сайт",
+   "start": 0.300875,
+   "end": 0.602208
+  },
+  {
+   "w": "наконец",
+   "start": 0.60225,
+   "end": 1.048666
+  },
+  {
+   "w": "поверил",
+   "start": 1.048666,
+   "end": 1.472791
+  },
+  {
+   "w": "что",
+   "start": 1.606708,
+   "end": 1.841083
+  },
+  {
+   "w": "я",
+   "start": 1.841083,
+   "end": 2.153583
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+12%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/pretend_bot3_gpt/s07.mp3"
+}
