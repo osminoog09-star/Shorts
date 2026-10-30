@@ -21,7 +21,7 @@ jobs:
       - run: python -m pip install 'requests>=2.32,<3'
       - name: Load previous pulse
         run: |
-          git fetch -q origin pulse-data || true
+          git fetch -q origin +pulse-data:refs/remotes/origin/pulse-data || true
           git show origin/pulse-data:pulse.json > /tmp/pulse.json 2>/dev/null || echo '{"snapshots":[]}' > /tmp/pulse.json
       - name: Snapshot counters (read-only)
         env:
