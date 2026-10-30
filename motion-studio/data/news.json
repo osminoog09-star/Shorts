@@ -1,20 +1,96 @@
 {
-  "status": "partial",
-  "updated_at": "2026-10-29T22:45:36.136480Z",
-  "last_attempt_at": "2026-10-29T22:45:36.136480Z",
-  "feeds_ok": 6,
-  "feeds_failed": 1,
-  "errors": [
-    {
-      "source": "NASA News",
-      "error_type": "ValueError"
-    }
-  ],
+  "status": "success",
+  "updated_at": "2026-10-30T12:55:12.611067Z",
+  "last_attempt_at": "2026-10-30T12:55:12.611067Z",
+  "feeds_ok": 7,
+  "feeds_failed": 0,
+  "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
     {
+      "id": "3e7f75aad019dd61df",
+      "title": "2027 Nissan Rogue Hybrid: Drives like an EV, but there's no plug involved",
+      "url": "https://arstechnica.com/cars/2026/10/2027-nissan-rogue-hybrid-drives-like-an-ev-but-theres-no-plug-involved/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-30T12:00:18Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "6e108b3d65de6b7a70",
+      "title": "Review: You Can See Everything blurs the view of Elizabeth Holmes' deceit",
+      "url": "https://arstechnica.com/culture/2026/10/review-you-can-see-everything-blurs-the-view-of-elizabeth-holmes-deceit/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-30T11:30:01Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "5ba2be4ee7a1688b01",
+      "title": "Rocket Report: Winter is coming for Themis; Cowboy Space adds iron to the fire",
+      "url": "https://arstechnica.com/space/2026/10/rocket-report-winter-is-coming-for-themis-cowboy-space-adds-iron-to-the-fire/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-30T11:00:35Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7f7f16717282374033",
+      "title": "Maine’s data center revolt will decide who controls the Senate",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1021080/maine-senate-race-susan-collins-ai-data-centers",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-30T11:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c096782638d443ac76",
+      "title": "Wikipedia’s operator says a bad AI copyright ruling could threaten the open web",
+      "url": "https://www.theverge.com/policy/1022880/wikipedia-openai-new-york-times-copyright",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-30T09:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c4d34ddeaf925ee456",
+      "title": "You don’t need to believe in a god to get a religious exemption from using AI at work",
+      "url": "https://techcrunch.com/2026/10/29/you-dont-need-to-believe-in-a-god-to-get-a-religious-exemption-from-using-ai-at-work/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-30T01:20:48Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "772e2e8e8ca4a19f25",
+      "title": "AWS will be a $1T business, Jassy says — but first, it will spend big",
+      "url": "https://techcrunch.com/2026/10/29/aws-will-be-a-1t-business-jassy-says-but-first-it-will-spend-big/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-29T23:42:22Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ccef4b21c6474d3723",
+      "title": "Reddit is moving to “a logged-in-only experience,” CEO says",
+      "url": "https://arstechnica.com/gadgets/2026/10/reddit-will-require-you-to-log-in-eventually-ceo-confirms/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-29T21:47:57Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ed6e3d4d78aea9350f",
+      "title": "Halloween Aboard the International Space Station",
+      "url": "https://www.nasa.gov/centers-and-facilities/johnson/halloween-aboard-the-international-space-station/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-10-29T21:44:23Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
       "id": "77d6bd61a607ad83c9",
-      "title": "Windows 11 gets right-click menu improvements as PC revenue slides",
+      "title": "Microsoft fixes a Windows 11 annoyance as PC revenue declines",
       "url": "https://arstechnica.com/gadgets/2026/10/windows-11-gets-right-click-menu-improvements-as-pc-revenue-slides/",
       "category": "technology",
       "source": "Ars Technica",
@@ -94,6 +170,15 @@
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
+      "id": "4b2c059bd94e7ed8fd",
+      "title": "NASA-funded Study Details One of Oldest Mars Meteorites Ever Found",
+      "url": "https://www.nasa.gov/solar-system/planets/mars/nasa-funded-study-details-one-of-oldest-mars-meteorites-ever-found/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-10-29T18:18:09Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
       "id": "cd2de5f83b6c9607bd",
       "title": "Turning a solar power system into its own backup",
       "url": "https://arstechnica.com/science/2026/10/turning-a-solar-power-system-into-its-own-backup/",
@@ -103,12 +188,30 @@
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
+      "id": "6a8e8f4a60c542051c",
+      "title": "NASA Names Troy Asher Armstrong Flight Research Center Director",
+      "url": "https://www.nasa.gov/news-release/nasa-names-troy-asher-armstrong-flight-research-center-director/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-10-29T18:00:35Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
       "id": "20776e88d00f350280",
       "title": "Granola crunches up a dictation feature to compete with Wispr",
       "url": "https://techcrunch.com/2026/10/29/granola-crunches-up-a-dictation-feature-to-compete-with-wispr/",
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-10-29T17:54:38Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "dbf41850dbaefd91e2",
+      "title": "NIH–NASA QuSAFE Challenge",
+      "url": "https://www.nasa.gov/directorates/stmd/prizes-challenges-crowdsourcing-program/center-of-excellence-for-collaborative-innovation-coeci/nih-nasa-qusafe-challenge/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-10-29T17:44:37Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -163,6 +266,15 @@
       "category": "ai",
       "source": "The Verge AI",
       "published_at": "2026-10-29T16:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "624e1e1e3d1bccd570",
+      "title": "Envía tu nombre a Titán a bordo de la misión Dragonfly de la NASA",
+      "url": "https://www.nasa.gov/news-release/envia-tu-nombre-a-titan-a-bordo-de-la-mision-dragonfly-de-la-nasa/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-10-29T15:21:23Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -613,123 +725,6 @@
       "category": "ai",
       "source": "The Verge AI",
       "published_at": "2026-10-28T11:27:30Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "bab4d2d109d6ff570d",
-      "title": "China’s snooping around Pacific undersea cables raises risks for Big Tech",
-      "url": "https://arstechnica.com/gadgets/2026/10/google-and-meta-subsea-cables-among-most-at-risk-from-sabotage-in-pacific/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-28T11:00:49Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "9eab77713c3920c6ed",
-      "title": "Making machines that can listen",
-      "url": "https://news.mit.edu/2026/making-machines-that-can-listen-paris-smaragdis-1028",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-10-28T04:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4ba4897dde9b2c1a6b",
-      "title": "VCs will make billions on Anthropic’s IPO, but Amazon is set to make much (much) more",
-      "url": "https://techcrunch.com/2026/10/27/vcs-will-make-billions-on-anthropics-ipo-but-amazon-is-set-to-make-much-much-more/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-28T01:15:28Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4c5627bb695205d19f",
-      "title": "Parents sue OpenAI, alleging GPT-4o coached their daughter off seizure medication",
-      "url": "https://techcrunch.com/2026/10/27/parents-sue-openai-alleging-gpt-4o-coached-their-daughter-off-seizure-medication/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-27T23:34:27Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5b8f2377809f90dcf6",
-      "title": "The data center boom has an upside: innovation for the US grid",
-      "url": "https://techcrunch.com/2026/10/27/the-data-center-boom-has-an-upside-innovation-for-the-us-grid/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-27T22:55:41Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c56458dd612a89c1fd",
-      "title": "Apple refreshes the iMac, entry-level MacBook Pro with the M6 chip",
-      "url": "https://arstechnica.com/apple/2026/10/apple-refreshes-the-imac-entry-level-macbook-pro-with-the-m6-chip/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-27T22:37:30Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "8c13645a5495df2dbe",
-      "title": "South Carolina's measles outbreak jumped to Washington state 5 times in 2 weeks",
-      "url": "https://arstechnica.com/health/2026/10/domestic-travel-poses-growing-risk-for-measles-and-a-new-challenge-for-states/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-27T22:22:32Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ca4603f34f23831e3c",
-      "title": "China's top-secret spaceplane can't hide in low-Earth orbit",
-      "url": "https://arstechnica.com/space/2026/10/chinas-top-secret-spaceplane-cant-hide-in-low-earth-orbit/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-27T22:04:50Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f45c7980de26dbce15",
-      "title": "\"No human at the helm\": Delaware plan would let AI agents run entire businesses",
-      "url": "https://arstechnica.com/tech-policy/2026/10/no-human-at-the-helm-delaware-plan-would-let-ai-agents-run-entire-businesses/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-27T21:50:04Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "22c376eb4e78466379",
-      "title": "Bank of America kindly asks that you don’t share your banking password with your AI assistant",
-      "url": "https://techcrunch.com/2026/10/27/bank-of-america-kindly-asks-that-you-dont-share-your-banking-password-with-your-ai-assistant/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-27T21:44:34Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4f33acf6a2b5045b42",
-      "title": "Who’s really in charge at Anthropic after the IPO?",
-      "url": "https://techcrunch.com/2026/10/27/whos-really-in-charge-at-anthropic-after-the-ipo/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-27T21:38:28Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "8b2d32a128d5af0502",
-      "title": "Anthropic IPO warns its AI could blackmail people, become sentient, end humanity",
-      "url": "https://arstechnica.com/ai/2026/10/anthropic-ipo-warns-its-ai-could-blackmail-people-become-sentient-end-humanity/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-27T21:31:14Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f6bcb634209c36dece",
-      "title": "Learner collaborates with MIT peers to develop book of AI insights",
-      "url": "https://news.mit.edu/2026/learner-prabha-jha-collaborates-with-mit-peers-to-develop-book-of-ai-insights-1027",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-10-27T20:55:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
