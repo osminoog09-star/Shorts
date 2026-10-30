@@ -1,0 +1,6 @@
+{
+  "_readme": "Плейлисты канала (решение Дениса 30.10). ID не секретные. Workflow playlists.yml сам создаёт отсутствующие (id=null) и раскладывает ролики: категория YouTube 1 «Фильмы и анимация» + длина ≤ 180 с → kino_shorts, длиннее → kino_razbor. Плюс ролики из seed. Агенты: у кино-роликов в манифесте ставить category_id \"1\".",
+  "kino_shorts": {"title": "Кино-Shorts", "description": "Сцены из фильмов и сериалов. Угадаешь фильм до конца? Ответ — в последних словах.", "id": null,
+                  "seed": ["XANzL3z9wqY", "bpaR4hHC6YU", "dwPNCXCcu24", "XtSnXx4nVq8", "KhaAsIVKwCM"]},
+  "kino_razbor": {"title": "Кино-разборы", "description": "Разбираем великие сцены и персонажей кино: почему это работает.", "id": null, "seed": []}
+}
