@@ -57,6 +57,18 @@ jobs:
               sys.exit('ERROR: configure these GitHub Actions repository secrets first: ' + ', '.join(missing))
           token = token_for(lang)
           verify_channel(token, channel_id)
+          if lang == 'ru':
+              import requests
+              # Verify functional comment-read permission without logging secrets.
+              r = requests.get(
+                  'https://www.googleapis.com/youtube/v3/commentThreads',
+                  params={'part': 'snippet', 'allThreadsRelatedToChannelId': channel_id,
+                          'maxResults': 1, 'textFormat': 'plainText'},
+                  headers={'Authorization': 'Bearer ' + token}, timeout=30)
+              if not r.ok:
+                  sys.exit('NO-GO: RU comments permission unavailable (HTTP ' + str(r.status_code)
+                           + '). Reauthorize with youtube.force-ssl and verify pulse-data status.comments.')
+              print('SUCCESS: RU comments permission is valid (commentThreads.list).')
           print('SUCCESS: Google OAuth is valid and belongs to configured ' + lang.upper() + ' channel ' + channel_id)
           print('NO VIDEO UPLOAD WAS PERFORMED.')
           PY
