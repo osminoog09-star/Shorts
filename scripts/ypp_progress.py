@@ -72,13 +72,17 @@ def main():
     subs = int((latest.get("channel_statistics") or {}).get("subscriberCount", 0) or 0)
     uploads_90 = sum(1 for v in latest.get("inventory", []) if v.get("privacy") == "public"
                      and v.get("published_at", "") >= (today - timedelta(days=90)).isoformat())
+    # Последние дни API отдаёт с задержкой (нули) — считаем только до последнего дня с данными.
+    have = [k for k, v in data.items() if v["shorts"] or v["long_min"]]
+    if have:
+        end = min(end, date.fromisoformat(max(have)))
     days = [end - timedelta(days=i) for i in range(364, -1, -1)]
     sv = [data.get(str(d), {}).get("shorts_engaged", 0) for d in days]
     sv_all = [data.get(str(d), {}).get("shorts", 0) for d in days]
     lh = [data.get(str(d), {}).get("long_min", 0) / 60 for d in days]
     net28 = sum((r.get("subscribersGained") or 0) - (r.get("subscribersLost") or 0) for r in subs_rows)
     subs_rate = net28 / 28
-    sv_rate = sum(sv[-14:]) / 14
+    sv_rate = sum(sv[-7:]) / 7
     lh_rate = sum(lh[-28:]) / 28
 
     def goal(name, cur, target, days_left, unit, need=None):
