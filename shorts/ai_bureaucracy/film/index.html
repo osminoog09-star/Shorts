@@ -583,7 +583,7 @@ function finaleUpdate(t) {
 
 // ============ титры ============
 const capsEl = document.getElementById('caps');
-const HIDE = [[cut.mont, cut.send], [st('d07') - 0.2, cut.punch], [wd('s05', 1) - 0.05, cut.outro]];
+const HIDE = [[cut.mont, cut.send], [st('d07') - 0.2, cut.punch], [st('s05') - 0.05, cut.outro]];
 const capEls = VO.caps.map((c) => {
   const el = document.createElement('div'); el.className = 'cap ' + c.who;
   const hl = new Set(c.hl);
@@ -593,8 +593,9 @@ const capEls = VO.caps.map((c) => {
 function capsUpdate(t) {
   capsEl.style.top = V.capY + 'px'; capsEl.style.fontSize = V.capSize + 'px';
   const hidden = HIDE.some(([a, b]) => t >= a && t < b) || t >= cut.outro;
-  const side = HOSTWIN.some(([a, b]) => t >= a - 0.1 && t < b + 0.1);
-  capsEl.classList.toggle('side', side); if (side) capsEl.style.fontSize = Math.round(V.capSize * 0.86) + 'px';
+  const win = HOSTWIN.find(([a, b]) => t >= a - 0.1 && t < b + 0.1), side = !!win;
+  capsEl.classList.toggle('side', side);
+  if (side) { capsEl.style.fontSize = Math.round(V.capSize * (win[2] > 1.1 ? 0.78 : 0.86)) + 'px'; capsEl.style.left = Math.round(40 + 380 * win[2] + 24) + 'px'; } else capsEl.style.left = '';
   VO.caps.forEach((c, i) => {
     const el = capEls[i];
     const on = !hidden && t >= c.t0 - 0.03 && t < c.t1;
