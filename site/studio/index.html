@@ -111,7 +111,11 @@ function plan(){
 function todo(){
   const f=D.formats.filter(x=>x.n>0);
   const best=f[0], ret=[...f].filter(x=>x.avg_avp!=null).sort((a,b)=>b.avg_avp-a.avg_avp)[0], subs=[...f].sort((a,b)=>b.subs-a.subs)[0], worst=f[f.length-1];
-  let h=`<div class="grid"><section class="card"><h2>Решения на неделю (по цифрам)</h2><div class="grid">`;
+  let h=`<div class="grid">`;
+  const I=D.ideas||{};
+  h+=`<section class="card"><h2>Идеи дня${I.date?" · "+esc(I.date):""}</h2>`+(I.summary?`<p class="muted" style="margin:0 0 10px">${esc(I.summary)}</p>`:"")+
+    ((I.ideas||[]).length?`<div class="grid">${I.ideas.map(x=>`<div class="rec"><b>${x.kind==="experiment"?'<span class="chip c-info">эксперимент</span> ':'<span class="chip c-ok">проверено</span> '}${esc(x.title)}</b><span class="muted">${esc(x.format||"")}${x.why?" · "+esc(x.why):""}${x.hypothesis?" · гипотеза: "+esc(x.hypothesis):""}${x.metric?" · метрика: "+esc(x.metric):""}</span><span class="chip">${esc(x.status||"proposed")}</span></div>`).join("")}</div>`:`<p class="muted">Первые идеи появятся после ближайшего ежедневного анализа.</p>`)+`</section>`;
+  h+=`<section class="card"><h2>Решения на неделю (по цифрам)</h2><div class="grid">`;
   if(best) h+=`<div class="rec"><b>Больше всего: ${esc(best.format)}</b><span class="muted">в среднем ${num(best.avg_views)} просмотров на ролик — ставь в лучшие слоты (10:00).</span></div>`;
   if(ret) h+=`<div class="rec"><b>Лучше всего досматривают: ${esc(ret.format)}</b><span class="muted">${ret.avg_avp}% досмотра — формат для серий и воронки в длинные.</span></div>`;
   if(subs) h+=`<div class="rec"><b>Больше всего подписок: ${esc(subs.format)}</b><span class="muted">+${subs.subs} подписчиков — именно это растит канал.</span></div>`;

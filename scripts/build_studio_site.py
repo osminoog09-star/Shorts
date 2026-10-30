@@ -148,6 +148,16 @@ def main():
     weekly = sorted((ROOT / "reports" / "weekly").glob("*.md"))
     weekly_txt = weekly[-1].read_text(encoding="utf-8")[:4000] if weekly else ""
 
+    ideas = load("reports/ideas/latest.json", {}) or {}
+    pubs = sorted([v for v in videos if v["privacy"] == "public" and v["published"]], key=lambda v: v["published"])
+    vals = [x.get("views") or 0 for x in (latest.get("recent_daily_views") or [])]
+    spike = None
+    if len(vals) >= 8:
+        base = sum(vals[-8:-1]) / 7
+        if base > 0 and vals[-1] >= 2 * base:
+            spike = {"day": latest["recent_daily_views"][-1]["day"], "views": vals[-1], "avg7": round(base)}
+    events = {"last_video": {"id": pubs[-1]["id"], "title": pubs[-1]["title"]} if pubs else None,
+              "ideas_date": ideas.get("date"), "ideas_count": len(ideas.get("ideas", [])), "spike": spike}
     ch = latest.get("channel_statistics", {}) or {}
     daily = latest.get("recent_daily_views", []) or []
     out = {
@@ -161,6 +171,7 @@ def main():
         "learn": {"works": section(learn_md, "Работает"), "fails": section(learn_md, "Не работает"),
                   "hyp": section(learn_md, "Гипотезы на проверку")},
         "weekly": {"name": weekly[-1].stem if weekly else None, "text": weekly_txt},
+        "ideas": ideas, "events": events,
         "playlists": {k: v.get("id") for k, v in playlists.items() if isinstance(v, dict)},
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)

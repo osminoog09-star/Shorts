@@ -31,7 +31,9 @@ class StudioWidget : AppWidgetProvider() {
         val pending = goAsync()
         thread {
             try {
-                val views = render(ctx, runCatching { load() }.getOrNull())
+                val data = runCatching { load() }.getOrNull()
+                val views = render(ctx, data)
+                if (data != null) runCatching { Notifier.check(ctx, data) }
                 val mgr = AppWidgetManager.getInstance(ctx)
                 mgr.updateAppWidget(ComponentName(ctx, StudioWidget::class.java), views)
             } finally { pending.finish() }

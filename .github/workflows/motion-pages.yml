@@ -5,7 +5,7 @@ on:
     types: [completed]
   push:
     branches: [main]
-    paths: ['motion-studio/**', 'site/**', 'scripts/build_studio_site.py', 'publishing/queue.json', 'publishing/receipts/**', 'reports/learnings.md', 'reports/weekly/**', '.github/workflows/motion-pages.yml', '.github/workflows/m1lash-news-radar.yml', '.github/workflows/motion-trends.yml']
+    paths: ['motion-studio/**', 'site/**', 'scripts/build_studio_site.py', 'publishing/queue.json', 'publishing/receipts/**', 'reports/learnings.md', 'reports/weekly/**', 'reports/ideas/**', '.github/workflows/motion-pages.yml', '.github/workflows/m1lash-news-radar.yml', '.github/workflows/motion-trends.yml']
   workflow_dispatch:
 permissions:
   contents: read
