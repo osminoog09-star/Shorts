@@ -29,3 +29,10 @@
 - **The Creator (2023)**: emotional AI/child encounter, hook «Он понял, кого должен защищать»; original footage and RU dubbing copyrighted; **NO source license**, do not download/render; Content ID risk remains.
 - **Dune: Part Two (2024)**: giant sandworm ride as impossible physical challenge, hook «Один шаг — и песок тебя поглотит»; copyrighted movie/dubbing/music, **NO permission**, no render; Content ID risk remains.
 If future rights obtained: obey `MYSTERY_SHORTS_TEMPLATE.md`: public metadata never names film; complete CTA spoken by Dima first, final *spoken* film title is last sound, no on-screen title. The above internal names must never be copied to public fields.
+
+
+## Actual GitHub Actions run / remediation 30.10.2026
+- **Run #1:** https://github.com/osminoog09-star/Shorts/actions/runs/41011774229 — **FAILED**, not a video. Four ESA photos downloaded and verified by PIL (collage 9.2 MB, Hubble 6.8 MB, NIRCam 1.7 MB, MIRI 0.7 MB); Rhubarb 1.14.0 installed. Edge TTS returned `NoAudioReceived` repeatedly on line 3, so strict voice gate stopped the render. **No fake TTS and no MP4**.
+- **Fix:** same `ru-RU-DmitryNeural` now retries shorter sentence chunks after long-line failure; no voice replacement. Workflow now saves partial verified MP3 segments as artifacts on failure. GitHub SHA `859224f7acb658845c979eb79b4a0755f9f1da49`.
+- **Current follow-up run:** https://github.com/osminoog09-star/Shorts/actions/runs/41012111838 — started; check job result and artifacts before claiming a video. Other interim runs cancelled automatically by concurrency; this is not a release.
+- **Style experiment note:** `reports/style_experiment.md` already has S7-D25, while S4-D25 is the next not-yet-used style in the official order. The S7-D25 Remotion work here is a **technical private proof, not a registered public style test**. For any public release, owner choice or next untested **S4-D25** must be honored; do not silently label this S7 build as an S4 experiment.
