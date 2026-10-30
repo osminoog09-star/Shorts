@@ -1,13 +1,18 @@
 {
- "as_of": "2026-10-29",
- "built": "2026-10-30T21:14:09.349619+00:00",
+ "as_of": "2026-10-28",
+ "built": "2026-10-30T21:15:37.927777+00:00",
  "engaged_views": true,
  "pace": {
   "subs_per_day": 0.86,
-  "shorts_views_per_day": 882,
+  "shorts_views_per_day": 1765,
   "long_hours_per_day": 0.0
  },
  "shorts_daily_90": [
+  {
+   "day": "2026-07-31",
+   "views": 0,
+   "all": 0
+  },
   {
    "day": "2026-08-01",
    "views": 0,
@@ -452,11 +457,6 @@
    "day": "2026-10-28",
    "views": 2556,
    "all": 4276
-  },
-  {
-   "day": "2026-10-29",
-   "views": 0,
-   "all": 0
   }
  ],
  "tiers": [
