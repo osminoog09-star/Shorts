@@ -2,19 +2,8 @@
   "start": "2026-09-01",
   "end": "2026-09-30",
   "videos": {},
-  "unsupported_metrics": [
-    "views",
-    "engagedViews",
-    "averageViewPercentage",
-    "averageViewDuration",
-    "subscribersGained",
-    "subscribersLost",
-    "likes",
-    "comments",
-    "shares",
-    "estimatedMinutesWatched"
-  ],
+  "unsupported_metrics": [],
   "requested_end": "2026-09-30",
-  "fetched_at": "2026-10-30T19:00:15.025954+00:00",
+  "fetched_at": "2026-10-30T19:01:29.906214+00:00",
   "provisional": true
 }
