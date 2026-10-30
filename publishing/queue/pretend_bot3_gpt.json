@@ -1,0 +1,28 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "repo",
+    "path": "videos/pretend_bot3_gpt_ru_v2.mp4",
+    "sha256": "01f45e2da48f55e42478764ddfad21848b3bbb26be165cb5020c43e0258eb724"
+  },
+  "metadata": {
+    "type": "short",
+    "title": "ИИ доказал, что я робот 💀 | Притворись ботом 3 #shorts",
+    "description": "Сайт попросил доказать, что я человек. Я позвал ИИ — и меня заблокировали 😅\nА ты с какого раза проходишь капчу?\n\n#shorts #юмор #ии #нейросети #капча #роботы #m1lash",
+    "tags": [
+      "ИИ",
+      "нейросеть",
+      "капча",
+      "проверка на робота",
+      "юмор",
+      "скетч",
+      "Притворись ботом",
+      "искусственный интеллект",
+      "M1lash",
+      "shorts"
+    ],
+    "category_id": "23",
+    "made_for_kids": false,
+    "contains_synthetic_media": true
+  }
+}
