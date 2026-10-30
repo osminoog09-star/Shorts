@@ -59,6 +59,20 @@ jobs:
           verify_channel(token, channel_id)
           if lang == 'ru':
               import requests
+              required = {
+                  'https://www.googleapis.com/auth/youtube.upload',
+                  'https://www.googleapis.com/auth/youtube.force-ssl',
+                  'https://www.googleapis.com/auth/youtube.readonly',
+                  'https://www.googleapis.com/auth/yt-analytics.readonly',
+              }
+              info = requests.get('https://oauth2.googleapis.com/tokeninfo',
+                                  params={'access_token': token}, timeout=30)
+              if not info.ok:
+                  sys.exit('NO-GO: could not verify OAuth scopes (HTTP ' + str(info.status_code) + ')')
+              granted = set(info.json().get('scope', '').split())
+              if not required.issubset(granted):
+                  sys.exit('NO-GO: RU OAuth token does not include all 4 required scopes')
+              print('SUCCESS: all 4 required RU OAuth scopes are present.')
               # Verify functional comment-read permission without logging secrets.
               r = requests.get(
                   'https://www.googleapis.com/youtube/v3/commentThreads',
