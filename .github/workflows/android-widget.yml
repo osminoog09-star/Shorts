@@ -30,7 +30,7 @@ jobs:
           printf '%s' "$KS_B64" | base64 -d > "$RUNNER_TEMP/m1w.jks"
           chmod 600 "$RUNNER_TEMP/m1w.jks"
           export WIDGET_KEYSTORE="$RUNNER_TEMP/m1w.jks"
-          keytool -list -keystore "$WIDGET_KEYSTORE" -storepass "$WIDGET_KEYSTORE_PASSWORD" -alias m1lash >/dev/null
+          keytool -list -keystore "$WIDGET_KEYSTORE" -storepass:env WIDGET_KEYSTORE_PASSWORD -alias m1lash >/dev/null
           trap 'rm -f "$RUNNER_TEMP/m1w.jks"' EXIT
           gradle --no-daemon :app:assembleRelease
       - name: Publish release
