@@ -22,7 +22,16 @@ jobs:
           KS_B64: ${{ secrets.WIDGET_KEYSTORE_B64 }}
           WIDGET_KEYSTORE_PASSWORD: ${{ secrets.WIDGET_KEYSTORE_PASSWORD }}
         run: |
-          if [ -n "$KS_B64" ]; then echo "$KS_B64" | base64 -d > "$RUNNER_TEMP/m1w.jks"; export WIDGET_KEYSTORE="$RUNNER_TEMP/m1w.jks"; else echo "::warning::WIDGET_KEYSTORE_B64 не задан — подпись debug, автообновление поверх не сработает"; fi
+          set -euo pipefail
+          if [ -z "${KS_B64:-}" ] || [ -z "${WIDGET_KEYSTORE_PASSWORD:-}" ]; then
+            echo "::error::Permanent signing secrets are missing. Refusing to publish a debug-signed release."
+            exit 1
+          fi
+          printf '%s' "$KS_B64" | base64 -d > "$RUNNER_TEMP/m1w.jks"
+          chmod 600 "$RUNNER_TEMP/m1w.jks"
+          export WIDGET_KEYSTORE="$RUNNER_TEMP/m1w.jks"
+          keytool -list -keystore "$WIDGET_KEYSTORE" -storepass "$WIDGET_KEYSTORE_PASSWORD" -alias m1lash >/dev/null
+          trap 'rm -f "$RUNNER_TEMP/m1w.jks"' EXIT
           gradle --no-daemon :app:assembleRelease
       - name: Publish release
         env: { GH_TOKEN: '${{ github.token }}' }
