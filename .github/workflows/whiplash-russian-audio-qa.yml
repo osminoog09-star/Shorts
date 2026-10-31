@@ -1,0 +1,56 @@
+name: Whiplash Russian dialogue independent audio QA
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/whiplash-russian-audio-qa.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: movie-edit-draft
+          run-id: 41197336389
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: source
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          pip -q install 'faster-whisper>=1.1,<2'
+          sudo apt-get -qq update
+          sudo apt-get -qq install -y ffmpeg
+      - name: Analyze actual actor speech with automatic language detection
+        run: |
+          mkdir -p output
+          python3 - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          from faster_whisper import WhisperModel
+          src=Path('source/originals/whiplash_russian_rehearsal_scene.mp4')
+          assert src.is_file() and src.stat().st_size > 1000000
+          model=WhisperModel('small',device='cpu',compute_type='int8')
+          result=[]
+          for n,(start,length) in enumerate([(10,35),(100,35),(205,35)]):
+            out=f'output/sample{n}.wav'
+            subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-ss',str(start),'-t',str(length),'-i',str(src),'-ac','1','-ar','16000',out],check=True)
+            segments,meta=model.transcribe(out,beam_size=2,vad_filter=True)
+            texts=[s.text.strip() for s in segments]
+            record={'range': [start,start+length],'detected_language':meta.language,'language_probability':round(meta.language_probability,3),'samples':texts[:8]}
+            print(json.dumps(record,ensure_ascii=False),flush=True)
+            result.append(record)
+          Path('output/ru_audio_language_qa.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
+          assert sum(x['detected_language']=='ru' and x['language_probability']>=0.75 for x in result)>=2,'Russian language not consistently confirmed'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: whiplash-ru-audio-language-evidence
+          path: output/ru_audio_language_qa.json
+          retention-days: 5
