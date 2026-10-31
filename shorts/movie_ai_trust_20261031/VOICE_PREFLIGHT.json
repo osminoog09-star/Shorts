@@ -1,0 +1,18 @@
+{
+  "tts_run": 41169150379,
+  "tts_conclusion": "success",
+  "speaker": "dima",
+  "voice_id": "ru-RU-DmitryNeural",
+  "engine": "edge-tts",
+  "rate": "+4%",
+  "source_file": "media/tts/mystery_ai_trust_20261031/outro_reveal.mp3",
+  "file_size": 56880,
+  "duration_seconds": 9.48,
+  "sha256": "53d8d2b9a4169bf4f688e3848098947f153c9569748c3516e1a1c1653aa9da0a",
+  "decode": "pass",
+  "character": false,
+  "lip_sync_required": false,
+  "film_source_received": false,
+  "final_video_qa": "not_run_no_source",
+  "human_listening": "not claimed"
+}

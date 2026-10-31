@@ -22,5 +22,8 @@
     "decode": "not_run_no_final_mp4",
     "visual": "not_run_no_source",
     "audio": "not_run_no_final_mix"
-  }
+  },
+  "voice_status": "ready_voice_only",
+  "voice_preflight": "shorts/movie_ai_trust_20261031/VOICE_PREFLIGHT.json",
+  "tts_run": 41169150379
 }
