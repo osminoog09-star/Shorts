@@ -1,0 +1,10 @@
+{
+  "purpose": "Verify publicly shared Russian dubbed Nightcrawler trailer to determine whether contains exact Lou police encounter or only unrelated trailer footage; private QA.",
+  "rights_note": "Public trailer upload does not grant rights, original movie dialogue must be checked; no upload.",
+  "sources": [
+    {
+      "id": "nightcrawler_ru_trailer_2min",
+      "url": "https://rutube.ru/video/e71d79ec7ed94b672deb0e65d38570f3/"
+    }
+  ]
+}
