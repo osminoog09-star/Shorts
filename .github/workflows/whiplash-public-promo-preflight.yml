@@ -26,6 +26,13 @@ jobs:
               for s in re.findall(r'https?[^\s"\x27<>]+',html.unescape(data)):
                 print('PUBLIC-LINK',s[:300])
           except Exception as ex: print('UNAVAILABLE',type(ex).__name__,str(ex)[:280])
+          # Read publicly exposed redirect JS; never evaluate untrusted JS or cross paywall.
+          try:
+            u='https://static.hd-trailers.net/yahoo-redir.js?1528260260'
+            with urlopen(Request(u,headers={'User-Agent':'Mozilla/5.0'}),timeout=15) as r:
+              script=r.read(18000).decode('utf-8','replace')
+              print('PUBLIC-REDIRECT-SCRIPT',script[:10000])
+          except Exception as ex: print('SCRIPT-UNAVAILABLE',type(ex).__name__,str(ex)[:250])
           PY
       - name: Print source provenance
         run: |
