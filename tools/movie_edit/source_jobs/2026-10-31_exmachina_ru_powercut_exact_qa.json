@@ -1,0 +1,12 @@
+{
+  "purpose": "PRIVATE scene-specific QA only: verify actual Russian actor dialogue around first Ex Machina blackout and Ava warning about Nathan, not trailer or wrong later scene. Fetch only short excerpt, no full film, no publication.",
+  "rights_note": "Public platform availability is not redistribution permission. This is an editorial short-quotation research candidate from a major RUTUBE film channel, do not assume clearance or make YouTube upload; no DRM/login bypass.",
+  "sources": [
+    {
+      "id": "exmachina_ava_nathan_ru_test",
+      "url": "https://rutube.ru/video/b80a4686bd992a439f291e1f6562d1ed/",
+      "start_seconds": 1710,
+      "end_seconds": 1980
+    }
+  ]
+}
