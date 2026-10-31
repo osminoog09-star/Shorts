@@ -1,0 +1,12 @@
+{
+  "purpose": "Fetch only the final room dialogue interval for Chigur Shorts B, as explicitly requested by the owner. Source interval is a search window; inspect actual frames before final trim.",
+  "rights_note": "Owner accepts Content ID risk per AGENTS 8 and explicitly asks for the clips on GitHub. Download only a six-minute public streaming interval, never a full film. No DRM, authentication or bot-check bypass.",
+  "sources": [
+    {
+      "id": "chigur_carla_ru_window",
+      "url": "https://rutube.ru/video/1699d462760e77017d638c206d4dd57d/",
+      "start_seconds": 6480,
+      "end_seconds": 6840
+    }
+  ]
+}

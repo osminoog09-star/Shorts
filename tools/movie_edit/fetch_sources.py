@@ -28,7 +28,17 @@ def fetch(manifest_path, output_dir):
         parsed = urlparse(url)
         if parsed.scheme != 'https' or not parsed.hostname or parsed.username or parsed.password:
             raise ValueError('Expected public HTTPS source without credentials')
-        if parsed.path.lower().endswith('.mp4'):
+        clip_args = []
+        has_range = 'start_seconds' in source or 'end_seconds' in source
+        if has_range:
+            start = float(source['start_seconds'])
+            end = float(source['end_seconds'])
+            if not 0 <= start < end or end - start > 900:
+                raise ValueError('Expected a positive clip range of at most 900 seconds')
+            # Fetch only the requested interval using FFmpeg input seeking.
+            clip_args = ['--download-sections', f'*{start}-{end}',
+                         '--downloader', 'ffmpeg']
+        if parsed.path.lower().endswith('.mp4') and not has_range:
             # Direct downloadable movie promo: yt-dlp often has no pre-download
             # height/duration metadata, so its format filters reject a valid MP4.
             # Stream plain HTTPS only (no authentication, cookies, or DRM bypass).
@@ -64,7 +74,7 @@ def fetch(manifest_path, output_dir):
                 '--extractor-retries', '0', '--max-filesize', '250M',
                 '--write-info-json',
                 '--format', 'bestvideo[height<=1080]+bestaudio/best[height<=1080]/best',
-                '--merge-output-format', 'mp4', '--output', str(dest), '--', url,
+                '--merge-output-format', 'mp4', '--output', str(dest), *clip_args, '--', url,
             ], check=True)
             video = output / (sid + '.mp4')
         if not video.is_file():
