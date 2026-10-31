@@ -19,6 +19,7 @@ from pathlib import Path
 
 from voice_cast import APPROVED, validate_job
 import tts_azure
+import voice_humanize
 
 
 async def one(text, voice, rate, pitch, mp3, meta, boundary="WordBoundary"):
@@ -59,6 +60,7 @@ async def main(job_path: str):
     job = json.loads(Path(job_path).read_text(encoding="utf-8"))
     lines = validate_job(job)  # fail BEFORE writing any new audio
     ssml_by_id = {ln.get("id"): ln.get("ssml") for ln in job["lines"]}
+    humanize = bool(job.get("humanize", True))  # решение Дениса 31.10: живая подача по умолчанию
     engine = pick_engine()
     print("engine", engine, flush=True)
     out = Path("media/tts") / Path(job_path).stem
@@ -74,7 +76,7 @@ async def main(job_path: str):
                 old = json.loads(meta.read_text(encoding="utf-8"))
                 if (old.get("text") == text and old.get("voice_id") == voice
                         and old.get("engine") == engine and old.get("ssml") == ssml_by_id.get(ident) and old.get("rate") == rate
-                        and old.get("pitch") == pitch):
+                        and old.get("pitch") == pitch and bool(old.get("humanize")) == (humanize and engine != tts_azure.ENGINE)):
                     print("cached", ident, voice, flush=True)
                     continue
             except (ValueError, OSError):
@@ -88,7 +90,12 @@ async def main(job_path: str):
                         tts_azure.synth, text, voice, rate, pitch, mp3, meta, APPROVED[voice], ssml), 120)
                 else:
                     mode = "WordBoundary" if attempt < 2 else "SentenceBoundary"
-                    await asyncio.wait_for(one(text, voice, rate, pitch, mp3, meta, mode), 90)
+                    if humanize:
+                        async def _one(t_, v_, r_, p_, m_, j_):
+                            await one(t_, v_, r_, p_, m_, j_, mode)
+                        await asyncio.wait_for(voice_humanize.humanized(_one, text, voice, rate, pitch, mp3, meta, {}), 240)
+                    else:
+                        await asyncio.wait_for(one(text, voice, rate, pitch, mp3, meta, mode), 90)
                 print("ok", ident, voice, flush=True)
                 break
             except Exception as ex:  # noqa: BLE001
