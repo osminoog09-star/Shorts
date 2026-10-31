@@ -100,6 +100,7 @@ async def main(job_path: str):
                 break
             except Exception as ex:  # noqa: BLE001
                 print("retry", ident, attempt, repr(ex), flush=True)
+                (out / "_errors.log").open("a", encoding="utf-8").write(f"{ident} attempt {attempt}: {ex!r}\n")
                 mp3.unlink(missing_ok=True)
                 meta.unlink(missing_ok=True)
                 if attempt == 7:

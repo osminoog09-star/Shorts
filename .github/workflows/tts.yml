@@ -30,6 +30,8 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -q "edge-tts>=7,<8" "azure-cognitiveservices-speech>=1.40,<2"
+      - name: ffmpeg (нужен для живой подачи голоса, scripts/voice_humanize.py)
+        run: command -v ffmpeg >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg); ffmpeg -version | head -1
       - name: Synthesize selected job only
         shell: bash
         env:
