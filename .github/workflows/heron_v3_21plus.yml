@@ -1,0 +1,112 @@
+name: Heron V3 — 21-plus documentary preview (NO YouTube upload)
+on:
+  push:
+    branches: [codex/heron-21plus-20261028]
+    paths:
+      - '.github/workflows/heron_v3_21plus.yml'
+      - 'longform/heron-codex/v3_*.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: heron-v3-21plus
+  cancel-in-progress: true
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg
+          python3 -m pip install --quiet "edge-tts>=7,<8" "numpy>=1.24,<3"
+      - name: Build original V3 script — no repeated padding
+        run: python3 longform/heron-codex/v3_extend.py
+      - name: Synthesize all 44 V3 sections as Dmitry
+        run: python3 longform/heron-codex/v3_voice.py
+      - id: matrix
+        shell: bash
+        run: echo "matrix=$(cat longform/heron-codex/v3/matrix.json)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: heron-v3-assets
+          path: |
+            longform/heron-codex/audio_v3/*.wav
+            longform/heron-codex/timeline.json
+            longform/heron-codex/v3/*.json
+          retention-days: 14
+  frames:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v4
+        with:
+          name: heron-v3-assets
+          path: longform/heron-codex
+      - name: Install 3D renderer
+        run: |
+          npm ci --prefix longform/heron-codex
+          node longform/heron-codex/node_modules/playwright-core/cli.js install --with-deps chromium
+          sudo apt-get install -y -q ffmpeg fonts-dejavu-core
+      - name: Render actual horizontal film segment
+        env:
+          PART: ${{ matrix.part }}
+          PARTS: ${{ matrix.parts }}
+          FRAMES: ${{ matrix.frames }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd longform/heron-codex
+          read FROM TO < <(python3 -c 'import os; n=int(os.environ["FRAMES"]); p=int(os.environ["PART"]); q=int(os.environ["PARTS"]); print((n*p//q)/30,(n*(p+1)//q)/30)')
+          printf -v OUT "out/main_%02d.mp4" "$PART"
+          node render.mjs --fps 30 --from "$FROM" --to "$TO" --out "$OUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: heron-v3-frame-${{ matrix.part }}
+          path: longform/heron-codex/out/main_*.mp4
+          retention-days: 14
+  finish:
+    needs: [prepare, frames]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: heron-v3-assets
+          path: longform/heron-codex
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: heron-v3-frame-*
+          merge-multiple: true
+          path: longform/heron-codex/v3_shards
+      - name: Encode, measure and fully decode actual MP4
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg
+          python3 -m pip install --quiet "numpy>=1.24,<3"
+          python3 longform/heron-codex/v3_finish.py
+      - name: Attach V3 preview for human quality review — never auto-publish
+        uses: actions/upload-artifact@v4
+        with:
+          name: heron-v3-21plus-review
+          path: |
+            longform/heron-codex/out/heron_ancient_automation_v3_21plus_ru.mp4
+            longform/heron-codex/out/heron_v3_*.json
+            longform/heron-codex/v3/duration_report.json
+          retention-days: 14
