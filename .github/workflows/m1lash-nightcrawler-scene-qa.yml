@@ -24,14 +24,16 @@ jobs:
         run: |
           python3 -m pip install --quiet faster-whisper
           python3 - <<'PY'
-          import json, pathlib, hashlib
+          import json, pathlib, hashlib, subprocess, numpy as np
           from faster_whisper import WhisperModel
           d=pathlib.Path('qa-source/originals')
           model=WhisperModel('small',device='cpu',compute_type='int8')
           result=[]
           for p in sorted(d.glob('*.mp4')):
               # Full 31-58s speech detection; metadata language alone is not evidence
-              s,info=model.transcribe(str(p),beam_size=3,language=None,vad_filter=True,condition_on_previous_text=False)
+              raw=subprocess.check_output(['ffmpeg','-v','error','-i',str(p),'-vn','-ar','16000','-ac','1','-f','f32le','-'])
+              wave=np.frombuffer(raw,dtype='<f4')
+              s,info=model.transcribe(wave,beam_size=3,language=None,vad_filter=True,condition_on_previous_text=False)
               segments=list(s)
               rows=[{'start':round(x.start,2),'end':round(x.end,2),'text':x.text.strip()} for x in segments]
               rec={'file':p.name,'language':info.language,'prob':round(info.language_probability,5),
