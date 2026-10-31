@@ -1,0 +1,48 @@
+name: M1lash private dubbed film scene speech-language QA
+on:
+  push:
+    paths:
+      - .github/workflows/m1lash-nightcrawler-scene-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  scene-asr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download only private QA short-source artifact (no movie in git)
+        uses: actions/download-artifact@v4
+        with:
+          name: movie-edit-draft
+          run-id: 41226808601
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: qa-source
+      - name: Detect actual spoken language
+        run: |
+          python3 -m pip install --quiet faster-whisper
+          python3 - <<'PY'
+          import json, pathlib, hashlib
+          from faster_whisper import WhisperModel
+          d=pathlib.Path('qa-source/originals')
+          model=WhisperModel('small',device='cpu',compute_type='int8')
+          result=[]
+          for p in sorted(d.glob('*.mp4')):
+              # Full 31-58s speech detection; metadata language alone is not evidence
+              s,info=model.transcribe(str(p),beam_size=3,language=None,vad_filter=True,condition_on_previous_text=False)
+              segments=list(s)
+              rows=[{'start':round(x.start,2),'end':round(x.end,2),'text':x.text.strip()} for x in segments]
+              rec={'file':p.name,'language':info.language,'prob':round(info.language_probability,5),
+                   'segments':rows,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
+              result.append(rec)
+              print(p.name,'SPOKEN_LANGUAGE',rec['language'],'PROB',rec['prob'],'SEGMENTS',len(rows))
+          pathlib.Path('spoken_language_qa.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+      - name: Save textual ASR QA only
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightcrawler-spoken-language-qa
+          path: spoken_language_qa.json
+          retention-days: 7
