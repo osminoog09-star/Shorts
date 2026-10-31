@@ -1,0 +1,10 @@
+{
+  "purpose": "Find actual frame of chair thrown during first rehearsal for private M1lash QA, instead of dialogue that merely says it happened.",
+  "rights_note": "Only inspect publicly playable film excerpt; no private credentials or DRM bypass; rights not presumed.",
+  "sources": [
+    {
+      "id": "whiplash_full_rehearsal_vimeo",
+      "url": "https://vimeo.com/184511543"
+    }
+  ]
+}
