@@ -1,0 +1,26 @@
+{
+  "purpose": "Private technical inspection of five EXACT movie fragments for M1lash approved S6-D25 film Shorts. No scheduled publication, no release without film copyright suitability.",
+  "rights_note": "Clips are publicly playable on Clip.Cafe, but the studio has not verified a reuse license. Only accessible public version; no login, PRO/4K paywall, DRM or bot-check bypass. Source MP4s temporary 7-day GitHub artifacts, not stored in repository.",
+  "sources": [
+    {
+      "id": "whiplash_tempo",
+      "url": "https://clip.cafe/whiplash-2014/not-quite-my-tempo/"
+    },
+    {
+      "id": "whiplash_cue",
+      "url": "https://clip.cafe/whiplash-2014/wait-for-my-cue/"
+    },
+    {
+      "id": "whiplash_chair",
+      "url": "https://clip.cafe/whiplash-2014/why-do-suppose-i-just-hurled-a-chair-at-head-neiman/t/8"
+    },
+    {
+      "id": "chigur_carson",
+      "url": "https://clip.cafe/no-country-old-men-2007/and-know-whats-gonna-happen-now-carson/"
+    },
+    {
+      "id": "chigur_carla",
+      "url": "https://clip.cafe/no-country-old-men-2007/you-dont-have-do-this-s7/"
+    }
+  ]
+}
