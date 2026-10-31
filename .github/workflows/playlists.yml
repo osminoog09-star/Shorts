@@ -10,11 +10,6 @@ on:
       - 'scripts/render_channel_branding.py'
       - 'publishing/branding/README.md'
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'publishing/playlists.json'
-      - 'scripts/playlists_v2.py'
 permissions:
   contents: write
 concurrency:

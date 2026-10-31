@@ -1,5 +1,5 @@
 {
-  "_readme": "Идемпотентная неразрушающая сортировка плейлистов. Не удалять, не скрывать ролики, старые Shorts Ru/Shorts ENG не трогать. id=null создаётся через Playlist sync. Фильтрация только public видео канала, categoryId=1 для кино; seed имеет приоритет. Новый ролик попадает в один основной тематический плейлист; внутри новые добавляются сверху, без удаления старых.",
+  "_readme": "Плейлисты канала (решение Дениса 30.10). ID не секретные. Workflow playlists.yml сам создаёт отсутствующие (id=null) и раскладывает ролики: категория YouTube 1 «Фильмы и анимация» + длина ≤ 180 с → kino_shorts, длиннее → kino_razbor. Плюс ролики из seed. Агенты: у кино-роликов в манифесте ставить category_id \"1\".",
   "kino_shorts": {
     "title": "Кино-Shorts",
     "description": "Сцены из фильмов и сериалов. Угадаешь фильм до конца? Ответ — в последних словах.",
@@ -32,17 +32,14 @@
   },
   "ai_news": {
     "title": "Новости ИИ",
-    "description": "Искусственный интеллект и технологии: главные новости, открытия, споры и реальные последствия.",
-    "id": null,
+    "description": "Новости искусственного интеллекта, роботов и технологий — проверяем факты и объясняем главное.",
+    "id": "PLflqNydnG5vQ",
     "seed": [
       "oTe1dEelJPs",
       "3XxxiR2Zxb8",
-      "UPEDaeR0O_c",
       "dsp3ZOrwTkc",
-      "pOqCGUpn9lU",
-      "-xjlegO4ZzQ",
-      "6wh9nvwtWT0",
-      "UTvk61Gos1M"
+      "UPEDaeR0O_c",
+      "pOqCGUpn9lU"
     ]
   },
   "ai_sketch": {
@@ -65,22 +62,21 @@
   },
   "science_history": {
     "title": "Наука и история",
-    "description": "Необычная инженерия, космос, физика и история технологий — понятные объяснения M1lash.",
-    "id": null,
+    "description": "Античные механизмы, загадки инженерии, планеты, техника и наука — просто и наглядно.",
+    "id": "PLDTQ0uYTdNdk",
     "seed": [
       "4PYRNmbopwo",
       "OpMT1DWymCA",
       "F5-BqfTnA_w",
       "rTpeumT8wlg",
       "FHkGd1cA1gc",
-      "s7YVEyinxDE",
-      "uDbIq2IzlzM"
+      "s7YVEyinxDE"
     ]
   },
   "humor": {
     "title": "Юмор",
-    "description": "Наши лёгкие и смешные ролики: собаки, игры, неожиданные ситуации и мини-скетчи.",
-    "id": null,
+    "description": "Весёлые истории, собаки, игры и короткие смешные моменты от M1lash.",
+    "id": "PLJOa8ZvDafFQ",
     "seed": [
       "7l4EOB02DSg",
       "1As0yonBV9Q",
@@ -92,29 +88,5 @@
   "_exclude": [
     "mLlB8eL1FUE",
     "XqoHjcsdPtQ"
-  ],
-  "pretend_bot": {
-    "title": "Притворись ботом",
-    "description": "Наша комедийная серия про людей, нейросети и самые невыносимые капчи. Все эпизоды M1lash.",
-    "id": null,
-    "seed": [
-      "6g-0gS9lSkI",
-      "wmnrIivD1HE",
-      "Wn5dNQsrpxk"
-    ]
-  },
-  "ai_sketches": {
-    "title": "ИИ-скетчи",
-    "description": "Наши оригинальные короткие комедии про ИИ, код, ботов и абсурдные задания.",
-    "id": null,
-    "seed": [
-      "tGpma37GZ0w",
-      "bZkIDNIRoxo",
-      "FOOO2vAwUqk",
-      "bUNtjpCanl4",
-      "KAhupG0LgRo",
-      "E5MsBkrW94s",
-      "DfhrXx_10FM"
-    ]
-  }
+  ]
 }
