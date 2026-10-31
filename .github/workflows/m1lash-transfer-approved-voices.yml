@@ -1,0 +1,30 @@
+name: M1lash - transfer approved Dima voice assets
+on:
+  push:
+    paths:
+      - '.github/workflows/m1lash-transfer-approved-voices.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  approved-voice-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify authorized Dima voice files
+        run: |
+          set -euo pipefail
+          for s in end_a end_b; do
+            test -s "media/tts/movie_funnel_202611/${s}.mp3"
+            test -s "media/tts/movie_funnel_202611/${s}.json"
+            grep -q 'ru-RU-DmitryNeural' "media/tts/movie_funnel_202611/${s}.json"
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: m1lash-approved-dima-voice-assets
+          path: |
+            media/tts/movie_funnel_202611/end_a.mp3
+            media/tts/movie_funnel_202611/end_b.mp3
+            media/tts/movie_funnel_202611/end_a.json
+            media/tts/movie_funnel_202611/end_b.json
+          retention-days: 7
