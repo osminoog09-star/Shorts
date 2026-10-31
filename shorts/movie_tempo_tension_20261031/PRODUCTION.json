@@ -1,0 +1,26 @@
+{
+  "idea_id": "2026-10-31-gpt-1",
+  "status": "IN_WORK / WAITING_OWNER_CLIP",
+  "style": "S6-D25",
+  "style_approved_on": "2026-10-31",
+  "source_status": "waiting_owner_clip",
+  "source_request": "Первая репетиция Флетчера с Ниманом: «не мой темп» → нарастающее давление → стул → реакция барабанщика. Примерно 25:40–28:40, версия-зависимый ориентир из существующего TREATMENT.",
+  "source_audio_language": "ru",
+  "source_storage": "temporary outside repository; do not upload source footage",
+  "source_received": false,
+  "mp4": null,
+  "youtube_id": null,
+  "upload_attempted": false,
+  "voice_source": "media/tts/mystery_tempo_20261031/outro_reveal.mp3",
+  "brand_card_seconds": [
+    2,
+    3
+  ],
+  "characters": false,
+  "lip_sync_required": false,
+  "qa": {
+    "decode": "not_run_no_final_mp4",
+    "visual": "not_run_no_source",
+    "audio": "not_run_no_final_mix"
+  }
+}

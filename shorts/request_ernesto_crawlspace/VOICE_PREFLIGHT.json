@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-10-31T06:32:33+02:00",
+  "voice_id": "ru-RU-DmitryNeural",
+  "engine": "edge-tts",
+  "source_file": "media/tts/request_ernesto_crawlspace/outro_reveal.mp3",
+  "sha256": "8b478a96247fcee7e038cb29ef2371c59a357d8b18e66574620c5ed7c66429cd",
+  "file_size": 54432,
+  "duration_seconds": 9.072,
+  "decode": "pass",
+  "character": false,
+  "lip_sync_required": false,
+  "final_video_qa": "not_run_no_source_clip",
+  "listening": "not claimed"
+}

@@ -12,7 +12,11 @@
       "why": "Формат эмоционального давления/диалога: Хайзенберг 3906 просмотров и 5 подписок, Чигур 1887 и 70,74% среднего просмотра. Источник сцены предоставляет владелец; без него видеопроизводство не начинать.",
       "status": "in_work",
       "production_file": "shorts/movie_tempo_tension_20261031/TREATMENT.md",
-      "source_status": "waiting_owner_clip"
+      "source_status": "waiting_owner_clip",
+      "source_request": "«Одержимость»: первая репетиция, «не мой темп» → давление → стул → реакция. Примерно 25:40–28:40, русская дорожка.",
+      "style": "S6-D25",
+      "style_status": "approved",
+      "style_approved_on": "2026-10-31"
     },
     {
       "id": "2026-10-31-gpt-2",
@@ -21,7 +25,13 @@
       "title": "Он увидел трагедию — и первым делом поднял камеру",
       "film": "Nightcrawler (2014)",
       "why": "Нравственная дилемма в одной сцене по паттерну кино-Shorts, не обещание вирусности. Референс: XANzL3z9wqY, 3906 просмотров; оригинальный клип и фактические реплики проверяются при монтаже.",
-      "status": "approved"
+      "status": "approved",
+      "production_file": "shorts/movie_camera_choice_20261031/TREATMENT.md",
+      "source_request": "«Стрингер»: первый выезд Лу с собственной камерой на ДТП, до требования полицейского отойти; русская дорожка. Таймкод не подтверждён.",
+      "style": "S6-D25",
+      "style_status": "approved",
+      "style_approved_on": "2026-10-31",
+      "source_status": "waiting_owner_clip"
     },
     {
       "id": "2026-10-31-gpt-3",
@@ -30,7 +40,13 @@
       "title": "Можно ли доверять ИИ, если он сам просит тебя о помощи?",
       "film": "Ex Machina (2014)",
       "why": "Диалог-триллер с ИИ как мост между сильным киноформатом и темой канала: Чигур 1887, 70,74%; скетчи «бот» 1177/1240 и по 4 подписки. Конкретная сцена не выбрана, клип нужен от владельца.",
-      "status": "in_work"
+      "status": "in_work",
+      "production_file": "shorts/movie_ai_trust_20261031/TREATMENT.md",
+      "source_request": "«Из машины»: первое отключение света, Ава предупреждает Калеба не доверять Натану; весь разговор с запасом, русская дорожка. Таймкод не подтверждён.",
+      "style": "S6-D25",
+      "style_status": "approved",
+      "style_approved_on": "2026-10-31",
+      "source_status": "waiting_owner_clip"
     },
     {
       "id": "2026-10-31-gpt-4",
@@ -55,7 +71,11 @@
       "video_id": "XANzL3z9wqY",
       "production_file": "shorts/request_ernesto_crawlspace/README.md",
       "source_status": "waiting_owner_screen_recording",
-      "production_note": "Нужен настоящий фрагмент; звук финала готов, но нет MP4, QA, YouTube upload и youtube_id. Поле video_id относится к видео с исходным комментарием, а не к готовому ролику."
+      "production_note": "Нужен настоящий фрагмент; звук финала готов, но нет MP4, QA, YouTube upload и youtube_id. Поле video_id относится к видео с исходным комментарием, а не к готовому ролику.",
+      "source_request": "S4E11 Crawl Space: от вопроса Уолтера о деньгах до финального смеха под домом; оригинальный английский звук, запишем русские субтитры.",
+      "style": "S6-D25",
+      "style_status": "approved",
+      "voice_preflight": "shorts/request_ernesto_crawlspace/VOICE_PREFLIGHT.json"
     }
   ]
 }

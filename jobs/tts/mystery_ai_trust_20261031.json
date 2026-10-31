@@ -1,0 +1,12 @@
+{
+  "voice": "ru-RU-DmitryNeural",
+  "rate": "+4%",
+  "pitch": "+0Hz",
+  "production_note": "Approved in-work film idea 2026-10-31-gpt-3; S6-D25 approved 31.10. Narration only, no character; source clip pending. Private upload only after real montage and QA.",
+  "lines": [
+    {
+      "id": "outro_reveal",
+      "text": "Подпишись! И спасибо всем, кто досмотрел и поставил лайк. Кому ты здесь веришь? Из машины."
+    }
+  ]
+}
