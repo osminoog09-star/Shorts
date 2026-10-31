@@ -1,0 +1,78 @@
+name: Chigur narration - recover three and synthesize missing individually
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/chigur-narration-segments.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  saved:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify saved Dima recordings d01-d03
+        run: |
+          set -euo pipefail
+          for i in d01 d02 d03; do
+            test -s "media/tts/chigur_longform_20261031/$i.mp3"
+            test -s "media/tts/chigur_longform_20261031/$i.json"
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chigur-voice-recovered-d01-d03
+          path: |
+            media/tts/chigur_longform_20261031/d01.*
+            media/tts/chigur_longform_20261031/d02.*
+            media/tts/chigur_longform_20261031/d03.*
+          retention-days: 7
+  missing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        id: [d04, d05, d06, d07, d08, d09, d10, d11, d12, d13]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Install voice tools
+        run: |
+          pip install -q 'edge-tts>=7,<8' 'azure-cognitiveservices-speech>=1.40,<2'
+          if ! command -v ffmpeg >/dev/null; then sudo apt-get -qq update && sudo apt-get -qq install -y ffmpeg; fi
+      - name: Synthesize one independent segment
+        env:
+          SEGMENT_ID: ${{ matrix.id }}
+          TTS_ENGINE: edge
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          full=json.loads(Path('jobs/tts/chigur_longform_20261031.json').read_text())
+          item=next(v for v in full['lines'] if v['id']==os.environ['SEGMENT_ID'])
+          full['lines']=[item]
+          Path('jobs/tts/chigur_independent_segment.json').write_text(json.dumps(full,ensure_ascii=False))
+          PY
+          python scripts/tts_job.py jobs/tts/chigur_independent_segment.json
+          test -s "media/tts/chigur_independent_segment/$SEGMENT_ID.mp3"
+          test -s "media/tts/chigur_independent_segment/$SEGMENT_ID.json"
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          meta=json.loads((Path('media/tts/chigur_independent_segment')/(os.environ['SEGMENT_ID']+'.json')).read_text())
+          assert meta['voice_id']=='ru-RU-DmitryNeural'
+          assert meta.get('speaker')=='dima'
+          print('VALID SEGMENT',os.environ['SEGMENT_ID'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: chigur-voice-${{ matrix.id }}
+          path: |
+            media/tts/chigur_independent_segment/${{ matrix.id }}.mp3
+            media/tts/chigur_independent_segment/${{ matrix.id }}.json
+          retention-days: 7
