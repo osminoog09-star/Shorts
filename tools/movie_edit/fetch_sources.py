@@ -5,6 +5,7 @@ import pathlib
 import re
 import subprocess
 from urllib.parse import urlparse
+from urllib.request import Request, urlopen
 
 
 def fetch(manifest_path, output_dir):
@@ -27,15 +28,45 @@ def fetch(manifest_path, output_dir):
         parsed = urlparse(url)
         if parsed.scheme != 'https' or not parsed.hostname or parsed.username or parsed.password:
             raise ValueError('Expected public HTTPS source without credentials')
-        dest = output / (sid + '.%(ext)s')
-        subprocess.run([
-            'python3', '-m', 'yt_dlp', '--no-playlist', '--retries', '1',
-            '--extractor-retries', '0', '--max-filesize', '250M',
-            '--write-info-json',
-            '--format', 'bestvideo[height<=1080]+bestaudio/best[height<=1080]',
-            '--merge-output-format', 'mp4', '--output', str(dest), '--', url,
-        ], check=True)
-        video = output / (sid + '.mp4')
+        if parsed.path.lower().endswith('.mp4'):
+            # Direct downloadable movie promo: yt-dlp often has no pre-download
+            # height/duration metadata, so its format filters reject a valid MP4.
+            # Stream plain HTTPS only (no authentication, cookies, or DRM bypass).
+            video = output / (sid + '.mp4')
+            cap = 250 * 1024 * 1024
+            request = Request(url, headers={'User-Agent': 'Mozilla/5.0 M1lash-QA/1.0'})
+            try:
+                with urlopen(request, timeout=45) as response, video.open('wb') as file:
+                    content_type = (response.headers.get('Content-Type') or '').split(';')[0].lower().strip()
+                    if content_type not in ('video/mp4', 'application/octet-stream', 'video/quicktime'):
+                        raise RuntimeError(f'Not a downloadable video/mp4 response: {content_type}')
+                    length = int(response.headers.get('Content-Length') or 0)
+                    if length > cap:
+                        raise RuntimeError(f'File declares {length} bytes, above the 250MB limit')
+                    size = 0
+                    while True:
+                        chunk = response.read(1024 * 1024)
+                        if not chunk:
+                            break
+                        size += len(chunk)
+                        if size > cap:
+                            raise RuntimeError('File exceeded the 250MB limit during transfer')
+                        file.write(chunk)
+                if video.stat().st_size < 10240:
+                    raise RuntimeError('Downloaded source MP4 suspiciously short')
+            except Exception:
+                video.unlink(missing_ok=True)
+                raise
+        else:
+            dest = output / (sid + '.%(ext)s')
+            subprocess.run([
+                'python3', '-m', 'yt_dlp', '--no-playlist', '--retries', '1',
+                '--extractor-retries', '0', '--max-filesize', '250M',
+                '--write-info-json',
+                '--format', 'bestvideo[height<=1080]+bestaudio/best[height<=1080]/best',
+                '--merge-output-format', 'mp4', '--output', str(dest), '--', url,
+            ], check=True)
+            video = output / (sid + '.mp4')
         if not video.is_file():
             raise RuntimeError('Expected source MP4 missing; no silent substitute')
         probe = json.loads(subprocess.check_output([
