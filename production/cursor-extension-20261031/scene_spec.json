@@ -1,0 +1,151 @@
+{
+  "project": "cursor-extension-20261031",
+  "status": "PREPRODUCTION_NO_VOICE_NO_FINAL_MP4",
+  "rules_ref": "AGENTS.md main 2026-10-31",
+  "language": "ru",
+  "fps": 30,
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "full_bleed": true
+  },
+  "host": {
+    "enabled": false,
+    "lipsync_required": false,
+    "reason": "AGENTS.md §4 30.10 overrides old templates"
+  },
+  "voice": {
+    "speaker": "Дима",
+    "voice_id": "ru-RU-DmitryNeural",
+    "engine": "edge-tts",
+    "rate": "+0%",
+    "tts_status": "NOT_GENERATED"
+  },
+  "style": {
+    "status": "PENDING_APPROVAL",
+    "options": [
+      "S6-D25",
+      "S7-D25",
+      "S3-D25"
+    ]
+  },
+  "music": {
+    "source": "self-generated procedural",
+    "license": "original M1lash",
+    "status": "NOT_GENERATED"
+  },
+  "source_assets": [
+    {
+      "id": "abstract_editor",
+      "origin": "original procedural shapes",
+      "license": "M1lash original",
+      "representation": "SCHEMATIC_RECONSTRUCTION"
+    },
+    {
+      "id": "key_diagram",
+      "origin": "original procedural shapes",
+      "license": "M1lash original",
+      "representation": "SCHEMATIC_RECONSTRUCTION"
+    },
+    {
+      "id": "outro",
+      "origin": "original procedural shapes",
+      "license": "M1lash original",
+      "representation": "BRAND_GRAPHIC"
+    }
+  ],
+  "segments": [
+    {
+      "id": "V01",
+      "start_plan": 0,
+      "end_plan": 5,
+      "text": "Ты устанавливаешь ИИ-помощника, а получаешь попытку открыть чужим людям доступ к компьютеру.",
+      "scene": "editor_install_then_red_tampered_badge",
+      "title": "ПОДМЕНА",
+      "source_file": "audio/v01.mp3",
+      "fact_type": "verified"
+    },
+    {
+      "id": "V02",
+      "start_plan": 5,
+      "end_plan": 11,
+      "text": "29 октября в магазине Cursor несколько часов распространялась подменённая версия расширения Claude Code.",
+      "scene": "two_extension_packages_reconstruction",
+      "title": "29 ОКТЯБРЯ",
+      "source_file": "audio/v02.mp3",
+      "fact_type": "verified"
+    },
+    {
+      "id": "V03",
+      "start_plan": 11,
+      "end_plan": 18,
+      "text": "Cursor сообщил: потенциально затронуты до пяти тысяч пользователей. Но это не значит, что всех взломали.",
+      "scene": "not_equal_5000_compromised",
+      "title": "ДО 5000 ≠ 5000 ВЗЛОМОВ",
+      "source_file": "audio/v03.mp3",
+      "fact_type": "verified_with_limit"
+    },
+    {
+      "id": "V04",
+      "start_plan": 18,
+      "end_plan": 25.5,
+      "text": "Исследователи Microsoft нашли код, который пытался добавить SSH-ключ, настроить удалённый доступ и закрепиться в системе.",
+      "scene": "abstract_key_and_attempted_access",
+      "title": "ПОПЫТКА SSH-ДОСТУПА",
+      "source_file": "audio/v04.mp3",
+      "fact_type": "verified"
+    },
+    {
+      "id": "V05",
+      "start_plan": 25.5,
+      "end_plan": 31,
+      "text": "Официальный магазин VS Code не пострадал. Anthropic вредоносную сборку не создавала.",
+      "scene": "separate_unaffected_marketplace",
+      "title": "ОФИЦИАЛЬНЫЙ VS CODE НЕ ЗАТРОНУТ",
+      "source_file": "audio/v05.mp3",
+      "fact_type": "verified"
+    },
+    {
+      "id": "V06",
+      "start_plan": 31,
+      "end_plan": 36,
+      "text": "Просил ИИ помочь с кодом, а он решил пригласить незнакомого администратора.",
+      "scene": "comedy_door_admin",
+      "title": "НЕЗВАНЫЙ АДМИН",
+      "source_file": "audio/v06.mp3",
+      "fact_type": "joke"
+    },
+    {
+      "id": "V07",
+      "start_plan": 36,
+      "end_plan": 40,
+      "text": "Проверь источник расширения, если устанавливал его через Cursor.",
+      "scene": "source_check",
+      "title": "ПРОВЕРЬ ИСТОЧНИК",
+      "source_file": "audio/v07.mp3",
+      "fact_type": "advice"
+    },
+    {
+      "id": "V08",
+      "start_plan": 40,
+      "end_plan": 49,
+      "text": "Подпишись! И спасибо всем, кто досмотрел и поставил лайк. А ты проверяешь расширения?",
+      "scene": "branded_outro_last_2_3_seconds",
+      "title": "ПОДПИШИСЬ",
+      "source_file": "audio/v08.mp3",
+      "fact_type": "cta"
+    }
+  ],
+  "sources": [
+    "https://www.microsoft.com/en-us/security/blog/2026/10/30/inside-malicious-claude-code-branded-cursor-extension-persistent-ssh-backdoor/",
+    "https://thehackernews.com/2026/10/official-claude-code-vs-code-extension.html"
+  ],
+  "qa": {
+    "tts": "BLOCKED_NOT_RUN",
+    "audio_listen": "NOT_RUN",
+    "render": "NOT_RUN",
+    "ffprobe": "NOT_RUN",
+    "decode": "NOT_RUN",
+    "visual_contact": "LOCAL_STORYBOARD_ONLY"
+  }
+}
