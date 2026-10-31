@@ -30,6 +30,8 @@ function rr(x,y,w,h,r){X.beginPath();X.moveTo(x+r,y);X.arcTo(x+w,y,x+w,y+h,r);X.
 function thumb(x,y,s,col){X.save();X.translate(x,y);X.scale(s,s);X.fillStyle=col;X.beginPath();
   X.moveTo(-34,-4);X.lineTo(-14,-4);X.lineTo(-14,40);X.lineTo(-34,40);X.closePath();X.fill();
   X.beginPath();X.moveTo(-8,-6);X.lineTo(6,-38);X.quadraticCurveTo(14,-50,22,-40);X.lineTo(16,-12);X.lineTo(36,-12);X.quadraticCurveTo(48,-12,44,2);X.lineTo(36,34);X.quadraticCurveTo(33,42,24,42);X.lineTo(-8,42);X.closePath();X.fill();X.restore()}
+const Q=new URLSearchParams(location.search),N=(k,d)=>+(Q.get(k)??d);
+const L=N('L',0.83),B0=N('B0',1.0),PR=N('PR',1.6),TH=N('TH',2.1),LK=N('LK',4.4),BP=N('BP',0.418);
 window.frame=(t)=>{
   // фон
   const bg=X.createLinearGradient(0,0,0,H);bg.addColorStop(0,"#0e0c18");bg.addColorStop(1,"#22102a");X.fillStyle=bg;X.fillRect(0,0,W,H);
@@ -37,13 +39,13 @@ window.frame=(t)=>{
   glow(W*(.82+.06*Math.sin(t*.9)),H*(.12+.04*Math.cos(t*.7)),W*.8,"rgba(255,79,154,.30)");glow(W*(.12+.06*Math.cos(t*.8)),H*(.72+.05*Math.sin(t*.6)),W*.8,"rgba(79,139,255,.24)");glow(W*.5,H*.38,W*.55,`rgba(155,107,255,${.10+.05*Math.sin(t*2)})`);
   for(let i=0;i<26;i++){const sx=(i*197%W),sy=(H-((t*60*(1+i%5)+i*331)%H)),a=.15+.25*((i*7)%10)/10;X.fillStyle=`rgba(255,255,255,${a})`;X.beginPath();X.arc(sx,sy,1.5+(i%3),0,7);X.fill()}
   // 3D-логотип: влёт с вращением
-  const a=ease(t/0.6);const SC=V?.86:1;logo.scale.setScalar(SC*lerp(.55,1,back(t/0.6)));logo.rotation.set(lerp(.5,.08,a)+Math.sin(t*1.6)*.03,lerp(-.9,-.16,a)+Math.sin(t*1.1)*.07,lerp(.12,0,a));
-  logo.position.set(0,(V?2.9:1.1)+lerp(V?2.2:1.4,0,back(t/0.6))+Math.sin(t*2.2)*.05,0);
-  orbs.forEach((o,i)=>{const q=t*(1.3+i*.2)+o.userData.ph;o.position.set(Math.cos(q)*(V?3.4:2.9),logo.position.y+Math.sin(q)*.5,Math.sin(q)*1.4);o.visible=t>0.25});
+  const u=Math.max(0,(t-(L-0.75))/0.75),a=ease(u),beat=t>L?Math.exp(-(((t-L)%BP))*9)*.035:0;const SC=V?.86:1;logo.scale.setScalar(SC*(lerp(.55,1,back(u))+beat));logo.visible=t>L-0.75;logo.rotation.set(lerp(.5,.08,a)+Math.sin(t*1.6)*.03,lerp(-.9,-.16,a)+Math.sin(t*1.1)*.07,lerp(.12,0,a));
+  logo.position.set(0,(V?2.9:1.1)+lerp(V?2.2:1.4,0,back(u))+Math.sin(t*2.2)*.05,0);
+  orbs.forEach((o,i)=>{const q=t*(1.3+i*.2)+o.userData.ph;o.position.set(Math.cos(q)*(V?3.4:2.9),logo.position.y+Math.sin(q)*.5,Math.sin(q)*1.4);o.visible=t>L});
   R.render(S,C);
   // кнопка «Подписаться» → нажатие → «Вы подписаны»
   const bw=V?640:560, bh=V?150:120, by=V?H*.37:H*.62, bx=V?W/2-bw/2:W/2-bw/2-110;
-  const B0=0.3,PR=0.95,TH=1.45,LK=3.55;const ap=back((t-B0)/0.45); const press=t>PR&&t<PR+0.2?.94:1, done=t>PR+0.1;
+  const ap=back((t-B0)/0.6); const press=t>PR&&t<PR+0.2?.94:1, done=t>PR+0.1;
   if(t>B0){X.save();X.translate(bx+bw/2,by+bh/2);X.scale(ap*press,ap*press);X.translate(-(bx+bw/2),-(by+bh/2));
     X.shadowColor="rgba(255,79,154,.6)";X.shadowBlur=done?0:40;rr(bx,by,bw,bh,bh/2);X.fillStyle=done?"#2b2838":"#ff2d6f";X.fill();X.shadowBlur=0;
     X.fillStyle="#fff";X.font=`800 ${V?50:42}px UB`;X.textAlign="center";X.textBaseline="middle";X.fillText(done?"ВЫ ПОДПИСАНЫ":"ПОДПИСАТЬСЯ",bx+bw/2-(done?24:0),by+bh/2+2);if(done){const cx=bx+bw/2+X.measureText("ВЫ ПОДПИСАНЫ").width/2+8,cy=by+bh/2,k=Math.min(1,(t-PR-0.1)/0.2);X.strokeStyle="#4fd393";X.lineWidth=V?9:7;X.lineCap="round";X.beginPath();X.moveTo(cx,cy);X.lineTo(cx+12*Math.min(1,k*2),cy+12*Math.min(1,k*2));if(k>.5)X.lineTo(cx+12+22*(k-.5)*2,cy+12-30*(k-.5)*2);X.stroke()}X.restore();
@@ -57,9 +59,9 @@ window.frame=(t)=>{
     X.save();X.shadowColor="rgba(79,139,255,.7)";X.shadowBlur=30;rr(lx-95*s,ly-95*s,190*s,190*s,95*s);X.fillStyle="#3b7bff";X.fill();X.restore();thumb(lx,ly-2,1.7*s,"#fff");
     if(t>LK+0.2&&t<LK+0.95){const k=(t-LK-0.2)/0.75;for(let i=0;i<12;i++){const an=i/12*Math.PI*2,r=110+k*120;X.fillStyle=`hsla(${i*30},90%,65%,${1-k})`;X.beginPath();X.arc(lx+Math.cos(an)*r,ly+Math.sin(an)*r,9*(1-k)+2,0,7);X.fill()}}}
   // текст «спасибо»
-  if(t>TH){const k=ease((t-TH)/0.5);X.globalAlpha=k;X.fillStyle="#fff";X.font=`800 ${V?46:42}px UB`;X.textAlign="center";
+  if(t>TH){const k=ease((t-TH)/0.7);X.globalAlpha=k;X.fillStyle="#fff";X.font=`800 ${V?46:42}px UB`;X.textAlign="center";
     X.fillText("СПАСИБО, ЧТО ДОСМОТРЕЛ!",W/2,(V?H*.64:H*.86)+(1-k)*30);X.globalAlpha=1}
-  if(t>TH+0.35){const k=ease((t-TH-0.35)/0.5);X.globalAlpha=k*.75;X.fillStyle="#c9b8ff";X.font=`800 ${V?34:30}px UB`;X.fillText("@m1lash93",W/2,(V?H*.682:H*.93));X.globalAlpha=1}
+  if(t>TH+0.5){const k=ease((t-TH-0.5)/0.7);X.globalAlpha=k*.75;X.fillStyle="#c9b8ff";X.font=`800 ${V?34:30}px UB`;X.fillText("@m1lash93",W/2,(V?H*.682:H*.93));X.globalAlpha=1}
   // финальная вспышка-затемнение не нужно — обрывается на звуке
   const out=document.createElement("canvas");out.width=W;out.height=H;const o=out.getContext("2d");o.drawImage(c,0,0);o.drawImage(g,0,0);return out.toDataURL("image/png");
 };
