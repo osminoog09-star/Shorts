@@ -1,0 +1,34 @@
+name: Whiplash public promo preflight - source and original chair action
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/whiplash-public-promo-preflight.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe publicly offered studio promo resolution (NO DRM bypass)
+        run: |
+          python3 - <<'PY'
+          from urllib.request import Request,urlopen
+          import re,html
+          url='https://www.hd-trailers.net/yahoo-redir.php?id=af839f58-ae87-319f-87f6-7e50fb155061&resolution=480'
+          try:
+            with urlopen(Request(url,headers={'User-Agent':'Mozilla/5.0'}),timeout=20) as r:
+              data=r.read(90000).decode('utf-8','replace')
+              print('HTTP',r.status,'type',r.headers.get('content-type'),'length',len(data))
+              print('HTML first',repr(data[:2500]))
+              for s in re.findall(r'https?[^\s"\x27<>]+',html.unescape(data)):
+                print('PUBLIC-LINK',s[:300])
+          except Exception as ex: print('UNAVAILABLE',type(ex).__name__,str(ex)[:280])
+          PY
+      - name: Print source provenance
+        run: |
+          echo 'Sony Pictures Classics public promo, July 29 2014.'
+          echo 'Never download full movie, paid-only footage or YouTube bot-challenge bypass.'
+          echo 'Public viewing does not give M1lash rights to republish film footage.'
