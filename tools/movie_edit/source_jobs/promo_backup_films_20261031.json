@@ -1,0 +1,14 @@
+{
+  "purpose": "Internal technical QC of openly linked promotional MP4 for M1lash cinema Shorts; only for clip selection and original critical commentary. Do not replace approved exact-scene requests without review.",
+  "rights_note": "External film promo material; URLs are public MP4 links but no reuse authorization has been proven. Download for private inspection only, do not publish, commit source, or bypass access controls.",
+  "sources": [
+    {
+      "id": "nightcrawler_woman_promo",
+      "url": "https://videos.hd-trailers.net/NC_EPK_FilmClip_206_wEndCards-720p-HDTN.mp4"
+    },
+    {
+      "id": "exmachina_tlr5_promo",
+      "url": "https://videos.hd-trailers.net/ExMachina_DomesticTrailer5-480p-HDTN.mp4"
+    }
+  ]
+}
