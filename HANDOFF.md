@@ -1,3 +1,12 @@
+## 31.10.2026 · GPT — 4 локальных черновых кино-Shorts реально отрендерены
+
+- Смонтированы и переданы владельцу **4 настоящих MP4** для просмотра: Chigur/Carson (45.41с), Chigur/Carla (49.17с), Whiplash/репетиция (44.45с), Ex Machina/blackout (40.37с). Все 1080×1920, H264/AAC, полный decode ffmpeg PASS. Исходники и MP4 — только во временной среде чата, не в GitHub и не на YouTube.
+- Кино — **английская оригинальная дорожка** с черновыми RU субтитрами, финал — утверждённый Дима `ru-RU-DmitryNeural` и словесное название только в конце. Права и полный слуховой QA НЕ подтверждены, AGENTS §8 RU-дубляж не соблюдён → **НЕ READY**, не загружать и не назначать дату.
+- Whiplash без броска стула, Ex Machina без финальной фразы-предупреждения; для Ernesto полный смех Уолтера и Nightcrawler остаются невыполненными; длинное видео Чигура ещё не собрано.
+- Технический отчёт: [reports/research/2026-10-31_movie_private_drafts_QA.md](reports/research/2026-10-31_movie_private_drafts_QA.md). Новый workflow переноса одобренных TTS через временный artifact: run 41173807550 SUCCESS. Владельцу дана ссылка на ZIP из ChatGPT, **не** GitHub. Публикации/статусы/секреты не менялись.
+
+---
+
 ## 31.10.2026 · GPT — фактически скачал точные киноисходники, 8 MP4 / 5 сюжетов
 
 - GitHub Actions [41171979492](https://github.com/osminoog09-star/Shorts/actions/runs/41171979492), [41171984538](https://github.com/osminoog09-star/Shorts/actions/runs/41171984538), [41172141295](https://github.com/osminoog09-star/Shorts/actions/runs/41172141295), [41172173228](https://github.com/osminoog09-star/Shorts/actions/runs/41172173228) SUCCESS. Реально **8 источников**: Ex Machina предупреждение Авы, Nightcrawler спор Лу с полицейским, Whiplash 3 подэпизода темп/стул (последствия), Chigur 2 разговора, Breaking Bad S4E11 22с признание Скайлер.
