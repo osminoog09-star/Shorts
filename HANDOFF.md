@@ -1,3 +1,13 @@
+## 31.10.2026 · GPT — RU film-speech recovery, actual HD Whiplash rev6 (PRIVATE)
+
+- Исторически рабочая схема **RuTube → yt-dlp/GitHub Actions → реальный MP4**, показана в архивной `.github/workflows-archive/movie-edit-interstellar-source.yml`, успешный run **40584590279** (239.167с исходник). Предыдущая путаница: синтетический русский авторский голос нельзя выдавать за дубляж фильма.
+- **Настоящая русская «Одержимость»**: скачано `rutube.ru/video/b5014c0ed0df6834c2d3b83e1a781fc1/` (311.542с, 1920×1080 H264/AAC); ASR `ru` 0.992/0.989/0.977 в трёх речевых окнах. Сопоставлением кадров найден реальный бросок стула **~145.5с** в русскоязычной HD-копии, что заменило мыльный Sony 512×216/EN. Источник имел чёрные letterbox-полосы `cropdetect=1920:800:0:140`; в последнем рендере убраны до портретного `crop=450:800`.
+- Реальный приватный MP4 **`M1lash_Kino_03_Whiplash_RUSSIAN_FILM_DUB_HD_CHAIR_REV6_PRIVATE.mp4`** 49.401333с, 12 273 627Б, SHA256 `6cc620664fd67427707e52e6c31ba85a5dfc6c1e76875f3ae1002ce293ee67a5`, ffmpeg full video+audio decode PASS, rev4 vertical 6.6s + финальное название Димой без замены. Новый ZIP 6 шортсов `M1lash_6_Kino_Shorts_REV6_RU_Whiplash_PRIVATE_2026-10-31.zip` (**103 178 458Б CRC PASS**) заменяет только 03 на RU rev6; другие пять до сих пор черновики, не READY.
+- Физические RU-источники ещё для **Чигур/заправка** 278.478с и **«Стрингер» русский трейлер** 150.68с скачаны GitHub Actions **41198730044**, **41198732395**, и проверены независимым ASR run [41199541202](https://github.com/osminoog09-star/Shorts/actions/runs/41199541202) SUCCESS: Chigur p=0.989/0.963/0.976, Nightcrawler p=0.834/0.993/0.984. ВАЖНО: RU звук трейлера Nightcrawler не доказывает наличие нужного полицейского эпизода; остальные сцены (Карла/гостиница) всё ещё нет, 5 шортсов пока EN.
+- Отчёт `reports/research/2026-10-31_whiplash_real_RU_dub_HD_rev6_QA.md`, знания записаны в `skills/m1lash-studio/SKILL.md`. Human audio QA и права не подтверждены; никаких upload/private/schedule/queue ready, дату не ставили. Исходники/MP4 локальны, в GitHub кино не коммитили.
+
+---
+
 ## 31.10.2026 · GPT — исправлены две реальные кино-кульминации: стул Whiplash и объяснение Авы, ревизия 5
 
 - 31.10 (Claude): комплект ПК Дениса (Windows) — scripts/pc/windows/setup.ps1, scripts/pc/selfcheck.py, scripts/pc/inbox_watch.py, plans/week.json; movie_short.py: M1LASH_WHISPER/M1LASH_DEVICE/M1LASH_WORK. Детали — LOCAL_PC_PLAN.md. GPT: по воскресеньям заполнять plans/week.json.
