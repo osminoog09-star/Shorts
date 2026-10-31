@@ -1,0 +1,25 @@
+{
+  "voice": "ru-RU-DmitryNeural",
+  "rate": "+4%",
+  "pitch": "+0Hz",
+  "humanize": true,
+  "production_note": "New AGENTS §4/8: fixed 5-second branded outro then one short film reveal on the last frozen outro frame; only review/QA, no YouTube upload. Names never shown as public text.",
+  "lines": [
+    {
+      "id": "chigur",
+      "text": "Это был фильм… Старикам тут не место."
+    },
+    {
+      "id": "tempo",
+      "text": "Это был фильм… Одержимость."
+    },
+    {
+      "id": "machina",
+      "text": "Это был фильм… Из машины."
+    },
+    {
+      "id": "nightcrawler",
+      "text": "Это был фильм… Стрингер."
+    }
+  ]
+}
