@@ -1,10 +1,10 @@
 {
  "as_of": "2026-10-28",
- "built": "2026-10-30T22:29:36.885336+00:00",
+ "built": "2026-10-31T13:44:31.538987+00:00",
  "engaged_views": true,
  "pace": {
   "subs_per_day": 0.86,
-  "shorts_views_per_day": 1765,
+  "shorts_views_per_day": 1764,
   "long_hours_per_day": 0.0
  },
  "shorts_daily_90": [
@@ -445,8 +445,8 @@
   },
   {
    "day": "2026-10-26",
-   "views": 2574,
-   "all": 4887
+   "views": 2572,
+   "all": 4879
   },
   {
    "day": "2026-10-27",
@@ -481,7 +481,7 @@
    "paths": [
     {
      "name": "3 млн просмотров Shorts / 90 дн",
-     "current": 12584,
+     "current": 12582,
      "target": 3000000,
      "unit": "просм.",
      "pct": 0.4,
@@ -519,7 +519,7 @@
    "paths": [
     {
      "name": "10 млн просмотров Shorts / 90 дн",
-     "current": 12584,
+     "current": 12582,
      "target": 10000000,
      "unit": "просм.",
      "pct": 0.1,
