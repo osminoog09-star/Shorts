@@ -1,3 +1,12 @@
+## 31.10.2026 · GPT — фактически скачал точные киноисходники, 8 MP4 / 5 сюжетов
+
+- GitHub Actions [41171979492](https://github.com/osminoog09-star/Shorts/actions/runs/41171979492), [41171984538](https://github.com/osminoog09-star/Shorts/actions/runs/41171984538), [41172141295](https://github.com/osminoog09-star/Shorts/actions/runs/41172141295), [41172173228](https://github.com/osminoog09-star/Shorts/actions/runs/41172173228) SUCCESS. Реально **8 источников**: Ex Machina предупреждение Авы, Nightcrawler спор Лу с полицейским, Whiplash 3 подэпизода темп/стул (последствия), Chigur 2 разговора, Breaking Bad S4E11 22с признание Скайлер.
+- Все MP4 фактически скачаны из GitHub artifacts, сверены по кадрам, проверены ffprobe и полным ffmpeg decode с видео+аудио. Один проверенный QA ZIP — `M1lash_Exact_Film_Clips_8_Source_QA_2026-10-31.zip`, локально `/mnt/data`; кинофайлы в GitHub не коммитили. Метаданные и результаты: `reports/source_requests_2026-10-31.md`.
+- **Единственная полностью отсутствующая смысловая часть:** финальный смех Уолтера после фразы Скайлер из Breaking Bad 4x11, поэтому заявку Ernesto НЕ считать готовой. У Whiplash не подтверждён фактический бросок стула, только до/после. Оригинальная EN дорожка, RU дубляжа не получили. Право на публикацию фрагментов не подтверждено; PRIVATE/YouTube/schedule не запускали.
+- Vimeo точной сцены Whiplash требовал login; не обходили, вместо этого сработала публичная дорожка Clip.Cafe.
+
+---
+
 ## 31.10.2026 · GPT — реальная загрузка видео и проверка содержания
 
 - Источники скачаны GitHub Actions [41170773551](https://github.com/osminoog09-star/Shorts/actions/runs/41170773551) и [41170995017](https://github.com/osminoog09-star/Shorts/actions/runs/41170995017), оба SUCCESS; получено **3 MP4 с аудио**. Распакован 38,8-МБ архив второго запуска; проверены ffprobe и кадры: Nightcrawler 43.008 с 720p — сцена в редакции, Ex Machina 124.124 с 852×478 — трейлер. Первый Nightcrawler ~32 с — тоже редакция. Для согласованных Shorts (полицейский и первый blackout) **не подходят**, поэтому готового кино-MP4/YouTube private upload нет.
