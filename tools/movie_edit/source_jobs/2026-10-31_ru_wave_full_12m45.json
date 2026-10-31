@@ -1,0 +1,10 @@
+{
+  "purpose": "PRIVATE QA: find genuine Russian spoken scene 'those are not mountains they are waves' (Miller), then replace matching English film scene; verify exact quote, not different film point.",
+  "rights_note": "PRIVATE editorial QA only; no DRM/paywall/login bypass and no public upload; third party material rights not assumed.",
+  "sources": [
+    {
+      "id": "miller_waves_full_ru_candidate",
+      "url": "https://rutube.ru/video/28aa1611b81d2cb6d5a7449a7d5cdc6d/"
+    }
+  ]
+}
