@@ -1,0 +1,13 @@
+{
+  "voice": "ru-RU-DmitryNeural",
+  "rate": "+4%",
+  "pitch": "+0Hz",
+  "humanize": true,
+  "production_note": "Dima reveal for Interstellar 2014 Waves 45s candidate. Only private editorial QA. New approved M1lash rev4 outro is mandatory; final movie title spoken only at the end; no public text with movie title.",
+  "lines": [
+    {
+      "id": "title_reveal",
+      "text": "Это был фильм… Интерстеллар."
+    }
+  ]
+}
