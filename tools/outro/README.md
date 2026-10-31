@@ -15,3 +15,15 @@
 - Логотип влетает сверху и читается с первого кадра (раньше первые 0,2 с был «боком»).
 - Живой фон: плавающие пятна света + искры; галочка «Вы подписаны» рисуется.
 - Звук: «вжух» на влёте, мягкий аккорд под голосом (−20 дБ), щелчок, «поп» на лайке; громкость −16 LUFS. Звуки — `tools/outro/*.wav` (синтез ffmpeg).
+
+## Ревизия 3 (31.10) — музыка NCS
+- Вместо синтетического аккорда — Laeko «DON'T WANNA KNOW!!!» (NoCopyrightSounds), отрезок 43,35–48,55 с: подъём → дроп ровно под влёт логотипа.
+- Музыка −5 дБ и sidechain-приглушение под голосом Димы (threshold 0.03, ratio 6), fade in 0,15 с / out 0,6 с; итог −16 LUFS.
+- Полный MP3 в репо не хранится: при перерендере скачать официальный https://ncs.io/track/download/1882cfc6-baac-41d3-ab0f-067a0aa1175f (workflow `fetch` во временный путь, не коммитить).
+- **Credit в описании каждого ролика обязателен** (AGENTS §4):
+```
+Song: Laeko - DONT WANNA KNOW!!!
+Music provided by NoCopyrightSounds
+Free Download/Stream: http://ncs.io/dontwannaknow
+Watch: https://ncs.lnk.to/dontwannaknowAT/youtube
+```

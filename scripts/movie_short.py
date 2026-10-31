@@ -348,7 +348,8 @@ def main():
     title = (f"По заявке {a.request} 💀 " if a.request else "") + a.title
     title = title if title.endswith("#shorts") else title + " #shorts"
     tags = ["кино", "фильм", "сцена из фильма", "угадай фильм", "кино shorts", "лучшие сцены", "M1lash", "shorts", "фильмы", "кинофакты"]
-    desc = f"{a.question} Пиши в комментариях 👇\n\n#shorts #кино #фильм #угадайфильм #сценаизфильма #m1lash #кинолюбитель"
+    NCS = "Музыка в концовке:\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube"
+    desc = f"{a.question} Пиши в комментариях 👇\n\n{NCS}\n\n#shorts #кино #фильм #угадайфильм #сценаизфильма #m1lash #кинолюбитель"
     for s in [title, desc, *tags]:
         if norm(a.film) and norm(a.film) in norm(s):
             sys.exit("NO-GO: название фильма в публичных полях (AGENTS §8)")
