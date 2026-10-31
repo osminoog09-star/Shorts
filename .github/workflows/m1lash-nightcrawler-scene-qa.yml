@@ -20,6 +20,8 @@ jobs:
           run-id: 41226808601
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: qa-source
+      - name: Install FFmpeg for reliable audio decoding
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - name: Detect actual spoken language
         run: |
           python3 -m pip install --quiet faster-whisper
