@@ -1,0 +1,35 @@
+name: M1lash export existing approved movie audio (review only)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/m1lash-movie-audio-assets-qa.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify the approved original outro and four existing Dima lines
+        run: |
+          set -euo pipefail
+          test -s media/outro/m1lash_outro_v1_vertical.mp4
+          test -s media/outro/m1lash_outro_v1_horizontal.mp4
+          for name in chigur tempo machina nightcrawler; do
+            test -s "media/tts/m1lash_standard_reveals_20261031/$name.mp3"
+            test -s "media/tts/m1lash_standard_reveals_20261031/$name.json"
+          done
+          sha256sum media/outro/m1lash_outro_v1_*.mp4 media/tts/m1lash_standard_reveals_20261031/*.mp3
+      - uses: actions/upload-artifact@v4
+        with:
+          name: approved-m1lash-outro-and-film-reveals
+          path: |
+            media/outro/m1lash_outro_v1_vertical.mp4
+            media/outro/m1lash_outro_v1_horizontal.mp4
+            media/tts/m1lash_standard_reveals_20261031/chigur.mp3
+            media/tts/m1lash_standard_reveals_20261031/tempo.mp3
+            media/tts/m1lash_standard_reveals_20261031/machina.mp3
+            media/tts/m1lash_standard_reveals_20261031/nightcrawler.mp3
+          retention-days: 2
