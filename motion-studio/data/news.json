@@ -1,12 +1,84 @@
 {
   "status": "success",
-  "updated_at": "2026-10-30T22:19:35.053845Z",
-  "last_attempt_at": "2026-10-30T22:19:35.053845Z",
+  "updated_at": "2026-10-31T12:28:40.701032Z",
+  "last_attempt_at": "2026-10-31T12:28:40.701032Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "09310e121b13f32204",
+      "title": "Seabirds racing home over the ocean can get jet-lagged",
+      "url": "https://arstechnica.com/science/2026/10/seabirds-racing-home-over-the-ocean-can-get-jet-lagged/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-31T11:15:26Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "fc87e12aea801dc699",
+      "title": "The FDA wants to pull its approval of a drug. It’s not so easy.",
+      "url": "https://arstechnica.com/science/2026/10/the-fda-wants-to-pull-its-approval-of-a-drug-its-not-so-easy/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-31T11:02:34Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "420fd151ca6ffeb42a",
+      "title": "Nvidia weighs playing the cosigner for Nscale’s AI data center in West Virginia",
+      "url": "https://techcrunch.com/2026/10/30/nvidia-weighs-playing-the-cosigner-for-nscales-ai-data-center-in-west-virginia/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-31T01:20:05Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "429a9895b49885c56d",
+      "title": "Once again, NASA is asking for ideas to rescue Hubble from certain death",
+      "url": "https://arstechnica.com/space/2026/10/think-you-can-save-the-hubble-space-telescope-nasa-wants-to-know/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-31T00:07:22Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4413e75a33c5a4c928",
+      "title": "Ollie, a privacy-focused AI assistant, is shutting down",
+      "url": "https://techcrunch.com/2026/10/30/ollie-a-privacy-focused-ai-assistant-is-shutting-down/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-30T22:56:13Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "2cee2c25d307434cad",
+      "title": "Flesh-eating screwworms spread to third state and are attacking pets",
+      "url": "https://arstechnica.com/health/2026/10/flesh-eating-screwworms-are-feasting-on-pets-4-dogs-and-cat-attacked-this-week/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-30T22:36:41Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8edfa603fa5ede8d9b",
+      "title": "Apple Intelligence is finally coming to China with iOS 27.3",
+      "url": "https://www.theverge.com/tech/1023974/apple-intelligence-china-ios-27-3",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-30T22:32:53Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e43b974055eab9e34a",
+      "title": "Oh captain, our captain: Ars staff remembers Patrick Stewart",
+      "url": "https://arstechnica.com/culture/2026/10/oh-captain-our-captain-ars-staff-remembers-patrick-stewart/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-30T22:21:05Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "d95f2af92ca0c12521",
       "title": "Intel’s stock crashes, knocking $12B from government’s stake",
@@ -18,11 +90,20 @@
     },
     {
       "id": "f3e255de2b47ab3f16",
-      "title": "Anthropic expected to receive high ‘junk’ rating from credit agencies following IPO, report says",
+      "title": "Anthropic expected to receive high ‘junk’ rating from credit agencies following IPO, FT report says",
       "url": "https://techcrunch.com/2026/10/30/anthropic-expected-to-receive-high-junk-rating-from-credit-agencies-following-ipo-report-says/",
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-10-30T21:52:03Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "0e01c469a202efbe19",
+      "title": "Supersonic airliner in doubt as company shifts to powering AI data centers",
+      "url": "https://arstechnica.com/gadgets/2026/10/united-airlines-ceo-doubts-supersonic-airliner-from-boom-will-be-ready-by-2029/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-30T21:41:54Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -41,6 +122,15 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-10-30T21:17:40Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b0d9b518e1b4ff6575",
+      "title": "Anthropic VS code extension on Cursor backdoored for nearly 12 hours",
+      "url": "https://arstechnica.com/security/2026/10/anthropic-vs-code-extension-on-cursor-backdoored-for-nearly-12-hours/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-10-30T21:09:54Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -635,96 +725,6 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-10-29T11:00:08Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d62a8f09dced3dd919",
-      "title": "AI has come for Arizona’s water",
-      "url": "https://www.theverge.com/cs/features/1016650/arizona-water-data-center-tsmc",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-10-29T10:00:04Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "2d88ce8f7f5eb856fd",
-      "title": "Caltech Names Artemis II Commander Reid Wiseman as NASA JPL Deputy",
-      "url": "https://www.nasa.gov/centers-and-facilities/jpl/caltech-names-artemis-ii-commander-reid-wiseman-as-nasa-jpl-deputy/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-10-29T02:49:59Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3b64f2126ca310fc1a",
-      "title": "Adam Mosseri says negativity around AI is ‘going to get worse’",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1021644/adam-mosseri-instagram-ai-negativity",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-10-28T23:05:39Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "9c5b37f8dc98b8bf71",
-      "title": "ULA's Vulcan rocket is set to return to flight on Friday the 13th",
-      "url": "https://arstechnica.com/space/2026/10/ulas-vulcan-rocket-is-set-to-return-to-flight-on-friday-the-13th/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-28T22:51:15Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0c9c5da2c2166495f0",
-      "title": "As US ties fray, Europe plans first undersea cable link to Greenland",
-      "url": "https://arstechnica.com/gadgets/2026/10/as-us-ties-fray-europe-plans-first-undersea-cable-link-to-greenland/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-28T22:35:50Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "86bc1d0d410b0a423b",
-      "title": "Peptide peddlers cheer as RFK Jr. unilaterally grants access, overruling FDA",
-      "url": "https://arstechnica.com/health/2026/10/peptide-peddlers-cheer-as-rfk-jr-unilaterally-grants-access-overruling-fda/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-28T22:17:15Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0c8f9ce2d60c8e0dbc",
-      "title": "Microsoft just shared Azure’s actual revenue in dollars: $33.2 billion",
-      "url": "https://techcrunch.com/2026/10/28/microsoft-just-shared-azures-actual-revenue-in-dollars-33-2-billion/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-28T21:58:32Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "04fe104cafb4728a8e",
-      "title": "NASA Welcomes Vietnam as Newest Artemis Accords Signatory",
-      "url": "https://www.nasa.gov/organizations/oiir/nasa-welcomes-vietnam-as-newest-artemis-accords-signatory/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-10-28T21:50:01Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e46d29680afeffb35e",
-      "title": "Google expands AI Search ads globally as core ad growth slows",
-      "url": "https://techcrunch.com/2026/10/28/google-expands-ai-search-ads-globally-as-core-ad-growth-slows/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-28T21:48:37Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "020314ea17c3bf3d5e",
-      "title": "Microsoft recorded $10 billion in revenue from OpenAI",
-      "url": "https://techcrunch.com/2026/10/28/microsoft-recorded-10-billion-in-revenue-from-openai/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-28T21:34:30Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
