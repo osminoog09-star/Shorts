@@ -1,0 +1,12 @@
+{
+  "purpose": "PRIVATE QA: test whether this Dailymotion film-analysis compilation includes actual clean original Carla Jean line between 05:09 and 05:15, not narrator quotation; use only after frame+audio manual verification. Film attribution and permission are not provided by compiler.",
+  "rights_note": "Footage in commentary compilation carries third-party rights. Fetch only short publicly playable excerpt for editorial QA; no DRM/login bypass, no upload, no video publication without source/audio validation.",
+  "sources": [
+    {
+      "id": "carla_quote_compilation_probe",
+      "url": "https://www.dailymotion.com/video/xa01an2",
+      "start_seconds": 305,
+      "end_seconds": 317
+    }
+  ]
+}
