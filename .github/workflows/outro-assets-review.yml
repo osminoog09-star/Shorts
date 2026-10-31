@@ -1,0 +1,28 @@
+name: Outro assets - review package
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/outro-assets-review.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify approved M1lash outro assets
+        run: |
+          set -euo pipefail
+          test -s media/outro/m1lash_outro_v1_vertical.mp4
+          test -s media/outro/m1lash_outro_v1_horizontal.mp4
+          ffprobe -v error -show_entries format=duration -of default=nw=1 media/outro/m1lash_outro_v1_vertical.mp4
+          ffprobe -v error -show_entries format=duration -of default=nw=1 media/outro/m1lash_outro_v1_horizontal.mp4
+          sha256sum media/outro/m1lash_outro_v1_vertical.mp4 media/outro/m1lash_outro_v1_horizontal.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: m1lash-approved-standard-outros
+          path: |
+            media/outro/m1lash_outro_v1_vertical.mp4
+            media/outro/m1lash_outro_v1_horizontal.mp4
+          retention-days: 3
