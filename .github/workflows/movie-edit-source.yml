@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/movie-edit-source.yml'
       - 'tools/movie_edit/source_manifest.py'
+      - 'tools/movie_edit/fetch_sources.py'
       - 'tools/movie_edit/source_urls.txt'
       - 'tools/movie_edit/source_jobs/*.json'
   workflow_dispatch:

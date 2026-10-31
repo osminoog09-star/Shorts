@@ -31,7 +31,7 @@ def fetch(manifest_path, output_dir):
         subprocess.run([
             'python3', '-m', 'yt_dlp', '--no-playlist', '--retries', '1',
             '--extractor-retries', '0', '--max-filesize', '250M',
-            '--match-filters', 'duration <= 900', '--write-info-json',
+            '--write-info-json',
             '--format', 'bestvideo[height<=1080]+bestaudio/best[height<=1080]',
             '--merge-output-format', 'mp4', '--output', str(dest), '--', url,
         ], check=True)
@@ -42,6 +42,13 @@ def fetch(manifest_path, output_dir):
             'ffprobe', '-v', 'error', '-show_streams', '-show_format',
             '-of', 'json', str(video),
         ]))
+        # Direct MP4 links usually have unknown duration before download;
+        # yt-dlp --match-filters 'duration <= 900' silently discarded them.
+        # Enforce the hard cap on the actual decoded file instead.
+        duration = float(probe['format']['duration'])
+        if not 0 < duration <= 900:
+            video.unlink(missing_ok=True)
+            raise RuntimeError(f"Source duration {duration:.2f}s exceeds the 15-minute promo limit")
         streams = probe['streams']
         if not any(s['codec_type'] == 'audio' for s in streams):
             raise RuntimeError('Original audio missing; source cannot serve RU film editing')
