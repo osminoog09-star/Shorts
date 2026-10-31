@@ -1,0 +1,24 @@
+{
+  "purpose": "Private source-only editorial QA to verify language and dialogue in short scenes for Russian Nightcrawler Shorts. Do not upload/schedule or confuse source metadata with speech language.",
+  "rights_note": "No license implied by RUTUBE presence. Clips are limited excerpts for review; publication remains gated.",
+  "sources": [
+    {
+      "id": "nightcrawler_interview_ru_test",
+      "url": "https://rutube.ru/video/e265321fbc8558f48863a2e9911cebed/",
+      "start_seconds": 18,
+      "end_seconds": 62
+    },
+    {
+      "id": "nightcrawler_no_thieves_ru_test",
+      "url": "https://rutube.ru/video/9f7a8100d92f08ac03db50c72719c0be/",
+      "start_seconds": 8,
+      "end_seconds": 66
+    },
+    {
+      "id": "nightcrawler_snaps_ru_test",
+      "url": "https://rutube.ru/video/f065982c334e302c584932f64a5d1338/",
+      "start_seconds": 0,
+      "end_seconds": 31
+    }
+  ]
+}
