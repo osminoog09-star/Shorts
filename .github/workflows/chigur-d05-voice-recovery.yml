@@ -1,0 +1,49 @@
+name: Chigur d05 voice recovery (3 exact paragraphs)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/chigur-d05-voice-recovery.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix: { segment: [1, 2, 3] }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: |
+          pip install -q 'edge-tts>=7,<8' 'azure-cognitiveservices-speech>=1.40,<2'
+          if ! command -v ffmpeg >/dev/null; then sudo apt-get -qq update && sudo apt-get -qq install -y ffmpeg; fi
+      - name: Split d05 at original paragraph boundaries, preserve Dima only
+        env: { SEG: "${{ matrix.segment }}", TTS_ENGINE: edge }
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,os,re
+          content=Path('longform/chigur/SCRIPT_DRAFT.md').read_text()
+          m=re.search(r'<!-- VOICE d05 -->(.*?)<!-- /VOICE -->',content,re.S)
+          assert m, 'd05 missing'
+          blocks=[x.strip() for x in re.split(r'\n\s*\n',m.group(1)) if x.strip()]
+          assert len(blocks)==3 and sum(len(x.split()) for x in blocks)==134
+          num=int(os.environ['SEG'])
+          t=blocks[num-1].replace('\n',' ')
+          job={'voice':'ru-RU-DmitryNeural','rate':'+4%','pitch':'+0Hz','humanize':True,'lines':[{'id':'d05p'+str(num),'text':t}]}
+          Path('jobs/tts/chigur_d05_one.json').write_text(json.dumps(job,ensure_ascii=False))
+          PY
+          python scripts/tts_job.py jobs/tts/chigur_d05_one.json
+          test -s "media/tts/chigur_d05_one/d05p${SEG}.mp3"
+          test -s "media/tts/chigur_d05_one/d05p${SEG}.json"
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: chigur-d05-part-${{ matrix.segment }}
+          path: |
+            media/tts/chigur_d05_one/d05p${{ matrix.segment }}.mp3
+            media/tts/chigur_d05_one/d05p${{ matrix.segment }}.json
+          retention-days: 7
