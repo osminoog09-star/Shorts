@@ -1,0 +1,10 @@
+{
+  "purpose": "M1lash restore actual Russian film speech using 27 Oct Rutube archive method. Inspect public Russian-language Whiplash rehearsal scene ONLY for internal QA; verify actual spoken language from downloaded audio, no TTS overdub or subtitle-only claim.",
+  "rights_note": "Publicly viewable Rutube scene is not licensing permission; keep clip only as internal source QA. No login, DRM, paywall, bot-check bypass and no YouTube publication.",
+  "sources": [
+    {
+      "id": "whiplash_russian_rehearsal_scene",
+      "url": "https://rutube.ru/video/b5014c0ed0df6834c2d3b83e1a781fc1/"
+    }
+  ]
+}
