@@ -1,12 +1,44 @@
 {
-  "status": "success",
-  "updated_at": "2026-10-31T12:28:40.701032Z",
-  "last_attempt_at": "2026-10-31T12:28:40.701032Z",
-  "feeds_ok": 7,
-  "feeds_failed": 0,
-  "errors": [],
+  "status": "partial",
+  "updated_at": "2026-10-31T21:33:41.559773Z",
+  "last_attempt_at": "2026-10-31T21:33:41.559773Z",
+  "feeds_ok": 6,
+  "feeds_failed": 1,
+  "errors": [
+    {
+      "source": "NASA Technology",
+      "error_type": "HTTPError"
+    }
+  ],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "204d5faf405d3242c5",
+      "title": "Judge allows NAACP lawsuit over xAI data center pollution to move forward",
+      "url": "https://techcrunch.com/2026/10/31/judge-allows-naacp-lawsuit-over-xai-data-center-pollution-to-move-forward/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-31T21:17:03Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "6ec02213d45abe3da5",
+      "title": "OpenAI reportedly lowers funding target for new round",
+      "url": "https://techcrunch.com/2026/10/31/openai-reportedly-lowers-funding-target-for-new-round/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-31T16:12:55Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "95235900cc342af4eb",
+      "title": "I built an AI Tamagotchi before Meta could",
+      "url": "https://www.theverge.com/gadgets/1013375/muse-charm-gadgets-preview-waveshare-esp32-claude-vibe-code",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-10-31T16:05:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "09310e121b13f32204",
       "title": "Seabirds racing home over the ocean can get jet-lagged",
@@ -698,33 +730,6 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-10-29T13:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f303d11137ac0122ea",
-      "title": "Amazon updates Alexa to help you manage shopping lists and subscriptions and update delivery instructions",
-      "url": "https://techcrunch.com/2026/10/29/amazon-updates-alexa-to-help-you-manage-shopping-lists-and-subscriptions-and-update-delivery-instructions/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-29T13:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "16c4d4b00ee0a754a6",
-      "title": "Massive leak exposes 41,000 DHS workers and undercover ICE agents",
-      "url": "https://arstechnica.com/security/2026/10/massive-leak-exposes-41000-dhs-workers-and-undercover-ice-agents/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-29T12:58:34Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "1509a3fb520a602cf8",
-      "title": "SpaceX no longer needs NASA, and that's a problem for America's space agency",
-      "url": "https://arstechnica.com/space/2026/10/spacex-no-longer-needs-nasa-and-thats-a-problem-for-americas-space-agency/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-29T11:00:08Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
