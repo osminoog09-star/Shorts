@@ -1,0 +1,8 @@
+{
+ "voice": "ru-RU-DmitryNeural",
+ "rate": "-4%",
+ "humanize": true,
+ "lines": [
+  {"id": "cta", "text": "Подпишись! И спасибо всем, кто досмотрел… и поставил лайк!"}
+ ]
+}
