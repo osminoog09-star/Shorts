@@ -55,9 +55,19 @@ jobs:
           I_REQ: ${{ inputs.request }}
           I_Q: ${{ inputs.question }}
         run: |
+          set -o pipefail
           python scripts/movie_short.py --src "$RUNNER_TEMP/src/src.bin" --id "$I_ID" --start "$I_START" --end "$I_END" \
-            --title "$I_TITLE" --film "$I_FILM" --lang "$I_LANG" --request "$I_REQ" --question "$I_Q"
+            --title "$I_TITLE" --film "$I_FILM" --lang "$I_LANG" --request "$I_REQ" --question "$I_Q" 2>&1 | tee "$RUNNER_TEMP/build.log"
           rm -rf "$RUNNER_TEMP/src"
+      - name: Лог для агентов (ветка ci-logs, только текст)
+        if: always()
+        run: |
+          d="$(mktemp -d)"; cd "$d"; git init -q; git checkout -q -b ci-logs
+          git fetch -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-logs 2>/dev/null && git reset -q --hard FETCH_HEAD || true
+          mkdir -p movie-short; tail -c 20000 "$RUNNER_TEMP/build.log" > "movie-short/${{ inputs.id }}.log" 2>/dev/null || echo "нет лога" > "movie-short/${{ inputs.id }}.log"
+          cp "$GITHUB_WORKSPACE/reports/qa/${{ inputs.id }}/qa.json" "movie-short/${{ inputs.id }}.qa.json" 2>/dev/null || true
+          git config user.name ci-log-bot; git config user.email ci-log-bot@users.noreply.github.com
+          git add -A && git commit -qm "log ${{ inputs.id }} ${{ job.status }}" && git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-logs || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
