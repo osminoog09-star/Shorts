@@ -41,11 +41,13 @@ def _jitter(s, salt, lo, hi):
 
 
 def _pct(v):
-    return f"{'+' if v >= 0 else ''}{int(round(v))}%"
+    v = int(round(v))
+    return f"{'+' if v >= 0 else ''}{v}%"
 
 
 def _hz(v):
-    return f"{'+' if v >= 0 else ''}{int(round(v))}Hz"
+    v = int(round(v))
+    return f"{'+' if v >= 0 else ''}{v}Hz"
 
 
 def prosody(sentence, base_rate="+0%", base_pitch="+0Hz"):
