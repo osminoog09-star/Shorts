@@ -1,0 +1,101 @@
+{
+ "text": "Сайт попросил доказать, что я человек. Ну ладно, думаю, позову ИИ. Он же умный!",
+ "words": [
+  {
+   "w": "Сайт",
+   "start": 0.0,
+   "end": 0.461
+  },
+  {
+   "w": "попросил",
+   "start": 0.461,
+   "end": 0.934
+  },
+  {
+   "w": "доказать",
+   "start": 0.934,
+   "end": 1.432
+  },
+  {
+   "w": "что",
+   "start": 1.602,
+   "end": 1.845
+  },
+  {
+   "w": "я",
+   "start": 1.845,
+   "end": 2.027
+  },
+  {
+   "w": "человек",
+   "start": 2.027,
+   "end": 2.609
+  },
+  {
+   "w": "Ну",
+   "start": 2.813,
+   "end": 3.102
+  },
+  {
+   "w": "ладно",
+   "start": 3.102,
+   "end": 3.473
+  },
+  {
+   "w": "думаю",
+   "start": 3.739,
+   "end": 4.155
+  },
+  {
+   "w": "позову",
+   "start": 4.329,
+   "end": 4.746
+  },
+  {
+   "w": "ИИ",
+   "start": 4.746,
+   "end": 4.977
+  },
+  {
+   "w": "Он",
+   "start": 5.164,
+   "end": 5.486
+  },
+  {
+   "w": "же",
+   "start": 5.486,
+   "end": 5.7
+  },
+  {
+   "w": "умный",
+   "start": 5.7,
+   "end": 6.247
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+5%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/voice_demo_human/d1.mp3",
+ "humanize": true,
+ "prosody": [
+  {
+   "s": "Сайт попросил доказать, что я человек.",
+   "rate": "+3%",
+   "pitch": "+1Hz"
+  },
+  {
+   "s": "Ну ладно, думаю, позову ИИ.",
+   "rate": "+8%",
+   "pitch": "-2Hz"
+  },
+  {
+   "s": "Он же умный!",
+   "rate": "+5%",
+   "pitch": "+4Hz"
+  }
+ ],
+ "post": "highpass=f=70,equalizer=f=180:t=q:w=0.9:g=2,equalizer=f=3400:t=q:w=1.2:g=-1.5,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=140:makeup=1.5,aecho=0.85:0.82:23|41:0.10|0.06,loudnorm=I=-16:TP=-1.5:LRA=9"
+}

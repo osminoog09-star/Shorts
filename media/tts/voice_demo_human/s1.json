@@ -1,0 +1,71 @@
+{
+ "text": "Подожди... Ты серьёзно попросил робота пройти проверку на робота?",
+ "words": [
+  {
+   "w": "Подожди",
+   "start": 0.0,
+   "end": 0.745
+  },
+  {
+   "w": "Ты",
+   "start": 1.111,
+   "end": 1.268
+  },
+  {
+   "w": "серьёзно",
+   "start": 1.268,
+   "end": 1.802
+  },
+  {
+   "w": "попросил",
+   "start": 1.802,
+   "end": 2.264
+  },
+  {
+   "w": "робота",
+   "start": 2.264,
+   "end": 2.603
+  },
+  {
+   "w": "пройти",
+   "start": 2.603,
+   "end": 2.931
+  },
+  {
+   "w": "проверку",
+   "start": 2.931,
+   "end": 3.392
+  },
+  {
+   "w": "на",
+   "start": 3.392,
+   "end": 3.501
+  },
+  {
+   "w": "робота",
+   "start": 3.502,
+   "end": 3.987
+  }
+ ],
+ "voice_id": "ru-RU-SvetlanaNeural",
+ "speaker": "sveta",
+ "engine": "edge-tts",
+ "rate": "+5%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/voice_demo_human/s1.mp3",
+ "humanize": true,
+ "prosody": [
+  {
+   "s": "Подожди…",
+   "rate": "-1%",
+   "pitch": "-2Hz"
+  },
+  {
+   "s": "Ты серьёзно попросил робота пройти проверку на робота?",
+   "rate": "+3%",
+   "pitch": "+7Hz"
+  }
+ ],
+ "post": "highpass=f=70,equalizer=f=180:t=q:w=0.9:g=2,equalizer=f=3400:t=q:w=1.2:g=-1.5,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=140:makeup=1.5,aecho=0.85:0.82:23|41:0.10|0.06,loudnorm=I=-16:TP=-1.5:LRA=9"
+}
