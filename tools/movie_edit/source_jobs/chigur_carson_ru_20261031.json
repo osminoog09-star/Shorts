@@ -1,0 +1,10 @@
+{
+  "purpose": "Obtain actual Russian hotel dialogue clip for approved Chigur Shorts A; owner explicitly requested video files on GitHub, not screenshot or brief.",
+  "rights_note": "Owner accepted Content ID risk under AGENTS 8. Public clip only; no login, cookies, DRM or bot-check bypass. Keep original picture and audio in temporary Actions artifact. Verify actual spoken language and scene before production.",
+  "sources": [
+    {
+      "id": "chigur_carson_ru",
+      "url": "https://rutube.ru/video/d855d5c44a4f88b4237842233b09c20c/"
+    }
+  ]
+}
