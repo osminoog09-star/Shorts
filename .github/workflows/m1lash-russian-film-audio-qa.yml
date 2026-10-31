@@ -1,0 +1,61 @@
+name: M1lash verify authentic Russian movie dialogue (private source QA)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/m1lash-russian-film-audio-qa.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  language:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { source: chigur, run: '41198700306', file: 'chigur_gas_coin_russian_candidate.mp4' }
+          - { source: whiplash, run: '41197336389', file: 'whiplash_russian_rehearsal_scene.mp4' }
+          - { source: waves, run: '41198693490', file: 'interstellar_miller_ru_wave.mp4' }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: movie-edit-draft
+          run-id: ${{ matrix.run }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: source
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Install offline ASR (use model tiny, no dubbing)
+        run: |
+          python -m pip install -q faster-whisper
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Detect real language and phrases from three separated intervals
+        env: { SOURCE: "${{ matrix.source }}", FILE: "${{ matrix.file }}" }
+        run: |
+          python - <<'PY'
+          import os,subprocess,pathlib,json
+          from faster_whisper import WhisperModel
+          p=next(pathlib.Path('source').rglob(os.environ['FILE']))
+          d=float(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','csv=p=0',str(p)]))
+          model=WhisperModel('tiny', device='cpu', compute_type='int8')
+          out=[]
+          for t in [max(0,min(d-26,x)) for x in [28,96,185]]:
+            f=pathlib.Path(f'clip_{int(t)}.wav')
+            subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-ss',str(t),'-t','25','-i',str(p),'-ar','16000','-ac','1',str(f)],check=True)
+            segments,info=model.transcribe(str(f),beam_size=3,vad_filter=False,language=None)
+            phrases=[s.text.strip() for s in segments]
+            out.append({'t_start':t,'seconds':25,'language':info.language,'confidence':round(info.language_probability,3),'text':' '.join(phrases)[:1500]})
+          pathlib.Path('ru_audio_qa').mkdir(exist_ok=True)
+          dest=pathlib.Path('ru_audio_qa')/(os.environ['SOURCE']+'.json')
+          dest.write_text(json.dumps({'source':os.environ['SOURCE'],'duration':d,'observations':out,'method':'faster-whisper tiny auto language detector, sampled 3x25s; preliminary only'},ensure_ascii=False,indent=2))
+          print(dest.read_text(),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ru-audio-qa-${{ matrix.source }}
+          path: ru_audio_qa/*.json
+          retention-days: 7
