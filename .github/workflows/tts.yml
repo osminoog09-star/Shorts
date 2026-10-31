@@ -63,7 +63,16 @@ jobs:
               assert meta.is_file() and json.loads(meta.read_text())['text']==line['text'], f'Missing metadata: {meta}'
           print('Verified',len(data['lines']),'segments for',job.stem)
           PY
+            mkdir -p "$RUNNER_TEMP/tts_generated/$(basename "$file" .json)"
+            cp -a "media/tts/$(basename "$file" .json)/." "$RUNNER_TEMP/tts_generated/$(basename "$file" .json)/"
           done
+      - name: Upload TTS audio QA artifact (private, 3 days)
+        uses: actions/upload-artifact@v4
+        with:
+          name: tts-audio-review
+          path: ${{ runner.temp }}/tts_generated/
+          retention-days: 3
+          if-no-files-found: ignore
       - name: Commit verified output
         if: always()
         run: |
