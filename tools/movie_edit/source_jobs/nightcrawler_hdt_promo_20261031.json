@@ -7,5 +7,5 @@
       "url": "https://videos.hd-trailers.net/NC_EPK_FilmClip_203_ImLouBloom-720p-HDTN.mp4"
     }
   ],
-  "technical_retry_reason": "Second attempt: duration can be unknown at extraction; verify duration using ffprobe after actual download. No film footage is authorized for publishing."
+  "technical_retry_reason": "Third attempt: stream bare https MP4 via urllib with 250 MB cap, then verify duration<=900 sec and audio with ffprobe; no media publication."
 }
