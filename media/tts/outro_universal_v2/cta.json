@@ -1,0 +1,76 @@
+{
+ "text": "Подпишись! И спасибо всем, кто досмотрел… и поставил лайк!",
+ "words": [
+  {
+   "w": "Подпишись",
+   "start": 0.0,
+   "end": 0.872
+  },
+  {
+   "w": "И",
+   "start": 1.029,
+   "end": 1.235
+  },
+  {
+   "w": "спасибо",
+   "start": 1.235,
+   "end": 1.725
+  },
+  {
+   "w": "всем",
+   "start": 1.725,
+   "end": 2.137
+  },
+  {
+   "w": "кто",
+   "start": 2.33,
+   "end": 2.55
+  },
+  {
+   "w": "досмотрел",
+   "start": 2.55,
+   "end": 3.284
+  },
+  {
+   "w": "и",
+   "start": 3.618,
+   "end": 3.857
+  },
+  {
+   "w": "поставил",
+   "start": 3.857,
+   "end": 4.495
+  },
+  {
+   "w": "лайк",
+   "start": 4.495,
+   "end": 4.987
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "-4%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/outro_universal_v2/cta.mp3",
+ "humanize": true,
+ "prosody": [
+  {
+   "s": "Подпишись!",
+   "rate": "-4%",
+   "pitch": "+1Hz"
+  },
+  {
+   "s": "И спасибо всем, кто досмотрел…",
+   "rate": "-3%",
+   "pitch": "-3Hz"
+  },
+  {
+   "s": "и поставил лайк!",
+   "rate": "-6%",
+   "pitch": "+1Hz"
+  }
+ ],
+ "post": "highpass=f=70,equalizer=f=180:t=q:w=0.9:g=2,equalizer=f=3400:t=q:w=1.2:g=-1.5,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=140:makeup=1.5,aecho=0.85:0.82:23|41:0.10|0.06,loudnorm=I=-16:TP=-1.5:LRA=9"
+}
