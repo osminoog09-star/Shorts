@@ -19,6 +19,11 @@ jobs:
             test -s "media/tts/movie_funnel_202611/${s}.json"
             grep -q 'ru-RU-DmitryNeural' "media/tts/movie_funnel_202611/${s}.json"
           done
+          for m in mystery_ai_trust_20261031 mystery_tempo_20261031; do
+            test -s "media/tts/${m}/outro_reveal.mp3"
+            test -s "media/tts/${m}/outro_reveal.json"
+            grep -q 'ru-RU-DmitryNeural' "media/tts/${m}/outro_reveal.json"
+          done
       - uses: actions/upload-artifact@v4
         with:
           name: m1lash-approved-dima-voice-assets
@@ -27,4 +32,8 @@ jobs:
             media/tts/movie_funnel_202611/end_b.mp3
             media/tts/movie_funnel_202611/end_a.json
             media/tts/movie_funnel_202611/end_b.json
+            media/tts/mystery_ai_trust_20261031/outro_reveal.mp3
+            media/tts/mystery_ai_trust_20261031/outro_reveal.json
+            media/tts/mystery_tempo_20261031/outro_reveal.mp3
+            media/tts/mystery_tempo_20261031/outro_reveal.json
           retention-days: 7
