@@ -10,5 +10,6 @@
       "id": "exmachina_tlr5_promo",
       "url": "https://videos.hd-trailers.net/ExMachina_DomesticTrailer5-480p-HDTN.mp4"
     }
-  ]
+  ],
+  "technical_retry_reason": "After direct MP4 downloader fix bd79c37e: download original videos as temporary private QA only, validate actual audio/duration using ffprobe."
 }
