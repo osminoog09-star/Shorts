@@ -1,0 +1,27 @@
+{
+ "text": "Сайт попросил доказать, что я человек. Ну ладно, думаю, позову ИИ. Он же умный!",
+ "words": [
+  {
+   "w": "Сайт попросил доказать, что я человек.",
+   "start": 0.1,
+   "end": 3.5761906
+  },
+  {
+   "w": "Ну ладно, думаю, позову ИИ.",
+   "start": 3.5261906,
+   "end": 6.561905
+  },
+  {
+   "w": "Он же умный!",
+   "start": 6.561905,
+   "end": 8.4309527
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+5%",
+ "pitch": "+0Hz",
+ "boundary": "SentenceBoundary",
+ "source_file": "media/tts/voice_demo_raw/d1.mp3"
+}
