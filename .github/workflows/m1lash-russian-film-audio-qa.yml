@@ -17,7 +17,8 @@ jobs:
         include:
           - { source: chigur, run: '41198700306', file: 'chigur_gas_coin_russian_candidate.mp4' }
           - { source: whiplash, run: '41197336389', file: 'whiplash_russian_rehearsal_scene.mp4' }
-          - { source: waves, run: '41198693490', file: 'interstellar_miller_ru_wave.mp4' }
+          - { source: waves, run: '41199706293', file: 'miller_waves_landing_ru_candidate.mp4' }
+          - { source: carson_hotel, run: '41179788368', file: 'chigur_carson_ru.mp4' }
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
