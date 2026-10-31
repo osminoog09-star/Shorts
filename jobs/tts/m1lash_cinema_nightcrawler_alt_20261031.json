@@ -1,0 +1,24 @@
+{
+  "voice": "ru-RU-DmitryNeural",
+  "rate": "+6%",
+  "pitch": "+0Hz",
+  "production_note": "Separate private experimental critique using verified Nightcrawler newsroom promo, not approved scene at crash; no public upload. No character. Final title only spoken at end.",
+  "lines": [
+    {
+      "id": "s01",
+      "text": "Он приходит в редакцию с записями. И вот что пугает: здесь уже думают не о людях, а о том, какие рейтинги принесёт чужая трагедия."
+    },
+    {
+      "id": "s02",
+      "text": "Парень быстро понимает правила этой игры. Камера становится его пропуском к деньгам, а чужая беда — самым дорогим товаром."
+    },
+    {
+      "id": "s03",
+      "text": "Но кто здесь страшнее: тот, кто снимает, или те, кто готовы за это платить? Похоже, граница между новостью и охотой давно стёрлась."
+    },
+    {
+      "id": "outro_reveal",
+      "text": "Подпишись! И спасибо всем, кто досмотрел и поставил лайк. А ты бы такое смотрел? Стрингер."
+    }
+  ]
+}
