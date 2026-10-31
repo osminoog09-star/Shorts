@@ -60,3 +60,12 @@
 8. Автопроверка перед заливкой: чёрные кадры, громкость, текст на лицах, длина, название фильма в субтитрах → без PASS не заливать.
 9. ИИ-вставки LTX-2 для скетчей и переходов.
 10. ClipForge (клипы Whop) на том же ПК ночью.
+
+## Комплект для Windows (готов 31.10, Claude; Денис: ПК на Windows)
+1. PowerShell от администратора → `Set-ExecutionPolicy -Scope Process Bypass; .\scripts\pc\windows\setup.ps1` (или скачать один файл setup.ps1 — он сам клонирует репо в `C:\M1lash\Shorts`).
+   Ставит winget-ом Git, gh, Python 3.11, ffmpeg, Node, Ollama; CUDA-библиотеки для whisper; `ollama pull gemma4:12b`; папки `C:\M1lash\Входящие|Работа|Готово|Архив`; переменные M1LASH_WHISPER=large-v3, M1LASH_DEVICE=cuda; задачу автозапуска «M1lash Inbox».
+2. `scripts/pc/selfcheck.py` — PASS/FAIL по ffmpeg, git/gh, CUDA, Ollama+Gemma, папкам.
+3. `scripts/pc/inbox_watch.py` — раз в минуту: файл во «Входящие» (докачан) → ищет фильм в `plans/week.json` по части имени → «Работа» → `movie_short.py` по каждой сцене → push → youtube-direct upload (приватно, без даты). Через 7 дней файл фильма удаляется. Лог `C:\M1lash\inbox.log`.
+4. `plans/week.json` — план недели; агенты заполняют в воскресенье (фильм, match, сцены с таймкодами).
+Проверено в облаке: сопоставление имени, перенос, запуск нарезки. На Windows ещё не запускалось — первый запуск вместе с Денисом.
+Следующее: поиск сцен (п.1), автоподбор моментов (п.2), автопроверка (п.8), локальный голос вместо edge.

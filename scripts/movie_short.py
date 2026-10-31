@@ -139,7 +139,11 @@ def vertical(clip, dst):
 
 def transcribe(wav, lang):
     from faster_whisper import WhisperModel  # noqa: PLC0415
-    model = WhisperModel("small", device="cpu", compute_type="int8")
+    import os  # noqa: PLC0415
+    # облако: small/cpu; ПК Дениса (12 ГБ NVIDIA): M1LASH_WHISPER=large-v3, M1LASH_DEVICE=cuda
+    dev = os.environ.get("M1LASH_DEVICE", "cpu")
+    model = WhisperModel(os.environ.get("M1LASH_WHISPER", "small"), device=dev,
+                         compute_type="float16" if dev == "cuda" else "int8")
     segs, _ = model.transcribe(str(wav), language=lang, word_timestamps=True, vad_filter=True,
                                condition_on_previous_text=False)
     words = []
@@ -256,7 +260,8 @@ def main():
         sys.exit("id: только латиница/цифры/_")
     if norm(a.film) and norm(a.film) in norm(a.title):
         sys.exit("NO-GO: название фильма в заголовке (AGENTS §8)")
-    work = Path("/tmp/ms") / a.id
+    import os  # noqa: PLC0415
+    work = Path(os.environ.get("M1LASH_WORK", "/tmp/ms")) / a.id
     shutil.rmtree(work, ignore_errors=True)
     work.mkdir(parents=True)
     src = Path(a.src)
