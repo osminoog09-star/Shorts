@@ -12,6 +12,7 @@
 Тайминги слов (для субтитров/липсинка) пересчитываются со сдвигом по реальным длительностям.
 Включается полем "humanize": true в jobs/tts/<job>.json (по умолчанию для новых джобов — true).
 """
+import asyncio
 import hashlib
 import json
 import re
@@ -141,7 +142,15 @@ async def humanized(one, text, voice, rate, pitch, mp3, meta, extra):
         for i, s in enumerate(sents):
             r, p = prosody(s, rate, pitch)
             pm, pj = td / f"{i}.mp3", td / f"{i}.json"
-            await one(s, voice, r, p, pm, pj)
+            for k in range(6):  # Edge троттлит частые запросы: повтор по предложению с паузой
+                try:
+                    await one(s, voice, r, p, pm, pj)
+                    break
+                except Exception:  # noqa: BLE001
+                    if k == 5:
+                        raise
+                    await asyncio.sleep(3 + k * 4)
+            await asyncio.sleep(1.2)
             parts.append((pm, json.loads(pj.read_text(encoding="utf-8")), r, p))
         for i, (pm, pjd, r, p) in enumerate(parts):
             nxt_long = i + 1 < len(sents) and len(sents[i + 1].split()) >= 6
