@@ -263,11 +263,14 @@ def main():
     total = dur(src)
     start = tsec(a.start)
     end = tsec(a.end) if a.end else total
-    # финал Димы генерируем первым — от его длины зависит, сколько сцены влезает в 60 с
-    vo = work / "outro.mp3"
-    asyncio.run(outro_voice(f"Подпишись! И спасибо всем, кто досмотрел и поставил лайк. {a.question} Это был фильм… {a.film}.", vo))
+    # Финал (AGENTS §4, решение Дениса 31.10): готовая фирменная концовка media/outro/… + для кино
+    # одна фраза Димы с названием фильма — последние слова ролика (§8). Вопрос зрителям — в описании/закрепе.
+    std = ROOT / "media/outro/m1lash_outro_v1_vertical.mp4"
+    std_d = dur(std)
+    vo = work / "name.mp3"
+    asyncio.run(outro_voice(f"Это был фильм… {a.film}.", vo))
     vd = dur(vo)
-    length = min(end - start, 52.0, 59.3 - (vd + 0.5))
+    length = min(end - start, 52.0, 59.3 - std_d - (vd + 0.4))
     if length < 8:
         sys.exit("Слишком короткий фрагмент")
     c = cropdetect(src, start, length)
@@ -289,23 +292,24 @@ def main():
     ff("-i", str(vert), "-i", str(clip), "-map", "0:v", "-map", "1:a", "-vf", f"ass={subs}",
        "-c:v", "libx264", "-crf", "18", "-preset", "medium", "-pix_fmt", "yuv420p",
        "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-shortest", str(body))
-    # финал: голос Димы над последним кадром → фирменная карточка 2.5 с; последние слова — название фильма
+    # финал: стандартная концовка M1lash → её последний кадр держится, Дима называет фильм
     last = work / "last.png"
-    ff("-sseof", "-0.1", "-i", str(body), "-frames:v", "1", "-update", "1", str(last))
-    cardp = work / "card.png"
-    card(cardp)
-    card_t = 2.5
-    hold = max(0.6, vd - card_t + 0.3)
+    ff("-sseof", "-0.05", "-i", str(std), "-frames:v", "1", "-update", "1", str(last))
+    tail = work / "tail.mp4"
+    ff("-loop", "1", "-t", f"{vd + 0.4:.2f}", "-i", str(last), "-i", str(vo), "-filter_complex",
+       f"[0]scale={W}:{H},fps={FPS},setsar=1[v];[1]loudnorm=I=-16:TP=-1.5,apad[au]", "-map", "[v]", "-map", "[au]",
+       "-t", f"{vd + 0.4:.2f}", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", str(tail))
+    stdn = work / "std.mp4"
+    ff("-i", str(std), "-vf", f"scale={W}:{H},fps={FPS},setsar=1", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p",
+       "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2", str(stdn))
     outro = work / "outro.mp4"
-    ff("-loop", "1", "-t", f"{hold:.2f}", "-i", str(last), "-loop", "1", "-t", f"{card_t + 0.2:.2f}", "-i", str(cardp), "-i", str(vo),
-       "-filter_complex",
-       f"[0]scale={W}:{H},zoompan=z='min(zoom+0.0008,1.06)':d=1:s={W}x{H}:fps={FPS},eq=brightness=-0.08,setsar=1[a];"
-       f"[1]scale={W}:{H},fps={FPS},setsar=1,fade=t=in:st=0:d=0.25[b];[a][b]concat=n=2:v=1:a=0[v];"
-       f"[2]loudnorm=I=-16:TP=-1.5,apad[au]",
-       "-map", "[v]", "-map", "[au]", "-t", f"{hold + card_t + 0.2:.2f}", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p",
-       "-c:a", "aac", "-b:a", "192k", "-ar", "48000", str(outro))
+    (work / "o.txt").write_text(f"file '{stdn}'\nfile '{tail}'\n")
+    ff("-f", "concat", "-safe", "0", "-i", str(work / "o.txt"), "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p",
+       "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2", str(outro))
     lst = work / "l.txt"
-    lst.write_text(f"file '{body}'\nfile '{outro}'\n")
+    bodyn = work / "body2.mp4"
+    ff("-i", str(body), "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2", str(bodyn))
+    lst.write_text(f"file '{bodyn}'\nfile '{outro}'\n")
     out = ROOT / "videos" / f"{a.id}.mp4"
     ff("-f", "concat", "-safe", "0", "-i", str(lst), "-c:v", "libx264", "-crf", "19", "-preset", "medium", "-pix_fmt", "yuv420p",
        "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(out))
