@@ -1,0 +1,12 @@
+{
+  "purpose": "Private scene-specific Russian actor dubbing QA for Ex Machina blackout only, 30:05–31:55, no full film download.",
+  "rights_note": "Openly accessible stream is not evidence of distribution permission. No DRM bypass, no public release; retain private QA only.",
+  "sources": [
+    {
+      "id": "machina_ava_ru_blackout_ok_candidate",
+      "url": "https://ok.ru/video/16284243071436",
+      "start_seconds": 1805,
+      "end_seconds": 1915
+    }
+  ]
+}
