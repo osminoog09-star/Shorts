@@ -61,7 +61,8 @@ def main():
               "--out-dir",out_dir,"--title",intro])
         final=out_dir/"004_V46_OFFICIAL_PRIVATE.mp4"
         if not final.exists():raise RuntimeError("missing rebuilt master")
-        target=ART/MP4_NAME
+        target=ROOT/"videos"/MP4_NAME
+        target.parent.mkdir(exist_ok=True)
         shutil.copyfile(final,target)
         call(["ffmpeg","-v","error","-xerror","-i",target,"-f","null","-"],stdout=subprocess.DEVNULL)
         probe=json.loads(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration:stream=codec_type,width,height,avg_frame_rate","-of","json",target]))
