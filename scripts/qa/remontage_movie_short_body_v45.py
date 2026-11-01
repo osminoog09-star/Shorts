@@ -3,7 +3,7 @@
 
 Output MP4 bodies intentionally EXCLUDE the approved M1lash outro and Dima's
 spoken film title. Assemble finals ONLY with tools/assemble_with_outro.py.
-003: replace 2.0 s repeat portrait with an existing stage/reaction cutaway;
+003: replace 2.0 s repeat portrait with an existing live-band/reaction cutaway with NO burned-in caption;
      retain unbroken original film sound.
 005: the original 9 s empty pause was ALREADY removed in V26, so do not
      cut it a second time; remove a remaining 0.733 s silent reaction.
@@ -19,7 +19,7 @@ from pathlib import Path
 # The exact 30fps timecodes used for the approved-source private QA exports.
 EDITS = {
     "003": {"source": "body_v24.mp4", "video_parts": [(0, 28.466666667),
-            (20.2, 22.2), (30.466666667, 39.0)], "audio_keep": True},
+            (21.0, 23.0), (30.466666667, 39.0)], "audio_keep": True},
     "005": {"source": "body_v26.mp4", "video_parts": [(0, 9.233333333),
             (9.966666667, 23.3)], "audio_keep": False},
     "006": {"source": "body_v24.mp4", "video_parts": [(0, 31.966666667),
