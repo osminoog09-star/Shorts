@@ -42,7 +42,12 @@ with sync_playwright() as pw:
         '-vf','scale=1920:1080:flags=lanczos','-r','30',
         '-c:v','libx264','-preset','veryfast','-crf','19','-pix_fmt','yuv420p',
         '-c:a','aac','-b:a','96k','-movflags','+faststart',str(pilot)],check=True)
-    print('MOTION PILOT',pilot, pilot.stat().st_size,flush=True)
+    # Independent full H.264/AAC decode on the ACTUAL 6-second pilot.
+    subprocess.run(['ffmpeg','-v','error','-xerror','-i',str(pilot),
+                    '-f','null','-'],check=True)
+    if (frames/'f0000.png').read_bytes()==(frames/'f0179.png').read_bytes():
+        raise RuntimeError('MOTION NO-GO: first and last pilot frames identical')
+    print('MOTION PILOT',pilot, pilot.stat().st_size,'full decode PASS',flush=True)
     # Frames are transient; artifact retains only finished 6s MP4 + 6 QA PNG.
     from shutil import rmtree
     rmtree(frames)
