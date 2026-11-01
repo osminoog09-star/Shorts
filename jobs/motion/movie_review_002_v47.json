@@ -1,0 +1,19 @@
+{
+  "renderer": "python",
+  "script": "shorts/rebuild_movie_review_from_artifact.py",
+  "id": "002",
+  "artifact_id": 13069849250,
+  "member": "originals/chigur_carla_final_ru_real.mp4",
+  "segments": [
+    [
+      171,
+      208
+    ]
+  ],
+  "film": "Старикам тут не место",
+  "public_hook": "ОНА ОТКАЗАЛАСЬ ВЫБИРАТЬ",
+  "question": "Что бы ты ответил?",
+  "output": "videos/kino_002_v47.mp4",
+  "qa_run_marker": "reports/research/movie_002_v47_run.json",
+  "save_review_mp4": false
+}
