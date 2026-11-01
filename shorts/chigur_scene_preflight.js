@@ -88,6 +88,31 @@ for(const g of G){
  for(let n=0;n<4;n++)cy(g,-2.1+n*.24,-1.8,-.4,.11,.04,brass);
  for(let n=0;n<5;n++){const sl=box(g,.6+n*.31,-2.05,1.35,.26,.015,.035,paint);sl.castShadow=false;}
 }
+{
+ const g=G[1];
+ // Motel: moulded door surround, room number plate, hinges and corridor lights.
+ for(const x of [-1.28,1.24]){
+   box(g,x,.07,-1.15,.10,4.9,.36,ebony);
+   for(const y of [-1.65,1.65]){const hinge=box(g,x,y,-1.08,.10,.23,.11,brass);hinge.castShadow=true;}
+ }
+ box(g,0,2.48,-1.22,2.58,.13,.38,ebony);
+ box(g,.7,1.67,-1.18,.42,.24,.036,brass);
+ for(let j=0;j<3;j++)box(g,.55+j*.14,1.67,-1.15,.035,.10,.016,ebony);
+ const sconce=box(g,-2.1,1.18,-1.1,.27,.6,.3,brass);
+ const shade=box(g,-2.1,1.45,-1.1,.55,.22,.46,paper);
+ const lamp=new THREE.PointLight(0xffc28a,1.1,5);lamp.position.set(-2.1,1.42,-.9);g.add(lamp);
+ for(let n=-2;n<=2;n++)box(g,n*1.1,-1.97,1.6,.015,.015,3.0,ebony);
+}
+{
+ const g=G[2]; // transmitter/electronics: switches, metal screws, vents, radar dials
+ for(let j=0;j<9;j++){box(g,1.1,-1.3+j*.16,1.08,.4,.025,.04,brass);}
+ for(let j=0;j<4;j++){let x=.9+(j%2)*.42,y=-.4+Math.floor(j/2)*.39;cy(g,x,y,1.21,.14,.07,ebony,'z');bolt(g,x,y,1.27,.05);}
+ for(let j=0;j<6;j++){let x=-1.36+j*.27;box(g,x,-1.5,1.12,.12,.045,.05,brass);}
+ for(let j=0;j<4;j++){const screw=bolt(g,-1.43+(j%2)*2.85,-1.35+Math.floor(j/2)*1.55,1.13,.06);}
+ box(g,1.27,1,-1.1,.05,2.3,.05,brass);
+ sphere(g,1.27,2.16,-1.1,.085,brass);
+ const cable=new THREE.Mesh(new THREE.TorusGeometry(.58,.055,10,36,Math.PI*1.55),ebony);cable.position.set(-.15,-2.0,1.1);cable.rotation.y=.6;g.add(cable);
+}
 window.frame=(T)=>{
  const i=Math.min(5,Math.floor(T/6)),t=T-i*6;
  G.forEach((g,j)=>g.visible=i===j);A[i](t);
