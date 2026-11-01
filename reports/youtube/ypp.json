@@ -1,18 +1,13 @@
 {
- "as_of": "2026-10-28",
- "built": "2026-10-31T13:44:31.538987+00:00",
+ "as_of": "2026-10-29",
+ "built": "2026-11-01T08:08:54.379780+00:00",
  "engaged_views": true,
  "pace": {
-  "subs_per_day": 0.86,
-  "shorts_views_per_day": 1764,
+  "subs_per_day": 1.0,
+  "shorts_views_per_day": 2050,
   "long_hours_per_day": 0.0
  },
  "shorts_daily_90": [
-  {
-   "day": "2026-07-31",
-   "views": 0,
-   "all": 0
-  },
   {
    "day": "2026-08-01",
    "views": 0,
@@ -450,13 +445,18 @@
   },
   {
    "day": "2026-10-27",
-   "views": 3108,
-   "all": 5372
+   "views": 3102,
+   "all": 5351
   },
   {
    "day": "2026-10-28",
    "views": 2556,
    "all": 4276
+  },
+  {
+   "day": "2026-10-29",
+   "views": 2604,
+   "all": 4240
   }
  ],
  "tiers": [
@@ -465,12 +465,12 @@
    "title": "Базовая монетизация (донаты, спонсорство)",
    "subs": {
     "name": "500 подписчиков",
-    "current": 35,
+    "current": 36,
     "target": 500,
     "unit": "подп.",
-    "pct": 7.0,
-    "eta_days": 543,
-    "eta_date": "2028-04-26",
+    "pct": 7.2,
+    "eta_days": 464,
+    "eta_date": "2028-02-08",
     "need": "нужно ~16/день, чтобы за месяц"
    },
    "uploads": {
@@ -481,10 +481,10 @@
    "paths": [
     {
      "name": "3 млн просмотров Shorts / 90 дн",
-     "current": 12582,
+     "current": 15180,
      "target": 3000000,
      "unit": "просм.",
-     "pct": 0.4,
+     "pct": 0.5,
      "eta_days": null,
      "eta_date": null,
      "need": "нужно ≈33 334 в день"
@@ -508,21 +508,21 @@
    "title": "Полная (реклама)",
    "subs": {
     "name": "1000 подписчиков",
-    "current": 35,
+    "current": 36,
     "target": 1000,
     "unit": "подп.",
-    "pct": 3.5,
-    "eta_days": 1126,
-    "eta_date": "2029-11-30",
+    "pct": 3.6,
+    "eta_days": 964,
+    "eta_date": "2029-06-22",
     "need": "нужно ~33/день, чтобы за месяц"
    },
    "paths": [
     {
      "name": "10 млн просмотров Shorts / 90 дн",
-     "current": 12582,
+     "current": 15180,
      "target": 10000000,
      "unit": "просм.",
-     "pct": 0.1,
+     "pct": 0.2,
      "eta_days": null,
      "eta_date": null,
      "need": "нужно ≈111 112 в день"
