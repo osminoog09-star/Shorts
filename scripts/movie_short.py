@@ -282,28 +282,17 @@ def main():
     ff("-i", str(vert), "-i", str(clip), "-map", "0:v", "-map", "1:a",
        "-vf", f"fps={FPS},setsar=1,ass={subs}", "-r", str(FPS),
        "-c:v", "libx264", "-crf", "18", "-preset", "medium", "-pix_fmt", "yuv420p",
-       "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k",
+       "-c:a", "aac", "-b:a", "256k",
        "-ac", "2", "-ar", "48000", "-shortest", str(body))
-    # финал: стандартная концовка M1lash → её последний кадр держится, Дима называет фильм
-    last = work / "last.png"
-    ff("-sseof", "-0.05", "-i", str(std), "-frames:v", "1", "-update", "1", str(last))
-    tail = work / "tail.mp4"
-    ff("-loop", "1", "-t", f"{vd + 0.4:.2f}", "-i", str(last), "-i", str(vo), "-filter_complex",
-       f"[0]scale={W}:{H},fps={FPS},setsar=1[v];[1]loudnorm=I=-16:TP=-1.5,apad[au]", "-map", "[v]", "-map", "[au]",
-       "-t", f"{vd + 0.4:.2f}", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", str(tail))
-    # Preserve the actual approved outro stream. Re-encoding, remuxed effects,
-    # normalizing, overlays or music on std are prohibited (AGENTS §4).
-    lst = work / "whole.txt"
+    # финал: тело + утверждённая концовка + название голосом на её последнем кадре.
+    # Одна проверенная команда (tools/assemble_with_outro.py): громкость тела в 2 прохода,
+    # склейка с одним перекодированием (без «-c copy» → нет сдвига и служебных AAC-пакетов),
+    # звук концовки без фильтров громкости + проверка, что он совпадает с утверждённым.
     out = ROOT / "videos" / f"{a.id}.mp4"
-    lst.write_text("".join(f"file '{p.resolve()}'\n" for p in (body, std, tail)), encoding="utf-8")
-    join = subprocess.run(["ffmpeg", "-hide_banner", "-nostdin", "-loglevel", "warning", "-y",
-                           "-f", "concat", "-safe", "0", "-i", str(lst),
-                           "-map", "0:v:0", "-map", "0:a:0",
-                           "-c", "copy", "-movflags", "+faststart", str(out)],
-                          capture_output=True, text=True)
-    if join.returncode or join.stderr.strip():
-        sys.exit("NO-GO: stream-copy concat emitted errors/warnings (DTS/PTS): " +
-                 join.stderr[-800:])
+    asm = subprocess.run([sys.executable, str(ROOT / "tools/assemble_with_outro.py"), str(body),
+                          "-o", str(out), "--title", str(vo)], capture_output=True, text=True)
+    if asm.returncode:
+        sys.exit("NO-GO (сборка с концовкой): " + (asm.stderr or asm.stdout)[-1200:])
     # ---- проверка §12 ----
     strict_decode = subprocess.run(["ffmpeg", "-hide_banner", "-v", "error", "-xerror",
                                     "-i", str(out), "-f", "null", "-"],
@@ -348,14 +337,12 @@ def main():
         problems.append("ffmpeg-skill check.py FAIL")
     if look.returncode or not sheet.is_file():
         problems.append("ffmpeg-skill look.py FAIL")
-    # Mandatory: AAC packet SHA equality does not preserve MP4 skip_samples
-    # after compressed concat. Reject a wrongly decoded approved outro.
-    priming = subprocess.run([sys.executable,
-        str(ROOT / "scripts/qa/verify_outro_aac_priming.py"), str(std), str(out)],
-        capture_output=True, text=True)
-    qa["outro_aac_priming"] = priming.stdout.strip()
-    if priming.returncode:
-        problems.append("утеряна AAC priming metadata утверждённой концовки")
+    # Концовку проверяет сам сборщик (tools/assemble_with_outro.py): сдвиг звука, совпадение
+    # с утверждённым файлом, скачок громкости, пики. Его отчёт кладём в общий qa.
+    try:
+        qa["assemble"] = json.loads(Path(str(out) + ".qa.json").read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        problems.append("нет отчёта сборщика концовки")
     qa["problems"] = problems
     (qdir / "qa.json").write_text(json.dumps(qa, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps(qa, ensure_ascii=False))
