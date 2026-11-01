@@ -33,3 +33,4 @@ out=ROOT/'videos/chigur_v7_six_stills_REVIEW_ONLY.mp4'
 out.parent.mkdir(parents=True,exist_ok=True)
 cmd=['ffmpeg','-y','-v','error','-framerate','1/6','-i',str(ART/'chigur_v7_scene_%02d.png')]
 cmd.extend(['-f','lavfi','-i','anullsrc=r=48000:cl=stereo'])
+cmd.extend(['-t','36','-vf','fps=30,scale=1080:608,pad=1080:1920:0:656:black'])
