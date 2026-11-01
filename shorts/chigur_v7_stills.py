@@ -35,3 +35,4 @@ cmd=['ffmpeg','-y','-v','error','-framerate','1/6','-i',str(ART/'chigur_v7_scene
 cmd.extend(['-f','lavfi','-i','anullsrc=r=48000:cl=stereo'])
 cmd.extend(['-t','36','-vf','fps=30,scale=1080:608,pad=1080:1920:0:656:black'])
 cmd.extend(['-r','30','-c:v','libx264','-preset','veryfast','-crf','22'])
+cmd.extend(['-pix_fmt','yuv420p'])
