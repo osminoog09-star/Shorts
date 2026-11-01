@@ -1,0 +1,7 @@
+{
+  "renderer": "python",
+  "script": "shorts/chigur_v10_stills.py",
+  "output": "videos/chigur_v10_six_stills_REVIEW_ONLY.mp4",
+  "save_review_mp4": false,
+  "qa_run_marker": "reports/research/chigur_v10_run.json"
+}
