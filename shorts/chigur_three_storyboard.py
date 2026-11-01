@@ -24,7 +24,7 @@ with sync_playwright() as playwright:
     page=browser.new_page(viewport={'width':960,'height':540})
     page.set_content('<body style="margin:0"><canvas id="scene"></canvas></body>')
     page.add_script_tag(path=str(LIB))
-    page.add_script_tag(path=str(ROOT/'shorts/chigur_scene_preflight.js'))
+    page.add_script_tag(path=str(ROOT/'longform/chigur/graphics/three_stage_prototype_v3.js'))
     page.wait_for_function('window.ready !== undefined')
     for i in range(6):
         shot=page.evaluate('(t)=>window.frame(t)',i*6+2)
