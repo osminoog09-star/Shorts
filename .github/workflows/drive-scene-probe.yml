@@ -1,0 +1,52 @@
+name: M1lash Drive · ASR scene candidates (PRIVATE QA only)
+on:
+  schedule:
+    - cron: '41 */6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: drive-scene-probe
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Check if new confirmed movie exists
+        id: preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/drive_scene_probe.py
+          python scripts/drive_scene_probe.py --list-pending > "$RUNNER_TEMP/pending.json"
+          if python -c 'import json,sys; sys.exit(0 if json.load(open(sys.argv[1]))["pending"] > 0 else 1)' "$RUNNER_TEMP/pending.json"; then
+            echo has_work=true >> "$GITHUB_OUTPUT"
+          else
+            echo has_work=false >> "$GITHUB_OUTPUT"
+          fi
+      - name: Install ASR for pending film
+        if: steps.preflight.outputs.has_work == 'true'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install -q 'gdown>=6.1,<7' 'faster-whisper>=1.0,<2'
+      - name: Download selected film temporarily and find ASR candidates
+        if: steps.preflight.outputs.has_work == 'true'
+        run: python scripts/drive_scene_probe.py
+      - name: Commit ONLY candidate timestamps/errors
+        if: always() && steps.preflight.outputs.has_work == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name 'drive-scene-probe[bot]'
+          git config user.email 'drive-scene-probe@users.noreply.github.com'
+          git add publishing/scene_candidates.json
+          git diff --staged --quiet && exit 0
+          git commit -m 'drive: ASR scene candidates (unverified, not published)'
+          for i in 1 2 3; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then exit 0; fi
+            sleep 5
+          done
+          exit 1
