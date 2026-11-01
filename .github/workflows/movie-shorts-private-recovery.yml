@@ -1,0 +1,52 @@
+name: M1lash · Recover private movie Shorts from existing Actions artifacts
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/movie-shorts-private-recovery.yml'
+      - 'jobs/movie-recovery/*.json'
+      - 'scripts/qa/recover_movie_short.py'
+  workflow_dispatch:
+    inputs:
+      job:
+        description: 'jobs/movie-recovery/*.json'
+        required: true
+        default: 'jobs/movie-recovery/004_exmachina_v46.json'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: private-movie-short-recovery
+  cancel-in-progress: false
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install private movie QA tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          python -m pip install -q 'edge-tts>=7,<8' 'requests>=2.32,<3' 'numpy>=1.26,<3' 'Pillow>=10,<12'
+      - name: Build actual final MP4 (source in private runner only)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JOB_FILE: ${{ inputs.job }}
+        run: |
+          set -euo pipefail
+          job="${JOB_FILE:-jobs/movie-recovery/004_exmachina_v46.json}"
+          case "$job" in jobs/movie-recovery/*.json) ;; *) exit 1;; esac
+          python3 scripts/qa/recover_movie_short.py "$job"
+      - name: Save private review files (no YouTube and no Git commit)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: movie-short-private-recovery-${{ github.run_id }}
+          path: |
+            recovery-output/
+          retention-days: 14
+          if-no-files-found: warn
