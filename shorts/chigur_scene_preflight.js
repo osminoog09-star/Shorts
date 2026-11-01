@@ -55,6 +55,39 @@ for(let i=0;i<6;i++){
   A.push(t=>{car.position.z=3-t*.65});
  }
 }
+// Additional cinematic prop detailing. All geometry is real Three.js; no PIL art.
+const brass=new THREE.MeshPhysicalMaterial({color:0xdaa75d,metalness:.91,roughness:.26,clearcoat:.7});
+const ebony=new THREE.MeshPhysicalMaterial({color:0x141922,metalness:.35,roughness:.35,clearcoat:.45});
+const paint=new THREE.MeshStandardMaterial({color:0x5d3829,roughness:.58});
+const paper=new THREE.MeshStandardMaterial({color:0xe6dcb7,roughness:.84});
+const glass=new THREE.MeshPhysicalMaterial({color:0x32615e,metalness:.48,roughness:.22,clearcoat:1});
+const crimson=new THREE.MeshStandardMaterial({color:0x9b331e,metalness:.08,roughness:.58});
+function cy(g,x,y,z,r,h,m,axis='y'){const o=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,40),m);o.position.set(x,y,z);if(axis==='z')o.rotation.x=Math.PI/2;o.castShadow=true;g.add(o);return o}
+function bolt(g,x,y,z,r=.045){const o=sphere(g,x,y,z,r,brass);o.scale.set(1,1,.42);return o}
+function beam(g,x,y,z,l,rot,m){const o=box(g,x,y,z,l,.035,.035,m);o.rotation.z=rot;return o}
+const overhead=new THREE.PointLight(0xffcb92,1.8,14);overhead.position.set(-2,3,4);S.add(overhead);
+const fill=new THREE.PointLight(0x9bbaff,1.1,12);fill.position.set(3,.8,4);S.add(fill);
+for(const g of G){
+  for(let i=-3;i<=3;i++){const plank=box(g,i*.85,-2.046,0,.015,.009,6,mat(0x6c4634,.86));plank.castShadow=false;}
+  for(let i=0;i<8;i++){const screw=cy(g,-2.45+i*.7,-1.968,2.0,.022,.012,brass);screw.castShadow=false;}
+}
+{
+ const g=G[0],main=g.children.find(o=>o.type==='Group');
+ // Coin detail: engraved face, knurled edge and embossed laurel ticks.
+ if(main){
+  const front=cy(main,0,-.075,0,.81,.008,brass);
+  const ring=new THREE.Mesh(new THREE.TorusGeometry(.72,.022,8,64),brass);ring.rotation.x=Math.PI/2;ring.position.y=-.084;main.add(ring);
+  for(let j=0;j<48;j++){
+   const a=j*Math.PI/24;
+   const o=box(main,Math.sin(a)*.895,0,Math.cos(a)*.895,.045,.15,.016,brass);o.rotation.y=a;
+  }
+  for(let j=0;j<12;j++){let a=j*Math.PI/6;const o=box(main,Math.sin(a)*.57,-.085,Math.cos(a)*.57,.045,.012,.17,brass);o.rotation.y=a;}
+ }
+ // Register counter props and metallic frame
+ const tray=box(g,-1.7,-1.88,-.4,1.4,.08,.9,ebony);tray.rotation.y=-.17;
+ for(let n=0;n<4;n++)cy(g,-2.1+n*.24,-1.8,-.4,.11,.04,brass);
+ for(let n=0;n<5;n++){const sl=box(g,.6+n*.31,-2.05,1.35,.26,.015,.035,paint);sl.castShadow=false;}
+}
 window.frame=(T)=>{
  const i=Math.min(5,Math.floor(T/6)),t=T-i*6;
  G.forEach((g,j)=>g.visible=i===j);A[i](t);
