@@ -1,0 +1,52 @@
+name: M1lash · movie source Russian audio QA
+on:
+  push:
+    branches: [main]
+    paths: ['jobs/mediaqa/*.json', 'scripts/qa/movie_artifact_ru_audio.py', '.github/workflows/movie-media-qa.yml']
+  workflow_dispatch:
+    inputs:
+      job:
+        description: 'jobs/mediaqa/*.json'
+        required: true
+        default: 'jobs/mediaqa/chigur_004_ru_source.json'
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: movie-media-qa
+  cancel-in-progress: false
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Tools for RU ASR
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install -q 'faster-whisper>=1,<2' 'requests>=2.32,<3'
+      - name: Audio-language sample, no film commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JOB: ${{ inputs.job }}
+        run: |
+          set -euo pipefail
+          p="${JOB:-jobs/mediaqa/chigur_004_ru_source.json}"
+          case "$p" in jobs/mediaqa/*.json) ;; *) echo 'Invalid job path'; exit 1;; esac
+          python scripts/qa/movie_artifact_ru_audio.py --job "$p"
+      - name: Commit small JSON QA only
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'movie-source-qa[bot]'
+          git config user.email 'movie-source-qa@users.noreply.github.com'
+          git add reports/research/*_SOURCE_RU_ASR.json 2>/dev/null || true
+          git diff --staged --quiet && exit 0
+          git commit -m 'qa: sampled RU actor language on existing source artifact'
+          for i in 1 2 3; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then exit 0; fi
+            sleep 5
+          done
+          exit 1
