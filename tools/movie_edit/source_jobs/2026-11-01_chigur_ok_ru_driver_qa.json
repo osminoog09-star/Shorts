@@ -1,0 +1,12 @@
+{
+  "purpose": "Private excerpt QA of No Country for Old Men driver interaction, 03:50–05:40 only, confirm actual Russian voices, no full movie download.",
+  "rights_note": "Research candidate, no DRM bypass, no public posting or rights assumption.",
+  "sources": [
+    {
+      "id": "chigur_driver_ru_ok_candidate",
+      "url": "https://m.ok.ru/video/9938467687032",
+      "start_seconds": 230,
+      "end_seconds": 340
+    }
+  ]
+}
