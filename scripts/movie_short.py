@@ -293,7 +293,7 @@ def main():
             for from_s, to_s, caption in profiles[a.editorial_profile]:
                 if from_s >= length or to_s > length:
                     sys.exit("NO-GO: editorial caption exceeds body")
-                fh.write(f"Dialogue: 0,{ass_time(from_s)},{ass_time(to_s)},Sub,,0,0,0,,{caption}\\n")
+                fh.write(f"Dialogue: 0,{ass_time(from_s)},{ass_time(to_s)},Sub,,0,0,0,,{caption}\n")
                 n_sub += 1
     elif a.curated_action_titles:
         if not a.allow_verified_visual_action:
