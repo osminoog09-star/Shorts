@@ -79,6 +79,11 @@ for(let x of [-6,6])box(g,x,1.5,-9,4,4,.25,wall);
 A.push(t=>{car.position.z=-2+t*.23})}
 for(let z of [-4.3,-2.2,.4]){box(G[1],-4.7,-.05,z,.18,3.3,2.2,wall);box(G[1],-4.58,-.2,z,.07,2.8,1.55,timber);ball(G[1],-4.47,-.25,z+.42,.09,gold);}
 box(G[3],2.1,.35,-3.3,2.7,3.4,.22,ink);box(G[3],2.1,.35,-3.09,2.4,3.1,.06,timber);
+// V8: physically modeled dashboard glass and an actual oscillator trace.
+{const group=G[2], trace=[];for(let j=0;j<48;j++){const x=-1.73+j*.043;trace.push(new THREE.Vector3(x,.29+.12*Math.sin(j*.67)*Math.exp(-Math.abs(j-25)/39),1.34))}
+const m=new THREE.LineBasicMaterial({color:0x83fbc7});group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(trace),m));
+const glow=new THREE.PointLight(0x2fda9d,.35,3);glow.position.set(-1,.25,2);group.add(glow);}
+{const group=G[5];for(let j=0;j<6;j++)box(group,-.8+j*.31,-1.42,1.96,.08,.10,.03,steel);}
 const poses=[[[1.4,1.6,6.8],[-.4,-1,0]],[[-2.7,1.25,7.5],[0,-.2,-4.0]],[[2.4,1.45,5.5],[0,-.4,.3]],[[1,1.4,6.1],[-.4,-1,0]],[[2.3,1.75,5.2],[0,-.3,0]],[[-3,1.25,6.0],[0,-1,-1.7]]];
 window.frame=(T)=>{const i=Math.min(5,Math.floor(T/6)),t=T-i*6;G.forEach((g,j)=>g.visible=i===j);A[i](t);
 const [xyz,target]=poses[i];C.position.set(xyz[0]+.06*Math.sin(t*.4),xyz[1],xyz[2]-.05*t);C.lookAt(...target);
