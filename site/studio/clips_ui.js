@@ -67,8 +67,8 @@ document.addEventListener("click",e=>{
         d.url=url;d.scan_enabled=true;d.updated=new Date().toISOString().slice(0,10);
       },"studio: set ONE Drive folder for future film intake");
       D.drive_folder=saved;
-      await dispatch("drive-folder-intake.yml");
-      render();toast("Папка сохранена, сканер запущен. Статусы появятся после обновления сайта.");
+      // Updating drive_folder.json automatically triggers the scan workflow on push.
+      render();toast("Папка сохранена. Автосканирование запустится через GitHub Actions.");
     });
   }
   b=e.target.closest("[data-folder-scan]");
