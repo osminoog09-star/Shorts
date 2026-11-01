@@ -17,6 +17,7 @@ PARTS={
  "001":[(128.0,145.4),(147.1,160.0)],
  "002":[(174.0,199.0),(202.4,209.0)],
  "005":[(17.0,41.0),(50.0,58.0)],
+ "003":[(124.0,146.0),(154.0,166.0)],
 }
 def main():
  p=argparse.ArgumentParser();p.add_argument("--id",required=True,choices=sorted(PARTS))
