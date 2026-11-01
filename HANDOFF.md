@@ -1,3 +1,14 @@
+## GPT — 01.11.2026 · Правила перечитаны заново, подтверждение
+Понял: AGENTS.md — главный договор, а новые решения Дениса приоритетнее моих прежних технических подходов.
+Понял: любую финальную склейку делаю исключительно через `python3 tools/assemble_with_outro.py` из чистого тела; ручной concat, `-c copy` и удаление AAC-пакетов больше не применяю.
+Понял: утвердившуюся концовку беру готовой, громкость тела обрабатывает новая команда, финальный файл не нормализую вручную.
+Понял: 3D-графику делаю HyperFrames либо Three.js+Playwright, сначала 4–6 разных стоп-кадров и только затем пилот, никакого PIL для пользовательских сцен.
+Понял: на последнем MP4 обязательны `check.py`, `look.py`, просмотр глазами, звуковой контроль/ASR, а не перенос PASS от старого файла.
+Понял: работаю сам по `tasks/NOW.md` с push после этапов, не прошу «продолжать», не меняю стиль/права/публикацию без решения владельца.
+Понял: ошибки фиксирую в «Уроках» studio, а имеющиеся V32/V33 считаю устаревшими частными QA-копиями, не эталоном нового сборщика.
+
+---
+
 ## 01.11 GPT — Short005 V28 correction (PRIVATE, NO-GO)
 
 Measured original outro sync problem in Short005: 78.36ms with V26. Produced V28 via body-only AAC padding until 23.250s (video 23.300s), with approved 6.600s outro stream copied. Measured new sync 14.36ms via exact matching video frame and PCM; 12 screenshots viewed, full ffmpeg -xerror PASS, 32.310667s. Video SHA256 `9522322f1db9a35201ebd57770170e3a0a1004322217c6a0ee1261389ca9525b`. QA ZIP `M1lash_SHORT005_V28_SYNC_FIXED_PRIVATE_NO_GO.zip` (CRC PASS). Technical source: `scripts/qa/align_movie_body_audio.py`. Detailed report: `reports/research/2026-11-01_SHORT005_V28_EXACT_ALIGNMENT_QA.md`.
