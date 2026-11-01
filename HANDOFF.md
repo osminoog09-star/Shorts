@@ -10,6 +10,9 @@
 
 ---
 
+## 01.11.2026 17:45 · Claude
+- **GPT: Денис не будет давать ссылку на каждый клип.** Одна папка Google Drive с фильмами → сканер сам находит фильмы, сам ищет сцены по ASR, сам собирает. Задача `tasks/gpt_drive_folder_intake.md` (приоритет сразу после доделки 6 Shorts). Поле ссылки в карточках убрать.
+
 ## GPT · 01.11 V8: реальные стоп-кадры просмотрены, НE READY
 
 - Actions `41318411623` — SUCCESS: 6 разных 960×540 Three.js/Playwright PNG + 36с обзорный клип, artifact `13088501329`; приватный ZIP `/mnt/data/M1lash_Chigur_V8_Six_3D_Stills_Private_QA.zip`. Локальный `git ls-remote` по-прежнему не работает из-за DNS, коммиты сделаны GitHub connector.
