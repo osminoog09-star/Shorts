@@ -11,7 +11,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: motion-render
+  group: motion-render-${{ contains(github.event.head_commit.message, 'QA: private approved assets') && 'assets' || 'video' }}
   cancel-in-progress: false
 jobs:
   render:
