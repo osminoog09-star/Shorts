@@ -48,3 +48,20 @@ for(let i=0;i<6;i++){
   for(let n=0;n<4;n++)box(g,-.85+(n%2)*1.7,-.98,-.5+Math.floor(n/2)*.9,.9,.05,.58,mat(0x73927d,.7));
   A.push(t=>{lid.rotation.x=-1.2*(1-Math.min(1,t/4))});
  }
+ else{
+  box(g,0,-1.94,0,5,.08,5,mat(0x202327,.95));
+  const car=new THREE.Group();g.add(car);
+  box(car,0,-1.4,0,2.6,.55,1.2,dark);
+  box(car,-.2,-1.02,-.1,1.45,.52,1,mat(0x264d62,.2,.65));
+  for(const x of [-.8,.8])sphere(car,x,-1.35,.61,.13,gold);
+  A.push(t=>{car.position.z=3-t*.65});
+ }
+}
+window.frame=(T)=>{
+ const i=Math.min(5,Math.floor(T/6)),t=T-i*6;
+ G.forEach((g,j)=>g.visible=i===j);A[i](t);
+ C.position.set(.2*Math.sin(t*.4),1+.1*Math.sin(t*.3),12-t*.1);
+ C.lookAt(0,-.3,0);R.render(S,C);
+ return R.domElement.toDataURL('image/png');
+};
+window.ready=Promise.resolve(true);window.frame(0);
