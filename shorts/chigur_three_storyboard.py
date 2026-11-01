@@ -39,6 +39,18 @@ with sync_playwright() as playwright:
         (seq/f"f{f:04d}.png").write_bytes(base64.b64decode(shot.split(",",1)[1]))
         if f%60==0:print("PILOT FRAME",f,flush=True)
     browser.close()
+# Real 6-second movement pilot; silent only because narrator/film audio is not yet assembled.
+PILOT=ART/"chigur_coin_motion_6s_PRIVATE_PREVIEW.mp4"
+subprocess.run(["ffmpeg","-hide_banner","-nostdin","-y","-v","error",
+ "-framerate","30","-i",str(ART/"chigur_pilot_frames"/"f%04d.png"),
+ "-f","lavfi","-i","anullsrc=r=48000:cl=stereo",
+ "-t","6","-c:v","libx264","-preset","veryfast","-crf","20",
+ "-pix_fmt","yuv420p","-r","30","-c:a","aac","-b:a","96k",
+ "-movflags","+faststart",str(PILOT)],check=True)
+import shutil
+shutil.rmtree(ART/"chigur_pilot_frames")
+print("SIX SECOND TRUE ANIMATION PILOT:",PILOT.stat().st_size,flush=True)
+
 # QA carrier only: six 6-second holds, not the real animated film.
 # Render the actual moving pilot only after human inspection of these six PNGs.
 command=['ffmpeg','-hide_banner','-nostdin','-y','-v','error',
