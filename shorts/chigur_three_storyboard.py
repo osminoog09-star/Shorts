@@ -22,3 +22,7 @@ print('storyboard setup')
 with sync_playwright() as playwright:
     browser=playwright.chromium.launch(args=['--use-gl=swiftshader','--enable-webgl'])
     page=browser.new_page(viewport={'width':768,'height':1366})
+    page.set_content('<body style="margin:0"><canvas id="scene"></canvas></body>')
+    page.add_script_tag(path=str(LIB))
+    page.add_script_tag(path=str(ROOT/'shorts/chigur_scene_preflight.js'))
+    page.wait_for_function('window.ready !== undefined')
