@@ -28,6 +28,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m py_compile scripts/drive_scene_probe.py
+          python -m unittest discover -s scripts/qa -p 'test_drive_scene_probe.py'
           python scripts/drive_scene_probe.py --list-pending > "$RUNNER_TEMP/pending.json"
           if python -c 'import json,sys; sys.exit(0 if json.load(open(sys.argv[1]))["pending"] > 0 else 1)' "$RUNNER_TEMP/pending.json"; then
             echo has_work=true >> "$GITHUB_OUTPUT"
