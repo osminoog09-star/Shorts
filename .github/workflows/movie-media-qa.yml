@@ -30,6 +30,7 @@ jobs:
       - name: Export approved rev4 outro and six Dima titles into private artifact
         run: |
           timeout 120s python3 scripts/qa/export_movie_review_assets.py || echo 'Partial assets only, still upload exact approved outro'
+          cp -a skills/ext/ffmpeg-skill/scripts recovery-output/studio-assets/ffmpeg_qa_scripts
       - name: Upload recovered studio assets (no movie source)
         uses: actions/upload-artifact@v4
         if: always()
