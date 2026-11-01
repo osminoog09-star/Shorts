@@ -1,10 +1,10 @@
 // Three.js preflight, private movie review only.
 const R=new THREE.WebGLRenderer({canvas:document.getElementById('scene'),antialias:true,preserveDrawingBuffer:true});
-R.setSize(960,540,false);R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;R.outputEncoding=THREE.sRGBEncoding;R.toneMapping=THREE.ACESFilmicToneMapping;
+R.setSize(960,540,false);R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;R.outputEncoding=THREE.sRGBEncoding;R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=.76;
 const S=new THREE.Scene();S.background=new THREE.Color(0x0a0e17);
 const C=new THREE.PerspectiveCamera(35,960/540,.1,100);C.position.set(0,.8,8.5);
-S.add(new THREE.HemisphereLight(0xdcefff,0x29182a,.7));
-const L=new THREE.DirectionalLight(0xffd5a6,1.5);L.position.set(-3,8,6);L.castShadow=true;S.add(L);
+S.add(new THREE.HemisphereLight(0xdcefff,0x29182a,.42));
+const L=new THREE.DirectionalLight(0xffd5a6,1.5);L.position.set(-3,8,6);L.castShadow=true;L.intensity=.95;S.add(L);
 const K=new THREE.PointLight(0x538de6,2,12);K.position.set(3,3,-2);S.add(K);
 const mat=(c,r=.45,m=.25)=>new THREE.MeshStandardMaterial({color:c,roughness:r,metalness:m});
 const gold=mat(0xc9a06a,.25,.85),wood=mat(0x513526,.65,.05),wall=mat(0x4b5562,.84),dark=mat(0x171f2a,.5,.65),light=mat(0x50dca5,.2,.4);
@@ -65,8 +65,8 @@ const crimson=new THREE.MeshStandardMaterial({color:0x9b331e,metalness:.08,rough
 function cy(g,x,y,z,r,h,m,axis='y'){const o=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,40),m);o.position.set(x,y,z);if(axis==='z')o.rotation.x=Math.PI/2;o.castShadow=true;g.add(o);return o}
 function bolt(g,x,y,z,r=.045){const o=sphere(g,x,y,z,r,brass);o.scale.set(1,1,.42);return o}
 function beam(g,x,y,z,l,rot,m){const o=box(g,x,y,z,l,.035,.035,m);o.rotation.z=rot;return o}
-const overhead=new THREE.PointLight(0xffcb92,1.8,14);overhead.position.set(-2,3,4);S.add(overhead);
-const fill=new THREE.PointLight(0x9bbaff,1.1,12);fill.position.set(3,.8,4);S.add(fill);
+const overhead=new THREE.PointLight(0xffcb92,1.8,14);overhead.position.set(-2,3,4);overhead.intensity=1.0;S.add(overhead);
+const fill=new THREE.PointLight(0x9bbaff,1.1,12);fill.position.set(3,.8,4);fill.intensity=.5;S.add(fill);
 for(const g of G){
   for(let i=-3;i<=3;i++){const plank=box(g,i*.85,-2.046,0,.015,.009,6,mat(0x6c4634,.86));plank.castShadow=false;}
   for(let i=0;i<8;i++){const screw=cy(g,-2.45+i*.7,-1.968,2.0,.022,.012,brass);screw.castShadow=false;}
@@ -75,8 +75,8 @@ for(const g of G){
  const g=G[0],main=g.children.find(o=>o.type==='Group');
  // Coin detail: engraved face, knurled edge and embossed laurel ticks.
  if(main){
-  const front=cy(main,0,-.075,0,.81,.008,brass);
-  const ring=new THREE.Mesh(new THREE.TorusGeometry(.72,.022,8,64),brass);ring.rotation.x=Math.PI/2;ring.position.y=-.084;main.add(ring);
+  const front=cy(main,0,.075,0,.81,.008,brass);
+  const ring=new THREE.Mesh(new THREE.TorusGeometry(.72,.022,8,64),brass);ring.rotation.x=Math.PI/2;ring.position.y=.09;main.add(ring);
   for(let j=0;j<48;j++){
    const a=j*Math.PI/24;
    const o=box(main,Math.sin(a)*.895,0,Math.cos(a)*.895,.045,.15,.016,brass);o.rotation.y=a;
@@ -167,21 +167,21 @@ for(const g of G){
  const thumb=cy(glove,-.34,.24,.38,.14,.56,leather);thumb.rotation.z=-.9;
  const coinRing=coin.children.find(o=>o.geometry&&o.geometry.type==='TorusGeometry');
  // Bring out engraved radial edge and central bas-relief facing the camera.
- const emblem=new THREE.Group();emblem.position.y=-.095;coin.add(emblem);
+ const emblem=new THREE.Group();emblem.position.y=.102;coin.add(emblem);
  for(let n=0;n<10;n++){
   const a=n*Math.PI/5;
   const ray=box(emblem,Math.sin(a)*.34,0,Math.cos(a)*.34,.065,.023,.24,brass);
   ray.rotation.y=a;
  }
- cy(emblem,0,-.01,0,.12,.035,ebony);
+ cy(emblem,0,.02,0,.12,.035,ebony);
  for(let n=0;n<3;n++){
   const circle=new THREE.Mesh(new THREE.TorusGeometry(.22+n*.14,.022,8,60),brass);
-  circle.rotation.x=Math.PI/2;circle.position.y=-.012;emblem.add(circle);
+  circle.rotation.x=Math.PI/2;circle.position.y=.02;emblem.add(circle);
  }
  const shadow=cy(g,0,-2.07,.35,.84,.004,ebony);shadow.material.transparent=true;shadow.material.opacity=.15;
  A[0]=t=>{
   const p=Math.max(0,Math.min(1,t/4.3));
-  const y=.15-2.04*p+.26*Math.sin(Math.PI*p);
+  const y=.15-1.30*p+.26*Math.sin(Math.PI*p);
   coin.position.set(.8-1.1*p,y,.35);
   coin.rotation.x=Math.PI/2-.3*Math.sin(t*1.4);
   coin.rotation.y=t*6.1;coin.rotation.z=.08*Math.sin(t*2.8);
