@@ -1,10 +1,8 @@
 // Three.js preflight, private movie review only.
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(38, 768/1366, 0.1, 100);
 const R=new THREE.WebGLRenderer({canvas:document.getElementById('scene'),antialias:true,preserveDrawingBuffer:true});
-R.setSize(768,1366,false);R.shadowMap.enabled=true;
+R.setSize(960,540,false);R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;R.outputEncoding=THREE.sRGBEncoding;R.toneMapping=THREE.ACESFilmicToneMapping;
 const S=new THREE.Scene();S.background=new THREE.Color(0x0a0e17);
-const C=new THREE.PerspectiveCamera(36,768/1366,.1,100);C.position.set(0,1,12);
+const C=new THREE.PerspectiveCamera(35,960/540,.1,100);C.position.set(0,.8,8.5);
 S.add(new THREE.HemisphereLight(0xdcefff,0x29182a,.7));
 const L=new THREE.DirectionalLight(0xffd5a6,1.5);L.position.set(-3,8,6);L.castShadow=true;S.add(L);
 const K=new THREE.PointLight(0x538de6,2,12);K.position.set(3,3,-2);S.add(K);
@@ -60,8 +58,8 @@ for(let i=0;i<6;i++){
 window.frame=(T)=>{
  const i=Math.min(5,Math.floor(T/6)),t=T-i*6;
  G.forEach((g,j)=>g.visible=i===j);A[i](t);
- C.position.set(.2*Math.sin(t*.4),1+.1*Math.sin(t*.3),12-t*.1);
- C.lookAt(0,-.3,0);R.render(S,C);
+ C.position.set(.3+.2*Math.sin(t*.4),.6+.08*Math.sin(t*.3),9-t*.1);
+ C.lookAt(0,-.6,0);R.render(S,C);
  return R.domElement.toDataURL('image/png');
 };
 window.ready=Promise.resolve(true);window.frame(0);
