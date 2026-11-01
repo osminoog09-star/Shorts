@@ -12,3 +12,13 @@ const mat=(c,r=.45,m=.25)=>new THREE.MeshStandardMaterial({color:c,roughness:r,m
 const gold=mat(0xc9a06a,.25,.85),wood=mat(0x513526,.65,.05),wall=mat(0x4b5562,.84),dark=mat(0x171f2a,.5,.65),light=mat(0x50dca5,.2,.4);
 function box(g,x,y,z,w,h,d,m){const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;g.add(o);return o}
 function sphere(g,x,y,z,r,m){const o=new THREE.Mesh(new THREE.SphereGeometry(r,28,20),m);o.position.set(x,y,z);g.add(o);return o}
+const G=[],A=[];
+for(let i=0;i<6;i++){
+ const g=new THREE.Group();S.add(g);G.push(g);box(g,0,-2.2,-.5,6,.25,7,wood);
+ if(i===0){
+  const coin=new THREE.Group();coin.position.y=-.95;g.add(coin);
+  coin.add(new THREE.Mesh(new THREE.CylinderGeometry(.92,.92,.14,64),gold));
+  const ring=new THREE.Mesh(new THREE.TorusGeometry(.78,.043,8,64),gold);
+  ring.rotation.x=Math.PI/2;coin.add(ring);
+  A.push(t=>{coin.rotation.x=Math.PI/2+.3*Math.sin(t);coin.rotation.y=t*3;coin.position.y=-.8+.1*Math.sin(t*2)});
+ }
