@@ -1,0 +1,47 @@
+name: M1lash verify RU dubbed Chigur-driver exact excerpt (QA only)
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/m1lash-chigur-driver-ru-speech-qa.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  speech:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: movie-edit-draft
+          run-id: '41272692788'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: source
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          python -m pip install -q faster-whisper
+      - name: Transcribe three windows of actual movie-dubbed voices
+        run: |
+          python - <<'PY'
+          import pathlib,subprocess,json,numpy as np
+          from faster_whisper import WhisperModel
+          p=next(pathlib.Path('source').rglob('chigur_actual_driver_2007_ru.mp4'))
+          model=WhisperModel('small',device='cpu',compute_type='int8')
+          out=[]
+          for t,d in [(66,22),(86,22),(103,20)]:
+            b=subprocess.check_output(['ffmpeg','-v','error','-ss',str(t),'-t',str(d),'-i',str(p),'-f','f32le','-ar','16000','-ac','1','-'])
+            seg,info=model.transcribe(np.frombuffer(b,dtype='<f4'),beam_size=5,language=None,vad_filter=True)
+            obs={'t':t,'lang':info.language,'confidence':round(info.language_probability,5),'phrases':[x.text.strip() for x in seg]}
+            out.append(obs);print(json.dumps(obs,ensure_ascii=False),flush=True)
+          pathlib.Path('qa').mkdir(exist_ok=True)
+          pathlib.Path('qa/chigur_driver_ru_asr.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chigur-driver-ru-asr-QA
+          path: qa/*.json
+          retention-days: 7
