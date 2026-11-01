@@ -46,7 +46,32 @@ subprocess.check_call(cmd)
 # Preserve exact approved assembler source for offline private remaster QA.
 from shutil import copy2
 copy2(ROOT/'tools/assemble_with_outro.py',ART/'assemble_with_outro.py')
-copy2(LIB,ART/'three_r128.min.js') # QA-only asset for local code-based V14 render, not distributed video
+copy2(LIB,ART/'three_r128.min.js')
+
+# Studio Short recovery: exact approved rev4 ending and Dima reveal voices.
+# These are PRIVATE production assets, not movie source data, not final Chigur media.
+from pathlib import Path as _Path
+import asyncio as _asyncio
+import edge_tts as _edge_tts
+_approved=ROOT/'media/outro/m1lash_outro_v1_vertical.mp4'
+if not _approved.is_file():raise RuntimeError("Approved outro not present in main")
+copy2(_approved,ART/'approved_m1lash_outro_v1_vertical.mp4')
+_reveals={
+ '001':'Это был фильм «Старикам тут не место»',
+ '002':'Это был фильм «Старикам тут не место»',
+ '003':'Это был фильм «Одержимость»',
+ '004':'Это был фильм «Из машины»',
+ '005':'Это был фильм «Стрингер»',
+ '006':'Это был фильм «Интерстеллар»',
+}
+async def _voices():
+    for _id,_phrase in _reveals.items():
+        _dest=ART/f'approved_dima_title_{_id}.mp3'
+        await _edge_tts.Communicate(_phrase,voice='ru-RU-DmitryNeural',rate='+4%').save(str(_dest))
+        if _dest.stat().st_size<3000:raise RuntimeError("Missing approved Dima voice")
+_asyncio.run(_voices())
+print("M1lash studio assets (exact outro, six RU titles) exported PRIVATE to motion artifact",flush=True)
+ # QA-only asset for local code-based V14 render, not distributed video
 
 # Report actual run number for retrieving 6 stills + r128 runtime back to local QA.
 import json,os
