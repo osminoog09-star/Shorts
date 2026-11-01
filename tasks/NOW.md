@@ -25,6 +25,11 @@
 ## Claude
 
 ## GPT/Codex
+### Текущий контроль кино-Shorts — ошибки и точные повторные действия
+- 001/002/003/005/006: первый run `41334672815` упал из-за незаметных `\` перед GH expressions, дававших URL артефакта `%5C...`→401. Исправлено в `.github/workflows/movie-short-five-rebuild.yml` (commits `9b9291a`, `341d533`); 001 обязательно Carson, не водитель.
+- Второй run `41335816190` скачал все RU исходники и дошёл до Whisper, но **все пять** отключил `dead_windows`: 001 16.5–19.5с; 002 3–6,7.5–10.5,36–39с; 003 22.5–30с; 005 24–33с; 006 31.5–42с. Не заявлять как готовые.
+- Кадры 001/002/005/003/006 исследованы; для 001/002/003/005 записаны точные монтажные окна `scripts/qa/cut_russian_story_segments_v47.py`. Для 006 FFmpeg сцены корабля 254–265с показывают важное движение, не вырезать: добавлен `scripts/qa/movie_action_gate.py` и **опциональная** проверка реальных кадров + SFX в `scripts/movie_short.py`, только для 006 (нижняя граница motion median18, LUFS >-45, 3–12с).
+- Третий run `41336716775` на коммите `dd2c933` запускает пять матричных сборок с этими исправлениями. **Следующий шаг:** через `tools.mcp__GitHub__fetch({url:'https://api.github.com/repos/osminoog09-star/Shorts/actions/runs/41336716775'})` прочитать status, `fetch_workflow_run_jobs`/logs для отказов, `fetch_workflow_run_artifacts` при success, `download_workflow_artifact`, проверить реальный MP4 через `check.py`, `look.py`, визуальный контакт и звук. Один консолидированный private ZIP, без YouTube публикации.
 ### Шесть Shorts, фактический результат 01.11
 - 004: run 41333893324, artifact 13094169003; V47 45.339s настоящий MP4; check.py 0 FAIL, look.py глазами, outro lag 0.3ms, русский ASR актёров p=.964/.942 и Димы p=.996. Файл находится в /mnt/data/m1lash_6shorts_final/, ссылка уже дана пользователю. Не публиковали.
 - 001/002/003/005/006: запущен параллельный GitHub workflow movie-short-five-rebuild.yml, V47 пока НЕ готовые мастера. Для каждого искать reports/research/short_ID_V47_RUN.json, скачать artifact и открыть контакт; до этого статус PENDING.
