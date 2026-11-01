@@ -1,0 +1,42 @@
+name: M1lash Nightcrawler exact RU line timestamps for final Short
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/m1lash-nightcrawler-rebuild-20261101-asr.yml]
+permissions: {contents: read, actions: read}
+jobs:
+  asr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: movie-edit-draft
+          run-id: '41226808601'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: source
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          python -m pip install -q faster-whisper
+      - name: Extract actual actor Russian words at 25.8 to 58.08
+        run: |
+          python - <<'PY'
+          import json,subprocess,pathlib,numpy as np
+          from faster_whisper import WhisperModel
+          p=next(pathlib.Path('source').rglob('nightcrawler_no_thieves_ru_test.mp4'))
+          b=subprocess.check_output(['ffmpeg','-v','error','-ss','25.8','-t','32.28','-i',str(p),'-f','f32le','-ar','16000','-ac','1','-'])
+          model=WhisperModel('small',device='cpu',compute_type='int8')
+          ss,info=model.transcribe(np.frombuffer(b,dtype='<f4'),beam_size=5,vad_filter=True,word_timestamps=True,language='ru')
+          out={'lang':info.language,'prob':info.language_probability,'observations':[{'start':round(s.start,2),'end':round(s.end,2),'text':s.text.strip()} for s in ss]}
+          print(json.dumps(out,ensure_ascii=False),flush=True)
+          pathlib.Path('qa').mkdir(exist_ok=True);pathlib.Path('qa/nightcrawler_32s_real_actor_wordtimes.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nightcrawler-exact-ru-phrases
+          path: qa/*.json
+          retention-days: 7
