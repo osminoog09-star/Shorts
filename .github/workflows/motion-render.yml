@@ -111,6 +111,12 @@ jobs:
                   video=Path(cfg['output'])
                   if not video.is_file():raise RuntimeError('Expected review MP4 missing')
                   subprocess.run(['git','add','--',str(video)],check=True)
+              if cfg.get('renderer')=='python' and cfg.get('qa_run_marker'):
+                  marker=Path(cfg['qa_run_marker'])
+                  if not marker.as_posix().startswith('reports/research/chigur_') or marker.suffix!='.json':
+                      raise ValueError('invalid chigur QA run marker path')
+                  if not marker.is_file():raise RuntimeError('QA marker missing')
+                  subprocess.run(['git','add','--',str(marker)],check=True)
           PY
           # Temporary synthesized speech must not block rebase when TTS-bot added it upstream.
           git restore -- media/tts/ || true
