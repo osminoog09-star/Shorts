@@ -26,3 +26,9 @@ with sync_playwright() as playwright:
     page.add_script_tag(path=str(LIB))
     page.add_script_tag(path=str(ROOT/'shorts/chigur_scene_preflight.js'))
     page.wait_for_function('window.ready !== undefined')
+    for i in range(6):
+        shot=page.evaluate('(t)=>window.frame(t)',i*6+2)
+        dest=ART/f'chigur_scene_{i+1:02d}.png'
+        dest.write_bytes(base64.b64decode(shot.split(',',1)[1]))
+        print('3D STILL',i+1,dest.stat().st_size,flush=True)
+    browser.close()
