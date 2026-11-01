@@ -63,6 +63,20 @@
       "status": "proposed",
       "owner": "gpt",
       "date": "2026-10-31"
+    },
+    {
+      "title": "BAD TIMES: согласованный тест лицензированного звука на 2 кино-Shorts",
+      "hypothesis": "Узнаваемая музыка при неизменном монтаже может улучшить первые секунды удержания; рост не гарантирован",
+      "metric": "averageViewDuration; viewed-vs-swiped; first 3s; shares/1k views; claims",
+      "control": "сопоставимый RU кино-Shorts одинакового возраста/длины без трека; вывод наблюдательный, не рандомизированный",
+      "status": "preparation_no_publication",
+      "owner": "gpt",
+      "date": "2026-11-01",
+      "done": false,
+      "source": "reports/experiments.md#01.11",
+      "views_48h": "unknown",
+      "views_7d": "unknown",
+      "rights_gate": "Только официальный редактор YouTube Shorts при доступной лицензии либо отдельное разрешение; не менять фирменный outro"
     }
   ]
 }
