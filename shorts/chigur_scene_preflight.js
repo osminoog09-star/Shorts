@@ -22,3 +22,16 @@ for(let i=0;i<6;i++){
   ring.rotation.x=Math.PI/2;coin.add(ring);
   A.push(t=>{coin.rotation.x=Math.PI/2+.3*Math.sin(t);coin.rotation.y=t*3;coin.position.y=-.8+.1*Math.sin(t*2)});
  }
+ else if(i===1){
+  box(g,0,.2,-2,5.5,6.2,.5,wall);
+  const pivot=new THREE.Group();pivot.position.set(-1.2,.1,-1.5);g.add(pivot);
+  box(pivot,1.15,0,0,2.3,4.5,.18,wood);
+  sphere(pivot,2.08,0,.14,.08,gold);
+  A.push(t=>{pivot.rotation.y=-1.1*Math.min(1,t/4)});
+ }else if(i===2){
+  box(g,0,-.8,.1,3.5,1.75,2,dark);
+  box(g,-.7,-.72,1.16,1.65,1.05,.09,mat(0x194c40,.32));
+  const needle=box(g,-.7,-.7,1.24,1.45,.035,.035,light);
+  sphere(g,1,-.4,1.17,.12,gold);
+  A.push(t=>{needle.rotation.z=t*3});
+ }
