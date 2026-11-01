@@ -1,0 +1,11 @@
+{
+  "status": "not_configured",
+  "scanned_at": null,
+  "file_count": 0,
+  "video_files": 0,
+  "required_film_count": 0,
+  "matched_film_count": 0,
+  "missing": [],
+  "items": [],
+  "message": "Укажи одну общедоступную папку Google Drive на сайте студии."
+}
