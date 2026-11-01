@@ -1,3 +1,13 @@
+## 01.11.2026 · GPT — SECOND PASS: длинный Чигур REV18, 276с НОВОЙ графики, QA 7/7
+
+- Из REV14 реально отрендерен **REV18** `M1lash_Chigur_Cinematic_Animated_REV18_PRIVATE_REVIEW.mp4` **681.349c / 1920×1080 / 364927111B / SHA256 e4cccb939012bee710f02ac46ebb96d5364595c4186aa67616893d8fc1e071c4**. **28 динамических авторских сцен / 276c** вместо старой однотипной графики и «ТЕСТ» на заменённых участках. Реальные кино-сцены не скрыты, original RU/акустика сохранена.
+- Строгая гарантия по звуку: `ffmpeg -map 0:a -c copy -f hash` старый REV14 vs новый REV18 показывает **тот же** AAC SHA `a46d57c67d5f7761865f7178c4e288435e7c70556657aee3390aacbc77a79526`. Full ffmpeg -xerror video+audio у REV18 **PASS**, stderr пуст.
+- **ШЕСТЬ Shorts** 001..006 повторно ffmpeg `-xerror` полное видео+звук **6/6 PASS**; креативно не меняли одобренный прежний комплект, не утверждать новых версий. ZIP по-прежнему `M1lash_6_MOVIE_SHORTS_RUSSIAN_PRIVATE_FINAL_QA_20261101.zip`, SHA `3f239d75af6756b2d79a47baf5c6e999dd43c66b507283a66774bbb02a2295c1`.
+- Проверены **112 стыков/соседних кадров** нового green-key рендера: никаких зелёных засветов и чёрных провалов. Выданы: лёгкий `M1lash_Chigur_REV18_720p_MOBILE_PRIVATE_PREVIEW.mp4` (124372470B, full decode PASS, SHA `20205a9dad3453ac72b06565a09279f15e98039c5f5cc15d535ef0eb49878567`); 34с наглядный before/after (full decode PASS); локальный ZIP исходников и QA `M1lash_REV18_VISUAL_QA_REPORT_AND_SOURCE.zip` (видео кино не грузить публично).
+- **Не release-ready:** не было полного человеческого слухового просмотра, отдельно не верифицирован язык 2 прежних Carla long-фрагментов, права/Content ID неизвестны, BAD TIMES по лицензии через Shorts editor не добавлен; на YouTube/queue ничего НЕ залито. Report: `reports/research/2026-11-01_SECOND_PASS_REV18_ANIMATED_REBUILD_7_MOVIE_QA.md`.
+
+---
+
 ## 01.11.2026 · GPT — независимый визуальный аудит REV14 + 20с motion-пилот (НЕ полный ремастер)
 
 - Проверены существующие **6 Shorts + long Чигур REV14** по 14 кадрам каждого Shorts и 57 кадрам длинного через 12с, дополнительные кадры `Интерстеллар` 34–41с, параметры `ffprobe`. Аудио не прослушано полностью; попытка повторить full `ffmpeg -xerror` всех 7 в данном проходе **таймаут**, нельзя объявлять новый PASS, предыдущее QA см. 01.11 report. 
