@@ -91,8 +91,19 @@ def main():
     ap.add_argument("--title", help="mp3/wav с голосом Димы «Это был фильм… X» (кино-Shorts, AGENTS §8)")
     ap.add_argument("--horizontal", action="store_true", help="длинное 1920×1080")
     ap.add_argument("--crf", type=int, default=18)
+    ap.add_argument("--preset", default="medium", choices=("medium", "fast", "veryfast", "superfast", "ultrafast"),
+                    help="скорость x264; для QA допустим ultrafast с CRF 16")
+    ap.add_argument("--body-lufs", type=float, default=-15.0, help="цель громкости только тела")
+    ap.add_argument("--body-gain-db", type=float, default=0.0, help="добавочная громкость только тела после мастеринга")
+    ap.add_argument("--body-fade-in-ms", type=float, default=0.0,
+                    help="мягкий старт аудио тела против пиков AAC в первые 0.15 с")
     ap.add_argument("--max-seconds", type=float, default=None, help="лимит длины (Shorts: 59)")
     a = ap.parse_args()
+    if not (-16.0 <= a.body_lufs <= -13.0 and -2.0 <= a.body_gain_db <= 2.0
+            and 0 <= a.body_fade_in_ms <= 250):
+        sys.exit("NO-GO: invalid body-only mastering overrides")
+    global TARGET_I
+    TARGET_I = a.body_lufs
 
     outro = OUTRO["h" if a.horizontal else "v"]
     W, H = (1920, 1080) if a.horizontal else (1080, 1920)
@@ -114,7 +125,9 @@ def main():
                        f"measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:"
                        f"offset={m['target_offset']}:linear=true,"
                        # запас под кодек AAC (+0,5…0,8 дБ к пику): лимитер на 4× частоте, с компенсацией задержки
-                       f"aresample=192000,alimiter=limit=0.63:attack=1:release=50:level=false:latency=1,aresample={SR}")
+                       f"aresample=192000,alimiter=limit=0.58:attack=1:release=50:level=false:latency=1,aresample={SR},"
+                       f"volume={a.body_gain_db}dB"
+                       + (f",afade=t=in:st=0:d={a.body_fade_in_ms/1000:.4f}" if a.body_fade_in_ms else ""))
             ain0 = "[0:a]"
         else:
             body_af, ain0 = "anull", None
@@ -145,7 +158,7 @@ def main():
         else:
             g.append("[v0][a0][v1][a1]concat=n=2:v=1:a=1[v][a]")
         run(*inputs, "-filter_complex", ";".join(g), "-map", "[v]", "-map", "[a]",
-            "-c:v", "libx264", "-crf", str(a.crf), "-preset", "medium", "-pix_fmt", "yuv420p", "-r", str(FPS),
+            "-c:v", "libx264", "-crf", str(a.crf), "-preset", a.preset, "-pix_fmt", "yuv420p", "-r", str(FPS),
             "-c:a", "aac", "-b:a", "192k", "-ar", str(SR), "-ac", "2", "-movflags", "+faststart", str(out))
 
     # ---- проверки ----
