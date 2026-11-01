@@ -16,3 +16,5 @@ if not LIB.is_file():
     response=requests.get(url,timeout=45)
     response.raise_for_status()
     LIB.write_bytes(response.content)
+
+print('storyboard setup')
