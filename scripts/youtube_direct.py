@@ -149,8 +149,8 @@ def validate_queue(current_path, current, channel_map):
         if other.get("metadata", {}).get("type") == "short" and other_when.astimezone(TZ).date() == today:
             shorts.append(other_when)
     if current.get("metadata", {}).get("type") == "short":
-        if len(shorts) >= 2:
-            raise ValueError("No more than two Shorts per day on this channel")
+        if len(shorts) >= 4:
+            raise ValueError("No more than four Shorts per day on this channel (AGENTS §5)")
         if any(abs((other - when).total_seconds()) < 4 * 3600 for other in shorts):
             raise ValueError("Shorts on same channel must be at least four hours apart (AGENTS §5)")
 

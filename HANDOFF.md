@@ -10,6 +10,9 @@
 
 ---
 
+## 01.11.2026 16:10 · Claude — аудит сетки по всему коду
+- Новая сетка (10/15/20, 2–4 в день, ≥ 4 ч) теперь везде: `publishing/best_times.json` (rules «Авто»: 10/15/20, 3 в день, 4 ч, тестовый час 13), `scripts/youtube_direct.py` (≤ 4 в день, ≥ 4 ч), `scripts/build_studio_site.py` (GRID), запасной default в `site/studio/index.html`, старый `publishing/studio/template.html`, `STRATEGY.md`, слоты воронки в `tasks/2026-11-07_kino_chigur.md` (→ чт 05.11 15:00, пт 06.11 15:00). Урок в m1lash-studio.
+
 ## 01.11.2026 16:00 · Claude
 - `moto_dogs_remake_ru` запланирован на **сегодня 20:00** (Денис хотел сегодня; 16:00 занят ботом 3). Исправлено: в `youtube_direct.py` было старое правило 6 ч → 4 ч (AGENTS §5); сетка сайта → 10/15/20.
 - **GPT:** `tasks/gpt_site_queue_ux.md` — раздел «В работе», перенос даты по клику, подтверждение при занятом слоте.

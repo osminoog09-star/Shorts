@@ -435,7 +435,7 @@ function openSettings(){
 }
 /* ---------- «Авто»: лучшее ближайшее время по активности аудитории + правилам канала ---------- */
 function bestSlots(kind){
-  const B=D.best_times||{},R=B.rules||{short_hours:[10,16],long_hours:[19],max_shorts_per_day:2,min_gap_hours:6,min_lead_hours:2,horizon_days:3,near_best_ratio:.85},heat=B.heat||{};
+  const B=D.best_times||{},R=B.rules||{short_hours:[10,15,20],long_hours:[19],max_shorts_per_day:3,min_gap_hours:4,min_lead_hours:2,horizon_days:3,near_best_ratio:.85},heat=B.heat||{};
   const hours=kind==="long"?R.long_hours:R.short_hours, now=Date.now();
   const taken=[...(D.taken||[]).map(x=>({t:new Date(x.at).getTime(),kind:x.kind||"short"})),...(D.plan||[]).filter(p=>p.title).map(p=>({t:new Date(p.date+"T"+p.time+":00").getTime(),kind:p.what==="кино-разбор"?"long":"short"}))];
   // поправка по нашим роликам: средние просмотры Shorts, вышедших в этот слот (±2 ч), если таких ≥4

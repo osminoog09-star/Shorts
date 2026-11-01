@@ -95,7 +95,7 @@ footer{color:var(--muted);font-size:12px;font-family:var(--f-mono)}
 
   <section>
     <h2>Неделя</h2>
-    <div class="weekbox"><table class="week" id="week"><thead><tr><th>День</th><th>10:00</th><th>16:00</th><th>19:00</th></tr></thead><tbody></tbody></table></div>
+    <div class="weekbox"><table class="week" id="week"><thead><tr><th>День</th><th>10:00</th><th>15:00</th><th>20:00</th></tr></thead><tbody></tbody></table></div>
   </section>
 
   <section>
@@ -122,7 +122,7 @@ const GRID = {
   6:[["скетч","Codex"],null,["длинное","Claude"]],
   0:[["Топ-5 недели","Claude"],["нарезка 1","Claude"],null]
 };
-const TIMES = ["10:00","16:00","19:00"];
+const TIMES = ["10:00","15:00","20:00"];
 const DAYS = ["Вс","Пн","Вт","Ср","Чт","Пт","Сб"];
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
