@@ -11,5 +11,6 @@
   "method": "scripts/movie_short.py",
   "max_parallel": 5,
   "publishing": "disabled",
-  "revision": 1
+  "revision": 2,
+  "note": "retry fixed GitHub expression escapes, 001 correct Carson scene"
 }
