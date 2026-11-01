@@ -295,7 +295,7 @@ def main():
     # normalizing, overlays or music on std are prohibited (AGENTS §4).
     lst = work / "whole.txt"
     out = ROOT / "videos" / f"{a.id}.mp4"
-    lst.write_text("".join(f"file '{p.resolve()}'\\n" for p in (body, std, tail)), encoding="utf-8")
+    lst.write_text("".join(f"file '{p.resolve()}'\n" for p in (body, std, tail)), encoding="utf-8")
     ff("-f", "concat", "-safe", "0", "-i", str(lst), "-map", "0:v:0", "-map", "0:a:0",
        "-c", "copy", "-movflags", "+faststart", str(out))
     # ---- проверка §12 ----
