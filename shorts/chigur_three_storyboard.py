@@ -17,6 +17,10 @@ if not LIB.is_file():
     response.raise_for_status()
     LIB.write_bytes(response.content)
 
+# Persist dependency in ephemeral QA artifact so local renderer can iterate offline.
+import shutil
+shutil.copy2(LIB, ART/'three_r128_offline.min.js')
+
 print('storyboard setup')
 
 with sync_playwright() as playwright:
