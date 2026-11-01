@@ -13,6 +13,7 @@
 | Живой аватар ведущего из портрета (реальное время) | PersonaLive — `scripts/pc/install-personalive.sh` (GVCLab, Apache-2.0) | ровно ~12 ГБ VRAM; TensorRT ускоряет ×2. Эксперимент, Диму как голос не меняет |
 | Центр агентов (Claude Code, Codex в одном окне) | OpenHands Agent Canvas — `scripts/pc/install-openhands.sh` (MIT, Docker) | GPU не нужен |
 | Черновики сюжетов длинных роликов 21+ мин | MuMuAINovel — `scripts/pc/install-mumuainovel.sh` (GPL-3.0, Docker, интерфейс на китайском) | GPU не нужен, нужен API-ключ модели; факты всё равно проверяем |
+| Агентный монтаж «чужой реф → наш ролик» | OpenMontage (github.com/calesthio/OpenMontage, AGPL-3.0) | эксперимент, Денис хотел попробовать (01.11). AGPL: использовать у себя можно, свой изменённый код при раздаче/сервисе — открывать. Проверку §2а (ffmpeg-skill) не заменяет |
 | Липсинк ведущего, рендер | как сейчас (Rhubarb, Remotion, ffmpeg) | можно рендерить локально вместо GitHub Actions |
 
 ## Порядок, когда ПК вернётся

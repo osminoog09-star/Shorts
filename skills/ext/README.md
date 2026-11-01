@@ -33,3 +33,12 @@ HyperFrames CLI ставится отдельно (`npx hyperframes …`, см. 
 
 ### Программы из тех же шортсов (ставятся на ПК, не скилы)
 PersonaLive, OpenHands, MuMuAINovel — скрипты в `scripts/pc/`, строки в `LOCAL_PC_PLAN.md`. Remotion уже в `studio/` и `remotion-*`.
+
+## Из рилсов про скилы для монтажа (01.11.2026)
+
+| # | Что | Папки | Источник | Зачем нам |
+|---|---|---|---|---|
+| 11 | FFmpeg Skill | ffmpeg-skill | kajisho5/ffmpeg-skill (MIT, коммит 1ce2c18) | 42 офлайн-инструмента ffmpeg: `check.py` (формат под Shorts/YouTube), `look.py` (контакт-лист), `cropdetect.py`, `join.py`, `caption.py`, `loudness.py`. Плюс `references/gotchas.md` — грабли concat/DTS/субтитров. Обязательная проверка — `skills/m1lash-studio` §2а |
+
+Скопированы только `SKILL.md`, `scripts/`, `references/`, `templates/`, `mcp/` (2 МБ из 47; доки, сайт, демо и тесты не нужны). Скрипты без сети (только stdlib + ffmpeg 6.1+), проверено 01.11. Запуск — `python3 …/scripts/<tool>.py` **без** `-I`.
+Не ставили: ghost-editor (под говорящую голову, ведущего мы убрали), claude-shorts (дублирует `movie-short`; взята только идея рубрики выбора сцены → m1lash-studio §2б), OpenMontage (AGPL, тяжёлый — в `LOCAL_PC_PLAN.md`), Open Higgsfield (интерфейс к платным API).
