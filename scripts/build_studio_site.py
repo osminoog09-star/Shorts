@@ -201,13 +201,30 @@ def main():
     live = None
     if snaps:
         cur = snaps[-1]
+        T = lambda s: dt.datetime.fromisoformat(s["t"])
+        def at(h, key):
+            # значение «h часов назад»: линейно между соседними замерами (cron GitHub пропускает часы)
+            tgt = T(cur) - dt.timedelta(hours=h)
+            if tgt < T(snaps[0]):
+                return None
+            for a, b in zip(snaps, snaps[1:]):
+                if T(a) <= tgt <= T(b):
+                    span = (T(b) - T(a)).total_seconds() or 1
+                    k = (tgt - T(a)).total_seconds() / span
+                    return round(a[key] + (b[key] - a[key]) * k)
+            return cur[key]
+        def since(h, key):
+            v = at(h, key)
+            return None if v is None else cur[key] - v
         def ago(h):
-            return snaps[-1 - h] if len(snaps) > h else snaps[0]
+            tgt = T(cur) - dt.timedelta(hours=h)
+            return min(snaps, key=lambda s: abs((T(s) - tgt).total_seconds()))
         rec = (pulse.get("recent") or [])[:3]
         live = {"t": cur["t"], "subs": cur["subs"], "views": cur["views"],
-                "views_1h": cur["views"] - ago(1)["views"], "views_24h": cur["views"] - ago(24)["views"],
-                "subs_24h": cur["subs"] - ago(24)["subs"],
+                "views_1h": since(1, "views"), "views_12h": since(12, "views"), "subs_12h": since(12, "subs"),
+                "views_24h": since(24, "views"), "subs_24h": since(24, "subs"),
                 "span_h": round((dt.datetime.fromisoformat(cur["t"]) - dt.datetime.fromisoformat(ago(24)["t"])).total_seconds() / 3600, 2),
+                "span_12h": round((dt.datetime.fromisoformat(cur["t"]) - dt.datetime.fromisoformat(ago(12)["t"])).total_seconds() / 3600, 2),
                 "recent": [{**r, "views": cur["videos"].get(r["id"], 0),
                             "views_1h": cur["videos"].get(r["id"], 0) - ago(1)["videos"].get(r["id"], cur["videos"].get(r["id"], 0))}
                            for r in rec]}
