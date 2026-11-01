@@ -1,3 +1,15 @@
+## GPT · 01.11 — Short004 V46 44.100с + задания Claude «Клипы»/«В работе» (PRIVATE)
+
+- `git clone/pull` из контейнера снова заблокирован DNS github.com. Актуальные `AGENTS.md`, studio skill, NOW, 3 новых Claude tasks и HEAD HANDOFF прочитаны напрямую GitHub connector; все текстовые коммиты в main.
+- **Short 004 фактически переделан** из восстановленного русского чистого source artifact 13070096727. 9:16 crop по говорящим, 8 новых безопасных ASS-титров, хук 3 слова, оригинальный аудиофрагмент фильма; тело 34.933с. Финальный `004_V46_OFFICIAL_PRIVATE.mp4` **44.100с**, только `tools/assemble_with_outro.py` (актуальный код извлечён из CI), outro lag 0, разница PCM -22.6dB, body -14.7 LUFS/-3.9dBTP; официальный `check.py` 0 FAIL, `look.py --safe shorts` на финале просмотрен, полный decode 0. **ASR/права ещё НЕ проверены; YouTube не трогать**.
+- Приватный файл `/mnt/data/m1lash_work_20261101/004_V46_OFFICIAL_PRIVATE.mp4`, исходники кода `scripts/qa/rebuild_004_clean_ru_safe_v46.py`; QA ZIP `/mnt/data/m1lash_work_20261101/M1lash_004_V46_SAFEZONE_AND_CHIGUR_V9_REVIEW_PRIVATE.zip` **23570470B**, SHA256 `c04967351d97b9717390f5eab7b64514734062ef87896166546e8d131d14c823`, CRC PASS. Все киноматериалы только локально, не в Git.
+- Chigur **V9**: реально получены 6 Three.js PNG и осмотрен контакт (CI #41320278050, artifact 13088732380), осциллограмма теперь на приборе, но кадры всё ещё выглядят кубическими макетами — **художественный NO-GO**, длинный REV19/28 окон НЕ изменены.
+- **Claude 15:35/40/16:00**: список 10 кино-сцен `publishing/clip_requests.json` уже существовал. Сделал `site/studio/clips_ui.js` и вкладку «Клипы» с реальными карточками и сохранением HTTPS-ссылок в GitHub через токен владельца; `scripts/build_studio_site.py` добавляет clip_requests в `data.json`; `motion-pages.yml` копирует новый JS и запускает `node --check`. **Auto-fetch/Drive/movie-short не реализованы**, UI честно пишет это.
+- Вкладка «Ролики → Очередь и план»: добавлен блок **«В работе»** из незавершённых queue items и NOW GPT с агентом/этапом, без фиктивного READY. UI переноса дат, уведомления виджета и QA телефона ещё не готовы. Соответствующие чекпоинты в `tasks/gpt_site_clip_requests.md`, `tasks/gpt_site_queue_ux.md`, `tasks/gpt_week_45_plan.md`, `tasks/NOW.md`. Отчёт `reports/research/2026-11-01_GPT_004_V46_SAFEZONE_AND_CHIGUR_V9.md`.
+- Никаких новых заливок, дат, публичных действий. Следующее строго из NOW: ASR/полный слух/права, качественная 3D-графика 28 окон, безопасная автообработка клипов, UI переноса даты; развертывание сайта проверять по реальному GitHub Pages conclusion.
+
+---
+
 ## GPT · 01.11 V8: реальные стоп-кадры просмотрены, НE READY
 
 - Actions `41318411623` — SUCCESS: 6 разных 960×540 Three.js/Playwright PNG + 36с обзорный клип, artifact `13088501329`; приватный ZIP `/mnt/data/M1lash_Chigur_V8_Six_3D_Stills_Private_QA.zip`. Локальный `git ls-remote` по-прежнему не работает из-за DNS, коммиты сделаны GitHub connector.
