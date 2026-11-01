@@ -26,47 +26,16 @@
 
 ## GPT/Codex
 
-### Кино-комплект V24–V26 и REV19 · 01.11 14:00 · GPT
-Цель: шесть кино-Shorts + длинный Чигур с полноценным QA, только приватный review.
+### Доработка семи кино-роликов после актуализации студии · 01.11
+Цель: 6 Shorts и «Чигур» до реально проверенных PRIVATE masters, без публикации.
 Шаги:
-- [x] Исторический код 28 графических окон сохранён в `longform/chigur/graphics/` (новые сцены на PIL запрещены).
-- [x] Шесть приватных Shorts V24–V26 физически собраны; 005 удалено 9с тишины/новые RU титры; full decode 6/6 PASS; ни один не READY.
-- [x] Проверен AAC: в concat теряется `skip_samples=1024`; хеш пакетов сам по себе не доказывает сохранение звучания. В `scripts/movie_short.py` добавлен fail-closed QA.
-- [x] Точно найден реальный риск A/V: PCM соответствует музыкальной теме на 66–202мс раньше первого видеокадра концовки, подробности `reports/research/2026-11-01_GPT_V4_VISUAL_AND_AUDIO_GATES.md`. Попытки исправления PTS и раннего trim body не прошли truepeak.
-- [x] 6 стопов Three.js и **настоящий шестисекундный 30fps** пилот V4 отрендерены через `motion-render.yml` run `41303367790`, artifact `13082128943`; full decode PASS и просмотренный контакт-лист. Художественное качество **NO-GO**, не вшит в long.
-- [ ] Исправить дизайн 3D до эталона концовки: физические детали руки/моделей, материалы, постановка/камера, затем повторить 4–6 стопов и 5–10с test.
-- [ ] Редизайн 28 графических интервалов длинного, 1920×1080, фирменный горизонтальный outro без изменений.
-- [ ] Закрыть A/V и truepeak у Shorts 001/006 **без изменения утверждённого 6.6с источника**; затем 7/7 полный sound/ASR/visual check.py/look.py, финальный HANDOFF и уроки.
-Следующий шаг: отталкиваться от `longform/chigur/graphics/three_stage_prototype_v3.js`, улучшить художественную постановку (текущий пилот слабый — особенно перчатка из примитивов, пустой фон), отрендерить заново `jobs/motion/chigur_6scene_test.json` существующим workflow, оценить 6 PNG до полного рендера. Параллельно найти законный вариант синхронной склейки stream-copy с сохранением оригинального одобренного outro. Не путать `-xerror PASS` с художественным/звуковым допуском. Привязка к первому видео-PTS и совпадающему PCM приведена в отчёте. Нельзя публиковать, назначать дату или автоматически ставить READY.
-Где промежуточное: приватный `/mnt/data/M1lash_Chigur_3D_PREVIEW_AND_AUDIO_SYNC_QA_20261101.zip` SHA256 `d06e63ff90cfd89b9e101084edc374c7e7fb1a42507fd55ea7fa462ad48cf367`; отчёт `reports/research/2026-11-01_GPT_V4_VISUAL_AND_AUDIO_GATES.md`; исходные шесть Shorts `/mnt/data/movie_shorts_remastered_v22_private/`, long `/mnt/data/M1lash_Chigur_REV19_1080p_PRIVATE_REVIEW.mp4`; три proof Actions #41302070991 / #41302490191 / #41302982945, четвёртый #41303367790.
-Ждёт Дениса: нет; право/разрешение на новый звук или переозвучку не запрашивалось.
-
-### АУДИО-КОРРЕКЦИЯ GPT 01.11 13:58
-- [x] Исправлен ложный прежний диагноз смещения 66–202мс. Точный match эталонного видеокадра MAE=0 у всех 6, корреляция PCM >=0.99999.
-- [x] Настоящее A/V: 001=24мс, 002=18мс, 003=9мс, 004=9мс, 005=78мс, 006=15мс; при гейте 50мс только 005 FAIL.
-- [x] Закрыто А/V по 005 **в новой приватной V28**: было 78.36мс, стало 14.36мс; H264 1080×1920 30fps, 32.311с, полный decode PASS, 12 кадров визуально проверено, утверждённый outro не перекодирован. Подробности reports/research/2026-11-01_SHORT005_V28_EXACT_ALIGNMENT_QA.md.
-- [ ] TP 005 V28 −1.48dBTP (на 0.02dB выше лимита), 001 −0.93, 006 −1.35 остаются NO-GO; попытка pad 001 до 31.18с дала +4.61dBTP — отклонено. Затем check.py/look.py/слух и 3D long.
-Следующий шаг: 005 V28 уже собран (локально /mnt/data/movie_shorts_remastered_v22_private/m1lash_movie_mystery_005_PRIVATE_V28_TEST.mp4), PCM MAE и 12 кадров проверены; НЕ считать готовым из-за true peak −1.48 и незакрытых check.py/look.py/ASR. Воспроизвести body-only audio padding через scripts/qa/align_movie_body_audio.py, файл body_v26.mp4, --end-gap .05; никогда не применять такую операцию слепо к 001 (эксперимент показал +4.61dBTP). По отчёту reports/research/2026-11-01_SHORT005_V28_EXACT_ALIGNMENT_QA.md. Следующий конкретный шаг: исправление TP 001/006 без замены оригинальной концовки, затем официальный check.py/look.py и 28 окон long на качественной Three.js сценографии, стоп-кадры прежде рендера. Никаких upload/schedule.
-
-
-### GPT — новый проверяемый аудиокомплект V32/V33 · 01.11
-- [x] Сохранены **6 реальных MP4** V32 (001/002/004/006), V33 (003/005) в `/mnt/data/M1lash_6_SHORTS_AUDIO_FIXED_V32_V33_PRIVATE_20261101.zip`; ZIP CRC PASS, SHA256 `797354497367a83638afbfb4ba190eff5a96904bf6200f0a9af5502599288b59`.
-- [x] У всех шести итоговые true peak ≤−1.50dBTP: −1.67, −1.85, −1.96, −1.50, −1.50, −2.11 соответственно; полный `ffmpeg -xerror` выбранных копируемых MP4 ранее PASS; SHA256 копий совпал с проверенными исходниками. 6 реальных FFmpeg contact-list визуально открыты (сохранены в ZIP).
-- [x] Временная копия утверждённого outro содержит **310/310 аудируемых AAC пакетов** (только кодековый priming-пакет `skip_samples=1024` отброшен, исходник нетронут); 197/198 H264 пакетов идентичны, первый AVC IDR отличается при MP4 mux. Корреляция PCM со звуковым эталоном >0.9999. Время слышимой музыки к видео −24..+12мс. 003/005 добавлена только тишина в конце *body*, оригинальное аудио самой концовки не нормализовано/не перекодировано.
-- [ ] На каждом конкретном финальном MP4 запустить **штатные** `skills/ext/ffmpeg-skill/scripts/check.py` и `look.py`; до этой проверки 6 кандидатов — PRIVATE, **НЕ READY**. Провести полный слух/ASR и проверить права/BAD TIMES. 004/005 TP на границе лимита; проверить строго.
-- [ ] Длинный REV19 — **28 PIL окон**, нереализованный 8/10 Three.js proof (последняя V5: реальный 6с GIF-like MP4, низкое качество); переделать по visuals-by-code.md.
-Следующий шаг: продолжать в `tasks/gpt_fix_after_claude_audit.md` с gate official check.py/look.py, затем ручной слуховой/русский ASR и 28 окон long. История и метрики `reports/research/2026-11-01_V32_V33_SHORTS_AUDIO_RECOVERY.md`. Все исходные MP4 сохранены. Не менять текущий статус в YouTube/очереди.
-Где промежуточное: `/mnt/data/M1lash_6_SHORTS_AUDIO_FIXED_V32_V33_PRIVATE_20261101.zip` (112973082 байта), `/mnt/data/m1lash_audio_priming_trials/`, `/mnt/data/M1lash_6_MOVIE_SHORTS_V32_V33_PRIVATE_QA_20261101/`.
-Ждёт Дениса: нет, решение о публикации исключительно его.
-
-### GPT · после обязательного перечитывания правил (01.11)
-Цель: строго `tasks/gpt_reread_rules.md` и п. 2а `tasks/gpt_fix_after_claude_audit.md` — новые приватные мастера только одной штатной командой.
-Шаги:
-- [x] С нуля перечитаны полные AGENTS.md, m1lash-studio/SKILL.md (+ чеклист/«Новые»), visuals-by-code.md, задачи NOW/daily/fix, аудиты Claude и GPT issues, весь `tools/assemble_with_outro.py`.
-- [x] Выполнено реальное `python3 tools/assemble_with_outro.py --help` на локально восстановленном из GitHub Python файле; вывод и синтаксис проверены.
-- [x] В HANDOFF.md записаны 7 строк «Понял: …». `git pull` из среды не выполнился из-за DNS; все актуальные файлы считаны живым GitHub-коннектором.
-- [ ] 2а. Из существующих чистых body_v24/v26 собрать новые отдельные видео командой `tools/assemble_with_outro.py` и оригинальными титульными MP3, проверить встроенный JSON/декодирование, затем официальные check.py/look.py; никаких ручных concat/AAC.
-- [ ] Улучшить 4–6 3D стопов и пилот, потом заменить 28 окон REV19 без PIL, проверить и передать только PRIVATE.
-Следующий шаг: локально исполнить `python3 /mnt/data/shorts_repo/tools/assemble_with_outro.py /mnt/data/movie_shorts_remastered_v22_private/001/body_v24.mp4 -o /mnt/data/m1lash_2a_rebuild/001_ASSEMBLED_V34_PRIVATE.mp4 --title /mnt/data/approved_m1lash/tts/m1lash_standard_reveals_20261031/chigur.mp3`. Затем официальный `check.py --platform shorts`, `look.py --tiles 3x2` из вложенного `ffmpeg_skill_local_QA_tools.zip`. После результата 001 повторить для 002–006. Нельзя публиковать.
-Где промежуточное: `/mnt/data/shorts_repo/tools/assemble_with_outro.py` (локальная копия актуального кода GitHub, без git origin из-за DNS), `/mnt/data/approved_m1lash/outro/`, `/mnt/data/movie_shorts_remastered_v22_private/{001..006}/body_v24.mp4`, `/mnt/data/M1lash_FFmpegSkill_Official_QA_Tools.zip`. Исходники кино не коммитить.
-Ждёт Дениса: нет.
+- [x] Перечитать актуальные AGENTS.md, весь m1lash-studio/SKILL.md/«Уроки», visuals-by-code.md, NOW, ежедневный регламент, план исправлений, аудит Claude, issues GPT; 7 строк «Понял» внесены в HANDOFF.
+- [x] Штатный `tools/assemble_with_outro.py --help` и п.2а: **6 новых настоящих MP4 V41–V44**, финал собран исключительно этой командой, без ручного concat/AAC. Полный decode, внутренний аудио-тайминг и совпадение концовки — все 6 PASS.
+- [x] На **каждом из шести выбранных MP4** штатный `check.py --platform shorts` — **0 FAIL**, единственный WARN «нет внешней дорожки титров» (они вшиты); `look.py --tiles 3x2 --safe shorts` — 6 PNG, просмотрены глазами. Все 6 в приватном QA ZIP, без заливки.
+- [x] Пакетный дефект стартовых пиков 001/004/006 устранён **только обработкой тела** (мягкий 150мс fade и выборочный gain), утверждённая концовка сохранена по стандартной функции. Добавлены 4 безопасные CLI-опции в `tools/assemble_with_outro.py`, NumPy ускорение с fallback.
+- [ ] Этап 3: дополнительный редакторский QA 004 (титры в нижней safe-зоне), плотность 006, ключевые фразы 001/003, слух/ASR RU 2–3 разных окон на ролик (модель ASR в локальной среде недоступна, не выдумывать PASS). Сверить title voice 006.
+- [ ] Этап 4: 28 устаревших PIL-графических окон длинного REV19 заменить постановкой HyperFrames/HTML+Three.js+Playwright. До full render сначала **4–6 достойных стопов**, сравнить с rev4 outro и настоящий 5–10с pilot; V5 старый прототип NO-GO.
+- [ ] Этап 5: полный звук, исходные кинодоказательства, финальные check.py/look.py длинного 1920×1080, финальный HANDOFF/урок, передать на личное «ок»; ничего не публиковать.
+Следующий шаг: проверить конкретные субтитры 004 с `look.py --safe shorts --at TIME` на таймкодах с текстом (особенно конец фильма перед концовкой); если титры попадают в нижние 18% кадра — поднять их внутри safe zone в чистом body, повторить `python tools/assemble_with_outro.py`, новый номер и оба официальных QA. Затем независимый RU ASR/слух для 6, чтобы закрыть A16, и переработка 28 окон длинного. НЕ использовать ручной concat/`-c copy`/пакетный AAC fix. Существующий тестовый V5 Three.js недостаточен художественно.
+Где промежуточное: `/mnt/data/M1lash_6_MOVIE_SHORTS_OFFICIAL_ASSEMBLER_V41_V44_PRIVATE_QA_20261101.zip` (218163056B, SHA256 `5ccedaa93cffc298a55dc6bd543d7e185e8910a887ab2b692be5bed5cc67c01e`); `/mnt/data/m1lash_2a_rebuild/` (6 MP4 + check + contacts + QA); отчёт `reports/research/2026-11-01_V41_V44_OFFICIAL_ASSEMBLER_6SHORTS_QA.md`; исходники body `/mnt/data/movie_shorts_remastered_v22_private/`; long `/mnt/data/M1lash_Chigur_REV19_1080p_PRIVATE_REVIEW.mp4`.
+Ждёт Дениса: ничего; согласование публикации исключительно за ним.
