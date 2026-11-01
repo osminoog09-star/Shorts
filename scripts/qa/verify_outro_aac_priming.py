@@ -16,3 +16,13 @@ def packets(path):
 def skip_count(packet):
     return max([int(row.get("skip_samples",0)) for row in
                 packet.get("side_data_list",[])] or [0])
+
+def verify(outro,final):
+    reference=packets(outro)
+    joined=packets(final)
+    first=reference[0]
+    expected=skip_count(first)
+    matched=[x for x in joined if x.get("data_hash")==first.get("data_hash")]
+    observed=skip_count(matched[0]) if len(matched)==1 else 0
+    return {"status":"PASS" if expected and observed==expected else "FAIL",
+            "required_skip_samples":expected,"found_skip_samples":observed}
