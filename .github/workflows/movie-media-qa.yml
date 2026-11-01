@@ -21,6 +21,7 @@ jobs:
     timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
+        with: {fetch-depth: 2}
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - name: Tools for RU ASR
@@ -44,7 +45,36 @@ jobs:
           JOB: ${{ inputs.job }}
         run: |
           set -euo pipefail
-          p="${JOB:-jobs/mediaqa/chigur_004_ru_source.json}"
+          p="${JOB:-}"
+          if [ -z "$p" ]; then
+            p="$(git diff --name-only HEAD^ HEAD -- jobs/mediaqa/ | grep -E '^jobs/mediaqa/[^/]+[.]json
+          case "$p" in jobs/mediaqa/*.json) ;; *) echo 'Invalid job path'; exit 1;; esac
+          python scripts/qa/movie_artifact_ru_audio.py --job "$p"
+      - name: Commit small JSON QA only
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name 'movie-source-qa[bot]'
+          git config user.email 'movie-source-qa@users.noreply.github.com'
+          git add reports/research/*_SOURCE_RU_ASR.json 2>/dev/null || true
+          python3 - <<'PY'
+          import json,os,pathlib
+          p=pathlib.Path('reports/research/movie_review_assets_run.json')
+          p.write_text(json.dumps({'run_id':os.environ.get('GITHUB_RUN_ID'),
+            'note':'Private approved-outro and Dima-title asset transfer for six previously filmed Shorts',
+            'media_not_in_git':True},indent=2)+'\\n')
+          PY
+          git add reports/research/movie_review_assets_run.json
+          git diff --staged --quiet && exit 0
+          git commit -m 'qa: sampled RU actor language on existing source artifact'
+          for i in 1 2 3; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then exit 0; fi
+            sleep 5
+          done
+          exit 1
+ | head -n 1 || true)"
+          fi
+          p="${p:-jobs/mediaqa/chigur_004_ru_source.json}"
           case "$p" in jobs/mediaqa/*.json) ;; *) echo 'Invalid job path'; exit 1;; esac
           python scripts/qa/movie_artifact_ru_audio.py --job "$p"
       - name: Commit small JSON QA only
