@@ -1,0 +1,24 @@
+{
+  "renderer": "python",
+  "script": "shorts/rebuild_movie_review_from_artifact.py",
+  "id": "005",
+  "output": "videos/kino_005_v47.mp4",
+  "save_review_mp4": false,
+  "qa_run_marker": "reports/research/movie_005_v47_run.json",
+  "no_youtube_upload": true,
+  "artifact_id": 13052196021,
+  "member": "originals/nightcrawler_no_thieves_ru_test.mp4",
+  "segments": [
+    [
+      25.8,
+      41
+    ],
+    [
+      49.8,
+      58.08
+    ]
+  ],
+  "film": "Стрингер",
+  "public_hook": "ОН ИСКАЛ РАБОТУ… И СКАЗАЛ НЕ ТО",
+  "question": "А ты бы взял его на работу?"
+}
