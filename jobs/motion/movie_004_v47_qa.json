@@ -1,0 +1,8 @@
+{
+  "renderer": "python",
+  "script": "shorts/rebuild_movie_004_v47.py",
+  "output": "videos/004_V47_OFFICIAL_PRIVATE.mp4",
+  "save_review_mp4": false,
+  "qa_id": "004",
+  "no_youtube_upload": true
+}
