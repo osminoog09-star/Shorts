@@ -18,7 +18,7 @@
 ## Проверено непосредственно в этом запуске
 - `git clone/pull` недоступен из локального контейнера: `Could not resolve host: github.com`; файлы прочитаны и текстовые коммиты записаны через GitHub connector.
 - После workflow `drive-folder-intake.yml` `publishing/drive_scan.json` содержит `status=not_configured`, `scanned_at=2026-11-01T15:55:45+00:00`, `required_film_count=8`. Это свидетельствует о запуске сканера, **не** о проверке реальной пользовательской папки.
-- Действующая папка M1lash среди подключённых Google Drive folders не обнаружена. Значение `drive_folder.url` намеренно пустое; ничего пользовательского не шарили публично.
+- Позднее в том же запуске **создана новая Google Drive папка** `M1lash — фильмы для будущих Shorts`: https://drive.google.com/drive/folders/1ANvcXlUj0wBv1CG5U0bBQGdH-32OyaAi. Проверка metadata: владелец, `shared=false` (только owner). В `drive_folder.json` добавлена ссылка, `scan_enabled=false`, чтобы до открытия прав не давать ложных 403 каждые два часа. Владелец один раз меняет общие права на «все по ссылке / читатель» и включает сканирование на сайте.
 
 ## Дополнение: ASR-кандидаты (код добавлен, реальная папка не проверена)
 - `scripts/drive_scene_probe.py` и `.github/workflows/drive-scene-probe.yml`: по расписанию каждые 6 ч и вручную, при появлении совпавшего фильма временно скачивают только один файл, проверяют русский язык в 3 окнах, запускают Whisper по полной дорожке, возвращают **три приблизительных таймкода**, все запросы к одному фильму обрабатывают за один запуск. Данные только в `publishing/scene_candidates.json`, фильм не коммитится; тесты `scripts/qa/test_drive_scene_probe.py` на парсинг HH:MM и URL.
