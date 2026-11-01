@@ -1,0 +1,45 @@
+name: M1lash Carla final refusal real Russian word-timestamps QA
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/m1lash-chigur-carla-dialogue-word-timestamps-qa.yml]
+permissions: {contents: read, actions: read}
+jobs:
+  asr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: movie-edit-draft
+          run-id: '41273269553'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: source
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          python -m pip install -q faster-whisper
+      - name: Sample authentic dialogue with word timestamps
+        run: |
+          python - <<'PY'
+          import pathlib,subprocess,numpy as np,json
+          from faster_whisper import WhisperModel
+          p=next(pathlib.Path('source').rglob('chigur_carla_final_ru_real.mp4'))
+          m=WhisperModel('small',device='cpu',compute_type='int8')
+          t=155;d=63
+          data=np.frombuffer(subprocess.check_output(['ffmpeg','-v','error','-ss',str(t),'-t',str(d),'-i',str(p),'-f','f32le','-ar','16000','-ac','1','-']),dtype='<f4')
+          ss,info=m.transcribe(data,beam_size=5,vad_filter=True,word_timestamps=True,language='ru')
+          out=[]
+          for s in ss:
+            v={'start':round(s.start+t,2),'end':round(s.end+t,2),'text':s.text.strip(),'words':[{'s':round(w.start+t,2),'e':round(w.end+t,2),'text':w.word} for w in (s.words or [])]}
+            out.append(v);print(json.dumps(v,ensure_ascii=False),flush=True)
+          pathlib.Path('qa').mkdir(exist_ok=True);pathlib.Path('qa/carla_word_times.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: carla-word-times-qa
+          path: qa/*.json
+          retention-days: 7
