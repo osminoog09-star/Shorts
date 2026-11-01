@@ -160,7 +160,7 @@ for(const g of G){
  const glove=new THREE.Group();g.add(glove);glove.position.set(2.0,-.4,.75);
  const palm=new THREE.Mesh(new THREE.SphereGeometry(1,32,24),leather);
  palm.scale.set(.65,.19,.44);palm.position.set(-.12,0,0);palm.castShadow=true;glove.add(palm);
- box(glove,.58,-.03,0,.58,.5,.9,cuff);
+ const arm=new THREE.Mesh(new THREE.CylinderGeometry(.24,.3,1.6,32),cuff);arm.rotation.z=Math.PI/2;arm.position.set(.76,-.08,0);glove.add(arm);
  for(let n=0;n<4;n++){
   const finger=cy(glove,-.36-n*.06,-.15,.14+n*.18,.115,.67,leather);finger.rotation.z=Math.PI/2.55;
   sphere(glove,-.67,-.27,.14+n*.18,.11,leather);
