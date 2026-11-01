@@ -19,5 +19,6 @@
     "source_RU_ASR",
     "outro_lag"
   ],
-  "allow_publish": false
+  "allow_publish": false,
+  "run_revision": 2
 }
