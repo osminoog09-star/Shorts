@@ -67,9 +67,22 @@ jobs:
           S_QUESTION: ${{ matrix.question }}
         run: |
           set -euo pipefail
-          python scripts/movie_short.py --src "$RUNNER_TEMP/authentic_ru_source.mp4" \
+          SOURCE="$RUNNER_TEMP/authentic_ru_source.mp4"
+          EXTRA=""
+          case "$S_ID" in
+            001|002|003|005)
+              python scripts/qa/cut_russian_story_segments_v47.py --id "$S_ID" --src "$SOURCE" --out "$RUNNER_TEMP/edited_story.mp4"
+              SOURCE="$RUNNER_TEMP/edited_story.mp4"
+              S_START="0"
+              S_END=""
+              ;;
+            006)
+              EXTRA="--allow-verified-visual-action"
+              ;;
+          esac
+          python scripts/movie_short.py --src "$SOURCE" \
             --id "m1lash_movie_mystery_${S_ID}_rebuild_v47" --start "$S_START" --end "$S_END" \
-            --title "$S_TITLE" --film "$S_FILM" --lang ru --question "$S_QUESTION"
+            --title "$S_TITLE" --film "$S_FILM" --lang ru --question "$S_QUESTION" $EXTRA
       - name: Review-only artifact, no YouTube/private upload until visual review
         if: always()
         uses: actions/upload-artifact@v4
