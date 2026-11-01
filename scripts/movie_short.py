@@ -284,7 +284,7 @@ def main():
                 (26.3, 29.6, "ВОЛНА УЖЕ ЗДЕСЬ"),
                 (35.6, 39.3, "ПОСЛЕДНИЙ ШАНС"),
             ]:
-                fh.write(f"Dialogue: 1,{ass_time(from_s)},{ass_time(to_s)},Top,,0,0,0,,{caption}\\n")
+                fh.write(f"Dialogue: 1,{ass_time(from_s)},{ass_time(to_s)},Top,,0,0,0,,{caption}\n")
                 n_sub += 1
     else:
         n_sub = ass(words, subs, top)
