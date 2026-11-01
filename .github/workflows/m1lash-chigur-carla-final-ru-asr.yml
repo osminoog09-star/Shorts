@@ -1,0 +1,44 @@
+name: M1lash check REAL Russian actor audio in Carla finale (QA only)
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/m1lash-chigur-carla-final-ru-asr.yml]
+permissions: {contents: read, actions: read}
+jobs:
+  asr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: movie-edit-draft
+          run-id: '41273269553'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: source
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          python -m pip install -q faster-whisper
+      - name: Actual RU dialogue ASR in finale, distinct spoken intervals
+        run: |
+          python - <<'PY'
+          import subprocess, pathlib, json,numpy as np
+          from faster_whisper import WhisperModel
+          p=next(pathlib.Path('source').rglob('chigur_carla_final_ru_real.mp4'))
+          model=WhisperModel('small',device='cpu',compute_type='int8')
+          obs=[]
+          for t,d in [(75,22),(123,25),(164,25)]:
+            b=subprocess.check_output(['ffmpeg','-v','error','-ss',str(t),'-t',str(d),'-i',str(p),'-f','f32le','-ar','16000','-ac','1','-'])
+            ss,info=model.transcribe(np.frombuffer(b,dtype='<f4'),beam_size=5,vad_filter=True)
+            v={'t':t,'language':info.language,'prob':round(info.language_probability,5),'speech':[s.text.strip() for s in ss]}
+            obs.append(v);print(json.dumps(v,ensure_ascii=False),flush=True)
+          pathlib.Path('qa').mkdir(exist_ok=True);pathlib.Path('qa/carla_asr.json').write_text(json.dumps(obs,ensure_ascii=False,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chigur-carla-ru-source-qa
+          path: qa/*.json
+          retention-days: 7
