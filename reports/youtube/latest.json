@@ -508,7 +508,7 @@
   "schema_version": 1,
   "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
   "snapshot_date": "2026-11-01",
-  "fetched_at": "2026-11-01T08:54:08.630426+00:00",
+  "fetched_at": "2026-11-01T10:39:16.209120+00:00",
   "inventory": [
     {
       "video_id": "CmOu0xXc0UI",
@@ -545,7 +545,7 @@
       "duration": "PT1M4S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "223",
+        "viewCount": "230",
         "likeCount": "3",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -559,7 +559,7 @@
       "duration": "PT49S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "235",
+        "viewCount": "242",
         "likeCount": "6",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -615,7 +615,7 @@
       "duration": "PT51S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1297",
+        "viewCount": "1317",
         "likeCount": "9",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -741,7 +741,7 @@
       "duration": "PT1M14S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "3218",
+        "viewCount": "3219",
         "likeCount": "192",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -769,7 +769,7 @@
       "duration": "PT32S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1241",
+        "viewCount": "1242",
         "likeCount": "11",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -867,8 +867,8 @@
       "duration": "PT59S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "5596",
-        "likeCount": "155",
+        "viewCount": "5670",
+        "likeCount": "160",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "8"
@@ -909,7 +909,7 @@
       "duration": "PT45S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1127",
+        "viewCount": "1128",
         "likeCount": "17",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1011,7 +1011,7 @@
         "likeCount": "21",
         "dislikeCount": "0",
         "favoriteCount": "0",
-        "commentCount": "3"
+        "commentCount": "4"
       }
     },
     {
