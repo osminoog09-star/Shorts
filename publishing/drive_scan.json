@@ -1,11 +1,6 @@
 {
-  "status": "not_configured",
-  "scanned_at": "2026-11-01T16:04:57+00:00",
-  "file_count": 0,
-  "video_files": 0,
-  "required_film_count": 8,
-  "matched_film_count": 0,
-  "missing": [],
-  "items": [],
-  "message": "Папка ещё не задана. Старые 7 роликов повторно скачивать не нужно."
+  "status": "error",
+  "scanned_at": "2026-11-01T16:11:31+00:00",
+  "message": "Не удалось прочитать открытую папку Drive: Failed to retrieve folder contents for folder ID: 1ANvcXlUj0wBv1CG5U0bBQGdH-32OyaAi (status code 401). You may need to change the permission to 'Anyone with the link', or have had many accesses. Check FAQ in https://github.com/wkentaro/gdown?tab=readme-ov-file#faq.\n",
+  "items": []
 }
