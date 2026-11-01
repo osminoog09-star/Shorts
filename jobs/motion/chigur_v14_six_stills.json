@@ -3,5 +3,6 @@
   "script": "shorts/chigur_v14_stills.py",
   "output": "videos/chigur_v14_six_stills_REVIEW_ONLY.mp4",
   "save_review_mp4": false,
-  "qa_run_marker": "reports/research/chigur_v14_run.json"
+  "qa_run_marker": "reports/research/chigur_v14_run.json",
+  "export_studio_assets_for_shorts": true
 }
