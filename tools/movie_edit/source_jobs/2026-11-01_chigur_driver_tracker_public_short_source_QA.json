@@ -1,0 +1,18 @@
+{
+  "purpose": "Test only exact 2 minutes in No Country for Old Men (2007) for original Russian dubbed driver dialog and no-dialogue tracker beep, no entire film, no publish.",
+  "rights_note": "Source's hosting alone does not prove permission to reuse footage or dubbing. Private QA artifact only. No full film download, no DRM bypass.",
+  "sources": [
+    {
+      "id": "chigur_driver_ru_short",
+      "url": "https://rutube.ru/video/1baf22a92b97a3c71e59db01579eaa3d/",
+      "start_seconds": 210,
+      "end_seconds": 355
+    },
+    {
+      "id": "chigur_tracker_original_sound_short",
+      "url": "https://rutube.ru/video/1baf22a92b97a3c71e59db01579eaa3d/",
+      "start_seconds": 2670,
+      "end_seconds": 2820
+    }
+  ]
+}
