@@ -197,8 +197,9 @@ for(const g of G){
 window.frame=(T)=>{
  const i=Math.min(5,Math.floor(T/6)),t=T-i*6;
  G.forEach((g,j)=>g.visible=i===j);A[i](t);
- C.position.set(.3+.2*Math.sin(t*.4),.6+.08*Math.sin(t*.3),9-t*.1);
- C.lookAt(0,-.6,0);R.render(S,C);
+ if(i===0){C.position.set(1.35-.27*t,.62-.07*t,6.4-.07*t);C.lookAt(-.15,-.98,.15);}
+ else{C.position.set(.3+.2*Math.sin(t*.4),.6+.08*Math.sin(t*.3),9-t*.1);C.lookAt(0,-.6,0);}
+ R.render(S,C);
  return R.domElement.toDataURL('image/png');
 };
 window.ready=Promise.resolve(true);window.frame(0);
