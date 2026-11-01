@@ -29,3 +29,5 @@ with sync_playwright() as pw:
             raise RuntimeError('empty scene')
     browser.close()
     if errors:raise RuntimeError('browser errors: '+';'.join(errors))
+out=ROOT/'videos/chigur_v7_six_stills_REVIEW_ONLY.mp4'
+out.parent.mkdir(parents=True,exist_ok=True)
