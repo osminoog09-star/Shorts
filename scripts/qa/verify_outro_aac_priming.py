@@ -26,3 +26,9 @@ def verify(outro,final):
     observed=skip_count(matched[0]) if len(matched)==1 else 0
     return {"status":"PASS" if expected and observed==expected else "FAIL",
             "required_skip_samples":expected,"found_skip_samples":observed}
+
+if __name__=='__main__':
+    import sys
+    value=verify(sys.argv[1],sys.argv[2])
+    print(json.dumps(value))
+    sys.exit(0 if value['status']=='PASS' else 1)
