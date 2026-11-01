@@ -155,7 +155,7 @@ for(const g of G){
 // Premium macro blocking: physical coin toss by an articulated glove.
 {
  const g=G[0],coin=g.children.find(o=>o.type==='Group');
- const leather=new THREE.MeshPhysicalMaterial({color:0x3d2820,roughness:.62,metalness:.08,clearcoat:.08});
+ const leather=new THREE.MeshPhysicalMaterial({color:0x262324,roughness:.73,metalness:.04,clearcoat:.06});
  const cuff=new THREE.MeshStandardMaterial({color:0x1b2938,roughness:.86});
  const glove=new THREE.Group();g.add(glove);glove.position.set(2.0,-.4,.75);
  const palm=new THREE.Mesh(new THREE.SphereGeometry(1,32,24),leather);
@@ -165,7 +165,7 @@ for(const g of G){
   const z=.14+n*.18;const curve=new THREE.CatmullRomCurve3([new THREE.Vector3(-.36,0,z),new THREE.Vector3(-.53,-.1,z),new THREE.Vector3(-.76,-.21,z+.03)]);const finger=new THREE.Mesh(new THREE.TubeGeometry(curve,20,.096,10,false),leather);glove.add(finger);
   sphere(glove,-.67,-.27,.14+n*.18,.11,leather);
  }
- const thumb=cy(glove,-.34,.24,.38,.14,.56,leather);thumb.rotation.z=-.9;
+ const thumbCurve=new THREE.CatmullRomCurve3([new THREE.Vector3(-.25,.16,.35),new THREE.Vector3(-.46,.31,.48),new THREE.Vector3(-.73,.22,.55)]);glove.add(new THREE.Mesh(new THREE.TubeGeometry(thumbCurve,24,.13,12,false),leather));
  const coinRing=coin.children.find(o=>o.geometry&&o.geometry.type==='TorusGeometry');
  // Bring out engraved radial edge and central bas-relief facing the camera.
  const emblem=new THREE.Group();emblem.position.y=.102;coin.add(emblem);
