@@ -1,0 +1,7 @@
+{
+  "renderer": "python",
+  "script": "shorts/export_review_assets.py",
+  "output": "videos/review_asset_carrier.mp4",
+  "save_review_mp4": false,
+  "qa_run_marker": "reports/research/movie_assets_review_run.json"
+}
