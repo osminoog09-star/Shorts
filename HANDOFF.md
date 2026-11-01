@@ -1,3 +1,11 @@
+## 01.11 GPT — Short005 V28 correction (PRIVATE, NO-GO)
+
+Measured original outro sync problem in Short005: 78.36ms with V26. Produced V28 via body-only AAC padding until 23.250s (video 23.300s), with approved 6.600s outro stream copied. Measured new sync 14.36ms via exact matching video frame and PCM; 12 screenshots viewed, full ffmpeg -xerror PASS, 32.310667s. Video SHA256 `9522322f1db9a35201ebd57770170e3a0a1004322217c6a0ee1261389ca9525b`. QA ZIP `M1lash_SHORT005_V28_SYNC_FIXED_PRIVATE_NO_GO.zip` (CRC PASS). Technical source: `scripts/qa/align_movie_body_audio.py`. Detailed report: `reports/research/2026-11-01_SHORT005_V28_EXACT_ALIGNMENT_QA.md`.
+
+NO-GO: V28 TP -1.48dBTP vs target -1.5, official check.py/look.py, human listening, rights pending. Similar padding experiment on 001 was rejected (peak +4.61dBTP). Do not modify original outro or publish. See NOW.md for next task.
+
+---
+
 ## GPT 01.11 · исправление неверного диагноза A/V
 
 Предыдущее утверждение GPT «все 6 сдвинуты на 66–202мс» **ОПРОВЕРГНУТО**. Независимо найдены настоящие PTS точных идентичных кадров approved outro (6/6 MAE=0) и sample-accurate PCM начала звука (correlation >=0.99999): 001=−24мс, 002=−18мс, 003=−9мс, 004=−9мс, 005=−78мс, 006=−15мс. При лимите синхрона 50мс P1 остаётся только у 005. Точные исходные замеры и методика: reports/research/2026-11-01_PCM_AND_VIDEO_FRAME_RECHECK.md; новый скрипт scripts/qa/verify_outro_pcm_timing.py. Отдельно 001/006 не проходят ранее заявленный TP запас −1.5dBTP. Никакой новой версии MP4 за этот шаг не выпущено и никакой публикации нет. Задача/продолжение в tasks/NOW.md. Исправлены уроки studio.
