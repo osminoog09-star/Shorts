@@ -1,0 +1,23 @@
+{
+  "id": "004",
+  "film": "Из машины",
+  "source_artifact": 13070096727,
+  "source_member": "originals/machina_ava_ru_blackout_ok_candidate.mp4",
+  "source_start": [
+    33.195,
+    65.395
+  ],
+  "duration_of_body": 34.933,
+  "approved_script": "scripts/qa/rebuild_004_clean_ru_safe_v46.py",
+  "format": "private_reconstruction",
+  "version": "V47",
+  "title_voice": "ru-RU-DmitryNeural",
+  "qa_required": [
+    "check.py",
+    "look.py",
+    "full_decode",
+    "source_RU_ASR",
+    "outro_lag"
+  ],
+  "allow_publish": false
+}
