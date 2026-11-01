@@ -281,6 +281,20 @@ def main():
         r["manifest"] = r.get("manifest") or (f"publishing/queue/{r['id']}.json" if r["id"] in kinds else None)
     ch = latest.get("channel_statistics", {}) or {}
     daily = latest.get("recent_daily_views", []) or []
+    # Pending film work comes from the existing publishing queue and NOW checkpoint.
+    work = [{"id": q.get("id"), "title": q.get("title") or q.get("id"),
+             "format": q.get("kind") or "Shorts", "author": q.get("author") or "агент",
+             "stage": q.get("stage") or ("исходник" if "SOURCE" in q.get("note", "") else "монтаж"),
+             "note": q.get("note", "")}
+            for q in queue if q.get("status") in ("draft", "in_work")]
+    now_file = ROOT / "tasks" / "NOW.md"
+    if now_file.is_file():
+        text_now = now_file.read_text(encoding="utf-8")
+        m = re.search(r"## GPT/Codex\\s+### ([^\\n]+)\\s+Цель: ([^\\n]+)", text_now)
+        if m:
+            work.append({"id": "gpt-checkpoint", "title": m.group(1),
+                         "format": "Кино + длинное", "author": "GPT",
+                         "stage": "монтаж / проверка", "note": m.group(2)})
     out = {
         "built": dt.datetime.now(TZ).strftime("%d.%m.%Y %H:%M"),
         "analytics_as_of": latest.get("last_observed_view_day"),
@@ -289,7 +303,7 @@ def main():
                     "videos": int(ch.get("videoCount", 0) or 0)},
         "daily": daily, "formats": formats,
         "videos": sorted(videos, key=lambda v: v["published"] or "", reverse=True),
-        "plan": plan, "review": review,
+        "plan": plan, "review": review, "work": work,
         "learn": {"works": section(learn_md, "Работает"), "fails": section(learn_md, "Не работает"),
                   "hyp": section(learn_md, "Гипотезы на проверку")},
         "weekly": {"name": weekly[-1].stem if weekly else None, "text": weekly_txt},
