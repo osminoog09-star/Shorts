@@ -1,6 +1,6 @@
 # M1lash — 01.11.2026 — полный независимый аудит REV19 + 6 Shorts V20/V21
 
-**Решение: NO-GO / PRIVATE_REVIEW. Не заливать, не назначать дату, не ставить ready.** Полный приватный отчёт (18 КБ), 6×18 кадров, 28 графических примеров, 681 кадровый 1fps журнал, CSV с 21 дефектом и аудиометры переданы владельцу в локальном `M1lash_FULL_AUDIT_2026-11-01_PRIVATE.zip`; **кинокадры и видео в публичный GitHub не коммитить**. ZIP SHA256 `592cc7428c2be868db17814f55d04350f9ecf93fe22537daf0b3049117b16470`.
+**Решение: NO-GO / PRIVATE_REVIEW. Не заливать, не назначать дату, не ставить ready.** Полный приватный отчёт (18 КБ), 6×18 кадров, 28 графических примеров, 681 кадровый 1fps журнал, CSV с 21 дефектом и аудиометры переданы владельцу в локальном `M1lash_FULL_AUDIT_2026-11-01_PRIVATE.zip`; **кинокадры и видео в публичный GitHub не коммитить**. ZIP SHA256 `59cb0c26474ae7740eb9b70c8a3742b8180c263d4898c2e145aa0fd597cc662c`.
 
 ## Прочитанные обязательные документы
 - `AGENTS.md` (§0–14, выше всех остальных), `HANDOFF.md`, `CODEX_NOTICE.md`, `skills/m1lash-studio/SKILL.md` (§2а–2в), `skills/m1lash-studio/references/visuals-by-code.md` (инструкция Claude), `skills/m1lash-quality-improvement/SKILL.md`, `skills/vizavi-motion/references/quality-upgrades.md`, `tasks/2026-11-07_kino_chigur.md`, `reports/learnings.md`, предыдущие REV14/18/19 QA и локальные исходники `render_graphic_revision.py`, `new_graphics_ranges.json`.
