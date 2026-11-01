@@ -234,6 +234,7 @@ def main():
     ap.add_argument("--lang", default="ru")
     ap.add_argument("--request", default="", help="@ник для «По заявке»")
     ap.add_argument("--question", default="А ты бы как поступил?")
+    ap.add_argument("--allow-verified-visual-action", action="store_true", help="Opt-in frame+SFX verified dialogue-free physical action; not silence bypass")
     a = ap.parse_args()
     if not re.fullmatch(r"[a-z0-9_]{3,60}", a.id):
         sys.exit("id: только латиница/цифры/_")
@@ -275,6 +276,17 @@ def main():
     # Stop on quiet, dialogue-free movie passages BEFORE touching the approved outro.
     # Every interval is measured in integrated LUFS, with exact timestamped word coverage.
     dead = dead_windows(wav, words, length)
+    action_evidence = []
+    if dead and a.allow_verified_visual_action:
+        from qa.movie_action_gate import assess_action_window  # opt-in, conservative
+        still_dead = []
+        for x, y, level in dead:
+            proof = assess_action_window(clip, x, y, level)
+            action_evidence.append(proof)
+            if not proof["accepted"]:
+                still_dead.append((x, y, level))
+        dead = still_dead
+        print("VISUAL_ACTION_WINDOWS", json.dumps(action_evidence, ensure_ascii=False), flush=True)
     if dead:
         sys.exit("NO-GO: silent story windows without subtitles: " +
                  ", ".join(f"{x:.1f}-{y:.1f}s ({level:.1f} LUFS)" for x, y, level in dead))
@@ -343,6 +355,7 @@ def main():
         qa["assemble"] = json.loads(Path(str(out) + ".qa.json").read_text(encoding="utf-8"))
     except Exception:  # noqa: BLE001
         problems.append("нет отчёта сборщика концовки")
+    qa["action_window_evidence"] = action_evidence
     qa["problems"] = problems
     (qdir / "qa.json").write_text(json.dumps(qa, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps(qa, ensure_ascii=False))
