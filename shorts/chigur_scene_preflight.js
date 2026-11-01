@@ -113,6 +113,45 @@ for(const g of G){
  sphere(g,1.27,2.16,-1.1,.085,brass);
  const cable=new THREE.Mesh(new THREE.TorusGeometry(.58,.055,10,36,Math.PI*1.55),ebony);cable.position.set(-.15,-2.0,1.1);cable.rotation.y=.6;g.add(cable);
 }
+{
+ const g=G[3]; // hand refusal, glass of water and visible physical tension
+ const glassCup=cy(g,1.9,-1.14,-.75,.32,.66,glass);
+ cy(g,1.9,-.77,-.75,.34,.05,brass);
+ for(let j=0;j<4;j++){const finger=cy(g,-1.75+j*.20,-1.35,.75,.092,.85,mat(0x8c6149,.8));finger.rotation.z=-Math.PI/2;}
+ const cuff=box(g,-2.3,-1.29,.7,.65,.4,1.0,ebony);cuff.rotation.y=-.12;
+ for(let n=0;n<7;n++)box(g,0,-2.03,-1.6+n*.5,5.1,.007,.022,mat(0x704c38,.85));
+}
+{
+ const g=G[4]; // cash case: stacks of bills, locks, handle, hinge screws
+ for(let n=0;n<6;n++){
+   const x=-1+(n%3)*.95,z=-.47+Math.floor(n/3)*.78;
+   for(let j=0;j<4;j++)box(g,x,-.84+j*.017,z,.80,.015,.55,paper);
+   box(g,x,-.77,z,.83,.017,.58,mat(0x63876c,.75));
+   box(g,x,-.76,z,.12,.025,.58,brass);
+ }
+ for(let x of [-1.12,1.12]){
+   box(g,x,-1.34,1.11,.25,.16,.19,brass);bolt(g,x,-1.27,1.22,.045);
+   box(g,x,-1.13,-1.12,.12,.22,.13,brass);
+ }
+ const handle=new THREE.Mesh(new THREE.TorusGeometry(.49,.085,10,32,Math.PI),ebony);
+ handle.position.set(0,-1.27,1.28);handle.rotation.z=Math.PI;g.add(handle);
+ for(let j=0;j<10;j++){let x=-1.4+j*.31;box(g,x,-1.50,-1.2,.055,.2,.05,brass);}
+}
+{
+ const g=G[5]; // road noir: wheels, grille, asymmetric foggy street light
+ for(let x of [-.85,.85])for(let z of [-.64,.64]){
+   const wheel=cy(g,x,-1.88,z,.24,.13,ebony);wheel.rotation.z=Math.PI/2;
+   cy(g,x,-1.88,z,.10,.16,brass);
+ }
+ for(let j=-2;j<=2;j++)box(g,j*.54,-2.16,2.4,.8,.005,.045,paper);
+ box(g,-.15,-1.47,1.1,1.2,.14,.08,brass);
+ for(let j=0;j<8;j++)box(g,-.75+j*.21,-1.42,1.13,.055,.20,.06,ebony);
+ box(g,1.9,0,-3.3,.10,4.1,.12,ebony);
+ box(g,1.9,1.8,-3.3,2.1,.11,.12,ebony);
+ const bulb=sphere(g,.9,1.72,-3.15,.22,brass);
+ const street=new THREE.PointLight(0xffd9a1,1.2,9);street.position.set(.9,1.6,-2.9);g.add(street);
+ for(let j=-1;j<=1;j++)box(g,j*1.45,.4,-5.0,1.25,2.4,.25,wall);
+}
 window.frame=(T)=>{
  const i=Math.min(5,Math.floor(T/6)),t=T-i*6;
  G.forEach((g,j)=>g.visible=i===j);A[i](t);
