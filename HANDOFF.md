@@ -7,6 +7,9 @@
 
 ---
 
+## 01.11.2026 09:20 · Claude — концовка: исправлен пик звука
+- `media/outro/m1lash_outro_v1_vertical.mp4` и `…_horizontal.mp4`: true peak +0,7 → −1,8 dBTP, громкость −15,6 → −15,8 LUFS. Видео бит-в-бит то же, длительность 6,600 с, параметры потоков те же, full decode PASS, `check.py` 0 FAIL. Решение Дениса («давай»). Рецепт и замеры — `tools/outro/README.md`.
+
 ## 01.11.2026 09:00 · Claude — ffmpeg-skill, рубрика сцены, выжимка уроков
 - Поставлен `skills/ext/ffmpeg-skill` (kajisho5, MIT, офлайн; ссылки в `.claude/skills`, `.agents/skills`). Проверен на концовке: `check.py`, `look.py` работают.
 - Скил студии: §2а — обязательные `check.py` + контакт-лист `look.py` финала (JPG в `reports/research/qa/`), громкость с концовкой только измерять; §2б — рубрика выбора сцены кино-Shorts (≥ 60 из 100). AGENTS §12 — строка с решением Дениса.
