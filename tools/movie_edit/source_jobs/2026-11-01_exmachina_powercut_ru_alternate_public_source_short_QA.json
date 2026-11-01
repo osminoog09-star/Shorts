@@ -1,0 +1,12 @@
+{
+  "purpose": "Try alternate public-source Ex Machina 2014 Russian-dubbed exact blackout scene. Download only short scene excerpt, validate real audio, no full film, no publication or rights assumption.",
+  "sources": [
+    {
+      "id": "exmachina_powercut_ru_alt_short",
+      "url": "https://rutube.ru/video/e7a7443b1ed39a5bab81153150dcde0f/",
+      "start_seconds": 1800,
+      "end_seconds": 1920
+    }
+  ],
+  "rights_note": "Source is a publicly viewable page but rights to movie/dubbing not established. Keep private review only; do not publish."
+}
