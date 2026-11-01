@@ -5,6 +5,7 @@
 ВАЖНО: цифры собирает НЕ тебя: GitHub Actions уже делает это сам — `YouTube · daily analytics` (07:20 UTC: Analytics API, прогноз монетизации, автоидеи) и `YouTube · hourly pulse` (каждый час: живые счётчики в ветке pulse-data). Твоя работа — выводы и решения. Почасовой анализ не нужен: Analytics API отстаёт на 1–2 дня.
 
 Каждый запуск:
+00. **Приоритет (решение Дениса 01.11):** пока не закрыт `tasks/gpt_fix_after_claude_audit.md` — сначала он, по порядку пунктов.
 0. **Сначала `tasks/NOW.md`, раздел GPT/Codex:** есть незаконченный блок — продолжи с «Следующего шага», а потом уже остальное. Любую работу дольше ~15 мин веди там (правила в начале файла), обновляй и пушь после каждого шага.
 1. `git pull`. Прочитай AGENTS.md (§13), skills/m1lash-studio/SKILL.md, reports/ideas/README.md, reports/experiments.md, reports/learnings.md.
 2. Проверь, что сбор живой: в reports/youtube/latest.json `snapshot_date` = сегодня (или вчера). Если нет — открой последний запуск workflow «YouTube · daily analytics» (Actions). Если упал — перезапусти его (Run workflow) один раз. Если снова упал — запиши причину в HANDOFF.md и в идеях дня строкой summary «сбор упал: …». Секреты не трогай и не выводи.
