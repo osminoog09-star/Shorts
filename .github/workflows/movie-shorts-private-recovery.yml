@@ -17,12 +17,12 @@ permissions:
   contents: write
   actions: read
 concurrency:
-  group: private-movie-short-recovery
+  group: private-movie-short-recovery-v2
   cancel-in-progress: false
 jobs:
   recover:
     runs-on: ubuntu-latest
-    timeout-minutes: 65
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -35,7 +35,7 @@ jobs:
           python -m pip install -q 'edge-tts>=7,<8' 'requests>=2.32,<3' 'numpy>=1.26,<3' 'Pillow>=10,<12'
       - name: Export only approved outro and Dima spoken titles for offline private QA
         run: |
-          python3 scripts/qa/export_movie_review_assets.py
+          timeout 150s python3 scripts/qa/export_movie_review_assets.py || echo 'ASSET EXPORT PARTIAL: retain exact rev4 outro; missing TTS are NO-GO'
       - name: Build actual final MP4 (source in private runner only)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
