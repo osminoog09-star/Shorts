@@ -1,11 +1,11 @@
 {
   "status": "not_configured",
-  "scanned_at": null,
+  "scanned_at": "2026-11-01T15:55:45+00:00",
   "file_count": 0,
   "video_files": 0,
-  "required_film_count": 0,
+  "required_film_count": 8,
   "matched_film_count": 0,
   "missing": [],
   "items": [],
-  "message": "Укажи одну общедоступную папку Google Drive на сайте студии."
+  "message": "Папка ещё не задана. Старые 7 роликов повторно скачивать не нужно."
 }
