@@ -1,8 +1,10 @@
 {
-  "status": "reserved",
+  "status": "uploaded",
   "manifest": "publishing/queue/moto_dogs_remake_ru.json",
   "manifest_sha256": "453a6102081aad6bba269bcf4b71079be1bbd36780129bb17bdaf9a08c8b0ffb",
   "channel": "ru",
   "publish_at_utc": null,
-  "note": "A reserved attempt must NEVER be automatically retried."
+  "note": "A reserved attempt must NEVER be automatically retried.",
+  "video_id": "KIGLaVhTlhw",
+  "video_url": "https://youtu.be/KIGLaVhTlhw"
 }
