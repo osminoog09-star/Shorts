@@ -3,5 +3,5 @@
   "script": "shorts/chigur_three_storyboard.py",
   "output": "videos/chigur_three_storyboard_PRIVATE_REVIEW.mp4",
   "save_review_mp4": false,
-  "note": "V5 private storyboard plus exact ffmpeg-skill scripts export for compliance QA of six V32/V33 MP4s"
+  "note": "V6 pinned 3D engine preflight QA"
 }
