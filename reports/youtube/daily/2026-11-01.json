@@ -520,7 +520,7 @@
   "schema_version": 1,
   "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
   "snapshot_date": "2026-11-01",
-  "fetched_at": "2026-11-01T14:22:35.111996+00:00",
+  "fetched_at": "2026-11-01T15:26:25.083306+00:00",
   "inventory": [
     {
       "video_id": "CmOu0xXc0UI",
@@ -529,7 +529,7 @@
       "duration": "PT50S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1",
+        "viewCount": "2",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -571,7 +571,7 @@
       "duration": "PT1M4S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "240",
+        "viewCount": "241",
         "likeCount": "4",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -656,7 +656,7 @@
       "privacy": "public",
       "statistics": {
         "viewCount": "1431",
-        "likeCount": "14",
+        "likeCount": "15",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -893,7 +893,7 @@
       "duration": "PT59S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "5995",
+        "viewCount": "5961",
         "likeCount": "159",
         "dislikeCount": "0",
         "favoriteCount": "0",
