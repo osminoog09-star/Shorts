@@ -236,6 +236,7 @@ def main():
     ap.add_argument("--question", default="А ты бы как поступил?")
     ap.add_argument("--allow-verified-visual-action", action="store_true", help="Opt-in frame+SFX verified dialogue-free physical action; not silence bypass")
     ap.add_argument("--curated-action-titles", action="store_true", help="Editorial text instead of unreliable ASR transcript over action")
+    ap.add_argument("--editorial-profile", choices=["carla","whiplash","carson"], default="", help="Checked editorial overlays, NOT purported film quotations")
     a = ap.parse_args()
     if not re.fullmatch(r"[a-z0-9_]{3,60}", a.id):
         sys.exit("id: только латиница/цифры/_")
@@ -273,7 +274,28 @@ def main():
         sys.exit("NO-GO: не русский звук разрешён только для заявок зрителей (AGENTS §8)")
     top = f"ПО ЗАЯВКЕ {a.request.upper()}" if a.request else None
     subs = work / "s.ass"
-    if a.curated_action_titles:
+    if a.editorial_profile:
+        profiles = {
+            "carla": [(0.3, 3.2, "ОНА НЕ ПРИМЕТ ИГРУ"),
+                      (12.5, 15.6, "ВЫБОР НАВЯЗАН"),
+                      (24.0, 28.6, "ЕЁ ОТВЕТ — НЕТ")],
+            "whiplash": [(0.2, 3.2, "ОН НЕ ТЕРПИТ ОШИБОК"),
+                         (11.0, 14.0, "ПОЧЕМУ ВСЕ МОЛЧАТ?"),
+                         (26.0, 29.0, "ЭТО УЖЕ НЕ УРОК")],
+            "carson": [(0.2, 3.0, "СЛИШКОМ ПОЗДНО ДЛЯ СДЕЛКИ"),
+                       (14.5, 17.6, "ОН ЗНАЕТ ВСЁ"),
+                       (26.0, 29.2, "ВЫХОДА НЕТ")],
+        }
+        if norm(a.film) in norm(a.title):
+            sys.exit("NO-GO: film name leaked in hidden hook")
+        n_sub = ass([], subs)
+        with subs.open("a", encoding="utf-8") as fh:
+            for from_s, to_s, caption in profiles[a.editorial_profile]:
+                if from_s >= length or to_s > length:
+                    sys.exit("NO-GO: editorial caption exceeds body")
+                fh.write(f"Dialogue: 0,{ass_time(from_s)},{ass_time(to_s)},Sub,,0,0,0,,{caption}\\n")
+                n_sub += 1
+    elif a.curated_action_titles:
         if not a.allow_verified_visual_action:
             sys.exit("NO-GO: curated action titles require independently verified moving action")
         # Deliberately NOT quotations from actors. In the waves/ship action
@@ -371,7 +393,8 @@ def main():
     except Exception:  # noqa: BLE001
         problems.append("нет отчёта сборщика концовки")
     qa["action_window_evidence"] = action_evidence
-    qa["editorial_action_titles"] = bool(a.curated_action_titles)
+    qa["editorial_action_titles"] = bool(a.curated_action_titles or a.editorial_profile)
+    qa["editorial_profile"] = a.editorial_profile or ("waves" if a.curated_action_titles else "")
     qa["problems"] = problems
     (qdir / "qa.json").write_text(json.dumps(qa, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps(qa, ensure_ascii=False))
