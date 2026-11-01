@@ -32,4 +32,4 @@ with sync_playwright() as pw:
 out=ROOT/'videos/chigur_v7_six_stills_REVIEW_ONLY.mp4'
 out.parent.mkdir(parents=True,exist_ok=True)
 cmd=['ffmpeg','-y','-v','error','-framerate','0.25','-i',str(ART/'chigur_v7_scene_%02d.png')]
-cmd.extend(['-t','24','-vf','fps=30'])
+cmd.extend(['-f','lavfi','-i','anullsrc=r=48000:cl=stereo'])
