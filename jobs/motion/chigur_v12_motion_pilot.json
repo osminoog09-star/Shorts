@@ -3,5 +3,6 @@
   "script": "shorts/chigur_v12_motion_pilot.py",
   "output": "videos/chigur_v12_motion_six_stills_REVIEW_ONLY.mp4",
   "save_review_mp4": false,
-  "qa_run_marker": "reports/research/chigur_v12_pilot_run.json"
+  "qa_run_marker": "reports/research/chigur_v12_pilot_run.json",
+  "render_revision": 2
 }
