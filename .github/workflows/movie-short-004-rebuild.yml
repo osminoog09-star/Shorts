@@ -1,0 +1,94 @@
+name: M1lash Shorts · restore approved 004 private QA
+on:
+  push:
+    branches: [main]
+    paths: ['jobs/shorts-rebuild/004_ava.json']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  rebuild_004:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Audio/video QA dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip install -q 'edge-tts>=7,<8' 'numpy>=1.26,<3' 'Pillow>=10,<12' 'faster-whisper>=1,<2' 'requests>=2.32,<3'
+      - name: Recover approved RU source, no repository movie bytes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,zipfile,requests,pathlib
+          aid=13070096727
+          h={"Authorization":"Bearer "+os.environ["GH_TOKEN"],"Accept":"application/vnd.github+json"}
+          url="https://api.github.com/repos/osminoog09-star/Shorts/actions/artifacts/%s/zip"%aid
+          p=pathlib.Path(os.environ["RUNNER_TEMP"]); archive=p/"ava_source.zip"
+          with requests.get(url,headers=h,stream=True,timeout=100,allow_redirects=True) as r:
+              r.raise_for_status()
+              with archive.open("wb") as out:
+                  size=0
+                  for c in r.iter_content(1048576):
+                      size+=len(c)
+                      if size>70000000:raise ValueError("Source ZIP exceeds 70MB")
+                      out.write(c)
+          with zipfile.ZipFile(archive) as z:
+              key='originals/machina_ava_ru_blackout_ok_candidate.mp4'
+              if z.getinfo(key).file_size>60000000:raise ValueError("Source exceeds 60MB")
+              with z.open(key) as src,(p/'source_ru_004.mp4').open('wb') as dst:
+                  import shutil;shutil.copyfileobj(src,dst)
+          print("EXISTING RU SOURCE RECOVERED", (p/'source_ru_004.mp4').stat().st_size)
+          PY
+      - name: Synthesize same approved Dmitry voice for last title
+        run: |
+          python -m edge_tts --voice ru-RU-DmitryNeural --rate '+8%' --text 'Это был фильм… Из машины.' --write-media "$RUNNER_TEMP/004_title_dima.mp3"
+          test -s "$RUNNER_TEMP/004_title_dima.mp3"
+      - name: Rebuild 004 V47 from V46 approved script, assembler and official look/check
+        run: |
+          mkdir -p "$RUNNER_TEMP/004"
+          python scripts/qa/rebuild_004_clean_ru_safe_v46.py "$RUNNER_TEMP/source_ru_004.mp4" --out-dir "$RUNNER_TEMP/004" --title "$RUNNER_TEMP/004_title_dima.mp3"
+          ffmpeg -v error -xerror -i "$RUNNER_TEMP/004/004_V46_OFFICIAL_PRIVATE.mp4" -f null -
+          cp "$RUNNER_TEMP/004/004_V46_OFFICIAL_PRIVATE.mp4" "$RUNNER_TEMP/004/004_V47_REBUILT_PRIVATE.mp4"
+          python skills/ext/ffmpeg-skill/scripts/check.py "$RUNNER_TEMP/004/004_V47_REBUILT_PRIVATE.mp4" --platform shorts --json > "$RUNNER_TEMP/004/004_check.json"
+          python skills/ext/ffmpeg-skill/scripts/look.py "$RUNNER_TEMP/004/004_V47_REBUILT_PRIVATE.mp4" --tiles 3x2 --safe shorts -o "$RUNNER_TEMP/004/004_V47_final_look.jpg"
+      - name: Independent RU language and final title probe (not editor's listening)
+        run: |
+          python - <<'PY'
+          import os,json,subprocess,pathlib
+          from faster_whisper import WhisperModel
+          d=pathlib.Path(os.environ["RUNNER_TEMP"])/"004"
+          f=d/"004_V47_REBUILT_PRIVATE.mp4"
+          duration=float(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','csv=p=0',str(f)]))
+          model=WhisperModel('small',device='cpu',compute_type='int8')
+          data=[]
+          for start,length,kind in [(10,10,'actor'),(22,11,'actor'),(duration-3.5,3.3,'title_dima')]:
+              wav=d/(kind+str(int(start))+'.wav')
+              subprocess.run(['ffmpeg','-v','error','-y','-ss',str(start),'-t',str(length),'-i',str(f),'-vn','-ac','1','-ar','16000',str(wav)],check=True)
+              segments,info=model.transcribe(str(wav),beam_size=2,vad_filter=True,condition_on_previous_text=False)
+              arr=list(segments);trans=' '.join(s.text for s in arr)
+              data.append({'stage':kind,'start_s':round(start,3),'language':info.language,'probability':round(info.language_probability,3),
+               'segments':len(arr),'speech_seconds':round(sum(max(0,s.end-s.start) for s in arr),2),
+               'title_words_detected':('машин' in trans.casefold()) if kind=='title_dima' else None})
+          result={'id':'004','source_artifact':13070096727,'duration_s':duration,'speech_probe':data,
+                  'status':'REVIEW','note':'ASR is supplementary; visual editor QA and final voice still require full review'}
+          (d/'004_ru_qa.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps(result,ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: movie-004-V47-private-QA-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/004/004_V47_REBUILT_PRIVATE.mp4
+            ${{ runner.temp }}/004/004_V46_OFFICIAL_PRIVATE.mp4.qa.json
+            ${{ runner.temp }}/004/004_V47_final_look.jpg
+            ${{ runner.temp }}/004/004_check.json
+            ${{ runner.temp }}/004/004_ru_qa.json
+          retention-days: 14
+          if-no-files-found: ignore
