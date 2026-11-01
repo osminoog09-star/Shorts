@@ -15,12 +15,12 @@ function clips(){
       ' · нужно фильмов '+num(scan.required_film_count)+
       ' · найдено '+num(scan.matched_film_count)
     : scan.status==="error"?'Ошибка сканирования: '+esc(scan.message||"доступ закрыт")
-    : 'Папка ещё не подключена. Уже собранные 7 видео повторно скачивать не нужно.';
+    : folder.url?'Папка уже создана в твоём Drive, но пока закрыта. В Drive включи «Все, у кого есть ссылка» → «Читатель», затем нажми кнопку ниже. Семь старых фильмов повторно не нужны.':'Папка ещё не подключена. Уже собранные 7 видео повторно скачивать не нужно.';
   let html='<section class="card reveal"><h2>Одна папка Google Drive</h2>'+
     '<p class="muted">Для новых кино-сцен. Фильмы целиком, русская актёрская дорожка. Доступ: «Все, у кого есть ссылка». Не загружай сюда исходники для уже собранных 7 роликов повторно.</p>'+
     '<label class="muted" for="drive-folder-url">Папка Google Drive</label>'+
     '<input class="t" id="drive-folder-url" type="url" inputmode="url" autocomplete="off" placeholder="https://drive.google.com/drive/folders/…" value="'+esc(folder.url||"")+'">'+
-    '<div class="row"><button class="btn pri" data-folder-save>Сохранить папку</button>'+
+    '<div class="row"><button class="btn pri" data-folder-save>'+(folder.url&&!active?'Включить проверку папки':'Сохранить папку')+'</button>'+
     '<button class="btn" data-folder-scan '+(!active?'disabled':'')+'>Проверить папку</button></div>'+
     '<p class="muted">'+stat+'</p>'+
     ((scan.missing||[]).length?'<p class="muted">Не хватает: '+(scan.missing||[]).map(esc).join(' · ')+'</p>':'')+
