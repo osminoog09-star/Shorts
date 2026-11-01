@@ -152,6 +152,48 @@ for(const g of G){
  const street=new THREE.PointLight(0xffd9a1,1.2,9);street.position.set(.9,1.6,-2.9);g.add(street);
  for(let j=-1;j<=1;j++)box(g,j*1.45,.4,-5.0,1.25,2.4,.25,wall);
 }
+// Premium macro blocking: physical coin toss by an articulated glove.
+{
+ const g=G[0],coin=g.children.find(o=>o.type==='Group');
+ const leather=new THREE.MeshPhysicalMaterial({color:0x3d2820,roughness:.62,metalness:.08,clearcoat:.08});
+ const cuff=new THREE.MeshStandardMaterial({color:0x1b2938,roughness:.86});
+ const glove=new THREE.Group();g.add(glove);glove.position.set(2.0,-.4,.75);
+ box(glove,0,0,0,.95,.45,.82,leather);
+ box(glove,.58,-.03,0,.58,.5,.9,cuff);
+ for(let n=0;n<4;n++){
+  const finger=cy(glove,-.36-n*.06,-.15,.14+n*.18,.115,.67,leather);finger.rotation.z=Math.PI/2.55;
+  sphere(glove,-.67,-.27,.14+n*.18,.11,leather);
+ }
+ const thumb=cy(glove,-.34,.24,.38,.14,.56,leather);thumb.rotation.z=-.9;
+ const coinRing=coin.children.find(o=>o.geometry&&o.geometry.type==='TorusGeometry');
+ // Bring out engraved radial edge and central bas-relief facing the camera.
+ const emblem=new THREE.Group();emblem.position.y=-.095;coin.add(emblem);
+ for(let n=0;n<10;n++){
+  const a=n*Math.PI/5;
+  const ray=box(emblem,Math.sin(a)*.34,0,Math.cos(a)*.34,.065,.023,.24,brass);
+  ray.rotation.y=a;
+ }
+ cy(emblem,0,-.01,0,.12,.035,ebony);
+ for(let n=0;n<3;n++){
+  const circle=new THREE.Mesh(new THREE.TorusGeometry(.22+n*.14,.022,8,60),brass);
+  circle.rotation.x=Math.PI/2;circle.position.y=-.012;emblem.add(circle);
+ }
+ const shadow=cy(g,0,-2.07,.35,.84,.004,ebony);shadow.material.transparent=true;shadow.material.opacity=.15;
+ A[0]=t=>{
+  const p=Math.max(0,Math.min(1,t/4.3));
+  const y=.15-2.04*p+.26*Math.sin(Math.PI*p);
+  coin.position.set(.8-1.1*p,y,.35);
+  coin.rotation.x=Math.PI/2-.3*Math.sin(t*1.4);
+  coin.rotation.y=t*6.1;coin.rotation.z=.08*Math.sin(t*2.8);
+  glove.position.x=2.1+.5*p;
+  glove.rotation.y=-.08-.12*p;
+  shadow.scale.setScalar(.35+.58*p);
+ };
+ // A textured practical background instead of studio void.
+ box(g,0,.9,-4,7.2,6,.19,mat(0x1d2530,.95));
+ for(let j=0;j<7;j++)box(g,-3.3+j*1.1,1.0,-3.89,.055,5.0,.08,mat(0x313843,.9));
+ const warm=new THREE.PointLight(0xffb962,1.15,8);warm.position.set(-2.3,2.1,.9);g.add(warm);
+}
 window.frame=(T)=>{
  const i=Math.min(5,Math.floor(T/6)),t=T-i*6;
  G.forEach((g,j)=>g.visible=i===j);A[i](t);
