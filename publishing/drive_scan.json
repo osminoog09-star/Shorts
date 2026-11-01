@@ -1,111 +1,11 @@
 {
-  "status": "ok",
+  "status": "not_configured",
+  "scanned_at": "2026-11-01T16:04:57+00:00",
   "file_count": 0,
   "video_files": 0,
   "required_film_count": 8,
   "matched_film_count": 0,
-  "missing": [
-    "Старикам тут не место (2007)",
-    "Одержимость (2014)",
-    "Из машины (2014)",
-    "Стрингер (2014)",
-    "Интерстеллар (2014)",
-    "Бэтмен (2022)",
-    "Оппенгеймер (2023)",
-    "Меню (2022)"
-  ],
-  "items": [
-    {
-      "id": "w45-chigur-coin",
-      "film": "Старикам тут не место (2007)",
-      "status": "нет фильма в папке",
-      "filename": null,
-      "file_url": null,
-      "candidates": [],
-      "scene_start": null
-    },
-    {
-      "id": "w45-chigur-carla",
-      "film": "Старикам тут не место (2007)",
-      "status": "нет фильма в папке",
-      "filename": null,
-      "file_url": null,
-      "candidates": [],
-      "scene_start": null
-    },
-    {
-      "id": "w45-whiplash-tempo",
-      "film": "Одержимость (2014)",
-      "status": "нет фильма в папке",
-      "filename": null,
-      "file_url": null,
-      "candidates": [],
-      "scene_start": null
-    },
-    {
-      "id": "w45-whiplash-finale",
-      "film": "Одержимость (2014)",
-      "status": "нет фильма в папке",
-      "filename": null,
-      "file_url": null,
-      "candidates": [],
-      "scene_start": null
-    },
-    {
-      "id": "w45-ex-machina-reveal",
-      "film": "Из машины (2014)",
-      "status": "нет фильма в папке",
-      "filename": null,
-      "file_url": null,
-      "candidates": [],
-      "scene_start": null
-    },
-    {
-      "id": "w45-nightcrawler-job",
-      "film": "Стрингер (2014)",
-      "status": "нет фильма в папке",
-      "filename": null,
-      "file_url": null,
-      "candidates": [],
-      "scene_start": null
-    },
-    {
-      "id": "w45-interstellar-dock",
-      "film": "Интерстеллар (2014)",
-      "status": "нет фильма в папке",
-      "filename": null,
-      "file_url": null,
-      "candidates": [],
-      "scene_start": null
-    },
-    {
-      "id": "w45-batman-riddler",
-      "film": "Бэтмен (2022)",
-      "status": "нет фильма в папке",
-      "filename": null,
-      "file_url": null,
-      "candidates": [],
-      "scene_start": null
-    },
-    {
-      "id": "w45-oppenheimer-trinity",
-      "film": "Оппенгеймер (2023)",
-      "status": "нет фильма в папке",
-      "filename": null,
-      "file_url": null,
-      "candidates": [],
-      "scene_start": null
-    },
-    {
-      "id": "w45-menu-burger",
-      "film": "Меню (2022)",
-      "status": "нет фильма в папке",
-      "filename": null,
-      "file_url": null,
-      "candidates": [],
-      "scene_start": null
-    }
-  ],
-  "scanned_at": "2026-11-01T16:02:19+00:00",
-  "message": "Только поиск файлов. ASR/монтаж не запускались."
+  "missing": [],
+  "items": [],
+  "message": "Папка ещё не задана. Старые 7 роликов повторно скачивать не нужно."
 }
