@@ -11,6 +11,11 @@
   "method": "scripts/movie_short.py",
   "max_parallel": 5,
   "publishing": "disabled",
-  "revision": 3,
-  "note": "QA refined exact silent-gap edits for 001/002/003/005; 006 retains ship climax with conservative frame motion/SFX gate"
+  "revision": 4,
+  "note": "editorial captions only, previous 004/005 private MP4 preserved, 001 awaits RU speech window source audit",
+  "selected": [
+    "002",
+    "003",
+    "006"
+  ]
 }
