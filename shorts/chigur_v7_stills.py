@@ -38,3 +38,7 @@ cmd.extend(['-r','30','-c:v','libx264','-preset','veryfast','-crf','22'])
 cmd.extend(['-pix_fmt','yuv420p'])
 cmd.extend(['-c:a','aac','-b:a','96k',str(out)])
 subprocess.check_call(cmd)
+
+# Preserve exact approved assembler source for offline private remaster QA.
+from shutil import copy2
+copy2(ROOT/'tools/assemble_with_outro.py',ART/'assemble_with_outro.py')
