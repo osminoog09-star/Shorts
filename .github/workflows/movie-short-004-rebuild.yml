@@ -102,7 +102,7 @@ jobs:
           python - <<'PY'
           import os,json,pathlib
           p=pathlib.Path('reports/research/004_V47_REBUILD_RUN.json')
-          p.write_text(json.dumps({'run_id':os.environ['GITHUB_RUN_ID'],'job_status':os.environ['STATUS'],'artifact_name':'movie-004-V47-private-QA-'+os.environ['GITHUB_RUN_ID']},indent=2)+'\\n')
+          p.write_text(json.dumps({'run_id':os.environ['GITHUB_RUN_ID'],'job_status':os.environ['STATUS'],'artifact_name':'movie-004-V47-private-QA-'+os.environ['GITHUB_RUN_ID']},indent=2))
           PY
           git config user.name 'm1lash-shorts-qa[bot]'
           git config user.email 'm1lash-shorts-qa@users.noreply.github.com'
