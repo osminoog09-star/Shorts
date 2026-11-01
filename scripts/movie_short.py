@@ -24,6 +24,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+from qa.movie_short_audio_guard import dead_windows  # noqa: E402
 W, H, FPS = 1080, 1920, 30
 FONT = "DejaVu Sans"
 
@@ -218,28 +219,6 @@ async def outro_voice(text, out_mp3):
             await asyncio.sleep(5 + k * 5)
 
 
-def card(png):
-    """Фирменная карточка M1lash: логотип + «Подпишись»."""
-    from PIL import Image, ImageDraw, ImageFont  # noqa: PLC0415
-    img = Image.new("RGB", (W, H), (14, 12, 22))
-    d = ImageDraw.Draw(img)
-    for y in range(H):  # мягкий градиент
-        k = y / H
-        d.line([(0, y), (W, y)], fill=(int(14 + 30 * k), int(12 + 4 * k), int(22 + 34 * k)))
-    logo = Image.open(ROOT / "site/studio/i/wordmark.png").convert("RGBA")
-    lw = 820
-    logo = logo.resize((lw, int(logo.height * lw / logo.width)))
-    img.paste(logo, ((W - lw) // 2, 640), logo)
-    try:
-        f = ImageFont.truetype("DejaVuSans-Bold.ttf", 78)
-    except OSError:
-        f = ImageFont.load_default()
-    btn = (W // 2 - 330, 1000, W // 2 + 330, 1150)
-    d.rounded_rectangle(btn, radius=75, fill=(240, 71, 154))
-    d.text((W // 2, 1075), "ПОДПИШИСЬ", font=f, fill="white", anchor="mm")
-    img.save(png)
-
-
 def norm(s):
     return "".join(c for c in unicodedata.normalize("NFKC", s).casefold().replace("ё", "е") if c.isalnum())
 
@@ -293,10 +272,18 @@ def main():
     top = f"ПО ЗАЯВКЕ {a.request.upper()}" if a.request else None
     subs = work / "s.ass"
     n_sub = ass(words, subs, top)
+    # Stop on quiet, dialogue-free movie passages BEFORE touching the approved outro.
+    # Every interval is measured in integrated LUFS, with exact timestamped word coverage.
+    dead = dead_windows(wav, words, length)
+    if dead:
+        sys.exit("NO-GO: silent story windows without subtitles: " +
+                 ", ".join(f"{x:.1f}-{y:.1f}s ({level:.1f} LUFS)" for x, y, level in dead))
     body = work / "body.mp4"
-    ff("-i", str(vert), "-i", str(clip), "-map", "0:v", "-map", "1:a", "-vf", f"ass={subs}",
+    ff("-i", str(vert), "-i", str(clip), "-map", "0:v", "-map", "1:a",
+       "-vf", f"fps={FPS},setsar=1,ass={subs}", "-r", str(FPS),
        "-c:v", "libx264", "-crf", "18", "-preset", "medium", "-pix_fmt", "yuv420p",
-       "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-shortest", str(body))
+       "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k",
+       "-ac", "2", "-ar", "48000", "-shortest", str(body))
     # финал: стандартная концовка M1lash → её последний кадр держится, Дима называет фильм
     last = work / "last.png"
     ff("-sseof", "-0.05", "-i", str(std), "-frames:v", "1", "-update", "1", str(last))
@@ -304,20 +291,13 @@ def main():
     ff("-loop", "1", "-t", f"{vd + 0.4:.2f}", "-i", str(last), "-i", str(vo), "-filter_complex",
        f"[0]scale={W}:{H},fps={FPS},setsar=1[v];[1]loudnorm=I=-16:TP=-1.5,apad[au]", "-map", "[v]", "-map", "[au]",
        "-t", f"{vd + 0.4:.2f}", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", str(tail))
-    stdn = work / "std.mp4"
-    ff("-i", str(std), "-vf", f"scale={W}:{H},fps={FPS},setsar=1", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p",
-       "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2", str(stdn))
-    outro = work / "outro.mp4"
-    (work / "o.txt").write_text(f"file '{stdn}'\nfile '{tail}'\n")
-    ff("-f", "concat", "-safe", "0", "-i", str(work / "o.txt"), "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p",
-       "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2", str(outro))
-    lst = work / "l.txt"
-    bodyn = work / "body2.mp4"
-    ff("-i", str(body), "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2", str(bodyn))
-    lst.write_text(f"file '{bodyn}'\nfile '{outro}'\n")
+    # Preserve the actual approved outro stream. Re-encoding, remuxed effects,
+    # normalizing, overlays or music on std are prohibited (AGENTS §4).
+    lst = work / "whole.txt"
     out = ROOT / "videos" / f"{a.id}.mp4"
-    ff("-f", "concat", "-safe", "0", "-i", str(lst), "-c:v", "libx264", "-crf", "19", "-preset", "medium", "-pix_fmt", "yuv420p",
-       "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(out))
+    lst.write_text("".join(f"file '{p.resolve()}'\\n" for p in (body, std, tail)), encoding="utf-8")
+    ff("-f", "concat", "-safe", "0", "-i", str(lst), "-map", "0:v:0", "-map", "0:a:0",
+       "-c", "copy", "-movflags", "+faststart", str(out))
     # ---- проверка §12 ----
     err = subprocess.run(["ffmpeg", "-v", "error", "-i", str(out), "-f", "null", "-"], capture_output=True, text=True).stderr.strip()
     probe = json.loads(sh("ffprobe", "-v", "error", "-show_streams", "-show_format", "-of", "json", str(out), capture=True))
@@ -342,6 +322,23 @@ def main():
         problems.append("речь не распознана (субтитров почти нет)")
     if qa["size_mb"] > 95:
         problems.append("файл > 95 МБ")
+    # The studio's mandatory ffmpeg-skill gates, run on the FINAL MP4.
+    # A contact sheet must still be examined visually by the reviewer.
+    skill = ROOT / "skills/ext/ffmpeg-skill/scripts"
+    check = subprocess.run([sys.executable, str(skill / "check.py"), str(out),
+                            "--platform", "shorts"], capture_output=True, text=True)
+    sheet = ROOT / "reports/research/qa" / f"{a.id}_look.jpg"
+    sheet.parent.mkdir(parents=True, exist_ok=True)
+    look = subprocess.run([sys.executable, str(skill / "look.py"), str(out),
+                           "--tiles", "3x2", "-o", str(sheet)], capture_output=True, text=True)
+    qa["check_py_exit"] = check.returncode
+    qa["check_py_log"] = (check.stdout + check.stderr)[-5000:]
+    qa["look_py_exit"] = look.returncode
+    qa["look_contact_sheet"] = str(sheet.relative_to(ROOT)) if sheet.exists() else None
+    if check.returncode:
+        problems.append("ffmpeg-skill check.py FAIL")
+    if look.returncode or not sheet.is_file():
+        problems.append("ffmpeg-skill look.py FAIL")
     qa["problems"] = problems
     (qdir / "qa.json").write_text(json.dumps(qa, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps(qa, ensure_ascii=False))
@@ -369,7 +366,7 @@ def main():
         "mp4": f"videos/{a.id}.mp4", "publish_md": None, "title": title[:100],
         "note": f"Собрано автоматически из записи Дениса. Закреп: {('@' + a.request.lstrip('@') + ', сделали по твоей заявке! ') if a.request else ''}{a.question}"}]
     qp.write_text(json.dumps(q, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("READY", out, sha)
+    print("PRIVATE_REVIEW_CANDIDATE", out, sha)
 
 
 if __name__ == "__main__":
