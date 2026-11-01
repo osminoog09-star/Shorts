@@ -1,0 +1,54 @@
+name: M1lash Ex Machina actual RU dialogue on extracted scene (QA only)
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/m1lash-exmachina-ok-ru-audio-exact-scene-qa.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  actual-speech:
+    runs-on: ubuntu-latest
+    timeout-minutes: 19
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: movie-edit-draft
+          run-id: '41272309173'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: source
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Install ffmpeg and Whisper ASR
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          python -m pip install -q faster-whisper
+      - name: Detect the ACTUAL language and speech of Ava Caleb powercut source
+        run: |
+          python - <<'PY'
+          import json, pathlib, subprocess
+          from faster_whisper import WhisperModel
+          p=next(pathlib.Path('source').rglob('machina_ava_ru_blackout_ok_candidate.mp4'))
+          d=float(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','csv=p=0',str(p)]))
+          print('SOURCE',str(p),'actual_seconds',d,flush=True)
+          model=WhisperModel('small',device='cpu',compute_type='int8')
+          observations=[]
+          for start,duration in [(8,24),(37,30),(69,36)]:
+            b=subprocess.check_output(['ffmpeg','-v','error','-ss',str(start),'-t',str(duration),'-i',str(p),'-f','f32le','-ar','16000','-ac','1','-'])
+            import numpy as np
+            audio=np.frombuffer(b,dtype='<f4')
+            segments,info=model.transcribe(audio,beam_size=5,language=None,vad_filter=True)
+            phrases=[{'start':round(x.start+start,1),'end':round(x.end+start,1),'text':x.text.strip()} for x in segments]
+            obs={'start':start,'duration':duration,'detected_language':info.language,'prob':round(info.language_probability,5),'phrases':phrases}
+            observations.append(obs);print(json.dumps(obs,ensure_ascii=False),flush=True)
+          pathlib.Path('reports-qa').mkdir(exist_ok=True)
+          pathlib.Path('reports-qa/exmachina_ava_ru_actual_speech.json').write_text(json.dumps({'source_duration':d,'observations':observations},ensure_ascii=False,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: exmachina-ava-ru-speech-QA
+          path: reports-qa/*.json
+          retention-days: 7
