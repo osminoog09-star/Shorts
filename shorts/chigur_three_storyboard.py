@@ -31,6 +31,13 @@ with sync_playwright() as playwright:
         dest=ART/f'chigur_scene_{i+1:02d}.png'
         dest.write_bytes(base64.b64decode(shot.split(',',1)[1]))
         print('3D STILL',i+1,dest.stat().st_size,flush=True)
+    # Six-second deterministic camera/coin action pilot, after six stills.
+    seq=ART/"chigur_pilot_frames"
+    seq.mkdir(exist_ok=True)
+    for f in range(180):
+        shot=page.evaluate("(t)=>window.frame(t)",f/30.0)
+        (seq/f"f{f:04d}.png").write_bytes(base64.b64decode(shot.split(",",1)[1]))
+        if f%60==0:print("PILOT FRAME",f,flush=True)
     browser.close()
 # QA carrier only: six 6-second holds, not the real animated film.
 # Render the actual moving pilot only after human inspection of these six PNGs.
