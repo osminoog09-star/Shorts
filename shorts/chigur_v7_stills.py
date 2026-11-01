@@ -42,3 +42,4 @@ subprocess.check_call(cmd)
 # Preserve exact approved assembler source for offline private remaster QA.
 from shutil import copy2
 copy2(ROOT/'tools/assemble_with_outro.py',ART/'assemble_with_outro.py')
+copy2(LIB,ART/'three_r128.min.js') # QA-only asset for local code-based V10 render, not distributed video
