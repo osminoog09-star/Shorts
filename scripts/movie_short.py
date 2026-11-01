@@ -348,6 +348,14 @@ def main():
         problems.append("ffmpeg-skill check.py FAIL")
     if look.returncode or not sheet.is_file():
         problems.append("ffmpeg-skill look.py FAIL")
+    # Mandatory: AAC packet SHA equality does not preserve MP4 skip_samples
+    # after compressed concat. Reject a wrongly decoded approved outro.
+    priming = subprocess.run([sys.executable,
+        str(ROOT / "scripts/qa/verify_outro_aac_priming.py"), str(std), str(out)],
+        capture_output=True, text=True)
+    qa["outro_aac_priming"] = priming.stdout.strip()
+    if priming.returncode:
+        problems.append("утеряна AAC priming metadata утверждённой концовки")
     qa["problems"] = problems
     (qdir / "qa.json").write_text(json.dumps(qa, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps(qa, ensure_ascii=False))
