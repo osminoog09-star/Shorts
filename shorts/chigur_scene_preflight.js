@@ -35,3 +35,9 @@ for(let i=0;i<6;i++){
   sphere(g,1,-.4,1.17,.12,gold);
   A.push(t=>{needle.rotation.z=t*3});
  }
+ else if(i===3){
+  box(g,0,-1.6,0,5.1,.22,3.3,wood);
+  const coin=new THREE.Group();g.add(coin);coin.position.set(-.8,-1.34,.5);
+  coin.add(new THREE.Mesh(new THREE.CylinderGeometry(.55,.55,.09,48),gold));
+  A.push(t=>{coin.position.x=-.8+1.8*Math.min(1,t/4);coin.rotation.y=t*.8});
+ }
