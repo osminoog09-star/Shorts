@@ -295,6 +295,7 @@ def main():
         "weekly": {"name": weekly[-1].stem if weekly else None, "text": weekly_txt},
         "ideas": ideas, "events": events, "app": app, "ypp": ypp, "best_times": load("publishing/best_times.json"), "taken": taken, "live": live, "comments": comments, "comments_status": (pulse.get("status") or {}).get("comments"), "experiments": exp,
         "playlists": {k: v.get("id") for k, v in playlists.items() if isinstance(v, dict)},
+        "clip_requests": load("publishing/clip_requests.json", {"items": []}),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
