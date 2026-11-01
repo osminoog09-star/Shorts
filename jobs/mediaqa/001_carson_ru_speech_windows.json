@@ -1,0 +1,17 @@
+{
+  "id": "001",
+  "artifact_id": 13034313090,
+  "media_zip_path": "originals/chigur_carson_ru.mp4",
+  "windows": [
+    15,
+    30,
+    45,
+    60,
+    75,
+    90,
+    105,
+    120,
+    145
+  ],
+  "report": "reports/research/2026-11-01_001_CARSON_SOURCE_RU_ASR.json"
+}
