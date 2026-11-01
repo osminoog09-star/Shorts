@@ -18,6 +18,10 @@ jobs:
         with: { python-version: '3.11' }
       - name: Install public-folder scanner
         run: pip install -q 'gdown>=6.1,<7'
+      - name: Unit tests (URL allowlist, titles and scene gates)
+        run: |
+          python -m py_compile scripts/drive_folder_intake.py
+          python -m unittest discover -s scripts/qa -p 'test_drive_folder_intake.py'
       - name: Scan names only, NEVER download films
         run: python scripts/drive_folder_intake.py
       - name: Commit scan summary
