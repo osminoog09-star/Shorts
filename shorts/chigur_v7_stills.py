@@ -20,3 +20,12 @@ with sync_playwright() as pw:
     page.add_script_tag(path=str(LIB))
     page.add_script_tag(path=str(src))
     page.wait_for_function('window.ready===true',timeout=30000)
+    for i in range(6):
+        png=page.evaluate('(t)=>window.frame(t)',i*6+2)
+        target=ART/f'chigur_v7_scene_{i+1:02d}.png'
+        target.write_bytes(base64.b64decode(png.split(',',1)[1]))
+        print('STILL',i+1,target.stat().st_size,flush=True)
+        if target.stat().st_size<2000:
+            raise RuntimeError('empty scene')
+    browser.close()
+    if errors:raise RuntimeError('browser errors: '+';'.join(errors))
