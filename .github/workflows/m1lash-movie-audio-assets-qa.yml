@@ -33,3 +33,4 @@ jobs:
             media/tts/m1lash_standard_reveals_20261031/machina.mp3
             media/tts/m1lash_standard_reveals_20261031/nightcrawler.mp3
           retention-days: 2
+# refreshed after Claude true-peak fix 2026-11-01
