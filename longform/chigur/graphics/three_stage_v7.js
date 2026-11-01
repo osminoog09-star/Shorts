@@ -1,11 +1,11 @@
 // M1lash Chigur V7: purpose-built 3D prop storyboard, no PIL, no movie media.
 const W=960,H=540,R=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true,canvas:document.getElementById("scene")});
 R.setSize(W,H,false);R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;
-R.outputEncoding=THREE.sRGBEncoding;R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=.83;
+R.outputEncoding=THREE.sRGBEncoding;R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=.68;
 const S=new THREE.Scene();S.background=new THREE.Color(0x060b12);
 const C=new THREE.PerspectiveCamera(39,W/H,.1,70);
-S.add(new THREE.HemisphereLight(0xc4d4f1,0x29211b,.42));
-const K=new THREE.SpotLight(0xffd0a0,2.4,26,.7,.62,1);K.position.set(-3,6,5);K.castShadow=true;K.shadow.mapSize.set(1024,1024);S.add(K,K.target);
+S.add(new THREE.HemisphereLight(0xc4d4f1,0x29211b,.25));
+const K=new THREE.SpotLight(0xffd0a0,1.8,26,.7,.62,1);K.position.set(-3,6,5);K.castShadow=true;K.shadow.mapSize.set(1024,1024);S.add(K,K.target);
 const B=new THREE.PointLight(0x5d9dd1,1.8,20);B.position.set(4,3,-2);S.add(B);
 const M=(c,r=.5,m=.1)=>new THREE.MeshPhysicalMaterial({color:c,roughness:r,metalness:m,clearcoat:m>.5?.5:.1});
 const gold=M(0xd1a669,.27,.86),brass=M(0x8e6d41,.36,.78),steel=M(0x555f66,.38,.72),
@@ -54,7 +54,7 @@ for(let x of [-1.95,1.95])for(let y of [-.54,.53]){let k=cy(d,x,y,1.24,.052,.015
 const aerial=cy(d,1.7,1.67,-.65,.024,2.15,gold);ball(d,1.7,2.78,-.65,.06,gold);
 A.push(t=>{needle.rotation.z=.3*Math.sin(t*3)})}
  // 4 Refusal: a coin left behind, untouched, on a counter; no stick-figure metaphor.
-{const g=stage();table(g);const q=coin(g,.52);q.position.set(-.5,-1.10,.3);q.rotation.x=Math.PI/2;
+{const g=stage();table(g);const q=coin(g,.52);q.position.set(-.5,-1.10,.3);q.rotation.x=.06;
 const card=box(g,1.05,-1.15,.85,1.9,.025,2.1,paper);card.rotation.y=.2;
 for(let j=0;j<7;j++)box(g,.90,-1.129,.04+j*.22,1.18,.002,.011,brass);
 const steelCup=cy(g,-2.25,-.89,1.35,.28,.57,steel);ring(g,-2.25,-.58,1.35,.29,.03,gold).rotation.x=Math.PI/2;
