@@ -1,0 +1,20 @@
+{
+  "renderer": "python",
+  "script": "shorts/rebuild_movie_review_from_artifact.py",
+  "id": "003",
+  "output": "videos/kino_003_v47.mp4",
+  "save_review_mp4": false,
+  "qa_run_marker": "reports/research/movie_003_v47_run.json",
+  "no_youtube_upload": true,
+  "artifact_id": 13041278425,
+  "member": "originals/whiplash_russian_rehearsal_scene.mp4",
+  "segments": [
+    [
+      120,
+      159
+    ]
+  ],
+  "film": "Одержимость",
+  "public_hook": "ОН ПРИШЁЛ НА РЕПЕТИЦИЮ. ПОЖАЛЕЛ",
+  "question": "Как бы ты ответил такому преподавателю?"
+}
