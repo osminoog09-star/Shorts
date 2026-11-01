@@ -58,3 +58,15 @@
 Следующий шаг: продолжать в `tasks/gpt_fix_after_claude_audit.md` с gate official check.py/look.py, затем ручной слуховой/русский ASR и 28 окон long. История и метрики `reports/research/2026-11-01_V32_V33_SHORTS_AUDIO_RECOVERY.md`. Все исходные MP4 сохранены. Не менять текущий статус в YouTube/очереди.
 Где промежуточное: `/mnt/data/M1lash_6_SHORTS_AUDIO_FIXED_V32_V33_PRIVATE_20261101.zip` (112973082 байта), `/mnt/data/m1lash_audio_priming_trials/`, `/mnt/data/M1lash_6_MOVIE_SHORTS_V32_V33_PRIVATE_QA_20261101/`.
 Ждёт Дениса: нет, решение о публикации исключительно его.
+
+### GPT · после обязательного перечитывания правил (01.11)
+Цель: строго `tasks/gpt_reread_rules.md` и п. 2а `tasks/gpt_fix_after_claude_audit.md` — новые приватные мастера только одной штатной командой.
+Шаги:
+- [x] С нуля перечитаны полные AGENTS.md, m1lash-studio/SKILL.md (+ чеклист/«Новые»), visuals-by-code.md, задачи NOW/daily/fix, аудиты Claude и GPT issues, весь `tools/assemble_with_outro.py`.
+- [x] Выполнено реальное `python3 tools/assemble_with_outro.py --help` на локально восстановленном из GitHub Python файле; вывод и синтаксис проверены.
+- [x] В HANDOFF.md записаны 7 строк «Понял: …». `git pull` из среды не выполнился из-за DNS; все актуальные файлы считаны живым GitHub-коннектором.
+- [ ] 2а. Из существующих чистых body_v24/v26 собрать новые отдельные видео командой `tools/assemble_with_outro.py` и оригинальными титульными MP3, проверить встроенный JSON/декодирование, затем официальные check.py/look.py; никаких ручных concat/AAC.
+- [ ] Улучшить 4–6 3D стопов и пилот, потом заменить 28 окон REV19 без PIL, проверить и передать только PRIVATE.
+Следующий шаг: локально исполнить `python3 /mnt/data/shorts_repo/tools/assemble_with_outro.py /mnt/data/movie_shorts_remastered_v22_private/001/body_v24.mp4 -o /mnt/data/m1lash_2a_rebuild/001_ASSEMBLED_V34_PRIVATE.mp4 --title /mnt/data/approved_m1lash/tts/m1lash_standard_reveals_20261031/chigur.mp3`. Затем официальный `check.py --platform shorts`, `look.py --tiles 3x2` из вложенного `ffmpeg_skill_local_QA_tools.zip`. После результата 001 повторить для 002–006. Нельзя публиковать.
+Где промежуточное: `/mnt/data/shorts_repo/tools/assemble_with_outro.py` (локальная копия актуального кода GitHub, без git origin из-за DNS), `/mnt/data/approved_m1lash/outro/`, `/mnt/data/movie_shorts_remastered_v22_private/{001..006}/body_v24.mp4`, `/mnt/data/M1lash_FFmpegSkill_Official_QA_Tools.zip`. Исходники кино не коммитить.
+Ждёт Дениса: нет.
