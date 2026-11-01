@@ -27,7 +27,7 @@ function coin(g,r=.65){const q=new THREE.Group();g.add(q);cy(q,0,0,0,r,.095,gold
 function knob(g,x,y,z,r=.12){const k=cy(g,x,y,z,r,.08,ink);k.rotation.x=Math.PI/2;ring(g,x,y,z+.05,r*.65,.012,gold)}
 const G=[],A=[];const stage=()=>{const g=new THREE.Group();G.push(g);S.add(g);return g};
 // 1 Coin decision: physical small engraved coin on ledger, no disembodied person.
-{const g=stage();table(g);const q=coin(g,.7);q.position.set(-.6,-1.10,.7);q.rotation.set(Math.PI/2-.3,.2,.13);
+{const g=stage();table(g);const q=coin(g,.7);q.position.set(-.6,-1.10,.7);q.rotation.set(.12,.2,.06);
 const book=box(g,1.2,-1.12,-.65,2.0,.12,2.6,M(0x3b2219,.75));book.rotation.y=-.12;
 const leaf=box(g,1.2,-1.049,-.65,1.8,.016,2.35,paper);leaf.rotation.y=-.12;
 for(let j=0;j<10;j++)box(g,1,-1.038,-1.6+j*.19,1.05,.002,.014,brass);
