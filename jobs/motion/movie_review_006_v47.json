@@ -1,0 +1,28 @@
+{
+  "renderer": "python",
+  "script": "shorts/rebuild_movie_review_from_artifact.py",
+  "id": "006",
+  "output": "videos/kino_006_v47.mp4",
+  "save_review_mp4": false,
+  "qa_run_marker": "reports/research/movie_006_v47_run.json",
+  "no_youtube_upload": true,
+  "artifact_id": 13041863362,
+  "member": "originals/miller_waves_landing_ru_candidate.mp4",
+  "segments": [
+    [
+      121,
+      141
+    ],
+    [
+      149,
+      151
+    ],
+    [
+      172,
+      185
+    ]
+  ],
+  "film": "Интерстеллар",
+  "public_hook": "ОНИ ДУМАЛИ, ЭТО ГОРЫ…",
+  "question": "Ты бы успел вернуться на корабль?"
+}
