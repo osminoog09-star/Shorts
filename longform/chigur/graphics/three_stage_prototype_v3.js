@@ -162,7 +162,7 @@ for(const g of G){
  palm.scale.set(.65,.19,.44);palm.position.set(-.12,0,0);palm.castShadow=true;glove.add(palm);
  const arm=new THREE.Mesh(new THREE.CylinderGeometry(.24,.3,1.6,32),cuff);arm.rotation.z=Math.PI/2;arm.position.set(.76,-.08,0);glove.add(arm);
  for(let n=0;n<4;n++){
-  const finger=cy(glove,-.36-n*.06,-.15,.14+n*.18,.115,.67,leather);finger.rotation.z=Math.PI/2.55;
+  const z=.14+n*.18;const curve=new THREE.CatmullRomCurve3([new THREE.Vector3(-.36,0,z),new THREE.Vector3(-.53,-.1,z),new THREE.Vector3(-.76,-.21,z+.03)]);const finger=new THREE.Mesh(new THREE.TubeGeometry(curve,20,.096,10,false),leather);glove.add(finger);
   sphere(glove,-.67,-.27,.14+n*.18,.11,leather);
  }
  const thumb=cy(glove,-.34,.24,.38,.14,.56,leather);thumb.rotation.z=-.9;
