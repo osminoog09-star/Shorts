@@ -70,6 +70,11 @@ async def _voices():
         await _edge_tts.Communicate(_phrase,voice='ru-RU-DmitryNeural',rate='+4%').save(str(_dest))
         if _dest.stat().st_size<3000:raise RuntimeError("Missing approved Dima voice")
 _asyncio.run(_voices())
+
+# Official quality gate and look.py dependencies travel with review assets.
+from shutil import copytree as _copytree
+_copytree(ROOT/'skills/ext/ffmpeg-skill/scripts',ART/'studio_ffmpeg_scripts',dirs_exist_ok=True)
+
 print("M1lash studio assets (exact outro, six RU titles) exported PRIVATE to motion artifact",flush=True)
  # QA-only asset for local code-based V14 render, not distributed video
 
