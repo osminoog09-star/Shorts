@@ -13,12 +13,12 @@ permissions:
   contents: write
   actions: read
 concurrency:
-  group: movie-media-qa
+  group: movie-media-qa-assets-v1
   cancel-in-progress: false
 jobs:
   audio:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -26,7 +26,17 @@ jobs:
       - name: Tools for RU ASR
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-          pip install -q 'faster-whisper>=1,<2' 'requests>=2.32,<3'
+          pip install -q 'faster-whisper>=1,<2' 'requests>=2.32,<3' 'edge-tts>=7,<8'
+      - name: Export approved rev4 outro and six Dima titles into private artifact
+        run: |
+          timeout 120s python3 scripts/qa/export_movie_review_assets.py || echo 'Partial assets only, still upload exact approved outro'
+      - name: Upload recovered studio assets (no movie source)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: studio-private-assets-${{ github.run_id }}
+          path: recovery-output/studio-assets/
+          retention-days: 14
       - name: Audio-language sample, no film commit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -43,6 +53,14 @@ jobs:
           git config user.name 'movie-source-qa[bot]'
           git config user.email 'movie-source-qa@users.noreply.github.com'
           git add reports/research/*_SOURCE_RU_ASR.json 2>/dev/null || true
+          python3 - <<'PY'
+          import json,os,pathlib
+          p=pathlib.Path('reports/research/movie_review_assets_run.json')
+          p.write_text(json.dumps({'run_id':os.environ.get('GITHUB_RUN_ID'),
+            'note':'Private approved-outro and Dima-title asset transfer for six previously filmed Shorts',
+            'media_not_in_git':True},indent=2)+'\\n')
+          PY
+          git add reports/research/movie_review_assets_run.json
           git diff --staged --quiet && exit 0
           git commit -m 'qa: sampled RU actor language on existing source artifact'
           for i in 1 2 3; do
