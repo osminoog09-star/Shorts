@@ -1,0 +1,105 @@
+name: M1lash Shorts · rebuild authentic RU existing five
+on:
+  push:
+    branches: [main]
+    paths: ['jobs/shorts-rebuild/remaining_5_ru.json']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 95
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        include:
+          - {id: "001", aid: 13070052528, member: "originals/chigur_actual_driver_2007_ru.mp4", start: "71", end: "108", film: "Старикам тут не место", title: "ОН НЕ ЗНАЛ, КОГО ОСТАНОВИЛ", question: "Что бы ты сделал на месте водителя?"}
+          - {id: "002", aid: 13069849250, member: "originals/chigur_carla_final_ru_real.mp4", start: "163", end: "207", film: "Старикам тут не место", title: "ОНА ОТКАЗАЛАСЬ ИГРАТЬ ПО ЕГО ПРАВИЛАМ", question: "Ты бы согласился выбрать сторону монеты?"}
+          - {id: "003", aid: 13041278425, member: "originals/whiplash_russian_rehearsal_scene.mp4", start: "124", end: "166", film: "Одержимость", title: "ЭТОТ УРОК МУЗЫКИ ПРЕВРАТИЛСЯ В КОШМАР", question: "Такого наставника можно назвать учителем?"}
+          - {id: "005", aid: 13052196021, member: "originals/nightcrawler_no_thieves_ru_test.mp4", start: "17", end: "58", film: "Стрингер", title: "ОН ПРИШЁЛ НА САМОЕ СТРАННОЕ СОБЕСЕДОВАНИЕ", question: "Ты бы взял такого человека на работу?"}
+          - {id: "006", aid: 13041863362, member: "originals/miller_waves_landing_ru_candidate.mp4", start: "223", end: "266", film: "Интерстеллар", title: "ОНИ ЗАМЕТИЛИ ВОЛНУ СЛИШКОМ ПОЗДНО", question: "Ты бы рискнул остаться на этой планете?"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Render and QA dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip install -q 'faster-whisper>=1,<2' 'opencv-python-headless>=4.9,<5' 'edge-tts>=7,<8' 'Pillow>=10,<12' 'numpy>=1.26,<3' 'requests>=2.32,<3'
+      - name: Download previously recovered film source from our existing Actions artifact
+        env:
+          GH_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+          ID: \${{ matrix.id }}
+          AID: \${{ matrix.aid }}
+          MEMBER: \${{ matrix.member }}
+        run: |
+          python - <<'PY'
+          import os,requests,zipfile,pathlib,shutil
+          d=pathlib.Path(os.environ['RUNNER_TEMP'])
+          url='https://api.github.com/repos/osminoog09-star/Shorts/actions/artifacts/'+os.environ['AID']+'/zip'
+          h={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'}
+          p=d/'archive.zip'
+          with requests.get(url,headers=h,timeout=120,stream=True) as r:
+              r.raise_for_status()
+              with p.open('wb') as out:
+                  size=0
+                  for b in r.iter_content(1024*1024):
+                      size+=len(b)
+                      if size>160_000_000:raise ValueError('source artifact >160 MB')
+                      out.write(b)
+          with zipfile.ZipFile(p) as z:
+              key=os.environ['MEMBER']
+              if z.getinfo(key).file_size>150_000_000:raise ValueError('source movie >150 MB')
+              with z.open(key) as src,(d/'authentic_ru_source.mp4').open('wb') as dst:
+                  shutil.copyfileobj(src,dst)
+          print('ARTIFACT SOURCE',os.environ['ID'],(d/'authentic_ru_source.mp4').stat().st_size)
+          PY
+      - name: Story edit, Russian actor speech and subtitles, official M1lash outro
+        env:
+          S_ID: \${{ matrix.id }}
+          S_START: \${{ matrix.start }}
+          S_END: \${{ matrix.end }}
+          S_FILM: \${{ matrix.film }}
+          S_TITLE: \${{ matrix.title }}
+          S_QUESTION: \${{ matrix.question }}
+        run: |
+          set -euo pipefail
+          python scripts/movie_short.py --src "$RUNNER_TEMP/authentic_ru_source.mp4" \
+            --id "m1lash_movie_mystery_\${S_ID}_rebuild_v47" --start "$S_START" --end "$S_END" \
+            --title "$S_TITLE" --film "$S_FILM" --lang ru --question "$S_QUESTION"
+      - name: Review-only artifact, no YouTube/private upload until visual review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: movie-short-\${{ matrix.id }}-RU-V47-review-\${{ github.run_id }}
+          path: |
+            videos/m1lash_movie_mystery_\${{ matrix.id }}_rebuild_v47.mp4
+            videos/m1lash_movie_mystery_\${{ matrix.id }}_rebuild_v47.mp4.qa.json
+            reports/qa/m1lash_movie_mystery_\${{ matrix.id }}_rebuild_v47/
+            reports/research/qa/m1lash_movie_mystery_\${{ matrix.id }}_rebuild_v47_look.jpg
+          retention-days: 14
+          if-no-files-found: ignore
+      - name: Save exact run pointer and job result for QA agent
+        if: always()
+        env:
+          S_ID: \${{ matrix.id }}
+          STATUS: \${{ job.status }}
+        run: |
+          set -euo pipefail
+          mkdir -p reports/research
+          python - <<'PY'
+          import os,json,pathlib
+          k=os.environ['S_ID']
+          p=pathlib.Path('reports/research/short_'+k+'_V47_RUN.json')
+          p.write_text(json.dumps({'id':k,'run_id':os.environ['GITHUB_RUN_ID'],'status':os.environ['STATUS'],
+               'note':'This is a reconstructed candidate, not the previous V45 binary or YouTube upload.'},indent=2))
+          PY
+          git config user.name m1lash-shorts-rebuild-bot
+          git config user.email m1lash-shorts-rebuild@users.noreply.github.com
+          git add reports/research/short_\${S_ID}_V47_RUN.json
+          git commit -m "qa: Short \${S_ID} V47 reconstruction run"
+          for i in 1 2 3; do if git pull -q --rebase origin main && git push -q origin HEAD:main; then exit 0; fi; sleep 6; done
+          exit 1
