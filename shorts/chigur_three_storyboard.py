@@ -62,3 +62,5 @@ command=['ffmpeg','-hide_banner','-nostdin','-y','-v','error',
  '-movflags','+faststart',str(OUT)]
 subprocess.run(command,check=True)
 print('STORYBOARD REVIEW ONLY:',OUT,OUT.stat().st_size)
+
+# Bundle installed QA scripts for offline validation of private MP4s.
