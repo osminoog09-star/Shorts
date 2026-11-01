@@ -21,7 +21,7 @@ print('storyboard setup')
 
 with sync_playwright() as playwright:
     browser=playwright.chromium.launch(args=['--use-gl=swiftshader','--enable-webgl'])
-    page=browser.new_page(viewport={'width':768,'height':1366})
+    page=browser.new_page(viewport={'width':960,'height':540})
     page.set_content('<body style="margin:0"><canvas id="scene"></canvas></body>')
     page.add_script_tag(path=str(LIB))
     page.add_script_tag(path=str(ROOT/'shorts/chigur_scene_preflight.js'))
@@ -37,7 +37,7 @@ with sync_playwright() as playwright:
 command=['ffmpeg','-hide_banner','-nostdin','-y','-v','error',
  '-framerate','1/6','-start_number','1','-i',str(ART/'chigur_scene_%02d.png'),
  '-f','lavfi','-i','anullsrc=r=48000:cl=stereo',
- '-filter:v','scale=1080:1920:flags=lanczos,fps=30',
+ '-filter:v','scale=1080:608:flags=lanczos,pad=1080:1920:0:656:black,fps=30',
  '-t','36','-c:v','libx264','-preset','veryfast','-crf','22',
  '-pix_fmt','yuv420p','-r','30','-c:a','aac','-b:a','128k',
  '-movflags','+faststart',str(OUT)]
