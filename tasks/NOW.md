@@ -17,6 +17,24 @@
 Шаги:
 - [x] 1. …
 - [ ] 2. …
-Следующий шаг: решить AAC priming при склейке ПЕРЕД любым READY: первичный образец approved_m1lash/outro/m1lash_outro_v1_vertical.mp4 имеет первый AAC packet pts=-0.021333 + skip_samples=1024, все 6 конечных MP4 потеряли эту метку. НЕ ремикшировать/нормализовать утверждённую концовку. Доказательства reports/research/2026-11-01_AAC_PRIMING_AND_THREE_PREFLIGHT_PROGRESS.md, локально M1lash_ADDITIONAL_QA_2026-11-01.json. 006: обрезка океана до 33.8с выполнилась, full decode PASS, но peak ухудшился до -0.78dBTP, кандидат отклонён; 003 кадры 24–38с подтвердили осмысленные реакции актёров, не делать слепой cut. Рендернуть шесть Three.js PNG из shorts/chigur_three_storyboard.py через существующий motion-render.yml (путь jobs/motion/chigur_storyboard_qa.json ещё НЕ создан), визуально оценить кадры, только затем motion pilot и 28 окон длинного. Перепроверить check.py/look.py/слух/ASR каждого финала; YouTube НЕ трогать.
-Где промежуточное: /mnt/data/M1lash_6_MOVIE_SHORTS_V24_V26_PRIVATE_NO_GO_20261101.zip (SHA256 2473b66fb723097b9f920226ce3e821972c1f54fb17a5271d50705e06c7147f8); /mnt/data/movie_shorts_remastered_v22_private/; /mnt/data/rebuild_005_v26.py, /mnt/data/nightcrawler_ru_source/. Подробности reports/research/2026-11-01_V24_V25_SHORTS_REMASTER_STATUS.md. Исходники в /mnt/data/shorts_v21; утверждённые финалы в /mnt/data/approved_m1lash/outro/; генератор графики в repo longform/chigur/graphics/; большой исходный мастер /mnt/data/M1lash_Chigur_REV19_1080p_PRIVATE_REVIEW.mp4.
-Ждёт Дениса: нет; всё остаётся частным, никаких публикационных действий.
+Следующий шаг: <что именно сделать, команда/файл>
+Где промежуточное: <пути, run ID, релизы>
+Ждёт Дениса: <нет / что именно>
+```
+
+## Claude
+
+## GPT/Codex
+
+### Кино-комплект V24–V26 и REV19 · 01.11 12:55
+Цель: закрыть качественные дефекты шести Shorts и заменить 28 графических вставок REV19; только приватная проверка.
+Шаги:
+- [x] Архив графики и временные интервалы — `longform/chigur/graphics/`.
+- [x] 6 приватных Shorts пересобраны, №005 V26 с 2-строчными RU титрами, 9с паузы убрано; 6/6 full decode PASS, но NO-GO.
+- [x] Найдена причина аномалии true peak: AAC `skip_samples=1024` исходного outro пропадает при `concat -c copy`; добавлен fail-closed `scripts/qa/verify_outro_aac_priming.py`.
+- [ ] **Текущий шаг**: починить сшивку утверждённой концовки без изменения исходных аудио/видео и прогнать `check.py`/`look.py` на реальных кандидатах.
+- [ ] Создать 6 реальных скриншотов Three.js: `shorts/chigur_scene_preflight.js` + `shorts/chigur_three_storyboard.py`; ни один ещё не рендерился.
+- [ ] Затем короткий тест, все 28 интервалов, мастер long, технический и слуховой QA.
+Следующий шаг: проверить 6 локальных файлов в `/mnt/data/movie_shorts_remastered_v22_private/` и утверждённый `/mnt/data/approved_m1lash/outro/m1lash_outro_v1_vertical.mp4` на true peak, container AAC priming и проверить вариант исправления сшивки без изменения содержимого концовки. Не выдавать готовность до `check.py`/`look.py`/слуха. Потом визуальный префлайт Three.js, 4–6 PNG прежде анимации. GitHub clone недоступен из контейнера: использовать GitHub connector для коммитов.
+Где промежуточное: `reports/research/2026-11-01_AAC_PRIMING_AND_THREE_PREFLIGHT_PROGRESS.md`; приватный ZIP `M1lash_6_MOVIE_SHORTS_V24_V26_PRIVATE_NO_GO_20261101.zip`.
+Ждёт Дениса: нет. Публикации нет.
