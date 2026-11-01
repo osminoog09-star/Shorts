@@ -1,5 +1,11 @@
 name: M1lash Drive · ASR scene candidates (PRIVATE QA only)
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/drive_scene_probe.py'
+      - 'scripts/qa/test_drive_scene_probe.py'
+      - '.github/workflows/drive-scene-probe.yml'
   schedule:
     - cron: '41 */6 * * *'
   workflow_dispatch:
