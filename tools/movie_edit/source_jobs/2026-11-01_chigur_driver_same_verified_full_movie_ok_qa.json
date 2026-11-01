@@ -1,0 +1,12 @@
+{
+  "purpose": "Get exact Anton Chigurh pulled-over-driver Russian dubbed dialogue at ~04:30–05:30 from SAME working OK source that previously gave tracker; excerpt only for private QA.",
+  "rights_note": "No full movie, no DRM bypass. Public playback does not grant YouTube reuse rights. Validate actual scene/language and hold PRIVATE.",
+  "sources": [
+    {
+      "id": "chigur_actual_driver_2007_ru",
+      "url": "https://m.ok.ru/video/9392943141311",
+      "start_seconds": 210,
+      "end_seconds": 350
+    }
+  ]
+}
