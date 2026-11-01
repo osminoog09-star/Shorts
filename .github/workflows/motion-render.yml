@@ -114,7 +114,7 @@ jobs:
                   subprocess.run(['git','add','--',str(video)],check=True)
               if cfg.get('renderer')=='python' and cfg.get('qa_run_marker'):
                   marker=Path(cfg['qa_run_marker'])
-                  if not marker.as_posix().startswith('reports/research/chigur_') or marker.suffix!='.json':
+                  if not (marker.as_posix().startswith('reports/research/chigur_') or marker.as_posix().startswith('reports/research/movie_')) or marker.suffix!='.json':
                       raise ValueError('invalid chigur QA run marker path')
                   if not marker.is_file():raise RuntimeError('QA marker missing')
                   subprocess.run(['git','add','--',str(marker)],check=True)
