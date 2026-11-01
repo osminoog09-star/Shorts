@@ -151,8 +151,8 @@ def validate_queue(current_path, current, channel_map):
     if current.get("metadata", {}).get("type") == "short":
         if len(shorts) >= 2:
             raise ValueError("No more than two Shorts per day on this channel")
-        if any(abs((other - when).total_seconds()) < 6 * 3600 for other in shorts):
-            raise ValueError("Shorts on same channel must be at least six hours apart")
+        if any(abs((other - when).total_seconds()) < 4 * 3600 for other in shorts):
+            raise ValueError("Shorts on same channel must be at least four hours apart (AGENTS §5)")
 
 
 def token_for(lang):
