@@ -6,6 +6,7 @@ out=R/"motion-output"
 out.mkdir(exist_ok=True)
 shutil.copy2(R/"media/outro/m1lash_outro_v1_vertical.mp4",out/"outro_rev4_vertical.mp4")
 shutil.copy2(R/"tools/assemble_with_outro.py",out/"assemble_with_outro.py")
+shutil.make_archive(str(out/"ffmpeg_skill"),"zip",R/"skills/ext/ffmpeg-skill")
 async def go():
   films={"001":"Старикам тут не место","002":"Старикам тут не место","003":"Одержимость","004":"Из машины","005":"Стрингер","006":"Интерстеллар"}
   for code,name in films.items():
