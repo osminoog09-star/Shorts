@@ -168,7 +168,12 @@ def main():
                          "title": hit["title"] if hit else None, "status": hit["status"] if hit else "пусто",
                          "video_id": hit.get("video_id") if hit else None})
 
-    review = [{"id": k, "video_id": r.get("video_id"), "title": r.get("title") or k, "manifest": f"publishing/queue/{k}.json"} for k, r in receipts.items()
+    def _mtitle(k):
+        try:
+            return json.load(open(ROOT / f"publishing/queue/{k}.json", encoding="utf-8"))["metadata"]["title"]
+        except Exception:  # noqa: BLE001
+            return None
+    review = [{"id": k, "video_id": r.get("video_id"), "title": r.get("title") or _mtitle(k) or k, "manifest": f"publishing/queue/{k}.json"} for k, r in receipts.items()
               if r.get("status") == "uploaded" and not r.get("publish_at_utc")]
     review += [{"id": q["id"], "title": q.get("title") or q["id"], "video_id": None}
                for q in queue if q.get("status") == "review"]
