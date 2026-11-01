@@ -31,3 +31,4 @@ with sync_playwright() as pw:
     if errors:raise RuntimeError('browser errors: '+';'.join(errors))
 out=ROOT/'videos/chigur_v7_six_stills_REVIEW_ONLY.mp4'
 out.parent.mkdir(parents=True,exist_ok=True)
+cmd=['ffmpeg','-y','-v','error','-framerate','0.25','-i',str(ART/'chigur_v7_scene_%02d.png')]
