@@ -41,3 +41,10 @@ for(let i=0;i<6;i++){
   coin.add(new THREE.Mesh(new THREE.CylinderGeometry(.55,.55,.09,48),gold));
   A.push(t=>{coin.position.x=-.8+1.8*Math.min(1,t/4);coin.rotation.y=t*.8});
  }
+ else if(i===4){
+  box(g,0,-1.3,0,3.15,.5,2.15,dark);
+  const lid=new THREE.Group();lid.position.set(0,-1.1,-1.1);g.add(lid);
+  box(lid,0,0,1,3.2,.19,2.2,dark);
+  for(let n=0;n<4;n++)box(g,-.85+(n%2)*1.7,-.98,-.5+Math.floor(n/2)*.9,.9,.05,.58,mat(0x73927d,.7));
+  A.push(t=>{lid.rotation.x=-1.2*(1-Math.min(1,t/4))});
+ }
