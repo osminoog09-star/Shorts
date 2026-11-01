@@ -508,7 +508,7 @@
   "schema_version": 1,
   "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
   "snapshot_date": "2026-11-01",
-  "fetched_at": "2026-11-01T08:08:44.794315+00:00",
+  "fetched_at": "2026-11-01T08:54:08.630426+00:00",
   "inventory": [
     {
       "video_id": "CmOu0xXc0UI",
@@ -545,7 +545,7 @@
       "duration": "PT1M4S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "229",
+        "viewCount": "223",
         "likeCount": "3",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -559,7 +559,7 @@
       "duration": "PT49S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "230",
+        "viewCount": "235",
         "likeCount": "6",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -615,7 +615,7 @@
       "duration": "PT51S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1284",
+        "viewCount": "1297",
         "likeCount": "9",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -867,8 +867,8 @@
       "duration": "PT59S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "5512",
-        "likeCount": "153",
+        "viewCount": "5596",
+        "likeCount": "155",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "8"
@@ -1213,7 +1213,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 1368
+          "views": 1360
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -1221,7 +1221,7 @@
         },
         {
           "insightTrafficSourceType": "YT_OTHER_PAGE",
-          "views": 7
+          "views": 6
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
@@ -1267,7 +1267,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 1027
+          "views": 1022
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -1279,7 +1279,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 60
+          "views": 61
         }
       ],
       "XtSnXx4nVq8": [
@@ -1366,8 +1366,12 @@
           "views": 0
         },
         {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 1
+        },
+        {
           "insightTrafficSourceType": "SHORTS",
-          "views": 893
+          "views": 890
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -1379,7 +1383,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 2
+          "views": 3
         }
       ],
       "bpaR4hHC6YU": [
@@ -1389,11 +1393,11 @@
         },
         {
           "insightTrafficSourceType": "NOTIFICATION",
-          "views": 1
+          "views": 3
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 2728
+          "views": 2725
         },
         {
           "insightTrafficSourceType": "SUBSCRIBER",
@@ -1419,7 +1423,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 1112
+          "views": 1111
         },
         {
           "insightTrafficSourceType": "SUBSCRIBER",
@@ -1449,7 +1453,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 1225
+          "views": 1224
         },
         {
           "insightTrafficSourceType": "SOUND_PAGE",
@@ -1607,7 +1611,7 @@
         },
         {
           "insightTrafficSourceType": "NOTIFICATION",
-          "views": 1
+          "views": 4
         },
         {
           "insightTrafficSourceType": "PLAYLIST",
@@ -1615,7 +1619,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 4391
+          "views": 4386
         },
         {
           "insightTrafficSourceType": "SUBSCRIBER",
