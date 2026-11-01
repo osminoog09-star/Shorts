@@ -1,0 +1,15 @@
+{
+  "shorts": [
+    "001",
+    "002",
+    "003",
+    "005",
+    "006"
+  ],
+  "sources": "previous verified GitHub Actions artifacts",
+  "no_user_film_request": true,
+  "method": "scripts/movie_short.py",
+  "max_parallel": 5,
+  "publishing": "disabled",
+  "revision": 1
+}
