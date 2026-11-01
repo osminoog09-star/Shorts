@@ -32,3 +32,14 @@ with sync_playwright() as playwright:
         dest.write_bytes(base64.b64decode(shot.split(',',1)[1]))
         print('3D STILL',i+1,dest.stat().st_size,flush=True)
     browser.close()
+# QA carrier only: six 6-second holds, not the real animated film.
+# Render the actual moving pilot only after human inspection of these six PNGs.
+command=['ffmpeg','-hide_banner','-nostdin','-y','-v','error',
+ '-framerate','1/6','-start_number','1','-i',str(ART/'chigur_scene_%02d.png'),
+ '-f','lavfi','-i','anullsrc=r=48000:cl=stereo',
+ '-filter:v','scale=1080:1920:flags=lanczos,fps=30',
+ '-t','36','-c:v','libx264','-preset','veryfast','-crf','22',
+ '-pix_fmt','yuv420p','-r','30','-c:a','aac','-b:a','128k',
+ '-movflags','+faststart',str(OUT)]
+subprocess.run(command,check=True)
+print('STORYBOARD REVIEW ONLY:',OUT,OUT.stat().st_size)
