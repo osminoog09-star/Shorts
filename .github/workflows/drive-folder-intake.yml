@@ -1,5 +1,13 @@
 name: M1lash Drive · folder intake
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'publishing/drive_folder.json'
+      - 'publishing/clip_requests.json'
+      - 'scripts/drive_folder_intake.py'
+      - 'scripts/qa/test_drive_folder_intake.py'
+      - '.github/workflows/drive-folder-intake.yml'
   schedule:
     - cron: '17 */2 * * *'
   workflow_dispatch:
