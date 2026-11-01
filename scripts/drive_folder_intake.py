@@ -47,7 +47,7 @@ def compact(s: str) -> str:
 def variants(film: str) -> list[str]:
     title = re.sub(r"\s*\(\d{4}\)\s*$", "", film).strip()
     normalized = compact(title)
-    variants = [normalized, compact(title.translate(TRANSLIT))]
+    variants = [normalized, compact(title.lower().translate(TRANSLIT))]
     for key, values in ALIASES.items():
         if compact(key) == normalized:
             variants.extend(compact(v) for v in values)
@@ -103,7 +103,14 @@ def summarize(entries: list[dict], requests: list[dict]) -> dict:
             matches[film] = {"status": "фильм найден", "filename": e["path"], "file_url": e["url"],
                              "confidence": s}
         elif len(good) > 1:
-            matches[film] = {"status": "нужно подтвердить фильм", "candidates": [e["path"] for _, e in good[:5]]}
+            confirmed = {r.get("match_confirmed_filename") for r in requests if r.get("film") == film}
+            selected = [e for _, e in good if e["path"] in confirmed]
+            if len(selected) == 1:
+                e = selected[0]
+                matches[film] = {"status": "фильм найден", "filename": e["path"], "file_url": e["url"],
+                                 "confidence": 100}
+            else:
+                matches[film] = {"status": "нужно подтвердить фильм", "candidates": [e["path"] for _, e in good[:5]]}
         else:
             matches[film] = {"status": "нет фильма в папке"}
     items = []
