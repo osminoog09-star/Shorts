@@ -15,7 +15,7 @@ jobs:
       max-parallel: 5
       matrix:
         include:
-          - {id: "001", aid: 13034313090, member: "originals/chigur_carson_ru.mp4", start: "128", end: "160", film: "Старикам тут не место", title: "ОН НЕ ЗНАЛ, КОГО ОСТАНОВИЛ", question: "Что бы ты сделал на месте водителя?"}
+          - {id: "001", aid: 13034313090, member: "originals/chigur_carson_ru.mp4", start: "128", end: "160", film: "Старикам тут не место", title: "ОН ПРЕДЛОЖИЛ СДЕЛКУ, ОТ КОТОРОЙ НЕ ОТКАЗАТЬСЯ", question: "Ты бы поверил его условиям?"}
           - {id: "002", aid: 13069849250, member: "originals/chigur_carla_final_ru_real.mp4", start: "163", end: "207", film: "Старикам тут не место", title: "ОНА ОТКАЗАЛАСЬ ИГРАТЬ ПО ЕГО ПРАВИЛАМ", question: "Ты бы согласился выбрать сторону монеты?"}
           - {id: "003", aid: 13041278425, member: "originals/whiplash_russian_rehearsal_scene.mp4", start: "124", end: "166", film: "Одержимость", title: "ЭТОТ УРОК МУЗЫКИ ПРЕВРАТИЛСЯ В КОШМАР", question: "Такого наставника можно назвать учителем?"}
           - {id: "005", aid: 13052196021, member: "originals/nightcrawler_no_thieves_ru_test.mp4", start: "17", end: "58", film: "Стрингер", title: "ОН ПРИШЁЛ НА САМОЕ СТРАННОЕ СОБЕСЕДОВАНИЕ", question: "Ты бы взял такого человека на работу?"}
