@@ -235,6 +235,7 @@ def main():
     ap.add_argument("--request", default="", help="@ник для «По заявке»")
     ap.add_argument("--question", default="А ты бы как поступил?")
     ap.add_argument("--allow-verified-visual-action", action="store_true", help="Opt-in frame+SFX verified dialogue-free physical action; not silence bypass")
+    ap.add_argument("--curated-action-titles", action="store_true", help="Editorial text instead of unreliable ASR transcript over action")
     a = ap.parse_args()
     if not re.fullmatch(r"[a-z0-9_]{3,60}", a.id):
         sys.exit("id: только латиница/цифры/_")
@@ -272,7 +273,21 @@ def main():
         sys.exit("NO-GO: не русский звук разрешён только для заявок зрителей (AGENTS §8)")
     top = f"ПО ЗАЯВКЕ {a.request.upper()}" if a.request else None
     subs = work / "s.ass"
-    n_sub = ass(words, subs, top)
+    if a.curated_action_titles:
+        if not a.allow_verified_visual_action:
+            sys.exit("NO-GO: curated action titles require independently verified moving action")
+        # Deliberately NOT quotations from actors. In the waves/ship action
+        # sparse Whisper labels can hallucinate nonsensical dialogue.
+        n_sub = ass([], subs, "ОНИ НЕ УСПЕВАЮТ", top_until=3.0)
+        with subs.open("a", encoding="utf-8") as fh:
+            for from_s, to_s, caption in [
+                (26.3, 29.6, "ВОЛНА УЖЕ ЗДЕСЬ"),
+                (35.6, 39.3, "ПОСЛЕДНИЙ ШАНС"),
+            ]:
+                fh.write(f"Dialogue: 1,{ass_time(from_s)},{ass_time(to_s)},Top,,0,0,0,,{caption}\\n")
+                n_sub += 1
+    else:
+        n_sub = ass(words, subs, top)
     # Stop on quiet, dialogue-free movie passages BEFORE touching the approved outro.
     # Every interval is measured in integrated LUFS, with exact timestamped word coverage.
     dead = dead_windows(wav, words, length)
@@ -356,6 +371,7 @@ def main():
     except Exception:  # noqa: BLE001
         problems.append("нет отчёта сборщика концовки")
     qa["action_window_evidence"] = action_evidence
+    qa["editorial_action_titles"] = bool(a.curated_action_titles)
     qa["problems"] = problems
     (qdir / "qa.json").write_text(json.dumps(qa, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps(qa, ensure_ascii=False))
