@@ -1,17 +1,30 @@
 {
-  "status": "partial",
-  "updated_at": "2026-10-31T21:33:41.559773Z",
-  "last_attempt_at": "2026-10-31T21:33:41.559773Z",
-  "feeds_ok": 6,
-  "feeds_failed": 1,
-  "errors": [
-    {
-      "source": "NASA Technology",
-      "error_type": "HTTPError"
-    }
-  ],
+  "status": "success",
+  "updated_at": "2026-11-01T13:23:31.531661Z",
+  "last_attempt_at": "2026-11-01T13:23:31.531661Z",
+  "feeds_ok": 7,
+  "feeds_failed": 0,
+  "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "d9269f49d95d2fae76",
+      "title": "Apple CEO says the company doesn’t ‘want to ship AI for AI’s sake’",
+      "url": "https://techcrunch.com/2026/10/31/apple-ceo-says-the-company-doesnt-want-to-ship-ai-for-ais-sake/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-31T21:41:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "2065ffa365f3e4d6c5",
+      "title": "4 days left: How TechCrunch Founder Summit helps you make more useful connections to scale",
+      "url": "https://techcrunch.com/2026/10/31/4-days-left-how-techcrunch-founder-summit-helps-you-make-more-useful-connections-to-scale/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-10-31T21:36:07Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "204d5faf405d3242c5",
       "title": "Judge allows NAACP lawsuit over xAI data center pollution to move forward",
@@ -712,24 +725,6 @@
       "category": "ai",
       "source": "The Verge AI",
       "published_at": "2026-10-29T14:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "130656092a266855c3",
-      "title": "Anthropic’s business plan: Build God or die trying",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1021476/anthropic-s-1-compute-recursive",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-10-29T13:30:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3eb958348088c8d067",
-      "title": "Deepgram acquires Pipecat-maker Daily to bolster its voice AI infrastructure",
-      "url": "https://techcrunch.com/2026/10/29/deepgram-acquires-pipecat-maker-daily-to-bolster-its-voice-ai-infrastructure/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-29T13:00:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
