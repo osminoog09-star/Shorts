@@ -290,7 +290,7 @@ def main():
     now_file = ROOT / "tasks" / "NOW.md"
     if now_file.is_file():
         text_now = now_file.read_text(encoding="utf-8")
-        m = re.search(r"## GPT/Codex\\s+### ([^\\n]+)\\s+Цель: ([^\\n]+)", text_now)
+        m = re.search(r"## GPT/Codex\s+### ([^\n]+)\s+Цель: ([^\n]+)", text_now)
         if m:
             work.append({"id": "gpt-checkpoint", "title": m.group(1),
                          "format": "Кино + длинное", "author": "GPT",
