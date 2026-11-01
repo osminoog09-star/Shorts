@@ -7,6 +7,7 @@ function clips(){
   const scan=D.drive_scan||{};
   const folder=D.drive_folder||{};
   const found=new Map((scan.items||[]).map(x=>[x.id,x]));
+  const probes=(D.scene_candidates||{}).items||{};
   const missing=req.filter(r=>!["собран","сцена найдена"].includes((found.get(r.id)||{}).status||r.status)).length;
   const active=!!folder.scan_enabled&&!!folder.url;
   const stat=scan.status==="ok"
@@ -30,7 +31,11 @@ function clips(){
   html+='<div class="grid">'+req.map(r=>{
     const id=esc(r.id);
     const m=found.get(r.id)||{};
-    const state=r.status==="собран"?"собран":(m.status||"нет фильма в папке");
+    const probe=probes[r.id]||{};
+    const matchingProbe=m.file_url&&m.file_url===probe.file_url;
+    const state=r.status==="собран"?"собран":
+      (matchingProbe&&probe.status==="candidate"?"кандидаты ASR (не проверены)":
+       matchingProbe&&probe.status==="error"?"ошибка поиска сцены":(m.status||"нет фильма в папке"));
     const choices=(m.candidates||[]);
     const chosen=!!choices.length?
       '<label class="muted" for="match-'+id+'">Это тот фильм?</label>'+
@@ -40,7 +45,12 @@ function clips(){
       '</span><span class="muted">'+esc(r.minute||"")+'</span></div><b>'+esc(r.film||"")+
       '</b><p>'+esc(r.scene||"")+'</p><p class="muted">'+esc(r.why||"")+
       '</p>'+(m.filename?'<p class="muted">В папке: '+esc(m.filename)+'</p>':'')+
-      (m.scene_start!=null?'<p class="muted">Найдено с '+Math.floor(m.scene_start/60)+':'+String(Math.floor(m.scene_start%60)).padStart(2,"0")+'</p>':'')+
+      (matchingProbe&&probe.status==="candidate"&&probe.candidates?.length?
+       '<p class="muted">ASR предложил примерно '+Math.floor(probe.candidates[0].start/60)+':'+
+         String(Math.floor(probe.candidates[0].start%60)).padStart(2,"0")+
+         '. Это НЕ проверенная по кадрам сцена и не готовый Short.</p>':'')+
+      (matchingProbe&&probe.status==="error"?'<p class="muted">'+esc(probe.error||"Нужна проверка исходника")+'</p>':'')+
+      (m.scene_start!=null?'<p class="muted">Сцена проверена с '+Math.floor(m.scene_start/60)+':'+String(Math.floor(m.scene_start%60)).padStart(2,"0")+'</p>':'')+
       chosen+'<p class="muted">'+esc(r.note||"")+'</p></section>';
   }).join('')+'</div>';
   html+='<section class="card reveal"><h2>Своя заявка</h2>'+
