@@ -8,7 +8,7 @@
 Шаги: обрезка черных полей → вырезка [start, end] → вертикаль 1080×1920 с ведением кадра по лицам
 (OpenCV) → распознавание речи (faster-whisper) → кинетические субтитры (2–3 слова) → финал Димы
 (edge-tts + живая подача; последние слова — название фильма голосом) + фирменная карточка M1lash →
-громкость −16 LUFS → проверка (полный decode, контрольные кадры, длительность, название фильма не
+только body до −16 LUFS; концовка без обработки → проверка (полный decode, контрольные кадры, длительность, название фильма не
 светится в публичных полях) → паспорт без даты.
 """
 import argparse
@@ -299,7 +299,10 @@ def main():
     ff("-f", "concat", "-safe", "0", "-i", str(lst), "-map", "0:v:0", "-map", "0:a:0",
        "-c", "copy", "-movflags", "+faststart", str(out))
     # ---- проверка §12 ----
-    err = subprocess.run(["ffmpeg", "-v", "error", "-i", str(out), "-f", "null", "-"], capture_output=True, text=True).stderr.strip()
+    strict_decode = subprocess.run(["ffmpeg", "-hide_banner", "-v", "error", "-xerror",
+                                    "-i", str(out), "-f", "null", "-"],
+                                   capture_output=True, text=True)
+    err = strict_decode.stderr.strip()
     probe = json.loads(sh("ffprobe", "-v", "error", "-show_streams", "-show_format", "-of", "json", str(out), capture=True))
     v = next(s for s in probe["streams"] if s["codec_type"] == "video")
     D = float(probe["format"]["duration"])
@@ -312,12 +315,12 @@ def main():
         ff("-ss", f"{t:.2f}", "-i", str(out), "-frames:v", "1", "-vf", "scale=360:-2", str(qdir / f"f{i}.jpg"))
     (qdir / "qa.json").write_text(json.dumps(qa, ensure_ascii=False, indent=1), encoding="utf-8")
     problems = []
-    if err:
-        problems.append("ошибки декодирования")
+    if err or strict_decode.returncode:
+        problems.append("ошибки полного декодирования")
     if (v["width"], v["height"]) != (W, H):
         problems.append("не 1080×1920")
-    if D > 60.5:
-        problems.append("длиннее 60 с")
+    if D > 59.0:
+        problems.append("длиннее 59 с")
     if len(words) < 5:
         problems.append("речь не распознана (субтитров почти нет)")
     if qa["size_mb"] > 95:
