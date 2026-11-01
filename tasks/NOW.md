@@ -25,6 +25,12 @@
 ## Claude
 
 ## GPT/Codex
+### Шесть Shorts, фактический результат 01.11
+- 004: run 41333893324, artifact 13094169003; V47 45.339s настоящий MP4; check.py 0 FAIL, look.py глазами, outro lag 0.3ms, русский ASR актёров p=.964/.942 и Димы p=.996. Файл находится в /mnt/data/m1lash_6shorts_final/, ссылка уже дана пользователю. Не публиковали.
+- 001/002/003/005/006: запущен параллельный GitHub workflow movie-short-five-rebuild.yml, V47 пока НЕ готовые мастера. Для каждого искать reports/research/short_ID_V47_RUN.json, скачать artifact и открыть контакт; до этого статус PENDING.
+- В main также есть альтернативные job specs jobs/motion/movie_review_ID_v47.json от другого агента. Не загружать дубли: предпочесть сюжет 001 Carson, 002 Carla, 003 Whiplash, 005 Nightcrawler, 006 Interstellar и финальный QA.
+- Неправильный кандидат 003 source artifact 12776800730 = Gladiator, отбраковали. Правильный Whiplash = 13041278425.
+Следующий шаг: взять реальные artifact всех пяти, проверить MP4/звук/check/look, только после этого PRIVATE review. Никаких фильмов у Дениса повторно не просить.
 ### Приоритет по прямому приказу Дениса: довести 6 Shorts до финала · 01.11 19:50 Tallinn
 Цель: закрыть 001–006 с реальным MP4, русским звуком и независимыми check/look, затем PRIVATE review без даты; длинный «Чигур» строго ПОСЛЕ.
 Шаги:
