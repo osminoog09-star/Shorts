@@ -14,6 +14,7 @@
 | Центр агентов (Claude Code, Codex в одном окне) | OpenHands Agent Canvas — `scripts/pc/install-openhands.sh` (MIT, Docker) | GPU не нужен |
 | Черновики сюжетов длинных роликов 21+ мин | MuMuAINovel — `scripts/pc/install-mumuainovel.sh` (GPL-3.0, Docker, интерфейс на китайском) | GPU не нужен, нужен API-ключ модели; факты всё равно проверяем |
 | Агентный монтаж «чужой реф → наш ролик» | OpenMontage (github.com/calesthio/OpenMontage, AGPL-3.0) | эксперимент, Денис хотел попробовать (01.11). AGPL: использовать у себя можно, свой изменённый код при раздаче/сервисе — открывать. Проверку §2а (ffmpeg-skill) не заменяет |
+| Долгая автономная работа Claude Code («крути, пока не готово») | Ralph Wiggum loop — официальный плагин `ralph-wiggum` из anthropics/claude-code | решение Дениса 01.11: поставить на ПК. Только с явным условием завершения (например «все Shorts недели прошли §2а») и лимитом кругов (`--max-iterations`) — каждый круг тратит лимит Claude. Не для облачных сессий |
 | Липсинк ведущего, рендер | как сейчас (Rhubarb, Remotion, ffmpeg) | можно рендерить локально вместо GitHub Actions |
 
 ## Порядок, когда ПК вернётся
