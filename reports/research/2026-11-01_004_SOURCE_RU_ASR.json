@@ -2,7 +2,7 @@
   "stage": "SOURCE_RU_AUDIO_ONLY",
   "id": "004",
   "artifact_id": 13070096727,
-  "checked_at": "2026-11-01T16:28:49+00:00",
+  "checked_at": "2026-11-01T18:24:54+00:00",
   "source_duration": 109.010844,
   "reported_audio_tags": [
     {
@@ -13,7 +13,7 @@
     {
       "at": 33,
       "language": "en",
-      "probability": 0.353,
+      "probability": 0.334,
       "segments": 0,
       "russian_characters": 0,
       "speech_seconds": 0
@@ -21,18 +21,18 @@
     {
       "at": 68,
       "language": "ru",
-      "probability": 0.916,
-      "segments": 3,
-      "russian_characters": 31,
-      "speech_seconds": 14.77
+      "probability": 0.91,
+      "segments": 5,
+      "russian_characters": 37,
+      "speech_seconds": 15.25
     },
     {
       "at": 84,
       "language": "ru",
-      "probability": 0.918,
+      "probability": 0.915,
       "segments": 3,
       "russian_characters": 42,
-      "speech_seconds": 8.44
+      "speech_seconds": 7.44
     }
   ],
   "ru_samples": 2,
