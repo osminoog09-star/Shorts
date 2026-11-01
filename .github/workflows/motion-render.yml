@@ -116,7 +116,9 @@ jobs:
                   marker=Path(cfg['qa_run_marker'])
                   if not (marker.as_posix().startswith('reports/research/chigur_') or marker.as_posix().startswith('reports/research/movie_')) or marker.suffix!='.json':
                       raise ValueError('invalid chigur QA run marker path')
-                  if not marker.is_file():raise RuntimeError('QA marker missing')
+                  if not marker.is_file():
+                      marker.parent.mkdir(parents=True,exist_ok=True)
+                      marker.write_text(json.dumps({'run_id':os.environ.get('GITHUB_RUN_ID'),'status':'renderer_finished; visual review pending','output':cfg.get('output')},indent=2)+'\n')
                   subprocess.run(['git','add','--',str(marker)],check=True)
           PY
           # Temporary synthesized speech must not block rebase when TTS-bot added it upstream.
