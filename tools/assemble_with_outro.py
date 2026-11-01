@@ -168,7 +168,7 @@ def main():
         af = f"aresample={SR},aformat=sample_fmts=fltp:channel_layouts=stereo,asetpts=PTS-STARTPTS"
         g = []
         if ain0:
-            g.append(f"[0:v]{vf},trim=duration={bdur:.4f}[v0];[0:a]{body_af},{af},atrim=duration={bdur:.4f}[a0]")
+            g.append(f"[0:v]{vf},trim=duration={bdur:.4f}[v0];[0:a]{body_af},{af},apad,atrim=duration={bdur:.4f}[a0]")
         else:
             g.append(f"[0:v]{vf},trim=duration={bdur:.4f}[v0];anullsrc=r={SR}:cl=stereo,atrim=duration={bdur:.4f},{af}[a0]")
         # концовка: только формат, без фильтров громкости
