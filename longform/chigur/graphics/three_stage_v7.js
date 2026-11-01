@@ -77,6 +77,7 @@ const pole=cy(g,4.2,1.45,-1,.10,5.5,steel);box(g,3.45,4.15,-1,1.7,.14,.14,steel)
 const yellow=new THREE.PointLight(0xffb879,1.9,16);yellow.position.set(2.75,3.8,-1);g.add(yellow);
 for(let x of [-6,6])box(g,x,1.5,-9,4,4,.25,wall);
 A.push(t=>{car.position.z=-2+t*.23})}
+for(let z of [-4.3,-2.2,.4]){box(G[1],-4.7,-.05,z,.18,3.3,2.2,wall);box(G[1],-4.58,-.2,z,.07,2.8,1.55,timber);ball(G[1],-4.47,-.25,z+.42,.09,gold);}
 const poses=[[[1.4,1.6,6.8],[-.4,-1,0]],[[-2.7,1.25,7.5],[0,-.2,-4.0]],[[2.4,1.45,5.5],[0,-.4,.3]],[[1,1.4,6.1],[-.4,-1,0]],[[2.3,1.75,5.2],[0,-.3,0]],[[-3,1.25,6.0],[0,-1,-1.7]]];
 window.frame=(T)=>{const i=Math.min(5,Math.floor(T/6)),t=T-i*6;G.forEach((g,j)=>g.visible=i===j);A[i](t);
 const [xyz,target]=poses[i];C.position.set(xyz[0]+.06*Math.sin(t*.4),xyz[1],xyz[2]-.05*t);C.lookAt(...target);
