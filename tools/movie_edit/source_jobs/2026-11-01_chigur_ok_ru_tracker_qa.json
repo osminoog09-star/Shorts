@@ -1,0 +1,12 @@
+{
+  "purpose": "Private excerpt QA of No Country for Old Men transponder/tracker sound near motel, 44:40–46:45 only, no full film.",
+  "rights_note": "Openly accessible playback does not equal licensing. No DRM bypass; keep private QA only.",
+  "sources": [
+    {
+      "id": "chigur_tracker_ok_candidate",
+      "url": "https://m.ok.ru/video/9392943141311",
+      "start_seconds": 2680,
+      "end_seconds": 2805
+    }
+  ]
+}
