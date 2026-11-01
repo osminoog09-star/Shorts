@@ -1,1 +1,7 @@
-{"renderer":"python","script":"shorts/chigur_v7_stills.py","output":"videos/chigur_v7_six_stills_REVIEW_ONLY.mp4","save_review_mp4":false}
+{
+  "renderer": "python",
+  "script": "shorts/chigur_v7_stills.py",
+  "output": "videos/chigur_v7_six_stills_REVIEW_ONLY.mp4",
+  "save_review_mp4": false,
+  "qa_asset_export": "three_r128_20261101"
+}
