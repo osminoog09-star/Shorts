@@ -296,8 +296,14 @@ def main():
     lst = work / "whole.txt"
     out = ROOT / "videos" / f"{a.id}.mp4"
     lst.write_text("".join(f"file '{p.resolve()}'\n" for p in (body, std, tail)), encoding="utf-8")
-    ff("-f", "concat", "-safe", "0", "-i", str(lst), "-map", "0:v:0", "-map", "0:a:0",
-       "-c", "copy", "-movflags", "+faststart", str(out))
+    join = subprocess.run(["ffmpeg", "-hide_banner", "-nostdin", "-loglevel", "warning", "-y",
+                           "-f", "concat", "-safe", "0", "-i", str(lst),
+                           "-map", "0:v:0", "-map", "0:a:0",
+                           "-c", "copy", "-movflags", "+faststart", str(out)],
+                          capture_output=True, text=True)
+    if join.returncode or join.stderr.strip():
+        sys.exit("NO-GO: stream-copy concat emitted errors/warnings (DTS/PTS): " +
+                 join.stderr[-800:])
     # ---- проверка §12 ----
     strict_decode = subprocess.run(["ffmpeg", "-hide_banner", "-v", "error", "-xerror",
                                     "-i", str(out), "-f", "null", "-"],
