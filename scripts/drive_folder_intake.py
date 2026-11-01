@@ -27,7 +27,7 @@ ALIASES = {
     "из машины": ["ex machina", "exmachina"],
     "стрингер": ["nightcrawler"],
     "интерстеллар": ["interstellar"],
-    "бетмен": ["the batman", "batman"],
+    "бэтмен": ["the batman", "batman"],
     "оппенгеймер": ["oppenheimer"],
     "меню": ["the menu"],
 }
