@@ -1,0 +1,17 @@
+[Script Info]
+Title: M1lash 005 clean RU film subtitles
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Speech,DejaVu Sans,69,&H00FFFFFF,&H00FFFFFF,&H00101010,&H90000000,1,0,0,0,100,100,0,0,1,5,2,2,75,75,460,1
+Style: Hook,DejaVu Sans,72,&H0000D5FF,&H0000D5FF,&H00101010,&H90000000,1,0,0,0,100,100,0,0,1,5,2,8,80,80,160,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.25,0:00:01.70,Speech,,0,0,0,,К ТАКИМ, КАК ВЫ,\NКТО САМ ДОСТИГ ВЕРШИНЫ
+Dialogue: 0,0:00:01.70,0:00:03.50,Speech,,0,0,0,,ГОРЫ, НЕ\NПАДАЯ ВНИЗ.
+Dialogue: 1,0:00:00.00,0:00:01.40,Hook,,0,0,0,,ОН ИСКАЛ РАБОТУ
