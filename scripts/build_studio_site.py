@@ -312,6 +312,7 @@ def main():
         "clip_requests": load("publishing/clip_requests.json", {"items": []}),
         "drive_folder": load("publishing/drive_folder.json", {"url": "", "scan_enabled": False}),
         "drive_scan": load("publishing/drive_scan.json", {"status": "not_configured", "items": []}),
+        "scene_candidates": load("publishing/scene_candidates.json", {"items": {}}),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
