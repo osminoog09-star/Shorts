@@ -64,3 +64,12 @@ subprocess.run(command,check=True)
 print('STORYBOARD REVIEW ONLY:',OUT,OUT.stat().st_size)
 
 # Bundle installed QA scripts for offline validation of private MP4s.
+
+# Export first-party ffmpeg-skill CLI for private local compliance verification.
+import zipfile
+qa_source=ROOT/'skills/ext/ffmpeg-skill/scripts'
+with zipfile.ZipFile(ART/'ffmpeg_skill_local_QA_tools.zip','w',zipfile.ZIP_DEFLATED) as toolpack:
+    for source in qa_source.rglob('*'):
+        if source.is_file() and source.suffix in ('.py','.json','.yaml','.yml'):
+            toolpack.write(source,source.relative_to(qa_source))
+print('QA_TOOLS', (ART/'ffmpeg_skill_local_QA_tools.zip').stat().st_size, flush=True)
