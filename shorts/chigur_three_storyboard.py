@@ -18,3 +18,7 @@ if not LIB.is_file():
     LIB.write_bytes(response.content)
 
 print('storyboard setup')
+
+with sync_playwright() as playwright:
+    browser=playwright.chromium.launch(args=['--use-gl=swiftshader','--enable-webgl'])
+    page=browser.new_page(viewport={'width':768,'height':1366})
