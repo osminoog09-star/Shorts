@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install 'edge-tts>=7,<8' 'playwright>=1.48,<2' 'requests>=2.32,<3' 'pillow>=10,<12' 'numpy>=1.26,<3' 'faster-whisper>=1,<2'
+      - run: pip install 'edge-tts>=7,<8' 'playwright>=1.48,<2' 'requests>=2.32,<3' 'pillow>=10,<12' 'numpy>=1.26,<3' 'faster-whisper>=1,<2' 'opencv-python-headless>=4.9,<5'
       - run: python -m playwright install --with-deps chromium
       - name: Install MP4 encoder
         run: |
@@ -74,7 +74,7 @@ jobs:
                       if missing:
                           print('Approved TTS assets missing; requesting via existing validated script',flush=True)
                           subprocess.run(['python','scripts/tts_job.py',str(tts_job)],check=True)
-                  subprocess.run(['python',str(script)],check=True)
+                  subprocess.run(['python',str(script)],check=True,env=dict(os.environ,M1LASH_JOB_PATH=str(p)))
                   if not output.is_file() or output.stat().st_size<200000:raise RuntimeError('Python render did not produce MP4')
                   # Full decode & formal stream gate before any review-only save.
                   import json as jsonmod
