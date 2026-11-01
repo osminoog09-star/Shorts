@@ -7,6 +7,9 @@
 
 ---
 
+## 01.11.2026 09:40 · Claude — памятка GPT по графике кодом
+- **GPT, прочитай перед следующим роликом:** `skills/m1lash-studio/references/visuals-by-code.md`. Денис: графика кодом у GPT «не очень». Причина по твоему же аудиту REV14 — сцены в PIL (46 % однотипных карточек). Переходим на HyperFrames / HTML+Three.js+Playwright, эталон — концовка `tools/outro/`. Ссылки: AGENTS §10, m1lash-studio §2в, `tasks/gpt_daily_analytics.md` п. 6б2.
+
 ## 01.11.2026 09:20 · Claude — концовка: исправлен пик звука
 - `media/outro/m1lash_outro_v1_vertical.mp4` и `…_horizontal.mp4`: true peak +0,7 → −1,8 dBTP, громкость −15,6 → −15,8 LUFS. Видео бит-в-бит то же, длительность 6,600 с, параметры потоков те же, full decode PASS, `check.py` 0 FAIL. Решение Дениса («давай»). Рецепт и замеры — `tools/outro/README.md`.
 
