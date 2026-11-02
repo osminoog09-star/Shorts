@@ -3,11 +3,14 @@
    No token, entered URL, or source media is uploaded by this module. */
 (() => {
   "use strict";
-  const PAGE_MS = 45000;
-  const PULSE_MS = 90000;
+  const PAGE_MS = 15000;
+  const PULSE_MS = 30000;
+  const STATUS_MS = 12000;
+  const STATUS_BASE = "https://raw.githubusercontent.com/osminoog09-star/Shorts/main/publishing/";
   const PULSE_URL = "https://raw.githubusercontent.com/osminoog09-star/Shorts/pulse-data/pulse.json";
   let pageKey = null, pulseKey = null, pulseData = null;
-  let pageBusy = false, pulseBusy = false, needsRender = false, lastError = false;
+  let pageBusy = false, pulseBusy = false, statusBusy = false, needsRender = false, lastError = false;
+  const latestStatuses = {};
   let pendingData = null;
 
   const isVisible = () => !document.hidden && navigator.onLine !== false;
@@ -35,7 +38,7 @@
   function updateHeader() {
     if (!D) return;
     const stamp = D.live?.t, ageMin = stamp ? (Date.now() - timeMs(stamp)) / 60000 : Infinity;
-    const marker = ageMin > 100 ? " · данные устарели" : " · автообновление";
+    const marker = ageMin > 35 ? " · данные устарели" : " · автообновление каждые 15 с";
     const display = stamp ? "счётчики " + ago(stamp) + " назад" :
       "аналитика по " + dshort(D.analytics_as_of);
     const elem = document.getElementById("asof");
@@ -71,6 +74,8 @@
     const drive = D?.drive_auth || {};
     const driveState = document.getElementById("drive-oauth-state");
     if (driveState) driveState.textContent = drive.connected ? "Подключён ✓" : drive.message || "Требуется OAuth";
+    const settingsLabel = document.getElementById("driveAuthLabel");
+    if (settingsLabel) settingsLabel.textContent = drive.connected ? "Подключён ✓" : drive.message || "Требуется OAuth";
     const download = document.querySelector("[data-hd-download]");
     if (download && !drive.connected) download.disabled = true;
   }
@@ -154,6 +159,7 @@
       } else if (key === pageKey) return;
       pageKey = key;
       D = next;
+      mergeStatuses();
       if (pulseData) mergePulse(pulseData);
       lastError = false;
       refreshView();
@@ -184,6 +190,43 @@
       updateHeader();
     } finally { pulseBusy = false; }
   }
+  function mergeStatuses() {
+    if (!D) return false;
+    let changed = false;
+    for (const [key, status] of Object.entries(latestStatuses)) {
+      const old = D[key] || {};
+      // Never regress a newer status to cached data from an older deployment.
+      const newer = timeMs(status?.checked_at) >= timeMs(old?.checked_at);
+      if (!newer || JSON.stringify(old) === JSON.stringify(status)) continue;
+      D[key] = status;
+      changed = true;
+    }
+    return changed;
+  }
+  async function getStatuses() {
+    if (statusBusy || !isVisible() || !D) return;
+    statusBusy = true;
+    try {
+      const pairs = [["drive_auth","drive_auth_status.json"],
+                     ["hdrezka_intake","hdrezka_status.json"]];
+      let changed = false;
+      const results = await Promise.allSettled(pairs.map(async ([key, name]) => {
+        const response = await fetch(STATUS_BASE + name + "?t=" + Date.now(), {cache:"no-store"});
+        if (!response.ok) throw new Error("Status HTTP " + response.status);
+        const data = await response.json();
+        if (!data || typeof data !== "object" || !("status" in data)) throw new Error("Invalid status");
+        return [key, data];
+      }));
+      for (const result of results) if (result.status === "fulfilled") {
+        const [key,data] = result.value;
+        if (timeMs(data.checked_at) >= timeMs(latestStatuses[key]?.checked_at)) latestStatuses[key] = data;
+      }
+      changed = mergeStatuses();
+      if (changed) refreshView();
+    } catch (_) {
+      // Keep the last verified status; a transient CDN failure must not claim success.
+    } finally { statusBusy = false; }
+  }
   function tick() {
     if (!D || !isVisible()) return;
     if (needsRender && safeToRender()) refreshView();
@@ -193,14 +236,16 @@
     if (!isVisible()) return;
     void getData();
     void getPulse();
+    void getStatuses();
     tick();
   }
   setInterval(() => { void getData(); }, PAGE_MS);
   setInterval(() => { void getPulse(); }, PULSE_MS);
+  setInterval(() => { void getStatuses(); }, STATUS_MS);
   setInterval(tick, 10000);
   document.addEventListener("visibilitychange", wake);
   window.addEventListener("online", wake);
   window.addEventListener("focus", wake);
   // Initial load() in the main Studio script remains the source of first render.
-  setTimeout(wake, 12000);
+  setTimeout(wake, 2000);
 })();
