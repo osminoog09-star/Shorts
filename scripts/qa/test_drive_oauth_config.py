@@ -110,6 +110,36 @@ class DriveConfigTests(unittest.TestCase):
                 mod.google_oauth_preflight(self.env)
         self.assertEqual(exc.exception.code, "drive_folder_read_only")
 
+    def test_existing_legacy_oauth_client_used_when_main_client_denied(self):
+        env = {**self.env, "YT_CLIENT_ID": "legacy.apps.googleusercontent.com",
+               "YT_CLIENT_SECRET": "legacy-secret"}
+        def check(candidate):
+            if candidate["YOUTUBE_OAUTH_CLIENT_ID"].startswith("12345"):
+                raise mod.DriveSetupError("oauth_client_denied", "Denied")
+        with patch.object(mod, "google_oauth_preflight", side_effect=check) as preflight:
+            resolved, label = mod.resolve_existing_client(env)
+        self.assertEqual(label, "legacy")
+        self.assertEqual(resolved["YOUTUBE_OAUTH_CLIENT_ID"],env["YT_CLIENT_ID"])
+        self.assertEqual(resolved["GDRIVE_REFRESH_TOKEN"],env["GDRIVE_REFRESH_TOKEN"])
+        self.assertEqual(preflight.call_count,2)
+
+    def test_existing_oauth_client_unchanged_on_success(self):
+        with patch.object(mod,"google_oauth_preflight",return_value=None) as preflight:
+            resolved, label = mod.resolve_existing_client(self.env)
+        self.assertEqual(label,"youtube")
+        self.assertEqual(resolved["YOUTUBE_OAUTH_CLIENT_ID"],self.env["YOUTUBE_OAUTH_CLIENT_ID"])
+        preflight.assert_called_once()
+
+    def test_both_existing_clients_denied_safely(self):
+        env = {**self.env, "YT_CLIENT_ID":"legacy.apps.googleusercontent.com",
+               "YT_CLIENT_SECRET":"legacy-secret"}
+        with patch.object(mod,"google_oauth_preflight",
+                          side_effect=mod.DriveSetupError("oauth_client_denied","no access")):
+            with self.assertRaises(mod.DriveSetupError) as ctx:
+                mod.resolve_existing_client(env)
+        self.assertEqual(ctx.exception.code,"all_oauth_clients_denied")
+        self.assertNotIn("legacy-secret",str(ctx.exception))
+
     def test_check_does_not_claim_success_on_rclone_failure(self):
         with patch.object(mod.subprocess, "run") as run:
             run.return_value.returncode = 1
