@@ -37,3 +37,13 @@
 - `hdrezka-intake.yml` push offline unit tests: GitHub Actions **41522233231 SUCCESS** (все тесты runner, не проверка видеозагрузки).
 - Сайт и скрипт записаны в main; GitHub Pages деплоится после push `site/**` и обновлений статуса.
 - **Реальная загрузка с сайта до Drive НЕ ПРОВЕРЕНА**: необходим `GDRIVE_RCLONE_CONFIG` и фактический тест рабочего плеера через workflow_dispatch.
+
+## Обновление 02.11 — подключение Google Drive без ПК
+
+- Реализован секрет **`GDRIVE_REFRESH_TOKEN`**, записываемый владельцем через «Студия M1lash» → ⚙️ → «Google Drive — загрузка фильмов». Поле вызывает уже существующую `setSecret` (публичный ключ GitHub + шифрование на устройстве); значение **не сохраняется** в localStorage, в Git и в отчёт.
+- Google OAuth client ID/secret берутся из **существующих секретов YouTube** `YOUTUBE_OAUTH_CLIENT_ID` и `YOUTUBE_OAUTH_CLIENT_SECRET`; второй клиент не нужен. Сфера разрешения **`https://www.googleapis.com/auth/drive`** настраивается в OAuth Playground через «Use your own OAuth credentials», используя тот же Google Cloud проект. Этот scope даёт доступ ко ВСЕМ файлам Drive, не только к папке — владелец должен понимать и явно авторизовать.
+- Новый `scripts/drive_oauth_config.py` конструирует `[m1lash]` rclone.conf только в `$RUNNER_TEMP`; сохраняет `0600`, запускает `rclone lsf m1lash:` для проверки нужной папки. Прежний полный конфиг `GDRIVE_RCLONE_CONFIG` оставлен как fallback.
+- `hdrezka-intake.yml` теперь имеет режим `drive_check`: он проверяет Google Drive без обращения к кино-сайту, пишет только `publishing/drive_auth_status.json` (`connected=true/false`), после чего запускается штатная публикация GitHub Pages. Режим `download` до скачивания требует успешной проверки доступа.
+- В «Клипы» добавлен индикатор Drive, кнопка входа в настройки. Кнопка «Скачать в Drive» заблокирована до успешной проверки OAuth. `site/studio/auto_refresh.js` обновляет состояния без перезагрузки.
+- Тесты: `scripts/qa/test_drive_oauth_config.py` без реальных токенов, а также регрессия `test_studio_auto_refresh.cjs`. **End-to-end Drive-соединение и реальная загрузка фильма не подтверждены**, пока владелец не сохранит OAuth refresh token. Не сообщать «подключено» без `connected=true` и наблюдаемого файла в Drive.
+- Рекомендуется вернуть разрешение для публичной ссылки папки с `writer` на `reader` или вообще сделать папку частной: собственный OAuth сможет записывать, а посторонние — нет.
