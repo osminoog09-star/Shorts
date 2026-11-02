@@ -84,6 +84,47 @@ jobs:
               except DriveSetupError as exc:
                   print("Drive OAuth preflight:", exc.code)
           PY
+      - name: Safe rclone diagnostic on push (no credentials in logs)
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq rclone >/dev/null
+          python3 - <<'PY'
+          import json, os, subprocess, tempfile
+          from pathlib import Path
+          from scripts.drive_oauth_config import resolve_existing_client, save_config, DriveSetupError
+          try:
+              selected, client = resolve_existing_client(dict(os.environ))
+              with tempfile.TemporaryDirectory() as tmp:
+                  config = Path(tmp) / "rclone.conf"
+                  save_config(selected, config)
+                  p = subprocess.run(["rclone", "--config", str(config), "lsf", "m1lash:",
+                                      "--max-depth", "1", "--retries", "1"],
+                                     capture_output=True, text=True, timeout=90)
+              if p.returncode == 0:
+                  print("Rclone diagnostic: success; OAuth and list operations ready")
+              else:
+                  # Never print raw stdout/stderr: they may contain private paths,
+                  # tokens, account names or remote resource identifiers.
+                  stderr = (p.stderr or "").lower()
+                  markers = ["invalid_client", "invalid_grant", "unauthorized_client",
+                             "oauth2", "token", "root_folder_id", "403", "404", "401",
+                             "insufficient", "directory not found", "config",
+                             "failed to create file system", "failed to list",
+                             "access denied", "malformed", "couldn't find", "refresh",
+                             "empty", "forbidden", "googleapi", "invalid character"]
+                  print("Rclone diagnostic: failure; markers = " +
+                        json.dumps([m for m in markers if m in stderr]))
+          except DriveSetupError as exc:
+              print("Rclone diagnostic: oauth preflight error:", exc.code)
+          except Exception:
+              print("Rclone diagnostic: unexpected failure (no details logged)")
+          PY
       - uses: actions/setup-go@v5
         with: { go-version: '1.25.0' }
       - name: Compile pinned HDRezka CLI (no movie download)
