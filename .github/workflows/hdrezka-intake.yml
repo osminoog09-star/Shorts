@@ -120,6 +120,25 @@ jobs:
                              "empty", "forbidden", "googleapi", "invalid character"]
                   print("Rclone diagnostic: failure; markers = " +
                         json.dumps([m for m in markers if m in stderr]))
+                  import re
+                  # Strict allowlist prevents logging any actual credential, URL,
+                  # email, local path, or private filename from the rclone stderr.
+                  allowed = set(("failed error to refresh token config configuration "
+                                 "file system googleapi google api drive authorization "
+                                 "authorize invalid client secret credentials expired "
+                                 "missing not found 400 401 403 404 429 500 503 "
+                                 "bad request forbidden rejected response from server "
+                                 "couldn't couldn't retrieve obtain open update write read "
+                                 "access network parse setting remote oauth2 can't "
+                                 "unable connecting http post get root folder metadata "
+                                 "list directory quota rate limited no such key "
+                                 "storage make retry next failure while trying cache "
+                                 "fatal tokeninfo access_token refresh_token noaccess "
+                                 "token_source grant unauthorized scope insufficient").split())
+                  words = re.findall(r"[a-z_]+|[0-9]{3}", stderr)
+                  safe_signature = [w for w in words if w in allowed]
+                  print("Rclone diagnostic: safe signature = " +
+                        " ".join(safe_signature[:90]))
           except DriveSetupError as exc:
               print("Rclone diagnostic: oauth preflight error:", exc.code)
           except Exception:
