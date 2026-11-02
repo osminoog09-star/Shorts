@@ -72,7 +72,7 @@
     const driveState = document.getElementById("drive-oauth-state");
     if (driveState) driveState.textContent = drive.connected ? "Подключён ✓" : drive.message || "Требуется OAuth";
     const download = document.querySelector("[data-hd-download]");
-    if (download && !download.dataset?.pending) download.disabled = !drive.connected;
+    if (download && !drive.connected) download.disabled = true;
   }
   function safeToRender() {
     if (document.getElementById("sheet")?.classList.contains("open")) return false;
