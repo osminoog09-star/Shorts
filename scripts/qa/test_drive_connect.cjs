@@ -18,6 +18,14 @@ assert.match(script,/GDRIVE_AUTH_CODE/);
 assert.match(script,/encrypted_value:status\.encrypted_value,key_id:status\.key_id/);
 assert.match(script,/GDRIVE_REFRESH_TOKEN/);
 assert.match(script,/sessionStorage\.setItem\(NONCE_KEY/);
+assert.match(page,/id="driveGoogleResume"/);
+assert.match(script,/function resumeConfirmedAccess\(button\)/);
+assert.match(script,/result\.key_id!==pub\.key_id/);
+assert.match(script,/Date\.now\(\)-issued>12\*3600000/);
+assert.match(script,/function getNonce\(\)/);
+assert.match(script,/localStorage\.setItem\(NONCE_KEY/);
+assert.match(script,/clearNonce\(\)/);
+
 assert.doesNotMatch(script,/localStorage\.setItem\([^,]+,\s*(code|refresh|token)\b/);
 assert.match(flow,/GDRIVE_AUTH_CODE:\s*\$\{\{ secrets\.GDRIVE_AUTH_CODE \}\}/);
 assert.match(flow,/python3 -m scripts\.drive_oauth_exchange/);
