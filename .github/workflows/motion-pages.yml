@@ -53,6 +53,7 @@ jobs:
               Path("_site/studio/google_client.json").write_text(json.dumps({"client_id":cid})+"\\n")
           else:
               Path("_site/studio/google_client.json").write_text('{"status":"unavailable"}\\n')
+          print("Studio public OAuth Client ID:", "ready" if re.fullmatch(r"[0-9]+-[a-zA-Z0-9_-]+\\.apps\\.googleusercontent\\.com",cid) else "unavailable")
           PY
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
