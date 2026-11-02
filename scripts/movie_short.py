@@ -109,10 +109,21 @@ def face_track(clip):
     return out, fps
 
 
-def vertical(clip, dst):
-    """1080×1920 без полей: масштаб по высоте, окно ведётся за лицом."""
+def vertical(clip, dst, focus_profile=""):
+    """1080×1920 без полей; manual actor-focus ONLY for independently reviewed 005."""
     import cv2  # noqa: PLC0415
-    xs, fps = face_track(clip)
+    if focus_profile == "nightcrawler":
+        probe = cv2.VideoCapture(str(clip))
+        fps = probe.get(cv2.CAP_PROP_FPS) or 30
+        count = int(probe.get(cv2.CAP_PROP_FRAME_COUNT))
+        probe.release()
+        if not 29 <= count/fps <= 34:
+            raise ValueError("NO-GO: Nightcrawler editorial crop requires 32-second source segment")
+        # Verified original RU source 17..41s and 50..58s; fixed actor focus.
+        # [0,24): Lou on left; [24,29.5): Lou on right; last: employer.
+        xs = [(.33 if i/fps<24 else .62 if i/fps<29.5 else .29) for i in range(count)]
+    else:
+        xs, fps = face_track(clip)
     cap = cv2.VideoCapture(str(clip))
     p = subprocess.Popen(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24",
                           "-s", f"{W}x{H}", "-r", str(fps), "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "18",
@@ -167,7 +178,7 @@ def ass(words, path, top_text=None, top_until=3.0):
     """Кинетические субтитры: 2–3 слова, пауза > 0.6 с или знак — новый блок; появление с подскоком."""
     groups, cur = [], []
     for st, en, w in words:
-        if cur and (len(cur) >= 3 or st - cur[-1][1] > 0.6 or re.search(r"[.!?…,]$", cur[-1][2])):
+        if cur and (len(cur) >= 2 or len(" ".join(x[2] for x in cur+[ (st,en,w) ])) > 20 or st - cur[-1][1] > 0.6 or re.search(r"[.!?…,]$", cur[-1][2])):
             groups.append(cur)
             cur = []
         cur.append((st, en, w))
@@ -181,7 +192,7 @@ WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Sub,{FONT},84,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,7,3,2,80,80,560,1
+Style: Sub,{FONT},70,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,7,3,2,80,80,560,1
 Style: Top,{FONT},62,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,1,0,0,0,100,100,0,0,3,18,0,8,80,80,220,1
 
 [Events]
@@ -194,8 +205,19 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         if i + 1 < len(groups):
             en = min(en + 0.25, groups[i + 1][0][0])
         txt = " ".join(w for _, _, w in g).upper().replace("{", "(").replace("}", ")")
+        # Deterministic measured width limit; protects mobile frame and the edge of the actual video.
+        # PIL is used for FONT METRICS only — never to draw scenes.
+        from PIL import ImageFont
+        font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+        fontsize = 70
+        while fontsize > 40:
+            font = ImageFont.truetype(font_path, fontsize)
+            if font.getlength(txt) <= 790: break
+            fontsize -= 3
+        if ImageFont.truetype(font_path,fontsize).getlength(txt) > 790:
+            raise RuntimeError("Caption cannot fit 790px width safely: "+txt)
         lines.append(f"Dialogue: 0,{ass_time(st)},{ass_time(en)},Sub,,0,0,0,,"
-                     f"{{\\fscx88\\fscy88\\t(0,90,\\fscx104\\fscy104)\\t(90,160,\\fscx100\\fscy100)}}{txt}")
+                     f"{{\\fs{fontsize}\\fscx88\\fscy88\\t(0,90,\\fscx104\\fscy104)\\t(90,160,\\fscx100\\fscy100)}}{txt}")
     if top_text:
         lines.append(f"Dialogue: 1,{ass_time(0)},{ass_time(top_until)},Top,,0,0,0,,{{\\fad(150,250)}}{top_text}")
     Path(path).write_text(head + "\n".join(lines) + "\n", encoding="utf-8")
@@ -236,7 +258,7 @@ def main():
     ap.add_argument("--question", default="А ты бы как поступил?")
     ap.add_argument("--allow-verified-visual-action", action="store_true", help="Opt-in frame+SFX verified dialogue-free physical action; not silence bypass")
     ap.add_argument("--curated-action-titles", action="store_true", help="Editorial text instead of unreliable ASR transcript over action")
-    ap.add_argument("--editorial-profile", choices=["carla","whiplash","carson"], default="", help="Checked editorial overlays, NOT purported film quotations")
+    ap.add_argument("--editorial-profile", choices=["carla","whiplash","carson","nightcrawler"], default="", help="Checked editorial overlays, NOT purported film quotations")
     a = ap.parse_args()
     if not re.fullmatch(r"[a-z0-9_]{3,60}", a.id):
         sys.exit("id: только латиница/цифры/_")
@@ -266,7 +288,7 @@ def main():
     ff("-ss", f"{start:.3f}", "-t", f"{length:.3f}", "-i", str(src), "-vf", ",".join(vf + [f"fps={FPS}"]) if vf else f"fps={FPS}",
        "-c:v", "libx264", "-crf", "16", "-preset", "fast", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", str(clip))
     vert = work / "vert.mp4"
-    vertical(clip, vert)
+    vertical(clip, vert, focus_profile=a.editorial_profile)
     wav = work / "a.wav"
     ff("-i", str(clip), "-vn", "-ac", "1", "-ar", "16000", str(wav))
     words = transcribe(wav, a.lang)
@@ -274,7 +296,7 @@ def main():
         sys.exit("NO-GO: не русский звук разрешён только для заявок зрителей (AGENTS §8)")
     top = f"ПО ЗАЯВКЕ {a.request.upper()}" if a.request else None
     subs = work / "s.ass"
-    if a.editorial_profile:
+    if a.editorial_profile and a.editorial_profile != 'nightcrawler':
         profiles = {
             "carla": [(0.3, 3.2, "ОНА НЕ ПРИМЕТ ИГРУ"),
                       (12.5, 15.6, "ВЫБОР НАВЯЗАН"),
@@ -295,6 +317,10 @@ def main():
                     sys.exit("NO-GO: editorial caption exceeds body")
                 fh.write(f"Dialogue: 0,{ass_time(from_s)},{ass_time(to_s)},Sub,,0,0,0,,{caption}\n")
                 n_sub += 1
+    elif a.editorial_profile == "nightcrawler":
+        # Keep real Russian actor dialogue. Never generate fictitious quotes.
+        # Hook is editorial, actor subtitles come from the actual ASR segments.
+        n_sub = ass(words, subs, "ОН ПОПРОСИЛ РАБОТУ", top_until=2.6)
     elif a.curated_action_titles:
         if not a.allow_verified_visual_action:
             sys.exit("NO-GO: curated action titles require independently verified moving action")
