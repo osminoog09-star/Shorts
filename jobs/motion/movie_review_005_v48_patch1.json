@@ -22,5 +22,5 @@
   "output": "videos/kino_005_v48_patch1.mp4",
   "save_review_mp4": false,
   "qa_run_marker": "reports/research/movie_005_v48_patch1_run.json",
-  "qa_iteration": 2
+  "qa_iteration": 3
 }
