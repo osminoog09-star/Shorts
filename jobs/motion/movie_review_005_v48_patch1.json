@@ -1,0 +1,25 @@
+{
+  "renderer": "python",
+  "script": "shorts/rebuild_movie_review_from_artifact.py",
+  "id": "005",
+  "edition": "v48_patch1",
+  "artifact_id": 13052196021,
+  "member": "originals/nightcrawler_no_thieves_ru_test.mp4",
+  "segments": [
+    [
+      17,
+      41
+    ],
+    [
+      50,
+      58
+    ]
+  ],
+  "public_hook": "ОН ИСКАЛ РАБОТУ, НО УСЛЫШАЛ ЭТО",
+  "film": "Стрингер",
+  "question": "Ты бы взял такого человека на работу?",
+  "editorial_profile": "nightcrawler",
+  "output": "videos/kino_005_v48_patch1.mp4",
+  "save_review_mp4": false,
+  "qa_run_marker": "reports/research/movie_005_v48_patch1_run.json"
+}
