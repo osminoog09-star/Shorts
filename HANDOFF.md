@@ -1,3 +1,10 @@
+## 02.11 GPT — проверка реальных GitHub Secrets и разрешений Google Drive (без раскрытия токенов)
+
+- **Actions run 41527530135 SUCCESS** (тест кода + `scripts/qa/drive_credentials_probe.py`): существующие OAuth Client ID/Secret для YouTube **есть**, но `GDRIVE_RCLONE_CONFIG` и `GDRIVE_REFRESH_TOKEN` **не заданы**, существующий YouTube refresh token работает только без Drive scope (`no_drive_scope`). Это факт из OAuth tokeninfo, а не предположение.
+- Ни GitHub contents, ни подключённый Google Drive коннектор в ChatGPT не могут автоматически выдать GitHub Actions согласие Google или извлечь секреты из пользовательских коннекторов. Дополнительный OAuth-consent владельца — обязательный внешний шаг; в панели Студии уже есть его безопасная настройка.
+- Обновлены **только метаданные** `publishing/drive_auth_status.json` (connected=false, понятное объяснение) и `publishing/hdrezka_status.json` (неустаревшая подсказка). Видеофайлы не скачаны, Drive не авторизован, YouTube не затронут.
+- Не повторять просьбу о Client ID — он уже присутствует. Следующий шаг только одно согласие владельца на Drive scope через OAuth Playground и сохранение refresh token в `⚙️ Настройки` сайта; после connected=true проверить реальный фильм и наличие файла в Drive.
+
 ## 02.11 GPT — Drive OAuth через Студию: код/CI PASS; разрешение Google ещё не выдано
 
 - На просьбу Дениса «подключи всё к нашему Google Drive» добавлено подключение **без ПК и без rclone.conf вручную**. Студия M1lash → ⚙️ Настройки → «Google Drive — загрузка фильмов»: владелец вставляет отдельный Drive refresh token из Google OAuth Playground (own credentials из уже подключённого проекта «Youtube»). Существующая функция `setSecret` шифрует токен для GitHub Actions секрет `GDRIVE_REFRESH_TOKEN`; он не записывается в браузер/публичные файлы.
