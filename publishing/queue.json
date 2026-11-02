@@ -76,6 +76,18 @@
       "publish_md": "shorts/request_ernesto_crawlspace/PUBLISH.md",
       "title": "По заявке @ErnestoMarsel 💀 #shorts",
       "note": "BLOCKED_SOURCE: оригинальный клип не получен; TTS финала подготовлен. Нет MP4, нет приватной заливки и YouTube ID; publish_at не назначен."
+    },
+    {
+      "id": "kino_003",
+      "kind": "short",
+      "author": "GPT",
+      "status": "ready",
+      "slot": null,
+      "style": "S6-D25",
+      "mp4": "videos/kino_003_v54.mp4",
+      "publish_md": "shorts/kino_003/PUBLISH.md",
+      "title": "Урок музыки вышел из-под контроля #shorts",
+      "note": "V54,52.6s. Owner confirmed full audio review. PRIVATE upload requested; no schedule."
     }
   ]
 }

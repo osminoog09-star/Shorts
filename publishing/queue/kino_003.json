@@ -1,0 +1,30 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "repo",
+    "path": "videos/kino_003_v54.mp4",
+    "sha256": "6a2a8309be1a0228ff7cf929d2be0c34e1cc14e24273684cb67552311e7307e0"
+  },
+  "metadata": {
+    "type": "short",
+    "title": "Урок музыки вышел из-под контроля #shorts",
+    "description": "Он требует идеального темпа. Одна ошибка — и репетиция превращается в кошмар.\nКак бы ты отреагировал на такого преподавателя?\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #кино #угадайфильм #сцена #музыка #драма #m1lash",
+    "tags": [
+      "кино",
+      "угадай фильм",
+      "сцены из фильмов",
+      "русская озвучка",
+      "преподаватель",
+      "репетиция",
+      "барабаны",
+      "напряженная сцена",
+      "M1lash",
+      "shorts"
+    ],
+    "category_id": "1",
+    "made_for_kids": false,
+    "contains_synthetic_media": false,
+    "default_language": "ru",
+    "default_audio_language": "ru"
+  }
+}
