@@ -1,0 +1,17 @@
+{
+ "out": "/workspace/scratch/004_v49/004_V49_OFFICIAL_PRIVATE.mp4",
+ "duration": 40.667,
+ "video_s": 40.667,
+ "audio_s": 40.662,
+ "body_s": 30.3,
+ "outro_s": 6.6,
+ "title_s": 3.412,
+ "body_lufs": -14.7,
+ "body_tp": -4.0,
+ "outro_lufs": -15.9,
+ "outro_tp": -1.2,
+ "outro_lag_ms": 0.0,
+ "outro_diff_db": -27.5,
+ "decode_ok": true,
+ "problems": []
+}
