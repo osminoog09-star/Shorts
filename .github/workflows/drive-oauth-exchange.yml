@@ -1,0 +1,75 @@
+name: M1lash Drive · Google consent exchange
+on:
+  workflow_dispatch:
+    inputs:
+      nonce:
+        description: One-time browser handshake nonce (not secret)
+        required: true
+        type: string
+      client_id:
+        description: Public OAuth Client ID displayed by the Studio
+        required: true
+        type: string
+      public_key:
+        description: GitHub Actions Secrets public key (base64)
+        required: true
+        type: string
+      key_id:
+        description: GitHub Actions Secrets key ID
+        required: true
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: m1lash-drive-consent
+  cancel-in-progress: false
+jobs:
+  exchange:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install sealed-box encryption
+        run: python3 -m pip install 'PyNaCl>=1.5,<2'
+      - name: Exchange one-time code and encrypt refresh token (no credential logging)
+        id: exchange
+        continue-on-error: true
+        env:
+          GDRIVE_AUTH_CODE: ${{ secrets.GDRIVE_AUTH_CODE }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          AUTH_NONCE: ${{ inputs.nonce }}
+          AUTH_CLIENT_ID: ${{ inputs.client_id }}
+          AUTH_PUBLIC_KEY: ${{ inputs.public_key }}
+          AUTH_KEY_ID: ${{ inputs.key_id }}
+        run: python3 -m scripts.drive_oauth_exchange
+      - name: Commit only GitHub-encrypted result to Studio
+        if: always()
+        env:
+          AUTH_NONCE: ${{ inputs.nonce }}
+        run: |
+          if [ ! -s publishing/drive_oauth_exchange.json ]; then
+            python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          Path('publishing/drive_oauth_exchange.json').write_text(json.dumps({
+            "status":"error","nonce":os.environ.get("AUTH_NONCE",""),
+            "error_code":"runner_failed","message":"Проверка Google не запустилась."
+          },ensure_ascii=False)+"\n")
+          PY
+          fi
+          git config user.name 'm1lash-oauth[bot]'
+          git config user.email 'm1lash-oauth@users.noreply.github.com'
+          git add publishing/drive_oauth_exchange.json
+          git diff --cached --quiet && exit 0
+          git commit -m "drive: publish sealed Google consent result (no credentials)"
+          for n in 1 2 3 4; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then exit 0; fi
+            sleep 3
+          done
+          exit 1
