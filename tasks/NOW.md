@@ -25,10 +25,11 @@
 ## Claude
 
 ## GPT/Codex
-### 02.11 — ПО ОДНОМУ: 004 · GPT
+### 02.11 — ВСЕ НЕЗАКОНЧЕННЫЕ SHORTS, ПО ОДНОМУ · GPT
 - [x] 003 V54 закрыта до PRIVATE review: FxIlxGWVCuw, run41507963691 SUCCESS; Studio private, HD complete, no claims currently. Итог вверху HANDOFF.md; не перезаливать и не назначать дату.
+- [x] Полное дерево main3598 файлов инвентаризировано; реестр правил/Shorts: reports/research/2026-11-02_ALL_SHORTS_RULES_AND_BACKLOG.md. Согласованные существующие проекты; новые форматы не придумывать.
 - [ ] 004 V47: восстановить artifact13094169003, прочитать текущий job/QA, исправить только читаемость тёмных/красных кадров, check.py + look.py финального MP4 и полный слуховой gate.
-Следующий шаг: восстановить004 из существующих artifacts и найти её актуальный jobs/motion manifest. 003 ждёт только решения владельца о публикации.
+Следующий шаг:004 source/artifact уже восстановлены; локальная V48 рендерится в /workspace/scratch/004_v48, код scripts/qa/rebuild_004_clean_ru_safe_v48.py. Исправлены срез лица/крупность титров, нужен QA финального MP4. Затем006, проверки001/002/005, остальные drafts по реестру. 003 ждёт только решения владельца о публикации.
 
 ### 02.11 — фактически 6/6 кино-Shorts доставлены (PRIVATE, без публикации)
 - [x] **001** kino_001_v53.mp4 **55.000с**, Actions 41401595596, artifact 13121673002, RU actor 77 words /44 ASS, check.py 0 FAIL, FFmpeg full decode PASS.
