@@ -95,6 +95,7 @@
     }
     needsRender = false;
     preserveClipFormsAndRender();
+    patchClipStatus();
   }
   function normalize(d) {
     d.comments = d.comments || [];
