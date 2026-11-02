@@ -121,7 +121,7 @@ def vertical(clip, dst, focus_profile=""):
             raise ValueError("NO-GO: Nightcrawler editorial crop requires 32-second source segment")
         # Verified original RU source 17..41s and 50..58s; fixed actor focus.
         # [0,24): Lou on left; [24,29.5): Lou on right; last: employer.
-        xs = [(.33 if i/fps<24 else .62 if i/fps<29.5 else .29) for i in range(count)]
+        xs = [(.36 if i/fps<24 else .62 if i/fps<29.5 else .47) for i in range(count)]
     else:
         xs, fps = face_track(clip)
     cap = cv2.VideoCapture(str(clip))
