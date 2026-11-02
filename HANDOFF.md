@@ -1,3 +1,13 @@
+## GPT · 02.11 — 005 V49: первая реплика исправлена, настоящий MP4 42.279с PRIVATE QA
+
+- Проверен прежний V48 first 4sec. **Корень дефекта:** исходный RU movie cut t17.0 обрезал слово «современная» → автоматические субтитры начинались с «РЕБЕННАЯ». Source t15.7 — натуральное начало целой фразы, исходный клип тот же; никаких новых фильмов не просили.
+- Изменения `scripts/movie_short.py` (actor-focus shifts with added 1.3s), `jobs/motion/movie_review_005_v48_patch1.json` (edition v49, 15.7–41 / 50–58), commit `54948dbb` + crop commit `1f84a396`. Code source `main`.
+- **Реальный новый MP4:** `/mnt/data/m1lash_005_v49_review/kino_005_v49_natural_open.mp4`, **42.279 s**, SHA256 `e83f583fa5e8ca8d7530fbbcb0853b5ff0f167747dfe28314102dd6b52db974b`. CI run [41384470736](https://github.com/osminoog09-star/Shorts/actions/runs/41384470736) завершён workflow FAIL **только на коммите QA marker**; MP4 артефакт **13115195992** успешно получен. По физическому V49: 52 Russian ASS blocks/92 words, approved rev4 outro 6.6с + Dima name, full A/V decode PASS, повторный штатный `check.py` 0 FAIL/1 WARN (burned-in titles), `look.py` контакты просмотрены. Новые 21 стоп +12 стоп в спорном фрагменте показывают **первое слово целиком «ЧТО СОВРЕМЕННАЯ»**; лица и титры не обрезаны, кино-переход потолка около 19.5–20.5с остаётся 1с художественной слабостью.
+- Реальный QA archive `/mnt/data/M1lash_005_V49_PRIVATE_REVIEW_WITH_QA.zip`, CRC PASS, MP4+QA, без чужих фильмов/исходников. Детали: `reports/research/2026-11-02_SHORT005_TARGETED_RECOVERY_PRIVATE_QA.md`. **Статус PRIVATE REVIEW, НЕ RELEASE READY:** нет полноценного независимого слухового контроля каждой русской реплики. YouTube не загружали/не планировали.
+- Следующий шаг `tasks/NOW.md`: **001 Carson**, исходник уже имеется `/mnt/data/shorts_sources/001_chigur_carson_ru.mp4`; V47 имел 0 ASR/0 титров. Ранее одобренный V44 физически не найден. **Не делать немотивированный V48**; сперва проверить реальные русские актёрские слова/найти master. Длинный Чигур остаётся на паузе.
+
+---
+
 ## GPT · 01.11 — ПОЛНЫЙ АУДИТ 6 Shorts V47: NO-GO ПО ВИДЕО, 6/6 ТЕХНИЧЕСКИЙ PASS
 
 - Выполнен отдельный физический контроль `001..006_V47_PRIVATE_REVIEW.mp4` **без пересборок**: 6/6 полный FFmpeg decode видео+аудио PASS, 1080×1920 / 30fps / H264/AAC; просмотрены 103 стоп-кадра каждые 2с по истории (15+16+17+17+16+22), 24 кадра концовок и 18 full-HD точек.
