@@ -59,6 +59,26 @@ jobs:
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
         run: python3 scripts/qa/drive_credentials_probe.py
+      - name: Diagnose existing Drive OAuth safely (nonfatal)
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: |
+          python3 - <<'PY'
+          import os
+          from scripts.drive_oauth_config import google_oauth_preflight, DriveSetupError
+          if not os.environ.get("GDRIVE_REFRESH_TOKEN"):
+              print("Drive OAuth preflight: missing_refresh_token")
+          else:
+              try:
+                  google_oauth_preflight(os.environ)
+                  print("Drive OAuth preflight: google_api_folder_write_ok")
+              except DriveSetupError as exc:
+                  print("Drive OAuth preflight:", exc.code)
+          PY
       - uses: actions/setup-go@v5
         with: { go-version: '1.25.0' }
       - name: Compile pinned HDRezka CLI (no movie download)
