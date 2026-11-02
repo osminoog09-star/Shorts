@@ -27,6 +27,9 @@ on:
       - 'scripts/qa/test_hdrezka_intake.py'
       - 'scripts/drive_oauth_config.py'
       - 'scripts/qa/test_drive_oauth_config.py'
+      - 'scripts/drive_oauth_exchange.py'
+      - 'scripts/qa/test_drive_oauth_exchange.py'
+      - '.github/workflows/drive-oauth-exchange.yml'
       - '.github/workflows/hdrezka-intake.yml'
 
 permissions:
@@ -49,6 +52,7 @@ jobs:
         run: |
           python3 -m unittest discover -s scripts/qa -p 'test_hdrezka_intake.py' -v
           python3 -m unittest discover -s scripts/qa -p 'test_drive_oauth_config.py' -v
+          python3 -m unittest discover -s scripts/qa -p 'test_drive_oauth_exchange.py' -v
       - name: Detect reusable Drive OAuth (never log token)
         env:
           GDRIVE_RCLONE_CONFIG: ${{ secrets.GDRIVE_RCLONE_CONFIG }}
