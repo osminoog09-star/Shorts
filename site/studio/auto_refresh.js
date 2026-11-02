@@ -68,6 +68,11 @@
       .join(" · ") || "Ещё не определены";
     const checked = document.getElementById("hd-checked");
     if (checked) checked.textContent = s.checked_at ? "Проверено " + s.checked_at : "";
+    const drive = D?.drive_auth || {};
+    const driveState = document.getElementById("drive-oauth-state");
+    if (driveState) driveState.textContent = drive.connected ? "Подключён ✓" : drive.message || "Требуется OAuth";
+    const download = document.querySelector("[data-hd-download]");
+    if (download && !download.dataset?.pending) download.disabled = !drive.connected;
   }
   function safeToRender() {
     if (document.getElementById("sheet")?.classList.contains("open")) return false;
