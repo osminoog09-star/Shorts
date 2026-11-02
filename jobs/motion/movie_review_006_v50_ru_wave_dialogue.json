@@ -1,0 +1,26 @@
+{
+  "renderer": "python",
+  "script": "shorts/rebuild_movie_review_from_artifact.py",
+  "id": "006",
+  "edition": "v50",
+  "output": "videos/kino_006_v50.mp4",
+  "save_review_mp4": false,
+  "qa_run_marker": "reports/research/movie_006_v50_run.json",
+  "no_youtube_upload": true,
+  "artifact_id": 13041863362,
+  "member": "originals/miller_waves_landing_ru_candidate.mp4",
+  "segments": [
+    [
+      150,
+      166
+    ],
+    [
+      173,
+      185.5
+    ]
+  ],
+  "film": "Интерстеллар",
+  "public_hook": "ЭТО НЕ ГОРЫ. ВОЛНА УЖЕ БЛИЗКО",
+  "question": "Они успеют вернуться к кораблю?",
+  "edit_note": "Corrects V47 story sampling only 5 Russian words by selecting verified 150s and 175s Russian actor dialogue windows; original source unchanged, no upload."
+}
