@@ -58,6 +58,8 @@ jobs:
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
+      - name: Clear old status in runner only (no file in Git)
+        run: rm -f publishing/hdrezka_status.json
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
       - uses: actions/setup-go@v5
