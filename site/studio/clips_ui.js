@@ -228,8 +228,8 @@ function rezkaInput(){
   const hostname=u.hostname.toLowerCase();
   if(u.protocol!=="https:"||!["rezka.ag","hdrezka.ag"].includes(hostname)||u.username||u.password||
      (u.port&&u.port!=="443")||raw.length>600||
-     !/^\/(?:films|series|cartoons|animation|anime)\/[a-zA-Z0-9_/-]+\.html\/?$/.test(u.pathname)||u.search||u.hash)
-     throw new Error("Нужна страница фильма на rezka.ag или hdrezka.ag, без параметров");
+     !/^\/films\/[a-zA-Z0-9_/-]+\.html\/?$/.test(u.pathname)||u.search||u.hash)
+     throw new Error("Нужна HTTPS-страница полнометражного фильма (/films/) на rezka.ag или hdrezka.ag");
   return {url:u.href,quality:document.getElementById("hd-quality")?.value||"1080p",
           translation:(document.getElementById("hd-translation")?.value||"").trim()};
 }
