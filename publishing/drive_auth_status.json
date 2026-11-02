@@ -1,0 +1,5 @@
+{
+  "status": "not_connected",
+  "connected": false,
+  "message": "Для автоматического сохранения фильмов нужно один раз разрешить Google Drive OAuth."
+}
