@@ -26,13 +26,12 @@
 
 ## GPT/Codex
 ### 02.11 — ПО ОДНОМУ: 003 V54 · GPT
-- [x] Реальный52.6с MP4, source-aware crop, восстановлен бросок, полный вопрос/ответ, исправленные титры и фирменный финал. Check.py0FAIL, full decode, look.py глазами.
-- [x] Доставлен `kino_003_v54.mp4`, Library libfile_3ddda42ee42481918136cc9fcfe627ac v6, SHA6a2a8309be1a0228ff7cf929d2be0c34e1cc14e24273684cb67552311e7307e0.
-- [x] Полная техническая проверка аудио V54: −15.21LUFS/−1.87dBTP, тихие интервалы максимум2.52с, цифровых провалов не обнаружено; audio_review_summary.json.
-- [x] Владелец подтвердил полный просмотр со звуком V54: «Все ок». audio_qa_done=true, reviewer=owner.
-- [ ] Передать точный MP4 штатному youtube-direct.yml mode=upload, без publish_at. GitHub connector не имеет dispatch/upload asset; браузер вошёл в GitHub и M1lash Studio. Автопроверка отклонила upload MP4 в Release из-за отсутствия явного разрешения на передачу файла публичному репозиторию; требуется разрешение на asset в DRAFT Release, не обходить запрет.
-- [x] Владелец явно разрешил синхронизацию main («Да можешь»). Код/паспорт/QA переданы через подключённый GitHub: терминальный push не имел HTTPS credentials.
-Следующий шаг: штатная схема AGENTS§6 — MP4 до100МБ в videos/kino_003_v54.mp4; publishing/queue/kino_003.json без publish_at; youtube-direct.yml mode=upload; receipt с YouTube ID; сайт берёт review из receipts. Не подменять это новой схемой. Передача файла GitHub была отклонена auto-review: не обходить через fetch/API. Владелец требует использовать инструкции Клода. Звук уже подтверждён владельцем. В GitHub создан только пустой Draft release untagged-be816b2467ff47dc2e37, MP4 не загружен, public release не выполнен.
+- [x] V54 52.6с: финальный MP4, check.py/визуальная проверка и технический звук. Владелец подтвердил полный просмотр со звуком: «Все ок».
+- [x] Владелец явно разрешил готовый MP4 в публичном GitHub («Дааа»). Файл сохранён в Release kino-003-v54 и videos/kino_003_v54.mp4 через штатный fetch.yml run41461281555. SHA2566a2a8309be1a0228ff7cf929d2be0c34e1cc14e24273684cb67552311e7307e0; git blob185ffe5ae7fbdfb84242276230f388216fc6c1f9 совпал.
+- [x] publishing/queue/kino_003.json без publish_at + queue.json, локальный check OK; Studio поиск «Урок музыки» дал Видео(0), receipt до запуска отсутствовал.
+- [x] Штатный youtube-direct.yml mode=upload execute=true запущен: https://github.com/osminoog09-star/Shorts/actions/runs/41507963691.
+- [ ] Дождаться результата; прочитать publishing/receipts/kino_003.json, проверить Studio private/Content ID и сайт. НЕ повторять upload при receipt reserved/неясном результате.
+Следующий шаг: завершить только003, зафиксировать YouTube ID. Не запускать mode=schedule: отдельного разрешения на дату нет. Затем004 по одному. Не пересобирать одобренную003.
 
 ### 02.11 — фактически 6/6 кино-Shorts доставлены (PRIVATE, без публикации)
 - [x] **001** kino_001_v53.mp4 **55.000с**, Actions 41401595596, artifact 13121673002, RU actor 77 words /44 ASS, check.py 0 FAIL, FFmpeg full decode PASS.
