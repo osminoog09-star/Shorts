@@ -57,7 +57,7 @@ function clips(){
       '<label class="muted" for="newclip-film">Фильм и год</label><input id="newclip-film" class="t" maxlength="120" placeholder="Название фильма (2022)">'+
       '<label class="muted" for="newclip-note">Какая сцена?</label><input id="newclip-note" class="t" maxlength="200" placeholder="Опиши сцену">'+
       '<button class="btn pri" data-clip-add>Добавить заявку</button></section>';
-  return html;
+  return mediaLinkPanel()+html;
 }
 function clipFolderUrl(raw){
   let u;try{u=new URL(raw)}catch(e){throw new Error("Нужна ссылка на папку Google Drive")}
@@ -130,4 +130,59 @@ document.addEventListener("click",e=>{
       D.clip_requests=saved;render();toast("Новая сцена добавлена в очередь.");
     });
   }
+});
+
+/* Browser-only direct-file helper. It does not extract video from site/player pages. */
+function mediaLinkPanel(){
+  return '<section class="card reveal" aria-label="Загрузка видео по ссылке">'+
+    '<h2>⬇️ Скачать видео по ссылке</h2>'+
+    '<p class="muted">Работает с прямыми HTTPS-ссылками на видеофайлы MP4/WebM/M4V. '+
+    'Качество определяется исходным файлом. Страницы онлайн-кинотеатров (в том числе HDRezka) '+
+    'и защищённые потоки этот сайт не скачивает.</p>'+
+    '<label class="f" for="media-url">Ссылка на видео'+
+    '<input class="t" type="url" id="media-url" inputmode="url" autocomplete="off" '+
+    'maxlength="2048" placeholder="https://example.com/video-1080p.mp4"></label>'+
+    '<div class="row"><button type="button" class="btn pri" data-media-check>Проверить ссылку</button>'+
+    '<button type="button" class="btn" data-media-clear>Очистить</button></div>'+
+    '<p class="muted" id="media-status" role="status" aria-live="polite">Ссылка обрабатывается только в браузере, без отправки в GitHub.</p>'+
+    '<div id="media-actions" hidden><p class="muted" id="media-meta"></p>'+
+    '<a class="btn pri" id="media-download" rel="noopener noreferrer" target="_blank">Открыть файл / скачать</a>'+
+    '<p class="muted">На некоторых сайтах браузер откроет видео вместо сохранения — '+
+    'тогда используй меню браузера «Скачать» или «Сохранить видео». Сайт не может принудительно скачать чужой файл.</p></div>'+
+    '</section>';
+}
+function classifyMediaLink(raw){
+  if(typeof raw!=="string"||raw.length>2048)return {ok:false,message:"Ссылка слишком длинная или некорректная."};
+  let u;try{u=new URL(raw.trim())}catch(e){return {ok:false,message:"Вставь полную ссылку HTTPS."}}
+  if(u.protocol!=="https:"||u.username||u.password||(u.port&&u.port!=="443"))
+    return {ok:false,message:"Поддерживаются только безопасные HTTPS-ссылки без пароля и нестандартного порта."};
+  const host=u.hostname.toLowerCase();
+  if(host==="localhost"||host.endsWith(".localhost")||host.endsWith(".local"))
+    return {ok:false,message:"Локальные адреса здесь не поддерживаются."};
+  if(/(^|\.)(?:hdrezka|rezka)\./i.test(host))
+    return {ok:false,message:"Это страница HDRezka, а не прямая ссылка на видеофайл. GitHub Pages не умеет извлекать из неё MP4 или выбирать 1080p. Скачивание с HDRezka не поддерживается."};
+  const ext=u.pathname.toLowerCase().match(/\.(mp4|m4v|webm)$/);
+  if(!ext)return {ok:false,message:"Не обнаружен прямой файл MP4, M4V или WebM. Ссылки на страницы плееров, HLS (.m3u8) и DRM не поддерживаются."};
+  let name;try{name=decodeURIComponent(u.pathname.split("/").pop())}catch(e){name=u.pathname.split("/").pop()}
+  return {ok:true,url:u.href,filename:name.replace(/[\\/<>:"|?*\x00-\x1f]/g,"_").slice(0,140)};
+}
+document.addEventListener("click",e=>{
+  if(e.target.closest("[data-media-clear]")){
+    const input=document.getElementById("media-url"),status=document.getElementById("media-status");
+    if(input)input.value="";
+    if(status)status.textContent="Ссылка обрабатывается только в браузере, без отправки в GitHub.";
+    const actions=document.getElementById("media-actions");if(actions)actions.hidden=true;
+    return;
+  }
+  if(!e.target.closest("[data-media-check]"))return;
+  const status=document.getElementById("media-status"),actions=document.getElementById("media-actions");
+  if(!status||!actions)return;
+  const result=classifyMediaLink(document.getElementById("media-url")?.value||"");
+  actions.hidden=true;
+  if(!result.ok){status.textContent=result.message;return}
+  const link=document.getElementById("media-download");
+  link.href=result.url;link.download=result.filename||"video.mp4";
+  document.getElementById("media-meta").textContent="Файл: "+result.filename+" · разрешение и доступность 1080p не проверены. Браузер скачает исходное качество.";
+  actions.hidden=false;
+  status.textContent="Прямая ссылка на видеофайл распознана. Скачивание зависит от доступа к файлу и настроек браузера.";
 });
