@@ -5,6 +5,18 @@
 (() => {
   "use strict";
   const NONCE_KEY = "m1-drive-oauth-nonce";
+  // The nonce is a non-secret request identifier: persist across mobile tabs/reloads.
+  function getNonce() {
+    return sessionStorage.getItem(NONCE_KEY) || localStorage.getItem(NONCE_KEY) || "";
+  }
+  function setNonce(value) {
+    sessionStorage.setItem(NONCE_KEY, value);
+    localStorage.setItem(NONCE_KEY, value);
+  }
+  function clearNonce() {
+    sessionStorage.removeItem(NONCE_KEY);
+    localStorage.removeItem(NONCE_KEY);
+  }
   const RESULT_URL = "https://raw.githubusercontent.com/osminoog09-star/Shorts/main/publishing/drive_oauth_exchange.json";
   let working = false;
   let checking = false;
@@ -71,7 +83,7 @@
       const nonce=randomNonce();
       await setSecret("GDRIVE_AUTH_CODE",code);
       if (field) field.value="";
-      sessionStorage.setItem(NONCE_KEY,nonce);
+      setNonce(nonce);
       await dispatch("drive-oauth-exchange.yml",{
         nonce,client_id:id,public_key:pub.key,key_id:pub.key_id
       });
@@ -81,16 +93,16 @@
     } finally { working=false;button.disabled=false; }
   }
   async function check() {
-    if (checking || working || !sessionStorage.getItem(NONCE_KEY) || !tok()) return;
+    if (checking || working || !getNonce() || !tok()) return;
     checking=true;
     try {
       const response=await fetch(RESULT_URL+"?t="+Date.now(),{cache:"no-store"});
       if (!response.ok) return;
       const status=await response.json();
-      const nonce=sessionStorage.getItem(NONCE_KEY);
+      const nonce=getNonce();
       if (!nonce || status.nonce!==nonce) return;
       if (status.status==="error") {
-        sessionStorage.removeItem(NONCE_KEY);
+        clearNonce();
         notice("Google: " + (status.message||status.error_code||"ошибка подключения"));
         try {await gh("/actions/secrets/GDRIVE_AUTH_CODE",{method:"DELETE"});} catch(_) {}
         return;
@@ -102,7 +114,7 @@
           encrypted_value:status.encrypted_value,key_id:status.key_id
         })
       });
-      sessionStorage.removeItem(NONCE_KEY);
+      clearNonce();
       try {await gh("/actions/secrets/GDRIVE_AUTH_CODE",{method:"DELETE"});} catch(_) {}
       await dispatch("hdrezka-intake.yml",{
         url:"",quality:"1080p",mode:"drive_check",translation:""
