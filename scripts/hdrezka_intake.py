@@ -42,10 +42,10 @@ def validate_source(value: str) -> str:
         or host not in ALLOWED_HOSTS
         or u.username or u.password
         or port not in (None, 443)
-        or not re.fullmatch(r"/(?:films|series|cartoons|animation|anime)/[A-Za-z0-9_/-]+\.html/?", u.path)
+        or not re.fullmatch(r"/films/[A-Za-z0-9_/-]+\.html/?", u.path)
         or u.query or u.fragment
     ):
-        raise IntakeError("invalid_url", "Допускаются только HTTPS-страницы фильмов rezka.ag/hdrezka.ag.")
+        raise IntakeError("invalid_url", "Допускаются только HTTPS-страницы полнометражных фильмов /films/ на rezka.ag/hdrezka.ag.")
     return value
 
 
@@ -114,6 +114,8 @@ def safe_output_name(url: str, quality: str) -> str:
 
 
 def upload_to_drive(source: Path, folder_id: str, config_file: str) -> None:
+    if source.suffix.lower() != ".mp4" or not source.is_file():
+        raise IntakeError("invalid_media_type", "В Drive разрешено отправлять только проверенные MP4-фильмы.")
     if not re.fullmatch(r"[A-Za-z0-9_-]{12,100}", folder_id):
         raise IntakeError("drive_not_connected", "Не указана проверенная папка Drive.")
     if not config_file or not Path(config_file).is_file():
