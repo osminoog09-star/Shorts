@@ -25,6 +25,15 @@
 ## Claude
 
 ## GPT/Codex
+### 02.11 — точечное восстановление Short 005, без повторного круга
+- [x] Проверил /mnt/data и поиск в личной библиотеке: прежний итоговый ZIP V45 и MP4 **не найдены**. Все RU source artifacts доступны; ничего повторно у владельца не запрашивать.
+- [x] Проверка точной сцены 005: source `m1lash_short_source_13052196021.zip`, `originals/nightcrawler_no_thieves_ru_test.mp4`. В движении кадр t14–19 относится к работодателю (сдвиг X), t24–29.5 к Лу справа, t29.5+ к работодателю. Контакт 4 исходных и отдельные 9 итоговых preflight-кадров открыты глазами.
+- [x] Исправлен код `scripts/movie_short.py`: measured ASS width ≤790px, шрифт/длина группы под экран, `--editorial-profile nightcrawler` и ручные точки actor-focus вместо авто выбора чужого лица.
+- [x] **CI blocker найден и устранён**: в `motion-render.yml` неэкранированный YAML `QA: private...` в concurrency group блокировал все jobs (0 jobs); `movie-media-qa.yml` имел случайно продублированные 25+ строк YAML. Теперь оба реально запустились.
+- [x] Самостоятельный точечный BODY-only preflight `/mnt/data/005_patch_preflight/005_corrected_body_PRIVATE_NO_OUTRO.mp4`, 32.033333 с 1080×1920/30, сохранён оригинальный RU звук, full FFmpeg decode PASS. **Это не финальный Short и не замена фирменной концовки**.
+- [ ] **Следующий шаг**: Actions `41382083914` (005 полный штатный MP4 через `assemble_with_outro.py`, QA artifact) + `41382193226` (approved rev4 outro + Dima TTS + check/look scripts private artifact). Получить завершённые artifacts, развернуть, проверить финальный 005 `check.py` и `look.py` глазами, сравнить с предыд. косяками: строка t0.4 и лицо t23.6, хук, RU ASR/слух. Если не PASS — не выпускать.
+- [ ] Потом 001/002/003/004/006 только по конкретным исправлениям из `reports/research/2026-11-01_GPT_SIX_SHORTS_DEEP_FRAME_AUDIT.md`; длинный Чигур на паузе, YouTube upload/даты запрещены до владельческого ok.
+
 ### 01.11 · ФАКТИЧЕСКИЙ ГЛУБОКИЙ АУДИТ 6 SHORTS (приказ владельца)
 - [x] Шесть V47 MP4 реально распакованы из Actions artifacts; **6/6 новый full FFmpeg decode PASS** на обоих потоках, формат 1080×1920 30fps H264/AAC.
 - [x] На каждой истории извлечено по одному кадру каждые 2с (15/16/17/17/16/22 кадров), просмотрено глазами; также проверено 24 кадра всех шести утверждённых концовок и 18 full-HD спорных кадров.
