@@ -114,18 +114,41 @@
           encrypted_value:status.encrypted_value,key_id:status.key_id
         })
       });
-      clearNonce();
       try {await gh("/actions/secrets/GDRIVE_AUTH_CODE",{method:"DELETE"});} catch(_) {}
       await dispatch("hdrezka-intake.yml",{
         url:"",quality:"1080p",mode:"drive_check",translation:""
       });
+      clearNonce();
       notice("Новый Google Drive токен сохранён в GitHub Secrets. Запущена проверка доступа к папке — результат появится автоматически.");
     } catch(error) {
       notice("Не удалось завершить подключение: "+error.message+" (можно повторить, код не утрачен).");
     } finally { checking=false; }
   }
+  async function resumeConfirmedAccess(button) {
+    if (working || checking) return;
+    if (!tok()) { notice("Для завершения нужен GitHub-токен в этом браузере."); return; }
+    button.disabled = true;
+    try {
+      const response=await fetch(RESULT_URL+"?t="+Date.now(),{cache:"no-store"});
+      if (!response.ok) throw new Error("Не удалось получить результат Google.");
+      const result=await response.json();
+      const issued=Date.parse(result.checked_at||"");
+      if (result.status!=="ready" || !result.nonce || !result.encrypted_value || !result.key_id ||
+          !Number.isFinite(issued) || Date.now()-issued>12*3600000 || issued>Date.now()+60000)
+        throw new Error("Нет свежего подтверждённого разрешения Google.");
+      const pub=await gh("/actions/secrets/public-key");
+      if (result.key_id!==pub.key_id)
+        throw new Error("Ключ GitHub изменился — старое подтверждение нельзя использовать.");
+      setNonce(result.nonce);
+      notice("Завершаю уже подтверждённое подключение к Google Drive…");
+      await check();
+    } catch (error) {
+      notice("Не удалось завершить: "+error.message);
+    } finally {button.disabled=false;}
+  }
   document.addEventListener("click",evt=>{
     if (evt.target.closest("#driveGoogleStart")) {void begin(evt);}
+    else if (evt.target.closest("#driveGoogleResume")) {void resumeConfirmedAccess(evt.target.closest("#driveGoogleResume"));}
     else if (evt.target.closest("#driveGoogleFinish")) {
       const button=evt.target.closest("#driveGoogleFinish");
       void finish(button);
