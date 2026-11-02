@@ -134,6 +134,12 @@ document.addEventListener("click",e=>{
 
 /* Browser-only direct-file helper. It does not extract video from site/player pages. */
 function mediaLinkPanel(){
+  let driveUrl="";
+  try{if(D?.drive_folder?.url)driveUrl=clipFolderUrl(D.drive_folder.url)}catch(e){}
+  const driveCta=driveUrl?
+    '<p class="muted">Для хранения большого фильма: сначала сохрани видеофайл на устройство, затем открой Drive и загрузи его туда. В M1lash файл появится после сканирования папки.</p>'+
+    '<a class="btn" href="'+esc(driveUrl)+'" target="_blank" rel="noopener noreferrer">📁 Открыть папку Drive для загрузки</a>':
+    '<p class="muted">Сначала привяжи Google Drive в разделе «Одна папка Google Drive» ниже.</p>';
   return '<section class="card reveal" aria-label="Загрузка видео по ссылке">'+
     '<h2>⬇️ Скачать видео по ссылке</h2>'+
     '<p class="muted">Работает с прямыми HTTPS-ссылками на видеофайлы MP4/WebM/M4V. '+
@@ -149,7 +155,7 @@ function mediaLinkPanel(){
     '<a class="btn pri" id="media-download" rel="noopener noreferrer" target="_blank">Открыть файл / скачать</a>'+
     '<p class="muted">На некоторых сайтах браузер откроет видео вместо сохранения — '+
     'тогда используй меню браузера «Скачать» или «Сохранить видео». Сайт не может принудительно скачать чужой файл.</p></div>'+
-    '</section>';
+    driveCta+'</section>';
 }
 function classifyMediaLink(raw){
   if(typeof raw!=="string"||raw.length>2048)return {ok:false,message:"Ссылка слишком длинная или некорректная."};
