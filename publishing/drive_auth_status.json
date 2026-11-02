@@ -1,7 +1,7 @@
 {
-  "checked_at": "2026-11-02T22:41:37Z",
+  "checked_at": "2026-11-02T23:09:12Z",
   "status": "error",
   "connected": false,
-  "error_code": "oauth_client_denied",
-  "message": "Проверены все существующие OAuth-клиенты GitHub: Google отвечает unauthorized_client при обновлении Drive-токена. Сам токен сохранён. Повторная вставка того же значения не поможет: нужно проверить OAuth-клиент/его разрешения либо выдать новый Drive refresh token для корректного клиента."
+  "error_code": "drive_api_denied",
+  "message": "Google принял новый одноразовый код и выдал OAuth-доступ, но сам Google Drive API ответил HTTP 403. Проверь, включён ли Google Drive API в Google Cloud проекте «Youtube» и нет ли ограничений для приложения. Новый Refresh token не сохранился: обмен завершился ошибкой проверки Drive."
 }
