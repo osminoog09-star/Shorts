@@ -49,11 +49,11 @@ jobs:
           from pathlib import Path
           cid=os.environ.get("PUBLIC_GOOGLE_CLIENT_ID","")
           # OAuth Client IDs are public identifiers, unlike Client Secrets.
-          if re.fullmatch(r"[0-9]+-[a-zA-Z0-9_-]+\\.apps\\.googleusercontent\\.com",cid):
-              Path("_site/studio/google_client.json").write_text(json.dumps({"client_id":cid})+"\\n")
+          if re.fullmatch(r"[0-9]+-[a-zA-Z0-9_-]+\.apps\.googleusercontent\.com",cid):
+              Path("_site/studio/google_client.json").write_text(json.dumps({"client_id":cid})+"\n")
           else:
-              Path("_site/studio/google_client.json").write_text('{"status":"unavailable"}\\n')
-          print("Studio public OAuth Client ID:", "ready" if re.fullmatch(r"[0-9]+-[a-zA-Z0-9_-]+\\.apps\\.googleusercontent\\.com",cid) else "unavailable")
+              Path("_site/studio/google_client.json").write_text('{"status":"unavailable"}\n')
+          print("Studio public OAuth Client ID:", "ready" if re.fullmatch(r"[0-9]+-[a-zA-Z0-9_-]+\.apps\.googleusercontent\.com",cid) else "unavailable")
           PY
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
