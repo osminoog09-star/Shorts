@@ -214,8 +214,8 @@ function rezkaIntakePanel(){
     '<input class="t" id="hd-translation" maxlength="80" placeholder="Пусто = озвучка по умолчанию"></label>'+
     '<div class="row"><button class="btn" data-hd-inspect>Проверить качество</button>'+
     '<button class="btn pri" data-hd-download>Скачать в Drive</button></div>'+
-    '<p class="muted" role="status">Последнее действие: '+esc(state)+
-    '. Доступно: '+esc(qualities)+'. '+(s.checked_at?"Проверено "+esc(s.checked_at)+".":"")+'</p>'+
+    '<p class="muted" role="status">Последнее действие: <span id="hd-status">'+esc(state)+'</span>'+ 
+    '. Доступно: <span id="hd-qualities">'+esc(qualities)+'</span>. <span id="hd-checked">'+(s.checked_at?"Проверено "+esc(s.checked_at):"")+'</span></p>'+
     '<p class="muted">Для автоматической загрузки требуется однократно добавить секрет <code>GDRIVE_RCLONE_CONFIG</code> в GitHub. Одна лишь ссылка на папку Drive не даёт сервису права на загрузку. Если секрета нет — проверка качества работает, загрузка нет.</p>'+
     '<a class="btn" target="_blank" rel="noopener noreferrer" href="https://github.com/osminoog09-star/Shorts/actions/workflows/hdrezka-intake.yml">Журнал загрузок GitHub Actions</a>'+
     '</section>';
