@@ -25,6 +25,19 @@
 ## Claude
 
 ## GPT/Codex
+### 02.11 — HDRezka → Drive в Студии M1lash (отдельная задача) · GPT
+Цель: по нажатию в «Клипы» проверить качество 720p/1080p и приватно скачать разрешённый владельцем файл в его папку Drive.
+Шаги:
+- [x] Прочитаны правила, учтено новое узкое разрешение владельца в AGENTS.md §8 и навыке студии.
+- [x] Созданы `scripts/hdrezka_intake.py`, `scripts/qa/test_hdrezka_intake.py`, `.github/workflows/hdrezka-intake.yml` с проверкой качества/длительности/качества источника и без отправки фильма в git.
+- [x] В `site/studio/clips_ui.js` добавлен интерфейс 720p/1080p и вызов workflow через существующий GitHub-токен. `scripts/build_studio_site.py` читает `publishing/hdrezka_status.json`, pages workflow отслеживает обновления.
+- [x] Actions unit tests 41522233231 SUCCESS; Pages 41522392653 SUCCESS. Добавлен Go CLI compile smoke в workflow; итог нового run надо проверить.
+- [ ] Для реальной записи в Drive нужен отдельный OAuth: секрет GitHub `GDRIVE_RCLONE_CONFIG` c [m1lash] от владельца; доступ `anyone=writer` этого НЕ заменяет.
+- [ ] После настройки секрета: UI «Клипы» → вставить страницу `https://rezka.ag/films/drama/54016-oppengeymer-2023-latest.html` → «Проверить качество», осмотреть `publishing/hdrezka_status.json`, если источник отвечает — скачать выбранную версию в Drive; проверить метаданные файла через Google Drive. Реальную загрузку НЕ объявлять выполненной заранее.
+Следующий шаг: проверить Actions-run от коммита `82af4739` (Go CLI smoke), исправить при ошибке. Затем только при наличии `GDRIVE_RCLONE_CONFIG` запускать реальную загрузку. Подробности `reports/research/2026-11-02_HDREZKA_PRIVATE_INTAKE.md`.
+Где промежуточное: указанные файлы в main, без MP4.
+Ждёт Дениса: однократно авторизовать собственный Google Drive для rclone и сохранить полный конфиг в GitHub Actions secret, НЕ в чат.
+
 ### 02.11 — ВСЕ НЕЗАКОНЧЕННЫЕ SHORTS, ПО ОДНОМУ · GPT
 - [x] Инвентаризация3598 файлов, правила и backlog: reports/research/2026-11-02_ALL_SHORTS_RULES_AND_BACKLOG.md. Никаких вопросов «продолжать».
 - [x]003 V54 FxIlxGWVCuw; receipt уже scheduled2026-11-03T08:00Z (изменено внешне/владельцем, GPT эту дату не назначал). Не трогать.
