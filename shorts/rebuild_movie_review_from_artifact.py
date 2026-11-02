@@ -85,6 +85,8 @@ def main():
               "--film",job["film"],"--lang","ru","--question",job["question"]]
         if job.get("editorial_profile"):
             args.extend(["--editorial-profile",job["editorial_profile"]])
+        if job.get("on_screen_hook"):
+            args.extend(["--on-screen-hook", job["on_screen_hook"]])
         run(args)
         if not output.exists():raise RuntimeError("No master MP4 from studio builder")
         ART.mkdir(exist_ok=True)
