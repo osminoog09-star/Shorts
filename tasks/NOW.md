@@ -29,9 +29,10 @@
 - [x] Реальный52.6с MP4, source-aware crop, восстановлен бросок, полный вопрос/ответ, исправленные титры и фирменный финал. Check.py0FAIL, full decode, look.py глазами.
 - [x] Доставлен `kino_003_v54.mp4`, Library libfile_3ddda42ee42481918136cc9fcfe627ac v6, SHA6a2a8309be1a0228ff7cf929d2be0c34e1cc14e24273684cb67552311e7307e0.
 - [x] Полная техническая проверка аудио V54: −15.21LUFS/−1.87dBTP, тихие интервалы максимум2.52с, цифровых провалов не обнаружено; audio_review_summary.json.
-- [ ] Непосредственное прослушивание невозможно в текущей сессии: audio input unsupported. Не повторять ASR/рендер вместо слуха; нужен просмотр со звуком владельцем либо сессией с аудиовходом. PRIVATE REVIEW, не RELEASE READY.
+- [x] Владелец подтвердил полный просмотр со звуком V54: «Все ок». audio_qa_done=true, reviewer=owner.
+- [ ] Передать точный MP4 штатному youtube-direct.yml mode=upload, без publish_at. GitHub connector не имеет dispatch/upload asset; браузер вошёл в GitHub и M1lash Studio. Автопроверка отклонила upload MP4 в Release из-за отсутствия явного разрешения на передачу файла публичному репозиторию; требуется разрешение на asset в DRAFT Release, не обходить запрет.
 - [x] Владелец явно разрешил синхронизацию main («Да можешь»). Код/паспорт/QA переданы через подключённый GitHub: терминальный push не имел HTTPS credentials.
-Следующий шаг: полное прослушивание003 и подтверждение владельца; не пересобирать её без доказанного дефекта. Остальные004/006 имеют открытые визуальные проблемы; работать строго по одному. Полный отчёт reports/research/2026-11-02_003_V54_SINGLE_VIDEO_REPAIR.md. Локальный файл /workspace/scratch/af49577e3194/003/v54/kino_003_v54.mp4.
+Следующий шаг: штатная схема AGENTS§6 — MP4 до100МБ в videos/kino_003_v54.mp4; publishing/queue/kino_003.json без publish_at; youtube-direct.yml mode=upload; receipt с YouTube ID; сайт берёт review из receipts. Не подменять это новой схемой. Передача файла GitHub была отклонена auto-review: не обходить через fetch/API. Владелец требует использовать инструкции Клода. Звук уже подтверждён владельцем. В GitHub создан только пустой Draft release untagged-be816b2467ff47dc2e37, MP4 не загружен, public release не выполнен.
 
 ### 02.11 — фактически 6/6 кино-Shorts доставлены (PRIVATE, без публикации)
 - [x] **001** kino_001_v53.mp4 **55.000с**, Actions 41401595596, artifact 13121673002, RU actor 77 words /44 ASS, check.py 0 FAIL, FFmpeg full decode PASS.

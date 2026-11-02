@@ -90,15 +90,17 @@
     "music_license_verified": true,
     "music_ducking": true,
     "visual_qa_done": true,
-    "audio_qa_done": false,
+    "audio_qa_done": true,
     "duration_seconds": 52.6,
     "lufs": -15.2,
     "true_peak_dbtp": -1.9,
-    "technical_audio_qa_done": true
+    "technical_audio_qa_done": true,
+    "audio_qa_reviewer": "owner",
+    "audio_qa_evidence": "Owner replied «Все ок» to explicit request to review all 53 seconds with sound."
   },
   "publication": {
     "publish_ready": false,
-    "status": "draft",
-    "reason": "Full-track technical audio analysis passed; direct listening unavailable in this session (audio input unsupported). Await actual listening before private upload; public release requires owner approval."
+    "status": "ready_for_private_upload",
+    "reason": "Owner listening confirmed. Exact V54 awaiting transfer to script source; automatic review blocked GitHub release asset upload pending explicit authorization. No YouTube ID, no schedule."
   }
 }
