@@ -1,7 +1,7 @@
 name: Motion Studio · GitHub Pages
 on:
   workflow_run:
-    workflows: ['YouTube Analytics daily', 'YouTube Analytics', 'YouTube · daily analytics', 'YouTube · hourly pulse']
+    workflows: ['YouTube Analytics daily', 'YouTube Analytics', 'YouTube · daily analytics', 'YouTube · hourly pulse', 'M1lash HDRezka to private Drive', 'M1lash Drive · folder intake', 'M1lash Drive · ASR scene candidates (PRIVATE QA only)', 'YouTube direct · review then schedule']
     types: [completed]
   push:
     branches: [main]
