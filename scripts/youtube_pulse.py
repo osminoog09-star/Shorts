@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Ежечасный «пульс» канала: счётчики Data API (подписчики, просмотры свежих роликов). Только чтение.
+"""Пульс канала каждые ~15 минут: счётчики Data API (подписчики, просмотры свежих роликов). Только чтение.
 
-YouTube Analytics обновляется с задержкой 1–2 дня, поэтому почасово берём только живые счётчики
-videos.list / channels.list (≈3 единицы квоты в час). Хранится в ветке pulse-data (не засоряет main):
+YouTube Analytics обновляется с задержкой 1–2 дня, поэтому регулярно берём только счётчики YouTube Data API
+videos.list / channels.list (несколько единиц квоты за запуск). Хранится в ветке pulse-data (не засоряет main):
 pulse.json = {"snapshots": [{"t", "subs", "views", "videos": {id: views}}], "recent": [{id,title,published}]},
-последние 72 часа. Сайт студии берёт его в motion-pages.yml.
+последние ~75 часов. Сайт студии берёт его в motion-pages.yml.
 """
 import json
 import re
@@ -94,7 +94,7 @@ def main(out):
     data["snapshots"].append({"t": datetime.now(timezone.utc).isoformat(timespec="minutes"),
                               "subs": int(st.get("subscriberCount", 0)), "views": int(st.get("viewCount", 0)),
                               "videos": {v["id"]: int(v["statistics"].get("viewCount", 0)) for v in public}})
-    data["snapshots"] = data["snapshots"][-72:]
+    data["snapshots"] = data["snapshots"][-300:]
     data["recent"] = [{"id": v["id"], "title": v["snippet"]["title"], "published": v["snippet"]["publishedAt"],
                        "duration": v["contentDetails"].get("duration"),
                        "likes": int(v["statistics"].get("likeCount", 0)),
