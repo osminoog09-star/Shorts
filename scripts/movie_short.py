@@ -265,6 +265,7 @@ def main():
     ap.add_argument("--lang", default="ru")
     ap.add_argument("--request", default="", help="@ник для «По заявке»")
     ap.add_argument("--question", default="А ты бы как поступил?")
+    ap.add_argument("--on-screen-hook", default="", help="Короткий редакторский хук сверху на первые секунды, не актёрская цитата")
     ap.add_argument("--allow-verified-visual-action", action="store_true", help="Opt-in frame+SFX verified dialogue-free physical action; not silence bypass")
     ap.add_argument("--curated-action-titles", action="store_true", help="Editorial text instead of unreliable ASR transcript over action")
     ap.add_argument("--editorial-profile", choices=["carla","whiplash","carson","nightcrawler"], default="", help="Checked editorial overlays, NOT purported film quotations")
@@ -303,7 +304,7 @@ def main():
     words = transcribe(wav, a.lang)
     if a.lang != "ru" and not a.request:
         sys.exit("NO-GO: не русский звук разрешён только для заявок зрителей (AGENTS §8)")
-    top = f"ПО ЗАЯВКЕ {a.request.upper()}" if a.request else None
+    top = f"ПО ЗАЯВКЕ {a.request.upper()}" if a.request else (a.on_screen_hook.strip() or None)
     subs = work / "s.ass"
     if a.editorial_profile and a.editorial_profile != 'nightcrawler':
         profiles = {
