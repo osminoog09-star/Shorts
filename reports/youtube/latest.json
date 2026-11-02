@@ -483,6 +483,18 @@
       "shares": 0,
       "estimatedMinutesWatched": 0
     },
+    "FxIlxGWVCuw": {
+      "views": null,
+      "engagedViews": null,
+      "averageViewPercentage": null,
+      "averageViewDuration": null,
+      "subscribersGained": null,
+      "subscribersLost": null,
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "estimatedMinutesWatched": null
+    },
     "uCqhnwWH6Uc": {
       "views": null,
       "engagedViews": null,
@@ -536,8 +548,22 @@
   "schema_version": 1,
   "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
   "snapshot_date": "2026-11-02",
-  "fetched_at": "2026-11-02T17:56:58.533420+00:00",
+  "fetched_at": "2026-11-02T19:23:00.090481+00:00",
   "inventory": [
+    {
+      "video_id": "FxIlxGWVCuw",
+      "title": "Урок музыки вышел из-под контроля #shorts",
+      "published_at": "2026-11-02T19:14:24Z",
+      "duration": "PT53S",
+      "privacy": "private",
+      "statistics": {
+        "viewCount": "0",
+        "likeCount": "0",
+        "dislikeCount": "0",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
     {
       "video_id": "uCqhnwWH6Uc",
       "title": "Машина с ИИ слила меня тёще 🚗 #shorts",
@@ -559,7 +585,7 @@
       "duration": "PT23S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "4",
+        "viewCount": "5",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -573,7 +599,7 @@
       "duration": "PT50S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "191",
+        "viewCount": "186",
         "likeCount": "3",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -797,7 +823,7 @@
       "duration": "PT1M14S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "3229",
+        "viewCount": "3232",
         "likeCount": "192",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -923,7 +949,7 @@
       "duration": "PT59S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "6087",
+        "viewCount": "6088",
         "likeCount": "159",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1114,7 +1140,7 @@
     }
   ],
   "channel_statistics": {
-    "viewCount": "32465",
+    "viewCount": "32665",
     "subscriberCount": "36",
     "hiddenSubscriberCount": false,
     "videoCount": "40"
@@ -1186,6 +1212,7 @@
     "start": "2026-10-05",
     "end": "2026-11-01",
     "videos": {
+      "FxIlxGWVCuw": [],
       "uCqhnwWH6Uc": [],
       "KIGLaVhTlhw": [],
       "CmOu0xXc0UI": [
@@ -2059,6 +2086,7 @@
       "mLlB8eL1FUE": []
     },
     "unsupported_metrics": {
+      "FxIlxGWVCuw": [],
       "uCqhnwWH6Uc": [],
       "KIGLaVhTlhw": [],
       "CmOu0xXc0UI": [],
