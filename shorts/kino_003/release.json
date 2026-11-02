@@ -100,7 +100,10 @@
   },
   "publication": {
     "publish_ready": false,
-    "status": "ready_for_private_upload",
-    "reason": "Owner listening confirmed. Exact V54 awaiting transfer to script source; automatic review blocked GitHub release asset upload pending explicit authorization. No YouTube ID, no schedule."
+    "status": "uploaded_private",
+    "video_id": "FxIlxGWVCuw",
+    "video_url": "https://youtu.be/FxIlxGWVCuw",
+    "publish_at_utc": null,
+    "reason": "Owner confirmed audio QA. Studio verified private, HD complete, no copyright claims found on 2026-11-02. Await separate owner publication decision."
   }
 }
