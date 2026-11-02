@@ -442,6 +442,14 @@ function openSettings(section){
       <div class="idea"><b>🔐 Ключ подписи виджета</b><p>Нужен один раз: тогда обновления виджета будут ставиться поверх. Ключ создаётся в этом браузере, шифруется и уходит только в секреты GitHub — больше нигде не хранится.</p><div class="row"><button class="btn pri" id="mkKey">Создать ключ и собрать виджет</button></div></div>
       <div class="idea" style="margin-top:10px"><b>🔑 Ключ YouTube (для комментариев)</b><p>Открой <a href="https://developers.google.com/oauthplayground/" target="_blank" rel="noopener">OAuth Playground</a> (⚙️ → свои client ID/secret M1lash Studio), отметь 4 доступа: <code>youtube.upload</code>, <code>youtube.force-ssl</code>, <code>youtube.readonly</code>, <code>yt-analytics.readonly</code> → Authorize → Exchange → скопируй <b>Refresh token</b> сюда.</p><label class="f">Refresh token<input class="t" id="ytTok" type="password" autocomplete="off" placeholder="1//0…"></label><div class="row" style="margin-top:8px"><button class="btn pri" id="ytSave">Сохранить в GitHub и проверить</button></div></div>
       <div class="idea" style="margin-top:10px"><b>☁️ Google Drive — загрузка фильмов</b>
+       <div class="idea" style="margin:10px 0;padding:12px"><b>Подключить свой Google-аккаунт — без поиска старых ключей</b>
+       <p class="muted">Один раз разреши доступ в Google. Секрет OAuth уже в GitHub; сайт не получает Client Secret или Refresh token.</p>
+       <div class="row"><button type="button" class="btn pri" id="driveGoogleStart">1. Войти через Google</button>
+         <a class="btn" id="driveGoogleLink" href="#" target="_blank" rel="noopener" hidden>Открыть Google</a></div>
+       <p class="muted">После входа Google откроет OAuth Playground. Скопируй <b>Authorization code</b> из шага 2 (кнопку Exchange не нажимай) и вернись сюда.</p>
+       <label class="f">Код Google<input class="t" id="driveAuthCode" type="password" autocomplete="off" spellcheck="false" placeholder="Authorization code (не refresh token)"></label>
+       <button type="button" class="btn pri" id="driveGoogleFinish">2. Подключить Drive</button>
+       <p class="muted" role="status" id="driveConnectStatus">Доступ требует одного подтверждения Google. Старые Client ID и Secret вспоминать не нужно.</p></div>
        <p>Статус: <span class="chip" id="driveAuthLabel">${esc(D?.drive_auth?.connected?'Подключён ✓':D?.drive_auth?.message||'Требуется OAuth')}</span>. Папка M1lash уже выбрана. Чтобы фильмы автоматически попадали в неё, нужен отдельный <b>Drive refresh token</b> — он сохраняется только в GitHub Secrets.</p>
        <ol class="steps"><li>В <a href="https://console.cloud.google.com/apis/library/drive.googleapis.com" target="_blank" rel="noopener noreferrer">Google Cloud</a> включи Google Drive API в проекте «Youtube».</li>
        <li>Открой <a href="https://developers.google.com/oauthplayground/" target="_blank" rel="noopener noreferrer">OAuth Playground</a> → ⚙️ → <b>Use your own OAuth credentials</b>. Используй <b>тот же Web Client ID и Secret из Google Cloud → проект «Youtube»</b>, что уже стоят в GitHub для YouTube. <b>Не используй стандартный клиент OAuth Playground</b> — иначе Google вернёт <code>unauthorized_client</code> при проверке нового токена.</li>
@@ -662,5 +670,6 @@ async function load(quiet){
 load();
 </script>
 <script src="auto_refresh.js"></script>
+<script src="drive_connect.js"></script>
 </body>
 </html>
