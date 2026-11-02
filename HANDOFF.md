@@ -1,3 +1,11 @@
+## GPT · 02.11 — уточнение V52/V53: строгий loudness gate, не объявлять READY
+
+- **001 V52** (run `41400484209`) создал внутри runner 55с MP4 с 77 RU words/44 ASS и первым on-screen hook, но официальный `check.py` **FAILED только по −16.0 LUFS на границе допуска**; GitHub Actions не выгрузил артефакт. НЕ выдавать V52 за готовый MP4.
+- **001 V53** (run `41401595596`, commit `977d6723`) повторяет только проверенную RU-сцену 35–80.3с и hook с новым **body-only gain +0.4 dB**. Новая опция добавлена в `scripts/movie_short.py` (`653d812b`) и wrapper (`75be556a`), approved rev4 outro **не меняется**. На момент записи workflow in_progress, реальный V53 не проверен; подтверждённый доступный резерв — 001 **V51** artifact `13121112903`, 55с, 0 FAIL, но слабый хук 0–2с. Сначала получить и осмотреть настоящий V53 по артефакту, а не по commit badge.
+- Прочее состояние/реальные MP4, ASR, QA и 006 watermark — см. следующий блок и `reports/research/2026-11-02_GPT_REPO_FULL_TREE_AND_SHORTS_TRIAGE.md`. YouTube не трогали.
+
+---
+
 ## GPT · 02.11 — фактический полный Git tree audit, 001/006 русская речь восстановлена, 002 карта, 005 V49 проверен
 
 - **Главный источник истины:** `reports/research/2026-11-02_GPT_REPO_FULL_TREE_AND_SHORTS_TRIAGE.md` (дополнен физическими MP4/check/ASR, artifact ids и TODO). Git Trees API `main`, 3561 tracked files (`truncated=false`); изучены ключевые регламенты/действующие jobs, НЕ утверждать что прочтён полный текст каждого из 3561 файлов.
