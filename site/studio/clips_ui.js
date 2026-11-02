@@ -198,8 +198,16 @@ function rezkaIntakePanel(){
   const s=D?.hdrezka_intake||{};
   const connected=!!D?.drive_auth?.connected;
   const driveMessage=connected?"Подключён ✓":D?.drive_auth?.message||"Требуется OAuth";
-  const state=s.status==="ok"?(s.drive_uploaded?"Загружено в Drive":"Качества проверены"):
-    s.status==="error"?"Не удалось: "+(s.message||s.error_code||"см. Actions"):"Проверка ещё не запускалась";
+  const run=window.__m1LatestIntakeRun;
+  const requestTime=Date.parse(window.__m1IntakeRequestedAt||run?.created_at||"")||0;
+  const resultTime=Date.parse(s.checked_at||"")||0;
+  const isRecent=requestTime>resultTime&&Date.now()-requestTime<2*3600000;
+  const running=run&&["queued","pending","in_progress"].includes(run.status);
+  const state=isRecent&&running
+    ? "Задание GitHub Actions #"+run.id+": "+(run.status==="in_progress"?"выполняется":"в очереди")
+    : isRecent&&!run ? "Запрос отправлен в GitHub Actions. Ожидаем запуска"
+    : s.status==="ok"?(s.drive_uploaded?"Загружено в Drive":"Качества проверены"):
+      s.status==="error"?"Не удалось: "+(s.message||s.error_code||"см. Actions"):"Проверка ещё не запускалась";
   const avail=s.available||{};
   const qualities=Object.keys(avail).length
     ? Object.entries(avail).map(([k,v])=>k+" — "+(v==="available"?"доступно":"только Premium")).join(" · ")
@@ -241,7 +249,15 @@ document.addEventListener("click",e=>{
     const params=rezkaInput();
     const mode=button.hasAttribute("data-hd-download")?"download":"inspect";
     await dispatch("hdrezka-intake.yml",{...params,mode});
-    toast(mode==="inspect"?"Проверка запущена. Результат появится в этом разделе после обновления.":"Загрузка запущена. Статус в GitHub Actions и здесь после обновления.");
+    window.__m1IntakeRequestedAt=new Date().toISOString();
+    window.__m1IntakeMode=mode;
+    const status=document.getElementById("hd-status");
+    if(status)status.textContent=mode==="inspect"
+      ?"Проверка отправлена в GitHub Actions. Ожидаем запуска"
+      :"Загрузка запрошена в GitHub Actions. Ожидаем запуска";
+    const workflow=document.getElementById("hd-workflow-state");
+    if(workflow)workflow.textContent="GitHub Actions: запрос принят, отслеживаю выполнение";
+    toast(mode==="inspect"?"Проверка отправлена. Смотри статус под кнопками — он обновится автоматически.":"Загрузка отправлена. Смотри статус под кнопками.");
     button.disabled=false;
   });
 });
