@@ -219,7 +219,7 @@ function rezkaIntakePanel(){
     '<p class="muted" role="status">Последнее действие: <span id="hd-status">'+esc(state)+'</span>'+ 
     '. Доступно: <span id="hd-qualities">'+esc(qualities)+'</span>. <span id="hd-checked">'+(s.checked_at?"Проверено "+esc(s.checked_at):"")+'</span></p>'+
     '<p class="muted">Google Drive: <span id="drive-oauth-state">'+esc(driveMessage)+'</span>. Качество проверяется отдельно. Скачивание доступно только после успешной проверки OAuth. <button class="btn sm" type="button" data-settings-section="tokens">🔐 Токены и доступы</button></p>'+
-    '<a class="btn" target="_blank" rel="noopener noreferrer" href="https://github.com/osminoog09-star/Shorts/actions/workflows/hdrezka-intake.yml">Журнал загрузок GitHub Actions</a>'+
+    '<p class="muted" id="hd-workflow-state" role="status">GitHub Actions: статусы проверяются автоматически, когда открыт раздел «Клипы».</p><a class="btn" target="_blank" rel="noopener noreferrer" href="https://github.com/osminoog09-star/Shorts/actions/workflows/hdrezka-intake.yml">Журнал загрузок GitHub Actions</a>'+
     '</section>';
 }
 function rezkaInput(){
