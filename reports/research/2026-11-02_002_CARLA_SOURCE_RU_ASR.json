@@ -1,0 +1,105 @@
+{
+  "stage": "SOURCE_RU_AUDIO_ONLY",
+  "id": "002",
+  "artifact_id": 13069849250,
+  "checked_at": "2026-11-02T06:33:33+00:00",
+  "source_duration": 220.019,
+  "reported_audio_tags": [
+    {
+      "language": "und"
+    }
+  ],
+  "samples": [
+    {
+      "at": 0,
+      "language": "ru",
+      "probability": 0.93,
+      "segments": 3,
+      "russian_characters": 46,
+      "speech_seconds": 6.76
+    },
+    {
+      "at": 20,
+      "language": "en",
+      "probability": 0.353,
+      "segments": 0,
+      "russian_characters": 0,
+      "speech_seconds": 0
+    },
+    {
+      "at": 40,
+      "language": "en",
+      "probability": 0.353,
+      "segments": 0,
+      "russian_characters": 0,
+      "speech_seconds": 0
+    },
+    {
+      "at": 60,
+      "language": "ru",
+      "probability": 0.956,
+      "segments": 2,
+      "russian_characters": 41,
+      "speech_seconds": 6.9
+    },
+    {
+      "at": 80,
+      "language": "ru",
+      "probability": 0.979,
+      "segments": 4,
+      "russian_characters": 99,
+      "speech_seconds": 13.3
+    },
+    {
+      "at": 100,
+      "language": "ru",
+      "probability": 0.958,
+      "segments": 2,
+      "russian_characters": 25,
+      "speech_seconds": 3.2
+    },
+    {
+      "at": 120,
+      "language": "ru",
+      "probability": 0.963,
+      "segments": 5,
+      "russian_characters": 89,
+      "speech_seconds": 15.78
+    },
+    {
+      "at": 140,
+      "language": "ru",
+      "probability": 0.961,
+      "segments": 1,
+      "russian_characters": 45,
+      "speech_seconds": 14.94
+    },
+    {
+      "at": 160,
+      "language": "ru",
+      "probability": 0.984,
+      "segments": 3,
+      "russian_characters": 39,
+      "speech_seconds": 7.62
+    },
+    {
+      "at": 180,
+      "language": "ru",
+      "probability": 0.981,
+      "segments": 4,
+      "russian_characters": 86,
+      "speech_seconds": 14.49
+    },
+    {
+      "at": 200,
+      "language": "ru",
+      "probability": 0.969,
+      "segments": 4,
+      "russian_characters": 60,
+      "speech_seconds": 10.62
+    }
+  ],
+  "ru_samples": 9,
+  "result": "PASS",
+  "limits": "NOT final MP4, not Dima closing line, not film license, not visual/copyright QA."
+}
