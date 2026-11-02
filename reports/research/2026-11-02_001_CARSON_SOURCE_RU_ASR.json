@@ -1,0 +1,41 @@
+{
+  "stage": "SOURCE_RU_AUDIO_ONLY",
+  "id": "001",
+  "artifact_id": 13034313090,
+  "checked_at": "2026-11-02T06:07:57+00:00",
+  "source_duration": 181.447833,
+  "reported_audio_tags": [
+    {
+      "language": "und"
+    }
+  ],
+  "samples": [
+    {
+      "at": 126,
+      "language": "en",
+      "probability": 0.334,
+      "segments": 0,
+      "russian_characters": 0,
+      "speech_seconds": 0
+    },
+    {
+      "at": 138,
+      "language": "en",
+      "probability": 0.334,
+      "segments": 0,
+      "russian_characters": 0,
+      "speech_seconds": 0
+    },
+    {
+      "at": 150,
+      "language": "en",
+      "probability": 0.334,
+      "segments": 0,
+      "russian_characters": 0,
+      "speech_seconds": 0
+    }
+  ],
+  "ru_samples": 0,
+  "result": "NO_GO",
+  "limits": "NOT final MP4, not Dima closing line, not film license, not visual/copyright QA."
+}
