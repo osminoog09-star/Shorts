@@ -1,0 +1,114 @@
+name: M1lash HDRezka to private Drive
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: HTTPS film URL at rezka.ag or hdrezka.ag
+        required: true
+        type: string
+      quality:
+        description: Desired video resolution
+        type: choice
+        options: ['1080p', '720p']
+        default: '1080p'
+      mode:
+        description: Inspect or download
+        type: choice
+        options: ['inspect', 'download']
+        default: 'inspect'
+      translation:
+        description: Exact dubbing name (optional)
+        required: false
+        type: string
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/hdrezka_intake.py'
+      - 'scripts/qa/test_hdrezka_intake.py'
+      - '.github/workflows/hdrezka-intake.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: m1lash-media-intake
+  cancel-in-progress: false
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Offline tests
+        run: python3 -m unittest discover -s scripts/qa -p 'test_hdrezka_intake.py' -v
+
+  intake:
+    if: github.event_name == 'workflow_dispatch'
+    needs: tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - uses: actions/setup-go@v5
+        with: { go-version: '1.25.0' }
+      - name: Install pinned source CLI
+        run: |
+          go install github.com/n0madic/go-hdrezka/cmd/hdrezka-dl@v0.0.0-20260804201230-e54f62241917
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+      - name: Install Drive upload tool
+        if: inputs.mode == 'download'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq rclone
+      - name: Prepare private Drive credentials
+        if: inputs.mode == 'download'
+        env:
+          RCLONE_SECRET: ${{ secrets.GDRIVE_RCLONE_CONFIG }}
+        run: |
+          set -euo pipefail
+          if [ -z "$RCLONE_SECRET" ]; then
+            echo "::error::Missing GDRIVE_RCLONE_CONFIG. Anyone-with-link access does not authorize Drive API upload."
+            exit 1
+          fi
+          printf '%s\n' "$RCLONE_SECRET" > "$RUNNER_TEMP/m1lash-rclone.conf"
+          chmod 0600 "$RUNNER_TEMP/m1lash-rclone.conf"
+          grep -qE '^\[m1lash\]$' "$RUNNER_TEMP/m1lash-rclone.conf" || {
+            echo "::error::Drive rclone config must contain a [m1lash] remote"
+            exit 1
+          }
+      - name: Inspect or download privately
+        env:
+          MOVIE_URL: ${{ inputs.url }}
+          MOVIE_QUALITY: ${{ inputs.quality }}
+          MOVIE_MODE: ${{ inputs.mode }}
+          MOVIE_TRANSLATION: ${{ inputs.translation }}
+          GDRIVE_FOLDER_ID: 1ANvcXlUj0wBv1CG5U0bBQGdH-32OyaAi
+          GDRIVE_RCLONE_CONFIG_PATH: ${{ runner.temp }}/m1lash-rclone.conf
+        run: python3 scripts/hdrezka_intake.py
+      - name: Delete temporary media and credentials
+        if: always()
+        run: |
+          rm -rf "$RUNNER_TEMP/m1lash_media"
+          rm -f "$RUNNER_TEMP/m1lash-rclone.conf"
+      - name: Record safe metadata status
+        if: always()
+        run: |
+          set -euo pipefail
+          if [ ! -s publishing/hdrezka_status.json ]; then
+            printf '{"status":"error","error_code":"setup_failed","message":"Загрузчик не стартовал; проверь GitHub Actions.","drive_uploaded":false}\n' > publishing/hdrezka_status.json
+          fi
+          git config user.name 'm1lash-intake[bot]'
+          git config user.email 'm1lash-intake@users.noreply.github.com'
+          git add publishing/hdrezka_status.json
+          git diff --cached --quiet && exit 0
+          git commit -m "media: update private intake status (no movie bytes)"
+          for attempt in 1 2 3; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then exit 0; fi
+            sleep 5
+          done
+          exit 1
