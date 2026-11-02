@@ -2,20 +2,21 @@
   "renderer": "python",
   "script": "shorts/rebuild_movie_review_from_artifact.py",
   "id": "001",
-  "edition": "v50",
-  "output": "videos/kino_001_v50.mp4",
+  "edition": "v51",
+  "output": "videos/kino_001_v51.mp4",
   "save_review_mp4": false,
-  "qa_run_marker": "reports/research/movie_001_v50_run.json",
+  "qa_run_marker": "reports/research/movie_001_v51_run.json",
   "no_youtube_upload": true,
   "artifact_id": 13034313090,
   "member": "originals/chigur_carson_ru.mp4",
   "segments": [
     [
       35,
-      83
+      80.3
     ]
   ],
   "film": "Старикам тут не место",
   "public_hook": "ОН ПРЕДЛОЖИЛ ДЕНЬГИ. ЭТО БЫЛА ОШИБКА",
-  "question": "Почему он даже не пытается договориться?"
+  "question": "Почему он даже не пытается договориться?",
+  "edit_note": "V50 ended with measured 43.5–48s dead window; source 78.5–83s removed, retain 1.8s Carson reaction before outro. PRIVATE only."
 }
