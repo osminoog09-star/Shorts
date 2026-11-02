@@ -44,6 +44,12 @@ jobs:
         with: { python-version: '3.11' }
       - name: Offline tests
         run: python3 -m unittest discover -s scripts/qa -p 'test_hdrezka_intake.py' -v
+      - uses: actions/setup-go@v5
+        with: { go-version: '1.25.0' }
+      - name: Compile pinned HDRezka CLI (no movie download)
+        run: |
+          go install github.com/n0madic/go-hdrezka/cmd/hdrezka-dl@v0.0.0-20260804201230-e54f62241917
+          "$(go env GOPATH)/bin/hdrezka-dl" --help > /dev/null
 
   intake:
     if: github.event_name == 'workflow_dispatch'
