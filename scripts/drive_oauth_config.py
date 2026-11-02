@@ -118,10 +118,34 @@ def google_oauth_preflight(env: dict[str, str]) -> None:
     except DriveSetupError:
         raise
     except HTTPError as exc:
-        codes = {403: ("drive_api_denied", "Google Drive API запретил доступ (HTTP 403): проверь включение Drive API и права аккаунта."),
-                 404: ("drive_folder_not_found", "Google Drive не видит выбранную папку (HTTP 404): проверь аккаунт и доступ."),
-                 401: ("drive_access_token_denied", "Google Drive отклонил access token (HTTP 401).")}
-        code, message = codes.get(exc.code, ("drive_api_http_error", f"Drive API ответил HTTP {exc.code}."))
+        # Classify only Google-owned machine error reasons. Never include raw
+        # response bodies, API urls, user identity, tokens or error descriptions.
+        reasons = set()
+        try:
+            error = json.loads(exc.read(8192)).get("error", {})
+            if isinstance(error, dict):
+                reasons.update(str(e.get("reason", "")) for e in error.get("errors", [])
+                               if isinstance(e, dict))
+                reasons.update(str(e.get("reason", "")) for e in error.get("details", [])
+                               if isinstance(e, dict))
+        except (ValueError, UnicodeDecodeError, TypeError, AttributeError):
+            pass
+        if exc.code == 403 and reasons.intersection({
+            "accessNotConfigured", "SERVICE_DISABLED", "serviceDisabled"
+        }):
+            code, message = ("drive_api_disabled",
+                "В проекте Google Cloud не включён Google Drive API. Открой Google Cloud → API и сервисы → Google Drive API → Включить.")
+        elif exc.code == 403 and reasons.intersection({
+            "insufficientPermissions", "insufficientFilePermissions", "forbidden",
+            "PERMISSION_DENIED"
+        }):
+            code, message = ("drive_permission_denied",
+                "Google Drive не разрешает этой авторизации доступ к выбранной папке.")
+        else:
+            codes = {403: ("drive_api_denied", "Google Drive API ответил HTTP 403. Возможны выключенный API или ограничения доступа."),
+                     404: ("drive_folder_not_found", "Google Drive не видит выбранную папку (HTTP 404): проверь аккаунт и доступ."),
+                     401: ("drive_access_token_denied", "Google Drive отклонил access token (HTTP 401).")}
+            code, message = codes.get(exc.code, ("drive_api_http_error", f"Drive API ответил HTTP {exc.code}."))
         raise DriveSetupError(code, message) from None
     except (OSError, URLError, ValueError, KeyError, TypeError):
         raise DriveSetupError("drive_api_network_error", "Не удалось проверить папку через Google Drive API.") from None
