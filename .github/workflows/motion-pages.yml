@@ -33,13 +33,25 @@ jobs:
           python3 motion-studio/automation/site_smoke.py
       - uses: actions/configure-pages@v5
       - name: Prepare only browser assets
+        env:
+          PUBLIC_GOOGLE_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
         run: |
           mkdir -p _site
           cp motion-studio/index.html motion-studio/privacy.html motion-studio/studio-v2.js motion-studio/studio-v2.css motion-studio/renderer.html motion-studio/app.js motion-studio/style.css motion-studio/world.json _site/
           cp -r motion-studio/data _site/data
           git fetch -q origin +pulse-data:refs/remotes/origin/pulse-data && git show origin/pulse-data:pulse.json > reports/youtube/pulse.json || true
           python3 scripts/build_studio_site.py
-          mkdir -p _site/studio && cp site/studio/index.html site/studio/clips_ui.js site/studio/auto_refresh.js site/studio/data.json site/studio/widget.html site/studio/manifest.webmanifest site/studio/icon-192.png site/studio/icon-512.png _site/studio/ && cp -r site/studio/i _site/studio/i
+          mkdir -p _site/studio && cp site/studio/index.html site/studio/clips_ui.js site/studio/auto_refresh.js site/studio/drive_connect.js site/studio/data.json site/studio/widget.html site/studio/manifest.webmanifest site/studio/icon-192.png site/studio/icon-512.png _site/studio/ && cp -r site/studio/i _site/studio/i
+          python3 - <<'PY'
+          import json,os,re
+          from pathlib import Path
+          cid=os.environ.get("PUBLIC_GOOGLE_CLIENT_ID","")
+          # OAuth Client IDs are public identifiers, unlike Client Secrets.
+          if re.fullmatch(r"[0-9]+-[a-zA-Z0-9_-]+\\.apps\\.googleusercontent\\.com",cid):
+              Path("_site/studio/google_client.json").write_text(json.dumps({"client_id":cid})+"\\n")
+          else:
+              Path("_site/studio/google_client.json").write_text('{"status":"unavailable"}\\n')
+          PY
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
