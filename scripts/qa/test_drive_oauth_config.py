@@ -92,6 +92,47 @@ class DriveConfigTests(unittest.TestCase):
         ]):
             self.assertIsNone(mod.google_oauth_preflight(self.env))
 
+    def test_google_drive_disabled_api_classified_without_leaking_details(self):
+        from urllib.error import HTTPError
+        from unittest.mock import MagicMock
+        from io import BytesIO
+        import json
+        def reply(obj):
+            ctx = MagicMock()
+            ctx.__enter__.return_value = BytesIO(json.dumps(obj).encode())
+            return ctx
+        reason = json.dumps({"error":{"errors":[
+            {"reason":"accessNotConfigured","message":"PRIVATE ERROR DETAILS"}]}}).encode()
+        problem = HTTPError("hidden",403,"bad",{},BytesIO(reason))
+        with patch.object(mod, "urlopen", side_effect=[
+            reply({"access_token":"mock-access"}),
+            reply({"scope":"https://www.googleapis.com/auth/drive"}),
+            problem]):
+            with self.assertRaises(mod.DriveSetupError) as ctx:
+                mod.google_oauth_preflight(self.env)
+        self.assertEqual(ctx.exception.code, "drive_api_disabled")
+        self.assertNotIn("PRIVATE ERROR DETAILS",str(ctx.exception))
+
+    def test_google_drive_other_403_does_not_claim_disabled_api(self):
+        from urllib.error import HTTPError
+        from unittest.mock import MagicMock
+        from io import BytesIO
+        import json
+        def reply(obj):
+            ctx=MagicMock()
+            ctx.__enter__.return_value=BytesIO(json.dumps(obj).encode())
+            return ctx
+        problem=HTTPError("hidden",403,"bad",{},BytesIO(json.dumps({
+            "error":{"errors":[{"reason":"rateLimitExceeded"}]}
+        }).encode()))
+        with patch.object(mod,"urlopen",side_effect=[
+            reply({"access_token":"mock-access"}),
+            reply({"scope":"https://www.googleapis.com/auth/drive"}),
+            problem]):
+            with self.assertRaises(mod.DriveSetupError) as ctx:
+                mod.google_oauth_preflight(self.env)
+        self.assertEqual(ctx.exception.code,"drive_api_denied")
+
     def test_google_oauth_folder_readonly_rejected(self):
         from unittest.mock import MagicMock
         from io import BytesIO
