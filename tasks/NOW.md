@@ -25,13 +25,10 @@
 ## Claude
 
 ## GPT/Codex
-### 02.11 — ПО ОДНОМУ: 003 V54 · GPT
-- [x] V54 52.6с: финальный MP4, check.py/визуальная проверка и технический звук. Владелец подтвердил полный просмотр со звуком: «Все ок».
-- [x] Владелец явно разрешил готовый MP4 в публичном GitHub («Дааа»). Файл сохранён в Release kino-003-v54 и videos/kino_003_v54.mp4 через штатный fetch.yml run41461281555. SHA2566a2a8309be1a0228ff7cf929d2be0c34e1cc14e24273684cb67552311e7307e0; git blob185ffe5ae7fbdfb84242276230f388216fc6c1f9 совпал.
-- [x] publishing/queue/kino_003.json без publish_at + queue.json, локальный check OK; Studio поиск «Урок музыки» дал Видео(0), receipt до запуска отсутствовал.
-- [x] Штатный youtube-direct.yml mode=upload execute=true запущен: https://github.com/osminoog09-star/Shorts/actions/runs/41507963691.
-- [ ] Дождаться результата; прочитать publishing/receipts/kino_003.json, проверить Studio private/Content ID и сайт. НЕ повторять upload при receipt reserved/неясном результате.
-Следующий шаг: завершить только003, зафиксировать YouTube ID. Не запускать mode=schedule: отдельного разрешения на дату нет. Затем004 по одному. Не пересобирать одобренную003.
+### 02.11 — ПО ОДНОМУ: 004 · GPT
+- [x] 003 V54 закрыта до PRIVATE review: FxIlxGWVCuw, run41507963691 SUCCESS; Studio private, HD complete, no claims currently. Итог вверху HANDOFF.md; не перезаливать и не назначать дату.
+- [ ] 004 V47: восстановить artifact13094169003, прочитать текущий job/QA, исправить только читаемость тёмных/красных кадров, check.py + look.py финального MP4 и полный слуховой gate.
+Следующий шаг: восстановить004 из существующих artifacts и найти её актуальный jobs/motion manifest. 003 ждёт только решения владельца о публикации.
 
 ### 02.11 — фактически 6/6 кино-Shorts доставлены (PRIVATE, без публикации)
 - [x] **001** kino_001_v53.mp4 **55.000с**, Actions 41401595596, artifact 13121673002, RU actor 77 words /44 ASS, check.py 0 FAIL, FFmpeg full decode PASS.
