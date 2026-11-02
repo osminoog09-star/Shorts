@@ -2,10 +2,10 @@
   "renderer": "python",
   "script": "shorts/rebuild_movie_review_from_artifact.py",
   "id": "003",
-  "edition": "v51",
-  "output": "videos/kino_003_v51.mp4",
+  "edition": "v52",
+  "output": "videos/kino_003_v52.mp4",
   "save_review_mp4": false,
-  "qa_run_marker": "reports/research/movie_003_v51_run.json",
+  "qa_run_marker": "reports/research/movie_003_v52_run.json",
   "no_youtube_upload": true,
   "artifact_id": 13041278425,
   "member": "originals/whiplash_russian_rehearsal_scene.mp4",
@@ -23,5 +23,6 @@
   "public_hook": "ОН СОРВАЛ РЕПЕТИЦИЮ",
   "on_screen_hook": "ОН СОРВАЛ РЕПЕТИЦИЮ",
   "question": "Как бы ты отреагировал на такого преподавателя?",
-  "edit_note": "V50 exported 51.60s/33 RU words/20 captions but check.py failed true peak +0.5dBTP inside muxed outro (approved rev4 must stay untouched). Trim final 2.1s silent film tail (source 163.9-166), change AAC frame alignment, leave original Dima/outro and story words; recheck peak independently."
+  "edit_note": "V50 192kbps AAC peak +0.5 dBTP; V51 after trimming 2.1s silent source tail peaked -0.8 dBTP, still strict NO-GO. V52 keeps V51 picture/RU speech and official approved outro PCM unchanged, adjusts only final AAC encoder bitrate to 256kbps to reduce codec inter-sample overshoot. No YouTube.",
+  "aac_bitrate": "256k"
 }
