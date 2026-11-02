@@ -1,0 +1,20 @@
+{
+  "id": "002",
+  "artifact_id": 13069849250,
+  "media_zip_path": "originals/chigur_carla_final_ru_real.mp4",
+  "windows": [
+    0,
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140,
+    160,
+    180,
+    200
+  ],
+  "report": "reports/research/2026-11-02_002_CARLA_SOURCE_RU_ASR.json",
+  "note": "Only language/speech map of already existing approved film source; no transcript publication or video upload."
+}
