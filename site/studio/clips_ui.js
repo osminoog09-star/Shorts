@@ -57,7 +57,7 @@ function clips(){
       '<label class="muted" for="newclip-film">Фильм и год</label><input id="newclip-film" class="t" maxlength="120" placeholder="Название фильма (2022)">'+
       '<label class="muted" for="newclip-note">Какая сцена?</label><input id="newclip-note" class="t" maxlength="200" placeholder="Опиши сцену">'+
       '<button class="btn pri" data-clip-add>Добавить заявку</button></section>';
-  return mediaLinkPanel()+html;
+  return rezkaIntakePanel()+mediaLinkPanel()+html;
 }
 function clipFolderUrl(raw){
   let u;try{u=new URL(raw)}catch(e){throw new Error("Нужна ссылка на папку Google Drive")}
@@ -191,4 +191,55 @@ document.addEventListener("click",e=>{
   document.getElementById("media-meta").textContent="Файл: "+result.filename+" · разрешение и доступность 1080p не проверены. Браузер скачает исходное качество.";
   actions.hidden=false;
   status.textContent="Прямая ссылка на видеофайл распознана. Скачивание зависит от доступа к файлу и настроек браузера.";
+});
+
+
+function rezkaIntakePanel(){
+  const s=D?.hdrezka_intake||{};
+  const state=s.status==="ok"?(s.drive_uploaded?"Загружено в Drive":"Качества проверены"):
+    s.status==="error"?"Не удалось: "+(s.message||s.error_code||"см. Actions"):"Проверка ещё не запускалась";
+  const avail=s.available||{};
+  const qualities=Object.keys(avail).length
+    ? Object.entries(avail).map(([k,v])=>k+" — "+(v==="available"?"доступно":"только Premium")).join(" · ")
+    : "Ещё не определены";
+  return '<section class="card reveal" aria-label="HDRezka private intake">'+
+    '<h2>🎞️ HDRezka → Google Drive</h2>'+
+    '<p class="muted">Экспериментальный серверный загрузчик для личного хранения. Выбери качество и озвучку. Сначала проверь источник: сайт может блокировать GitHub Actions, а 1080p иногда доступно только Premium. Без DRM/капчи.</p>'+
+    '<label class="f" for="hd-url">Ссылка на фильм'+
+    '<input class="t" id="hd-url" type="url" inputmode="url" autocomplete="off" maxlength="600" '+
+    'placeholder="https://rezka.ag/films/drama/54016-oppengeymer-2023-latest.html"></label>'+
+    '<label class="f" for="hd-quality">Качество'+
+    '<select class="t" id="hd-quality"><option value="1080p">1080p · для Shorts и обзоров</option><option value="720p">720p · черновик</option></select></label>'+
+    '<label class="f" for="hd-translation">Озвучка (необязательно)'+
+    '<input class="t" id="hd-translation" maxlength="80" placeholder="Пусто = озвучка по умолчанию"></label>'+
+    '<div class="row"><button class="btn" data-hd-inspect>Проверить качество</button>'+
+    '<button class="btn pri" data-hd-download>Скачать в Drive</button></div>'+
+    '<p class="muted" role="status">Последнее действие: '+esc(state)+
+    '. Доступно: '+esc(qualities)+'. '+(s.checked_at?"Проверено "+esc(s.checked_at)+".":"")+'</p>'+
+    '<p class="muted">Для автоматической загрузки требуется однократно добавить секрет <code>GDRIVE_RCLONE_CONFIG</code> в GitHub. Одна лишь ссылка на папку Drive не даёт сервису права на загрузку. Если секрета нет — проверка качества работает, загрузка нет.</p>'+
+    '<a class="btn" target="_blank" rel="noopener noreferrer" href="https://github.com/osminoog09-star/Shorts/actions/workflows/hdrezka-intake.yml">Журнал загрузок GitHub Actions</a>'+
+    '</section>';
+}
+function rezkaInput(){
+  const raw=(document.getElementById("hd-url")?.value||"").trim();
+  let u;try{u=new URL(raw)}catch(e){throw new Error("Вставь полную HTTPS-ссылку на фильм")}
+  const hostname=u.hostname.toLowerCase();
+  if(u.protocol!=="https:"||!["rezka.ag","hdrezka.ag"].includes(hostname)||u.username||u.password||
+     (u.port&&u.port!=="443")||raw.length>600||
+     !/^\/(?:films|series|cartoons|animation|anime)\/[a-zA-Z0-9_/-]+\.html\/?$/.test(u.pathname)||u.search||u.hash)
+     throw new Error("Нужна страница фильма на rezka.ag или hdrezka.ag, без параметров");
+  return {url:u.href,quality:document.getElementById("hd-quality")?.value||"1080p",
+          translation:(document.getElementById("hd-translation")?.value||"").trim()};
+}
+document.addEventListener("click",e=>{
+  const button=e.target.closest("[data-hd-inspect],[data-hd-download]");
+  if(!button)return;
+  if(!needTok())return;
+  return act(button,async()=>{
+    const params=rezkaInput();
+    const mode=button.hasAttribute("data-hd-download")?"download":"inspect";
+    await dispatch("hdrezka-intake.yml",{...params,mode});
+    toast(mode==="inspect"?"Проверка запущена. Результат появится в этом разделе после обновления.":"Загрузка запущена. Статус в GitHub Actions и здесь после обновления.");
+    button.disabled=false;
+  });
 });
