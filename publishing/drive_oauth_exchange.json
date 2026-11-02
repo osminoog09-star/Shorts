@@ -1,7 +1,7 @@
 {
-  "status": "error",
-  "nonce": "bd4272ef3f5f0f2dfba94089bacd3ca6",
-  "checked_at": "2026-11-02T23:09:12.308934+00:00",
-  "error_code": "drive_api_denied",
-  "message": "Google Drive API запретил доступ (HTTP 403): проверь включение Drive API и права аккаунта."
+  "status": "ready",
+  "nonce": "9c95218c0b886fb578933cc88ca3c8e7",
+  "key_id": "3380204578043523366",
+  "encrypted_value": "IJbNPPq2yXaA3+DMzBsquW2jvvtUHT77z22D0GX1OHEoKPUWGSxZQMUxf4zUZ11g1iMsmh76LVFUpdnMJoTfQqRSmDNGEkyMpH7SPW+rC11w/AmmcsF6c5bXsAaw559t4AcRwcnTrUwfVp+f/80DtLNqKBiFA8KUc+T56LWAlQnyokeztexWqNDx66g5/Hxwp4G6i8FS/g==",
+  "checked_at": "2026-11-02T23:17:13.171110+00:00"
 }
