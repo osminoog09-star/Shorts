@@ -1,0 +1,7 @@
+{
+  "status": "not_started",
+  "mode": null,
+  "requested_quality": null,
+  "drive_uploaded": false,
+  "message": "Запусти проверку качества со страницы «Клипы»; для загрузки нужен GDRIVE_RCLONE_CONFIG."
+}
