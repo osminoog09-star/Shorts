@@ -1,3 +1,13 @@
+## 02.11 GPT — HDRezka → Google Drive (новый приватный импорт; не end-to-end verified)
+
+- Запрос Дениса: ссылка на `rezka.ag` → качество `720p/1080p` → файл в общей папке Drive для личного хранения/подготовки Shorts. AGENTS §8 и `skills/m1lash-studio/SKILL.md` обновлены под **узкое исключение**, не как разрешение правообладателя.
+- Реально записано в main: `scripts/hdrezka_intake.py`, `scripts/qa/test_hdrezka_intake.py`, `.github/workflows/hdrezka-intake.yml`, `publishing/hdrezka_status.json`, `site/studio/clips_ui.js`, `scripts/build_studio_site.py`, `.github/workflows/motion-pages.yml`. Изменения сайта не трогают YouTube upload/scheduling.
+- Сайт: `https://osminoog09-star.github.io/Shorts/studio/` → «Клипы» → новая панель `HDRezka → Google Drive`, есть выбор 720p/1080p, озвучка, проверка качества и запрос загрузки через существующий GitHub токен (Actions workflow_dispatch). Отчёт `reports/research/2026-11-02_HDREZKA_PRIVATE_INTAKE.md`.
+- Ранние **unit tests** Actions `41522233231 SUCCESS`. Pages Actions `41522392653 SUCCESS` после изменения UI/data/status. Дополнительный Go compile smoke запущен push-коммитом `82af4739`, результат ещё проверить.
+- **Критический блокер:** Drive plugin в чате подтверждает `anyone=writer` папку `1ANvcXlUj0wBv1CG5U0bBQGdH-32OyaAi`, но backend GitHub Actions требует OAuth секрет `GDRIVE_RCLONE_CONFIG` (rclone конфиг с [m1lash]); доступ по ссылке сам по себе НЕ даёт auth. Пользователь настраивает один раз через GitHub secrets, не пересылая секреты в чат.
+- **Нельзя утверждать, что HDRezka даёт 1080p, или что фильм скачан:** реальный `workflow_dispatch` info/download ещё не проводился. CLI работает без обхода CAPTCHA/DRM/Premium; защищённые режимы честно NO-GO. Metadata status без URL/фильма в публичном GitHub, видеобайты только временно на runner и в приватном Drive.
+- Следующий шаг строго `tasks/NOW.md` GPT/Codex, отдельный новый блок. Существующий backlog Shorts не трогали.
+
 ## 02.11 GPT — полный индекс репо и 004 V48
 
 Дерево main3598 файлов, индекс инструкций и backlog: reports/research/2026-11-02_ALL_SHORTS_RULES_AND_BACKLOG.md. Это инвентаризация, не утверждение о ручном чтении каждого маркетингового скила. Главные AGENTS + m1lash-studio + ffmpeg-skill + visuals-by-code прочитаны. Снято устаревшее EN-исключение в паспорте Ernesto (d79585a); заявка — отдельный BreakingBad, НЕ006.
