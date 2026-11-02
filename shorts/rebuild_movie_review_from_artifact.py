@@ -89,6 +89,8 @@ def main():
             args.extend(["--on-screen-hook", job["on_screen_hook"]])
         if job.get("body_gain_db") is not None:
             args.extend(["--body-gain-db",str(job["body_gain_db"])])
+        if job.get("aac_bitrate"):
+            args.extend(["--aac-bitrate", str(job["aac_bitrate"])])
         run(args)
         if not output.exists():raise RuntimeError("No master MP4 from studio builder")
         ART.mkdir(exist_ok=True)
