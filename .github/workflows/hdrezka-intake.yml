@@ -48,6 +48,17 @@ jobs:
         run: |
           python3 -m unittest discover -s scripts/qa -p 'test_hdrezka_intake.py' -v
           python3 -m unittest discover -s scripts/qa -p 'test_drive_oauth_config.py' -v
+      - name: Detect reusable Drive OAuth (never log token)
+        env:
+          GDRIVE_RCLONE_CONFIG: ${{ secrets.GDRIVE_RCLONE_CONFIG }}
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python3 scripts/qa/drive_credentials_probe.py
       - uses: actions/setup-go@v5
         with: { go-version: '1.25.0' }
       - name: Compile pinned HDRezka CLI (no movie download)
