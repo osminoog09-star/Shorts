@@ -1,7 +1,7 @@
 {
-  "checked_at": "2026-11-02T22:36:51.385457+00:00",
+  "checked_at": "2026-11-02T22:41:37Z",
   "status": "error",
   "connected": false,
   "error_code": "oauth_client_denied",
-  "message": "Google не разрешил этому OAuth-клиенту доступ."
+  "message": "Проверены все существующие OAuth-клиенты GitHub: Google отвечает unauthorized_client при обновлении Drive-токена. Сам токен сохранён. Повторная вставка того же значения не поможет: нужно проверить OAuth-клиент/его разрешения либо выдать новый Drive refresh token для корректного клиента."
 }
