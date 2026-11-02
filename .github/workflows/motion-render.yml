@@ -124,6 +124,9 @@ jobs:
           # Temporary synthesized speech must not block rebase when TTS-bot added it upstream.
           git restore -- media/tts/ || true
           git clean -fd -- media/tts/ || true
+          # movie_short.py changes the review queue locally while rendering. Never
+          # commit that generated queue from QA; clear it before git pull --rebase.
+          git restore -- publishing/queue.json || true
           if ! git diff --cached --quiet; then
             git config user.name "m1lash-render-bot"
             git config user.email "m1lash-render-bot@users.noreply.github.com"
