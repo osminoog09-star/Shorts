@@ -1,0 +1,23 @@
+{
+  "id": "006",
+  "artifact_id": 13041863362,
+  "media_zip_path": "originals/miller_waves_landing_ru_candidate.mp4",
+  "windows": [
+    0,
+    25,
+    50,
+    75,
+    100,
+    125,
+    150,
+    175,
+    200,
+    225,
+    250,
+    275,
+    300,
+    325
+  ],
+  "report": "reports/research/2026-11-02_006_INTERSTELLAR_SOURCE_RU_ASR.json",
+  "note": "Private RU-language source scan only; no film or transcripts committed; final QA remains pending."
+}
