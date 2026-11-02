@@ -25,6 +25,15 @@
 ## Claude
 
 ## GPT/Codex
+### 02.11 — завершение Shorts: реальные MP4 (GPT текущий запуск)
+- [x] На реальном 001 V53 `kino_001_v53.mp4` (artifact **13121673002**, run 41401595596) выполнены полный FFmpeg decode, независимый официальный `check.py` **0 FAIL / 1 WARN burned-in ASS**, `look.py` открыт, длительность **55.000с**, реальный файл скачан. 77 русских слов / 44 титра, хук первые 2с, approved rev4 outro + Dima; PRIVATE.
+- [x] Из уже полученных artifacts физически доступны 004 V47 **45.339с**, 005 V49 **42.279с**, 006 V50 **37.600с**; на каждом снова `ffmpeg -xerror` и `check.py` 0 FAIL, файлы/контакты в текущем /mnt/data/m1lash_final_20261102 (только временно, не Git). 006 визуально слабая волна и источник с чужим watermark, не объявлять RELEASE READY.
+- [x] 002 V50 из прежнего RU source **реально смонтирован 39.300с, 34 слов /18 captions, firm outro**, но CI **41402495108** честно остановил на единственном `check.py` loudness FAIL **−16.1 LUFS**. Тот же монтаж, body-only gain +0.6dB V51: job `jobs/motion/movie_review_002_v50_dialogue.json`, run **41402937982**.
+- [x] 003 V47 кадровый аудит подтверждает обрыв «ШЕСТЬ И.» и тёмные пустые планы, выбраны реальные RU окна `114–141.5, 151–166`; V50 job `jobs/motion/movie_review_003_v50_dialogue.json` run **41402501321**, только private.
+- [ ] **Следующее действие:** забрать MP4 из artifact run 41402501321 (003) и 41402937982 (002); оба проверить `ffmpeg -xerror`, официальный `check.py`, `look.py --tiles 3x2`, открытый контакт, кадры 0.6/12/25. Если NO-GO — точечный фикс, НЕ подмена старого V47.
+- [ ] После шести реально имеющихся MP4 сделать единый private ZIP, добавить в HANDOFF итоги и QA, без загрузки/дат до владельческого «ок».
+Не останавливать новую работу на анализе: финальный результат — именно видеофайлы, не отчёт.
+
 ### 02.11 — 001 V52 loudness NO-GO → V53 code +0.4 dB body-only
 - [x] V52 run `41400484209` stopped by strict `check.py` at −16.0 LUFS (one FAIL), no downloadable MP4 artifact. Hook working in temp run, QA still blocked.
 - [x] Bounded `--body-gain-db` added to `scripts/movie_short.py` and passed through artifact wrapper; `jobs/motion/movie_review_001_v50_ru_dialogue.json` now **v53** uses +0.4 dB **body only**, exact official outro unmodified.
