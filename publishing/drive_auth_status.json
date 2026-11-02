@@ -1,7 +1,7 @@
 {
-  "checked_at": "2026-11-02T21:37:02.558206+00:00",
+  "checked_at": "2026-11-02T21:48:55Z",
   "status": "error",
   "connected": false,
-  "error_code": "oauth_or_folder_denied",
-  "message": "Google отклонил OAuth или доступ к папке. Проверь Drive API, scope и Google-аккаунт."
+  "error_code": "oauth_client_denied",
+  "message": "Google OAuth ответил unauthorized_client: текущему OAuth-клиенту запрещено обновлять этот Drive-токен. В OAuth Playground проверь «Use your own OAuth credentials» — Client ID должен совпадать с проектом Youtube в GitHub Secrets. Нужна повторная выдача Drive-токена именно для этого клиента, если Client ID не совпадает."
 }
