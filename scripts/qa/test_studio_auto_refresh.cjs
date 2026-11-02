@@ -57,7 +57,7 @@ const context = {
   navigator:{onLine:true},window:{addEventListener:()=>{}},
   render:()=>{renders++},
   ago:()=>"1 мин",dshort:()=>"вчера",
-  fetch:async url=>({ok:true,json:async()=>url.startsWith("data.json")?next:pulse}),
+  fetch:async url=>({ok:true,json:async()=>url.startsWith("data.json")?next:url.includes("/main/publishing/")?(url.includes("drive_auth_status.json")?{connected:false,checked_at:"2026-11-02T21:30:00Z",status:"error",message:"Drive OAuth denied"}:{status:"error",checked_at:"2026-11-02T21:30:00Z",message:"Source failed"}):pulse}),
   setInterval:(fn,delay)=>{timers.push({fn,delay});return timers.length},
   setTimeout:(fn,delay)=>{timers.push({fn,delay});return timers.length},
   Date,JSON,Object,Array,Number,Math,Promise,console
@@ -71,7 +71,7 @@ const run = async delay => {
   for(let i=0;i<8;i++) await new Promise(resolve=>setImmediate(resolve));
 };
 (async()=>{
-  await run(45000);
+  await run(15000);
   assert.equal(context.D.built,"new build");
   assert.equal(renders,0,"must not wipe focused form while refreshing");
   assert.match(elements["hd-status"].textContent,/Качества проверены/);
@@ -81,13 +81,18 @@ const run = async delay => {
   await run(10000);
   assert.equal(renders,1,"render pending update on blur");
   assert.equal(elements["hd-url"].value,"https://rezka.ag/films/drama/test.html");
-  await run(90000);
+  await run(30000);
   assert.equal(context.D.channel.subs,11);
   assert.equal(context.D.channel.views,140);
   assert.equal(context.D.live.views_1h,40);
   assert.equal(context.D.comments[0].id,"test-comment");
   const now=renders;
-  await run(45000);
+  await run(15000);
   assert.equal(renders,now,"same snapshot must not trigger redundant re-render");
-  console.log("studio auto-refresh smoke PASS (form, status, pulse, no redundant render)");
+  await run(12000);
+  assert.match(elements["drive-oauth-state"].textContent,/Drive OAuth denied/);
+  assert.match(elements["hd-status"].textContent,/Source failed/);
+  assert.equal(context.D.drive_auth.connected,false);
+  assert.equal(elements["download-action"].disabled,true);
+  console.log("studio auto-refresh smoke PASS (15s page, 30s pulse, 12s raw status, form preserved)");
 })().catch(e=>{console.error(e);process.exitCode=1});
