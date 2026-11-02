@@ -1,5 +1,7 @@
 {
-  "status": "not_connected",
+  "status": "authorization_required",
   "connected": false,
-  "message": "Для автоматического сохранения фильмов нужно один раз разрешить Google Drive OAuth."
+  "checked_at": "2026-11-02T21:21:35Z",
+  "error_code": "drive_scope_missing",
+  "message": "В GitHub уже есть OAuth для YouTube, но у него нет разрешения Google Drive. Секреты GDRIVE_REFRESH_TOKEN и GDRIVE_RCLONE_CONFIG отсутствуют. Нужен один OAuth-consent владельца через ⚙️ Настройки."
 }
