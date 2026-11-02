@@ -467,6 +467,7 @@ function openSettings(section){
        <p class="muted">После входа Google откроет OAuth Playground. Скопируй <b>Authorization code</b> из шага 2 (кнопку Exchange не нажимай) и вернись сюда.</p>
        <label class="f">Код Google<input class="t" id="driveAuthCode" type="password" autocomplete="off" spellcheck="false" placeholder="Authorization code (не refresh token)"></label>
        <button type="button" class="btn pri" id="driveGoogleFinish">2. Подключить Drive</button>
+       <button type="button" class="btn" id="driveGoogleResume">Завершить уже подтверждённый доступ</button>
        <p class="muted" role="status" id="driveConnectStatus">Google-подтверждение уже получено. Проверяю окончательное сохранение доступа; повторно вводить код не нужно.</p></div>
        <p>Статус: <span class="chip" id="driveAuthLabel">${esc(D?.drive_auth?.connected?'Подключён ✓':D?.drive_auth?.message||'Требуется OAuth')}</span>. Папка M1lash уже выбрана. Чтобы фильмы автоматически попадали в неё, нужен отдельный <b>Drive refresh token</b> — он сохраняется только в GitHub Secrets.</p>
        <details class="drive-legacy" style="margin-top:12px"><summary style="cursor:pointer;font-weight:600">Другой способ: вручную через Refresh token</summary>
