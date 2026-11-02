@@ -33,8 +33,9 @@ permissions:
   contents: write
 
 concurrency:
-  group: m1lash-media-intake
-  cancel-in-progress: false
+  # CI pushes must not queue behind an owner-requested film/Drive job.
+  group: m1lash-media-intake-${{ github.event_name == 'push' && 'checks' || 'owner' }}
+  cancel-in-progress: ${{ github.event_name == 'push' }}
 
 jobs:
   tests:
