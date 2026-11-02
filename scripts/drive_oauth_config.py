@@ -7,7 +7,7 @@ Legacy GDRIVE_RCLONE_CONFIG is supported. A shared Drive folder URL is NOT OAuth
 from __future__ import annotations
 
 import argparse
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import json
 import os
 from pathlib import Path
@@ -44,11 +44,21 @@ def make_config(env: dict[str, str]) -> str:
     refresh = safe_line(env.get("GDRIVE_REFRESH_TOKEN", ""), "refresh_token")
     client_id = safe_line(env.get("YOUTUBE_OAUTH_CLIENT_ID") or env.get("YT_CLIENT_ID", ""), "client_id")
     client_secret = safe_line(env.get("YOUTUBE_OAUTH_CLIENT_SECRET") or env.get("YT_CLIENT_SECRET", ""), "client_secret")
+    # rclone 1.60 cannot bootstrap reliably from an intentionally empty,
+    # already-expired access token even when refresh_token is present.
+    # The Google API preflight already obtained a fresh, verified access token:
+    # provide it for rclone's initial session and retain refresh for later renewals.
+    access = env.get("_GDRIVE_ACCESS_TOKEN", "")
+    if access:
+        access = safe_line(access, "access_token")
+        expiry = (datetime.now(timezone.utc) + timedelta(minutes=50)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    else:
+        expiry = "2000-01-01T00:00:00Z"
     token = json.dumps({
-        "access_token": "",
+        "access_token": access,
         "token_type": "Bearer",
         "refresh_token": refresh,
-        "expiry": "2000-01-01T00:00:00Z",
+        "expiry": expiry,
     }, separators=(",", ":"))
     return (
         "[m1lash]\n"
@@ -153,6 +163,8 @@ def google_oauth_preflight(env: dict[str, str]) -> None:
         raise DriveSetupError("drive_folder_invalid", "Google Drive вернул не ту папку.")
     if folder.get("capabilities", {}).get("canAddChildren") is False:
         raise DriveSetupError("drive_folder_read_only", "У аккаунта нет права добавлять файлы в выбранную папку.")
+    # In-memory only; written to runner-private rclone config, never to git or logs.
+    env["_GDRIVE_ACCESS_TOKEN"] = safe_line(token, "access_token")
 
 
 def resolve_existing_client(env: dict[str, str]) -> tuple[dict[str, str], str]:
