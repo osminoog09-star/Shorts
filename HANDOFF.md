@@ -1,3 +1,11 @@
+## 02.11 GPT — Drive ТОЛЬКО фильмы-исходники (уточнение владельца)
+
+- Денис прямо подтвердил: общая папка `1ANvcXlUj0wBv1CG5U0bBQGdH-32OyaAi` хранит только исходные фильмы; **НЕ Shorts, не готовые ролики, не ZIP, не отчёты, не проекты**.
+- Узкое исправление: `scripts/hdrezka_intake.py` теперь допускает только URL `/films/…html` и блокирует при передаче файл с суффиксом не `.mp4`; сохраняет старые гейты FFprobe (длительность, разрешение). `site/studio/clips_ui.js` повторяет тот же ограничитель URL. `scripts/qa/test_hdrezka_intake.py` проверяет запрет series/cartoons/anime/ZIP. AGENTS.md и Studio skill синхронизированы.
+- GitHub Pages workflow **41529274773 SUCCESS**: JavaScript validation + build + deployment. Входящий QA загрузчика после исправления backend (коммит 73b4d8c0) **41529243999 SUCCESS**; дополнительный QA после тестов f7c72628 следует проверить, не придумывать результат.
+- Google Drive OAuth для **GitHub Actions** по-прежнему **не настроен**, `publishing/drive_auth_status.json connected=false`. Проверенная более ранним Actions run 41527530135 причина: OAuth для YouTube без Drive scope, нет GDRIVE_REFRESH_TOKEN/GDRIVE_RCLONE_CONFIG. Никакой фильм в Drive этим изменением не отправлен.
+- Следующий шаг — одно OAuth-согласие владельца в Студии → Настройки → Drive → сохранить отдельный refresh token; затем `drive_check`, проверка качества и загрузка **только** киноисходника. Ни слова «готово» про end-to-end до проверки фактического файла.
+
 ## 02.11 GPT — проверка реальных GitHub Secrets и разрешений Google Drive (без раскрытия токенов)
 
 - **Actions run 41527530135 SUCCESS** (тест кода + `scripts/qa/drive_credentials_probe.py`): существующие OAuth Client ID/Secret для YouTube **есть**, но `GDRIVE_RCLONE_CONFIG` и `GDRIVE_REFRESH_TOKEN` **не заданы**, существующий YouTube refresh token работает только без Drive scope (`no_drive_scope`). Это факт из OAuth tokeninfo, а не предположение.
