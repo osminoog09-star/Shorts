@@ -3,6 +3,7 @@
   "artifact_id": 13034313090,
   "media_zip_path": "originals/chigur_carson_ru.mp4",
   "windows": [
+    0,
     15,
     30,
     45,
@@ -11,8 +12,11 @@
     90,
     105,
     120,
-    145
+    135,
+    150,
+    165
   ],
-  "report": "reports/research/2026-11-01_001_CARSON_SOURCE_RU_ASR.json",
-  "revision": 2
+  "report": "reports/research/2026-11-02_001_CARSON_FULL_SOURCE_RU_ASR.json",
+  "revision": 3,
+  "note": "01.11 initial 9-window job was unrun; 02.11 full 0–180s private speech map after 126/138/150s verified silent. Counts only; do not publish transcript or film."
 }
