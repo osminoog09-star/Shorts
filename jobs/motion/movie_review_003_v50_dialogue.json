@@ -2,10 +2,10 @@
   "renderer": "python",
   "script": "shorts/rebuild_movie_review_from_artifact.py",
   "id": "003",
-  "edition": "v50",
-  "output": "videos/kino_003_v50.mp4",
+  "edition": "v51",
+  "output": "videos/kino_003_v51.mp4",
   "save_review_mp4": false,
-  "qa_run_marker": "reports/research/movie_003_v50_run.json",
+  "qa_run_marker": "reports/research/movie_003_v51_run.json",
   "no_youtube_upload": true,
   "artifact_id": 13041278425,
   "member": "originals/whiplash_russian_rehearsal_scene.mp4",
@@ -16,12 +16,12 @@
     ],
     [
       151,
-      166
+      163.9
     ]
   ],
   "film": "Одержимость",
   "public_hook": "ОН СОРВАЛ РЕПЕТИЦИЮ",
   "on_screen_hook": "ОН СОРВАЛ РЕПЕТИЦИЮ",
   "question": "Как бы ты отреагировал на такого преподавателя?",
-  "edit_note": "Corrects V47 initial clipped Russian word and 143-150 repeated portrait/quiet section using already available RU film source. No YouTube."
+  "edit_note": "V50 exported 51.60s/33 RU words/20 captions but check.py failed true peak +0.5dBTP inside muxed outro (approved rev4 must stay untouched). Trim final 2.1s silent film tail (source 163.9-166), change AAC frame alignment, leave original Dima/outro and story words; recheck peak independently."
 }
