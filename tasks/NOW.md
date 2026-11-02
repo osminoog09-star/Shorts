@@ -25,6 +25,17 @@
 ## Claude
 
 ## GPT/Codex
+### 02.11 — фактически 6/6 кино-Shorts доставлены (PRIVATE, без публикации)
+- [x] **001** kino_001_v53.mp4 **55.000с**, Actions 41401595596, artifact 13121673002, RU actor 77 words /44 ASS, check.py 0 FAIL, FFmpeg full decode PASS.
+- [x] **002** kino_002_v51.mp4 **39.300с**, Actions 41402937982, artifact 13122169262, RU 34 words /18 ASS, check.py 0 FAIL, FFmpeg full decode PASS.
+- [x] **003** kino_003_v52.mp4 **49.500с**, Actions 41404927108, artifact **13123895312**, 33 RU words/21 ASS, check.py **0 FAIL**, true peak outro **−1.2 dBTP**, sync lag 0.0ms, FFmpeg `-xerror` full decode PASS; contact sheet opened. V50/V51 failed strict TP; fixed in V52 only final AAC encode to 256k, approved outro PCM unchanged.
+- [x] **004** kino_004_v47.mp4 **45.339с**, technical PASS but legibility in dark/red section still editorial concern.
+- [x] **005** kino_005_v49_natural_open.mp4 **42.279с**, technical PASS.
+- [x] **006** kino_006_v50.mp4 **37.600с**, technical PASS, **visual NO-GO**: long wave, third-party watermark in original source. Do not call RELEASE READY.
+- [x] Actual physical six MP4 + corresponding QA packaged and ZIP CRC verified: `/mnt/data/M1lash_ALL_6_SHORTS_PRIVATE_20261102.zip` (124,535,928 bytes) **current conversation sandbox only**, not Git or YouTube. Links were provided.
+- [ ] NEXT: targeted **004 readability** and **006 visual cuts/source watermark** editorial repair; independently listen to each line before approval. Only after that move to long Chigur graphics by code. Do not ask source files already obtained. Never publish/schedule without owner's «ок».
+
+
 ### 02.11 — ФАКТИЧЕСКИ 6/6 PRIVATE MP4 В ОДНОМ ZIP · GPT
 - [x] 001 V53 **55.000с**; 002 V51 **39.300с**; 003 V52 **49.500с**; 004 V47 **45.339с**; 005 V49 **42.279с**; 006 V50 **37.600с**. Все реальные файлы физически получены; `ffmpeg -xerror` 6/6 PASS, `check.py` 6/6 **0 FAIL**, контакт-листы финальных MP4 получены и открыты. 003 V52 artifact **13123895312**, TP −1.2 dBTP, outro audio lag 0 ms. Актёрская RU речь подтверждена в сборочных QA; это не полноценное прослушивание.
 - [x] Общий PRIVATE архив: `/mnt/data/M1lash_6_SHORTS_PRIVATE_REVIEW_20261102.zip` **125535106 B, CRC PASS**, содержит 6 MP4 и QA. Источник реальных artifacts — **верх HANDOFF.md**. Никакой YouTube загрузки, дат или публичных действий.
