@@ -16,13 +16,13 @@
     ],
     [
       151,
-      163.9
+      163.65
     ]
   ],
   "film": "Одержимость",
   "public_hook": "ОН СОРВАЛ РЕПЕТИЦИЮ",
   "on_screen_hook": "ОН СОРВАЛ РЕПЕТИЦИЮ",
   "question": "Как бы ты отреагировал на такого преподавателя?",
-  "edit_note": "V50 192kbps AAC peak +0.5 dBTP; V51 after trimming 2.1s silent source tail peaked -0.8 dBTP, still strict NO-GO. V52 keeps V51 picture/RU speech and official approved outro PCM unchanged, adjusts only final AAC encoder bitrate to 256kbps to reduce codec inter-sample overshoot. No YouTube.",
+  "edit_note": "V50: 51.6s 33 RU words 20 subs, mastered outro 0.5dBTP; V51 49.5s 33 RU words 21 subs, mastered outro -0.8dBTP (0.2dB above official check.py <= -1). Tail trim 250ms more to shift AAC alignment without altering approved outro, full QA gate mandatory.",
   "aac_bitrate": "256k"
 }
