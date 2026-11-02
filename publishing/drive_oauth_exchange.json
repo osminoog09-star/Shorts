@@ -1,0 +1,7 @@
+{
+  "status": "error",
+  "nonce": "bd4272ef3f5f0f2dfba94089bacd3ca6",
+  "checked_at": "2026-11-02T23:09:12.308934+00:00",
+  "error_code": "drive_api_denied",
+  "message": "Google Drive API запретил доступ (HTTP 403): проверь включение Drive API и права аккаунта."
+}
