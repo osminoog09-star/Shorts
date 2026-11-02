@@ -27,6 +27,7 @@ jobs:
           node --check motion-studio/app.js
           node --check motion-studio/studio-v2.js
           node --check site/studio/clips_ui.js
+          node --check site/studio/auto_refresh.js
           python3 motion-studio/automation/site_smoke.py
       - uses: actions/configure-pages@v5
       - name: Prepare only browser assets
@@ -36,7 +37,7 @@ jobs:
           cp -r motion-studio/data _site/data
           git fetch -q origin +pulse-data:refs/remotes/origin/pulse-data && git show origin/pulse-data:pulse.json > reports/youtube/pulse.json || true
           python3 scripts/build_studio_site.py
-          mkdir -p _site/studio && cp site/studio/index.html site/studio/clips_ui.js site/studio/data.json site/studio/widget.html site/studio/manifest.webmanifest site/studio/icon-192.png site/studio/icon-512.png _site/studio/ && cp -r site/studio/i _site/studio/i
+          mkdir -p _site/studio && cp site/studio/index.html site/studio/clips_ui.js site/studio/auto_refresh.js site/studio/data.json site/studio/widget.html site/studio/manifest.webmanifest site/studio/icon-192.png site/studio/icon-512.png _site/studio/ && cp -r site/studio/i _site/studio/i
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
