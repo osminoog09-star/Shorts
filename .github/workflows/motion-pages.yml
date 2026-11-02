@@ -28,6 +28,8 @@ jobs:
           node --check motion-studio/studio-v2.js
           node --check site/studio/clips_ui.js
           node --check site/studio/auto_refresh.js
+          node --check site/studio/drive_connect.js
+          node scripts/qa/test_drive_connect.cjs
           node scripts/qa/test_studio_auto_refresh.cjs
           node scripts/qa/test_studio_settings.cjs
           python3 motion-studio/automation/site_smoke.py
