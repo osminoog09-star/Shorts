@@ -6,10 +6,11 @@
   const PAGE_MS = 15000;
   const PULSE_MS = 30000;
   const STATUS_MS = 12000;
+  const RUN_MS = 25000;
   const STATUS_BASE = "https://raw.githubusercontent.com/osminoog09-star/Shorts/main/publishing/";
   const PULSE_URL = "https://raw.githubusercontent.com/osminoog09-star/Shorts/pulse-data/pulse.json";
   let pageKey = null, pulseKey = null, pulseData = null;
-  let pageBusy = false, pulseBusy = false, statusBusy = false, needsRender = false, lastError = false;
+  let pageBusy = false, pulseBusy = false, statusBusy = false, runBusy = false, needsRender = false, lastError = false;
   const latestStatuses = {};
   let pendingData = null;
 
@@ -76,6 +77,15 @@
     if (driveState) driveState.textContent = drive.connected ? "Подключён ✓" : drive.message || "Требуется OAuth";
     const settingsLabel = document.getElementById("driveAuthLabel");
     if (settingsLabel) settingsLabel.textContent = drive.connected ? "Подключён ✓" : drive.message || "Требуется OAuth";
+    const runBox = document.getElementById("hd-workflow-state");
+    if (runBox && window.__m1LatestIntakeRun) {
+      const run = window.__m1LatestIntakeRun;
+      const label = run.status === "completed" ?
+        (run.conclusion === "success" ? "завершён (смотри итог проверки выше)" :
+         run.conclusion === "cancelled" ? "отменён" : "ошибка (смотри журнал)") :
+        run.status === "queued" || run.status === "pending" ? "в очереди" : "выполняется";
+      runBox.textContent = "GitHub Actions #" + run.id + ": " + label;
+    }
     const download = document.querySelector("[data-hd-download]");
     if (download && !drive.connected) download.disabled = true;
   }
@@ -228,6 +238,24 @@
       // Keep the last verified status; a transient CDN failure must not claim success.
     } finally { statusBusy = false; }
   }
+  async function getRunStatus() {
+    // Use the existing GitHub PAT in the browser; never put it in raw URLs or public files.
+    if (runBusy || tab !== "clips" || !isVisible() || !D ||
+        typeof gh !== "function" || typeof tok !== "function" || !tok()) return;
+    runBusy = true;
+    try {
+      const data = await gh("/actions/workflows/hdrezka-intake.yml/runs?event=workflow_dispatch&per_page=3");
+      const run = (data?.workflow_runs || []).find(r => r.head_branch === "main");
+      if (!run) return;
+      const prev = window.__m1LatestIntakeRun;
+      if (!prev || run.id !== prev.id || run.status !== prev.status || run.conclusion !== prev.conclusion) {
+        window.__m1LatestIntakeRun = {id:run.id,status:run.status,conclusion:run.conclusion};
+        patchClipStatus();
+      }
+    } catch (_) {
+      // OAuth/permissions errors must not break the Studio or erase known statuses.
+    } finally { runBusy = false; }
+  }
   function tick() {
     if (!D || !isVisible()) return;
     if (needsRender && safeToRender()) refreshView();
@@ -238,11 +266,13 @@
     void getData();
     void getPulse();
     void getStatuses();
+    void getRunStatus();
     tick();
   }
   setInterval(() => { void getData(); }, PAGE_MS);
   setInterval(() => { void getPulse(); }, PULSE_MS);
   setInterval(() => { void getStatuses(); }, STATUS_MS);
+  setInterval(() => { void getRunStatus(); }, RUN_MS);
   setInterval(tick, 10000);
   document.addEventListener("visibilitychange", wake);
   window.addEventListener("online", wake);
