@@ -69,13 +69,13 @@ jobs:
         run: |
           python3 - <<'PY'
           import os
-          from scripts.drive_oauth_config import google_oauth_preflight, DriveSetupError
+          from scripts.drive_oauth_config import resolve_existing_client, DriveSetupError
           if not os.environ.get("GDRIVE_REFRESH_TOKEN"):
               print("Drive OAuth preflight: missing_refresh_token")
           else:
               try:
-                  google_oauth_preflight(os.environ)
-                  print("Drive OAuth preflight: google_api_folder_write_ok")
+                  _, matched = resolve_existing_client(os.environ)
+                  print("Drive OAuth preflight: google_api_folder_write_ok; client =", matched)
               except DriveSetupError as exc:
                   print("Drive OAuth preflight:", exc.code)
           PY
