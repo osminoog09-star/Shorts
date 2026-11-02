@@ -113,6 +113,7 @@ def main():
     ap.add_argument("--title", help="mp3/wav с голосом Димы «Это был фильм… X» (кино-Shorts, AGENTS §8)")
     ap.add_argument("--horizontal", action="store_true", help="длинное 1920×1080")
     ap.add_argument("--crf", type=int, default=18)
+    ap.add_argument("--audio-bitrate", choices=("192k","256k","320k"), default="192k", help="Only AAC encoder bitrate; approved outro PCM/gain unchanged")
     ap.add_argument("--preset", default="medium", choices=("medium", "fast", "veryfast", "superfast", "ultrafast"),
                     help="скорость x264; для QA допустим ultrafast с CRF 16")
     ap.add_argument("--body-lufs", type=float, default=-15.0, help="цель громкости только тела")
@@ -181,7 +182,7 @@ def main():
             g.append("[v0][a0][v1][a1]concat=n=2:v=1:a=1[v][a]")
         run(*inputs, "-filter_complex", ";".join(g), "-map", "[v]", "-map", "[a]",
             "-c:v", "libx264", "-crf", str(a.crf), "-preset", a.preset, "-pix_fmt", "yuv420p", "-r", str(FPS),
-            "-c:a", "aac", "-b:a", "192k", "-ar", str(SR), "-ac", "2", "-movflags", "+faststart", str(out))
+            "-c:a", "aac", "-b:a", a.audio_bitrate, "-ar", str(SR), "-ac", "2", "-movflags", "+faststart", str(out))
 
     # ---- проверки ----
     problems = []
