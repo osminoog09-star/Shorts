@@ -214,13 +214,32 @@ jobs:
           if [ "${{ inputs.mode }}" != "inspect" ] && [ ! -s publishing/drive_auth_status.json ]; then
             printf '{"status":"error","connected":false,"error_code":"setup_failed","message":"Проверка OAuth не запустилась; см. GitHub Actions."}\n' > publishing/drive_auth_status.json
           fi
+          # Save only the statuses produced by THIS workflow run. Other agents
+          # may push to main meanwhile; never rebase an already committed status
+          # because that creates a conflict and loses the result on retry.
+          mkdir -p "$RUNNER_TEMP/intake-status"
+          if [ "${{ inputs.mode }}" != "drive_check" ]; then
+            cp publishing/hdrezka_status.json "$RUNNER_TEMP/intake-status/hdrezka_status.json"
+          fi
+          if [ "${{ inputs.mode }}" != "inspect" ]; then
+            cp publishing/drive_auth_status.json "$RUNNER_TEMP/intake-status/drive_auth_status.json"
+          fi
           git config user.name 'm1lash-intake[bot]'
           git config user.email 'm1lash-intake@users.noreply.github.com'
-          git add publishing/hdrezka_status.json publishing/drive_auth_status.json
-          git diff --cached --quiet && exit 0
-          git commit -m "media: update private intake status (no movie bytes)"
           for attempt in 1 2 3; do
-            if git pull -q --rebase origin main && git push -q origin HEAD:main; then exit 0; fi
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            if [ -f "$RUNNER_TEMP/intake-status/hdrezka_status.json" ]; then
+              cp "$RUNNER_TEMP/intake-status/hdrezka_status.json" publishing/hdrezka_status.json
+              git add publishing/hdrezka_status.json
+            fi
+            if [ -f "$RUNNER_TEMP/intake-status/drive_auth_status.json" ]; then
+              cp "$RUNNER_TEMP/intake-status/drive_auth_status.json" publishing/drive_auth_status.json
+              git add publishing/drive_auth_status.json
+            fi
+            git diff --cached --quiet && exit 0
+            git commit -q -m "media: update private intake status (no movie bytes)"
+            if git push -q origin HEAD:main; then exit 0; fi
             sleep 5
           done
           exit 1
