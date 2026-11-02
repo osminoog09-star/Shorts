@@ -1,0 +1,39 @@
+{
+  "renderer": "python",
+  "script": "shorts/rebuild_movie_review_from_artifact.py",
+  "id": "002",
+  "edition": "v50",
+  "output": "videos/kino_002_v50.mp4",
+  "save_review_mp4": false,
+  "qa_run_marker": "reports/research/movie_002_v50_run.json",
+  "no_youtube_upload": true,
+  "artifact_id": 13069849250,
+  "member": "originals/chigur_carla_final_ru_real.mp4",
+  "segments": [
+    [
+      160,
+      169
+    ],
+    [
+      175,
+      186.15
+    ],
+    [
+      203.2,
+      209
+    ],
+    [
+      212.31,
+      213.93
+    ],
+    [
+      218,
+      220
+    ]
+  ],
+  "film": "Старикам тут не место",
+  "public_hook": "ОНА ОТКАЗАЛАСЬ ИГРАТЬ ПО ЕГО ПРАВИЛАМ",
+  "on_screen_hook": "ОНА НЕ СТАЛА ВЫБИРАТЬ",
+  "question": "А как бы ты ответил на её месте?",
+  "edit_note": "RU actor source, 29.57s body from checked intervals; no fabricated film quotes; title only Dmitry after approved 6.6s outro; private review."
+}
