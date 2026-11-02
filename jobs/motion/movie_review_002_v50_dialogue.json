@@ -2,10 +2,10 @@
   "renderer": "python",
   "script": "shorts/rebuild_movie_review_from_artifact.py",
   "id": "002",
-  "edition": "v50",
-  "output": "videos/kino_002_v50.mp4",
+  "edition": "v51",
+  "output": "videos/kino_002_v51.mp4",
   "save_review_mp4": false,
-  "qa_run_marker": "reports/research/movie_002_v50_run.json",
+  "qa_run_marker": "reports/research/movie_002_v51_run.json",
   "no_youtube_upload": true,
   "artifact_id": 13069849250,
   "member": "originals/chigur_carla_final_ru_real.mp4",
@@ -35,5 +35,6 @@
   "public_hook": "ОНА ОТКАЗАЛАСЬ ИГРАТЬ ПО ЕГО ПРАВИЛАМ",
   "on_screen_hook": "ОНА НЕ СТАЛА ВЫБИРАТЬ",
   "question": "А как бы ты ответил на её месте?",
-  "edit_note": "RU actor source, 29.57s body from checked intervals; no fabricated film quotes; title only Dmitry after approved 6.6s outro; private review."
+  "edit_note": "V50 rendered 39.3s, 34 RU words, 18 subtitles and clean outro but strict check.py measured -16.1 LUFS overall; adjust only body +0.6 dB via official assembler, no source or outro changes",
+  "body_gain_db": 0.6
 }
