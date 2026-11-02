@@ -87,6 +87,8 @@ def main():
             args.extend(["--editorial-profile",job["editorial_profile"]])
         if job.get("on_screen_hook"):
             args.extend(["--on-screen-hook", job["on_screen_hook"]])
+        if job.get("body_gain_db") is not None:
+            args.extend(["--body-gain-db",str(job["body_gain_db"])])
         run(args)
         if not output.exists():raise RuntimeError("No master MP4 from studio builder")
         ART.mkdir(exist_ok=True)
