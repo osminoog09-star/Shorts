@@ -1,3 +1,11 @@
+## 02.11 GPT — полный индекс репо и 004 V48
+
+Дерево main3598 файлов, индекс инструкций и backlog: reports/research/2026-11-02_ALL_SHORTS_RULES_AND_BACKLOG.md. Это инвентаризация, не утверждение о ручном чтении каждого маркетингового скила. Главные AGENTS + m1lash-studio + ffmpeg-skill + visuals-by-code прочитаны. Снято устаревшее EN-исключение в паспорте Ernesto (d79585a); заявка — отдельный BreakingBad, НЕ006.
+
+004 V48 фактически собран из прежнего русского source13070096727, исправлены времена смены crop и титры. Код scripts/qa/rebuild_004_clean_ru_safe_v48.py (afc6183), отчёт2026-11-02_004_V48_TARGETED_REPAIR.md (a80f282). 45.3с,25,238,589B; check.py0FAIL/1WARN, полный decodePASS,outro lag0ms,TP−2dBTP. Свежий look.py после --overwrite открыт глазами. Library libfile_18b0162b199881918e93e16a5582fcff version2, /workspace/scratch/004_v48/004_V48_OFFICIAL_PRIVATE.mp4. Полный слух/сверка титров пока не закрыты, НЕ RELEASE_READY; YouTube/date отсутствуют.
+
+006V50 фактически восстановлена из13121445219: /workspace/scratch/006_v50. В конце20–22с слова Купер/Успею на волне,22–24с актёр,24–28.5с шлюз/вода. Нельзя удалять20–22с вслепую: потеряем диалог. Source13041863362 скачивается /workspace/scratch/006_source.zip, curl session84992; дождаться завершения перед unzip. После004 заняться именно006, затем001/002/005 и отдельными drafts. Уже вышедшие/003 не дублировать.
+
 ## 02.11 — GPT: 003 V54 завершён до PRIVATE YouTube review
 
 - YouTube ID **FxIlxGWVCuw**, https://studio.youtube.com/video/FxIlxGWVCuw/edit. Штатный youtube-direct.yml upload run **41507963691 SUCCESS**; receipt uploaded, publish_at_utc=null. НЕ повторять upload.
