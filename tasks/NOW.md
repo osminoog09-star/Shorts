@@ -25,6 +25,13 @@
 ## Claude
 
 ## GPT/Codex
+### 02.11 — 001 V52 loudness NO-GO → V53 code +0.4 dB body-only
+- [x] V52 run `41400484209` stopped by strict `check.py` at −16.0 LUFS (one FAIL), no downloadable MP4 artifact. Hook working in temp run, QA still blocked.
+- [x] Bounded `--body-gain-db` added to `scripts/movie_short.py` and passed through artifact wrapper; `jobs/motion/movie_review_001_v50_ru_dialogue.json` now **v53** uses +0.4 dB **body only**, exact official outro unmodified.
+- [ ] **Immediately check run `41401595596` V53**, download actual MP4 only if artifact exists, verify 0 FAIL `check.py`, words, 0-3s hook, face/captions/safe area, rev4+Dima/outro lag. Previous real V51 is accessible PRIVATE but lacks hook.
+- [ ] 006 V50 middle sea sequence and MR watermark visual NO-GO; 002 V41/003 V45 recover, 004 readability/sound; long Chigur only after shorts.
+No YouTube/slot changes.
+
 ### 02.11 — фактический QA после восстановления исходников · GPT
 Ссылки-истина: `reports/research/2026-11-02_GPT_REPO_FULL_TREE_AND_SHORTS_TRIAGE.md`, верх `HANDOFF.md`.
 - [x] Инвентаризация всего дерева Git `main`, чтение актуальных правил и QA. Исправлен marker-rebase workflow (`f0a64a08`), фильмы и коммерческие аудио не пушились.
