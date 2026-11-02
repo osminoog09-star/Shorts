@@ -1,8 +1,8 @@
 name: YouTube · hourly pulse
-# Ежечасно: живые счётчики (подписчики, просмотры свежих роликов) → ветка pulse-data → сайт и виджет.
+# Каждые 15 минут (best effort: GitHub scheduler иногда задерживает запуск): счётчики (подписчики, просмотры свежих роликов) → ветка pulse-data → сайт и виджет.
 on:
   schedule:
-    - cron: '7 * * * *'
+    - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
 permissions:
   contents: write
