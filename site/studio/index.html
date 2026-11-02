@@ -182,6 +182,22 @@ input[type=range]{width:100%;accent-color:var(--pink)}
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:92dvh;overflow:auto;background:var(--bg);border-radius:26px 26px 0 0;padding:10px 16px calc(env(safe-area-inset-bottom,0px) + 24px);transform:translateY(105%);transition:transform .35s cubic-bezier(.2,.8,.2,1);box-shadow:0 -20px 50px -20px rgba(0,0,0,.6)}
 .sheet.open{transform:none}
 .sheet .grab{width:44px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 12px}
+
+/* Settings modal: grid min-content (URL/code/status) must never widen a phone viewport. */
+.sheet{min-width:0;overflow-x:hidden;overflow-wrap:anywhere}
+.sheet [data-settings-panel],.sheet .card,.sheet .idea,.sheet .row,.sheet label.f,
+.sheet ol.steps,.sheet .seg{min-width:0;max-width:100%}
+.sheet .idea{grid-template-columns:minmax(0,1fr)}
+.sheet .card h2,.sheet .idea p,.sheet ol.steps li,.sheet [role="status"]{overflow-wrap:anywhere;min-width:0}
+.sheet code,.sheet .chip{white-space:normal;overflow-wrap:anywhere;word-break:break-word;max-width:100%}
+.sheet .row .btn,.sheet .row button,.sheet .row a.btn{white-space:normal;text-align:center;max-width:100%;min-width:0;overflow-wrap:anywhere}
+.sheet input.t{min-width:0;max-width:100%}
+@media (max-width:959px){
+  .sheet{width:100%;max-width:100vw;padding-left:clamp(12px,4vw,16px);padding-right:clamp(12px,4vw,16px)}
+  .sheet .row>.btn{flex:1 1 155px}
+  .sheet #driveGoogleStart,.sheet #driveGoogleFinish,.sheet #driveSave,.sheet #driveCheck{width:100%;max-width:100%}
+}
+
 @media (min-width:960px){.sheet{left:50%;right:auto;width:640px;bottom:auto;top:50%;border-radius:26px;transform:translate(-50%,-46%) scale(.97);opacity:0;pointer-events:none;transition:transform .3s,opacity .3s}.sheet.open{transform:translate(-50%,-50%);opacity:1;pointer-events:auto}}
 .stat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 @media (min-width:560px){.stat{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -449,14 +465,16 @@ function openSettings(section){
        <p class="muted">После входа Google откроет OAuth Playground. Скопируй <b>Authorization code</b> из шага 2 (кнопку Exchange не нажимай) и вернись сюда.</p>
        <label class="f">Код Google<input class="t" id="driveAuthCode" type="password" autocomplete="off" spellcheck="false" placeholder="Authorization code (не refresh token)"></label>
        <button type="button" class="btn pri" id="driveGoogleFinish">2. Подключить Drive</button>
-       <p class="muted" role="status" id="driveConnectStatus">Доступ требует одного подтверждения Google. Старые Client ID и Secret вспоминать не нужно.</p></div>
+       <p class="muted" role="status" id="driveConnectStatus">Google-подтверждение уже получено. Проверяю окончательное сохранение доступа; повторно вводить код не нужно.</p></div>
        <p>Статус: <span class="chip" id="driveAuthLabel">${esc(D?.drive_auth?.connected?'Подключён ✓':D?.drive_auth?.message||'Требуется OAuth')}</span>. Папка M1lash уже выбрана. Чтобы фильмы автоматически попадали в неё, нужен отдельный <b>Drive refresh token</b> — он сохраняется только в GitHub Secrets.</p>
+       <details class="drive-legacy" style="margin-top:12px"><summary style="cursor:pointer;font-weight:600">Другой способ: вручную через Refresh token</summary>
        <ol class="steps"><li>В <a href="https://console.cloud.google.com/apis/library/drive.googleapis.com" target="_blank" rel="noopener noreferrer">Google Cloud</a> включи Google Drive API в проекте «Youtube».</li>
        <li>Открой <a href="https://developers.google.com/oauthplayground/" target="_blank" rel="noopener noreferrer">OAuth Playground</a> → ⚙️ → <b>Use your own OAuth credentials</b>. Используй <b>тот же Web Client ID и Secret из Google Cloud → проект «Youtube»</b>, что уже стоят в GitHub для YouTube. <b>Не используй стандартный клиент OAuth Playground</b> — иначе Google вернёт <code>unauthorized_client</code> при проверке нового токена.</li>
        <li>В «Input your own scopes» вставь <code>https://www.googleapis.com/auth/drive</code> → Authorize APIs → выбери владельца папки → Exchange authorization code for tokens.</li>
        <li>Скопируй <b>только Refresh token</b> в поле ниже. Это полный доступ к Google Drive; его можно отозвать в Google Account.</li></ol>
        <label class="f" style="margin-top:10px">Drive Refresh token<input class="t" id="driveTok" type="password" autocomplete="off" spellcheck="false" placeholder="1//0…"></label>
        <div class="row" style="margin-top:8px"><button class="btn pri" id="driveSave">Сохранить токен и проверить Drive</button><button class="btn" id="driveCheck">Проверить подключение</button></div>
+       </details>
        <p class="muted">Токен не сохраняется в браузере, не попадает в исходники и шифруется перед передачей в GitHub Secrets. Не отправляй его в чат.</p></div>
       <p class="muted" style="font-size:12px;margin:10px 0 0" id="keyLog"></p></section></div>
     <div data-settings-panel="general" ${settingsSection!=="general"?"hidden":""}>
