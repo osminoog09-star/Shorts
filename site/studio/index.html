@@ -28,6 +28,7 @@
   --blue:#5e95ff;--pink:#ff5fa8;--violet:#a78bfa;--ok:#4fd393;--okbg:#14301f;--warn:#f2b44a;--warnbg:#36290f;--bad:#ff7a7a;--badbg:#391a1d;--info:#8db1ff;--infobg:#18264a;
   --shadow:0 1px 0 rgba(255,255,255,.05) inset,0 16px 40px -18px rgba(0,0,0,.7),0 2px 8px -2px rgba(0,0,0,.4);color-scheme:dark}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
 html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-b);min-height:100dvh;
   background-image:radial-gradient(900px 500px at 100% -5%,color-mix(in srgb,var(--pink) 14%,transparent),transparent 60%),radial-gradient(700px 500px at -10% 10%,color-mix(in srgb,var(--blue) 12%,transparent),transparent 60%);background-attachment:fixed}
@@ -426,9 +427,13 @@ function openVideo(id){
 }
 function openSheet(html){$("#sheetBody").innerHTML=html;$("#sheet").classList.add("open");$("#scrim").classList.add("open");$("#sheet").scrollTop=0}
 function closeSheet(){$("#sheet").classList.remove("open");$("#scrim").classList.remove("open")}
-function openSettings(){
+let settingsSection="general";
+function openSettings(section){
+  if(section==="general"||section==="tokens") settingsSection=section;
   const t=tok();
-  openSheet(`<h2 style="font-size:18px">Настройки и управление</h2>
+  openSheet(`<h2 style="font-size:18px">Настройки</h2>
+    <div class="seg" role="group" aria-label="Категории настроек"><button type="button" data-settings-section="general" aria-pressed="${settingsSection==="general"}">⚙️ Основные</button><button type="button" data-settings-section="tokens" aria-pressed="${settingsSection==="tokens"}">🔐 Токены и доступы</button></div>
+    <div data-settings-panel="tokens" ${settingsSection!=="tokens"?"hidden":""}>
     <section class="card" style="margin-bottom:12px"><h2>Управление с сайта</h2>${t?'<p class="chip c-ok">Токен сохранён в этом браузере ✓</p>':'<p class="muted" style="margin-top:0">Чтобы работали кнопки «Одобрить», «Заливаем», «В идеи» и «Обновить», один раз добавь GitHub-токен. Он хранится только на этом устройстве.</p>'}
       <ol class="steps"><li>Открой <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → новый fine-grained токен</a>.</li><li>Название: <b>M1lash студия</b>, срок: 1 год.</li><li>Repository access → <b>Only select repositories</b> → <b>Shorts</b>.</li><li>Permissions → Repository: <b>Contents</b>, <b>Actions</b> и <b>Secrets</b> — везде <b>Read and write</b>. (Уже есть токен без Secrets? Открой его в GitHub → Edit → добавь Secrets.)</li><li>Generate token → скопируй и вставь сюда.</li></ol>
       <label class="f" style="margin-top:12px">Токен<input class="t" id="tokIn" type="password" autocomplete="off" placeholder="github_pat_…"></label>
@@ -445,9 +450,11 @@ function openSettings(){
        <label class="f" style="margin-top:10px">Drive Refresh token<input class="t" id="driveTok" type="password" autocomplete="off" spellcheck="false" placeholder="1//0…"></label>
        <div class="row" style="margin-top:8px"><button class="btn pri" id="driveSave">Сохранить токен и проверить Drive</button><button class="btn" id="driveCheck">Проверить подключение</button></div>
        <p class="muted">Токен не сохраняется в браузере, не попадает в исходники и шифруется перед передачей в GitHub Secrets. Не отправляй его в чат.</p></div>
-      <p class="muted" style="font-size:12px;margin:10px 0 0" id="keyLog"></p></section>
+      <p class="muted" style="font-size:12px;margin:10px 0 0" id="keyLog"></p></section></div>
+    <div data-settings-panel="general" ${settingsSection!=="general"?"hidden":""}>
     <section class="card" style="margin-bottom:12px"><h2>Обновить сейчас</h2><div class="row"><button class="btn" data-run="youtube-pulse.yml">⚡ Живые цифры и комменты</button><button class="btn" data-run="youtube-analytics.yml">📊 Полная аналитика</button><button class="btn" data-run="motion-pages.yml">🌐 Пересобрать сайт</button></div><p class="muted" style="font-size:12px;margin:10px 0 0">Само обновляется: живые цифры — каждый час, аналитика — каждый день в 10:20.</p></section>
     <section class="card"><h2>Приложение</h2><a class="btn pri" href="${esc((D&&D.app||{}).apk||"#")}">📱 Скачать виджет для Android ${D&&D.app?"v"+esc(D.app.name):""}</a><p class="muted" style="font-size:12px;margin:10px 0 0">Виджет растягивается от 1×1 до 4×4. Новые версии приложение предложит само.</p></section>
+    </div>
     <div class="row" style="margin-top:14px"><button class="btn" data-close>Закрыть</button></div>`);
 }
 /* ---------- «Авто»: лучшее ближайшее время по активности аудитории + правилам канала ---------- */
@@ -618,7 +625,8 @@ document.addEventListener("click",async e=>{
   if(el=q("[data-vseg]")){vSeg=el.dataset.vseg;return render()}
   if(el=q("[data-iseg]")){iSeg=el.dataset.iseg;return render()}
   if(el=q("[data-fseg]")){fSeg=el.dataset.fseg;return render()}
-  if(q("[data-act=settings]"))return openSettings();
+  if(el=q("[data-settings-section]"))return openSettings(el.dataset.settingsSection);
+  if(q("[data-act=settings]"))return openSettings("general");
   if(q("[data-close]"))return closeSheet();
   if(el=q("[data-ok]")){if(needTok())openOk(el.dataset.ok);return}
   if(el=q("[data-okat]"))return act(el,()=>doSchedule(el.dataset.id,new Date(+el.dataset.okat).toISOString().replace(/\.\d+Z$/,"Z")));
