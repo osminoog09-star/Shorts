@@ -1,7 +1,7 @@
 {
-  "status": "authorization_required",
+  "checked_at": "2026-11-02T21:37:02.558206+00:00",
+  "status": "error",
   "connected": false,
-  "checked_at": "2026-11-02T21:21:35Z",
-  "error_code": "drive_scope_missing",
-  "message": "В GitHub уже есть OAuth для YouTube, но у него нет разрешения Google Drive. Секреты GDRIVE_REFRESH_TOKEN и GDRIVE_RCLONE_CONFIG отсутствуют. Нужен один OAuth-consent владельца через ⚙️ Настройки."
+  "error_code": "oauth_or_folder_denied",
+  "message": "Google отклонил OAuth или доступ к папке. Проверь Drive API, scope и Google-аккаунт."
 }
