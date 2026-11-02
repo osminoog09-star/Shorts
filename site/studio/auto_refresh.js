@@ -62,10 +62,27 @@
     if (tab !== "clips") return;
     const s = D?.hdrezka_intake || {};
     const text = document.getElementById("hd-status");
-    if (text) text.textContent = s.status === "ok"
+    const run = window.__m1LatestIntakeRun;
+    const resultTime = timeMs(s.checked_at);
+    const runTime = timeMs(run?.created_at);
+    const requestTime = timeMs(window.__m1IntakeRequestedAt);
+    const recent = t => t > resultTime && t <= Date.now()+60000 &&
+      Date.now()-t < 2*3600000;
+    let actionLabel = "";
+    if (run && recent(runTime)) {
+      if (run.status === "in_progress") actionLabel = "Проверка выполняется в GitHub Actions #" + run.id;
+      else if (run.status === "queued" || run.status === "pending")
+        actionLabel = "Проверка в очереди GitHub Actions #" + run.id;
+      else if (run.conclusion === "cancelled") actionLabel = "Последний запуск отменён. Смотри журнал GitHub Actions";
+      else if (run.conclusion === "failure") actionLabel = "Задание GitHub Actions завершилось ошибкой; смотри журнал";
+      else if (run.conclusion === "success") actionLabel = "GitHub Actions завершил проверку, обновляю результат";
+    }
+    if (!actionLabel && recent(requestTime))
+      actionLabel = "Запрос принят GitHub Actions. Ожидаем запуска и результата";
+    if (text) text.textContent = actionLabel || (s.status === "ok"
       ? (s.drive_uploaded ? "Файл загружен в Drive" : "Качества проверены")
       : s.status === "error" ? "Не удалось: " + (s.message || s.error_code || "см. Actions")
-      : "Проверка ещё не запускалась";
+      : "Проверка ещё не запускалась");
     const qualities = document.getElementById("hd-qualities");
     if (qualities) qualities.textContent = Object.entries(s.available || {})
       .map(([k,v]) => k + " — " + (v === "available" ? "доступно" : "только Premium"))
@@ -78,8 +95,14 @@
     const settingsLabel = document.getElementById("driveAuthLabel");
     if (settingsLabel) settingsLabel.textContent = drive.connected ? "Подключён ✓" : drive.message || "Требуется OAuth";
     const runBox = document.getElementById("hd-workflow-state");
-    if (runBox && window.__m1LatestIntakeRun) {
-      const run = window.__m1LatestIntakeRun;
+    const currentRun = window.__m1LatestIntakeRun;
+    const runLink = document.getElementById("hd-run-link");
+    if (runLink && currentRun && Number.isSafeInteger(currentRun.id)) {
+      runLink.href = "https://github.com/osminoog09-star/Shorts/actions/runs/" + currentRun.id;
+      runLink.hidden = false;
+    }
+    if (runBox && currentRun) {
+      const run = currentRun;
       const label = run.status === "completed" ?
         (run.conclusion === "success" ? "завершён (смотри итог проверки выше)" :
          run.conclusion === "cancelled" ? "отменён" : "ошибка (смотри журнал)") :
@@ -244,12 +267,15 @@
         typeof gh !== "function" || typeof tok !== "function" || !tok()) return;
     runBusy = true;
     try {
-      const data = await gh("/actions/workflows/hdrezka-intake.yml/runs?event=workflow_dispatch&per_page=3");
-      const run = (data?.workflow_runs || []).find(r => r.head_branch === "main");
+      const data = await gh("/actions/workflows/hdrezka-intake.yml/runs?event=workflow_dispatch&per_page=6");
+      const runs = (data?.workflow_runs || []).filter(r => r.head_branch === "main");
+      const run = runs.find(r => r.status === "in_progress")
+        || runs.find(r => r.status === "queued" || r.status === "pending")
+        || runs[0];
       if (!run) return;
       const prev = window.__m1LatestIntakeRun;
       if (!prev || run.id !== prev.id || run.status !== prev.status || run.conclusion !== prev.conclusion) {
-        window.__m1LatestIntakeRun = {id:run.id,status:run.status,conclusion:run.conclusion};
+        window.__m1LatestIntakeRun = {id:run.id,status:run.status,conclusion:run.conclusion,created_at:run.created_at};
         patchClipStatus();
       }
     } catch (_) {
