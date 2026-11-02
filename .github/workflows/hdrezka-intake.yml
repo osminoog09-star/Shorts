@@ -25,6 +25,8 @@ on:
     paths:
       - 'scripts/hdrezka_intake.py'
       - 'scripts/qa/test_hdrezka_intake.py'
+      - 'scripts/drive_oauth_config.py'
+      - 'scripts/qa/test_drive_oauth_config.py'
       - '.github/workflows/hdrezka-intake.yml'
 
 permissions:
