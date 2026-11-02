@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/kino_003.json",
+  "manifest_sha256": "32005569cc15355199c036860065cdc79f85c63e5e15392b2c376e15f4b83240",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
