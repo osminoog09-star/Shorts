@@ -1,7 +1,9 @@
 {
-  "checked_at": "2026-11-02T23:39:00.559701+00:00",
-  "status": "error",
-  "connected": false,
-  "error_code": "oauth_or_folder_denied",
-  "message": "Google отклонил OAuth или доступ к папке. Проверь Drive API, scope и Google-аккаунт."
+  "checked_at": "2026-11-02T23:48:03.942601+00:00",
+  "status": "ok",
+  "connected": true,
+  "oauth_client_source": "youtube",
+  "verification": "rclone_lsf_github_actions",
+  "verified_workflow_run_id": 41548086509,
+  "message": "Google Drive подключён. Проверка Google OAuth, прав на папку и rclone lsf в GitHub Actions успешна. Загрузка фильма ещё не запускалась."
 }
