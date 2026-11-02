@@ -27,6 +27,7 @@ const elements = {
   "hd-qualities": {textContent:""},
   "hd-checked": {textContent:""},
   "drive-oauth-state": {textContent:""},
+  "hd-workflow-state": {textContent:""},
   "download-action": {disabled:false},
   "hd-url": {id:"hd-url",value:"https://rezka.ag/films/drama/test.html"},
   "hd-quality": {id:"hd-quality",value:"1080p"}
@@ -55,6 +56,8 @@ const context = {
     addEventListener:()=>{}
   },
   navigator:{onLine:true},window:{addEventListener:()=>{}},
+  tok:()=> "fake-local-test-pat",
+  gh:async path=>({workflow_runs:[{id:12345,status:"in_progress",conclusion:null,head_branch:"main"}]}),
   render:()=>{renders++},
   ago:()=>"1 мин",dshort:()=>"вчера",
   fetch:async url=>({ok:true,json:async()=>url.startsWith("data.json")?next:url.includes("/main/publishing/")?(url.includes("drive_auth_status.json")?{connected:false,checked_at:"2026-11-02T21:30:00Z",status:"error",message:"Drive OAuth denied"}:{status:"error",checked_at:"2026-11-02T21:30:00Z",message:"Source failed"}):pulse}),
@@ -94,5 +97,7 @@ const run = async delay => {
   assert.match(elements["hd-status"].textContent,/Source failed/);
   assert.equal(context.D.drive_auth.connected,false);
   assert.equal(elements["download-action"].disabled,true);
+  await run(25000);
+  assert.match(elements["hd-workflow-state"].textContent,/GitHub Actions #12345: выполняется/);
   console.log("studio auto-refresh smoke PASS (15s page, 30s pulse, 12s raw status, form preserved)");
 })().catch(e=>{console.error(e);process.exitCode=1});
