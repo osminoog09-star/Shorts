@@ -25,6 +25,12 @@
 ## Claude
 
 ## GPT/Codex
+### 02.11 — 003 Whiplash строгий TP gate · GPT
+- [x] Из ранее полученного RU source 003 (`13041278425`) смонтированы новые body с русским голосом/ASR, корректным началом и 3-секундным хуком. V50 run `41402501321`: 51.6с, 33 RU words/20 subtitles, **NO-GO +0.5 dBTP** при финальном AAC. V51 run `41403719341`: 49.5с, 33 RU words/21 subtitles, body/dialogue/outro sync исправны, TP **−0.8 dBTP**, ещё NO-GO (нужно ≤−1dBTP). В обоих случаях MP4 внутри runner создаётся, но статус не READY и обычный artifact не сохраняется после check.py fail.
+- [x] Технический фикс codec-only: `tools/assemble_with_outro.py --audio-bitrate {192,256,320}k`, передано через `scripts/movie_short.py` и wrapper; **не меняет approved outro PCM/громкость**. Локально повторное AAC-кодирование отдельно approved outro: TP 192k **−1.6**, 256k **−2.0**, 320k **−1.9** (только диагностический тест, не финальный MP4).
+- [ ] V52 run **41404927108**, job `jobs/motion/movie_review_003_v50_dialogue.json` (AAC 256k). После завершения скачать настоящий artifact, `ffmpeg -xerror`, `check.py` без FAIL, `look.py` глазами, full body/titres; если fails — не объявлять готовым и не трогать другие пять.
+- [x] Пять независимо проверенных реальных MP4 в `/mnt/data/m1lash_final_20261102/`: 001 V53, 002 V51, 004 V47, 005 V49, 006 V50. 002 V51 run 41402937982 artifact 13122169262 check.py 0 FAIL и фреймы 0-38с открыты глазами. Финальный общий ZIP создать только при наличии шестого MP4.
+
 ### 02.11 — завершение Shorts: реальные MP4 (GPT текущий запуск)
 - [x] На реальном 001 V53 `kino_001_v53.mp4` (artifact **13121673002**, run 41401595596) выполнены полный FFmpeg decode, независимый официальный `check.py` **0 FAIL / 1 WARN burned-in ASS**, `look.py` открыт, длительность **55.000с**, реальный файл скачан. 77 русских слов / 44 титра, хук первые 2с, approved rev4 outro + Dima; PRIVATE.
 - [x] Из уже полученных artifacts физически доступны 004 V47 **45.339с**, 005 V49 **42.279с**, 006 V50 **37.600с**; на каждом снова `ffmpeg -xerror` и `check.py` 0 FAIL, файлы/контакты в текущем /mnt/data/m1lash_final_20261102 (только временно, не Git). 006 визуально слабая волна и источник с чужим watermark, не объявлять RELEASE READY.
