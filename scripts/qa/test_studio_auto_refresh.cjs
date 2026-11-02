@@ -1,0 +1,82 @@
+// Node-only regression guard for M1lash Studio auto-refresh. No network, no browser, no credentials.
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const vm = require("node:vm");
+
+const root = path.resolve(__dirname, "../..");
+const page = fs.readFileSync(path.join(root, "site/studio/index.html"), "utf8");
+const worker = fs.readFileSync(path.join(root, "site/studio/auto_refresh.js"), "utf8");
+const deploy = fs.readFileSync(path.join(root, ".github/workflows/motion-pages.yml"), "utf8");
+assert.match(page, /<script src="auto_refresh\.js"><\/script>/);
+assert.match(deploy, /node --check site\/studio\/auto_refresh\.js/);
+assert.match(deploy, /cp site\/studio\/index\.html site\/studio\/clips_ui\.js site\/studio\/auto_refresh\.js/);
+new vm.Script(worker, {filename: "auto_refresh.js"});
+
+let renders = 0;
+const elements = {
+  asof: {textContent:""},
+  sheet: {classList:{contains:()=>false}},
+  "hd-status": {textContent:""},
+  "hd-qualities": {textContent:""},
+  "hd-checked": {textContent:""},
+  "hd-url": {id:"hd-url",value:"https://rezka.ag/films/drama/test.html"},
+  "hd-quality": {id:"hd-quality",value:"1080p"}
+};
+const timers = [];
+const next = {
+  built:"new build",analytics_as_of:"2026-11-01",
+  channel:{subs:10,views:100,videos:2},live:{t:"2026-11-02T20:00:00Z",subs:10,views:100},
+  hdrezka_intake:{status:"ok",drive_uploaded:false,available:{"1080p":"available"}},
+  videos:[],comments:[],review:[],plan:[],experiments:[]
+};
+const pulse = {
+  snapshots:[
+    {t:"2026-11-02T20:00:00Z",subs:10,views:100,videos:{}},
+    {t:"2026-11-02T21:00:00Z",subs:11,views:140,videos:{}}
+  ], recent:[], comments:[{id:"test-comment"}], status:{comments:"ok"}
+};
+const context = {
+  D: {...next, built:"old build", hdrezka_intake:{status:"not_started"}},
+  tab:"clips",document:{
+    hidden:false, activeElement:{closest:()=>true,matches:()=>true},
+    getElementById:id=>elements[id]||null,
+    querySelectorAll:()=>[elements["hd-url"],elements["hd-quality"]],
+    addEventListener:()=>{}
+  },
+  navigator:{onLine:true},window:{addEventListener:()=>{}},
+  render:()=>{renders++},
+  ago:()=>"1 мин",dshort:()=>"вчера",
+  fetch:async url=>({ok:true,json:async()=>url.startsWith("data.json")?next:pulse}),
+  setInterval:(fn,delay)=>{timers.push({fn,delay});return timers.length},
+  setTimeout:(fn,delay)=>{timers.push({fn,delay});return timers.length},
+  Date,JSON,Object,Array,Number,Math,Promise,console
+};
+vm.runInNewContext(worker,context,{timeout:1000});
+const run = async delay => {
+  const tick = timers.find(t=>t.delay===delay);
+  assert.ok(tick, "missing timer "+delay);
+  tick.fn();
+  // Let async response parsing and effects settle.
+  for(let i=0;i<8;i++) await new Promise(resolve=>setImmediate(resolve));
+};
+(async()=>{
+  await run(45000);
+  assert.equal(context.D.built,"new build");
+  assert.equal(renders,0,"must not wipe focused form while refreshing");
+  assert.match(elements["hd-status"].textContent,/Качества проверены/);
+  assert.match(elements["hd-qualities"].textContent,/1080p/);
+  context.document.activeElement=null;
+  await run(10000);
+  assert.equal(renders,1,"render pending update on blur");
+  assert.equal(elements["hd-url"].value,"https://rezka.ag/films/drama/test.html");
+  await run(90000);
+  assert.equal(context.D.channel.subs,11);
+  assert.equal(context.D.channel.views,140);
+  assert.equal(context.D.live.views_1h,40);
+  assert.equal(context.D.comments[0].id,"test-comment");
+  const now=renders;
+  await run(45000);
+  assert.equal(renders,now,"same snapshot must not trigger redundant re-render");
+  console.log("studio auto-refresh smoke PASS (form, status, pulse, no redundant render)");
+})().catch(e=>{console.error(e);process.exitCode=1});
