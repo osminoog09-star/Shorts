@@ -1,7 +1,9 @@
 {
-  "status": "not_started",
-  "mode": null,
-  "requested_quality": null,
+  "checked_at": "2026-11-02T23:56:09.974074+00:00",
+  "mode": "inspect",
+  "requested_quality": "1080p",
+  "status": "error",
   "drive_uploaded": false,
-  "message": "Для автоматической загрузки в Drive требуется подключение OAuth через ⚙️ Настройки (GDRIVE_REFRESH_TOKEN). Проверка качества запускается отдельно."
+  "error_code": "source_unavailable",
+  "message": "Плеер не открылся из GitHub Actions (возможно, блокировка запросов)."
 }
