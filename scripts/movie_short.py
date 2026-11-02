@@ -156,7 +156,15 @@ def transcribe(wav, lang):
     dev = os.environ.get("M1LASH_DEVICE", "cpu")
     model = WhisperModel(os.environ.get("M1LASH_WHISPER", "small"), device=dev,
                          compute_type="float16" if dev == "cuda" else "int8")
-    segs, _ = model.transcribe(str(wav), language=lang, word_timestamps=True, vad_filter=True,
+    # PyAV >=16 rejects av.open(metadata_errors=...) inside some faster-whisper wheels.
+    # Decode PCM with FFmpeg and pass a numpy array so Whisper never opens the file.
+    import numpy as np
+    raw = subprocess.check_output(["ffmpeg","-v","error","-i",str(wav),"-f","f32le",
+                                   "-ac","1","-ar","16000","pipe:1"])
+    audio = np.frombuffer(raw, dtype=np.float32)
+    if len(audio) < 16000:
+        raise RuntimeError("NO-GO: empty RU actor-audio buffer")
+    segs, _ = model.transcribe(audio, language=lang, word_timestamps=True, vad_filter=True,
                                condition_on_previous_text=False)
     words = []
     for s in segs:
