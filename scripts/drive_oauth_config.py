@@ -13,6 +13,9 @@ import os
 from pathlib import Path
 import re
 import subprocess
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
 FOLDER = "1ANvcXlUj0wBv1CG5U0bBQGdH-32OyaAi"
 STATUS = Path("publishing/drive_auth_status.json")
@@ -39,8 +42,8 @@ def make_config(env: dict[str, str]) -> str:
             raise DriveSetupError("bad_config", "В конфигурации rclone нет раздела [m1lash].")
         return legacy + "\n"
     refresh = safe_line(env.get("GDRIVE_REFRESH_TOKEN", ""), "refresh_token")
-    client_id = safe_line(env.get("YOUTUBE_OAUTH_CLIENT_ID", ""), "client_id")
-    client_secret = safe_line(env.get("YOUTUBE_OAUTH_CLIENT_SECRET", ""), "client_secret")
+    client_id = safe_line(env.get("YOUTUBE_OAUTH_CLIENT_ID") or env.get("YT_CLIENT_ID", ""), "client_id")
+    client_secret = safe_line(env.get("YOUTUBE_OAUTH_CLIENT_SECRET") or env.get("YT_CLIENT_SECRET", ""), "client_secret")
     token = json.dumps({
         "access_token": "",
         "token_type": "Bearer",
@@ -65,6 +68,67 @@ def save_config(env: dict[str, str], path: Path) -> None:
     with os.fdopen(fd, "w", encoding="utf-8") as out:
         out.write(contents)
     path.chmod(0o600)
+
+
+
+def google_oauth_preflight(env: dict[str, str]) -> None:
+    """Find the exact failing step without logging or publishing credential material."""
+    client = safe_line(env.get("YOUTUBE_OAUTH_CLIENT_ID") or env.get("YT_CLIENT_ID", ""), "client_id")
+    secret = safe_line(env.get("YOUTUBE_OAUTH_CLIENT_SECRET") or env.get("YT_CLIENT_SECRET", ""), "client_secret")
+    refresh = safe_line(env.get("GDRIVE_REFRESH_TOKEN", ""), "refresh_token")
+    payload = urlencode({"client_id": client, "client_secret": secret,
+                         "refresh_token": refresh, "grant_type": "refresh_token"}).encode()
+    try:
+        request = Request("https://oauth2.googleapis.com/token", data=payload, method="POST",
+                          headers={"Content-Type": "application/x-www-form-urlencoded"})
+        with urlopen(request, timeout=30) as response:
+            token = json.load(response).get("access_token")
+    except HTTPError as exc:
+        # Never serialize HTTP response content, URLs with tokens, or credentials.
+        reason = ""
+        try:
+            reason = json.loads(exc.read(4096)).get("error", "")
+        except (ValueError, UnicodeDecodeError):
+            pass
+        codes = {"invalid_grant": ("refresh_token_rejected", "Google отклонил Drive refresh token (invalid_grant). Нужен новый токен с тем же OAuth-клиентом."),
+                 "invalid_client": ("oauth_client_mismatch", "OAuth-клиент не соответствует Drive refresh token. Используй свои OAuth Client ID/Secret."),
+                 "unauthorized_client": ("oauth_client_denied", "Google не разрешил этому OAuth-клиенту доступ."),
+                 "invalid_scope": ("drive_scope_invalid", "Google отклонил запрошенный Drive scope.")}
+        code, message = codes.get(reason, ("oauth_refresh_http_error", f"Не удалось обновить Drive OAuth (HTTP {exc.code})."))
+        raise DriveSetupError(code, message) from None
+    except (OSError, URLError, ValueError, KeyError, TypeError):
+        raise DriveSetupError("oauth_network_error", "Не удалось связаться с Google OAuth для проверки токена.") from None
+    if not token:
+        raise DriveSetupError("oauth_no_access_token", "Google не выдал access token для Drive.")
+
+    try:
+        scope_request = Request("https://oauth2.googleapis.com/tokeninfo?" + urlencode({"access_token": token}))
+        with urlopen(scope_request, timeout=30) as response:
+            scope_info = json.load(response)
+        grants = set(str(scope_info.get("scope", "")).split())
+        if not grants.intersection({"https://www.googleapis.com/auth/drive",
+                                    "https://www.googleapis.com/auth/drive.file"}):
+            raise DriveSetupError("drive_scope_missing", "Токен действителен, но разрешения Google Drive в нём нет.")
+        file_request = Request(
+            "https://www.googleapis.com/drive/v3/files/" + FOLDER +
+            "?fields=id%2CmimeType%2Ccapabilities%28canAddChildren%29&supportsAllDrives=true",
+            headers={"Authorization": "Bearer " + token})
+        with urlopen(file_request, timeout=30) as response:
+            folder = json.load(response)
+    except DriveSetupError:
+        raise
+    except HTTPError as exc:
+        codes = {403: ("drive_api_denied", "Google Drive API запретил доступ (HTTP 403): проверь включение Drive API и права аккаунта."),
+                 404: ("drive_folder_not_found", "Google Drive не видит выбранную папку (HTTP 404): проверь аккаунт и доступ."),
+                 401: ("drive_access_token_denied", "Google Drive отклонил access token (HTTP 401).")}
+        code, message = codes.get(exc.code, ("drive_api_http_error", f"Drive API ответил HTTP {exc.code}."))
+        raise DriveSetupError(code, message) from None
+    except (OSError, URLError, ValueError, KeyError, TypeError):
+        raise DriveSetupError("drive_api_network_error", "Не удалось проверить папку через Google Drive API.") from None
+    if folder.get("id") != FOLDER or folder.get("mimeType") != "application/vnd.google-apps.folder":
+        raise DriveSetupError("drive_folder_invalid", "Google Drive вернул не ту папку.")
+    if folder.get("capabilities", {}).get("canAddChildren") is False:
+        raise DriveSetupError("drive_folder_read_only", "У аккаунта нет права добавлять файлы в выбранную папку.")
 
 
 def check_access(path: Path) -> None:
@@ -98,6 +162,8 @@ def main() -> int:
     try:
         save_config(os.environ, args.config)
         if args.check:
+            if not os.environ.get("GDRIVE_RCLONE_CONFIG", "").strip():
+                google_oauth_preflight(os.environ)
             check_access(args.config)
         status.update({
             "status": "ok", "connected": True if args.check else False,
