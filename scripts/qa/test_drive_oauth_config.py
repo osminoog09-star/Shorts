@@ -91,8 +91,8 @@ class DriveConfigTests(unittest.TestCase):
                    "capabilities":{"canAddChildren":True}})
         ]):
             self.assertIsNone(mod.google_oauth_preflight(self.env))
-            self.assertIn(\'"access_token":"mock-token"\', mod.make_config(self.env))
-            self.assertIn(\'"refresh_token":"1//dummy-test-refresh-value"\', mod.make_config(self.env))
+            self.assertIn('"access_token":"mock-token"', mod.make_config(self.env))
+            self.assertIn('"refresh_token":"1//dummy-test-refresh-value"', mod.make_config(self.env))
 
     def test_google_drive_disabled_api_classified_without_leaking_details(self):
         from urllib.error import HTTPError
