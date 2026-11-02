@@ -3,5 +3,5 @@
   "mode": null,
   "requested_quality": null,
   "drive_uploaded": false,
-  "message": "Запусти проверку качества со страницы «Клипы»; для загрузки нужен GDRIVE_RCLONE_CONFIG."
+  "message": "Для автоматической загрузки в Drive требуется подключение OAuth через ⚙️ Настройки (GDRIVE_REFRESH_TOKEN). Проверка качества запускается отдельно."
 }
