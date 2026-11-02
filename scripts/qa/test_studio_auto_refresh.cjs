@@ -9,6 +9,12 @@ const page = fs.readFileSync(path.join(root, "site/studio/index.html"), "utf8");
 const worker = fs.readFileSync(path.join(root, "site/studio/auto_refresh.js"), "utf8");
 const deploy = fs.readFileSync(path.join(root, ".github/workflows/motion-pages.yml"), "utf8");
 assert.match(page, /<script src="auto_refresh\.js"><\/script>/);
+const inline = page.match(/<script>\s*("use strict";[\s\S]*?)<\/script>/);
+assert.ok(inline, "main Studio inline script missing");
+new vm.Script(inline[1], {filename:"studio/index.html:inline"});
+assert.match(page, /id="driveTok"/);
+assert.match(page, /setSecret\("GDRIVE_REFRESH_TOKEN",v\)/);
+
 assert.match(deploy, /node --check site\/studio\/auto_refresh\.js/);
 assert.match(deploy, /cp site\/studio\/index\.html site\/studio\/clips_ui\.js site\/studio\/auto_refresh\.js/);
 new vm.Script(worker, {filename: "auto_refresh.js"});
@@ -20,6 +26,8 @@ const elements = {
   "hd-status": {textContent:""},
   "hd-qualities": {textContent:""},
   "hd-checked": {textContent:""},
+  "drive-oauth-state": {textContent:""},
+  "download-action": {disabled:false},
   "hd-url": {id:"hd-url",value:"https://rezka.ag/films/drama/test.html"},
   "hd-quality": {id:"hd-quality",value:"1080p"}
 };
@@ -28,6 +36,7 @@ const next = {
   built:"new build",analytics_as_of:"2026-11-01",
   channel:{subs:10,views:100,videos:2},live:{t:"2026-11-02T20:00:00Z",subs:10,views:100},
   hdrezka_intake:{status:"ok",drive_uploaded:false,available:{"1080p":"available"}},
+  drive_auth:{connected:false,status:"not_connected",message:"Требуется OAuth"},
   videos:[],comments:[],review:[],plan:[],experiments:[]
 };
 const pulse = {
@@ -42,6 +51,7 @@ const context = {
     hidden:false, activeElement:{closest:()=>true,matches:()=>true},
     getElementById:id=>elements[id]||null,
     querySelectorAll:()=>[elements["hd-url"],elements["hd-quality"]],
+    querySelector:selector=>selector==="[data-hd-download]"?elements["download-action"]:null,
     addEventListener:()=>{}
   },
   navigator:{onLine:true},window:{addEventListener:()=>{}},
@@ -66,6 +76,7 @@ const run = async delay => {
   assert.equal(renders,0,"must not wipe focused form while refreshing");
   assert.match(elements["hd-status"].textContent,/Качества проверены/);
   assert.match(elements["hd-qualities"].textContent,/1080p/);
+  assert.equal(elements["download-action"].disabled,true,"OAuth not connected must disable download");
   context.document.activeElement=null;
   await run(10000);
   assert.equal(renders,1,"render pending update on blur");
