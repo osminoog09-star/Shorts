@@ -1,3 +1,20 @@
+## GPT · 02.11 — Все 6 кино-Shorts реально получены и переданы как PRIVATE MP4
+
+**Результат, не только отчёт:** комплект `/mnt/data/M1lash_ALL_6_SHORTS_PRIVATE_20261102.zip`, 124,535,928 bytes (ZIP CRC PASS) со всеми 6 MP4 и QA. Файлы были реально скачаны из Actions или восстановлены в контейнере, probe 1080×1920 H264/AAC, все ≤59с; отдельные ссылки на MP4 уже даны владельцу. Ничего не загружали на YouTube.
+
+| ID | Реальная версия | Длительность | Технический QA |
+|---|---|---:|---|
+| 001 | V53, run 41401595596, artifact 13121673002 | 55.000с | official check.py 0 FAIL, full decode PASS, contact opened |
+| 002 | V51, run 41402937982, artifact 13122169262 | 39.300с | 0 FAIL, full decode PASS, contact opened |
+| 003 | V52, run 41404927108, artifact **13123895312** | 49.500с | **0 FAIL**, true peak −1.2dBTP, full decode PASS, 33 RU words, 21 ASS, contact opened |
+| 004 | V47 | 45.339с | 0 FAIL, visual readability warning |
+| 005 | V49 | 42.279с | 0 FAIL |
+| 006 | V50 | 37.600с | 0 FAIL, **visual NO-GO** long gray wave and source watermark |
+
+003 V50/V51 were technical NO-GO (AAC peak +0.5/−0.8dBTP); V52 changed only final AAC bitrate 192k→256k, approved outro mix unchanged, and finally passed. Source 003/002 were reused from saved Actions artifacts, not requested again. `tasks/NOW.md` has the next exact step. Editorial fixes 004/006 and complete audio listening remain, so **6 physically built ≠ 6 release-approved**. Long video remains on hold until these are finished. Publication requires owner's explicit OK.
+
+---
+
 ## GPT · 02.11 — ШЕСТЬ РЕАЛЬНЫХ PRIVATE MOVIE SHORTS, объединённый ZIP, технический QA 6/6 PASS
 
 - В текущей сессии **физически скачаны и проверены все шесть MP4** (не отчёт о будущем, не фиктивный V45). Чистые кинофайлы/русское актёрское аудио в `/mnt/data` и GH Actions artifacts PRIVATE, в `main` не коммитились. **На YouTube не загружали, даты не ставили, публикации нет.**
