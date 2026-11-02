@@ -1,7 +1,7 @@
 {
-  "checked_at": "2026-11-02T23:17:13.171110+00:00",
-  "status": "authorization_pending",
+  "checked_at": "2026-11-02T23:39:00.559701+00:00",
+  "status": "error",
   "connected": false,
-  "error_code": "needs_browser_finalize",
-  "message": "Google OAuth и доступ к папке Drive проверены успешно. Зашифрованный refresh token подготовлен; открой ИСХОДНУЮ вкладку M1lash Studio с кнопкой «Подключить Drive», чтобы сайт сохранил его в GitHub Secrets и запустил окончательную проверку."
+  "error_code": "oauth_or_folder_denied",
+  "message": "Google отклонил OAuth или доступ к папке. Проверь Drive API, scope и Google-аккаунт."
 }
