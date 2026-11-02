@@ -18,7 +18,7 @@ subprocess.run(['ffmpeg','-v','error','-y','-i',src,'-filter_complex_threads','1
 
 cap=cv2.VideoCapture(str(w/'sequence.mp4'))
 # Sequence-time crops at real shots; no interpolation through unrelated shots.
-shots=[(0,.52),(2.8,.64),(9.8,.50),(12.6,.60),(18,.64),(22.3,.5),(24,.50),(27,.53),(29,.47),(33.5,.47),(36.2,.53)]
+shots=[(0,.52),(1.5,.52),(3.1,.28),(4.7667,.74),(6.6333,.5),(8.1333,.44),(10.0333,.5),(11.3667,.5),(12.6333,.63),(15.4333,.48),(17.6,.5),(18,.64),(21.3333,.5),(23.2,.5),(24,.5),(24.5,.5),(25.8667,.5),(27.4333,.40),(29.7667,.45),(30.8,.5),(32.7,.5),(33.5,.5),(35.8667,.64),(36.2,.64),(38.2,.64),(39.8,.64),(40.2,.58),(41.4667,.48),(42.6667,.55)]
 p=subprocess.Popen(['ffmpeg','-v','error','-y','-f','rawvideo','-pix_fmt','bgr24','-s','1080x1920','-r','30','-i','-','-an','-c:v','libx264','-threads','2','-preset','veryfast','-crf','18',str(w/'manual_picture.mp4')],stdin=subprocess.PIPE)
 i=0
 while True:
