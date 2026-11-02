@@ -53,6 +53,63 @@ class DriveConfigTests(unittest.TestCase):
             mod.save_config(self.env, config)
             self.assertEqual(config.stat().st_mode & 0o777, 0o600)
 
+    def test_google_oauth_invalid_grant_is_classified_without_leaking_body(self):
+        from urllib.error import HTTPError
+        import io
+        body = b'{"error":"invalid_grant","error_description":"private-no-log"}'
+        with patch.object(mod, "urlopen", side_effect=HTTPError("hidden",400,"bad",None,io.BytesIO(body))):
+            with self.assertRaises(mod.DriveSetupError) as exc:
+                mod.google_oauth_preflight(self.env)
+        self.assertEqual(exc.exception.code, "refresh_token_rejected")
+        self.assertNotIn("private-no-log",str(exc.exception))
+
+    def test_google_oauth_detects_missing_drive_scope(self):
+        from unittest.mock import MagicMock
+        from io import BytesIO
+        def reply(data):
+            ctx=MagicMock()
+            ctx.__enter__.return_value=BytesIO(__import__("json").dumps(data).encode())
+            return ctx
+        with patch.object(mod, "urlopen", side_effect=[
+            reply({"access_token":"mock-token"}),reply({"scope":"https://www.googleapis.com/auth/youtube"})]):
+            with self.assertRaises(mod.DriveSetupError) as exc:
+                mod.google_oauth_preflight(self.env)
+        self.assertEqual(exc.exception.code,"drive_scope_missing")
+
+    def test_google_oauth_accepts_drive_folder_with_write_access(self):
+        from unittest.mock import MagicMock
+        from io import BytesIO
+        import json
+        def reply(data):
+            ctx=MagicMock()
+            ctx.__enter__.return_value=BytesIO(json.dumps(data).encode())
+            return ctx
+        with patch.object(mod, "urlopen", side_effect=[
+            reply({"access_token":"mock-token"}),
+            reply({"scope":"https://www.googleapis.com/auth/drive"}),
+            reply({"id":mod.FOLDER,"mimeType":"application/vnd.google-apps.folder",
+                   "capabilities":{"canAddChildren":True}})
+        ]):
+            self.assertIsNone(mod.google_oauth_preflight(self.env))
+
+    def test_google_oauth_folder_readonly_rejected(self):
+        from unittest.mock import MagicMock
+        from io import BytesIO
+        import json
+        def reply(data):
+            ctx=MagicMock()
+            ctx.__enter__.return_value=BytesIO(json.dumps(data).encode())
+            return ctx
+        with patch.object(mod, "urlopen", side_effect=[
+            reply({"access_token":"mock-token"}),
+            reply({"scope":"https://www.googleapis.com/auth/drive"}),
+            reply({"id":mod.FOLDER,"mimeType":"application/vnd.google-apps.folder",
+                   "capabilities":{"canAddChildren":False}})
+        ]):
+            with self.assertRaises(mod.DriveSetupError) as exc:
+                mod.google_oauth_preflight(self.env)
+        self.assertEqual(exc.exception.code, "drive_folder_read_only")
+
     def test_check_does_not_claim_success_on_rclone_failure(self):
         with patch.object(mod.subprocess, "run") as run:
             run.return_value.returncode = 1
