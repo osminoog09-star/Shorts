@@ -1,0 +1,23 @@
+{
+  "file": "kino_003_v54.mp4",
+  "sha256": "6a2a8309be1a0228ff7cf929d2be0c34e1cc14e24273684cb67552311e7307e0",
+  "analysis_scope": "Entire final 52.6s audio track; no modification",
+  "loudness": {
+    "input_i": "-15.21",
+    "input_tp": "-1.87",
+    "input_lra": "7.00",
+    "input_thresh": "-26.28",
+    "target_offset": "0.18"
+  },
+  "silence_threshold_dbfs": -35,
+  "max_below_threshold_interval_seconds": 2.52,
+  "intervals_over_3_seconds": 0,
+  "digital_silence": {
+    "count": 0,
+    "seconds": 0.0,
+    "level_db": -90.0
+  },
+  "listening_verified": false,
+  "limitation": "Audio content could not be received by this session: audio input unsupported. ASR and measurements do not replace listening.",
+  "private_upload_performed": false
+}

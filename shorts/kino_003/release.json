@@ -93,11 +93,12 @@
     "audio_qa_done": false,
     "duration_seconds": 52.6,
     "lufs": -15.2,
-    "true_peak_dbtp": -1.9
+    "true_peak_dbtp": -1.9,
+    "technical_audio_qa_done": true
   },
   "publication": {
     "publish_ready": false,
     "status": "draft",
-    "reason": "Human listening unverified; owner release approval pending. Actual MP4 delivered privately."
+    "reason": "Full-track technical audio analysis passed; direct listening unavailable in this session (audio input unsupported). Await actual listening before private upload; public release requires owner approval."
   }
 }

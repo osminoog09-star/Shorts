@@ -1,0 +1,17 @@
+{
+  "status": "completed",
+  "output": null,
+  "dry_run": false,
+  "commands": [
+    "/usr/bin/ffmpeg -hide_banner -nostdin -i /workspace/scratch/af49577e3194/003/v54/kino_003_v54.mp4 -vn -af loudnorm=I=-14.0:TP=-1.0:LRA=11.0:print_format=json -f null -"
+  ],
+  "verified": false,
+  "verification": [],
+  "measured": {
+    "input_i": "-15.21",
+    "input_tp": "-1.87",
+    "input_lra": "7.00",
+    "input_thresh": "-26.28",
+    "target_offset": "0.18"
+  }
+}

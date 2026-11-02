@@ -1,0 +1,227 @@
+{
+  "status": "completed",
+  "output": null,
+  "dry_run": false,
+  "commands": [
+    "/usr/bin/ffmpeg -hide_banner -nostdin -i /workspace/scratch/af49577e3194/003/v54/kino_003_v54.mp4 -vn -af silencedetect=noise=-35.0dB:d=0.3 -f null -",
+    "/usr/bin/ffmpeg -hide_banner -nostdin -i /workspace/scratch/af49577e3194/003/v54/kino_003_v54.mp4 -vn -af silencedetect=noise=-90.0dB:d=0.02 -f null -"
+  ],
+  "verified": false,
+  "verification": [],
+  "silences": [
+    [
+      1.71,
+      2.666
+    ],
+    [
+      2.68,
+      3.636
+    ],
+    [
+      7.383,
+      7.869
+    ],
+    [
+      28.596,
+      28.959
+    ],
+    [
+      32.493,
+      34.41
+    ],
+    [
+      35.966,
+      36.968
+    ],
+    [
+      37.504,
+      37.983
+    ],
+    [
+      39.459,
+      41.979
+    ],
+    [
+      50.859,
+      51.465
+    ],
+    [
+      52.17,
+      52.608
+    ]
+  ],
+  "keep": [
+    [
+      0.0,
+      1.91
+    ],
+    [
+      2.466,
+      2.88
+    ],
+    [
+      3.436,
+      7.583
+    ],
+    [
+      7.669,
+      28.796
+    ],
+    [
+      28.759,
+      32.693
+    ],
+    [
+      34.21,
+      36.166
+    ],
+    [
+      36.768,
+      37.704
+    ],
+    [
+      37.783,
+      39.659
+    ],
+    [
+      41.779,
+      51.059
+    ],
+    [
+      51.265,
+      52.37
+    ]
+  ],
+  "input_duration": 52.6,
+  "kept_duration": 46.686,
+  "removed_seconds": 5.914,
+  "silence_kinds": [
+    "below_threshold",
+    "below_threshold",
+    "below_threshold",
+    "below_threshold",
+    "below_threshold",
+    "below_threshold",
+    "below_threshold",
+    "below_threshold",
+    "below_threshold",
+    "below_threshold"
+  ],
+  "silence_breakdown": {
+    "digital": {
+      "count": 0,
+      "seconds": 0.0,
+      "level_db": -90.0
+    },
+    "below_threshold": {
+      "count": 10,
+      "seconds": 9.722,
+      "level_db": -35.0
+    }
+  },
+  "cut_points": [
+    {
+      "source_time": 1.91,
+      "output_time": 1.91,
+      "edge": "out",
+      "rms_dbfs": -55.0
+    },
+    {
+      "source_time": 2.466,
+      "output_time": 1.91,
+      "edge": "in",
+      "rms_dbfs": -50.7
+    },
+    {
+      "source_time": 2.88,
+      "output_time": 2.324,
+      "edge": "out",
+      "rms_dbfs": -50.4
+    },
+    {
+      "source_time": 3.436,
+      "output_time": 2.324,
+      "edge": "in",
+      "rms_dbfs": -50.1
+    },
+    {
+      "source_time": 7.583,
+      "output_time": 6.471,
+      "edge": "out",
+      "rms_dbfs": -49.2
+    },
+    {
+      "source_time": 7.669,
+      "output_time": 6.471,
+      "edge": "in",
+      "rms_dbfs": -50.8
+    },
+    {
+      "source_time": 32.693,
+      "output_time": 31.532,
+      "edge": "out",
+      "rms_dbfs": -56.3
+    },
+    {
+      "source_time": 34.21,
+      "output_time": 31.532,
+      "edge": "in",
+      "rms_dbfs": -50.1
+    },
+    {
+      "source_time": 36.166,
+      "output_time": 33.488,
+      "edge": "out",
+      "rms_dbfs": -57.2
+    },
+    {
+      "source_time": 36.768,
+      "output_time": 33.488,
+      "edge": "in",
+      "rms_dbfs": -50.3
+    },
+    {
+      "source_time": 37.704,
+      "output_time": 34.424,
+      "edge": "out",
+      "rms_dbfs": -54.5
+    },
+    {
+      "source_time": 37.783,
+      "output_time": 34.424,
+      "edge": "in",
+      "rms_dbfs": -56.3
+    },
+    {
+      "source_time": 39.659,
+      "output_time": 36.3,
+      "edge": "out",
+      "rms_dbfs": -59.8
+    },
+    {
+      "source_time": 41.779,
+      "output_time": 36.3,
+      "edge": "in",
+      "rms_dbfs": -52.1
+    },
+    {
+      "source_time": 51.059,
+      "output_time": 45.58,
+      "edge": "out",
+      "rms_dbfs": -66.9
+    },
+    {
+      "source_time": 51.265,
+      "output_time": 45.58,
+      "edge": "in",
+      "rms_dbfs": -66.5
+    },
+    {
+      "source_time": 52.37,
+      "output_time": 46.685,
+      "edge": "out",
+      "rms_dbfs": null
+    }
+  ],
+  "cut_warnings": []
+}
