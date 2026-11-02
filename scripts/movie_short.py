@@ -267,6 +267,7 @@ def main():
     ap.add_argument("--question", default="А ты бы как поступил?")
     ap.add_argument("--on-screen-hook", default="", help="Короткий редакторский хук сверху на первые секунды, не актёрская цитата")
     ap.add_argument("--body-gain-db", type=float, default=0.0, help="Только тело фильма; не изменять фирменную концовку")
+    ap.add_argument("--aac-bitrate", choices=["192k","256k","320k"], default="192k", help="Codec-only AAC precision; no change to approved outro mix")
     ap.add_argument("--allow-verified-visual-action", action="store_true", help="Opt-in frame+SFX verified dialogue-free physical action; not silence bypass")
     ap.add_argument("--curated-action-titles", action="store_true", help="Editorial text instead of unreliable ASR transcript over action")
     ap.add_argument("--editorial-profile", choices=["carla","whiplash","carson","nightcrawler"], default="", help="Checked editorial overlays, NOT purported film quotations")
@@ -381,6 +382,8 @@ def main():
                     "-o", str(out), "--title", str(vo)]
     if abs(a.body_gain_db) > 0.0001:
         assembly_cmd.extend(["--body-gain-db", str(a.body_gain_db)])
+    if a.aac_bitrate != "192k":
+        assembly_cmd.extend(["--audio-bitrate", a.aac_bitrate])
     asm = subprocess.run(assembly_cmd, capture_output=True, text=True)
     if asm.returncode:
         sys.exit("NO-GO (сборка с концовкой): " + (asm.stderr or asm.stdout)[-1200:])
