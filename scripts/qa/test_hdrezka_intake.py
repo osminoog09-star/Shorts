@@ -24,6 +24,10 @@ class IntakeTests(unittest.TestCase):
             "https://user:pass@rezka.ag/films/drama/foo.html",
             "https://rezka.ag:8080/films/drama/foo.html",
             "https://rezka.ag/anything/foo.html",
+            "https://rezka.ag/series/comedy/foo.html",
+            "https://rezka.ag/cartoons/family/foo.html",
+            "https://rezka.ag/anime/action/foo.html",
+            "https://rezka.ag/animation/short/foo.html",
             "https://rezka.ag/films/drama/foo.html?url=https://127.0.0.1",
         ):
             with self.subTest(url=url), self.assertRaises(mod.IntakeError):
@@ -55,6 +59,15 @@ class IntakeTests(unittest.TestCase):
             with self.assertRaises(mod.IntakeError) as ctx:
                 mod.verify_video(fp, 1080)
             self.assertEqual(ctx.exception.code, "download_failed")
+
+    def test_non_movie_files_never_go_to_drive(self):
+        with tempfile.TemporaryDirectory() as td:
+            for filename in ("site_archive.zip", "kino_short.mp4.txt", "README.md"):
+                path = Path(td) / filename
+                path.write_text("not a movie", encoding="utf-8")
+                with self.subTest(filename=filename), self.assertRaises(mod.IntakeError) as ctx:
+                    mod.upload_to_drive(path, "1ANvcXlUj0wBv1CG5U0bBQGdH-32OyaAi", "ignored")
+                self.assertEqual(ctx.exception.code, "invalid_media_type")
 
     def test_safe_filename(self):
         out = mod.safe_output_name("https://rezka.ag/films/drama/54016-oppengeymer-2023-latest.html", "1080p")
