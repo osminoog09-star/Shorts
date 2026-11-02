@@ -4,7 +4,7 @@ on:
     inputs:
       url:
         description: HTTPS film URL at rezka.ag or hdrezka.ag
-        required: true
+        required: false
         type: string
       quality:
         description: Desired video resolution
@@ -14,7 +14,7 @@ on:
       mode:
         description: Inspect or download
         type: choice
-        options: ['inspect', 'download']
+        options: ['inspect', 'download', 'drive_check']
         default: 'inspect'
       translation:
         description: Exact dubbing name (optional)
@@ -43,7 +43,9 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
       - name: Offline tests
-        run: python3 -m unittest discover -s scripts/qa -p 'test_hdrezka_intake.py' -v
+        run: |
+          python3 -m unittest discover -s scripts/qa -p 'test_hdrezka_intake.py' -v
+          python3 -m unittest discover -s scripts/qa -p 'test_drive_oauth_config.py' -v
       - uses: actions/setup-go@v5
         with: { go-version: '1.25.0' }
       - name: Compile pinned HDRezka CLI (no movie download)
@@ -58,38 +60,37 @@ jobs:
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
-      - name: Clear old status in runner only (no file in Git)
-        run: rm -f publishing/hdrezka_status.json
+      - name: Clear only current job status in runner
+        env:
+          MOVIE_MODE: ${{ inputs.mode }}
+        run: |
+          if [ "$MOVIE_MODE" != 'drive_check' ]; then rm -f publishing/hdrezka_status.json; fi
+          if [ "$MOVIE_MODE" != 'inspect' ]; then rm -f publishing/drive_auth_status.json; fi
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
       - uses: actions/setup-go@v5
         with: { go-version: '1.25.0' }
       - name: Install pinned source CLI
+        if: inputs.mode != 'drive_check'
         run: |
           go install github.com/n0madic/go-hdrezka/cmd/hdrezka-dl@v0.0.0-20260804201230-e54f62241917
           echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
       - name: Install Drive upload tool
-        if: inputs.mode == 'download'
+        if: inputs.mode == 'download' || inputs.mode == 'drive_check'
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq rclone
-      - name: Prepare private Drive credentials
-        if: inputs.mode == 'download'
+      - name: Create and verify private Google Drive OAuth
+        if: inputs.mode == 'download' || inputs.mode == 'drive_check'
         env:
-          RCLONE_SECRET: ${{ secrets.GDRIVE_RCLONE_CONFIG }}
+          GDRIVE_RCLONE_CONFIG: ${{ secrets.GDRIVE_RCLONE_CONFIG }}
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
         run: |
-          set -euo pipefail
-          if [ -z "$RCLONE_SECRET" ]; then
-            echo "::error::Missing GDRIVE_RCLONE_CONFIG. Anyone-with-link access does not authorize Drive API upload."
-            exit 1
-          fi
-          printf '%s\n' "$RCLONE_SECRET" > "$RUNNER_TEMP/m1lash-rclone.conf"
-          chmod 0600 "$RUNNER_TEMP/m1lash-rclone.conf"
-          grep -qE '^\[m1lash\]$' "$RUNNER_TEMP/m1lash-rclone.conf" || {
-            echo "::error::Drive rclone config must contain a [m1lash] remote"
-            exit 1
-          }
+          python3 scripts/drive_oauth_config.py --config "$RUNNER_TEMP/m1lash-rclone.conf" --check
       - name: Inspect or download privately
+        if: inputs.mode != 'drive_check'
         env:
           MOVIE_URL: ${{ inputs.url }}
           MOVIE_QUALITY: ${{ inputs.quality }}
@@ -107,12 +108,15 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
-          if [ ! -s publishing/hdrezka_status.json ]; then
+          if [ "${{ inputs.mode }}" != "drive_check" ] && [ ! -s publishing/hdrezka_status.json ]; then
             printf '{"status":"error","error_code":"setup_failed","message":"Загрузчик не стартовал; проверь GitHub Actions.","drive_uploaded":false}\n' > publishing/hdrezka_status.json
+          fi
+          if [ "${{ inputs.mode }}" != "inspect" ] && [ ! -s publishing/drive_auth_status.json ]; then
+            printf '{"status":"error","connected":false,"error_code":"setup_failed","message":"Проверка OAuth не запустилась; см. GitHub Actions."}\n' > publishing/drive_auth_status.json
           fi
           git config user.name 'm1lash-intake[bot]'
           git config user.email 'm1lash-intake@users.noreply.github.com'
-          git add publishing/hdrezka_status.json
+          git add publishing/hdrezka_status.json publishing/drive_auth_status.json
           git diff --cached --quiet && exit 0
           git commit -m "media: update private intake status (no movie bytes)"
           for attempt in 1 2 3; do
