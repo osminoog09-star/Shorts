@@ -131,6 +131,36 @@ def google_oauth_preflight(env: dict[str, str]) -> None:
         raise DriveSetupError("drive_folder_read_only", "У аккаунта нет права добавлять файлы в выбранную папку.")
 
 
+def resolve_existing_client(env: dict[str, str]) -> tuple[dict[str, str], str]:
+    """Try existing OAuth client pairs without logging or returning secret material."""
+    candidates = [
+        ("youtube", env.get("YOUTUBE_OAUTH_CLIENT_ID", ""),
+         env.get("YOUTUBE_OAUTH_CLIENT_SECRET", "")),
+        ("legacy", env.get("YT_CLIENT_ID", ""), env.get("YT_CLIENT_SECRET", "")),
+    ]
+    seen: set[tuple[str, str]] = set()
+    errors: list[DriveSetupError] = []
+    for name, client_id, client_secret in candidates:
+        if not client_id or not client_secret or (client_id, client_secret) in seen:
+            continue
+        seen.add((client_id, client_secret))
+        proposed = dict(env)
+        proposed["YOUTUBE_OAUTH_CLIENT_ID"] = client_id
+        proposed["YOUTUBE_OAUTH_CLIENT_SECRET"] = client_secret
+        try:
+            google_oauth_preflight(proposed)
+            return proposed, name
+        except DriveSetupError as exc:
+            errors.append(exc)
+    if errors:
+        if len(errors) == 1:
+            raise errors[0]
+        codes = ",".join(error.code for error in errors)
+        raise DriveSetupError("all_oauth_clients_denied",
+                              "Оба сохранённых OAuth-клиента не подошли к Drive-токену (" + codes + ").")
+    raise DriveSetupError("missing_credentials", "Нет сохранённых OAuth Client ID/Secret для Google Drive.")
+
+
 def check_access(path: Path) -> None:
     try:
         result = subprocess.run(
@@ -160,12 +190,15 @@ def main() -> int:
         "status": "error", "connected": False,
     }
     try:
-        save_config(os.environ, args.config)
+        selected_env = dict(os.environ)
+        selected_client = "legacy_rclone_config"
+        if args.check and not selected_env.get("GDRIVE_RCLONE_CONFIG", "").strip():
+            selected_env, selected_client = resolve_existing_client(selected_env)
+        save_config(selected_env, args.config)
         if args.check:
-            if not os.environ.get("GDRIVE_RCLONE_CONFIG", "").strip():
-                google_oauth_preflight(os.environ)
             check_access(args.config)
         status.update({
+            "oauth_client_source": selected_client if args.check else None,
             "status": "ok", "connected": True if args.check else False,
             "message": "Google Drive подключён" if args.check else "OAuth-конфигурация создана",
         })
