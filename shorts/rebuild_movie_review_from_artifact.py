@@ -70,7 +70,7 @@ def main():
     job=json.loads(f.read_text(encoding="utf-8"))
     ident=job["id"]
     if ident not in {"001","002","003","005","006"}:raise ValueError("unexpected film ID")
-    out_id="kino_"+ident+"_v47"
+    out_id="kino_"+ident+"_"+job.get("edition","v47")
     output=ROOT/"videos"/(out_id+".mp4")
     if str(output.relative_to(ROOT))!=job["output"]:raise ValueError("output path mismatch")
     root=Path(os.environ.get("RUNNER_TEMP") or "/tmp")
@@ -83,6 +83,8 @@ def main():
         args=[sys.executable,ROOT/"scripts/movie_short.py","--src",source_for_edit,
               "--id",out_id,"--start","0","--title",job["public_hook"],
               "--film",job["film"],"--lang","ru","--question",job["question"]]
+        if job.get("editorial_profile"):
+            args.extend(["--editorial-profile",job["editorial_profile"]])
         run(args)
         if not output.exists():raise RuntimeError("No master MP4 from studio builder")
         ART.mkdir(exist_ok=True)
