@@ -313,6 +313,7 @@ def main():
         "drive_folder": load("publishing/drive_folder.json", {"url": "", "scan_enabled": False}),
         "drive_scan": load("publishing/drive_scan.json", {"status": "not_configured", "items": []}),
         "hdrezka_intake": load("publishing/hdrezka_status.json", {"status": "not_started"}),
+        "drive_auth": load("publishing/drive_auth_status.json", {"status": "not_connected", "connected": False}),
         "scene_candidates": load("publishing/scene_candidates.json", {"items": {}}),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
