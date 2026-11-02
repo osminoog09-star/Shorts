@@ -1,7 +1,7 @@
 {
-  "checked_at": "2026-11-02T23:09:12Z",
-  "status": "error",
+  "checked_at": "2026-11-02T23:17:13.171110+00:00",
+  "status": "authorization_pending",
   "connected": false,
-  "error_code": "drive_api_denied",
-  "message": "Google принял новый одноразовый код и выдал OAuth-доступ, но сам Google Drive API ответил HTTP 403. Проверь, включён ли Google Drive API в Google Cloud проекте «Youtube» и нет ли ограничений для приложения. Новый Refresh token не сохранился: обмен завершился ошибкой проверки Drive."
+  "error_code": "needs_browser_finalize",
+  "message": "Google OAuth и доступ к папке Drive проверены успешно. Зашифрованный refresh token подготовлен; открой ИСХОДНУЮ вкладку M1lash Studio с кнопкой «Подключить Drive», чтобы сайт сохранил его в GitHub Secrets и запустил окончательную проверку."
 }
