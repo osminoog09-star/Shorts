@@ -196,6 +196,8 @@ document.addEventListener("click",e=>{
 
 function rezkaIntakePanel(){
   const s=D?.hdrezka_intake||{};
+  const connected=!!D?.drive_auth?.connected;
+  const driveMessage=connected?"Подключён ✓":D?.drive_auth?.message||"Требуется OAuth";
   const state=s.status==="ok"?(s.drive_uploaded?"Загружено в Drive":"Качества проверены"):
     s.status==="error"?"Не удалось: "+(s.message||s.error_code||"см. Actions"):"Проверка ещё не запускалась";
   const avail=s.available||{};
@@ -213,10 +215,10 @@ function rezkaIntakePanel(){
     '<label class="f" for="hd-translation">Озвучка (необязательно)'+
     '<input class="t" id="hd-translation" maxlength="80" placeholder="Пусто = озвучка по умолчанию"></label>'+
     '<div class="row"><button class="btn" data-hd-inspect>Проверить качество</button>'+
-    '<button class="btn pri" data-hd-download>Скачать в Drive</button></div>'+
+    '<button class="btn pri" data-hd-download '+(!connected?'disabled':'')+'>Скачать в Drive</button></div>'+
     '<p class="muted" role="status">Последнее действие: <span id="hd-status">'+esc(state)+'</span>'+ 
     '. Доступно: <span id="hd-qualities">'+esc(qualities)+'</span>. <span id="hd-checked">'+(s.checked_at?"Проверено "+esc(s.checked_at):"")+'</span></p>'+
-    '<p class="muted">Для автоматической загрузки требуется однократно добавить секрет <code>GDRIVE_RCLONE_CONFIG</code> в GitHub. Одна лишь ссылка на папку Drive не даёт сервису права на загрузку. Если секрета нет — проверка качества работает, загрузка нет.</p>'+
+    '<p class="muted">Google Drive: <span id="drive-oauth-state">'+esc(driveMessage)+'</span>. Качество проверяется отдельно. Скачивание доступно только после успешной проверки OAuth. <button class="btn sm" type="button" data-act="settings">⚙️ Подключить / проверить Drive</button></p>'+
     '<a class="btn" target="_blank" rel="noopener noreferrer" href="https://github.com/osminoog09-star/Shorts/actions/workflows/hdrezka-intake.yml">Журнал загрузок GitHub Actions</a>'+
     '</section>';
 }
