@@ -1,0 +1,103 @@
+{
+  "internal": {
+    "project_id": "kino_003",
+    "film_title": "Одержимость",
+    "film_title_aliases": [
+      "Whiplash",
+      "Oderzhimost"
+    ],
+    "film_rights_verified": false,
+    "rights_decision": "Owner accepted Content ID risk: AGENTS.md §8, 30.10; no claim of licence."
+  },
+  "public": {
+    "title": "Урок музыки вышел из-под контроля #shorts",
+    "description": "Он требует идеального темпа. Одна ошибка — и репетиция превращается в кошмар.\nКак бы ты отреагировал на такого преподавателя?\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #кино #угадайфильм #сцена #музыка #драма #m1lash",
+    "tags": [
+      "кино",
+      "угадай фильм",
+      "сцены из фильмов",
+      "русская озвучка",
+      "преподаватель",
+      "репетиция",
+      "барабаны",
+      "напряженная сцена",
+      "M1lash",
+      "shorts"
+    ],
+    "hashtags": [
+      "#shorts",
+      "#кино",
+      "#угадайфильм",
+      "#сцена",
+      "#музыка",
+      "#драма",
+      "#m1lash"
+    ],
+    "pinned_comment": "Как бы ты отреагировал на такого преподавателя? Узнал фильм до финала?",
+    "thumbnail_text": "СЛИШКОМ ЖЁСТКИЙ УРОК",
+    "public_filename": "kino_003_v54.mp4",
+    "captions": [
+      "Спешишь.",
+      "5",
+      "6",
+      "и.",
+      "Тянешь.",
+      "5",
+      "6",
+      "и.",
+      "Как",
+      "думаешь,",
+      "почему",
+      "я",
+      "швырнул",
+      "в",
+      "тебя",
+      "стул?",
+      "Я",
+      "не",
+      "знаю.",
+      "Знаешь.",
+      "Из",
+      "за",
+      "темпа?",
+      "Ты",
+      "тянул",
+      "или",
+      "торопился?",
+      "Я",
+      "не",
+      "знаю."
+    ],
+    "end_card_text": "M1lash STUDIO. Спасибо, что досмотрел!"
+  },
+  "outro": {
+    "cta_voice_id": "edge:ru-RU-DmitryNeural",
+    "last_title_voice_id": "edge:ru-RU-DmitryNeural",
+    "cta_text": "Подпишись! И спасибо всем, кто досмотрел и поставил лайк.",
+    "spoken_lines": [
+      "Подпишись! И спасибо всем, кто досмотрел и поставил лайк.",
+      "Это был фильм…",
+      "Одержимость"
+    ],
+    "title_visible_on_screen": false,
+    "lip_sync_verified": false
+  },
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "full_bleed": true,
+    "dialogue_language": "ru",
+    "music_license_verified": true,
+    "music_ducking": true,
+    "visual_qa_done": true,
+    "audio_qa_done": false,
+    "duration_seconds": 52.6,
+    "lufs": -15.2,
+    "true_peak_dbtp": -1.9
+  },
+  "publication": {
+    "publish_ready": false,
+    "status": "draft",
+    "reason": "Human listening unverified; owner release approval pending. Actual MP4 delivered privately."
+  }
+}

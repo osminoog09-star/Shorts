@@ -25,6 +25,13 @@
 ## Claude
 
 ## GPT/Codex
+### 02.11 — ПО ОДНОМУ: 003 V54 · GPT
+- [x] Реальный52.6с MP4, source-aware crop, восстановлен бросок, полный вопрос/ответ, исправленные титры и фирменный финал. Check.py0FAIL, full decode, look.py глазами.
+- [x] Доставлен `kino_003_v54.mp4`, Library libfile_3ddda42ee42481918136cc9fcfe627ac v6, SHA6a2a8309be1a0228ff7cf929d2be0c34e1cc14e24273684cb67552311e7307e0.
+- [ ] Полное человеческое прослушивание — не подтверждено; PRIVATE REVIEW, не RELEASE READY.
+- [x] Владелец явно разрешил синхронизацию main («Да можешь»). Код/паспорт/QA переданы через подключённый GitHub: терминальный push не имел HTTPS credentials.
+Следующий шаг: полное прослушивание003 и подтверждение владельца; не пересобирать её без доказанного дефекта. Остальные004/006 имеют открытые визуальные проблемы; работать строго по одному. Полный отчёт reports/research/2026-11-02_003_V54_SINGLE_VIDEO_REPAIR.md. Локальный файл /workspace/scratch/af49577e3194/003/v54/kino_003_v54.mp4.
+
 ### 02.11 — фактически 6/6 кино-Shorts доставлены (PRIVATE, без публикации)
 - [x] **001** kino_001_v53.mp4 **55.000с**, Actions 41401595596, artifact 13121673002, RU actor 77 words /44 ASS, check.py 0 FAIL, FFmpeg full decode PASS.
 - [x] **002** kino_002_v51.mp4 **39.300с**, Actions 41402937982, artifact 13122169262, RU 34 words /18 ASS, check.py 0 FAIL, FFmpeg full decode PASS.
@@ -34,6 +41,7 @@
 - [x] **006** kino_006_v50.mp4 **37.600с**, technical PASS, **visual NO-GO**: long wave, third-party watermark in original source. Do not call RELEASE READY.
 - [x] Actual physical six MP4 + corresponding QA packaged and ZIP CRC verified: `/mnt/data/M1lash_ALL_6_SHORTS_PRIVATE_20261102.zip` (124,535,928 bytes) **current conversation sandbox only**, not Git or YouTube. Links were provided.
 - [ ] NEXT: targeted **004 readability** and **006 visual cuts/source watermark** editorial repair; independently listen to each line before approval. Only after that move to long Chigur graphics by code. Do not ask source files already obtained. Never publish/schedule without owner's «ок».
+
 
 
 ### 02.11 — ФАКТИЧЕСКИ 6/6 PRIVATE MP4 В ОДНОМ ZIP · GPT
