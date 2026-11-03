@@ -1,5 +1,7 @@
 ## 03.11 · GPT — исправлено Авто и восстановлена последняя выбранная дата
 
+- Финальный Pages **41608224453 SUCCESS** (6m44s, checkout занял большую часть времени). Все исправления выложены; повторный запуск не понадобился.
+
 - Причины: stale Pages стирал локальный резерв, taken+plan считались дважды, не было CAS между вкладками, global concurrency отменял разные pending jobs, workflow читал mutable main, dispatch204 выдавался за назначение.
 - Сайт: общий publishing/schedule_requests.json, Tallinn, unique occupied slots, refresh-safe reservations; карточки показывают pending/confirmed dates; published нельзя пересоставлять через план. Workflow per-manifest, immutable expected_publish_at/request_id, server ledger checks + GET readback.
 - **Скетч9Bhnbw5bFeE:03.11 16:00 Tallinn подтверждён** штатным run41607737039 SUCCESS/receipt14:00Z. Это восстановление последнего выбора владельца c36f3c78, не новая дата от агента. НовостиoMhef8NQg1s05.11 10:00 сохранены. Остальные видео не перемещались.
