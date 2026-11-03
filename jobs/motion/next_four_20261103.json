@@ -6,7 +6,7 @@
   "preflight_only": false,
   "save_review_mp4": true,
   "no_youtube_upload": true,
-  "note": "One-film audio/compliance diagnostic after full render 41627756219 failed check.py; log exact failed check rows, no publication.",
+  "note": "QA fix check.py loudness fail -16.5 LUFS; body-only -14 target, approved outro unchanged. One-item diagnosis before all four private MP4.",
   "only_ids": [
     "ai_vacation_202611"
   ]
