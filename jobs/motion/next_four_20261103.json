@@ -1,13 +1,15 @@
 {
   "renderer": "python",
   "script": "shorts/next_four_20261103/render_batch.py",
-  "output": "videos/ai_vacation_202611_v1.mp4",
+  "output": "videos/ai_fridge_202611_v1.mp4",
   "mode": "full",
   "preflight_only": false,
   "save_review_mp4": true,
   "no_youtube_upload": true,
-  "note": "Final diagnostic against -16 LUFS QA minimum: -13 LUFS target +1.5 dB body only; approved outro untouched, exact check.py fail remains a blocker.",
+  "note": "First Shorts ai_vacation passed full technical check run 41630824284, final look visually reviewed; assemble remaining three, private review only.",
   "only_ids": [
-    "ai_vacation_202611"
+    "ai_fridge_202611",
+    "science_orbit_202611",
+    "science_mirror_202611"
   ]
 }
