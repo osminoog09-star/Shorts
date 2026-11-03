@@ -1,8 +1,10 @@
 {
-  "status": "reserved",
+  "status": "uploaded",
   "manifest": "publishing/queue/ai_vacation_202611.json",
   "manifest_sha256": "8104dbfebe7884501b5b532da535a71bf0c981079418a778eeb57a313e51adc3",
   "channel": "ru",
   "publish_at_utc": null,
-  "note": "A reserved attempt must NEVER be automatically retried."
+  "note": "A reserved attempt must NEVER be automatically retried.",
+  "video_id": "R0y8D9MZanc",
+  "video_url": "https://youtu.be/R0y8D9MZanc"
 }
