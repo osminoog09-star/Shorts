@@ -63,9 +63,10 @@
       "status": "verified",
       "evidence": "reports/research/2026-11-04_OUTRO_V7_VOICE10.md",
       "acceptance": "Проверка stem scaling, full decode3MP4, check финала0FAIL, look глазами; личное прослушивание pending",
-      "owner_review": "pending",
+      "owner_review": "accepted",
       "audience_effect": "unknown",
-      "regression": true
+      "regression": true,
+      "owner_feedback": "04.11.2026: «Отлично так и оставим.» — баланс концовки утверждён; разрешение публикации из этого не следует."
     }
   ]
 }

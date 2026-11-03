@@ -38,11 +38,13 @@
   },
   "voice_and_fx_gain_vs_v3": 1,
   "standalone_lufs": -16.4,
-  "mastering_note": "Quiet10% candidate following owner rejection of30%; voice/FX unchanged, no global normalization.",
+  "mastering_note": "Owner-approved10% active-voice RMS music; voice/FX unchanged, no global normalization. Approval concerns outro balance; no publication or scheduling authorization.",
   "music_to_active_voice_rms": 0.1,
   "music_below_active_voice_db": -20,
   "music_envelope": "steady 1s RMS leveling; intro fade180ms, outro fade350ms; no duck/release jumps",
-  "owner_hearing_review": "pending",
+  "owner_hearing_review": "accepted",
   "music_gain_vs_v6": 0.3333333333333333,
-  "revision_reason": "Owner rejected30% as too loud; agent prepared10% quieter candidate, listening approval pending"
+  "revision_reason": "Owner approved voice10 version after listening feedback iterations.",
+  "owner_approval_quote": "Отлично так и оставим.",
+  "owner_approval_date": "2026-11-04"
 }
