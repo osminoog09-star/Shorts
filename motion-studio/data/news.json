@@ -1,7 +1,7 @@
 {
   "status": "partial",
-  "updated_at": "2026-11-03T00:57:50.242018Z",
-  "last_attempt_at": "2026-11-03T00:57:50.242018Z",
+  "updated_at": "2026-11-03T14:13:38.335181Z",
+  "last_attempt_at": "2026-11-03T14:13:38.335181Z",
   "feeds_ok": 6,
   "feeds_failed": 1,
   "errors": [
@@ -12,6 +12,51 @@
   ],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "9963b02b6cee4dcd78",
+      "title": "Tomorrow: TechCrunch Founder Summit takes over Boston and when pass rates increase",
+      "url": "https://techcrunch.com/2026/11/03/tomorrow-techcrunch-founder-summit-takes-over-boston-and-when-pass-rates-increase/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-03T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "aafb2d2c8fa2107938",
+      "title": "Apple Watch’s AI features for rewinding and recapping conversations begin beta testing",
+      "url": "https://techcrunch.com/2026/11/02/apple-watchs-ai-features-for-rewinding-and-recapping-conversations-begin-beta-testing/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-03T07:20:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "23abe1f1b0a2b246b6",
+      "title": "Google takes Dreambeans to India in bid to bring AI-generated personal stories to the masses",
+      "url": "https://techcrunch.com/2026/11/02/google-takes-dreambeans-to-india-in-bid-to-bring-ai-generated-personal-stories-to-the-masses/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-03T03:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "804d2e2f62a5210f78",
+      "title": "Apple may try to increase revenue by doing…something with third-party AI apps",
+      "url": "https://techcrunch.com/2026/11/02/apple-may-try-to-increase-revenue-by-doing-something-with-third-party-ai-apps/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-03T01:49:52Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "dfb1d49114f0805e78",
+      "title": "Y Combinator’s Garry Tan uses AI agents so much, he spends up to $200K a year on tokens",
+      "url": "https://techcrunch.com/2026/11/02/y-combinators-garry-tan-uses-ai-agents-so-much-he-spends-up-to-200k-a-year-on-tokens/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-03T00:35:52Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "d602924f3d5976b210",
       "title": "\"At Home in Space\" opens, caps Air and Space Museum renovation",
@@ -685,51 +730,6 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-10-30T13:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3e7f75aad019dd61df",
-      "title": "2027 Nissan Rogue Hybrid: Drives like an EV, but there's no plug involved",
-      "url": "https://arstechnica.com/cars/2026/10/2027-nissan-rogue-hybrid-drives-like-an-ev-but-theres-no-plug-involved/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-30T12:00:18Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "6e108b3d65de6b7a70",
-      "title": "Review: You Can See Everything blurs the view of Elizabeth Holmes' deceit",
-      "url": "https://arstechnica.com/culture/2026/10/review-you-can-see-everything-blurs-the-view-of-elizabeth-holmes-deceit/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-30T11:30:01Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5ba2be4ee7a1688b01",
-      "title": "Rocket Report: Winter is coming for Themis; Cowboy Space adds iron to the fire",
-      "url": "https://arstechnica.com/space/2026/10/rocket-report-winter-is-coming-for-themis-cowboy-space-adds-iron-to-the-fire/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-30T11:00:35Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7f7f16717282374033",
-      "title": "Maine’s data center revolt will decide who controls the Senate",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1021080/maine-senate-race-susan-collins-ai-data-centers",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-10-30T11:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c096782638d443ac76",
-      "title": "Wikipedia’s operator says a bad AI copyright ruling could threaten the open web",
-      "url": "https://www.theverge.com/policy/1022880/wikipedia-openai-new-york-times-copyright",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-10-30T09:00:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
