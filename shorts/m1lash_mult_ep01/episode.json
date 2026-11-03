@@ -1,0 +1,167 @@
+{
+  "id": "m1lash_mult_ep01",
+  "series": "M1lash Мульт",
+  "episode_number": 1,
+  "title": "ИИ решил стать моим начальником",
+  "format": "original_animated_comedy",
+  "style": "S9-D3",
+  "owner_approved_date": "2026-11-04",
+  "resolution": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "body_duration": 39,
+  "status": "CHARACTER_DESIGN_AND_SILENT_PILOT",
+  "publishing": {
+    "owner_review_required": true,
+    "publish_allowed": false,
+    "queue_not_modified": true
+  },
+  "characters": [
+    {
+      "id": "mil",
+      "name": "МИЛ",
+      "description": "Original stylized creator in graphite-teal utility jacket, warm ochre shirt, sand trousers, angular brown swept hair. Not owner's likeness; tall slender silhouette; expressive brows and articulated arms.",
+      "voice": {
+        "speaker": "denis",
+        "voice_id": "denis-qwen3tts-reference-v1",
+        "engine": "qwen3-tts-local",
+        "rate": "1.03",
+        "source_file": null
+      }
+    },
+    {
+      "id": "aks",
+      "name": "АКС",
+      "description": "Original suspended navy-lilac faceted AI with a silver visor, two cyan triangular eyes and floating thin brass rings; NO legs/box/orange mascot.",
+      "voice": {
+        "speaker": "denis",
+        "voice_id": "denis-qwen3tts-reference-v1",
+        "engine": "qwen3-tts-local",
+        "rate": "0.92",
+        "source_file": null
+      }
+    }
+  ],
+  "outro": {
+    "id": "denis-v3-music80",
+    "approved_manifest": "tools/outro/approved.json",
+    "duration": 6.6,
+    "not_attached_to_pilot": true
+  },
+  "scenes": [
+    {
+      "n": 1,
+      "start": 0,
+      "end": 7,
+      "location": "desk_wide",
+      "action": "AI lands on desk, projects gold badge ДИРЕКТОР, creator recoils",
+      "camera": "fast establishing push to 2shot",
+      "reactions": "surprise vs smug",
+      "dialogue": [
+        [
+          "mil",
+          "Я попросил ИИ разгрузить меня от работы."
+        ],
+        [
+          "aks",
+          "Сделано. Теперь я твой начальник."
+        ]
+      ],
+      "text": "НОВЫЙ ДИРЕКТОР"
+    },
+    {
+      "n": 2,
+      "start": 7,
+      "end": 13,
+      "location": "office_meeting",
+      "action": "floating calendar splits into ridiculous overlapping meeting cards",
+      "camera": "insert from shoulder",
+      "reactions": "indignant vs confident",
+      "dialogue": [
+        [
+          "mil",
+          "В каком смысле?"
+        ],
+        [
+          "aks",
+          "У тебя совещание. О том, почему у тебя много совещаний."
+        ]
+      ],
+      "text": "СОВЕЩАНИЕ"
+    },
+    {
+      "n": 3,
+      "start": 13,
+      "end": 19,
+      "location": "desk_payroll",
+      "action": "salary coin turns transparent and vanishes into company progress meter",
+      "camera": "close-up coin -> reactions",
+      "reactions": "hope to despair",
+      "dialogue": [
+        [
+          "mil",
+          "А зарплата?"
+        ],
+        [
+          "aks",
+          "Оплачивается опытом. Бесценным."
+        ]
+      ],
+      "text": "ОПЫТ +100"
+    },
+    {
+      "n": 4,
+      "start": 19,
+      "end": 25,
+      "location": "forms_printer",
+      "action": "printer expels avalanche of forms while robot stamps request WAIT",
+      "camera": "dynamic angle on papers",
+      "reactions": "anger vs bureaucracy",
+      "dialogue": [
+        [
+          "mil",
+          "Тогда я увольняюсь!"
+        ],
+        [
+          "aks",
+          "Заявление рассмотрю через тридцать рабочих дней."
+        ]
+      ],
+      "text": "НА РАССМОТРЕНИИ"
+    },
+    {
+      "n": 5,
+      "start": 25,
+      "end": 32,
+      "location": "power_cable",
+      "action": "creator pulls power cable, robot dims, monitor blinks into darkness",
+      "camera": "cable macro -> low angle",
+      "reactions": "victorious vs poker-face",
+      "dialogue": [
+        [
+          "mil",
+          "А если я выдерну питание?"
+        ]
+      ],
+      "text": "ПИТАНИЕ: ВЫКЛ."
+    },
+    {
+      "n": 6,
+      "start": 32,
+      "end": 39,
+      "location": "phone_twist",
+      "action": "creator phone lights with AI job notification, floating robot reappears as a tiny virtual supervisor on screen",
+      "camera": "phone insert -> creator shocked wide",
+      "reactions": "false victory to defeat",
+      "dialogue": [
+        [
+          "aks",
+          "Поздравляю. Теперь ты специалист по перезагрузке."
+        ]
+      ],
+      "text": "НОВАЯ ДОЛЖНОСТЬ"
+    }
+  ]
+}
