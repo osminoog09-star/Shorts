@@ -86,6 +86,23 @@ class DirectMovieTests(unittest.TestCase):
                     mod.confirm_drive_file(video, "/fake.conf")
             self.assertEqual(error.exception.code, "drive_verify_failed")
 
+    def test_video_without_audio_never_uploaded(self):
+        url = "https://archive.org/download/ArcherProductionsInc/DuckandC1951.mp4"
+        with tempfile.TemporaryDirectory() as tmp:
+            video = Path(tmp) / "valid.mp4"
+            video.write_bytes(b"placeholder for mocked video")
+            cfg = Path(tmp) / "oauth.conf"
+            cfg.write_text("fixture")
+            with patch.object(mod, "transfer", return_value=video), patch.object(
+                mod, "verify_video", return_value={"height":1080,"duration_minutes":90}
+            ), patch.object(mod.subprocess, "run", return_value=SimpleNamespace(
+                returncode=0, stdout='{"streams":[]}'
+            )), patch.object(mod, "upload_to_drive") as upload:
+                with self.assertRaises(mod.IntakeError) as error:
+                    mod.job(url, "download", "1080p", "abcdefghijklm", str(cfg), Path(tmp))
+                self.assertEqual(error.exception.code, "no_audio")
+                upload.assert_not_called()
+
     def test_download_requires_existing_oauth(self):
         url = "https://archive.org/download/ArcherProductionsInc/DuckandC1951.mp4"
         with tempfile.TemporaryDirectory() as tmp, self.assertRaises(mod.IntakeError) as error:
