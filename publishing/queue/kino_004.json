@@ -1,0 +1,37 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "uploaded",
+    "video_id": "wweAPl3P29w",
+    "sha256": "767fe621652a199f06ebc5cfc09162a74c4189d2dcd320443a2bc5bb560e711d"
+  },
+  "metadata": {
+    "type": "short",
+    "title": "Она знает, кому нельзя верить #shorts",
+    "description": "Свет погас — и она рассказала правду.\nКому бы ты поверил в этой ситуации?\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #кино #угадайфильм #сцена #триллер #диалог #m1lash",
+    "tags": [
+      "кино",
+      "угадай фильм",
+      "сцены из фильмов",
+      "русский дубляж",
+      "напряженная сцена",
+      "диалог",
+      "тайна",
+      "доверие",
+      "M1lash",
+      "shorts"
+    ],
+    "category_id": "1",
+    "made_for_kids": false,
+    "contains_synthetic_media": false,
+    "default_language": "ru",
+    "default_audio_language": "ru"
+  },
+  "provenance": {
+    "upload_method": "youtube_studio_ui",
+    "review_archive_library_file_id": "libfile_4bc580a185208191900e4e8fd4aae1f5",
+    "review_archive_entry": "04_004_V49_OFFICIAL_PRIVATE.mp4",
+    "owner_audio_approved": true,
+    "owner_audio_approval_date": "2026-11-03"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "uploaded",
+    "video_id": "9Bhnbw5bFeE",
+    "sha256": "8762e19476a893afb2271c65939160505cf2621730f7294d8dfba57250234f9a"
+  },
+  "metadata": {
+    "type": "short",
+    "title": "Нанял ИИ, чтобы меньше работать. Получил 40 подчинённых 🤖 #shorts",
+    "description": "Попросил нейросеть ответить начальнику одним словом. Она собрала целый отдел.\nВымышленный скетч об ИИ и офисной бюрократии.\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #юмор #ии #нейросети #роботы #работа #M1lash",
+    "tags": [
+      "ИИ",
+      "нейросети",
+      "юмор",
+      "офис",
+      "начальник",
+      "роботы",
+      "ИИ агенты",
+      "бюрократия",
+      "скетч",
+      "M1lash"
+    ],
+    "category_id": "23",
+    "made_for_kids": false,
+    "contains_synthetic_media": false,
+    "default_language": "ru",
+    "default_audio_language": "ru"
+  },
+  "provenance": {
+    "upload_method": "youtube_studio_ui",
+    "review_archive_library_file_id": "libfile_4bc580a185208191900e4e8fd4aae1f5",
+    "review_archive_entry": "07_ai_bureaucracy_claude_v3.mp4",
+    "owner_audio_approved": true,
+    "owner_audio_approval_date": "2026-11-03"
+  }
+}

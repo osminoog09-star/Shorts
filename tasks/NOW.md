@@ -26,15 +26,6 @@
 
 ## GPT/Codex
 
-### 03.11 — Восстановление семи приватных загрузок · текущий GPT
-- [x] Архив8 Shorts материализован, SHA256 всех восьми совпали; kino003 исключён из передачи.
-- [x] Семь файлов переданы в YouTube Studio, все 100%. Это отклонение от workflow; не повторять upload и не удалять экземпляры. Владелец уточнил «делай как в гите».
-- [x] kino001 xRwwXYXVxSc: название/описание/NCS/10tags/ru/category1/notForKids/noPaid/noAltered настроены, PRIVATE сохранён. Copyright check ещё шёл.
-- [ ] kino002 qYSbQisqEpc: текущий открытый диалог метаданных, проверки PASS. Затем остальные5, реальные ID, receipts и queue в Git, без дат.
-- Пути: /workspace/shared/m1lash_upload/ (MP4+MANIFEST+passports); ZIP /workspace/scratch/2071953dc074/review/M1lash_8_SHORTS_AUDIO_REVIEW_20261103.zip.
-Следующий шаг: закончить уже загруженные PRIVATE экземпляры и записать IDs; НЕ вызывать новый upload. Kino003 уже public подтверждён Dashboard Studio, FxIlxGWVCuw. Ни одного нового расписания.
-
-
 ### 03.11 — Автономный резервный серверный импорт MP4 · GPT
 Цель: без телефона и без обхода защиты сторонних сайтов — прямой импорт разрешённого MP4 с сервера в личный Google Drive.
 Шаги:
@@ -109,7 +100,7 @@
 - [ ] NEWS caption repair41567900438 (commit8126765): только область850×254, графика из первогоmaster, озвучка из того же кэша. 191d89b/2b0703a объединяют короткие титры: по6фактическимmetadata27групп, min0.817с,max5слов; fit76→64px. PausedGSAPclock зарегистрирован, каждыйcaption проверяется реальным браузером на отступ отsource. Подробныйфактчек/предфинальныйаудит: reports/research/2026-11-03_NEWS_PILOT_REVIEW.md.
 - [x] NEWS окончательный master доставлен:40.433с,9,613,071B,SHA2567fdb95b889966ff614f768b335c03252e0c664dd0123f11c2ee3cc99fa61148a. Immutablecommit62a8b36137515ca6587b078dc449c4146154e26f, videos/m1lash_ai_news_20261103_ru.mp4. Captionrepair41567900438 создал/проверилфайл,ноупалнасохранениииз-заunstagedMP4;recovery41568667754 SUCCESS восстановилтотжеartifact13199498632 безрендера.31c6add сохраняетMP4вместесQA.0FAIL/1WARN,decodePASS,−15.3LUFS/−1.9dBTP,lag0.3мс,27caption/min0.817с,0browseroverlap. Конечныйlook/6стоповпоimmutablecommit открыты. Mediumprobe41569292785 безподсказаннойфразы подтвердил «а не обещают…»,CTAполный;smallошибкисохранены. Отчёт reports/research/2026-11-03_NEWS_FINAL_QA.md. Queueidтеперьai_news_2026_11_03,replaces_idстарый28.10;YouTube/dateнет,слухNOT_VERIFIED.
 - [x] Остаточные ресурсы03.11 проверены. Dog:существующий6.041667с720×1280preview;Higgsfieldfreevideo0/unlimfalse,paidbalanceнаблюдался14.9,5freesheetsтолькоизображения;платныегенерациинезапускались. Ernesto:22сбезсмеха;2целевыхDriveпоискавидео0совпадений. Ограничения,новыйPUBLISHпса,очередьblocked_reason иREADME/источникRU/NCS актуализированы. Данные: reports/research/2026-11-03_REMAINING_SHORTS_RESOURCE_GATES.json;SourceAudit2c43ddf.
-Следующий шаг: 03.11 владелец подтвердил звук пакета восьми роликов «Все ок» и исключил пса из работ. Записать owner_audio_approved, убрать ошибочный dog_second_dinner из незавершённой очереди (не выдавать его 6с preview за готовый); существующий пёс-байкер имеет receipt KIGLaVhTlhw. Подготовить приватные upload-manifests последних семи файлов без даты; kino003 FxIlxGWVCuw повторно не загружать. Сначала источники и receipts, затем штатная приватная заливка доступных файлов; не перерендеривать утверждённое. Сверять реальные ID. Остальной остаток Ernesto только по настоящему источнику.
+Следующий шаг ОБНОВЛЁН03.11: семь мастеров уже загруженыPRIVATE, receipts и schedule-only manifests готовы; НЕ выполнять upload заново. IDs/итог — верх HANDOFF и reports/research/2026-11-03_SEVEN_SHORTS_PRIVATE_UPLOAD_RECEIPTS.md. Дальше только решение владельца о публикации и schedule существующихID. Ниже историческая инструкция, не исполнять: 03.11 владелец подтвердил звук пакета восьми роликов «Все ок» и исключил пса из работ. Записать owner_audio_approved, убрать ошибочный dog_second_dinner из незавершённой очереди (не выдавать его 6с preview за готовый); существующий пёс-байкер имеет receipt KIGLaVhTlhw. Подготовить приватные upload-manifests последних семи файлов без даты; kino003 FxIlxGWVCuw повторно не загружать. Сначала источники и receipts, затем штатная приватная заливка доступных файлов; не перерендеривать утверждённое. Сверять реальные ID. Остальной остаток Ernesto только по настоящему источнику.
 ### 02.11 — фактически 6/6 кино-Shorts доставлены (PRIVATE, без публикации)
 - [x] **001** kino_001_v53.mp4 **55.000с**, Actions 41401595596, artifact 13121673002, RU actor 77 words /44 ASS, check.py 0 FAIL, FFmpeg full decode PASS.
 - [x] **002** kino_002_v51.mp4 **39.300с**, Actions 41402937982, artifact 13122169262, RU 34 words /18 ASS, check.py 0 FAIL, FFmpeg full decode PASS.

@@ -1,0 +1,13 @@
+{
+  "status": "uploaded",
+  "manifest": "publishing/queue/ai_bureaucracy_claude.json",
+  "channel": "ru",
+  "video_id": "9Bhnbw5bFeE",
+  "video_url": "https://youtu.be/9Bhnbw5bFeE",
+  "publish_at_utc": null,
+  "source_sha256": "8762e19476a893afb2271c65939160505cf2621730f7294d8dfba57250234f9a",
+  "privacy_status": "private",
+  "upload_method": "youtube_studio_ui",
+  "verification": "Confirmed in M1lash Studio content table, limited access, no schedule; exact local MP4 SHA256 matched approved review archive.",
+  "note": "Manual recovery receipt for an existing upload. NEVER upload again; schedule only after owner publication decision."
+}

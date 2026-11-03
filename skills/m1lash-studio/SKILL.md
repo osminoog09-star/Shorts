@@ -162,6 +162,8 @@ description: Карта и пошаговый конвейер студии ка
 
 - 03.11 · GPT · При статусном аудите сверять queue с receipt И manifest: kino003 ещё описывался PRIVATE/no date, хотя оба источника уже scheduled. Старый pulse до publish_at не подтверждает текущий публичный выход. Одобрение слуха владельцем уже записано — старый QA NOT_VERIFIED не повод спрашивать заново; отсутствие upload manifest/receipt означает незавершённую заливку. Отчёт: reports/research/2026-11-03_REPOSITORY_UPLOAD_STATE_AUDIT.md.
 
+- 03.11 · GPT · **Не заменять youtube-direct.yml ручной заливкой при доступном UI GitHub Actions.** Семь одобренных файлов уже были переданы через Studio до замечания владельца; исправление — собрать реальные IDs/PRIVATE и receipts, не создавать дубли. Recovery source.type=uploaded допускает только schedule с совпадением ID/channel/SHA; новые ролики загружать штатным workflow с самого начала. 17 offline tests PASS; отчёт reports/research/2026-11-03_SEVEN_SHORTS_PRIVATE_UPLOAD_RECEIPTS.md.
+
 ### Чек-лист (проверено на ошибках)
 
 **Кино: исходник**

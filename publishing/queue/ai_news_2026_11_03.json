@@ -1,0 +1,37 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "uploaded",
+    "video_id": "oMhef8NQg1s",
+    "sha256": "7fdb95b889966ff614f768b335c03252e0c664dd0123f11c2ee3cc99fa61148a"
+  },
+  "metadata": {
+    "type": "short",
+    "title": "Экзамен по бытовухе: 3 новости ИИ за 2 ноября #shorts",
+    "description": "Три новости ИИ за2ноября2026: LifeVal, планы по нагрузке дата-центров и отчётность Anthropic.\nФакты отдельно от авторских шуток. Источники:\n\nLifeVal:\nhttps://openai.com/index/lifeval/\nhttps://www.unite.ai/openais-lifeval-evaluation-tests-ai-on-practical-everyday-tasks/\n\nGrid Protectors — анонс02.11; базовое соглашение Georgia Power от22.07, его не выдаём за новое:\nhttps://openai.com/index/grid-protectors-program/\nhttps://www.georgiapower.com/news-hub/press-releases/georgia-power-to-serve-openai-project-in-effingham-county.html\n\nAnthropic — S-1/A от02.11:\nhttps://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm\nhttps://www.reuters.com/business/anthropics-quarterly-loss-shrinks-revenue-jumps-ahead-blockbuster-ipo-2026-11-02/\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #ии #нейросети #технологии #новостиии #юмор #M1lash",
+    "tags": [
+      "новости ИИ",
+      "нейросети",
+      "искусственный интеллект",
+      "OpenAI",
+      "LifeVal",
+      "Anthropic",
+      "дата центры",
+      "технологии",
+      "юмор",
+      "M1lash"
+    ],
+    "category_id": "23",
+    "made_for_kids": false,
+    "contains_synthetic_media": false,
+    "default_language": "ru",
+    "default_audio_language": "ru"
+  },
+  "provenance": {
+    "upload_method": "youtube_studio_ui",
+    "review_archive_library_file_id": "libfile_4bc580a185208191900e4e8fd4aae1f5",
+    "review_archive_entry": "08_news_review_20261103.mp4",
+    "owner_audio_approved": true,
+    "owner_audio_approval_date": "2026-11-03"
+  }
+}

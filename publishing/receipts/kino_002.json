@@ -1,0 +1,13 @@
+{
+  "status": "uploaded",
+  "manifest": "publishing/queue/kino_002.json",
+  "channel": "ru",
+  "video_id": "qYSbQisqEpc",
+  "video_url": "https://youtu.be/qYSbQisqEpc",
+  "publish_at_utc": null,
+  "source_sha256": "0ee56d54834736ccaf25d2918d55e0ca2ee9a5431692857443002274f619571a",
+  "privacy_status": "private",
+  "upload_method": "youtube_studio_ui",
+  "verification": "Confirmed in M1lash Studio content table, limited access, no schedule; exact local MP4 SHA256 matched approved review archive.",
+  "note": "Manual recovery receipt for an existing upload. NEVER upload again; schedule only after owner publication decision."
+}

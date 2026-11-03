@@ -1,0 +1,37 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "uploaded",
+    "video_id": "xRwwXYXVxSc",
+    "sha256": "dab3c75c1e11725e2fdcd643412f7e8740d411e5df03620aa891f7ccab123d42"
+  },
+  "metadata": {
+    "type": "short",
+    "title": "Он предложил деньги. Ответ оказался страшнее угрозы #shorts",
+    "description": "Он пытается договориться с человеком, который уже всё решил.\nПочему он даже не пытается договориться?\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #кино #угадайфильм #сцена #драма #диалог #m1lash",
+    "tags": [
+      "кино",
+      "угадай фильм",
+      "сцены из фильмов",
+      "русский дубляж",
+      "напряженная сцена",
+      "диалог",
+      "выбор",
+      "драма",
+      "M1lash",
+      "shorts"
+    ],
+    "category_id": "1",
+    "made_for_kids": false,
+    "contains_synthetic_media": false,
+    "default_language": "ru",
+    "default_audio_language": "ru"
+  },
+  "provenance": {
+    "upload_method": "youtube_studio_ui",
+    "review_archive_library_file_id": "libfile_4bc580a185208191900e4e8fd4aae1f5",
+    "review_archive_entry": "01_kino_001_v53.mp4",
+    "owner_audio_approved": true,
+    "owner_audio_approval_date": "2026-11-03"
+  }
+}

@@ -97,8 +97,14 @@ def validate(data, channel_map, check_future=True):
                 raise ValueError("Invalid release " + field)
         if not source["asset"].lower().endswith(".mp4"):
             raise ValueError("Release asset must be an MP4")
+    elif source.get("type") == "uploaded":
+        # Recovery of a confirmed existing private upload; never a new upload source.
+        if not re.fullmatch(r"[A-Za-z0-9_-]{11}", str(source.get("video_id", ""))):
+            raise ValueError("Existing upload requires a valid video_id")
+        if not re.fullmatch(r"[a-f0-9]{64}", str(source.get("sha256", ""))):
+            raise ValueError("Existing upload requires the reviewed MP4 SHA-256")
     else:
-        raise ValueError("Source must be repo or release")
+        raise ValueError("Source must be repo, release or an existing uploaded video")
     digest = source.get("sha256")
     if digest is not None and (not isinstance(digest, str) or not re.fullmatch(r"[a-fA-F0-9]{64}", digest)):
         raise ValueError("sha256 must be 64 hex digits")
@@ -260,6 +266,8 @@ def main():
     file = manifest_path(args.manifest)
     data = load_json(file)
     channels = load_json(CHANNELS)
+    if data.get("source", {}).get("type") == "uploaded" and args.operation != "schedule":
+        raise ValueError("Existing uploaded video: only schedule is allowed; NEVER re-upload")
     channel, expected_id, publish_at = validate(data, channels)
     validate_queue(file, data, channels)
     receipt = receipt_path(file)
@@ -273,6 +281,11 @@ def main():
         vid = str(prior.get("video_id", ""))
         if prior.get("status") not in ("uploaded", "scheduled") or not re.fullmatch(r"[A-Za-z0-9_-]{11}", vid):
             raise ValueError("Receipt has no uploaded video ID: manual intervention required")
+        if data.get("source", {}).get("type") == "uploaded":
+            source = data["source"]
+            if (vid != source["video_id"] or prior.get("channel") != channel
+                    or prior.get("source_sha256") != source["sha256"]):
+                raise ValueError("Existing upload receipt/source mismatch; scheduling blocked")
         token = token_for(channel)
         verify_channel(token, expected_id)
         got = youtube_schedule(vid, data, publish_at, token)

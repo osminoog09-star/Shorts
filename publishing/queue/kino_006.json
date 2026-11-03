@@ -1,0 +1,37 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "uploaded",
+    "video_id": "sCThiwmigy0",
+    "sha256": "d4f8f4db869df610ff3060683e281a4a70ffddcccbfd4af06eedd8a5f94377f5"
+  },
+  "metadata": {
+    "type": "short",
+    "title": "Они заметили волну слишком поздно #shorts",
+    "description": "Один неверный шаг — и до корабля уже не добраться.\nТы бы рискнул вернуться за человеком?\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #кино #угадайфильм #сцена #драма #диалог #m1lash",
+    "tags": [
+      "кино",
+      "угадай фильм",
+      "сцены из фильмов",
+      "русский дубляж",
+      "напряженная сцена",
+      "диалог",
+      "выбор",
+      "драма",
+      "M1lash",
+      "shorts"
+    ],
+    "category_id": "1",
+    "made_for_kids": false,
+    "contains_synthetic_media": false,
+    "default_language": "ru",
+    "default_audio_language": "ru"
+  },
+  "provenance": {
+    "upload_method": "youtube_studio_ui",
+    "review_archive_library_file_id": "libfile_4bc580a185208191900e4e8fd4aae1f5",
+    "review_archive_entry": "06_kino_006_v51.mp4",
+    "owner_audio_approved": true,
+    "owner_audio_approval_date": "2026-11-03"
+  }
+}

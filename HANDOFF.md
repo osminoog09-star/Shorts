@@ -1,3 +1,10 @@
+## 03.11 · GPT — 7/7 одобренных Shorts реально PRIVATE в YouTube
+
+- Реальные IDs: kino_001=xRwwXYXVxSc, kino_002=qYSbQisqEpc, kino_004=wweAPl3P29w, kino_005=ACy21tT97a4, kino_006=sCThiwmigy0, ai_bureaucracy_claude=9Bhnbw5bFeE, ai_news_2026_11_03=oMhef8NQg1s. В Studio семь строк «Ограниченный», «Загружено», без расписания. Kino003 FxIlxGWVCuw уже public подтверждён, не дублирован; пёс не тронут.
+- Все SHA256 восстановленных мастеров совпали с review-архивом. Метаданные/ru/10tags/NCS/category1или23/notForKids сохранены. BAD TIMES не добавлен,002/004 остаютсяPRIVATE. Ни одной новой даты.
+- **Отклонение:** байты были переданы через Studio UI вместо указанного workflow. После замечания владельца завершены эти экземпляры, не перезаливались. Честные receipts + manifests source.type=uploaded возвращают их в Git. Новый schedule-only recovery guard исключает check/preflight/reserve/send и проверяет ID/channel/SHA receipt; штатный youtube-direct.yml mode=schedule использовать только после решения владельца о дате.
+- 17 unit tests PASS, включая запрет повторной загрузки; два старых теста сетки приведены к действующим правилам. Отчёт: reports/research/2026-11-03_SEVEN_SHORTS_PRIVATE_UPLOAD_RECEIPTS.md. Полный слух агентом не заявляется; owner audio approval уже есть.
+
 ## 03.11 · GPT — актуальные правила и загрузки сверены с GitHub
 
 - Отчёт: `reports/research/2026-11-03_REPOSITORY_UPLOAD_STATE_AUDIT.md`. Инвентаризировано полное дерево main (4373 записи), прочитаны AGENTS/Studio, очередь, все receipts, текущий checkpoint и pipeline. Не заявляется чтение каждого файла/новое прослушивание MP4.

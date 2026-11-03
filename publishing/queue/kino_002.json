@@ -1,0 +1,37 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "uploaded",
+    "video_id": "qYSbQisqEpc",
+    "sha256": "0ee56d54834736ccaf25d2918d55e0ca2ee9a5431692857443002274f619571a"
+  },
+  "metadata": {
+    "type": "short",
+    "title": "Она отказалась играть по его правилам #shorts",
+    "description": "Он предлагает выбрать сторону монеты. Она отвергает саму игру.\nА как бы ты ответил на её месте?\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #кино #угадайфильм #сцена #драма #диалог #m1lash",
+    "tags": [
+      "кино",
+      "угадай фильм",
+      "сцены из фильмов",
+      "русский дубляж",
+      "напряженная сцена",
+      "диалог",
+      "выбор",
+      "драма",
+      "M1lash",
+      "shorts"
+    ],
+    "category_id": "1",
+    "made_for_kids": false,
+    "contains_synthetic_media": false,
+    "default_language": "ru",
+    "default_audio_language": "ru"
+  },
+  "provenance": {
+    "upload_method": "youtube_studio_ui",
+    "review_archive_library_file_id": "libfile_4bc580a185208191900e4e8fd4aae1f5",
+    "review_archive_entry": "02_kino_002_v53.mp4",
+    "owner_audio_approved": true,
+    "owner_audio_approval_date": "2026-11-03"
+  }
+}

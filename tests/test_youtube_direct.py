@@ -77,22 +77,22 @@ class DirectUploadTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Collision"):
             uploader.validate_queue(uploader.QUEUE / "new.json", self.manifest(), self.channels)
 
-    def test_two_shorts_maximum(self):
+    def test_four_shorts_maximum(self):
         d = self.future
-        for index, hour in enumerate([10, 16]):
+        for index, hour in enumerate([2, 6, 10, 14]):
             other = self.manifest(time=d.replace(hour=hour))
             (uploader.QUEUE / f"old-{index}.json").write_text(json.dumps(other), encoding="utf-8")
-        third = self.manifest(time=d.replace(hour=22))
-        with self.assertRaisesRegex(ValueError, "two Shorts"):
-            uploader.validate_queue(uploader.QUEUE / "new.json", third, self.channels)
+        fifth = self.manifest(time=d.replace(hour=18))
+        with self.assertRaisesRegex(ValueError, "four Shorts"):
+            uploader.validate_queue(uploader.QUEUE / "new.json", fifth, self.channels)
 
     def test_short_spacing(self):
         d = self.future
         other = self.manifest(time=d.replace(hour=10))
         (uploader.QUEUE / "old.json").write_text(json.dumps(other), encoding="utf-8")
-        with self.assertRaisesRegex(ValueError, "six hours"):
+        with self.assertRaisesRegex(ValueError, "four hours"):
             uploader.validate_queue(
-                uploader.QUEUE / "new.json", self.manifest(time=d.replace(hour=15)), self.channels)
+                uploader.QUEUE / "new.json", self.manifest(time=d.replace(hour=13)), self.channels)
 
     def test_receipt_roundtrip(self):
         receipt = uploader.RECEIPTS / "test.json"
