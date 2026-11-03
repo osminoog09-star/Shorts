@@ -1,0 +1,104 @@
+name: M1lash · rights-cleared direct MP4 to private Drive
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Public direct HTTPS MP4 (Archive.org / Blender / GitHub release); no DRM"
+        required: true
+        type: string
+      mode:
+        description: "Inspect source or upload full verified movie"
+        type: choice
+        options: ['inspect', 'download']
+        default: 'inspect'
+      quality:
+        description: "Minimum video quality"
+        type: choice
+        options: ['1080p', '720p']
+        default: '1080p'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/direct_movie_intake.py'
+      - 'scripts/qa/test_direct_movie_intake.py'
+      - '.github/workflows/direct-movie-intake.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: m1lash-direct-mp4-${{ github.event_name == 'push' && 'checks' || 'owner' }}
+  cancel-in-progress: ${{ github.event_name == 'push' }}
+
+jobs:
+  offline-tests:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Syntax and no-network unit tests
+        run: |
+          python3 -m py_compile scripts/direct_movie_intake.py
+          python3 -m unittest discover -s scripts/qa -p 'test_direct_movie_intake.py' -v
+
+  source-intake:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Install media verification and Google Drive tools
+        if: inputs.mode == 'download'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg rclone >/dev/null
+      - name: Connect existing private Google Drive OAuth
+        if: inputs.mode == 'download'
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: |
+          python3 scripts/drive_oauth_config.py --config "$RUNNER_TEMP/m1lash-rclone.conf" --status "$RUNNER_TEMP/direct-oauth.json" --check
+      - name: Inspect or download rights-cleared direct MP4
+        env:
+          DIRECT_MOVIE_URL: ${{ inputs.url }}
+          DIRECT_MOVIE_MODE: ${{ inputs.mode }}
+          DIRECT_MOVIE_QUALITY: ${{ inputs.quality }}
+          GDRIVE_FOLDER_ID: 1ANvcXlUj0wBv1CG5U0bBQGdH-32OyaAi
+          GDRIVE_RCLONE_CONFIG_PATH: ${{ runner.temp }}/m1lash-rclone.conf
+        run: python3 scripts/direct_movie_intake.py
+      - name: Remove temporary media and OAuth configuration
+        if: always()
+        run: |
+          rm -rf "$RUNNER_TEMP/m1lash_direct"
+          rm -f "$RUNNER_TEMP/m1lash-rclone.conf" "$RUNNER_TEMP/direct-oauth.json"
+      - name: Record only safe status metadata in main
+        if: always()
+        run: |
+          set -euo pipefail
+          if [ ! -s publishing/direct_movie_status.json ]; then
+            printf '{"status":"error","drive_uploaded":false,"error_code":"setup_failed","message":"Серверная проверка не запустилась; см. GitHub Actions."}\n' > publishing/direct_movie_status.json
+          fi
+          cp publishing/direct_movie_status.json "$RUNNER_TEMP/direct_movie_status.json"
+          git config user.name 'm1lash-direct-intake[bot]'
+          git config user.email 'm1lash-direct-intake@users.noreply.github.com'
+          for attempt in 1 2 3; do
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            cp "$RUNNER_TEMP/direct_movie_status.json" publishing/direct_movie_status.json
+            git add publishing/direct_movie_status.json
+            git diff --cached --quiet && exit 0
+            git commit -q -m 'media: direct licensed MP4 intake status (no file bytes)'
+            if git push -q origin HEAD:main; then exit 0; fi
+            sleep 5
+          done
+          exit 1
