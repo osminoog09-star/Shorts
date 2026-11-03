@@ -97,10 +97,11 @@
       "status": "draft",
       "slot": null,
       "style": "существующий Three.js Claude",
-      "mp4": "videos/ai_bureaucracy_claude_v2.mp4",
+      "mp4": null,
       "publish_md": "shorts/ai_bureaucracy/PUBLISH.md",
       "title": "Нанял ИИ, чтобы меньше работать. Получил 40 подчинённых 🤖 #shorts",
-      "note": "V2: полный рендер41553021293; старый ведущий отключён, финал rev4. Финальный MP4/check/look ожидаются; полное личное прослушивание не выполнено. Без YouTube и даты."
+      "note": "Промежуточный3Dрендер41553021293 ещё работает. После него finish_ai_bureaucracy_v3.py:45с истории+rev4, ожидаемые51.6с. Финальный MP4/check/look ожидаются; полное личное прослушивание не выполнено. Без YouTube и даты.",
+      "review_version": "V3 pending"
     },
     {
       "id": "kino_001",
