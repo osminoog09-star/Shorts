@@ -2,7 +2,7 @@ name: M1lash · safe film source reachability audit
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/hdrezka-source-audit.yml']
+    paths: ['.github/workflows/hdrezka-source-audit.yml', 'scripts/qa/diagnose_hdrezka_source.py']
   workflow_dispatch:
 
 permissions:
@@ -22,5 +22,7 @@ jobs:
         run: |
           go install github.com/n0madic/go-hdrezka/cmd/hdrezka-dl@v0.0.0-20260804201230-e54f62241917
           echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+      - name: Compile diagnostic Python
+        run: python3 -m py_compile scripts/qa/diagnose_hdrezka_source.py
       - name: Diagnose only public page reachability and CLI info, without bypass or media download
         run: python3 scripts/qa/diagnose_hdrezka_source.py
