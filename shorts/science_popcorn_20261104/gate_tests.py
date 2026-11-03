@@ -53,6 +53,18 @@ class PopcornVoiceGates(unittest.TestCase):
             sample.write_bytes(b"not approved")
             with self.assertRaisesRegex(RuntimeError,"SHA"):
                 m.install_verified_outro(sample)
+    def test_qwen_offline_resume_source_compiles(self):
+        src=(m.HERE/"synthesize_denis_private.py").read_text(encoding="utf8")
+        compile(src,str(m.HERE/"synthesize_denis_private.py"),"exec")
+        for marker in ("HF_HUB_OFFLINE","TRANSFORMERS_OFFLINE",
+                       "VOICE_CHECKPOINT_SAVED","VOICE_CHECKPOINT_REUSED",
+                       "wav_sha256","ref_sha256","qwen3-tts-local"):
+            self.assertIn(marker,src)
+        self.assertNotIn("edge_tts",src)
+        self.assertNotIn("azure",src.lower())
+    def test_master_source_compiles(self):
+        compile(target.read_text(encoding="utf8"),str(target),"exec")
+
     def test_no_dima_or_youtube_write_in_source(self):
         src=target.read_text(encoding="utf8")
         self.assertNotIn("edge_tts",src)
