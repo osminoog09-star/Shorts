@@ -79,11 +79,26 @@ def run(args):
       text=line,scene=scene["n"],speaker="denis",
       voice_id=VOICE["voice_id"],engine=VOICE["engine"],
       rate=1.0,source_file=str(wav_path)))
+   local_caps=[]
    for j in range(0,len(words),4):
     chunk=words[j:j+4]
-    if not chunk:continue
-    end=words[j+4].start if j+4<len(words) else dur
-    caps.append(dict(start=at+chunk[0].start,end=at+end,words=[w.word.strip() for w in chunk]))
+    if not chunk: continue
+    stop=words[j+4].start if j+4<len(words) else dur
+    local_caps.append(dict(start=at+chunk[0].start,end=at+stop,words=[w.word.strip() for w in chunk]))
+   # Actual word timing can yield a 0.1-0.5s final group; combine instead of flashing unreadable text.
+   combined=[]
+   for group in local_caps:
+    if group["end"]-group["start"]<.85 and combined:
+     combined[-1]["end"]=group["end"]
+     combined[-1]["words"]+=group["words"]
+    else:combined.append(group)
+   if len(combined)>1 and combined[0]["end"]-combined[0]["start"]<.85:
+    combined[1]["words"]=combined[0]["words"]+combined[1]["words"]
+    combined[1]["start"]=combined[0]["start"]
+    combined.pop(0)
+   if any(x["end"]-x["start"]<.7 for x in combined):
+    raise RuntimeError(f"VOICE_REVIEW_REQUIRED: unreadable caption group on line {idx}")
+   caps.extend(combined)
    meta.append(dict(id=idx,expected=line,actual=actual,similarity=sim,seconds=dur))
    clips.append((audio,sr))
    at+=dur+.08
