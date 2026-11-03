@@ -1,0 +1,13 @@
+{
+  "renderer": "python",
+  "script": "shorts/next_four_20261104/render_batch.py",
+  "output": "videos/ai_vacuum_20261104_v1.mp4",
+  "mode": "full",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "only_ids": [
+    "ai_vacuum_20261104",
+    "science_popcorn_20261104"
+  ],
+  "note": "Two new S1-D25 original illustration Shorts. Renderer performs check.py/look.py/full decode and commits individual verified MP4s. No YouTube actions."
+}
