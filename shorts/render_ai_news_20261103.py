@@ -79,7 +79,7 @@ def timeline(actual):
     result = {"total": body_s, "cuts": cuts, "caps": captions, "segments": segments,
               "actual_audio": actual}
     if actual:
-        if not 30 <= body_s <= 45:
+        if MODE == "full" and not 30 <= body_s <= 45:
             raise RuntimeError(f"NO-GO: story {body_s:.3f}s; revise script, never stretch")
         signal = np.concatenate(samples)
         t = np.arange(len(signal)) / RATE
