@@ -26,6 +26,14 @@
       "video_id": "xRwwXYXVxSc",
       "request_id": "24bddf7c-b868-4be5-b4b2-7cab010c4357",
       "requested_at": "2026-11-03T09:35:08.854Z"
+    },
+    "kino_002": {
+      "at": "2026-11-04T15:00:00+02:00",
+      "kind": "short",
+      "title": "Она отказалась играть по его правилам #shorts",
+      "video_id": "qYSbQisqEpc",
+      "request_id": "42ba6151-7d8b-4342-9f73-89af1ebac0c2",
+      "requested_at": "2026-11-03T09:35:26.480Z"
     }
   }
 }
