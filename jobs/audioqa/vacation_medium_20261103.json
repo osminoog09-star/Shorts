@@ -1,0 +1,12 @@
+{
+  "purpose": "Single-file higher-accuracy free medium-ASR audit to disambiguate final wording; no video modification/YouTube",
+  "model": "medium",
+  "report_variant": "medium",
+  "outro_seconds": 6.6,
+  "videos": [
+    {
+      "id": "ai_vacation_202611",
+      "file": "videos/ai_vacation_202611_v1.mp4"
+    }
+  ]
+}
