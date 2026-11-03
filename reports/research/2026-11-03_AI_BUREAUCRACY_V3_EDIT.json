@@ -1,0 +1,41 @@
+{
+  "source": "Actions41553021293/artifact13196011876/V2",
+  "keep_seconds": [
+    [
+      0.0,
+      10.1
+    ],
+    [
+      12.5,
+      33.0
+    ],
+    [
+      36.5,
+      50.9
+    ]
+  ],
+  "story_seconds": 45.0,
+  "replaced_final_frames": [
+    50,
+    73,
+    90,
+    216,
+    261,
+    322,
+    344,
+    359,
+    382,
+    447,
+    541,
+    570,
+    856,
+    1115,
+    1158,
+    1191,
+    1224
+  ],
+  "colour": "actual bt601 to bt709 conversion before approved outro assembly",
+  "outro_method": "tools/assemble_with_outro.py",
+  "personal_listening": "NOT_VERIFIED",
+  "publish_date": null
+}

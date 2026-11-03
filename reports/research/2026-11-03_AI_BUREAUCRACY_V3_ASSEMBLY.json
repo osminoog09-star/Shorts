@@ -1,0 +1,17 @@
+{
+ "out": "/workspace/scratch/ai_bureaucracy_v3/ai_bureaucracy_claude_v3.mp4",
+ "duration": 51.6,
+ "video_s": 51.6,
+ "audio_s": 51.6,
+ "body_s": 45.0,
+ "outro_s": 6.6,
+ "title_s": 0.0,
+ "body_lufs": -15.0,
+ "body_tp": -4.7,
+ "outro_lufs": -15.9,
+ "outro_tp": -1.7,
+ "outro_lag_ms": 0.0,
+ "outro_diff_db": -31.9,
+ "decode_ok": true,
+ "problems": []
+}
