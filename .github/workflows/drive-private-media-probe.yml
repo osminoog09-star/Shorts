@@ -1,0 +1,30 @@
+name: M1lash Drive · private media read-only audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/drive-private-media-probe.yml'
+      - 'scripts/qa/drive_private_media_probe.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Compile safe private media probe
+        run: python -m py_compile scripts/qa/drive_private_media_probe.py
+      - name: Prove owner OAuth can read existing Drive media (1024 bytes max)
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: python scripts/qa/drive_private_media_probe.py
