@@ -26,6 +26,21 @@
 
 ## GPT/Codex
 
+### 03.11 — ОДИН Shorts «Почему попкорн взрывается?» · GPT
+Цель: самостоятельный S1-D25 2D с голосом Дениса и approved outro denis-v3-music80. Пылесос ai_vacuum_20261104 не трогать. Никаких YouTube действий.
+- [x] Прочитаны свежие AGENTS §3–4/§12, Studio SKILL, NOW/HANDOFF. Только Qwen voice Дениса; Дима и old outro для нового видео запрещены.
+- [x] Частный approved vertical outro уже материализован в /mnt/data/m1lash_popcorn_private/M1lash_outro_Denis_v3_music80_vertical.mp4, его SHA256 проверен против tools/outro/approved.json (1bd5aa58…).
+- [x] Физика проверена по Virot/Ponomarenko DOI 10.1098/rsif.2014.1247 и USDA: температура около 180C, крахмальная ножка прыжка, звук от резкого выхода пара. Новый сценарий записан отдельно shorts/science_popcorn_20261104/spec.json (commit 5bfa7fe1).
+- [x] HTML/SVG попкорна изолирован в shorts/science_popcorn_20261104/film.html (commit dead6162), общий файл и пылесос неизменны.
+- [x] Создан отдельный строго silent рендерер shorts/science_popcorn_20261104/render_visual.py с 6 стопами/кадрами, layout gate, 7с пилотом; не вызывает Edge/TTS, не публикует (commit 9d79642e).
+- [x] Запущен ОДИН job jobs/motion/popcorn_solo_stills_20261103.json (commit 078604d8), GitHub run 41725149202. Проверить артефакт, затем глазами 6 кадров.
+- [ ] После PASS кадров отдельным job 7с пилот движения; оценить текст/крупность.
+- [ ] Синтезировать только голос Дениса локальной Qwen3-TTS-0.6B Base из private reference; ASR и точные word timings. В текущем контейнере qwen_tts и cached model weights отсутствуют, сеть недоступна. Пока VOICE_BLOCKED: не использовать Диму, Azure/Edge; не объявлять READY.
+- [ ] Штатная сборка с approved outro, official check.py/look.py/FFmpeg full decode/ASR/audio gate и owner review. Приватный голос/MP4 в public git запрещён.
+Следующий шаг: artifact run 41725149202 → осмотреть 6 новых кадров попкорна → после PASS запустить 7с motion pilot. Затем решить Qwen-voice gate без подмены, собрать частный финал и дать на оценку владельцу.
+Где промежуточное: shorts/science_popcorn_20261104/, jobs/motion/popcorn_solo_stills_20261103.json, частная папка /mnt/data/m1lash_popcorn_private/.
+Ждёт владельца: только оценка финального MP4, не разрешение на технические этапы.
+
 ### 03.11 — Кофемашина V2: русские окончания и завершённые рисунки · GPT
 Цель: доработать уже выданный пробный скетч по прямому запросу владельца: произношение/окончания, предметная анимация, новая approved Denisv3music80 концовка; PRIVATE MP4 без публикации.
 - [x] Актуальные NOW/AGENTS/Studio/outro manifest прочитаны. Женский кастинг отменён владельцем; в этой задаче только голос Дениса.
