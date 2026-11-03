@@ -1,31 +1,37 @@
 {
   "status": "ok",
-  "file_count": 2,
-  "video_files": 2,
+  "file_count": 3,
+  "video_files": 3,
   "required_film_count": 3,
   "matched_film_count": 0,
+  "matched_excerpt_film_count": 2,
   "missing": [
-    "Бэтмен (2022)",
-    "Оппенгеймер (2023)",
     "Меню (2022)"
   ],
   "items": [
     {
       "id": "w45-batman-riddler",
       "film": "Бэтмен (2022)",
-      "status": "нет фильма в папке",
-      "filename": null,
-      "file_url": null,
-      "candidates": [],
+      "status": "отрывок найден",
+      "filename": "Screen_Recording_20261102_101336_Opera.mp4",
+      "file_url": "https://drive.google.com/file/d/1psena0V9ybb02MgJ2aUdUGUG-l2nMmJh/view",
+      "source_kind": "excerpt",
+      "candidates": [
+        "Screen_Recording_20261102_101336_Opera.mp4",
+        "Screen_Recording_20261102_103133_Opera.mp4"
+      ],
       "scene_start": null
     },
     {
       "id": "w45-oppenheimer-trinity",
       "film": "Оппенгеймер (2023)",
-      "status": "нет фильма в папке",
-      "filename": null,
-      "file_url": null,
-      "candidates": [],
+      "status": "отрывок найден",
+      "filename": "Screen_Recording_20261103_124519_Opera.mp4",
+      "file_url": "https://drive.google.com/file/d/15jweAqG-x4UgFyCU8jkuZXhAuRJcGIaD/view",
+      "source_kind": "excerpt",
+      "candidates": [
+        "Screen_Recording_20261103_124519_Opera.mp4"
+      ],
       "scene_start": null
     },
     {
@@ -34,10 +40,11 @@
       "status": "нет фильма в папке",
       "filename": null,
       "file_url": null,
+      "source_kind": null,
       "candidates": [],
       "scene_start": null
     }
   ],
-  "scanned_at": "2026-11-03T09:51:10+00:00",
-  "message": "Только поиск файлов. ASR/монтаж не запускались."
+  "scanned_at": "2026-11-03T11:39:14+00:00",
+  "message": "Фильмы из имён, три конкретные записи из частной визуальной проверки. Отрывок ≠ подтверждённая сцена; ASR/монтаж не запускались."
 }
