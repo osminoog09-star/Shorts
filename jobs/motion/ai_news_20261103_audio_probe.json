@@ -1,0 +1,11 @@
+{
+  "renderer": "python",
+  "script": "shorts/render_ai_news_20261103.py",
+  "output": "videos/m1lash_ai_news_20261103_ru.mp4",
+  "mode": "probe",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "no_youtube_upload": true,
+  "expected_master_sha256": "7fdb95b889966ff614f768b335c03252e0c664dd0123f11c2ee3cc99fa61148a",
+  "note": "Read-only audio probe of the actual final MP4; no speech regeneration or video rendering. No target transcript supplied to ASR."
+}
