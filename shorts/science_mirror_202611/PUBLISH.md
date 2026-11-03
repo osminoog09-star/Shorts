@@ -22,9 +22,11 @@ m1lash, shorts, рисованная анимация, наука, объясн�
 Проверили отражение своей рукой?
 
 ## Настройки
+- YouTube video ID: 6KgLv_omqao; receipt: publishing/receipts/science_mirror_202611.json; PRIVATE, no publishAt.
 - ru, madeForKids=false
 - Категория: EDUCATION (27)
-- Приватная загрузка без даты после QA; владелец смотрит/выбирает дату
+- Приватно загружен и подтверждён YouTube API (без даты, канал M1lash): https://studio.youtube.com/video/6KgLv_omqao/edit
+- Одобрение владельца: «Все 4 ок» (03.11.2026). Повторно не загружать. Дата только по следующему решению владельца.
 - Голос: Дима, ru-RU-DmitryNeural / edge-tts
 - Рисованный2D, стиль S1-D25
 - Файл собран: videos/science_mirror_202611_v1.mp4
