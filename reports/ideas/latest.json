@@ -5,7 +5,7 @@
   "ideas": [
     {
       "id": "2026-11-03-1",
-      "status": "in_work",
+      "status": "proposed",
       "kind": "proven",
       "format": "Кино-Shorts",
       "title": "Ещё ролик в формате лидера: «Скажи моё имя 💀 | Во все тяжкие | Хайзенберг»",
@@ -14,7 +14,7 @@
     },
     {
       "id": "2026-11-03-2",
-      "status": "dropped",
+      "status": "proposed",
       "kind": "proven",
       "format": "Shorts",
       "title": "Повторить приём с самым высоким досмотром: «Пока ты обещаешь начать с понедельника, пёс уже делает подхо»",
@@ -23,7 +23,7 @@
     },
     {
       "id": "2026-11-03-3",
-      "status": "in_work",
+      "status": "proposed",
       "kind": "proven",
       "format": "Shorts",
       "title": "Тема, которая приводит подписчиков: «Орёл или решка — на кону ЖИЗНЬ 💀»",
@@ -32,7 +32,7 @@
     },
     {
       "id": "2026-11-03-4",
-      "status": "in_work",
+      "status": "proposed",
       "kind": "experiment",
       "format": "Shorts",
       "title": "Закреп-комментарий с вопросом vs без закрепа",

@@ -496,6 +496,18 @@
       "shares": 0,
       "estimatedMinutesWatched": 0
     },
+    "wweAPl3P29w": {
+      "views": null,
+      "engagedViews": null,
+      "averageViewPercentage": null,
+      "averageViewDuration": null,
+      "subscribersGained": null,
+      "subscribersLost": null,
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "estimatedMinutesWatched": null
+    },
     "6KgLv_omqao": {
       "views": null,
       "engagedViews": null,
@@ -592,18 +604,6 @@
       "shares": null,
       "estimatedMinutesWatched": null
     },
-    "wweAPl3P29w": {
-      "views": null,
-      "engagedViews": null,
-      "averageViewPercentage": null,
-      "averageViewDuration": null,
-      "subscribersGained": null,
-      "subscribersLost": null,
-      "likes": null,
-      "comments": null,
-      "shares": null,
-      "estimatedMinutesWatched": null
-    },
     "qYSbQisqEpc": {
       "views": null,
       "engagedViews": null,
@@ -681,8 +681,22 @@
   "schema_version": 1,
   "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
   "snapshot_date": "2026-11-03",
-  "fetched_at": "2026-11-03T17:54:55.541659+00:00",
+  "fetched_at": "2026-11-03T19:26:36.165936+00:00",
   "inventory": [
+    {
+      "video_id": "wweAPl3P29w",
+      "title": "Она знает, кому нельзя верить #shorts",
+      "published_at": "2026-11-03T18:00:38Z",
+      "duration": "PT41S",
+      "privacy": "public",
+      "statistics": {
+        "viewCount": "29",
+        "likeCount": "1",
+        "dislikeCount": "0",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
     {
       "video_id": "6KgLv_omqao",
       "title": "Зеркало не меняет лево и право. Проверь рукой #shorts",
@@ -746,8 +760,8 @@
       "duration": "PT52S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "61",
-        "likeCount": "1",
+        "viewCount": "117",
+        "likeCount": "4",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -796,20 +810,6 @@
       }
     },
     {
-      "video_id": "wweAPl3P29w",
-      "title": "Она знает, кому нельзя верить #shorts",
-      "published_at": "2026-11-03T08:23:01Z",
-      "duration": "PT41S",
-      "privacy": "private",
-      "statistics": {
-        "viewCount": "0",
-        "likeCount": "0",
-        "dislikeCount": "0",
-        "favoriteCount": "0",
-        "commentCount": "0"
-      }
-    },
-    {
       "video_id": "qYSbQisqEpc",
       "title": "Она отказалась играть по его правилам #shorts",
       "published_at": "2026-11-03T08:22:59Z",
@@ -844,8 +844,8 @@
       "duration": "PT53S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "315",
-        "likeCount": "6",
+        "viewCount": "444",
+        "likeCount": "8",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -942,7 +942,7 @@
       "duration": "PT48S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "933",
+        "viewCount": "934",
         "likeCount": "10",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1110,7 +1110,7 @@
       "duration": "PT1M14S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "3233",
+        "viewCount": "3234",
         "likeCount": "192",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1236,7 +1236,7 @@
       "duration": "PT59S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "6170",
+        "viewCount": "6175",
         "likeCount": "160",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1405,7 +1405,7 @@
       "privacy": "public",
       "statistics": {
         "viewCount": "4",
-        "likeCount": "0",
+        "likeCount": "1",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -1428,9 +1428,9 @@
   ],
   "channel_statistics": {
     "viewCount": "32845",
-    "subscriberCount": "36",
+    "subscriberCount": "37",
     "hiddenSubscriberCount": false,
-    "videoCount": "42"
+    "videoCount": "43"
   },
   "recent_daily_views": [
     {
@@ -1503,6 +1503,7 @@
     "start": "2026-10-06",
     "end": "2026-11-02",
     "videos": {
+      "wweAPl3P29w": [],
       "6KgLv_omqao": [],
       "9XeZBiX7Pr8": [],
       "QS66i62EgJk": [],
@@ -1511,7 +1512,6 @@
       "oMhef8NQg1s": [],
       "sCThiwmigy0": [],
       "ACy21tT97a4": [],
-      "wweAPl3P29w": [],
       "qYSbQisqEpc": [],
       "xRwwXYXVxSc": [],
       "FxIlxGWVCuw": [],
@@ -2392,6 +2392,7 @@
       "mLlB8eL1FUE": []
     },
     "unsupported_metrics": {
+      "wweAPl3P29w": [],
       "6KgLv_omqao": [],
       "9XeZBiX7Pr8": [],
       "QS66i62EgJk": [],
@@ -2400,7 +2401,6 @@
       "oMhef8NQg1s": [],
       "sCThiwmigy0": [],
       "ACy21tT97a4": [],
-      "wweAPl3P29w": [],
       "qYSbQisqEpc": [],
       "xRwwXYXVxSc": [],
       "FxIlxGWVCuw": [],
