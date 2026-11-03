@@ -2,6 +2,9 @@
 """Regression tests: public Drive inventory never fabricates a verified scene."""
 import sys
 import unittest
+import json
+from io import BytesIO
+from unittest.mock import patch
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -9,6 +12,39 @@ import drive_folder_intake as intake
 
 
 class DriveIntakeTests(unittest.TestCase):
+    def test_private_drive_list_uses_oauth_without_public_sharing(self):
+        from drive_oauth_config import FOLDER
+        class Reply:
+            def __init__(self, value): self.value=value
+            def __enter__(self): return BytesIO(json.dumps(self.value).encode())
+            def __exit__(self, *args): return False
+        env = {"GDRIVE_REFRESH_TOKEN":"fake-secret"}
+        with patch("drive_oauth_config.resolve_existing_client", return_value=(
+            {"_GDRIVE_ACCESS_TOKEN":"mock-access-token"}, "youtube"
+        )), patch.object(intake, "urlopen", return_value=Reply({
+            "files":[{"id":"abcdefghijklmnop", "name":"Whiplash.2014.mp4",
+                       "mimeType":"video/mp4"}]
+        })) as requested:
+            found=intake.list_folder_authenticated(
+                "https://drive.google.com/drive/folders/" + FOLDER, env)
+        self.assertEqual(found, [{
+            "path":"Whiplash.2014.mp4",
+            "url":"https://drive.google.com/file/d/abcdefghijklmnop/view"
+        }])
+        self.assertIn("Bearer mock-access-token", requested.call_args.args[0].headers.values())
+        self.assertNotIn("fake-secret", json.dumps(found))
+
+    def test_private_drive_requires_secret_and_owner_folder(self):
+        from drive_oauth_config import FOLDER
+        with self.assertRaisesRegex(RuntimeError,"GDRIVE_REFRESH_TOKEN"):
+            intake.list_folder_authenticated(
+                "https://drive.google.com/drive/folders/" + FOLDER, {})
+        with self.assertRaisesRegex(RuntimeError,"не совпадает"):
+            intake.list_folder_authenticated(
+                "https://drive.google.com/drive/folders/ABCDEFGHIJKLMNOP", {
+                    "GDRIVE_REFRESH_TOKEN":"secret"
+                })
+
     def test_folder_allowlist(self):
         url = "https://drive.google.com/drive/folders/ABCDEFGHIJKLMN?usp=sharing"
         self.assertEqual(intake.folder_url(url), "https://drive.google.com/drive/folders/ABCDEFGHIJKLMN")
