@@ -137,7 +137,7 @@ with sync_playwright() as p:
         if MODE=='full':
             body=folder/'body.mp4';out=ROOT/'videos'/(f['id']+'_v1.mp4');out.parent.mkdir(exist_ok=True)
             run(['ffmpeg','-v','error','-y','-i',folder/'silent.mp4','-i',folder/'score.wav','-map','0:v','-map','1:a','-t',str(data['total']),'-c:v','copy','-c:a','pcm_s16le',folder/'body.mkv'])
-            run([sys.executable,ROOT/'tools/assemble_with_outro.py',folder/'body.mkv','-o',out,'--audio-bitrate','320k','--preset','fast','--crf','18','--max-seconds','65'])
+            run([sys.executable,ROOT/'tools/assemble_with_outro.py',folder/'body.mkv','-o',out,'--audio-bitrate','320k','--body-lufs','-14.0','--preset','fast','--crf','18','--max-seconds','65'])
             check=folder/'check.json'
             with check.open('w') as h:
                 checked=subprocess.run([sys.executable,str(ROOT/'skills/ext/ffmpeg-skill/scripts/check.py'),str(out),'--platform','shorts','--json'],stdout=h,stderr=subprocess.PIPE,text=True)
