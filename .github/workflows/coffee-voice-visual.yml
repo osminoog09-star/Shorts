@@ -23,12 +23,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install 'playwright>=1.48,<2' 'pillow>=10,<12'
+      - run: pip install 'playwright>=1.48,<2' 'pillow>=10,<12' 'imageio-ffmpeg>=0.6,<1'
       - name: Use runner browser and encoder
         run: |
           CHROME=$(command -v google-chrome || command -v chromium || true)
           if [ -z "$CHROME" ]; then python -m playwright install chromium; else echo "M1LASH_CHROME=$CHROME" >> "$GITHUB_ENV"; fi
-          command -v ffmpeg
+          python -c 'import imageio_ffmpeg,os;open(os.environ["GITHUB_ENV"],"a").write("M1LASH_FFMPEG="+imageio_ffmpeg.get_ffmpeg_exe()+"\n")'
       - name: Draw six stills or silent graphics
         env:
           M1LASH_JOB_PATH: jobs/motion/coffee_voice_test_fast.json

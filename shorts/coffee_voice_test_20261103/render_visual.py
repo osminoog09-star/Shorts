@@ -30,7 +30,7 @@ with sync_playwright() as p:
  sheet.save(W/'contact.jpg',quality=85)
  if mode=='full':
   out=ROOT/'videos/coffee_voice_test_visual_v1.mp4';out.parent.mkdir(exist_ok=True)
-  proc=subprocess.Popen(['ffmpeg','-v','error','-y','-f','image2pipe','-vcodec','mjpeg','-framerate','30','-i','-','-c:v','libx264','-preset','fast','-crf','18','-threads','2','-pix_fmt','yuv420p','-r','30',str(out)],stdin=subprocess.PIPE)
+  proc=subprocess.Popen([os.environ.get('M1LASH_FFMPEG','ffmpeg'),'-v','error','-y','-f','image2pipe','-vcodec','mjpeg','-framerate','30','-i','-','-c:v','libx264','-preset','fast','-crf','18','-threads','2','-pix_fmt','yuv420p','-r','30',str(out)],stdin=subprocess.PIPE)
   for i in range(math.ceil(d['total']*30)):
    page.evaluate('t=>window.seek(t)',i/30);proc.stdin.write(page.screenshot(type='jpeg',quality=92))
    if i%150==0:print('frame',i,flush=True)
