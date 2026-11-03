@@ -1,25 +1,45 @@
 {
-  "version": "denis-v3-music80",
+  "version": "denis-v5-music57p6",
   "approved_by": "owner",
-  "decision_date": "2026-11-03",
+  "decision_date": "2026-11-04",
   "speaker": "denis",
   "voice_id": "denis-qwen3tts-reference-v1",
   "engine": "qwen3-tts-local",
   "duration": 6.6,
-  "music_gain_vs_first_denis_version": 0.8,
-  "voice_level_delta_db": 1.0,
+  "music_gain_vs_first_denis_version": 0.576,
+  "voice_level_delta_db": 1,
   "no_fallback_to_old_dima": true,
   "storage": "private; materialize from Library into ignored local path before assembly",
   "assets": {
     "vertical": {
-      "path": "media/outro/m1lash_outro_denis_v3_vertical.mp4",
-      "sha256": "1bd5aa5866b70a9b9b3368105626c05b6807a887f1588abcc43224cd8be972ce",
-      "library_file_id": "libfile_2b9271cdca0081918230152ee9339766"
+      "path": "media/outro/m1lash_outro_denis_v5_vertical.mp4",
+      "sha256": "58c088c8c025a03f813f6084720740f65f07e6da26efca14c931a2247b298d00",
+      "library_file_id": "libfile_bd64cdd9abac819182b461c53581a58f"
     },
     "horizontal": {
-      "path": "media/outro/m1lash_outro_denis_v3_horizontal.mp4",
-      "sha256": "60aeb73bf3529faf5812672cdfdfdf900fb3d26c8816f95e3ee47e00f4d16f1e",
-      "library_file_id": "libfile_e8eae8b0f3848191b67fbd87bb0c0c68"
+      "path": "media/outro/m1lash_outro_denis_v5_horizontal.mp4",
+      "sha256": "4383ba9660f4830e2c973b990c2b4056185db50ccfbd296712d1f68b11bda0af",
+      "library_file_id": "libfile_8d9ce8c9441881919e9a16b900d96e0c"
     }
-  }
+  },
+  "previous_approved_version": {
+    "version": "denis-v3-music80",
+    "music_gain_vs_first_denis_version": 0.8,
+    "assets": {
+      "vertical": {
+        "path": "media/outro/m1lash_outro_denis_v3_vertical.mp4",
+        "sha256": "1bd5aa5866b70a9b9b3368105626c05b6807a887f1588abcc43224cd8be972ce",
+        "library_file_id": "libfile_2b9271cdca0081918230152ee9339766"
+      },
+      "horizontal": {
+        "path": "media/outro/m1lash_outro_denis_v3_horizontal.mp4",
+        "sha256": "60aeb73bf3529faf5812672cdfdfdf900fb3d26c8816f95e3ee47e00f4d16f1e",
+        "library_file_id": "libfile_e8eae8b0f3848191b67fbd87bb0c0c68"
+      }
+    }
+  },
+  "additional_music_gain_vs_v3": 0.72,
+  "voice_and_fx_gain_vs_v3": 1,
+  "standalone_lufs": -16.5,
+  "mastering_note": "Owner music-only reduction: do not raise the whole outro to restore generic -14 LUFS. Check full video separately."
 }
