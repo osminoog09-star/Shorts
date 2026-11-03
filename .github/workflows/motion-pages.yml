@@ -28,6 +28,8 @@ jobs:
           node --check motion-studio/studio-v2.js
           node --check site/studio/clips_ui.js
           node --check site/studio/auto_refresh.js
+          node --check site/studio/scheduling.js
+          node scripts/qa/test_studio_scheduling.cjs
           node --check site/studio/drive_connect.js
           node scripts/qa/test_drive_connect.cjs
           node scripts/qa/test_studio_auto_refresh.cjs
@@ -45,6 +47,7 @@ jobs:
           git fetch -q origin +pulse-data:refs/remotes/origin/pulse-data && git show origin/pulse-data:pulse.json > reports/youtube/pulse.json || true
           python3 scripts/build_studio_site.py
           mkdir -p _site/studio && cp site/studio/index.html site/studio/clips_ui.js site/studio/auto_refresh.js site/studio/drive_connect.js site/studio/data.json site/studio/widget.html site/studio/manifest.webmanifest site/studio/icon-192.png site/studio/icon-512.png _site/studio/ && cp -r site/studio/i _site/studio/i
+          cp site/studio/scheduling.js _site/studio/
           python3 - <<'PY'
           import json,os,re
           from pathlib import Path
@@ -62,3 +65,4 @@ jobs:
           path: _site
       - uses: actions/deploy-pages@v4
         id: deployment
+

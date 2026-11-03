@@ -213,6 +213,7 @@
       } else if (key === pageKey) return;
       pageKey = key;
       D = next;
+      if (typeof window.applySchedulingState === "function") window.applySchedulingState(D);
       mergeStatuses();
       if (pulseData) mergePulse(pulseData);
       lastError = false;
@@ -261,6 +262,10 @@
     if (statusBusy || !isVisible() || !D) return;
     statusBusy = true;
     try {
+      let scheduleChanged = false;
+      if (typeof window.refreshSchedulingState === "function") {
+        try { scheduleChanged = await window.refreshSchedulingState(); } catch (_) { /* Preserve pending reservations on transient errors. */ }
+      }
       const pairs = [["drive_auth","drive_auth_status.json"],
                      ["hdrezka_intake","hdrezka_status.json"],
                      ["direct_movie_status","direct_movie_status.json"]];
@@ -276,7 +281,7 @@
         const [key,data] = result.value;
         if (timeMs(data.checked_at) >= timeMs(latestStatuses[key]?.checked_at)) latestStatuses[key] = data;
       }
-      changed = mergeStatuses();
+      changed = mergeStatuses() || scheduleChanged;
       if (changed) refreshView();
     } catch (_) {
       // Keep the last verified status; a transient CDN failure must not claim success.

@@ -65,6 +65,21 @@ def main():
     for p in sorted((ROOT / "publishing" / "receipts").glob("*.json")):
         r = load(str(p.relative_to(ROOT)), {}) or {}
         receipts[p.stem] = r
+    manifests = {p.stem: load(str(p.relative_to(ROOT)), {}) or {}
+                 for p in (ROOT / "publishing/queue").glob("*.json")}
+    requests = (load("publishing/schedule_requests.json", {}) or {}).get("requests", {})
+    schedule_state = {}
+    for key in set(manifests) | set(receipts) | set(requests):
+        m, r, request = manifests.get(key, {}), receipts.get(key, {}), requests.get(key, {})
+        at = request.get("at") or m.get("publish_at") or r.get("publish_at_utc")
+        if not at:
+            continue
+        confirmed_at = r.get("publish_at_utc") if r.get("status") == "scheduled" else None
+        schedule_state[key] = {"at": at, "confirmed_at": confirmed_at,
+            "kind": (m.get("metadata") or {}).get("type", "short"),
+            "title": (m.get("metadata") or {}).get("title", key), "video_id": r.get("video_id"),
+            "request_id": request.get("request_id"),
+            "updated_at": request.get("requested_at") or (m.get("schedule_request") or {}).get("requested_at") or "1970-01-01T00:00:00Z"}
 
     traffic = ((latest.get("traffic") or {}).get("videos") or {})
     csv_rows = {}
@@ -85,7 +100,7 @@ def main():
         t = title.lower()
         if dur and dur > 180:
             fmt = "Длинное"
-        elif vid in kino_ids or re.search(r"сцена|фильм|\| во все|волк с уолл|стыковка|назвать сво", t):
+        elif vid in kino_ids or any(r.get("video_id") == vid and str((manifests.get(key, {}).get("metadata") or {}).get("category_id")) == "1" for key, r in receipts.items()) or re.search(r"сцена|фильм|\| во все|волк с уолл|стыковка|назвать сво", t):
             fmt = "Кино-Shorts"
         elif "притворись ботом" in t:
             fmt = "Притворись ботом"
@@ -151,7 +166,14 @@ def main():
         if m.get("publish_at"):
             local = dt.datetime.fromisoformat(m["publish_at"].replace("Z", "+00:00")).astimezone(TZ)
             scheduled[(local.date().isoformat(), local.strftime("%H:%M"))] = {
-                "title": (m.get("metadata") or {}).get("title") or mf.stem, "status": "scheduled"}
+                "title": (m.get("metadata") or {}).get("title") or mf.stem, "status": "pending", "id": mf.stem}
+    # Only matching YouTube receipts confirm a date; a manifest alone is a request.
+    scheduled = {}
+    for key, state in schedule_state.items():
+        at = dt.datetime.fromisoformat(state["at"].replace("Z", "+00:00")).astimezone(TZ)
+        confirmed = state["confirmed_at"] and dt.datetime.fromisoformat(state["confirmed_at"].replace("Z", "+00:00")).astimezone(TZ) == at
+        scheduled[(at.date().isoformat(), at.strftime("%H:%M"))] = {"id": key,
+            "title": state["title"], "status": "scheduled" if confirmed else "pending", "video_id": state["video_id"]}
     plan = []
     now_local = dt.datetime.now(TZ)
     for i in range(7):
@@ -165,6 +187,7 @@ def main():
                 continue
             hit = scheduled.get((day.isoformat(), tm))
             plan.append({"date": day.isoformat(), "time": tm, "what": slots[tm], "who": "",
+                         "id": hit.get("id") if hit else None,
                          "title": hit["title"] if hit else None, "status": hit["status"] if hit else "пусто",
                          "video_id": hit.get("video_id") if hit else None})
 
@@ -303,7 +326,7 @@ def main():
                     "videos": int(ch.get("videoCount", 0) or 0)},
         "daily": daily, "formats": formats,
         "videos": sorted(videos, key=lambda v: v["published"] or "", reverse=True),
-        "plan": plan, "review": review, "work": work,
+        "plan": plan, "review": review, "work": work, "schedule_state": schedule_state,
         "learn": {"works": section(learn_md, "Работает"), "fails": section(learn_md, "Не работает"),
                   "hyp": section(learn_md, "Гипотезы на проверку")},
         "weekly": {"name": weekly[-1].stem if weekly else None, "text": weekly_txt},
@@ -324,3 +347,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

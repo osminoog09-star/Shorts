@@ -1,4 +1,5 @@
 name: YouTube direct · review then schedule
+run-name: '${{ inputs.mode }} ${{ inputs.manifest }} ${{ inputs.expected_publish_at }} ${{ inputs.request_id }}'
 
 on:
   # One-time owner-requested private upload trigger: limited to a single reviewed bot3 manifest.
@@ -18,6 +19,14 @@ on:
         required: true
         default: false
         type: boolean
+      expected_publish_at:
+        description: "Exact owner-selected ISO time; required for execute=true schedule"
+        required: false
+        type: string
+      request_id:
+        description: "Studio request ID, frozen when the owner clicks"
+        required: false
+        type: string
       mode:
         description: "upload = залить приватно (без publish_at — на просмотр Денису); schedule = назначить дату уже залитому"
         required: true
@@ -29,7 +38,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: youtube-direct-upload
+  group: youtube-direct-${{ inputs.manifest || 'publishing/queue/pretend_bot3_gpt.json' }}
   cancel-in-progress: false
 
 jobs:
@@ -147,6 +156,8 @@ jobs:
         id: schedule
         env:
           MANIFEST: ${{ env.EFFECTIVE_MANIFEST }}
+          EXPECTED_PUBLISH_AT: ${{ inputs.expected_publish_at }}
+          EXPECTED_REQUEST_ID: ${{ inputs.request_id }}
           YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
           YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
           YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
@@ -154,7 +165,9 @@ jobs:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-        run: python scripts/youtube_direct.py schedule --manifest "$MANIFEST"
+        run: |
+          test -n "$EXPECTED_PUBLISH_AT" || { echo 'Exact owner-selected time required; no change made'; exit 1; }
+          python scripts/youtube_direct.py schedule --manifest "$MANIFEST" --expected-publish-at "$EXPECTED_PUBLISH_AT" --expected-request-id "$EXPECTED_REQUEST_ID"
       - name: Persist YouTube ID and URL
         if: steps.upload.outcome == 'success' || steps.schedule.outcome == 'success'
         env:
@@ -177,3 +190,4 @@ jobs:
           path: publishing/receipts/
           retention-days: 30
           if-no-files-found: ignore
+

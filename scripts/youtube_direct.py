@@ -143,10 +143,14 @@ def validate_queue(current_path, current, channel_map):
         return
     today = when.astimezone(TZ).date()
     shorts = []
-    for other_path in QUEUE.glob("*.json"):
-        if other_path.resolve() == current_path.resolve():
-            continue
-        other = load_json(other_path)
+    others = {p.stem: load_json(p) for p in QUEUE.glob("*.json") if p.resolve() != current_path.resolve()}
+    ledger_path = ROOT / "publishing/schedule_requests.json"
+    if ledger_path.is_file():
+        for key, request in load_json(ledger_path).get("requests", {}).items():
+            if key != current_path.stem and request.get("at"):
+                others[key] = {"channel": request.get("channel", "ru"), "publish_at": request["at"],
+                               "metadata": {"type": request.get("kind", "short")}}
+    for other in others.values():
         if other.get("channel") != channel or not other.get("publish_at"):
             continue
         other_when = event_time(other["publish_at"])
@@ -254,7 +258,18 @@ def youtube_schedule(video_id, data, publish_at, token):
     got = response.json().get("status", {}).get("publishAt")
     if not got:
         raise RuntimeError("YouTube did not confirm publishAt; check Studio")
-    return got
+    # A queued dispatch or a successful PUT alone is not a confirmed schedule.
+    check = requests.get(API + "/videos", params={"part": "status", "id": video_id},
+                         headers={"Authorization": "Bearer " + token}, timeout=40)
+    if not check.ok:
+        raise RuntimeError("YouTube schedule readback failed; inspect Studio before retry")
+    items = check.json().get("items", [])
+    status = items[0].get("status", {}) if len(items) == 1 and items[0].get("id") == video_id else {}
+    confirmed = status.get("publishAt")
+    if (status.get("privacyStatus") != "private" or not confirmed
+            or dt.datetime.fromisoformat(confirmed.replace("Z", "+00:00")) != publish_at):
+        raise RuntimeError("YouTube schedule readback differs from owner-selected time")
+    return confirmed
 
 
 def main():
@@ -262,9 +277,17 @@ def main():
     parser.add_argument("operation", choices=["check", "preflight", "reserve", "send", "schedule"])
     parser.add_argument("--manifest", required=True)
     parser.add_argument("--video-file", default="")
+    parser.add_argument("--expected-publish-at", default="")
+    parser.add_argument("--expected-request-id", default="")
     args = parser.parse_args()
     file = manifest_path(args.manifest)
     data = load_json(file)
+    if args.operation == "schedule" and args.expected_publish_at:
+        if event_time(data.get("publish_at", "")) != event_time(args.expected_publish_at):
+            raise ValueError("Stale schedule request: manifest date changed; no YouTube update")
+    if args.operation == "schedule" and args.expected_request_id:
+        if (data.get("schedule_request") or {}).get("id") != args.expected_request_id:
+            raise ValueError("Stale schedule request ID; no YouTube update")
     channels = load_json(CHANNELS)
     if data.get("source", {}).get("type") == "uploaded" and args.operation != "schedule":
         raise ValueError("Existing uploaded video: only schedule is allowed; NEVER re-upload")
@@ -289,7 +312,9 @@ def main():
         token = token_for(channel)
         verify_channel(token, expected_id)
         got = youtube_schedule(vid, data, publish_at, token)
-        atomic_json(receipt, {**prior, "status": "scheduled", "publish_at_utc": got})
+        atomic_json(receipt, {**prior, "status": "scheduled", "publish_at_utc": got,
+                              "privacy_status": "private", "schedule_confirmed_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+                              "schedule_request_id": args.expected_request_id or None})
         print("YOUTUBE_SCHEDULE_OK https://youtu.be/%s publishAt=%s" % (vid, got))
         return
     digest = hashlib.sha256(file.read_bytes()).hexdigest()
@@ -342,3 +367,4 @@ if __name__ == "__main__":
     except (ValueError, RuntimeError, KeyError, json.JSONDecodeError) as exc:
         print("ERROR: " + str(exc), file=sys.stderr)
         sys.exit(1)
+

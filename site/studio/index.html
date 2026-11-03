@@ -243,6 +243,7 @@ ol.steps{margin:0;padding-left:20px;display:grid;gap:6px;font-size:13.5px;color:
 <section class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div id="sheetBody"></div></section>
 <div class="toast" id="toast" role="status"></div>
 <script src="clips_ui.js"></script>
+<script src="scheduling.js"></script>
 <script>
 "use strict";
 const REPO="osminoog09-star/Shorts", CHANNEL="UC919eyHbOIgjsnH8z70pmZw";
@@ -361,7 +362,7 @@ function videos(){
   s+=`<div class="seg reveal">${fm.map(f=>`<button data-vf="${esc(f)}" aria-pressed="${vFilter===f}">${f==="all"?"Все":esc(f)}</button>`).join("")}</div>
      <div class="row reveal"><select class="t" id="vsort" style="max-width:240px" aria-label="Сортировка">${[["published","Сначала новые"],["views","Больше просмотров"],["avp","Лучший досмотр"],["subs","Больше подписок"]].map(([k,t])=>`<option value="${k}" ${vSort===k?"selected":""}>${t}</option>`).join("")}</select></div>`;
   const list=D.videos.filter(v=>vFilter==="all"||v.format===vFilter).sort((a,b)=>vSort==="published"?String(b.published).localeCompare(String(a.published)):(b[vSort]??-1)-(a[vSort]??-1));
-  s+=`<div class="vlist">${list.map(v=>`<button class="vrow reveal" data-vid="${esc(v.id)}"><div class="th"><img loading="lazy" src="${esc(v.thumb)}" alt="">${v.duration?`<span class="dur">${dur(v.duration)}</span>`:""}</div><div><b>${esc(clean(v.title))}</b><div class="meta"><span class="chip">${esc(v.format)}</span><span class="chip">${dshort(v.published)}</span>${v.privacy!=="public"?`<span class="chip c-warn">${esc(v.privacy)}</span>`:""}</div><div class="stats"><span><b>${short(v.views)}</b> просм.</span><span><b>${v.avp==null?"—":Math.round(v.avp)+"%"}</b> досмотр</span><span><b>${v.subs==null?"—":"+"+v.subs}</b> подп.</span></div></div></button>`).join("")||'<div class="empty">Нет роликов</div>'}</div>`;
+  s+=`<div class="vlist">${list.map(v=>`<button class="vrow reveal" data-vid="${esc(v.id)}"><div class="th"><img loading="lazy" src="${esc(v.thumb)}" alt="">${v.duration?`<span class="dur">${dur(v.duration)}</span>`:""}</div><div><b>${esc(clean(v.title))}</b><div class="meta"><span class="chip">${esc(v.format)}</span><span class="chip">${dshort(v.published)}</span>${v.privacy!=="public"?`<span class="chip c-warn">${esc(v.schedule_status==="pending"?"Назначается: "+slotLabel(Date.parse(v.scheduled_at)):v.schedule_status==="error"?"Дата не подтверждена":v.scheduled_at?"Запланирован: "+slotLabel(Date.parse(v.scheduled_at)):v.privacy==="private"?"Приватный":v.privacy)}</span>`:""}</div><div class="stats"><span><b>${short(v.views)}</b> просм.</span><span><b>${v.avp==null?"—":Math.round(v.avp)+"%"}</b> досмотр</span><span><b>${v.subs==null?"—":"+"+v.subs}</b> подп.</span></div></div></button>`).join("")||'<div class="empty">Нет роликов</div>'}</div>`;
   return s;
 }
 function queue(){
@@ -374,7 +375,7 @@ function queue(){
        '<div class="empty">Сейчас нет активных записей в очереди</div>')+'</section>';
   let s=workHtml+`<section class="card reveal"><h2>Ждёт твоего «ок» <span class="cnt">${D.review.length}</span></h2>`+(D.review.length?`<div class="grid">${D.review.map(r=>`<div class="idea"><div class="row">${r.video_id?`<div class="th" style="width:120px"><img src="https://i.ytimg.com/vi/${esc(r.video_id)}/mqdefault.jpg" alt=""></div>`:""}<div style="flex:1;min-width:0"><b>${esc(r.title)}</b><p>Залит приватно — посмотри в Studio и реши.</p></div></div><div class="row">${r.video_id?`<a class="btn sm" target="_blank" rel="noopener" href="https://studio.youtube.com/video/${esc(r.video_id)}/edit">Открыть в Studio</a>`:""}${r.manifest?`<button class="btn sm pri" data-ok="${esc(r.id)}">Заливаем →</button>`:""}</div></div>`).join("")}</div>`:`<div class="empty">Пока ничего не ждёт. Когда агент зальёт ролик приватно, он появится здесь и придёт уведомление в виджет.</div>`)+`</section>`;
   const days={};D.plan.forEach(p=>(days[p.date]=days[p.date]||[]).push(p));
-  s+=`<section class="card reveal"><h2>Сетка на 7 дней</h2>`+(D.plan.length?Object.entries(days).map(([d,sl])=>`<div class="goal"><div class="tp"><b>${dshort(d)}</b></div>${sl.map(x=>`<div class="row"><span class="chip">${esc(x.time)}</span>${x.title?`<span>${esc(x.title)}</span>`:`<span class="muted">${esc(x.what||"слот")} — нужен ролик</span>`}${x.status==="scheduled"?'<span class="chip c-ok">запланирован</span>':x.status==="пусто"?'<span class="chip c-warn">пусто</span>':`<span class="chip">${esc(x.status)}</span>`}</div>`).join("")}</div>`).join(""):`<div class="empty">Сетка пуста.</div>`)+`</section>`;
+  s+=`<section class="card reveal"><h2>Сетка на 7 дней</h2>`+(D.plan.length?Object.entries(days).map(([d,sl])=>`<div class="goal"><div class="tp"><b>${dshort(d)}</b></div>${sl.map(x=>`<div class="row"><span class="chip">${esc(x.time)}</span>${x.title?`<span>${esc(x.title)}</span>`:`<span class="muted">${esc(x.what||"слот")} — нужен ролик</span>`}${x.status==="scheduled"?'<span class="chip c-ok">подтверждено YouTube</span>':x.status==="pending"?'<span class="chip c-warn">назначается · ждём YouTube</span>':x.status==="error"?'<span class="chip c-bad">ошибка назначения</span>':x.status==="пусто"?'<span class="chip c-warn">пусто</span>':`<span class="chip">${esc(x.status)}</span>`}${x.id&&x.video_id?`<button class="btn sm" data-ok="${esc(x.id)}">Изменить время</button>`:""}</div>`).join("")}</div>`).join(""):`<div class="empty">Сетка пуста.</div>`)+`</section>`;
   return s;
 }
 function ideas(){
@@ -487,31 +488,107 @@ function openSettings(section){
     <div class="row" style="margin-top:14px"><button class="btn" data-close>Закрыть</button></div>`);
 }
 /* ---------- «Авто»: лучшее ближайшее время по активности аудитории + правилам канала ---------- */
-function bestSlots(kind){
+
+let scheduleState={};try{scheduleState=JSON.parse(store.get("m1-schedule-state","{}"))||{}}catch(_){}
+let scheduleBusy=false;
+function mergeScheduleState(next){
+  for(const [id,x] of Object.entries(next||{})){
+    const old=scheduleState[id];
+    if(!old||Date.parse(x.updated_at||0)>=Date.parse(old.updated_at||0)||x.confirmed_at===old.at)
+      scheduleState[id]={...old,...x};
+  }
+  store.set("m1-schedule-state",JSON.stringify(scheduleState));
+}
+function applySchedulingState(data){
+  if(!data)return data;
+  mergeScheduleState(data.schedule_state||{});
+  const active=Object.entries(scheduleState).filter(([,x])=>x.at);
+  const ids=new Set(active.map(([id])=>id));
+  data.taken=(data.taken||[]).filter(x=>!ids.has(x.id));
+  data.plan=(data.plan||[]).filter(x=>!ids.has(x.id));
+  for(const [id,x] of active){
+    const confirmed=x.confirmed_at&&Date.parse(x.confirmed_at)===Date.parse(x.at);
+    const stage=confirmed?"scheduled":x.error?"error":"pending";
+    data.taken.push({id,at:x.at,kind:x.kind||"short"});
+    const p=M1Schedule.parts(Date.parse(x.at));
+    const time=String(p.hour).padStart(2,"0")+":"+String(p.minute).padStart(2,"0");
+    data.plan=data.plan.filter(row=>row.date!==p.date||row.time!==time);
+    data.plan.push({id,date:p.date,time:String(p.hour).padStart(2,"0")+":"+String(p.minute).padStart(2,"0"),kind:x.kind||"short",what:x.kind==="long"?"кино-разбор":"Shorts",title:x.title||id,status:stage,video_id:x.video_id});
+    // Keep the old confirmed slot occupied until YouTube confirms a reschedule.
+    if(x.confirmed_at&&!confirmed)data.taken.push({id:id+"/previous",at:x.confirmed_at,kind:x.kind||"short"});
+    const v=(data.videos||[]).find(v=>v.id===x.video_id);
+    if(v&&v.privacy!=="public"){v.scheduled_at=x.at;v.schedule_status=stage;}
+  }
+  data.review=(data.review||[]).filter(x=>!ids.has(x.id));
+  data.plan.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+  return data;
+}
+window.applySchedulingState=applySchedulingState;
+async function refreshSchedulingState(exact=false){
+  const before=JSON.stringify(scheduleState);
+  const read=async path=>{
+    if(exact){const f=await gh("/contents/"+path+"?ref=main&t="+Date.now());return JSON.parse(b64d(f.content));}
+    const r=await fetch("https://raw.githubusercontent.com/"+REPO+"/main/"+path+"?t="+Date.now(),{cache:"no-store"});
+    if(!r.ok)throw new Error("Не удалось сверить расписание: "+r.status);return r.json();
+  };
+  const ledger=await read("publishing/schedule_requests.json"),requests=ledger.requests||{};
+  const states={};
+  for(const [id,x] of Object.entries(requests))states[id]={...x,updated_at:x.requested_at};
+  if(exact){
+    const listing=await gh("/contents/publishing/queue?ref=main&t="+Date.now());
+    const manifests=await Promise.all(listing.filter(x=>x.name.endsWith(".json")).map(async f=>[f.name.slice(0,-5),await read(f.path)]));
+    for(const [id,m] of manifests)if(m.publish_at){
+      const x=states[id]||{};states[id]={...x,at:m.publish_at,kind:m.metadata?.type||"short",title:m.metadata?.title||id,video_id:m.source?.video_id||scheduleState[id]?.video_id,updated_at:m.schedule_request?.requested_at||x.updated_at||"1970-01-01T00:00:00Z"};
+    }
+    // Only this fresh snapshot is used by the reservation; no stale Pages plan.
+    D.taken=manifests.filter(([,m])=>m.publish_at).map(([id,m])=>({id,at:m.publish_at,kind:m.metadata?.type||"short"}));
+    D.plan=[];
+  }
+  mergeScheduleState(states);
+  const ids=Object.keys({...scheduleState,...states});
+  const receipts=await Promise.allSettled(ids.map(async id=>[id,await read("publishing/receipts/"+id+".json")]));
+  for(const result of receipts)if(result.status==="fulfilled"){
+    const [id,r]=result.value,x=scheduleState[id];if(!x)continue;
+    if(r.status==="scheduled"&&r.publish_at_utc){x.confirmed_at=r.publish_at_utc;x.video_id=r.video_id;if(Date.parse(x.at)===Date.parse(r.publish_at_utc))delete x.error;}
+  }
+  if(typeof tok==="function"&&tok()&&ids.length){
+    const runs=await gh("/actions/workflows/youtube-direct.yml/runs?event=workflow_dispatch&per_page=30");
+    for(const x of Object.values(scheduleState))if(x.request_id){
+      const run=(runs.workflow_runs||[]).find(r=>(r.display_title||"").includes(x.request_id));
+      if(run?.status==="completed"&&run.conclusion!=="success")x.error="Назначение не подтверждено: "+run.conclusion;
+    }
+  }
+  store.set("m1-schedule-state",JSON.stringify(scheduleState));applySchedulingState(D);
+  return JSON.stringify(scheduleState)!==before;
+}
+window.refreshSchedulingState=refreshSchedulingState;
+
+
+function bestSlots(kind,exclude){
   const B=D.best_times||{},R=B.rules||{short_hours:[10,15,20],long_hours:[19],max_shorts_per_day:3,min_gap_hours:4,min_lead_hours:2,horizon_days:3,near_best_ratio:.85},heat=B.heat||{};
   const hours=kind==="long"?R.long_hours:R.short_hours, now=Date.now();
-  const taken=[...(D.taken||[]).map(x=>({t:new Date(x.at).getTime(),kind:x.kind||"short"})),...(D.plan||[]).filter(p=>p.title).map(p=>({t:new Date(p.date+"T"+p.time+":00").getTime(),kind:p.what==="кино-разбор"?"long":"short"}))];
+  const taken=M1Schedule.occupied(D,exclude);
   // поправка по нашим роликам: средние просмотры Shorts, вышедших в этот слот (±2 ч), если таких ≥4
   const pub=D.videos.filter(v=>v.privacy==="public"&&v.published&&(v.duration||0)<=180);const FA=fmtAvg();
   const rel=v=>{const a=(FA[v.format]||{}).views;return a?(v.views||0)/a:null};
-  const samples=h=>pub.filter(v=>Math.abs(new Date(v.published).getHours()-h)<=1).map(rel).filter(x=>x!=null);
+  const samples=h=>pub.filter(v=>Math.abs(M1Schedule.parts(Date.parse(v.published)).hour-h)<=1).map(rel).filter(x=>x!=null);
   const own={};const xh=kind==="long"?[]:(R.explore_hours||[]);
   [...hours,...xh].forEach(h=>{const a=samples(h);own[h]=a.length>=(R.explore_min_samples||4)?Math.max(.8,Math.min(1.25,avg(a))):1});
   const c=[];
   for(let d=0;d<=R.horizon_days;d++)for(const h of [...hours,...xh]){const explore=!hours.includes(h);
-    const x=new Date();x.setDate(x.getDate()+d);x.setHours(h,0,0,0);const t=x.getTime();
+    const day=new Date(M1Schedule.parts(now).date+"T12:00:00Z");day.setUTCDate(day.getUTCDate()+d);const date=day.toISOString().slice(0,10),t=M1Schedule.localTime(date+"T"+String(h).padStart(2,"0")+":00"),x=new Date(t);
     if(t<now+R.min_lead_hours*36e5)continue;
-    const sameDay=taken.filter(y=>new Date(y.t).toDateString()===x.toDateString()&&y.kind!=="long");
+    const sameDay=taken.filter(y=>M1Schedule.parts(y.t).date===date&&y.kind!=="long");
     if(kind!=="long"&&sameDay.length>=R.max_shorts_per_day)continue;
     if(taken.some(y=>Math.abs(y.t-t)<R.min_gap_hours*36e5))continue;
-    const dow=((x.getDay()+6)%7)+1, v=((heat[dow]||[])[h]||5000)*own[h];
+    const dow=((day.getUTCDay()+6)%7)+1, v=((heat[dow]||[])[h]||5000)*own[h];
     c.push({t,score:v,dow,explore,h});
   }
   const xs=c.filter(x=>x.explore);const main=c.filter(x=>!x.explore);
   if(!main.length&&!xs.length)return{best:null,list:[]};
   // нужен ли тест времени: в каком-то тестовом часу мало данных и за 7 дней тестов было меньше нормы
   const weekAgo=Date.now()-7*864e5;
-  const testsThisWeek=[...pub.filter(v=>new Date(v.published).getTime()>weekAgo).map(v=>new Date(v.published).getHours()),...taken.filter(y=>y.t>weekAgo).map(y=>new Date(y.t).getHours())].filter(h=>xh.includes(h)).length;
+  const testsThisWeek=[...pub.filter(v=>new Date(v.published).getTime()>weekAgo).map(v=>M1Schedule.parts(Date.parse(v.published)).hour),...taken.filter(y=>y.t>weekAgo).map(y=>M1Schedule.parts(y.t).hour)].filter(h=>xh.includes(h)).length;
   const needTest=xh.filter(h=>samples(h).length<(R.explore_min_samples||4)).length>0&&testsThisWeek<(R.explore_per_week||2);
   return pickBest(main.length?main:xs,xs,needTest,R);
 }
@@ -526,18 +603,20 @@ function pickBest(c,xs,needTest,R){
   return{best,list,top:Math.max(top,...xs.map(x=>x.score)),needTest};
 }
 const DW=["вс","пн","вт","ср","чт","пт","сб"];
-const slotLabel=t=>{const d=new Date(t),td=new Date();const k=Math.round((new Date(d.toDateString())-new Date(td.toDateString()))/864e5);return(k===0?"сегодня":k===1?"завтра":k===2?"послезавтра":DW[d.getDay()]+" "+dshort(d.toISOString()))+" в "+String(d.getHours()).padStart(2,"0")+":00"};
-const toLocal=t=>{const d=new Date(t);return new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,16)};
-function openOk(id){
-  const r=D.review.find(x=>x.id===id)||{},kind=r.kind||"short",S=bestSlots(kind);
-  const auto=S.best?`<div class="idea" style="border-color:color-mix(in srgb,var(--pink) 45%,var(--line))"><div class="row"><span class="chip c-pink">⚡ Авто · рекомендую</span>${S.best.explore?'<span class="chip c-info">🧪 тест времени</span>':""}</div><b style="font-size:20px">${slotLabel(S.best.t)}</b><p>${S.best.explore?"Эксперимент со временем: в этом часе у нас мало данных, а тестов на этой неделе было меньше двух. Так находим, вдруг другой час работает лучше. Не хочешь — выбери слот ниже.":"Самый ранний слот в ближайшие 48 ч, где активность аудитории ≥ 85% от лучшего в этом окне (Metricool + наши ролики, с поправкой на результаты прошлых тестов). Правила: Shorts в 10:00/16:00, ≤ 2 в день, ≥ 6 ч между роликами."}</p><button class="btn pri" data-okat="${S.best.t}" data-id="${esc(id)}">Поставить на ${slotLabel(S.best.t)}</button></div>`:`<div class="empty">Свободных слотов на 3 дня нет — выбери время вручную.</div>`;
+const slotLabel=t=>{const p=M1Schedule.parts(t);return dshort(p.date)+" в "+String(p.hour).padStart(2,"0")+":"+String(p.minute).padStart(2,"0")+" (Таллин)"};
+const toLocal=t=>{const p=M1Schedule.parts(t);return p.date+"T"+String(p.hour).padStart(2,"0")+":"+String(p.minute).padStart(2,"0")};
+async function openOk(id){
+  if(scheduleBusy)throw new Error("Предыдущее назначение ещё сохраняется");
+  await refreshSchedulingState(true);
+  const r=D.review.find(x=>x.id===id)||scheduleState[id]||{},kind=r.kind||"short",S=bestSlots(kind,id);
+  const auto=S.best?`<div class="idea" style="border-color:color-mix(in srgb,var(--pink) 45%,var(--line))"><div class="row"><span class="chip c-pink">⚡ Авто · рекомендую</span>${S.best.explore?'<span class="chip c-info">🧪 тест времени</span>':""}</div><b style="font-size:20px">${slotLabel(S.best.t)}</b><p>${S.best.explore?"Эксперимент со временем: в этом часе у нас мало данных, а тестов на этой неделе было меньше двух. Так находим, вдруг другой час работает лучше. Не хочешь — выбери слот ниже.":"Самый ранний слот в ближайшие 48 ч, где активность аудитории ≥ 85% от лучшего в этом окне (Metricool + наши ролики, с поправкой на результаты прошлых тестов). Правила: Shorts в 10:00/15:00/20:00, до 3 в день в режиме Авто, ≥ 4 ч между роликами."}</p><button class="btn pri" data-okat="${S.best.t}" data-id="${esc(id)}">Поставить на ${slotLabel(S.best.t)}</button></div>`:`<div class="empty">Свободных слотов на 3 дня нет — выбери время вручную.</div>`;
   const alt=S.list.length>1?`<p class="muted" style="font-size:12px;margin:12px 0 6px">Другие слоты (активность аудитории):</p><div class="row">${S.list.map(x=>`<button class="btn sm${S.best&&x.t===S.best.t?" pri":""}" data-okat="${x.t}" data-id="${esc(id)}">${x.explore?"🧪 ":""}${slotLabel(x.t)} · ${Math.round(x.score/S.top*100)}%</button>`).join("")}</div>`:"";
   openSheet(`<h2 style="font-size:18px">Заливаем: когда открыть ролик?</h2><p class="muted" style="margin-top:0">${esc(r.title||id)}<br>Ролик уже на YouTube приватно — YouTube сам опубликует его в выбранное время.</p>${auto}${alt}
-    <div class="idea" style="margin-top:12px"><b>✋ Своё время</b><label class="f">Дата и время — можно любой момент<input class="t" type="datetime-local" id="okAt" step="60" value="${S.best?toLocal(S.best.t):toLocal(Date.now()+864e5)}"></label><div id="okHint" class="muted" style="font-size:12.5px"></div><div class="row"><button class="btn" id="okGo" data-id="${esc(id)}">Поставить на это время</button><button class="btn" data-close>Отмена</button></div></div>`);
+    <div class="idea" style="margin-top:12px"><b>✋ Своё время</b><label class="f">Дата и время — Europe/Tallinn<input class="t" type="datetime-local" id="okAt" step="60" value="${S.best?toLocal(S.best.t):toLocal(Date.now()+864e5)}"></label><div id="okHint" class="muted" style="font-size:12.5px"></div><div class="row"><button class="btn" id="okGo" data-id="${esc(id)}">Поставить на это время</button><button class="btn" data-close>Отмена</button></div></div>`);
   setTimeout(okHint,0);
 }
 function okHint(){
-  const el=$("#okHint"),inp=$("#okAt");if(!el||!inp||!inp.value)return;const d=new Date(inp.value),B=D.best_times||{},heat=B.heat||{};
+  const el=$("#okHint"),inp=$("#okAt");if(!el||!inp||!inp.value)return;const d=new Date(M1Schedule.localTime(inp.value)),B=D.best_times||{},heat=B.heat||{};
   const dow=((d.getDay()+6)%7)+1,row=heat[dow]||[],v=row[d.getHours()]||0,peak=Math.max(1,...Object.values(heat).flat());
   const S=bestSlots("short"),bars=row.length?`<div style="display:flex;gap:2px;align-items:flex-end;height:34px;margin:6px 0">${row.map((x,h)=>`<i title="${h}:00" style="flex:1;height:${Math.max(6,x/peak*100)}%;border-radius:3px;background:${h===d.getHours()?"var(--pink)":"color-mix(in srgb,var(--muted) 35%,transparent)"}"></i>`).join("")}</div><div class="axis"><span>0:00</span><span>12:00</span><span>23:00</span></div>`:"";
   el.innerHTML=`Активность аудитории в это время: <b>${Math.round(v/peak*100)}%</b> от пика недели${d<new Date()?' · <span class="down">время уже прошло</span>':""}${S.best?` · авто рекомендует: <b>${slotLabel(S.best.t)}</b>`:""}${bars}`;
@@ -549,12 +628,31 @@ function tallinnISO(ms){
   return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}:00${off}`;
 }
 async function doSchedule(id,iso){
-  iso=tallinnISO(new Date(iso).getTime());
-  const mf=`publishing/queue/${id}.json`;
-  await editJSON(mf,m=>{m.publish_at=iso},`publish: ${id} → ${iso} (Денис: заливаем, с сайта)`);
-  await dispatch("youtube-direct.yml",{manifest:mf,execute:"true",mode:"schedule"});
-  (D.taken=D.taken||[]).push({id,at:iso,kind:"short"});closeSheet();toast("Дата назначена — YouTube откроет ролик сам ✓");
+  if(scheduleBusy)throw new Error('Предыдущее назначение ещё сохраняется');
+  scheduleBusy=true;
+  try{
+    iso=tallinnISO(new Date(iso).getTime());
+    await refreshSchedulingState(true);
+    const r=D.review.find(x=>x.id===id)||scheduleState[id]||{},kind=r.kind||'short',stamp=new Date().toISOString(),request_id=crypto.randomUUID();
+    const snapshot={...D,plan:[],taken:[...(D.taken||[])]};
+    const request={at:iso,kind,title:r.title||id,video_id:r.video_id,request_id,requested_at:stamp};
+    await editJSON('publishing/schedule_requests.json',ledger=>{
+      const requests=ledger.requests||{};
+      const latest={...snapshot,taken:[...snapshot.taken.filter(x=>!requests[x.id]),...Object.entries(requests).map(([key,x])=>({id:key,at:x.at,kind:x.kind}))]};
+      M1Schedule.assertFree(latest,id,Date.parse(iso),kind);
+      requests[id]=request;ledger.requests=requests;
+    },`schedule: reserve ${id} at ${iso}`);
+    mergeScheduleState({[id]:{...request,updated_at:stamp}});applySchedulingState(D);
+    const mf=`publishing/queue/${id}.json`;
+    await editJSON(mf,m=>{
+      if(Date.parse(m.schedule_request?.requested_at||0)>Date.parse(stamp))throw new Error('Есть более новое назначение этого ролика');
+      m.publish_at=iso;m.schedule_request={id:request_id,requested_at:stamp,publish_at:iso};
+    },`publish: ${id} → ${iso} (Денис: заливаем, с сайта)`);
+    await dispatch('youtube-direct.yml',{manifest:mf,execute:'true',mode:'schedule',expected_publish_at:iso,request_id});
+    closeSheet();render();toast('Время зарезервировано. Ожидаем подтверждения YouTube');
+  }catch(e){applySchedulingState(D);throw e}finally{scheduleBusy=false;}
 }
+
 
 
 /* ---------- 3D в шапке «Обзора» ---------- */
@@ -657,9 +755,9 @@ document.addEventListener("click",async e=>{
   if(el=q("[data-settings-section]"))return openSettings(el.dataset.settingsSection);
   if(q("[data-act=settings]"))return openSettings("general");
   if(q("[data-close]"))return closeSheet();
-  if(el=q("[data-ok]")){if(needTok())openOk(el.dataset.ok);return}
+  if(el=q("[data-ok]")){if(needTok())return act(el,()=>openOk(el.dataset.ok));return}
   if(el=q("[data-okat]"))return act(el,()=>doSchedule(el.dataset.id,new Date(+el.dataset.okat).toISOString().replace(/\.\d+Z$/,"Z")));
-  if(el=q("#okGo"))return act(el,async()=>{const at=$("#okAt").value;if(!at)throw new Error("выбери дату");if(new Date(at)<new Date())throw new Error("время уже прошло");await doSchedule(el.dataset.id,new Date(at).toISOString().replace(/\.\d+Z$/,"Z"))});
+  if(el=q("#okGo"))return act(el,async()=>{const at=$("#okAt").value;if(!at)throw new Error("выбери дату");if(M1Schedule.localTime(at)<Date.now())throw new Error("время уже прошло");await doSchedule(el.dataset.id,new Date(M1Schedule.localTime(at)).toISOString())});
   if(el=q("[data-idea]")){if(!needTok())return;const id=el.dataset.idea,to=el.dataset.to;return act(el,async()=>{
       if(to==="done"&&!D.ideas?.ideas?.find(i=>i.id===id)?.youtube_id)throw new Error("NO-GO: нет ID нового залитого ролика; исходное video_id комментария не подтверждает готовность");
       await editJSON("reports/ideas/latest.json",d=>{(d.ideas||[]).forEach(i=>{if(i.id===id){if(to==="done"&&!i.youtube_id)throw new Error("NO-GO: нет youtube_id");i.status=to}})},`ideas: ${id} → ${to} (Денис, с сайта)`);
@@ -682,7 +780,7 @@ document.addEventListener("input",e=>{if(e.target.id==="okAt")okHint()});
 $("#refresh").onclick=async()=>{const b=$("#refresh");b.classList.add("spin");if(tok()){try{await dispatch("youtube-pulse.yml");toast("Запустил сбор живых цифр — обновится через пару минут")}catch(e){toast("Не вышло: "+e.message)}}await load(true);b.classList.remove("spin")};
 document.addEventListener("pointermove",e=>{const c=e.target.closest&&e.target.closest(".chart");document.querySelectorAll(".chart .tip").forEach(t=>{if(!c||!c.contains(t))t.style.opacity=0});if(!c)return;const pts=CH[+c.dataset.ci];if(!pts)return;const r=c.getBoundingClientRect(),i=Math.max(0,Math.min(pts.length-1,Math.round((e.clientX-r.left)/r.width*(pts.length-1))));const t=c.querySelector(".tip");t.style.left=(i/(pts.length-1)*100)+"%";t.textContent=`${dshort(pts[i].x)}: ${num(pts[i].y)}`;t.style.opacity=1});
 async function load(quiet){
-  try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});D=await r.json();D.comments=D.comments||[];D.experiments=D.experiments||[];D.review=D.review||[];D.plan=D.plan||[];
+  try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});D=await r.json();D.comments=D.comments||[];D.experiments=D.experiments||[];D.review=D.review||[];D.plan=D.plan||[];applySchedulingState(D);
     const L=D.live;$("#asof").textContent=L?`обновлено ${ago(L.t)} назад`:`аналитика по ${dshort(D.analytics_as_of)}`;
     if(D.app){$("#apkv2").textContent="v"+D.app.name;$("#apk2").href=D.app.apk}
     render();if(quiet)toast("Данные обновлены")}
@@ -694,3 +792,4 @@ load();
 <script src="drive_connect.js"></script>
 </body>
 </html>
+
