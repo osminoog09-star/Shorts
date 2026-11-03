@@ -29,11 +29,11 @@
 ### 04.11 — M1lash Мульт: S9-D3 пилот и плейлист · GPT
 Цель: первый оригинальный 3D-пилот «Человек против ИИ / ИИ решил стать моим начальником» и отдельный публичный плейлист «M1lash Мульт», без публикации ролика или подмены голоса.
 - [x] Владелец утвердил новый формат, S9-D3 и только свой голос. Прочитаны NOW/AGENTS/Studio SKILL/visuals-by-code, проверены уже существующие плейлисты и штатный workflow.
-- [ ] Добавить в publishing/playlists.json новый плейлист id=null, дождаться playlists.yml и проверить реальный ID/состояние на YouTube.
-- [ ] Записать оригинальный сценарий/дизайны персонажей и изолированный Three.js-код.
-- [ ] Сделать 6 реальных стопов, открыть и оценить качество; после этого 7с немой motion pilot (без фиктивного голоса), проверить ffmpeg; сохранить артефакты.
+- [x] Плейлист «M1lash Мульт» создан штатным playlists.yml run 41729673778 SUCCESS, YouTube ID `PLFsog_YzXnAc`, config auto-updated; future episodes route separately via scripts/playlists_v2.py.
+- [x] Оригинальный сценарий и персонажи `episode.json`; `film.html` Three.js; `render_visual.py` Playwright изолированы. **Новое решение Дениса:** МИЛ=его Qwen голос, АКС=другой лицензированный голос; AGENTS §3а обновлён. Реальная проба другого голоса пока pending.
+- [ ] Actions 41730914020 (`jobs/motion/m1lash_mult_ep01_stills.json`) — 6 стопов запущены; проверить результат и физические изображения (автоматический screenshot sanity != редакторский просмотр), только после осмотра запустить 7с silent pilot.
 - [ ] Отчёт/уроки в Studio SKILL + HANDOFF; закрыть блок после подтверждённого результата или указать BLOCKED честно.
-Следующий шаг: добавить id=null playlist «M1lash Мульт» в publishing/playlists.json; workflow playlists.yml создаст его через имеющийся YouTube OAuth, затем проверить workflow run и появление ID в git. Отдельно создать shorts/m1lash_mult_ep01/Three.js сцену, раскадровку, 6 стопов и пилот. Код и материалы голосового образца в публичный Git НЕ класть; текущие popcorn/coffee/queue не трогать.
+Следующий шаг: проверить run 41730914020 (motion-render.yml), если failed — логи jobs и исправить отдельно film.html/render_visual.py; если success — скачать 6-stop artifact, открыть contact глазами, исправить внешний вид (S9-D3) до pilot; затем добавить новый job в jobs/motion для 7с silent preview. Сам голос Дениса приватно, АКС — отдельный лицензированный TTS тембр только после пробы; публикатор/queue не трогать.
 Где промежуточное: shorts/m1lash_mult_ep01/, jobs/motion/; output только artifacts, не videos/.
 Ждёт Дениса: только будущая оценка конечного озвученного MP4; новый формат и стиль уже утверждены.
 
