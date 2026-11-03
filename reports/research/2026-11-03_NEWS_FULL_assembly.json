@@ -1,0 +1,17 @@
+{
+ "out": "/home/runner/work/Shorts/Shorts/videos/m1lash_ai_news_20261103_ru.mp4",
+ "duration": 40.433,
+ "video_s": 40.433,
+ "audio_s": 40.433,
+ "body_s": 33.833,
+ "outro_s": 6.6,
+ "title_s": 0.0,
+ "body_lufs": -15.1,
+ "body_tp": -4.6,
+ "outro_lufs": -15.9,
+ "outro_tp": -1.9,
+ "outro_lag_ms": 0.0,
+ "outro_diff_db": -31.9,
+ "decode_ok": true,
+ "problems": []
+}

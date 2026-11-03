@@ -1,0 +1,326 @@
+{
+  "actual_browser_checks": [
+    {
+      "time": 0.875,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 1.901,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 2.7565,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 3.7195,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 4.328167,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 5.155333,
+      "left": 100,
+      "right": 920,
+      "bottom": 1318.21875,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 6.187333,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 7.219333,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 8.457333,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 9.871833,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 11.059833,
+      "left": 100,
+      "right": 920,
+      "bottom": 1318.21875,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 11.959833,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 12.682333,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 13.514021,
+      "left": 100,
+      "right": 920,
+      "bottom": 1318.21875,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 14.589208,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 15.484708,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 16.638708,
+      "left": 100,
+      "right": 920,
+      "bottom": 1318.21875,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 17.864708,
+      "left": 100,
+      "right": 920,
+      "bottom": 1318.21875,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 18.790208,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 19.493208,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 19.980208,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 20.327583,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 20.929958,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 21.848458,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 22.734958,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 23.215458,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 23.647062,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 24.350167,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 25.137667,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 25.822667,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 26.429167,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 27.230667,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 27.915667,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 28.779167,
+      "left": 100,
+      "right": 920,
+      "bottom": 1318.21875,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 29.856667,
+      "left": 100,
+      "right": 920,
+      "bottom": 1318.21875,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 30.630167,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 31.144021,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 31.670875,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 32.301875,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    },
+    {
+      "time": 33.182583,
+      "left": 100,
+      "right": 920,
+      "bottom": 1233.109375,
+      "sourceTop": 1350,
+      "clockRegistered": true
+    }
+  ],
+  "overlap_failures": 0,
+  "registered_paused_clock": true
+}
