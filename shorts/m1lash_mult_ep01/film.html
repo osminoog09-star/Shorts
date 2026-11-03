@@ -37,7 +37,7 @@ function human(){
    ico(.17,s*.77,.85,.37,M.skin,root,1);
    box(.13,.07,.11,s*.68,2.22,.36,M.brass,root);
  }
- const head=new THREE.Group();head.position.set(0,3.18,.06);root.add(head);
+ const head=new THREE.Group();head.position.set(0,3.18,.06);root.add(head);const brows=[];
  ico(.77,0,0,0,M.skin,head,2);
  // angular hair silhouette; lock to avoid generic sphere
  const hair=ico(.81,0,.27,-.11,M.hair,head,1);hair.scale.set(1.05,.66,1.04);
@@ -45,11 +45,11 @@ function human(){
  for(let s of [-1,1]){
    const eye=ico(.115,s*.29,.065,.70,M.white,head,1);eye.scale.set(.88,1.2,.55);
    const pupil=ico(.049,s*.29,.055,.77,M.ink,head,1);
-   const brow=box(.32,.08,.085,s*.28,.28,.71,M.hair,head);brow.rotation.z=s*.08;
+   const brow=box(.32,.08,.085,s*.28,.28,.71,M.hair,head);brow.rotation.z=s*.08;brows.push(brow);
    ico(.16,s*.70,-.05,0,M.skin,head,1);
  }
  const mouth=box(.31,.055,.09,0,-.34,.69,M.ink,head);
- return {root,head,mouth,hair};
+ return {root,head,mouth,hair,brows};
 }
 function ai(){
  const root=new THREE.Group();root.position.set(1.35,2.05,.4);scene.add(root);
@@ -93,7 +93,7 @@ function room(){
  box(1.7,.83,1.33,0,0,0,M.steel,printer);box(1.2,.05,.5,0,.48,-.07,M.ink,printer);
  coin=cyl(.52,.52,.14,.15,2.97,1.60,M.brass,scene,24);coin.rotation.x=PI/2;
  socket=box(.52,.7,.06,2.75,.72,-.8,M.white);wire=joint([2.75,.7,-.7],[2.25,.5,1.0],.055,M.ink);
- for(let i=0;i<6;i++){const m=box(.85,.055,.59,-.60+(i%2)*1.13,3.08+Math.floor(i/2)*.30,.78+(i%3)*.12,M.paper);m.rotation.y=.16*i;meeting.push(m)}
+ for(let i=0;i<6;i++){const m=box(.85,.055,.59,-2.7+(i%2)*.58,2.12+Math.floor(i/2)*.28,.28+(i%3)*.12,M.paper);m.rotation.y=.16*i;meeting.push(m)}
  for(let i=0;i<12;i++){const p=box(.62,.02,.83,2.00+(i%3)*.27,.86+(i%4)*.18,.2+(i%3)*.26,M.paper);p.rotation.z=i*.08;forms.push(p)}
  for(let i=0;i<5;i++){checks.push(ico(.11,-.7+i*.22,3.65,-.45,M.green,scene,0))}
 }
@@ -111,10 +111,10 @@ const tags=["Я НАЧАЛ ПРОСТО С ОДНОЙ ЗАДАЧИ","ИИ ПЕР
 const looks=[
  {p:[0,3.58,12.7],at:[0,2.65,-.05]},
  {p:[-2.0,3.7,5.6],at:[-1.25,3.06,-.3]},
- {p:[2.48,3.55,5.45],at:[1.16,2.43,.25]},
- {p:[2.52,3.08,5.8],at:[1.58,2.16,.22]},
+ {p:[1.15,3.53,6.25],at:[.52,2.96,.86]},
+ {p:[3.35,3.02,6.5],at:[2.12,1.76,.25]},
  {p:[-1.88,3.10,6.65],at:[-1.15,2.62,-.3]},
- {p:[2.28,3.24,5.62],at:[1.38,2.33,.30]}
+ {p:[2.6,3.0,6.1],at:[1.84,1.86,.77]}
 ];
 function seek(t){
  clock=t;
@@ -124,20 +124,22 @@ function seek(t){
  for(let i=0;i<6;i++){}
  const L=looks[s],b=Math.sin(t*.8),bob=Math.sin(t*2.6);
  camera.position.set(L.p[0]+Math.sin(dt*.26)*.12,L.p[1]+Math.cos(dt*.3)*.035,L.p[2]-.12*Math.min(6.5,dt));
- camera.lookAt(...L.at); camera.updateProjectionMatrix();
+ if(s===0)camera.position.z-=1.1*Math.min(1,Math.max(0,(dt-1.2)/1.6));camera.lookAt(...L.at); camera.updateProjectionMatrix();
  // deliberate staged action, not a static picture
  mil.head.rotation.z=(s===0?-.10:s===2?.08:s===4?.10:0)+Math.sin(t*3.4)*.035;
+ mil.brows.forEach((br,i)=>{br.rotation.z=(i===0?-1:1)*(s===1?.30:s===4?-.32:s===5?.40:.12)});
+ mil.mouth.scale.set(s===1?1.4:s===4?1.7:1,s===4?2.9:s===5?2.0:1,1);
  mil.root.rotation.y=s===3?-.14:s===5?.16:0;
  mil.root.position.y=.35+(s===0?.09*Math.max(0,1-dt/3):0);
  aks.root.position.y=(s===4?1.27:2.15)+Math.sin(t*2.2)*.09+(s===0?Math.max(0,1.5-t)*2.2:0);
- aks.root.rotation.y=Math.sin(t*.65)*.16;
+ aks.root.rotation.y=Math.sin(t*.65)*.16;aks.smile.scale.y=s===3?.30:s===5?.80:.44;
  aks.orbit.rotation.y=t*.62;aks.outer.rotation.z=t*.22;
  aks.root.scale.setScalar(s===4?.46:1);
  desk.visible=true;
  coin.visible=s===2;
  coin.position.y=3.06+Math.sin(t*3)*.24;coin.rotation.x=t*1.5;
  printer.visible=s===3;
- meeting.forEach((x,i)=>{x.visible=s===1;x.position.y=3.08+Math.floor(i/2)*.30+Math.sin(t*2+i)*.06});
+ meeting.forEach((x,i)=>{x.visible=s===1;x.position.y=2.12+Math.floor(i/2)*.28+Math.sin(t*2+i)*.06});
  forms.forEach((x,i)=>{x.visible=s===3;x.position.y=.86+(i%4)*.18+Math.sin(t*2+i)*.10;x.rotation.y=t*.2+i*.08});
  checks.forEach((x,i)=>{x.visible=s===5;x.scale.setScalar(.7+Math.abs(Math.sin(t*2+i))*.3)});
  phone.visible=s===5;
