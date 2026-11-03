@@ -26,15 +26,17 @@
 
 ## GPT/Codex
 ### 03.11 — Автономный резервный серверный импорт MP4 · GPT
-Цель: без телефона и без обхода защиты сторонних сайтов добавить прямой импорт разрешённого MP4 из публичного источника в личный Google Drive, тестировать по фактам.
+Цель: без телефона и без обхода защиты сторонних сайтов — прямой импорт разрешённого MP4 с сервера в личный Google Drive.
 Шаги:
-- [x] Прочитаны NOW/AGENTS/Studio/HANDOFF и подтверждены реальные `source_antibot` HDRezka, Drive OAuth и приватное сканирование.
-- [x] Начат `scripts/direct_movie_intake.py`: строго разрешённые хосты, HTTPS/MP4, DNS и redirect gate, ffprobe длительность/качество, rclone upload+remote size check. Код `0c599a0`.
-- [ ] Добавить unit tests, Actions workflow для inspect/download и UI Studio, запустить live тесты.
-- [ ] Проверить конечный GitHub Pages деплой и документировать именно то, что реально прошло.
-Следующий шаг: unit tests `scripts/qa/test_direct_movie_intake.py`, workflow `.github/workflows/direct-movie-intake.yml`, подключить UI. Не подменять успешный прямой импорт обещанием скачать защищённый HDRezka.
-Где промежуточное: `scripts/direct_movie_intake.py`, `publishing/direct_movie_status.json` планируется.
-Ждёт владельца: для импорта конкретного «Оппенгеймера» понадобится доступный разрешённый MP4, если извлечь его штатно нельзя; Google OAuth не нужен.
+- [x] Прочитаны NOW/AGENTS/Studio/HANDOFF. HDRezka источник `source_antibot`, Chromium challenge даже HTTP200; доступного «Оппенгеймера» нет.
+- [x] Серверный `scripts/direct_movie_intake.py` с HTTPS + allowlist Archive/Blender/GitHub, DNS/redirect gate, MP4 signature, ограничение 6,5 ГБ, `ffprobe` длительность >=20м/720p/1080p/аудио и rclone+remote size check. Без подтверждения RU-дорожки.
+- [x] `.github/workflows/direct-movie-intake.yml` + `scripts/qa/test_direct_movie_intake.py` (6 offline tests), Pages UI (серверные кнопки inspect/upload), live JSON status. Actions **41560256794 SUCCESS**, реальный public Archive.org MP4 header прочитан (4096 байт); **это не целый фильм**.
+- [x] Real Drive write/read/exact size/delete — **41560398775 SUCCESS**, тестовый файл был в корне Drive, удалён, папка фильмов не тронута. GitHub Pages **41559990034 SUCCESS**, включая новые кнопки и auto-refresh QA.
+- [x] Итог в `reports/research/2026-11-03_DIRECT_MP4_FALLBACK.md` и `skills/m1lash-studio/SKILL.md`.
+- [ ] Только при появлении полного **разрешённого прямого MP4** — реальный `download` 20+ мин, ffprobe/ASR RU и metadata в Drive. Существующий источник HDRezka пока технически недоступен; не обещать 1080p или готовый файл.
+Следующий шаг: НЕ повторять бездумно HDRezka/Anubis/CAPTCHA; не вводить новый Google OAuth. Для реального фильма нужен работающий разрешённый URL (в текущем проекте отсутствует); тогда запустить `direct-movie-intake.yml mode=inspect/download`, проверить `publishing/direct_movie_status.json` + Drive файл. Публичную папку Drive (`anyone=writer`) не менять без решения владельца.
+Где промежуточное: `scripts/direct_movie_intake.py`, `publishing/direct_movie_status.json`, `reports/research/2026-11-03_DIRECT_MP4_FALLBACK.md`.
+Ждёт владельца: пока ничего по технике; для конкретного «Оппенгеймера» нужен доступный файл с правом использования, иначе нет фактических байтов для переноса.
 
 ### 02.11 — HDRezka → Drive в Студии M1lash (отдельная задача) · GPT
 Цель: по нажатию в «Клипы» проверить качество 720p/1080p и приватно скачать разрешённый владельцем файл в его папку Drive.
