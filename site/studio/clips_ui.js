@@ -31,23 +31,23 @@ function clips(){
   const probes=(D.scene_candidates||{}).items||{};
   const missing=req.filter(r=>!["собран","сцена найдена"].includes((found.get(r.id)||{}).status||r.status)).length;
   const neededFilms=[...new Set(req.map(r=>r.film))];
-  const missingFilms=neededFilms.filter(f=>!req.some(r=>r.film===f&&found.get(r.id)?.status==="фильм найден"));
+  const missingFilms=neededFilms.filter(f=>!req.some(r=>r.film===f&&["фильм найден","отрывок найден"].includes(found.get(r.id)?.status)));
   const active=!!folder.scan_enabled&&!!folder.url;
   const stat=scan.status==="ok"
     ? 'В папке '+num(scan.file_count)+' файлов, из них видео '+num(scan.video_files)+
       ' · нужно фильмов '+num(neededFilms.length)+
-      ' · найдено '+num(neededFilms.length-missingFilms.length)
+      ' · материалы для '+num(neededFilms.length-missingFilms.length)+' (полные фильмы: '+num(scan.matched_film_count||0)+', отрывки: '+num(scan.matched_excerpt_film_count||0)+')'
     : scan.status==="error"?'Ошибка сканирования: '+esc(scan.message||"доступ закрыт")
     : folder.url?'Папка подключена для приватной проверки через Google OAuth. Публичный доступ НЕ требуется. Семь старых фильмов повторно не нужны.':'Папка ещё не подключена. Уже собранные 7 видео повторно скачивать не нужно.';
   let html='<section class="card reveal"><h2>Одна папка Google Drive</h2>'+
-    '<p class="muted">Для новых кино-сцен. Фильмы целиком, русская актёрская дорожка. Сканирование через твой закрытый Google Drive OAuth — открывать доступ всем по ссылке не надо. Не загружай сюда исходники для уже собранных 7 роликов повторно.</p>'+
+    '<p class="muted">Для новых кино-сцен. Полные фильмы или твои исходные отрывки, русская актёрская дорожка проверяется отдельно. Сканирование через твой закрытый Google Drive OAuth — открывать доступ всем по ссылке не надо. Не загружай сюда исходники для уже собранных 7 роликов повторно.</p>'+
     '<label class="muted" for="drive-folder-url">Папка Google Drive</label>'+
     '<input class="t" id="drive-folder-url" type="url" inputmode="url" autocomplete="off" placeholder="https://drive.google.com/drive/folders/…" value="'+esc(folder.url||"")+'">'+
     '<div class="row"><button class="btn pri" data-folder-save>'+(folder.url&&!active?'Включить проверку папки':'Сохранить папку')+'</button>'+
     '<button class="btn" data-folder-scan '+(!active?'disabled':'')+'>Проверить папку</button>'+
     (folder.url?'<a class="btn" target="_blank" rel="noopener noreferrer" href="'+esc(folder.url)+'">Открыть Drive</a>':'')+'</div>'+
     '<p class="muted">'+stat+'</p>'+
-    (missingFilms.length?'<p class="muted">Нужны новые фильмы: '+missingFilms.map(esc).join(' · ')+'</p>':'')+
+    (missingFilms.length?'<p class="muted">Пока нет исходников: '+missingFilms.map(esc).join(' · ')+'</p>':'')+
     '<p class="muted">Последняя проверка: '+esc(scan.scanned_at||"ещё не было")+
     '. Сканер пока определяет файлы, но не скачивает фильмы и не заявляет о готовом монтаже.</p></section>';
   html+='<section class="card reveal"><h2>Новые фильмы <span class="cnt">'+missing+' ожидают исходники/сцены</span></h2>'+
