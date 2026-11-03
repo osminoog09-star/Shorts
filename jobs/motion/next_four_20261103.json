@@ -6,7 +6,7 @@
   "preflight_only": false,
   "save_review_mp4": true,
   "no_youtube_upload": true,
-  "note": "Other 3 accepted technical QA; mirror final_look found small SVG floor-label collision. Remake mirror only after moving embedded labels; no Youtube upload or schedule.",
+  "note": "Mirror final look showed baseline labels overlapping floor and mirror stand despite smaller type; removed redundant labels; render mirror only, no other 3 touched.",
   "only_ids": [
     "science_mirror_202611"
   ]
