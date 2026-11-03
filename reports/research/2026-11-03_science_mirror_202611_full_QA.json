@@ -1,0 +1,474 @@
+{
+  "id": "science_mirror_202611",
+  "mode": "full",
+  "run_id": "41631388838",
+  "body_seconds": 36.069041666666664,
+  "timeline": {
+    "id": "science_mirror_202611",
+    "theme": "mirror",
+    "label": "Наука · отражение",
+    "headlines": [
+      "ПРОВЕРЬ ЛАДОНЬЮ",
+      "РУКА НА ТОМ ЖЕ МЕСТЕ",
+      "МЕНЯЕТСЯ ГЛУБИНА",
+      "БУКВЫ ЗАДОМ НАПЕРЁД",
+      "МЫ ПОВЕРНУЛИ ЛИСТ",
+      "ЗЕРКАЛО НЕ ХИТРИТ"
+    ],
+    "sources": [
+      "https://spark.iop.org/why-lateral-inversion"
+    ],
+    "total": 36.069041666666664,
+    "cuts": [
+      0,
+      6.20775,
+      10.753583333333333,
+      17.028083333333335,
+      22.867625,
+      28.715791666666668,
+      36.069041666666664
+    ],
+    "caps": [
+      {
+        "start": 0.1,
+        "end": 2.168,
+        "words": [
+          "Говорят",
+          "зеркало",
+          "меняет",
+          "местами"
+        ]
+      },
+      {
+        "start": 2.168,
+        "end": 3.4922916666666666,
+        "words": [
+          "левую",
+          "и",
+          "правую",
+          "стороны"
+        ]
+      },
+      {
+        "start": 3.5722916666666666,
+        "end": 4.627291666666666,
+        "words": [
+          "Тогда",
+          "почему",
+          "оно",
+          "не"
+        ]
+      },
+      {
+        "start": 4.627291666666666,
+        "end": 6.12775,
+        "words": [
+          "переворачивает",
+          "верх",
+          "и",
+          "низ"
+        ]
+      },
+      {
+        "start": 6.20775,
+        "end": 7.823833333333333,
+        "words": [
+          "Подними",
+          "руку",
+          "справа",
+          "от",
+          "себя"
+        ]
+      },
+      {
+        "start": 7.903833333333333,
+        "end": 9.428833333333333,
+        "words": [
+          "В",
+          "отражении",
+          "она",
+          "останется"
+        ]
+      },
+      {
+        "start": 9.428833333333333,
+        "end": 10.673583333333333,
+        "words": [
+          "на",
+          "той",
+          "же",
+          "стороне",
+          "зеркала"
+        ]
+      },
+      {
+        "start": 10.753583333333333,
+        "end": 13.172875,
+        "words": [
+          "Зеркало",
+          "меняет",
+          "направление",
+          "вперёд",
+          "и",
+          "назад"
+        ]
+      },
+      {
+        "start": 13.252875,
+        "end": 14.490874999999999,
+        "words": [
+          "Твой",
+          "нос",
+          "смотрит",
+          "к"
+        ]
+      },
+      {
+        "start": 14.490874999999999,
+        "end": 16.948083333333333,
+        "words": [
+          "стеклу",
+          "Отражённый",
+          "нос",
+          "обратно"
+        ]
+      },
+      {
+        "start": 17.028083333333335,
+        "end": 18.144083333333334,
+        "words": [
+          "А",
+          "почему",
+          "надпись",
+          "на"
+        ]
+      },
+      {
+        "start": 18.144083333333334,
+        "end": 19.76154166666667,
+        "words": [
+          "футболке",
+          "выглядит",
+          "наоборот"
+        ]
+      },
+      {
+        "start": 19.841541666666668,
+        "end": 21.04354166666667,
+        "words": [
+          "Потому",
+          "что",
+          "мы",
+          "сравниваем"
+        ]
+      },
+      {
+        "start": 21.04354166666667,
+        "end": 22.787625000000002,
+        "words": [
+          "её",
+          "с",
+          "повёрнутым",
+          "к",
+          "нам",
+          "человеком"
+        ]
+      },
+      {
+        "start": 22.867625,
+        "end": 24.266625,
+        "words": [
+          "Напиши",
+          "слово",
+          "на",
+          "прозрачном"
+        ]
+      },
+      {
+        "start": 24.266625,
+        "end": 25.869583333333335,
+        "words": [
+          "листе",
+          "и",
+          "поверни",
+          "его",
+          "к",
+          "зеркалу"
+        ]
+      },
+      {
+        "start": 25.949583333333333,
+        "end": 27.117583333333332,
+        "words": [
+          "Ты",
+          "уже",
+          "сам",
+          "развернул"
+        ]
+      },
+      {
+        "start": 27.117583333333332,
+        "end": 28.635791666666666,
+        "words": [
+          "лист",
+          "ещё",
+          "до",
+          "отражения"
+        ]
+      },
+      {
+        "start": 28.715791666666668,
+        "end": 30.058791666666668,
+        "words": [
+          "Лево",
+          "и",
+          "право",
+          "путает"
+        ]
+      },
+      {
+        "start": 30.058791666666668,
+        "end": 32.23458333333333,
+        "words": [
+          "привычка",
+          "мысленно",
+          "разворачивать",
+          "собеседника"
+        ]
+      },
+      {
+        "start": 32.31458333333333,
+        "end": 33.72058333333333,
+        "words": [
+          "У",
+          "зеркала",
+          "нет",
+          "любимой"
+        ]
+      },
+      {
+        "start": 33.72058333333333,
+        "end": 35.989041666666665,
+        "words": [
+          "стороны",
+          "Оно",
+          "отражает",
+          "глубину"
+        ]
+      }
+    ],
+    "segments": [
+      {
+        "start": 0.1,
+        "end": 3.4922916666666666,
+        "text": "Говорят, зеркало меняет местами левую и правую стороны."
+      },
+      {
+        "start": 3.5722916666666666,
+        "end": 6.12775,
+        "text": "Тогда почему оно не переворачивает верх и низ?"
+      },
+      {
+        "start": 6.20775,
+        "end": 7.823833333333333,
+        "text": "Подними руку справа от себя."
+      },
+      {
+        "start": 7.903833333333333,
+        "end": 10.673583333333333,
+        "text": "В отражении она останется на той же стороне зеркала."
+      },
+      {
+        "start": 10.753583333333333,
+        "end": 13.172875,
+        "text": "Зеркало меняет направление вперёд и назад."
+      },
+      {
+        "start": 13.252875,
+        "end": 16.948083333333333,
+        "text": "Твой нос смотрит к стеклу. Отражённый нос — обратно."
+      },
+      {
+        "start": 17.028083333333335,
+        "end": 19.76154166666667,
+        "text": "А почему надпись на футболке выглядит наоборот?"
+      },
+      {
+        "start": 19.841541666666668,
+        "end": 22.787625000000002,
+        "text": "Потому что мы сравниваем её с повёрнутым к нам человеком."
+      },
+      {
+        "start": 22.867625,
+        "end": 25.869583333333335,
+        "text": "Напиши слово на прозрачном листе и поверни его к зеркалу."
+      },
+      {
+        "start": 25.949583333333333,
+        "end": 28.635791666666666,
+        "text": "Ты уже сам развернул лист, ещё до отражения."
+      },
+      {
+        "start": 28.715791666666668,
+        "end": 32.23458333333333,
+        "text": "Лево и право путает привычка мысленно разворачивать собеседника."
+      },
+      {
+        "start": 32.31458333333333,
+        "end": 35.989041666666665,
+        "text": "У зеркала нет любимой стороны. Оно отражает глубину."
+      }
+    ],
+    "actual_audio": true
+  },
+  "personal_listening": "NOT_VERIFIED",
+  "visual_review": "PENDING_MANUAL",
+  "youtube_uploaded": false,
+  "sha256": "1ae2f9f33f166f1239e3552ff07ca2e9bcbff8a880c2cc7716829b6847a3c1cb",
+  "bytes": 6960301,
+  "assembly": {
+    "out": "/home/runner/work/Shorts/Shorts/videos/science_mirror_202611_v1.mp4",
+    "duration": 42.7,
+    "video_s": 42.7,
+    "audio_s": 42.7,
+    "body_s": 36.1,
+    "outro_s": 6.6,
+    "title_s": 0.0,
+    "body_lufs": -14.6,
+    "body_tp": -6.1,
+    "outro_lufs": -15.9,
+    "outro_tp": -2.0,
+    "outro_lag_ms": 0.0,
+    "outro_diff_db": -30.4,
+    "decode_ok": true,
+    "problems": []
+  },
+  "check": {
+    "status": "completed",
+    "output": null,
+    "dry_run": false,
+    "commands": [
+      "/usr/bin/ffmpeg -hide_banner -nostdin -i /home/runner/work/Shorts/Shorts/videos/science_mirror_202611_v1.mp4 -vn -af loudnorm=I=-14:TP=-1:LRA=11:print_format=json -f null -"
+    ],
+    "verified": false,
+    "verification": [],
+    "platform": "shorts",
+    "checks": [
+      {
+        "check": "duration",
+        "status": "PASS",
+        "value": "42.70s",
+        "expected": "<= 180s",
+        "fix": "decide with the user: cut.py keeps quality but drops content; fit.py --duration speeds up (audio pitch-preserved, motion faster)",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "aspect",
+        "status": "PASS",
+        "value": "9:16",
+        "expected": "9:16/1:1",
+        "fix": "fit.py --aspect 9:16 --fit pad (keeps everything, adds bars) or crop (fills the frame, loses the edges: check the subject with look.py)",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "resolution",
+        "status": "PASS",
+        "value": "1080x1920",
+        "expected": "short side >= 1080",
+        "fix": "upscaling will not add detail; re-export from the master",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "fps",
+        "status": "PASS",
+        "value": "30",
+        "expected": "<= 60",
+        "fix": "fit.py --fps 30 (drops half the frames of 60 fps motion; fine for talking heads, visible on sports/gaming)",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "vfr",
+        "status": "PASS",
+        "value": "constant",
+        "expected": "constant",
+        "fix": "fit.py --fps N (any re-encode conforms it)",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "video codec",
+        "status": "PASS",
+        "value": "h264",
+        "expected": "h264/hevc",
+        "fix": "export.py --preset shorts",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "colour",
+        "status": "PASS",
+        "value": "bt709 matrix, primaries/transfer untagged (players assume bt709)",
+        "expected": "bt709/bt709 tagged (or HDR)",
+        "fix": "",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "file size",
+        "status": "PASS",
+        "value": "6.6 MB",
+        "expected": "<= 262144 MB",
+        "fix": "export.py --crf 24 or lower resolution",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "audio",
+        "status": "PASS",
+        "value": "aac 2ch 48000Hz",
+        "expected": "present",
+        "fix": "",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "subtitles",
+        "status": "WARN",
+        "value": "none",
+        "expected": ">= 1 language-tagged subtitle track",
+        "fix": "caption.py video.mp4 --mode mux --srt subs.srt:en -o video_subs.mkv (streams are copied)",
+        "reason": "subtitles are optional, but they are the cheapest accessibility win a delivery has",
+        "kind": "format"
+      },
+      {
+        "check": "loudness",
+        "status": "PASS",
+        "value": "-14.9 LUFS",
+        "expected": "-14 ± 2 LUFS",
+        "fix": "loudness.py -I -14 for speech or music; leave ambience/near-silence (<= -40 LUFS) alone and say so",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "true peak",
+        "status": "PASS",
+        "value": "-2.0 dBTP",
+        "expected": "<= -1 dBTP (+0.1 dB tolerance)",
+        "fix": "loudness.py --tp -1",
+        "reason": "",
+        "kind": "judgement"
+      }
+    ],
+    "failed": 0,
+    "warnings": 1,
+    "ok": true,
+    "input_identity": {
+      "size": 6960301,
+      "mtime_ns": 1793707342410668667
+    }
+  }
+}
