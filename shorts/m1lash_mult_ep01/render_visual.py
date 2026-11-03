@@ -80,7 +80,7 @@ def main():
   for t in (1.5,2.1,2.5,3.0,3.5,4.0,4.5,5.1,5.9):
    row=page.evaluate("(t)=>window.inspectActing(t)",t)
    hands=row["hands"]
-   row["hands_inside_viewport"]=all(25<h["x"]<1055 and 190<h["y"]<1690 for h in hands)
+   row["hands_inside_viewport"]=all(25<h["x"]<950 and 190<h["y"]<1690 for h in hands)
    row["elbows_articulated"]=all(abs(h["elbow"])>.1 for h in hands)
    acting.append(row)
   (OUT/"acting_gate.json").write_text(json.dumps({
@@ -97,7 +97,7 @@ def main():
   print("ACTING_GATE","samples",len(acting),
         "hand_clips",sum(not q["hands_inside_viewport"] for q in acting),flush=True)
   if any(not q["hands_inside_viewport"] for q in acting):
-   raise RuntimeError("ART_QA_HAND_CLIP: hand outside 25..1055px horizontal or 190..1690px vertical safe-area")
+   raise RuntimeError("ART_QA_HAND_CLIP: hand outside 25..950px horizontal or 190..1690px vertical safe-area")
   if not all(q["elbows_articulated"] for q in acting):
    raise RuntimeError("ART_QA_ELBOW: one or more sample poses have straight, unarticulated arms")
   sheet=Image.new("RGB",(900,1100),(21,29,44))
