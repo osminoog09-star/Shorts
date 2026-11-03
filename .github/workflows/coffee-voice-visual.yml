@@ -1,0 +1,41 @@
+name: Coffee voice test · silent visuals only
+on:
+  push:
+    paths: ['jobs/motion/coffee_voice_test_fast.json']
+permissions:
+  contents: write
+concurrency:
+  group: coffee-voice-private-test-visual
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          filter: blob:none
+          sparse-checkout: |
+            shorts
+            jobs
+            reports/research
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install 'playwright>=1.48,<2' 'pillow>=10,<12'
+      - name: Use runner browser and encoder
+        run: |
+          CHROME=$(command -v google-chrome || command -v chromium || true)
+          if [ -z "$CHROME" ]; then python -m playwright install chromium; else echo "M1LASH_CHROME=$CHROME" >> "$GITHUB_ENV"; fi
+          command -v ffmpeg
+      - name: Draw six stills or silent graphics
+        env:
+          M1LASH_JOB_PATH: jobs/motion/coffee_voice_test_fast.json
+        run: python shorts/coffee_voice_test_20261103/render_visual.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coffee-silent-visual-${{ github.run_id }}
+          path: motion-output/coffee_voice_test
+          retention-days: 14

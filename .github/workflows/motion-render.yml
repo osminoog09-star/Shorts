@@ -1,7 +1,7 @@
 name: Motion Studio · render MP4
 on:
   push:
-    paths: ['jobs/motion/*.json']
+    paths: ['jobs/motion/*.json', '!jobs/motion/coffee_voice_test_fast.json']
   workflow_dispatch:
     inputs:
       job:

@@ -13,7 +13,7 @@ else:
   for j,gr in enumerate(groups):caps.append({'start':i*6+j*6/len(groups),'end':i*6+(j+1)*6/len(groups),'words':gr})
  d={'total':36,'cuts':[0,6,12,18,24,30,36],'caps':caps,'theme':'coffee','headlines':f['headlines'],'sources':[],'label':'СКЕТЧ'}
 with sync_playwright() as p:
- b=p.chromium.launch(headless=True,args=['--no-sandbox','--disable-dev-shm-usage','--allow-file-access-from-files'])
+ b=p.chromium.launch(headless=True,executable_path=os.environ.get('M1LASH_CHROME') or None,args=['--no-sandbox','--disable-dev-shm-usage','--allow-file-access-from-files'])
  page=b.new_page(viewport={'width':1080,'height':1920},device_scale_factor=1)
  page.goto((P/'film.html').as_uri());page.evaluate('() => document.fonts.ready');page.evaluate('d=>window.setTimeline(d)',d)
  for cap in d['caps']:
