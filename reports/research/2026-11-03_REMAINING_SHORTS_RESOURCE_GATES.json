@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-03",
+  "completed_this_session": [
+    "ai_bureaucracy_claude_v3",
+    "ai_news_20261103"
+  ],
+  "dog": {
+    "status": "BLOCKED_RESOURCE",
+    "existing_seconds": 6.041667,
+    "native_dimensions": [
+      720,
+      1280
+    ],
+    "generation_job_id": "cb0487f7-ac8a-4995-9a6f-f4b6d723fa16",
+    "free_video_generations_remaining": 0,
+    "paid_credits_observed": 14.9,
+    "unlimited_available": false,
+    "free_image_sheets_remaining": 5,
+    "new_paid_generations_started": 0,
+    "reason": "Existing six-second preview is not a complete30–45second story; no stretching, looping or rejected cartoon substitution."
+  },
+  "ernesto": {
+    "status": "SOURCE_INCOMPLETE",
+    "existing_excerpt_seconds": 22,
+    "missing": "requested final hysterical laughter in real Russian actor audio",
+    "drive_searches": [
+      {
+        "aliases": [
+          "Breaking",
+          "Тяжк",
+          "Уолт",
+          "Walter",
+          "crawl",
+          "Ernesto",
+          "смех"
+        ],
+        "matching_videos": 0
+      },
+      {
+        "aliases": [
+          "Skyler",
+          "Skylar",
+          "Скайлер",
+          "Хайзенберг",
+          "Heisenberg",
+          "подвал"
+        ],
+        "matching_videos": 0
+      }
+    ],
+    "all_drive_files_claimed_reviewed": false,
+    "youtube_bot_bypass_attempted": false,
+    "new_source_requested_from_owner": false
+  },
+  "publication": {
+    "youtube_uploads_started": 0,
+    "publish_dates_assigned": 0
+  }
+}
