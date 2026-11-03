@@ -1,3 +1,12 @@
+## GPT 03.11 — ПОЛНЫЙ аудит неработающего импорта фильма: источник anti-bot, Drive исправен
+
+- По просьбе владельца проведён сквозной аудит сайта, GitHub Actions, pinned Go CLI, качества, Google Drive, статусов и прав. Главный отчёт: `reports/research/2026-11-03_FULL_STUDIO_DRIVE_INTAKE_AUDIT.md`.
+- Диагностики **41550466981 SUCCESS**, **41550688949 SUCCESS**: HTTP HEAD/GET страницы фильма и GET корня вернули 200, но pinned `hdrezka-dl --no-antibot-solver --info` в том же GitHub runner стабильно **exit 2 / anti_bot_challenge**. Клиент сначала `Init()` обращается к корню и выявляет защиту, до доступа к 720p/1080p процесс не доходит. Ни качество, ни русский дубляж, ни MP4 не подтверждены. Конкретный сервис антибота не установлен и не требуется; обходить DRM/CAPTCHA/Premium нельзя.
+- **Backend:** `scripts/hdrezka_intake.py classify_source_failure` теперь безопасно различает антибот/HTTP/DNS/TLS и не логирует raw output; новые unit-тесты `scripts/qa/test_hdrezka_intake.py`; intake CI **41550819121 SUCCESS**. Отдельная безопасная read-only диагностика `hdrezka-source-audit.yml`, `scripts/qa/diagnose_hdrezka_source.py`; `publishing/hdrezka_status.json` обновлён на `source_antibot` по фактическому run (коммит 6786ea6f).
+- **UI:** `site/studio/clips_ui.js` / `auto_refresh.js` не дают нажать `Download` до положительной проверки качества; Pages **41551100629 SUCCESS**. Прежние live-run исправления остаются. Настоящая загрузка фильма в Drive не запускалась. Google OAuth+folder read/list real `rclone lsf` ранее PASS, `connected=true`; реальный WRITE файлов ещё не тестировался.
+- **Security:** вновь подтверждён `anyone=writer` на общей папке Drive (Google Drive metadata, owner разрешает sharing). Любой с ссылкой может менять файлы; пользователь должен ограничить права, без разрешения агент не менял. Никакие YouTube публикации/секреты/видео не тронуты.
+- **Следующий шаг:** не долбить тот же источник: при наличии полнометражного MP4 с разрешением на использование протестировать полный перенос и метаданные; ограничение прав на папку — решение владельца. Открытый checkpoint в `tasks/NOW.md`, урок записан в skill.
+
 ## GPT 03.11 — HDRezka inspect на сайте: статус и запись ошибок
 
 - По клику владельца «Проверить качество» Actions **41548828784** и **41548866880** реально отработали `inspect`, оба вернули **`source_unavailable`**: плеер не открылся из GitHub Actions, 1080p НЕ подтверждено, MP4 в Drive НЕ загружен. Drive OAuth сохраняется `connected=true`.
