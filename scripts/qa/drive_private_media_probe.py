@@ -6,9 +6,14 @@ credentials or file contents are printed/stored. Does not alter Drive or Git.
 """
 import json
 import os
+import sys
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "scripts"))
 
 from scripts.drive_folder_intake import list_folder_authenticated
 from scripts.drive_scene_probe import drive_id
