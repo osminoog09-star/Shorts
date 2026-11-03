@@ -21,7 +21,8 @@ function clips(){
     '<label class="muted" for="drive-folder-url">Папка Google Drive</label>'+
     '<input class="t" id="drive-folder-url" type="url" inputmode="url" autocomplete="off" placeholder="https://drive.google.com/drive/folders/…" value="'+esc(folder.url||"")+'">'+
     '<div class="row"><button class="btn pri" data-folder-save>'+(folder.url&&!active?'Включить проверку папки':'Сохранить папку')+'</button>'+
-    '<button class="btn" data-folder-scan '+(!active?'disabled':'')+'>Проверить папку</button></div>'+
+    '<button class="btn" data-folder-scan '+(!active?'disabled':'')+'>Проверить папку</button>'+
+    (folder.url?'<a class="btn" target="_blank" rel="noopener noreferrer" href="'+esc(folder.url)+'">Открыть Drive</a>':'')+'</div>'+
     '<p class="muted">'+stat+'</p>'+
     ((scan.missing||[]).length?'<p class="muted">Не хватает: '+(scan.missing||[]).map(esc).join(' · ')+'</p>':'')+
     '<p class="muted">Последняя проверка: '+esc(scan.scanned_at||"ещё не было")+
