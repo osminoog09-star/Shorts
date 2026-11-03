@@ -96,3 +96,41 @@
   };
   window.chigurV22ActionReady=true;
 })();
+
+
+// V22 preflight-only camera override. Scoped to frameV22; V21 remains untouched.
+(() => {
+  const original=R.render.bind(R);
+  R.render=(scene,camera)=>{
+    const shot=window.__chigurV22ActiveShot;
+    if(shot && scene===S && camera===C){
+      const id=Number(shot.scene_id);
+      const t=Number(window.__chigurV22ActiveTime)||0;
+      if(id===1){ // make the open door a subject, not a blank distant hallway
+        C.position.set(-.45,.9,6.1-.035*t);
+        C.fov=41;C.updateProjectionMatrix();
+        C.lookAt(-3.35,-.35,-2.85);
+      } else if(id===3){ // show chair retreating and untouched coin together
+        C.position.set(1.6,2.0,6.6-.02*t);
+        C.fov=40;C.updateProjectionMatrix();
+        C.lookAt(.55,-.83,-.65);
+      } else if(id===4){ // keep cash, hinge, lid and handle inside frame
+        C.position.set(2.0,2.45,7.75-.04*t);
+        C.fov=42;C.updateProjectionMatrix();
+        C.lookAt(0,-.25,.25);
+      } else if(id===5){ // NO cropped toy bumper, show road, side and whole car
+        C.position.set(2.95,1.7,8.5-.04*t);
+        C.fov=42;C.updateProjectionMatrix();
+        C.lookAt(0,-.48,-.45);
+      }
+    }
+    return original(scene,camera);
+  };
+  window.frameV22=(shot,t,format="image/png")=>{
+    window.__chigurV22ActiveShot=shot;
+    window.__chigurV22ActiveTime=t;
+    try{return window.frameV21(shot,t,format)}
+    finally{window.__chigurV22ActiveShot=null;window.__chigurV22ActiveTime=null}
+  };
+  window.chigurV22CameraReady=true;
+})();
