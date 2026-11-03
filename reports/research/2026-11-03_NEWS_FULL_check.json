@@ -75,7 +75,7 @@
     {
       "check": "file size",
       "status": "PASS",
-      "value": "9.5 MB",
+      "value": "9.2 MB",
       "expected": "<= 262144 MB",
       "fix": "export.py --crf 24 or lower resolution",
       "reason": "",
@@ -122,7 +122,7 @@
   "warnings": 1,
   "ok": true,
   "input_identity": {
-    "size": 9925035,
-    "mtime_ns": 1793673147232418516
+    "size": 9613071,
+    "mtime_ns": 1793674379824571148
   }
 }

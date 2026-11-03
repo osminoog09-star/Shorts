@@ -1,0 +1,13 @@
+{
+  "source_master_sha256": "e5521330cd753fba7cd0d59615b32e22806bb50f9b93161142b28d83f514bb00",
+  "overlay_rectangle": [
+    90,
+    1090,
+    850,
+    254
+  ],
+  "body_seconds": 33.833333333333336,
+  "minimum_caption_seconds": 0.8170000000000002,
+  "narration_source": "same cached Edge MP3s; deterministic original score rebuilt",
+  "outro_method": "official assembler, never overlay the approved outro"
+}
