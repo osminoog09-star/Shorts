@@ -1,0 +1,54 @@
+name: M1lash Drive · private three-recording visual QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/qa/drive_clip_contact_audit.py'
+      - '.github/workflows/drive-clip-contact-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: m1lash-drive-clips-private-audit
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Install local ffmpeg + contact-sheet tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg >/dev/null
+          python3 -m pip install -q 'Pillow>=10,<12'
+          python3 -m py_compile scripts/qa/drive_clip_contact_audit.py
+      - name: Audit private Drive MP4s with six sample frames each
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: python3 scripts/qa/drive_clip_contact_audit.py
+      - name: Save metadata-only audit (do not publish frames or movies)
+        if: always()
+        run: |
+          set -euo pipefail
+          if [ ! -s reports/research/drive_clip_audit_20261103.json ]; then exit 0; fi
+          cp reports/research/drive_clip_audit_20261103.json "$RUNNER_TEMP/drive_clip_audit.json"
+          git config user.name 'm1lash-drive-qa[bot]'
+          git config user.email 'm1lash-drive-qa@users.noreply.github.com'
+          for attempt in 1 2 3; do
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            cp "$RUNNER_TEMP/drive_clip_audit.json" reports/research/drive_clip_audit_20261103.json
+            git add reports/research/drive_clip_audit_20261103.json
+            git diff --cached --quiet && exit 0
+            git commit -q -m 'qa: record private Drive screen recording metadata, no raw frames'
+            if git push -q origin HEAD:main; then exit 0; fi
+            sleep 5
+          done
+          exit 1
