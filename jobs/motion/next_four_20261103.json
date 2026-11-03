@@ -6,5 +6,8 @@
   "preflight_only": false,
   "save_review_mp4": true,
   "no_youtube_upload": true,
-  "note": "24 HTML/SVG preflight frames run 41627171650 SUCCESS, contact sheets visually reviewed. Generate 4 voices Dima and 4 review MP4; do not YouTube upload or schedule."
+  "note": "One-film audio/compliance diagnostic after full render 41627756219 failed check.py; log exact failed check rows, no publication.",
+  "only_ids": [
+    "ai_vacation_202611"
+  ]
 }
