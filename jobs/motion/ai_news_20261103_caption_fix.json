@@ -1,0 +1,12 @@
+{
+  "renderer": "python",
+  "script": "shorts/render_ai_news_20261103.py",
+  "output": "videos/m1lash_ai_news_20261103_ru.mp4",
+  "mode": "full",
+  "caption_only": true,
+  "save_review_mp4": true,
+  "no_youtube_upload": true,
+  "source_full_run": 41566378199,
+  "source_master_blob": "7231e0c7be8c32478e98ec2684e1245575f4b7b0",
+  "note": "Repair only caption area 850x254; source scenes and cached voice assets retained. New 27 caption groups, minimum measured0.817s, max5words. Official outro reassembled; full QA/ASR still required."
+}
