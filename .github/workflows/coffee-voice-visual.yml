@@ -32,10 +32,10 @@ jobs:
       - name: Draw six stills or silent graphics
         env:
           M1LASH_JOB_PATH: jobs/motion/coffee_voice_test_fast.json
-        run: python shorts/coffee_voice_test_20261103/render_visual.py
+        run: python shorts/coffee_voice_test_v2_20261103/render_visual.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: coffee-silent-visual-${{ github.run_id }}
-          path: motion-output/coffee_voice_test
+          path: motion-output/coffee_voice_test_v2
           retention-days: 14
