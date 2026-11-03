@@ -23,7 +23,9 @@ if len(list(frames.glob("*.jpg"))) != 291:
 patch = work / "patches.mp4"
 run(["ffmpeg", "-v", "error", "-y", "-framerate", "30", "-i",
      str(frames / "%05d.jpg"), "-c:v", "libx264", "-preset", "fast",
-     "-crf", "17", "-threads", "2", "-pix_fmt", "yuv420p", str(patch)])
+     "-crf", "17", "-threads", "2", "-vf", "scale=out_color_matrix=bt709:out_range=tv",
+     "-pix_fmt", "yuv420p", "-colorspace", "bt709", "-color_primaries", "bt709",
+     "-color_trc", "bt709", str(patch)])
 source = ROOT / "videos/ai_bureaucracy_claude_ru.mp4"
 # Picture windows preserve all original animation except the obsolete host.
 picture = [(1, 0, 4.7), (0, 4.7, 10.1), (0, 12.5, 33),
@@ -42,6 +44,7 @@ run(["ffmpeg", "-v", "error", "-y", "-i", str(source), "-i", str(patch),
      "-filter_complex_threads", "2", "-filter_complex", ";".join(filters),
      "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-preset", "fast",
      "-crf", "18", "-threads", "2", "-pix_fmt", "yuv420p", "-r", "30",
+     "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709",
      "-c:a", "aac", "-b:a", "320k", str(body)])
 out = ROOT / "videos/ai_bureaucracy_claude_v3.mp4"
 run([sys.executable, str(ROOT / "tools/assemble_with_outro.py"), str(body),
