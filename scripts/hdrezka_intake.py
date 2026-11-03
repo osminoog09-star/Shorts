@@ -62,13 +62,40 @@ def parse_qualities(info: str) -> dict[str, str]:
     return found
 
 
+def classify_source_failure(output: str) -> tuple[str, str]:
+    """Never expose raw CLI stdout/stderr: may contain URLs, site HTML or cookies."""
+    lower = output.lower()
+    if "anti-bot challenge" in lower or "anubis_challenge" in lower:
+        return ("source_antibot",
+                "Источник требует антибот-проверку. GitHub Actions не может пройти её автоматически; обход не используется.")
+    if re.search(r"status code error:\\s*403|\\b403 forbidden\\b", lower):
+        return ("source_http_403", "Сервер источника отказал в доступе (HTTP 403).")
+    if re.search(r"status code error:\\s*404|\\b404 not found\\b", lower):
+        return ("source_http_404", "Страница источника не найдена (HTTP 404).")
+    if re.search(r"status code error:\\s*429|too many requests", lower):
+        return ("source_http_429", "Источник ограничил частоту запросов (HTTP 429).")
+    if re.search(r"status code error:\\s*5\\d\\d", lower):
+        return ("source_http_5xx", "Источник вернул серверную ошибку (HTTP 5xx).")
+    if re.search(r"no such host|name or service not known|lookup\\s", lower):
+        return ("source_dns", "GitHub Actions не смог разрешить адрес источника.")
+    if re.search(r"certificate|tls handshake", lower):
+        return ("source_tls", "Ошибка TLS/сертификата при обращении к источнику.")
+    if re.search(r"timeout|deadline exceeded|connection refused|connection reset", lower):
+        return ("source_network", "Сетевое соединение с источником не удалось.")
+    return ("source_unavailable",
+            "Загрузчик не смог открыть источник. Подробности доступны только по безопасной диагностике, без раскрытия ссылок.")
+
+
 def run_process(argv: list[str], timeout: int) -> str:
     try:
         p = subprocess.run(argv, capture_output=True, text=True, errors="replace", timeout=timeout, check=False)
     except (OSError, subprocess.TimeoutExpired) as exc:
         raise IntakeError("source_unavailable", "Источник не ответил или загрузчик недоступен.") from exc
     if p.returncode != 0:
-        raise IntakeError("source_unavailable", "Плеер не открылся из GitHub Actions (возможно, блокировка запросов).")
+        if argv and argv[0] == "hdrezka-dl":
+            code, message = classify_source_failure((p.stdout or "") + "\n" + (p.stderr or ""))
+            raise IntakeError(code, message)
+        raise IntakeError("source_unavailable", "Внешняя программа завершилась с ошибкой.")
     return p.stdout + "\n" + p.stderr
 
 
