@@ -42,9 +42,12 @@
 - [x] r7: 6 реальных стопов Actions **41737672546 SUCCESS**, artifact 13280580174, осмотрены. **0/9 обрезанных кистей, 9/9 согнутых локтей**, JSON валиден. Изменены сценические предметы; введён fail-closed на кисти/локти (commit f1b8291).
 - [x] r7 real 7с pilot Actions **41737977951 SUCCESS**, artifact **13280456756**; физический MP4 2470975 B H264 1080×1920, 30 fps, 210 кадров, SHA `9f622bb3301a5319d28a0b491f7d3251c3131598618632879880ca62ac999141`, FFmpeg -xerror PASS. Реальные 14 MP4-кадров через 0.5с просмотрены: t2.5–4.5 герой слишком долго стоит, ART NO-GO.
 - [x] Все наблюдения `r6→r7` записаны в `reports/quality/m1lash_mult_ep01_scorecard.json`, `reports/research/2026-11-04_M1LASH_MULT_EP01_VISUAL_PILOT.md` и `skills/m1lash-studio/SKILL.md §7` (commit 0fb4707).
-- [ ] r8: новый keyframed жест 3 такта `film.html` commit 271154c и 6-stop строгий QA run **41738810634** запущен, проверить результат и затем новый 7с MP4, если шестёрка в порядке.
+- [x] r8: жест три такта, Actions 41738810634 **FAIL как и предусмотрено**: правая кисть x1056px на 3.5с. Artifact 13279154300.
+- [x] r8b: камера исправлена; Actions 41739139664 SUCCESS, 0/9 клипов, но жест x1012 близок к Shorts UI.
+- [x] r8c: защищённая зона x<950; Actions 41739463065 SUCCESS artifact 13280816775, 0/9 обрезанных кистей и 9/9 работающих локтей, max x907. Три реальных действующих JPG t2/3.5/4.5с открыты глазами.
+- [ ] r8c 7с motion pilot: Actions **41739738958** в процессе, ждёт физического MP4/frame-by-frame проверки.
 - [ ] Только после реальных голосов: локальный Qwen3 Denis + отдельный лицензированный TTS для АКС, ASR/слух, approved outro, штатные check.py/look.py/full decode и owner review. Пока VOICE_BLOCKED; не заменять голос Дениса.
-Следующий шаг: проверить `motion-render.yml` run 41738810634 (r8/6-stop); распаковать и осмотреть 6 кадров и `acting_gate.json`. При P0/hand clipping — исправить кино-риг и перерендерить, при ART PASS создать job r8 mode=pilot, получить реальный 7с MP4, ffprobe+ffmpeg full decode+контакт каждые 0.5с, сравнить динамику актёрского жеста с r7. Отдельно перед full body довести гэги совещаний и выключения питания. Только потом голоса МИЛ=Denis Qwen private, АКС=другой лицензированный TTS и approved outro; не публиковать/не трогать соседние Shorts.
+Следующий шаг: проверить Actions 41739738958, скачать artifact, ffprobe + ffmpeg -xerror, 14 кадров из настоящего MP4 каждые 0.5с, оценить три такта жестов/камера/границы. Потом предметная игра сцен 2–6, затем только реальный отдельный Denis Qwen + лицензированный АКС TTS, approved outro и финальный check/look/слух. Никакого YouTube или чужих Shorts.
 Где промежуточное: `shorts/m1lash_mult_ep01/`, `jobs/motion/m1lash_mult_ep01_*.json`, GitHub Actions 41733065418 artifact 13277523411, отчёт выше; приватный пилот в conversation artifact /mnt/data.
 Ждёт Дениса: финальная слуховая оценка голоса и итоговый review после full MP4, стиль/формат уже утверждены.
 
