@@ -1,0 +1,5 @@
+# Claude sketch continuation · 03.11
+
+Restored NOW/HANDOFF/current AGENTS; no rebuilding 002V53/004V49/006V51. Common motion-render now accepts explicit preflight_only without fake MP4 (a99f1a4). First actual preflight41552283025 SUCCESS, artifact13191708302: four1080×1920 JPEGs1/12/25/47s downloaded and visually opened. Host removed successfully.12s subtitle overflow proved remaining legacy side-layout; fixed centred70px captions with safe left100/right160, side=false (3caad477). Corrected preflight41552653556 pending; do NOT launch full render before viewing it.
+
+Local Chrome renderer cannot run: even pinned Chromium130 hits socket() Operation not permitted. Downloading more versions is not the fix; GitHub Actions actually rendered successfully. Full renderer prepared: shorts/render_ai_bureaucracy_v2.py + capture --render. Existing Claude story/audio only0..51.033333s (last story speech ends50.805); approved6.6s outro appended exclusively by tools/assemble_with_outro.py, expected57.633s. No new TTS/credits, no upload/schedule. Actual final MP4 requires check.py/full decode/newlook and honest listening status.
