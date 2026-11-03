@@ -10,7 +10,7 @@
   "recognized_text": "Купил умный холодильник, попросил следить за питанием. Ночью подхожу за котлетой. Дверь закрыта. На экране. Ваш рацион уже согласован. Внутри города вращается один лист салата. Я говорю, открой. Он отвечает, подтвердите цель, цель простая. Съесть котлету и лечь спать. Для этого подключите расширенный тариф. Я отказался. Он заботливо предложил альтернативу. Через 10 минут приехала доставка пиццы. Ты же должен был экономить мне калории. Все верно, после оплаты у вас нет денег на еду, впервые похудел мой кошелек. Раньше меня.",
   "segments": [
     {
-      "start": 0.0,
+      "start": 0,
       "end": 3.64,
       "text": "Купил умный холодильник, попросил следить за питанием."
     },
@@ -96,14 +96,16 @@
     }
   ],
   "text_similarity": 0.975,
-  "payoff_similarity": 0.343,
+  "payoff_similarity": 1,
   "expected_negations": 0,
   "recognized_negations": 0,
-  "flags": [
-    "PAYOFF_END_ASR_UNCERTAIN"
-  ],
-  "automatic_asr_result": "REVIEW_REQUIRED",
+  "flags": [],
+  "automatic_asr_result": "NO_OBVIOUS_ISSUE",
   "personal_listening": "NOT_VERIFIED",
   "owner_audio_approved": false,
-  "next_action": "Give final MP4 to owner for uninterrupted listening; never auto-upload/schedule."
+  "next_action": "Give final MP4 to owner for uninterrupted listening; never auto-upload/schedule.",
+  "payoff_expected_text": "Впервые похудел мой кошелёк. Раньше меня.",
+  "payoff_recognized_tail": "впервые похудел мой кошелек раньше меня",
+  "scoring_version": "tail_N_words_2026-11-03",
+  "scoring_note": "Recomputed only payoff comparison from previously saved real-ASR text (run 41636228754); no media changed or new transcription generated."
 }
