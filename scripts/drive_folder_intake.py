@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Public Drive folder discovery for future M1lash clip requests.
+"""Private Google Drive folder discovery for future M1lash clip requests.
 
 Read-only scan: NEVER downloads film bodies, transcribes, renders, or publishes.
-Listing: gdown >=6.1 'folder --json' returns real Drive filenames and direct file IDs.
+Listing: private Google Drive files.list using existing OAuth; no public sharing needed.
 Statuses "сцена найдена" / "собран" require separate evidence, not filename similarity.
 """
 from __future__ import annotations
@@ -81,18 +81,6 @@ def folder_url(raw: str) -> str:
     if not m:
         raise ValueError("Нужна ссылка именно на ПАПКУ Google Drive")
     return "https://drive.google.com/drive/folders/" + m.group(1)
-
-
-def list_folder(url: str) -> list[dict]:
-    p = subprocess.run(["gdown", url, "--folder", "--json", "--quiet", "--timeout", "25", "--retries", "2"],
-                       capture_output=True, text=True, timeout=180, check=False)
-    if p.returncode:
-        raise RuntimeError("Не удалось прочитать открытую папку Drive: " + (p.stderr[-400:] or "gdown error"))
-    data = json.loads(p.stdout)
-    if not isinstance(data, list) or any(not isinstance(x, dict) or "path" not in x or "url" not in x for x in data):
-        raise ValueError("Неожиданный формат ответа списка файлов")
-    return data
-
 
 
 def list_folder_authenticated(raw_url: str, credentials: dict[str, str] | None = None) -> list[dict]:
