@@ -54,7 +54,7 @@ with sync_playwright() as pw:
         process=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE)
         for n in range(frames):
             pos=n/30
-            data64=page.evaluate('([s,t])=>window.frameV21(s,t,'image/jpeg')',[shot,pos])
+            data64=page.evaluate("([s,t])=>window.frameV21(s,t,'image/jpeg')",[shot,pos])
             process.stdin.write(base64.b64decode(data64.split(',',1)[1]))
         process.stdin.close()
         err=process.stderr.read().decode(errors='replace')
