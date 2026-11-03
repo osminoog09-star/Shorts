@@ -81,6 +81,16 @@ def validate_actual(timeline: dict, story: Path, voice_folder: Path):
         protect_private(wav)
         if voice_folder not in wav.resolve().parents:
             fail(f"line {i} WAV not in expected private voice folder")
+        # The recorded voice ID is not evidence by itself: require a SHA-bound
+        # receipt created by the owner's offline Qwen synthesizer per WAV.
+        receipt=wav.with_suffix(".provenance.json")
+        if not receipt.is_file():fail(f"line {i} missing immutable Denis WAV provenance")
+        original=json.loads(receipt.read_text(encoding="utf8"))
+        if original.get("wav_sha256")!=sha(wav):
+            fail(f"line {i} WAV hash disagrees with Qwen checkpoint")
+        for key,value in (("voice_id",EXPECTED_VOICE),("engine",EXPECTED_ENGINE),
+                          ("speaker",EXPECTED_SPEAKER),("text",phrase)):
+            if original.get(key)!=value:fail(f"line {i} Qwen provenance {key} mismatch")
         if segment.get("scene")!=(i+1)//2:fail(f"scene {i} mapping incorrect")
         if not isinstance(segment.get("start"),(int,float)) or not isinstance(segment.get("end"),(int,float)):
             fail(f"invalid segment time {i}")
@@ -123,7 +133,11 @@ def install_verified_outro(private_source: Path):
         if sha(OUTRO_DEST)!=APPROVED_SHA:
             fail("existing outro inside checkout has mismatched hash; will not overwrite")
     else:
-        # Destination is gitignored private content, NEVER git add this file.
+        # Destination is gitignored private content; fail closed if .gitignore changed.
+        if (ROOT/".git").exists():
+            q=subprocess.run(["git","check-ignore","-q",
+                str(OUTRO_DEST.relative_to(ROOT))],cwd=ROOT)
+            if q.returncode!=0:fail("approved Denis outro is NOT gitignored")
         OUTRO_DEST.parent.mkdir(parents=True,exist_ok=True)
         shutil.copyfile(private_source,OUTRO_DEST)
     if sha(OUTRO_DEST)!=APPROVED_SHA:fail("outro copy integrity failed")
