@@ -1,7 +1,10 @@
 """Regression gates for Studio review cards vs confirmed YouTube receipts."""
+import datetime as dt
+import json
 import sys
 import unittest
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -42,6 +45,28 @@ class StudioReviewStateTests(unittest.TestCase):
         q = [{"id": "a", "status": "review"}]
         receipts = {"a": {"status": "uploaded", "video_id": "abcdefghijk", "publish_at_utc": "2026-11-04T08:00:00Z"}}
         self.assertEqual(build_review_queue(q, receipts, {}), [])
+
+
+    def test_all_confirmed_schedules_match_queue(self):
+        queue = {q["id"]: q for q in json.loads(
+            (ROOT / "publishing" / "queue.json").read_text(encoding="utf-8")
+        )["items"]}
+        folder = ROOT / "publishing" / "receipts"
+        for receipt_path in folder.glob("*.json"):
+            receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+            if receipt.get("status") != "scheduled":
+                continue
+            q = queue.get(receipt_path.stem)
+            if not q:
+                continue
+            self.assertNotEqual(q.get("status"), "review", receipt_path.name)
+            if q.get("status") != "scheduled":
+                continue  # A confirmed public upload can be marked published.
+            expected = dt.datetime.fromisoformat(
+                receipt["publish_at_utc"].replace("Z", "+00:00")
+            ).astimezone(ZoneInfo("Europe/Tallinn"))
+            actual = dt.datetime.fromisoformat(q["slot"])
+            self.assertEqual(expected, actual, receipt_path.name)
 
 
 if __name__ == "__main__":
