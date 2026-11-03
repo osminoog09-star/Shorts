@@ -1,0 +1,26 @@
+name: M1lash Drive · private write-and-delete verification
+on:
+  push:
+    branches: [main]
+    paths: ['scripts/qa/drive_write_probe.py', '.github/workflows/drive-write-probe.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Syntax check
+        run: python3 -m py_compile scripts/qa/drive_write_probe.py
+      - name: Verify a tiny temporary file in Drive root, and delete it
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: python3 scripts/qa/drive_write_probe.py
