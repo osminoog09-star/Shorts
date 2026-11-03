@@ -22,7 +22,7 @@
    // The V14 hand read as a sausage/mannequin limb in the real contact sheet.
    // Hide that theatrical prop and tell refusal by a chair sliding away.
    if(scene===3){
-     const hand=G[3].children.find(n=>n.isGroup&&Math.abs(n.position.z-2.1)<.01);
+     const hand=G[3].children.find(n=>n.isGroup&&n.position.z>1.90&&n.position.z<2.50&&n.position.x>.8);
      if(hand)hand.visible=false;
      const chair=G[3].children.find(n=>n.isGroup&&Math.abs(n.position.z+3.4)<.15);
      if(chair){const away=Math.max(0,Math.min(1,seconds/5));chair.position.x=2.45+.65*away;chair.rotation.y=-.28-.28*away;}
@@ -41,9 +41,10 @@
    R.toneMappingExposure=scene===5?.70:scene===3?.87:(scene===2||scene===1)?1.03:.91;
    // Noir road: headlights and silhouette carry the shot; no toy-car glamour angle.
    if(scene===5){
-     C.position.set((v%2?-.85:1.50)+.07*seconds,.36+(v%3)*.2,5.9-.10*seconds);
-     C.lookAt(-.15,-1.18,-1.35);
-     S.fog=new THREE.FogExp2(0x08101b,.065);
+     C.position.set((v%2?-.35:1.10)+.015*seconds,.22+(v%3)*.10,4.15-.045*seconds);
+     C.fov=28;C.updateProjectionMatrix();
+     C.lookAt(.10,-1.18,1.38);
+     S.fog=new THREE.FogExp2(0x08101b,.082);
    }
    R.render(S,C);
    ctx.clearRect(0,0,1280,720);ctx.drawImage(R.domElement,0,0,1280,720);
