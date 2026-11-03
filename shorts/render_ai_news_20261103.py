@@ -310,6 +310,52 @@ def speech_evidence(video, name):
 
 
 
+
+if MODE == "probe":
+    import hashlib
+    import re
+    from faster_whisper import WhisperModel
+    source = ROOT / "videos/m1lash_ai_news_20261103_ru.mp4"
+    digest = hashlib.sha256(source.read_bytes()).hexdigest()
+    if digest != SPEC["expected_master_sha256"]:
+        raise RuntimeError("Probe source differs from the inspected master")
+    def recognize(model, start, duration):
+        pcm = np.frombuffer(subprocess.check_output([
+            "ffmpeg", "-v", "error", "-ss", str(start), "-t", str(duration),
+            "-i", str(source), "-ac", "1", "-ar", "16000", "-f", "f32le", "-"
+        ]), dtype=np.float32)
+        segments, info = model.transcribe(pcm, language="ru", beam_size=5,
+                                         vad_filter=False, condition_on_previous_text=False,
+                                         word_timestamps=True)
+        return [{"start": s.start, "end": s.end, "text": s.text,
+                 "words": [{"word": w.word, "start": w.start, "end": w.end}
+                           for w in s.words]} for s in segments]
+    model = WhisperModel("small", device="cpu", compute_type="int8", cpu_threads=2)
+    caveat = recognize(model, 9.75, 4.4)
+    outro = recognize(model, 33.833333, 6.6)
+    result = {"source_sha256": digest, "run_id": os.environ.get("GITHUB_RUN_ID"),
+              "caveat_small_no_vad": caveat, "outro_small_no_vad": outro,
+              "initial_prompt": None, "personal_listening": "NOT_VERIFIED"}
+    if not re.search(r"\b(не|нет)\b", " ".join(s["text"] for s in caveat).lower()):
+        del model
+        import gc
+        gc.collect()
+        model = WhisperModel("medium", device="cpu", compute_type="int8", cpu_threads=2)
+        result["caveat_medium_no_vad"] = recognize(model, 9.75, 4.4)
+    target = ROOT / "reports/research/2026-11-03_NEWS_TARGETED_AUDIO_PROBE.json"
+    target.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+    run(["git", "config", "user.name", "m1lash-render-bot"], cwd=ROOT)
+    run(["git", "config", "user.email", "m1lash-render-bot@users.noreply.github.com"], cwd=ROOT)
+    run(["git", "add", "--", str(target.relative_to(ROOT))], cwd=ROOT)
+    run(["git", "commit", "-m", "qa(news): preserve unprompted isolated caveat and outro ASR"], cwd=ROOT)
+    for attempt in range(3):
+        run(["git", "pull", "--rebase", "origin", "main"], cwd=ROOT)
+        if subprocess.run(["git", "push", "origin", "HEAD:main"], cwd=ROOT).returncode == 0:
+            break
+    else:
+        raise RuntimeError("Audio probe could not be saved")
+    sys.exit(0)
+
 if MODE == "recover":
     import hashlib
     import io
