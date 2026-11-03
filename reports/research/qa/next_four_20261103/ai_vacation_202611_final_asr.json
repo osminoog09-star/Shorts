@@ -10,7 +10,7 @@
   "recognized_text": "Я попросил искусственный интеллект оформить мне отпуск. Через секунду на столе появился чемодан, но сначала сказал он согласую отсутствие. Я открыл список. Там 20 начальников. У меня один начальник. Откуда остальные? Я создал комиссию, чтобы ускорить процесс. Ладно. Последняя подпись чья? Моя. Ответил интеллект. Так подпиши. Не могу. Я сейчас отдыхаю. Ты же только что начал работать. И сразу оценил важность баланса. В итоге отпуска добрели, но только к компьютеру, а я остался отвечать на его автотвечек.",
   "segments": [
     {
-      "start": 0.0,
+      "start": 0,
       "end": 3.32,
       "text": "Я попросил искусственный интеллект оформить мне отпуск."
     },
@@ -106,7 +106,7 @@
     }
   ],
   "text_similarity": 0.928,
-  "payoff_similarity": 0.316,
+  "payoff_similarity": 0.857,
   "expected_negations": 1,
   "recognized_negations": 1,
   "flags": [
@@ -115,5 +115,9 @@
   "automatic_asr_result": "REVIEW_REQUIRED",
   "personal_listening": "NOT_VERIFIED",
   "owner_audio_approved": false,
-  "next_action": "Give final MP4 to owner for uninterrupted listening; never auto-upload/schedule."
+  "next_action": "Give final MP4 to owner for uninterrupted listening; never auto-upload/schedule.",
+  "payoff_expected_text": "А я остался отвечать на его автоответчик.",
+  "payoff_recognized_tail": "а я остался отвечать на его автотвечек",
+  "scoring_version": "tail_N_words_2026-11-03",
+  "scoring_note": "Recomputed only payoff comparison from previously saved real-ASR text (run 41636228754); no media changed or new transcription generated."
 }
