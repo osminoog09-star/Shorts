@@ -1,3 +1,10 @@
+## GPT 03.11 — повторная проверка источника «Оппенгеймер» и живой Drive (без новых бесполезных загрузок)
+
+- По просьбе владельца «реши проблему» повторно прочитаны NOW/AGENTS/Studio, проверена реальная папка через подключённый Google Drive connector (не кэш): **два** `Screen_Recording_20261102_*.mp4` (~205.7 MB и ~163.4 MB), полного `Oppenheimer` в папке нет. Новых полноформатных источников нет.
+- В официальном источнике Universal `https://www.universalpicturesathome.com/movies/oppenheimer` указано «Buy or Rent Now on Digital», но это не означает передачу монтируемого/DRM-free MP4. Страница фильма `https://watch.oppenheimermovie.com/` прямо предупреждает: digital purchase предоставляет limited license, а не право владения исходным файлом. Нельзя автоматически копировать цифровой поток в собственный MP4.
+- Код upstream `hdrezka-dl` проверен: `os.Exit(2)` соответствует `Init()`, `os.Exit(3)` соответствует `GetVideo()`, значит ранее наблюдавшийся exit3 при включённом штатном Anubis solver **не доказывает получение видеопотока**; `GetVideo` не смог распарсить/открыть страницу фильма. В реальном Chromium run 41558540041 — challenge=true, film_heading=false, download_control=false; на зеркале `hdrezka.ag` тот же challenge. Никаких приватных учётных данных сайта на сервере нет. Не запускать маскировку/капчу/DRM обход и не повторять бездумные fetch.
+- Единственный готовый рабочий путь для собственного файла: `direct-movie-intake.yml` или закрытая папка Drive и `drive-scene-probe.yml`; direct public MP4 тест прошёл, но **настоящий фильм «Оппенгеймер» НЕ скачан**. До появления разрешённого исходного MP4 задача честно остаётся BLOCKED. Google OAuth/права папки работоспособны, не требовать телефон.
+
 ## 03.11 · GPT Shorts: два review-файла доставлены, остаток ограничен ресурсами
 
 - **AIbureaucracyV3**:51.600с,45систории+rev4. Librarylibfile_6bcf1ab0f1a88191b799a945c2fbf6a2. SHA8762e19476a893afb2271c65939160505cf2621730f7294d8dfba57250234f9a. QA:2026-11-03_AI_BUREAUCRACY_V3_FINAL_QA.md.
