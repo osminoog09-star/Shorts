@@ -40,6 +40,8 @@ def category(video, seeds):
     seconds = iso_seconds(video["contentDetails"].get("duration", "")) or 0
     if video["snippet"].get("categoryId") == "1":
         return "kino_shorts" if seconds <= 180 else "kino_razbor"
+    # Approved 04.11.2026: dedicated original mini-series; place BEFORE generic AI sketch matcher.
+    if any(s in title for s in ("m1lash мульт", "м1lash мульт", "человек против ии")): return "m1lash_mult"
     if "притворись ботом" in title: return "bot_series"
     if any(word in title for word in ("новост", "скандал", "nvidia вложила", "прорыв?!")):
         return "ai_news"
