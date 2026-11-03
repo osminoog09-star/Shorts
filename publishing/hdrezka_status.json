@@ -1,9 +1,11 @@
 {
-  "checked_at": "2026-11-02T23:56:09.974074+00:00",
+  "checked_at": "2026-11-03T00:09:34.425024+00:00",
   "mode": "inspect",
   "requested_quality": "1080p",
   "status": "error",
   "drive_uploaded": false,
-  "error_code": "source_unavailable",
-  "message": "Плеер не открылся из GitHub Actions (возможно, блокировка запросов)."
+  "error_code": "source_antibot",
+  "message": "Проверка источника остановилась на антибот-защите сайта (подтверждено безопасной диагностикой GitHub Actions). 1080p не проверено; файл не загружен.",
+  "diagnostic_run_id": 41550688949,
+  "source_access": "cli_antibot_challenge"
 }
