@@ -1,0 +1,51 @@
+{
+  "model": "small",
+  "source": "jobs/audioqa/next_four_20261103.json",
+  "results": [
+    {
+      "id": "ai_vacation_202611",
+      "source_file": "videos/ai_vacation_202611_v1.mp4",
+      "automatic_asr_result": "REVIEW_REQUIRED",
+      "text_similarity": 0.928,
+      "payoff_similarity": 0.316,
+      "flags": [
+        "PAYOFF_END_ASR_UNCERTAIN"
+      ],
+      "personal_listening": "NOT_VERIFIED"
+    },
+    {
+      "id": "ai_fridge_202611",
+      "source_file": "videos/ai_fridge_202611_v1.mp4",
+      "automatic_asr_result": "REVIEW_REQUIRED",
+      "text_similarity": 0.975,
+      "payoff_similarity": 0.343,
+      "flags": [
+        "PAYOFF_END_ASR_UNCERTAIN"
+      ],
+      "personal_listening": "NOT_VERIFIED"
+    },
+    {
+      "id": "science_orbit_202611",
+      "source_file": "videos/science_orbit_202611_v1.mp4",
+      "automatic_asr_result": "NO_OBVIOUS_ISSUE",
+      "text_similarity": 0.937,
+      "payoff_similarity": 0.571,
+      "flags": [],
+      "personal_listening": "NOT_VERIFIED"
+    },
+    {
+      "id": "science_mirror_202611",
+      "source_file": "videos/science_mirror_202611_v1.mp4",
+      "automatic_asr_result": "REVIEW_REQUIRED",
+      "text_similarity": 0.968,
+      "payoff_similarity": 0.5,
+      "flags": [
+        "PAYOFF_END_ASR_UNCERTAIN"
+      ],
+      "personal_listening": "NOT_VERIFIED"
+    }
+  ],
+  "human_listening_required": true,
+  "youtube_upload_performed": false,
+  "schedule_changed": false
+}
