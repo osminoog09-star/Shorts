@@ -5,7 +5,7 @@ on:
     types: [completed]
   push:
     branches: [main]
-    paths: ['motion-studio/**', 'site/**', 'scripts/build_studio_site.py', 'scripts/clip_lifecycle.py', 'publishing/film_projects.json', 'publishing/queue.json', 'publishing/clip_requests.json', 'publishing/drive_folder.json', 'publishing/drive_scan.json', 'publishing/hdrezka_status.json', 'publishing/direct_movie_status.json', 'publishing/drive_auth_status.json', 'publishing/scene_candidates.json', 'publishing/receipts/**', 'reports/learnings.md', 'reports/weekly/**', 'reports/ideas/**', 'scripts/qa/test_drive_connect.cjs', 'scripts/qa/test_studio_mobile_settings.cjs', '.github/workflows/motion-pages.yml', '.github/workflows/m1lash-news-radar.yml', '.github/workflows/motion-trends.yml']
+    paths: ['motion-studio/**', 'site/**', 'scripts/build_studio_site.py', 'scripts/clip_lifecycle.py', 'publishing/film_projects.json', 'publishing/queue.json', 'publishing/clip_requests.json', 'publishing/drive_folder.json', 'publishing/drive_scan.json', 'publishing/hdrezka_status.json', 'publishing/direct_movie_status.json', 'publishing/drive_auth_status.json', 'publishing/scene_candidates.json', 'publishing/receipts/**', 'reports/learnings.md', 'reports/weekly/**', 'reports/ideas/**', 'scripts/qa/test_drive_connect.cjs', 'scripts/qa/test_studio_mobile_settings.cjs', 'tests/test_studio_review_queue.py', '.github/workflows/motion-pages.yml', '.github/workflows/m1lash-news-radar.yml', '.github/workflows/motion-trends.yml']
   workflow_dispatch:
 permissions:
   contents: read
