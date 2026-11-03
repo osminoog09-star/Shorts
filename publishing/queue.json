@@ -100,8 +100,11 @@
       "mp4": null,
       "publish_md": "shorts/ai_bureaucracy/PUBLISH.md",
       "title": "Нанял ИИ, чтобы меньше работать. Получил 40 подчинённых 🤖 #shorts",
-      "note": "Промежуточный3Dрендер41553021293 ещё работает. После него finish_ai_bureaucracy_v3.py:45с истории+rev4, ожидаемые51.6с. Финальный MP4/check/look ожидаются; полное личное прослушивание не выполнено. Без YouTube и даты.",
-      "review_version": "V3 pending"
+      "note": "V3 фактический51.6с MP4 сохранён:45систории+rev4. 0FAIL/1WARN, полныйdecode, look/стыки/17ремонтовcaps просмотрены; финальныйASR есть. Полное человеческое прослушивание не выполнено; draft до слухового QA, YouTube/date нет.",
+      "review_version": "V3",
+      "duration_seconds": 51.6,
+      "private_review_url": "https://chatgpt.com/library?file_id=libfile_6bcf1ab0f1a88191b799a945c2fbf6a2&account_id=personal",
+      "library_file_id": "libfile_6bcf1ab0f1a88191b799a945c2fbf6a2"
     },
     {
       "id": "kino_001",
