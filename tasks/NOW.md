@@ -25,6 +25,16 @@
 ## Claude
 
 ## GPT/Codex
+
+### 03.11 — Восстановление семи приватных загрузок · текущий GPT
+- [x] Архив8 Shorts материализован, SHA256 всех восьми совпали; kino003 исключён из передачи.
+- [x] Семь файлов переданы в YouTube Studio, все 100%. Это отклонение от workflow; не повторять upload и не удалять экземпляры. Владелец уточнил «делай как в гите».
+- [x] kino001 xRwwXYXVxSc: название/описание/NCS/10tags/ru/category1/notForKids/noPaid/noAltered настроены, PRIVATE сохранён. Copyright check ещё шёл.
+- [ ] kino002 qYSbQisqEpc: текущий открытый диалог метаданных, проверки PASS. Затем остальные5, реальные ID, receipts и queue в Git, без дат.
+- Пути: /workspace/shared/m1lash_upload/ (MP4+MANIFEST+passports); ZIP /workspace/scratch/2071953dc074/review/M1lash_8_SHORTS_AUDIO_REVIEW_20261103.zip.
+Следующий шаг: закончить уже загруженные PRIVATE экземпляры и записать IDs; НЕ вызывать новый upload. Kino003 уже public подтверждён Dashboard Studio, FxIlxGWVCuw. Ни одного нового расписания.
+
+
 ### 03.11 — Автономный резервный серверный импорт MP4 · GPT
 Цель: без телефона и без обхода защиты сторонних сайтов — прямой импорт разрешённого MP4 с сервера в личный Google Drive.
 Шаги:
