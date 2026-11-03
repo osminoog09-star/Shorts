@@ -127,7 +127,7 @@ def transfer(url: str, output_dir: Path, max_bytes: int = MAX_BYTES) -> Path:
 def confirm_drive_file(dest: Path, config: str) -> None:
     try:
         result = subprocess.run(
-            ["rclone", "--config", config, "lsjson", "m1lash:" + dest.name, "--files-only"],
+            ["rclone", "--config", config, "lsjson", "m1lash:", "--files-only"],
             capture_output=True, text=True, timeout=120, check=False
         )
         if result.returncode:
@@ -165,6 +165,20 @@ def job(url: str, mode: str, quality: str, folder: str, config: str, output_dir:
     dest = transfer(url, output_dir)
     try:
         info = verify_video(dest, QUALITY[quality])
+        # A silent or video-only file must not be presented as a source with
+        # authentic dialogue. Language/dub still require separate ASR and QA.
+        try:
+            audio = subprocess.run(
+                ["ffprobe", "-v", "error", "-select_streams", "a",
+                 "-show_entries", "stream=index", "-of", "json", str(dest)],
+                capture_output=True, text=True, timeout=60, check=False
+            )
+            tracks = json.loads(audio.stdout).get("streams", []) if audio.returncode == 0 else []
+            if not tracks:
+                raise IntakeError("no_audio", "В MP4 нет звуковой дорожки; исходник для кино-Shorts не подходит.")
+        except (OSError, ValueError, subprocess.TimeoutExpired):
+            raise IntakeError("invalid_audio", "Невозможно проверить аудиодорожку MP4.") from None
+        info.update(audio_present=True, russian_dub_verified=False)
         upload_to_drive(dest, folder, config)
         confirm_drive_file(dest, config)
         return {**info, "drive_uploaded": True}
