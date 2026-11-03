@@ -1,8 +1,57 @@
 {
   "schema_version": 1,
   "entries": [
-    {"id":"COFFEE-V2-VOICE","project":"coffee_voice_test_v2_20261103","issue":"Модель меняла окончания и начало фразы про работу","cause":"Слабый режим синтеза и неясная целая реплика; усиление не исправляло текст","fix":"1.7B Base ICL со своим ref_text; пересинтез целой третьей фразы","status":"verified","evidence":"reports/research/2026-11-04_COFFEE_V2_FINISHED_PRIVATE.md","acceptance":"Small+Base ASR WAV; Small ASR итогового MP4, критические окончания без пропусков","owner_review":"pending","audience_effect":"unknown","regression":false},
-    {"id":"COFFEE-V2-FLOOR","project":"coffee_voice_test_v2_20261103","issue":"Герой выглядел стоящим на столешнице","cause":"Неверное расположение пола/мебели и опоры ног","fix":"Разнести координаты мебели и героя; проверить шесть стопов и кадры MP4","status":"verified","evidence":"reports/research/2026-11-04_COFFEE_V2_FINISHED_PRIVATE.md","acceptance":"Реально открытые исправленные стопы и 15 кадров финального look.py","owner_review":"pending","audience_effect":"unknown","regression":false},
-    {"id":"COFFEE-V2-CAPTION","project":"coffee_voice_test_v2_20261103","issue":"Одна короткая плашка держалась 0.52 секунды","cause":"Граница распознанных слов без минимальной выдержки","fix":"Увеличить до 0.8 секунды и передвинуть следующую границу","status":"verified","evidence":"reports/research/2026-11-04_COFFEE_V2_FINISHED_PRIVATE.md","acceptance":"Проверка timeline и повторный full205, просмотр финального contact","owner_review":"pending","audience_effect":"unknown","regression":false}
+    {
+      "id": "COFFEE-V2-VOICE",
+      "project": "coffee_voice_test_v2_20261103",
+      "issue": "Модель меняла окончания и начало фразы про работу",
+      "cause": "Слабый режим синтеза и неясная целая реплика; усиление не исправляло текст",
+      "fix": "1.7B Base ICL со своим ref_text; пересинтез целой третьей фразы",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-04_COFFEE_V2_FINISHED_PRIVATE.md",
+      "acceptance": "Small+Base ASR WAV; Small ASR итогового MP4, критические окончания без пропусков",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "COFFEE-V2-FLOOR",
+      "project": "coffee_voice_test_v2_20261103",
+      "issue": "Герой выглядел стоящим на столешнице",
+      "cause": "Неверное расположение пола/мебели и опоры ног",
+      "fix": "Разнести координаты мебели и героя; проверить шесть стопов и кадры MP4",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-04_COFFEE_V2_FINISHED_PRIVATE.md",
+      "acceptance": "Реально открытые исправленные стопы и 15 кадров финального look.py",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "COFFEE-V2-CAPTION",
+      "project": "coffee_voice_test_v2_20261103",
+      "issue": "Одна короткая плашка держалась 0.52 секунды",
+      "cause": "Граница распознанных слов без минимальной выдержки",
+      "fix": "Увеличить до 0.8 секунды и передвинуть следующую границу",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-04_COFFEE_V2_FINISHED_PRIVATE.md",
+      "acceptance": "Проверка timeline и повторный full205, просмотр финального contact",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "OUTRO-V6-MUSIC-PUMP",
+      "project": "coffee_voice_test_v2_20261103",
+      "issue": "Музыка в концовке прыгает и перекрывает голос по отзыву владельца",
+      "cause": "Огибающая музыкального stem поднимала gain с0.12до0.6; относительное снижение не устраняет скачки",
+      "fix": "Ровный музыкальный stem, RMSmusic/activevoice0.30, только плавные края",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-04_OUTRO_V6_VOICE30.md",
+      "acceptance": "PCM ratio0.30 и сохранение voice/FX, отсутствие старого envelope, full decode и finalcheck/look; слух новой версии ожидает владельца",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": true
+    }
   ]
 }

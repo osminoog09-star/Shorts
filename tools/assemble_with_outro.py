@@ -19,8 +19,8 @@ import argparse, json, math, re, subprocess, sys, tempfile, hashlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTRO = {"v": ROOT / "media/outro/m1lash_outro_denis_v5_vertical.mp4",
-         "h": ROOT / "media/outro/m1lash_outro_denis_v5_horizontal.mp4"}
+OUTRO = {"v": ROOT / "media/outro/m1lash_outro_denis_v6_vertical.mp4",
+         "h": ROOT / "media/outro/m1lash_outro_denis_v6_horizontal.mp4"}
 FPS, SR = 30, 48000
 TARGET_I, TARGET_TP = -15.0, -1.5
 
