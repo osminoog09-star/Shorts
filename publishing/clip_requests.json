@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01",
+  "updated": "2026-11-03",
   "source": "New scenes only; existing 7 masters/source files are already on prior production paths. Drive folder is optional for future supply.",
   "required_language": "русский дубляж актёров, не TTS",
   "items": [
@@ -97,7 +97,8 @@
       "score": 82,
       "status": "нужен",
       "note": "Таймкод ориентировочный; нужен исходный видеофайл с русской актёрской дорожкой, проверка до монтажа",
-      "updated": "2026-11-01"
+      "updated": "2026-11-03",
+      "match_confirmed_filename": "Screen_Recording_20261102_101336_Opera.mp4"
     },
     {
       "id": "w45-oppenheimer-trinity",
