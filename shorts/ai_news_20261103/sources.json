@@ -1,0 +1,44 @@
+{
+  "checked_at": "2026-11-03",
+  "replaces_draft": "ai_news_2026_10_28",
+  "stories": [
+    {
+      "story": "LifeVal",
+      "event_date": "2026-11-02",
+      "claim": "OpenAI опубликовала оценку выполнения бытовых задач, включая покупки, бюджет и документы; баллы не обещают успех каждой реальной задачи.",
+      "sources": [
+        "https://openai.com/index/lifeval/",
+        "https://www.unite.ai/openais-lifeval-evaluation-tests-ai-on-practical-everyday-tasks/"
+      ],
+      "label": "OpenAI · Unite.AI"
+    },
+    {
+      "story": "Grid Protectors",
+      "event_date": "2026-11-02",
+      "claim": "Анонсирована программа будущей гибкости потребления дата-центров; снижение нагрузки при пиках — план, не уже полученная экономия домохозяйств.",
+      "sources": [
+        "https://openai.com/index/grid-protectors-program/",
+        "https://www.georgiapower.com/news-hub/press-releases/georgia-power-to-serve-openai-project-in-effingham-county.html",
+        "https://blockchain.news/news/openai-launches-grid-protectors-program-for-future-compute-campuses"
+      ],
+      "label": "OpenAI · Georgia Power",
+      "note": "Программа анонсирована02.11; базовое соглашение с Georgia Power от22.07.2026, его не выдавать за новое."
+    },
+    {
+      "story": "Anthropic Q3",
+      "event_date": "2026-11-02",
+      "claim": "В S-1/A от02.11: выручкаIIIкв.2026 $16,956млн против$11,555млн воIIкв.(около+47%); операционный убыток$567млн. Не смешивать с чистым убытком$23,291млн или adjusted operating income.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+        "https://www.reuters.com/business/anthropics-quarterly-loss-shrinks-revenue-jumps-ahead-blockbuster-ipo-2026-11-02/"
+      ],
+      "label": "SEC · Reuters"
+    }
+  ],
+  "rejected": [
+    {
+      "story": "StreamVibe",
+      "reason": "Статья01.11, но arXiv2610.34662 от26.10; дата заметки не дата события."
+    }
+  ]
+}
