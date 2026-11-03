@@ -53,6 +53,37 @@ class PopcornVoiceGates(unittest.TestCase):
             sample.write_bytes(b"not approved")
             with self.assertRaisesRegex(RuntimeError,"SHA"):
                 m.install_verified_outro(sample)
+    def test_rejects_orphan_voice_wav_without_provenance(self):
+        with tempfile.TemporaryDirectory() as temp:
+            private=Path(temp)
+            wav=private/"denis_01.wav"
+            wav.write_bytes(b"RIFFFAKEAUDIO")
+            words=[t for s in m.SPEC["scenes"] for t in s["voice"]]
+            segments=[]
+            for i,t in enumerate(words):
+                segments.append({"text":t,"speaker":"denis",
+                    "voice_id":"denis-qwen3tts-reference-v1",
+                    "engine":"qwen3-tts-local","scene":i//2+1,
+                    "source_file":str(wav),"start":i*3.0,"end":i*3.0+2.0})
+            actual=bogus_timeline(actual_audio=True,segments=segments)
+            with self.assertRaisesRegex(RuntimeError,"missing immutable Denis WAV provenance"):
+                m.validate_actual(actual,private/"story.wav",private)
+    def test_rejects_mismatched_voice_receipt_hash(self):
+        with tempfile.TemporaryDirectory() as temp:
+            private=Path(temp)
+            wav=private/"denis_01.wav"
+            wav.write_bytes(b"RIFFFAKEAUDIO")
+            import json
+            words=[t for s in m.SPEC["scenes"] for t in s["voice"]]
+            (private/"denis_01.provenance.json").write_text(json.dumps({
+                "wav_sha256":"0"*64,"voice_id":"denis-qwen3tts-reference-v1",
+                "engine":"qwen3-tts-local","speaker":"denis","text":words[0]}))
+            segments=[{"text":t,"speaker":"denis","voice_id":"denis-qwen3tts-reference-v1",
+                "engine":"qwen3-tts-local","scene":i//2+1,
+                "source_file":str(wav),"start":i*3.0,"end":i*3.0+2.0} for i,t in enumerate(words)]
+            with self.assertRaisesRegex(RuntimeError,"WAV hash disagrees"):
+                m.validate_actual(bogus_timeline(actual_audio=True,segments=segments),
+                                  private/"story.wav",private)
     def test_qwen_offline_resume_source_compiles(self):
         src=(m.HERE/"synthesize_denis_private.py").read_text(encoding="utf8")
         compile(src,str(m.HERE/"synthesize_denis_private.py"),"exec")
