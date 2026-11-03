@@ -34,8 +34,11 @@ def run(args):
  out=Path(a.private_output).resolve()
  model_path=Path(a.local_model).resolve()
  if not ref.is_file(): raise RuntimeError("VOICE_BLOCKED: private approved reference absent")
- if not model_path.is_dir() or not list(model_path.glob("*.safetensors")):
+ if not model_path.is_dir() or not list(model_path.rglob("*.safetensors")):
   raise RuntimeError("VOICE_BLOCKED: local Qwen weights absent; no online model download")
+ whisper_path=Path(a.whisper_model).resolve()
+ if not whisper_path.is_dir() or not list(whisper_path.rglob('*.bin')) and not list(whisper_path.rglob('*.model')):
+  raise RuntimeError('VOICE_BLOCKED: offline Whisper model weights are absent; no download')
  if out==ROOT or ROOT in out.parents:
   raise RuntimeError("VOICE_BLOCKED: cannot create owner voice inside public Git repo")
  out.mkdir(parents=True,exist_ok=True)
@@ -45,10 +48,10 @@ def run(args):
  torch.set_num_threads(4);torch.set_num_interop_threads(1)
  torch.manual_seed(20261104)
  engine=Qwen3TTSModel.from_pretrained(str(model_path),device_map="cpu",
-    dtype=torch.bfloat16,attn_implementation="eager",local_files_only=True)
+    dtype=torch.float32,attn_implementation="eager",local_files_only=True)
  voice_prompt=engine.create_voice_clone_prompt(ref_audio=str(ref),x_vector_only_mode=True)
  # The independent word aligner must also stay entirely offline.
- whisper=WhisperModel(a.whisper_model,device="cpu",compute_type="int8",
+ whisper=WhisperModel(str(whisper_path),device="cpu",compute_type="int8",
     cpu_threads=4,local_files_only=True)
  at=0.0;segments=[];caps=[];clips=[];meta=[]
  for scene in SPEC["scenes"]:
@@ -108,5 +111,5 @@ if __name__=="__main__":
  p.add_argument("--private-reference",required=True)
  p.add_argument("--local-model",required=True)
  p.add_argument("--private-output",required=True)
- p.add_argument("--whisper-model",default="small")
+ p.add_argument("--whisper-model",required=True,help="Path to local faster-whisper model directory (no downloads)")
  run(p)
