@@ -178,23 +178,34 @@ function seek(t){
    const humanClose=ease(2.12,2.85,dt)*(1-ease(4.66,5.43,dt));
    camera.position.z-=.55*ease(.4,1.8,dt);
    camera.position.x+=(-1.73-camera.position.x)*humanClose;
-   camera.position.z+=(6.7-camera.position.z)*humanClose;
-   camera.lookAt(-.18-1.23*humanClose,2.65,-.05);
+   // Leave room for a fully raised bent elbow and the partner in the next two-shot.
+   camera.position.z+=(8.10-camera.position.z)*humanClose;
+   camera.lookAt(-.12-1.12*humanClose,2.65,-.05);
  }else camera.lookAt(...L.at);
  camera.updateProjectionMatrix();
  // deliberate staged action, not a static picture
- const startled=s===0?ease(1.20,2.05,dt)*(1-.38*ease(5.9,6.5,dt)):0;
- const protests=s===0?ease(2.9,3.6,dt)*(1-ease(4.85,5.65,dt)):0;
+ const startled=s===0?ease(1.20,1.95,dt)*(1-ease(2.55,3.20,dt)):0;
+ const protests=s===0?ease(2.80,3.35,dt)*(1-ease(4.40,5.30,dt)):0;
  // Keyframed acting: anticipation -> shocked raise -> pointing -> defeated slump.
  // Rounded hand motion stays beside the torso even in a close-up.
  // Recompute every value for arbitrary seek(t): no accumulated rotation.
- const settle=ease(5.0,6.15,dt);
+ const settle=ease(5.30,6.15,dt);
  mil.arms.forEach(a=>{
    const v=a.side,base=s===0?startled:.20;
-   a.shoulder.rotation.set(-.18*base,0,v*(.06+.32*base)-v*.09*protests);
-   a.elbow.rotation.set(-.24*base,0,-v*(.16+.80*base+.15*protests));
-   a.hand.rotation.set(0,0,.06*Math.sin(t*6));
-   if(s===0){a.shoulder.rotation.z*=1-.60*settle;a.elbow.rotation.z*=1-.35*settle}
+   if(s===0&&v>0){
+     // Right palm: flinch near chest -> bend and point at AKS -> collapse.
+     const up=1.30*startled+2.18*protests;
+     a.shoulder.rotation.set(-.10*startled,0,.08+up*(1-.75*settle));
+     a.elbow.rotation.set(-.16*startled,0,-(.25+.31*startled+.50*protests)*(1-.6*settle));
+   }else if(s===0){
+     // Left palm stays in frame, supporting a contrasting tight fist.
+     a.shoulder.rotation.set(-.12*startled,0,-.08-.27*startled-.12*protests);
+     a.elbow.rotation.set(0,0,.25+.50*startled+.25*protests);
+   }else{
+     a.shoulder.rotation.set(-.04,0,v*.10);
+     a.elbow.rotation.set(0,0,-v*.22);
+   }
+   a.hand.rotation.set(0,0,.08*Math.sin(t*6));
  });
  mil.head.rotation.z=(s===0?-.12-.12*startled:s===2?.08:s===4?.10:0)+Math.sin(t*3.4)*.035;
  mil.head.rotation.y=s===0?-.38*ease(1.2,2.45,dt)*(1-ease(4.8,5.7,dt)):0;
