@@ -19,5 +19,7 @@
       "id": "science_mirror_202611",
       "file": "videos/science_mirror_202611_v1.mp4"
     }
-  ]
+  ],
+  "attempt": 2,
+  "note": "Retry only after adding FFmpeg install (run 41635846789 failed: ffprobe command not found). No video changes, no upload."
 }
