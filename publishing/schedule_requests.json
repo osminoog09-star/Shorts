@@ -50,6 +50,14 @@
       "video_id": "ACy21tT97a4",
       "request_id": "30e33dfb-8e63-4ebf-b8ba-f0abbcf35204",
       "requested_at": "2026-11-03T09:40:49.549Z"
+    },
+    "kino_006": {
+      "at": "2026-11-06T10:00:00+02:00",
+      "kind": "short",
+      "title": "Они заметили волну слишком поздно #shorts",
+      "video_id": "sCThiwmigy0",
+      "request_id": "6f97758b-cd5b-4064-ba9b-88926c86957d",
+      "requested_at": "2026-11-03T09:41:06.601Z"
     }
   }
 }
