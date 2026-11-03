@@ -1,0 +1,10 @@
+{
+  "renderer": "python",
+  "script": "shorts/render_ai_news_20261103.py",
+  "output": "videos/m1lash_ai_news_20261103_ru.mp4",
+  "mode": "stills",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "no_youtube_upload": true,
+  "note": "Six real HTML/SVG stills only, no TTS/spend/publication. Existing approved S1-D25 format."
+}
