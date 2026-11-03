@@ -48,6 +48,7 @@ const titles=["LifeVal","БЫТОВУХА","СЕТЬ","ПЛАН","+47%","−$567
 const sources=["OpenAI · Unite.AI","OpenAI · Unite.AI","OpenAI · Georgia Power","OpenAI · Georgia Power","SEC · Reuters","SEC · Reuters"];
 const shades=["#f4efe2","#f4efe2","#dce9e5","#dce9e5","#eee2df","#eee2df"];
 let current=-1;
+let currentCaption=-2;
 let master=null;
 const clock={value:0};
 function rebuildClock(){
@@ -60,7 +61,7 @@ function rebuildClock(){
  for(const id of ["film","scene","caption"])document.getElementById(id).setAttribute("data-duration",timeline.total);
  document.documentElement.setAttribute("data-duration",timeline.total);
 }
-window.setTimeline=data=>{timeline=data;current=-1;rebuildClock();window.renderAt(0)};
+window.setTimeline=data=>{timeline=data;current=-1;currentCaption=-2;rebuildClock();window.renderAt(0)};
 function attr(id,key,value){const e=document.getElementById(id);if(e)e.setAttribute(key,String(value))}
 function trans(id,value){attr(id,"transform",value)}
 window.renderAt=function(t){
@@ -77,8 +78,21 @@ window.renderAt=function(t){
  if(index===3){trans("bill","translate(570 "+(320-18*p)+") rotate("+(9-4*p)+")");attr("lamp","opacity",.9+.1*Math.sin(u*Math.PI));const e=document.getElementById("billInk");e.style.strokeDasharray="100";e.style.strokeDashoffset=100*(1-ease((u-.12)*2))}
  if(index===4){for(const pair of [["barOld",235],["barNew",345]]){const h=pair[1]*(.35+.65*ease(u*1.7));attr(pair[0],"height",h);attr(pair[0],"y",535-h)}trans("financeCoin","translate("+(-36+36*p)+" "+(-16*Math.sin(Math.PI*u))+") rotate("+(20*u)+" 858 585)")}
  if(index===5){trans("subscription","translate("+(-290*(1-ease(u*2.2)))+" "+(-35*Math.sin(Math.PI*clamp(u*2.2)))+") rotate("+(-6+4*p)+" 230 480)");const e=document.getElementById("lossRing");e.style.strokeDasharray="100";e.style.strokeDashoffset=100*(1-ease(u*1.8))}
- const cap=timeline.caps.find(c=>t>=c.start&&t<c.end);
- const box=document.getElementById("caption");box.innerHTML=cap?'<span>'+cap.words.map((w,i)=>i===cap.words.length-1?'<em>'+escapeText(w)+'</em>':escapeText(w)).join(" ")+'</span>':"";box.style.opacity=cap?1:0;
+ const capIndex=timeline.caps.findIndex(c=>t>=c.start&&t<c.end);
+ const cap=capIndex>=0?timeline.caps[capIndex]:null;
+ const box=document.getElementById("caption");
+ if(capIndex!==currentCaption){
+  currentCaption=capIndex;
+  box.innerHTML=cap?'<span>'+cap.words.map((w,i)=>i===cap.words.length-1?'<em>'+escapeText(w)+'</em>':escapeText(w)).join(" ")+'</span>':"";
+  box.style.opacity=cap?1:0;
+  if(cap){
+   const sourceTop=document.getElementById("source").getBoundingClientRect().top;
+   for(let size=76;size>=64;size-=2){
+    box.style.fontSize=size+"px";
+    if(box.getBoundingClientRect().bottom<=sourceTop-12)break;
+   }
+  }
+ }
  document.getElementById("progress").style.width=(1080*clamp(t/timeline.total))+"px";
  return {time:t,scene:index};
 };
