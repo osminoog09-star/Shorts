@@ -1,13 +1,15 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/kino_001.json",
   "channel": "ru",
   "video_id": "xRwwXYXVxSc",
   "video_url": "https://youtu.be/xRwwXYXVxSc",
-  "publish_at_utc": null,
+  "publish_at_utc": "2026-11-04T08:00:00Z",
   "source_sha256": "dab3c75c1e11725e2fdcd643412f7e8740d411e5df03620aa891f7ccab123d42",
   "privacy_status": "private",
   "upload_method": "youtube_studio_ui",
   "verification": "Confirmed in M1lash Studio content table, limited access, no schedule; exact local MP4 SHA256 matched approved review archive.",
-  "note": "Manual recovery receipt for an existing upload. NEVER upload again; schedule only after owner publication decision."
+  "note": "Manual recovery receipt for an existing upload. NEVER upload again; schedule only after owner publication decision.",
+  "schedule_confirmed_at": "2026-11-03T09:35:56.781219+00:00",
+  "schedule_request_id": "24bddf7c-b868-4be5-b4b2-7cab010c4357"
 }
