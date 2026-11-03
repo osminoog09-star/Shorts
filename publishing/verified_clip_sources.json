@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "updated": "2026-11-03",
+  "evidence": "Six sample frames per source reviewed from private Drive contact sheets; film family matched to owner-provided labels. No RU audio, exact selected scene, or publication rights verified.",
+  "notes": "Source recordings are excerpts, not full film masters. Never mark a requested scene as verified or automatically start a duplicate project.",
+  "items": [
+    {
+      "filename": "Screen_Recording_20261102_101336_Opera.mp4",
+      "film": "Бэтмен (2022)",
+      "source_kind": "excerpt",
+      "duration_seconds": 1261,
+      "priority": 1,
+      "candidate_requests": [
+        "w45-batman-riddler"
+      ],
+      "ru_audio_verified": false,
+      "scene_verified": false
+    },
+    {
+      "filename": "Screen_Recording_20261102_103133_Opera.mp4",
+      "film": "Бэтмен (2022)",
+      "source_kind": "excerpt",
+      "duration_seconds": 1063.4,
+      "priority": 2,
+      "candidate_requests": [],
+      "ru_audio_verified": false,
+      "scene_verified": false
+    },
+    {
+      "filename": "Screen_Recording_20261103_124519_Opera.mp4",
+      "film": "Оппенгеймер (2023)",
+      "source_kind": "excerpt",
+      "duration_seconds": 2418.4,
+      "priority": 1,
+      "candidate_requests": [
+        "w45-oppenheimer-trinity"
+      ],
+      "ru_audio_verified": false,
+      "scene_verified": false
+    }
+  ]
+}
