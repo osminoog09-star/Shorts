@@ -68,15 +68,15 @@ def classify_source_failure(output: str) -> tuple[str, str]:
     if "anti-bot challenge" in lower or "anubis_challenge" in lower:
         return ("source_antibot",
                 "Источник требует антибот-проверку. GitHub Actions не может пройти её автоматически; обход не используется.")
-    if re.search(r"status code error:\\s*403|\\b403 forbidden\\b", lower):
+    if re.search(r"status code error:\s*403|\b403 forbidden\b", lower):
         return ("source_http_403", "Сервер источника отказал в доступе (HTTP 403).")
-    if re.search(r"status code error:\\s*404|\\b404 not found\\b", lower):
+    if re.search(r"status code error:\s*404|\b404 not found\b", lower):
         return ("source_http_404", "Страница источника не найдена (HTTP 404).")
-    if re.search(r"status code error:\\s*429|too many requests", lower):
+    if re.search(r"status code error:\s*429|too many requests", lower):
         return ("source_http_429", "Источник ограничил частоту запросов (HTTP 429).")
-    if re.search(r"status code error:\\s*5\\d\\d", lower):
+    if re.search(r"status code error:\s*5\d\d", lower):
         return ("source_http_5xx", "Источник вернул серверную ошибку (HTTP 5xx).")
-    if re.search(r"no such host|name or service not known|lookup\\s", lower):
+    if re.search(r"no such host|name or service not known|lookup\s", lower):
         return ("source_dns", "GitHub Actions не смог разрешить адрес источника.")
     if re.search(r"certificate|tls handshake", lower):
         return ("source_tls", "Ошибка TLS/сертификата при обращении к источнику.")
