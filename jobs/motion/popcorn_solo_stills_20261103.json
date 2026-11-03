@@ -1,0 +1,10 @@
+{
+  "renderer": "python",
+  "script": "shorts/science_popcorn_20261104/render_visual.py",
+  "mode": "stills",
+  "only_id": "science_popcorn_20261104",
+  "output": "videos/science_popcorn_20261104_silent_preflight.mp4",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "note": "ONE SHORT only. No voice, no outro, no upload, no modifications to vacuum."
+}
