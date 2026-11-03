@@ -1,3 +1,8 @@
+## 03.11 · GPT — единый пакет 8 Shorts передан на слух владельцу
+
+- Архив 171600417B: [M1lash_8_SHORTS_AUDIO_REVIEW_20261103.zip](https://chatgpt.com/library?file_id=libfile_4bc580a185208191900e4e8fd4aae1f5&account_id=personal). 6 кино последних версий + AIbureaucracyV3 + news02.11, паспорта и SHA-manifest. Все8 заново full decode PASS, ZIP CRC PASS; звук/видео не менялись.
+- По текущему поручению Денис сам слушает, затем разрешает заливку. До нового ок YouTube upload/date не запускать. 003 FxIlxGWVCuw уже существующий, не загружать повторно. Dog/Ernesto остаются ресурсными блокерами, длинные не менялись. Отчёт: reports/research/2026-11-03_ALL_8_SHORTS_OWNER_AUDIO_REVIEW.md.
+
 ## GPT 03.11 — повторная проверка источника «Оппенгеймер» и живой Drive (без новых бесполезных загрузок)
 
 - По просьбе владельца «реши проблему» повторно прочитаны NOW/AGENTS/Studio, проверена реальная папка через подключённый Google Drive connector (не кэш): **два** `Screen_Recording_20261102_*.mp4` (~205.7 MB и ~163.4 MB), полного `Oppenheimer` в папке нет. Новых полноформатных источников нет.
