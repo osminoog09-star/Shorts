@@ -70,16 +70,20 @@ def analyze(model, spec, video, outro_seconds):
                      "text": p.text.strip()} for p in parts]
     recognized = " ".join(p["text"] for p in segments)
     similarity = word_similarity(expected, recognized)
-    last_similarity = word_similarity(expected_lines[-1], " ".join(
-        p["text"] for p in segments if p["start"] >= max(0, story_seconds - 12)
-    ))
+    # Compare like with like: the *last N words* of the recognized story, not
+    # the entire last 12 seconds (which creates false payoff warnings).
+    expected_tail_words = normalized(expected_lines[-1]).split()
+    recognized_tail_words = normalized(recognized).split()[-len(expected_tail_words):]
+    last_similarity = round(difflib.SequenceMatcher(
+        None, expected_tail_words, recognized_tail_words
+    ).ratio(), 3)
     # Preserve negation: a missing 'не' can reverse the meaning.
     exp_no = normalized(expected).split().count("не")
     got_no = normalized(recognized).split().count("не")
     flags = []
     if similarity < 0.72:
         flags.append("ASR_TRANSCRIPT_DIFFERENCE")
-    if last_similarity < 0.52:
+    if last_similarity < 0.88:
         flags.append("PAYOFF_END_ASR_UNCERTAIN")
     if got_no < exp_no:
         flags.append("NEGATION_MAY_BE_MISSING")
@@ -97,6 +101,8 @@ def analyze(model, spec, video, outro_seconds):
         "segments": segments,
         "text_similarity": similarity,
         "payoff_similarity": last_similarity,
+        "payoff_expected_text": expected_lines[-1],
+        "payoff_recognized_tail": " ".join(recognized_tail_words),
         "expected_negations": exp_no, "recognized_negations": got_no,
         "flags": flags,
         "automatic_asr_result": "NO_OBVIOUS_ISSUE" if not flags else "REVIEW_REQUIRED",
