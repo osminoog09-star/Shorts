@@ -1,0 +1,10 @@
+{
+  "renderer": "python",
+  "script": "shorts/science_popcorn_20261104/render_visual.py",
+  "mode": "pilot",
+  "only_id": "science_popcorn_20261104",
+  "output": "videos/science_popcorn_20261104_pilot_silent_preflight.mp4",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "note": "Approved six frames gate 41725149202, single popcorn only. Render 7s motion pilot NO AUDIO, owner voice stays private."
+}
