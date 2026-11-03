@@ -1,10 +1,11 @@
 {
   "renderer": "python",
-  "script": "tests/test_popcorn_private_gates.py",
+  "script": "shorts/science_popcorn_20261104/run_gate_tests.py",
   "output": "videos/popcorn_gates_NO_RENDER.mp4",
   "preflight_only": true,
   "save_review_mp4": false,
   "only_id": "science_popcorn_20261104",
   "mode": "unit_tests",
-  "note": "Just offline unittest: verify voice/outro/caption strict release gates; produce no media or personal audio."
+  "note": "Just offline unittest: verify voice/outro/caption strict release gates; produce no media or personal audio.",
+  "revision": 2
 }
