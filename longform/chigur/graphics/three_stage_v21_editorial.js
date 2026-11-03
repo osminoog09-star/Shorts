@@ -16,14 +16,35 @@
    if(row)out.push(row);
    return out.slice(0,2);
  }
- window.frameV21=(shot,seconds)=>{
+ window.frameV21=(shot,seconds,format='image/png')=>{
    const scene=shot.scene_id,phase=Math.max(.15,Math.min(5.8,seconds));
    base(scene*6+phase);
-   const v=Number(shot.index||0),dx=(v%3-1)*.30,dy=((v*7)%5-2)*.045,dz=(v%4)*.12;
-   C.position.x+=dx+.045*Math.sin(seconds*.36);
-   C.position.y+=dy;C.position.z+=dz-.025*seconds;
+   // The V14 hand read as a sausage/mannequin limb in the real contact sheet.
+   // Hide that theatrical prop and tell refusal by a chair sliding away.
+   if(scene===3){
+     const hand=G[3].children.find(n=>n.isGroup&&Math.abs(n.position.z-2.1)<.01);
+     if(hand)hand.visible=false;
+     const chair=G[3].children.find(n=>n.isGroup&&Math.abs(n.position.z+3.4)<.15);
+     if(chair){const away=Math.max(0,Math.min(1,seconds/5));chair.position.x=2.45+.65*away;chair.rotation.y=-.28-.28*away;}
+   }
+   const v=Number(shot.index||0);
+   const dx=(v%5-2)*.26,dy=((v*7)%5-2)*.12,dz=(v%4)*.28;
+   // Real 28-window coverage cannot be a rerun of the same 6 centered shots.
+   // Use alternating wide/medium/detail framings and asymmetric emphasis.
+   const detail=(v%3===1),macro=(v%5===2);
+   if(detail){C.fov=31;C.updateProjectionMatrix()}
+   else if(macro){C.fov=27;C.updateProjectionMatrix()}
+   else {C.fov=36;C.updateProjectionMatrix()}
+   C.position.x+=dx+.085*Math.sin(seconds*.36);
+   C.position.y+=dy;C.position.z+=dz-(.055+.015*(v%3))*seconds;
    const targ=poses[scene][1];C.lookAt(targ[0]+dx*.18,targ[1],targ[2]);
-   R.toneMappingExposure=(scene===2||scene===5)?.97:scene===1?1.03:.90;
+   R.toneMappingExposure=scene===5?.70:scene===3?.87:(scene===2||scene===1)?1.03:.91;
+   // Noir road: headlights and silhouette carry the shot; no toy-car glamour angle.
+   if(scene===5){
+     C.position.set((v%2?-.85:1.50)+.07*seconds,.36+(v%3)*.2,5.9-.10*seconds);
+     C.lookAt(-.15,-1.18,-1.35);
+     S.fog=new THREE.FogExp2(0x08101b,.065);
+   }
    R.render(S,C);
    ctx.clearRect(0,0,1280,720);ctx.drawImage(R.domElement,0,0,1280,720);
    let veil=ctx.createLinearGradient(0,0,0,225);
@@ -48,7 +69,7 @@
    ctx.font='700 19px "DejaVu Sans",sans-serif';ctx.fillStyle='#d5cbbd';
    ctx.fillText('КИНОРАЗБОР  /  ВИЗУАЛЬНАЯ РЕКОНСТРУКЦИЯ',64,688);
    ctx.restore();
-   return canvas.toDataURL('image/png');
+   return canvas.toDataURL(format,format==='image/jpeg'?.90:undefined);
  };
  window.chigurV21Ready=true;
 })();
