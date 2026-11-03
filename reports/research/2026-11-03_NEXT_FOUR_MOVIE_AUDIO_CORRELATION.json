@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-03",
+  "status": "PRIVATE_EDITORIAL_AUDIO_PREVIEW_NOT_FINAL",
+  "inputs": [
+    {
+      "id": "chigur_roadstop_20261104",
+      "source_artifact": 13070052528,
+      "source_start_sec": 66,
+      "movie_original_audio_waveform_correlation": 0.89828,
+      "latency_ms": 21.5,
+      "preview_duration_sec": 38.421029,
+      "preview_resolution": "540x960",
+      "preview_has_standard_outro": false
+    },
+    {
+      "id": "chigur_tracker_20261104",
+      "source_artifact": 13070325354,
+      "source_start_sec": 5,
+      "movie_original_audio_waveform_correlation": 0.9996,
+      "latency_ms": 12,
+      "preview_duration_sec": 43.787696,
+      "preview_resolution": "540x960",
+      "preview_has_standard_outro": false
+    }
+  ],
+  "method": "FFmpeg PCM 2000Hz mono, 23s unvoiced movie-proof span, FFT cross-correlation over all offsets; 0.898/0.999 correlations confirm actor soundtrack preserved, not statement of RU exact words/human listening",
+  "paths_local": [
+    "/mnt/data/nov04_audio_previews/chigur_roadstop_PRIVATE_PREVIEW_NO_OUTRO.mp4",
+    "/mnt/data/nov04_audio_previews/chigur_tracker_PRIVATE_PREVIEW_NO_OUTRO.mp4"
+  ],
+  "next": "Current private CI run 41688683028 must produce final 1080x1920 + approved vertical outro; then official check.py/look.py/audio review. Never upload proof MP4 or copyrighted clips to public repo.",
+  "rights": "Movie footage is copyrighted; GitHub stores scripts and QA text only."
+}
