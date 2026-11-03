@@ -29,9 +29,9 @@
 ### 03.11 — ОТДЕЛЬНЫЙ пробный рисованный скетч с голосом Дениса · GPT
 Цель: новый PRIVATE MP4, рисованный2D S1-D25, явное разрешение владельца использовать собственный голос в теле теста. Остальные задачи/4готовых Shorts/Чигур не заменяет.
 - [x] Актуальные AGENTS/NOW/HANDOFF/Studio прочитаны. Новая история: кофемашина с ИИ требует подтверждение бодрости и продаёт мотивацию.6 сцен/6 голосовых блоков, без внешних фильмов/платных API.
-- [ ] Голос локально Qwen3-TTS по частному образцу (не пушить ни голос, ни embedding в публичныйGit); ASR/таймкоды.
+- [x] Голос локально Qwen3-TTS по частному образцу: 6 WAV/40.50225с; независимые base+small ASR, точные сценарные слова выровнены по small word timestamps, 26 титров. Голос/reference/embedding не в публичномGit.
 - [ ] HTML/SVG шесть стопов → осмотр → silent visual render через motion-render → локальный монтаж голоса+approved outro/check/look → MP4 владельцу.
-Следующий шаг: `shorts/coffee_voice_test_20261103/`, root private local `/workspace/scratch/2071953dc074/voice_test/coffee_sketch/`; voice.log / synthesize.py. Исходный approved vertical outro побайтово совпал с main771ed5d31a144e023ca686b0eebc3233568499d1. Голос в штатной концовке не менять без отдельного решения. Никаких YouTube upload/date.
+Следующий шаг: actual-timeline stills Actions41694636581 (предыдущий41693558612 остановлен layout-гейтом; 4 слова заменены на3). Осмотреть6стопов, затем full silent visual и частный локальный монтаж. `shorts/coffee_voice_test_20261103/`, root private local `/workspace/scratch/2071953dc074/voice_test/coffee_sketch/`; voice.log / synthesize.py. Исходный approved vertical outro побайтово совпал с main771ed5d31a144e023ca686b0eebc3233568499d1. Голос в штатной концовке не менять без отдельного решения. Никаких YouTube upload/date.
 Ждёт Дениса: нет, стиль существующий рисованный; голос разрешён последним сообщением.
 
 ### 03.11 — Очередь 4 новых Shorts → сайт M1lash Studio → аудит · GPT
