@@ -1,0 +1,61 @@
+{
+ "text": "Но почему вся эта компания не падает вниз?",
+ "words": [
+  {
+   "w": "Но",
+   "start": 0.0,
+   "end": 0.278
+  },
+  {
+   "w": "почему",
+   "start": 0.278,
+   "end": 0.613
+  },
+  {
+   "w": "вся",
+   "start": 0.613,
+   "end": 0.833
+  },
+  {
+   "w": "эта",
+   "start": 0.833,
+   "end": 1.018
+  },
+  {
+   "w": "компания",
+   "start": 1.018,
+   "end": 1.528
+  },
+  {
+   "w": "не",
+   "start": 1.528,
+   "end": 1.667
+  },
+  {
+   "w": "падает",
+   "start": 1.667,
+   "end": 2.002
+  },
+  {
+   "w": "вниз",
+   "start": 2.002,
+   "end": 2.442
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+7%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/science_orbit_202611_voice/s07.mp3",
+ "humanize": true,
+ "prosody": [
+  {
+   "s": "Но почему вся эта компания не падает вниз?",
+   "rate": "+8%",
+   "pitch": "+5Hz"
+  }
+ ],
+ "post": "highpass=f=70,equalizer=f=180:t=q:w=0.9:g=2,equalizer=f=3400:t=q:w=1.2:g=-1.5,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=140:makeup=1.5,aecho=0.85:0.82:23|41:0.10|0.06,loudnorm=I=-16:TP=-1.5:LRA=9"
+}

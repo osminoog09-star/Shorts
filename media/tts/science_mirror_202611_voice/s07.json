@@ -1,0 +1,56 @@
+{
+ "text": "А почему надпись на футболке выглядит наоборот?",
+ "words": [
+  {
+   "w": "А",
+   "start": 0.0,
+   "end": 0.206
+  },
+  {
+   "w": "почему",
+   "start": 0.206,
+   "end": 0.57
+  },
+  {
+   "w": "надпись",
+   "start": 0.57,
+   "end": 1.007
+  },
+  {
+   "w": "на",
+   "start": 1.007,
+   "end": 1.116
+  },
+  {
+   "w": "футболке",
+   "start": 1.116,
+   "end": 1.711
+  },
+  {
+   "w": "выглядит",
+   "start": 1.711,
+   "end": 2.209
+  },
+  {
+   "w": "наоборот",
+   "start": 2.209,
+   "end": 2.84
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+7%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/science_mirror_202611_voice/s07.mp3",
+ "humanize": true,
+ "prosody": [
+  {
+   "s": "А почему надпись на футболке выглядит наоборот?",
+   "rate": "+3%",
+   "pitch": "+2Hz"
+  }
+ ],
+ "post": "highpass=f=70,equalizer=f=180:t=q:w=0.9:g=2,equalizer=f=3400:t=q:w=1.2:g=-1.5,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=140:makeup=1.5,aecho=0.85:0.82:23|41:0.10|0.06,loudnorm=I=-16:TP=-1.5:LRA=9"
+}

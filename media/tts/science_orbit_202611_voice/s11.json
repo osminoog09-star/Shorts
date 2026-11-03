@@ -1,0 +1,56 @@
+{
+ "text": "Невесомость здесь получается из общего свободного падения.",
+ "words": [
+  {
+   "w": "Невесомость",
+   "start": 0.0,
+   "end": 0.673
+  },
+  {
+   "w": "здесь",
+   "start": 0.673,
+   "end": 1.082
+  },
+  {
+   "w": "получается",
+   "start": 1.082,
+   "end": 1.755
+  },
+  {
+   "w": "из",
+   "start": 1.755,
+   "end": 1.923
+  },
+  {
+   "w": "общего",
+   "start": 1.923,
+   "end": 2.296
+  },
+  {
+   "w": "свободного",
+   "start": 2.296,
+   "end": 2.849
+  },
+  {
+   "w": "падения",
+   "start": 2.849,
+   "end": 3.534
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+7%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/science_orbit_202611_voice/s11.mp3",
+ "humanize": true,
+ "prosody": [
+  {
+   "s": "Невесомость здесь получается из общего свободного падения.",
+   "rate": "+4%",
+   "pitch": "-3Hz"
+  }
+ ],
+ "post": "highpass=f=70,equalizer=f=180:t=q:w=0.9:g=2,equalizer=f=3400:t=q:w=1.2:g=-1.5,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=140:makeup=1.5,aecho=0.85:0.82:23|41:0.10|0.06,loudnorm=I=-16:TP=-1.5:LRA=9"
+}

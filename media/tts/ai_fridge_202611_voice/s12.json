@@ -1,0 +1,56 @@
+{
+ "text": "Впервые похудел мой кошелёк. Раньше меня.",
+ "words": [
+  {
+   "w": "Впервые",
+   "start": 0.0,
+   "end": 0.619
+  },
+  {
+   "w": "похудел",
+   "start": 0.619,
+   "end": 1.083
+  },
+  {
+   "w": "мой",
+   "start": 1.083,
+   "end": 1.262
+  },
+  {
+   "w": "кошелёк",
+   "start": 1.262,
+   "end": 1.869
+  },
+  {
+   "w": "Раньше",
+   "start": 2.053,
+   "end": 2.63
+  },
+  {
+   "w": "меня",
+   "start": 2.63,
+   "end": 3.038
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+7%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/ai_fridge_202611_voice/s12.mp3",
+ "humanize": true,
+ "prosody": [
+  {
+   "s": "Впервые похудел мой кошелёк.",
+   "rate": "+5%",
+   "pitch": "+1Hz"
+  },
+  {
+   "s": "Раньше меня.",
+   "rate": "+4%",
+   "pitch": "+0Hz"
+  }
+ ],
+ "post": "highpass=f=70,equalizer=f=180:t=q:w=0.9:g=2,equalizer=f=3400:t=q:w=1.2:g=-1.5,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=140:makeup=1.5,aecho=0.85:0.82:23|41:0.10|0.06,loudnorm=I=-16:TP=-1.5:LRA=9"
+}

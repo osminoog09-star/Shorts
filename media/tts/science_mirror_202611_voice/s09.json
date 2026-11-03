@@ -1,0 +1,71 @@
+{
+ "text": "Напиши слово на прозрачном листе и поверни его к зеркалу.",
+ "words": [
+  {
+   "w": "Напиши",
+   "start": 0.0,
+   "end": 0.47
+  },
+  {
+   "w": "слово",
+   "start": 0.47,
+   "end": 0.745
+  },
+  {
+   "w": "на",
+   "start": 0.745,
+   "end": 0.849
+  },
+  {
+   "w": "прозрачном",
+   "start": 0.849,
+   "end": 1.399
+  },
+  {
+   "w": "листе",
+   "start": 1.399,
+   "end": 1.766
+  },
+  {
+   "w": "и",
+   "start": 1.766,
+   "end": 1.938
+  },
+  {
+   "w": "поверни",
+   "start": 1.938,
+   "end": 2.351
+  },
+  {
+   "w": "его",
+   "start": 2.351,
+   "end": 2.546
+  },
+  {
+   "w": "к",
+   "start": 2.546,
+   "end": 2.592
+  },
+  {
+   "w": "зеркалу",
+   "start": 2.592,
+   "end": 3.108
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+7%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/science_mirror_202611_voice/s09.mp3",
+ "humanize": true,
+ "prosody": [
+  {
+   "s": "Напиши слово на прозрачном листе и поверни его к зеркалу.",
+   "rate": "+9%",
+   "pitch": "-2Hz"
+  }
+ ],
+ "post": "highpass=f=70,equalizer=f=180:t=q:w=0.9:g=2,equalizer=f=3400:t=q:w=1.2:g=-1.5,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=140:makeup=1.5,aecho=0.85:0.82:23|41:0.10|0.06,loudnorm=I=-16:TP=-1.5:LRA=9"
+}

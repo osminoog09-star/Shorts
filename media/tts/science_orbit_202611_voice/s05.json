@@ -1,0 +1,56 @@
+{
+ "text": "Станция, человек и капля воды падают вместе.",
+ "words": [
+  {
+   "w": "Станция",
+   "start": 0.0,
+   "end": 0.733
+  },
+  {
+   "w": "человек",
+   "start": 0.95,
+   "end": 1.49
+  },
+  {
+   "w": "и",
+   "start": 1.49,
+   "end": 1.575
+  },
+  {
+   "w": "капля",
+   "start": 1.575,
+   "end": 1.875
+  },
+  {
+   "w": "воды",
+   "start": 1.875,
+   "end": 2.151
+  },
+  {
+   "w": "падают",
+   "start": 2.151,
+   "end": 2.584
+  },
+  {
+   "w": "вместе",
+   "start": 2.584,
+   "end": 3.125
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+7%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/science_orbit_202611_voice/s05.mp3",
+ "humanize": true,
+ "prosody": [
+  {
+   "s": "Станция, человек и капля воды падают вместе.",
+   "rate": "+4%",
+   "pitch": "+2Hz"
+  }
+ ],
+ "post": "highpass=f=70,equalizer=f=180:t=q:w=0.9:g=2,equalizer=f=3400:t=q:w=1.2:g=-1.5,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=140:makeup=1.5,aecho=0.85:0.82:23|41:0.10|0.06,loudnorm=I=-16:TP=-1.5:LRA=9"
+}

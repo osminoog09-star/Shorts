@@ -1,0 +1,61 @@
+{
+ "text": "Цель простая. Съесть котлету и лечь спать.",
+ "words": [
+  {
+   "w": "Цель",
+   "start": 0.0,
+   "end": 0.405
+  },
+  {
+   "w": "простая",
+   "start": 0.405,
+   "end": 1.167
+  },
+  {
+   "w": "Съесть",
+   "start": 1.234,
+   "end": 1.75
+  },
+  {
+   "w": "котлету",
+   "start": 1.75,
+   "end": 2.301
+  },
+  {
+   "w": "и",
+   "start": 2.301,
+   "end": 2.45
+  },
+  {
+   "w": "лечь",
+   "start": 2.45,
+   "end": 2.668
+  },
+  {
+   "w": "спать",
+   "start": 2.668,
+   "end": 3.15
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+7%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/ai_fridge_202611_voice/s06.mp3",
+ "humanize": true,
+ "prosody": [
+  {
+   "s": "Цель простая.",
+   "rate": "+5%",
+   "pitch": "-1Hz"
+  },
+  {
+   "s": "Съесть котлету и лечь спать.",
+   "rate": "+9%",
+   "pitch": "+1Hz"
+  }
+ ],
+ "post": "highpass=f=70,equalizer=f=180:t=q:w=0.9:g=2,equalizer=f=3400:t=q:w=1.2:g=-1.5,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=140:makeup=1.5,aecho=0.85:0.82:23|41:0.10|0.06,loudnorm=I=-16:TP=-1.5:LRA=9"
+}

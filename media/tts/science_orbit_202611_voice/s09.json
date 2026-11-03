@@ -1,0 +1,61 @@
+{
+ "text": "Пока станция падает, поверхность Земли закругляется под ней.",
+ "words": [
+  {
+   "w": "Пока",
+   "start": 0.0,
+   "end": 0.33
+  },
+  {
+   "w": "станция",
+   "start": 0.33,
+   "end": 0.795
+  },
+  {
+   "w": "падает",
+   "start": 0.795,
+   "end": 1.205
+  },
+  {
+   "w": "поверхность",
+   "start": 1.432,
+   "end": 1.966
+  },
+  {
+   "w": "Земли",
+   "start": 1.966,
+   "end": 2.375
+  },
+  {
+   "w": "закругляется",
+   "start": 2.375,
+   "end": 2.989
+  },
+  {
+   "w": "под",
+   "start": 2.989,
+   "end": 3.136
+  },
+  {
+   "w": "ней",
+   "start": 3.136,
+   "end": 3.466
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+7%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/science_orbit_202611_voice/s09.mp3",
+ "humanize": true,
+ "prosody": [
+  {
+   "s": "Пока станция падает, поверхность Земли закругляется под ней.",
+   "rate": "+10%",
+   "pitch": "-3Hz"
+  }
+ ],
+ "post": "highpass=f=70,equalizer=f=180:t=q:w=0.9:g=2,equalizer=f=3400:t=q:w=1.2:g=-1.5,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=140:makeup=1.5,aecho=0.85:0.82:23|41:0.10|0.06,loudnorm=I=-16:TP=-1.5:LRA=9"
+}

@@ -1,0 +1,61 @@
+{
+ "text": "Купил умный холодильник. Попросил следить за питанием.",
+ "words": [
+  {
+   "w": "Купил",
+   "start": 0.0,
+   "end": 0.534
+  },
+  {
+   "w": "умный",
+   "start": 0.534,
+   "end": 0.85
+  },
+  {
+   "w": "холодильник",
+   "start": 0.85,
+   "end": 1.59
+  },
+  {
+   "w": "Попросил",
+   "start": 1.793,
+   "end": 2.351
+  },
+  {
+   "w": "следить",
+   "start": 2.351,
+   "end": 2.776
+  },
+  {
+   "w": "за",
+   "start": 2.776,
+   "end": 2.933
+  },
+  {
+   "w": "питанием",
+   "start": 2.933,
+   "end": 3.577
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+7%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/ai_fridge_202611_voice/s01.mp3",
+ "humanize": true,
+ "prosody": [
+  {
+   "s": "Купил умный холодильник.",
+   "rate": "+3%",
+   "pitch": "+1Hz"
+  },
+  {
+   "s": "Попросил следить за питанием.",
+   "rate": "+3%",
+   "pitch": "+3Hz"
+  }
+ ],
+ "post": "highpass=f=70,equalizer=f=180:t=q:w=0.9:g=2,equalizer=f=3400:t=q:w=1.2:g=-1.5,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=140:makeup=1.5,aecho=0.85:0.82:23|41:0.10|0.06,loudnorm=I=-16:TP=-1.5:LRA=9"
+}
