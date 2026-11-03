@@ -69,7 +69,7 @@
     ]
   },
   "revision_r7": {
-    "status": "STILLS_RENDERED_AND_VISUALLY_INSPECTED_PILOT_RUNNING",
+    "status": "PILOT_VERIFIED_EDITORIAL_NO_GO",
     "run_stills": 41737672546,
     "commits": [
       "d1bce7ea76c91231991641dc25c1cf28c6eefb4b",
@@ -83,8 +83,8 @@
       "meeting clock UI",
       "visible plug and cable withdrawal"
     ],
-    "editorial": "PARTIAL_PASS_FIRST_SCENE_ONLY",
-    "pilot_status": "CI_RUNNING",
+    "editorial": "NO_GO",
+    "pilot_status": "H264_7S_FFMPEG_DECODE_PASS",
     "artifact_stills": 13280580174,
     "stills_visual_inspected": true,
     "actual_gate": {
@@ -100,6 +100,22 @@
       "Scene 5 unplugging gesture and hand-to-cable connection still weak",
       "Scene 6 phone visually readable as AI on a screen, but final comedic reaction still absent"
     ],
-    "run_pilot": 41737977951
+    "run_pilot": 41737977951,
+    "artifact_pilot": 13280456756,
+    "pilot": {
+      "duration_s": 7,
+      "frames": 210,
+      "width": 1080,
+      "height": 1920,
+      "bytes": 2470975,
+      "sha256": "9f622bb3301a5319d28a0b491f7d3251c3131598618632879880ca62ac999141",
+      "contact": "/mnt/data/m1lash_mult_ep01_r7_pilot/qa/contact_14_actual_mp4.jpg",
+      "frames_sampled_every_seconds": 0.5
+    },
+    "new_observed_defects": [
+      "Character hands rest on hips with almost no communicative acting from t2.5 through t4.5 despite camera move",
+      "Intro text unchanged through 7 seconds; need second physical beat rather than relying on zoom",
+      "6.5s pilot includes abrupt cut into next scene (valid timing, but clip must have synchronized audio later)"
+    ]
   }
 }
