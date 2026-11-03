@@ -1,0 +1,8 @@
+{
+  "renderer": "python",
+  "script": "shorts/chigur_v21_render_graphics.py",
+  "output": "videos/chigur_v21_graphics_batch0_PRIVATE_ASSETS_ONLY.mp4",
+  "batch": 0,
+  "preflight_only": true,
+  "save_review_mp4": false
+}
