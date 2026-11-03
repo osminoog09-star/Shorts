@@ -6,5 +6,11 @@
   "publish_at_utc": null,
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "R0y8D9MZanc",
-  "video_url": "https://youtu.be/R0y8D9MZanc"
+  "video_url": "https://youtu.be/R0y8D9MZanc",
+  "privacy_status": "private",
+  "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
+  "private_verified_at": "2026-11-03T14:55:33.716538+00:00",
+  "source_sha256": "3de6317eaf5226e67c48058a046e7921928a53e7506a235bb9fe7bf8e551ed20",
+  "upload_method": "youtube-direct",
+  "owner_audio_approved": true
 }
