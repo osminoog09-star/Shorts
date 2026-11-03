@@ -261,7 +261,7 @@ def save_remote_evidence(data):
         "personal_listening": "NOT_VERIFIED", "publish_date": None
     }, ensure_ascii=False, indent=2) + "\n")
     selected.append(report)
-    for name in ["check.json", "assembly.json", "pilot_asr.json", "final_asr.json", "layout_gate.json", "caption_repair.json"]:
+    for name in ["check.json", "assembly.json", "pilot_asr.json", "final_asr.json", "layout_gate.json", "caption_repair.json", "artifact_recovery.json"]:
         source = WORK / name
         if source.is_file():
             target = ROOT / f"reports/research/2026-11-03_NEWS_{MODE.upper()}_{name}"
@@ -274,6 +274,8 @@ def save_remote_evidence(data):
         target = ROOT / "videos/news_20261103_PILOT_INTERNAL.mp4"
         shutil.copy2(WORK / "NEWS_PILOT_COMPLETE_PHRASE.mp4", target)
         selected.append(target)
+    if MODE == "full" and SPEC.get("save_review_mp4"):
+        selected.append(ROOT / "videos/m1lash_ai_news_20261103_ru.mp4")
     run(["git", "config", "user.name", "m1lash-render-bot"], cwd=ROOT)
     run(["git", "config", "user.email", "m1lash-render-bot@users.noreply.github.com"], cwd=ROOT)
     run(["git", "add", "--"] + [str(p.relative_to(ROOT)) for p in selected], cwd=ROOT)
@@ -306,6 +308,59 @@ def speech_evidence(video, name):
         "personal_listening": "NOT_VERIFIED"
     }, ensure_ascii=False, indent=2) + "\n")
 
+
+
+if MODE == "recover":
+    import hashlib
+    import io
+    import zipfile
+    import requests
+    artifact_id = int(SPEC["artifact_id"])
+    source_run = int(SPEC["source_run"])
+    api = "https://api.github.com/repos/osminoog09-star/Shorts"
+    headers = {"Authorization": "Bearer " + os.environ["GITHUB_TOKEN"],
+               "Accept": "application/vnd.github+json"}
+    info = requests.get(f"{api}/actions/artifacts/{artifact_id}", headers=headers, timeout=30)
+    info.raise_for_status()
+    record = info.json()
+    if int(record["workflow_run"]["id"]) != source_run:
+        raise RuntimeError("Unexpected artifact provenance")
+    response = requests.get(f"{api}/actions/artifacts/{artifact_id}/zip",
+                            headers=headers, timeout=180)
+    response.raise_for_status()
+    archive = zipfile.ZipFile(io.BytesIO(response.content))
+    if archive.testzip() is not None:
+        raise RuntimeError("Artifact ZIP CRC failed")
+    for entry in archive.infolist():
+        path = Path(entry.filename)
+        if entry.is_dir():
+            continue
+        if not path.parts or path.parts[0] != "ai_news_20261103" or ".." in path.parts:
+            raise RuntimeError("Unexpected artifact path")
+        relative = Path(*path.parts[1:])
+        target = WORK / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(archive.read(entry))
+    data = json.loads((WORK / "timeline.json").read_text())
+    if min(c["end"] - c["start"] for c in data["caps"]) < .799:
+        raise RuntimeError("Recovered captions do not satisfy the reading gate")
+    candidate = WORK / "m1lash_ai_news_20261103_ru.mp4"
+    digest = hashlib.sha256(candidate.read_bytes()).hexdigest()
+    output = ROOT / "videos/m1lash_ai_news_20261103_ru.mp4"
+    shutil.copy2(candidate, output)
+    run(["ffmpeg", "-v", "error", "-xerror", "-i", str(output), "-f", "null", "-"])
+    with (WORK / "check.json").open("w") as handle:
+        run([sys.executable, str(ROOT / "skills/ext/ffmpeg-skill/scripts/check.py"),
+             str(output), "--platform", "shorts", "--json"], stdout=handle)
+    (WORK / "artifact_recovery.json").write_text(json.dumps({
+        "source_run": source_run, "artifact_id": artifact_id, "zip_crc_passed": True,
+        "sha256": digest, "bytes": output.stat().st_size, "rerendered": False,
+        "decode_repeated_after_transport": True
+    }, indent=2))
+    MODE = "full"
+    data["artifact_recovery_run"] = os.environ.get("GITHUB_RUN_ID")
+    save_remote_evidence(data)
+    sys.exit(0)
 
 if MODE == "stills":
     data = timeline(False)
