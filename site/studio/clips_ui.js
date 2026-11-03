@@ -137,27 +137,72 @@ document.addEventListener("click",e=>{
 function mediaLinkPanel(){
   let driveUrl="";
   try{if(D?.drive_folder?.url)driveUrl=clipFolderUrl(D.drive_folder.url)}catch(e){}
+  const imported=D?.direct_movie_status||{};
+  const run=window.__m1LatestDirectRun;
+  const requestTime=Date.parse(window.__m1DirectRequestedAt||run?.created_at||"")||0;
+  const resultTime=Date.parse(imported.checked_at||"")||0;
+  const pending=requestTime>resultTime&&Date.now()-requestTime<2*3600000;
+  const status=pending&&run&&["queued","pending","in_progress"].includes(run.status)
+    ? "GitHub Actions #"+run.id+": "+(run.status==="in_progress"?"скачивает или проверяет":"в очереди")
+    : pending?"Задача принята GitHub Actions. Ожидаем результат"
+    : imported.status==="ok"?(imported.drive_uploaded?"MP4 проверен и загружен в Drive":"Прямая ссылка отвечает; качество не проверено")
+    : imported.status==="error"?"Ошибка: "+(imported.message||imported.error_code||"см. Actions")
+    :"Серверный импорт ещё не запускался";
   const driveCta=driveUrl?
-    '<p class="muted">Для хранения большого фильма: сначала сохрани видеофайл на устройство, затем открой Drive и загрузи его туда. В M1lash файл появится после сканирования папки.</p>'+
-    '<a class="btn" href="'+esc(driveUrl)+'" target="_blank" rel="noopener noreferrer">📁 Открыть папку Drive для загрузки</a>':
-    '<p class="muted">Сначала привяжи Google Drive в разделе «Одна папка Google Drive» ниже.</p>';
-  return '<section class="card reveal" aria-label="Загрузка видео по ссылке">'+
-    '<h2>⬇️ Скачать видео по ссылке</h2>'+
-    '<p class="muted">Работает с прямыми HTTPS-ссылками на видеофайлы MP4/WebM/M4V. '+
-    'Качество определяется исходным файлом. Страницы онлайн-кинотеатров (в том числе HDRezka) '+
-    'и защищённые потоки этот сайт не скачивает.</p>'+
-    '<label class="f" for="media-url">Ссылка на видео'+
+    '<p class="muted">Папка Drive подключена. Готовые разрешённые MP4 можно загружать и анализировать автоматически, без телефона.</p>'+
+    '<a class="btn" href="'+esc(driveUrl)+'" target="_blank" rel="noopener noreferrer">Открыть папку Drive</a>':
+    '<p class="muted">Для сохранения фильма нужна подключённая папка Google Drive.</p>';
+  return '<section class="card reveal" aria-label="Серверная загрузка MP4 по ссылке">'+
+    '<h2>⬇️ Прямой MP4 → Google Drive (сервер)</h2>'+
+    '<p class="muted">Без телефона. Поддерживаются публичные HTTPS-ссылки на разрешённые к использованию полные MP4 с Archive.org, Blender и GitHub Releases. '+
+    'Ссылки на страницы HDRezka, другие плееры, DRM и антибот не подходят. Не путай прямой MP4 с адресом страницы фильма.</p>'+
+    '<label class="f" for="media-url">Прямая ссылка на видео'+
     '<input class="t" type="url" id="media-url" inputmode="url" autocomplete="off" '+
-    'maxlength="2048" placeholder="https://example.com/video-1080p.mp4"></label>'+
-    '<div class="row"><button type="button" class="btn pri" data-media-check>Проверить ссылку</button>'+
+    'maxlength="2048" placeholder="https://archive.org/download/Example/movie.mp4"></label>'+
+    '<div class="row"><button type="button" class="btn" data-media-server-check>Проверить на сервере</button>'+
+    '<button type="button" class="btn pri" data-media-server-upload '+(!D?.drive_auth?.connected?'disabled':'')+'>Проверить MP4 и отправить в Drive</button></div>'+
+    '<p class="muted" id="direct-movie-state" role="status" aria-live="polite">'+esc(status)+'</p>'+
+    '<p class="muted">Проверка качества и длительности выполняется по фактическому скачанному файлу. Отправка только полнометражного MP4 от 20 минут, минимум выбранное разрешение 1080p. '+
+    'GitHub Actions не публикует фильм в репозитории или на YouTube.</p>'+
+    '<a class="btn sm" target="_blank" rel="noopener noreferrer" href="https://github.com/osminoog09-star/Shorts/actions/workflows/direct-movie-intake.yml">Журнал серверного импорта</a>'+
+    '<details><summary>Открыть прямую ссылку в браузере</summary>'+
+    '<div class="row"><button type="button" class="btn" data-media-check>Проверить формат ссылки</button>'+
     '<button type="button" class="btn" data-media-clear>Очистить</button></div>'+
-    '<p class="muted" id="media-status" role="status" aria-live="polite">Ссылка обрабатывается только в браузере, без отправки в GitHub.</p>'+
+    '<p class="muted" id="media-status" role="status">Без загрузки в GitHub.</p>'+
     '<div id="media-actions" hidden><p class="muted" id="media-meta"></p>'+
-    '<a class="btn pri" id="media-download" rel="noopener noreferrer" target="_blank">Открыть файл / скачать</a>'+
-    '<p class="muted">На некоторых сайтах браузер откроет видео вместо сохранения — '+
-    'тогда используй меню браузера «Скачать» или «Сохранить видео». Сайт не может принудительно скачать чужой файл.</p></div>'+
+    '<a class="btn" id="media-download" rel="noopener noreferrer" target="_blank">Открыть файл</a></div></details>'+
     driveCta+'</section>';
 }
+
+function serverMovieSource(raw){
+  const result=classifyMediaLink(raw);
+  if(!result.ok)throw new Error(result.message);
+  const u=new URL(result.url),host=u.hostname.toLowerCase();
+  if(!u.pathname.toLowerCase().endsWith(".mp4")||u.search||u.hash||result.url.length>800||
+     !(["archive.org","download.blender.org","github.com","release-assets.githubusercontent.com"].includes(host)||
+       host.endsWith(".archive.org")))
+    throw new Error("Сервер принимает только прямые публичные MP4 с Archive.org, Blender или GitHub Releases без ключей в ссылке.");
+  return result.url;
+}
+
+document.addEventListener("click",e=>{
+  const button=e.target.closest("[data-media-server-check],[data-media-server-upload]");
+  if(!button)return;
+  if(!needTok())return;
+  return act(button,async()=>{
+    const url=serverMovieSource(document.getElementById("media-url")?.value||"");
+    const mode=button.hasAttribute("data-media-server-upload")?"download":"inspect";
+    if(mode==="download"&&!D?.drive_auth?.connected)
+      throw new Error("Google Drive пока не подключён.");
+    await dispatch("direct-movie-intake.yml",{url,mode,quality:"1080p"});
+    window.__m1DirectRequestedAt=new Date().toISOString();
+    const label=document.getElementById("direct-movie-state");
+    if(label)label.textContent="GitHub Actions принял задачу. Результат обновится автоматически.";
+    toast(mode==="download"?"Серверная загрузка запрошена; проверим MP4 и Drive.":"Проверка прямой ссылки запущена.");
+    button.disabled=false;
+  });
+});
+
 function classifyMediaLink(raw){
   if(typeof raw!=="string"||raw.length>2048)return {ok:false,message:"Ссылка слишком длинная или некорректная."};
   let u;try{u=new URL(raw.trim())}catch(e){return {ok:false,message:"Вставь полную ссылку HTTPS."}}
