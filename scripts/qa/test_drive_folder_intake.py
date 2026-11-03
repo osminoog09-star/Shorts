@@ -71,6 +71,44 @@ class DriveIntakeTests(unittest.TestCase):
         self.assertEqual(result["items"][0]["status"], "фильм найден")
         self.assertIsNone(result["items"][0]["scene_start"])
 
+    def test_privately_inspected_recordings_are_not_fake_full_movies(self):
+        files=[
+            {"path":"Screen_Recording_20261102_101336_Opera.mp4","url":"https://drive.google.com/file/d/batclipa/view"},
+            {"path":"Screen_Recording_20261102_103133_Opera.mp4","url":"https://drive.google.com/file/d/batclipb/view"},
+            {"path":"Screen_Recording_20261103_124519_Opera.mp4","url":"https://drive.google.com/file/d/oppclip/view"},
+        ]
+        req=[
+            {"id":"w45-batman-riddler","film":"Бэтмен (2022)"},
+            {"id":"w45-oppenheimer-trinity","film":"Оппенгеймер (2023)"},
+            {"id":"w45-menu-burger","film":"Меню (2022)"},
+        ]
+        registry={"items":[
+            {"filename":files[0]["path"],"film":req[0]["film"],"source_kind":"excerpt","priority":1},
+            {"filename":files[1]["path"],"film":req[0]["film"],"source_kind":"excerpt","priority":2},
+            {"filename":files[2]["path"],"film":req[1]["film"],"source_kind":"excerpt","priority":1},
+        ]}
+        got=intake.summarize(files,req,registry)
+        self.assertEqual(got["file_count"],3)
+        self.assertEqual(got["matched_film_count"],0)
+        self.assertEqual(got["matched_excerpt_film_count"],2)
+        self.assertEqual(got["missing"],["Меню (2022)"])
+        self.assertEqual(got["items"][0]["status"],"отрывок найден")
+        self.assertEqual(got["items"][0]["filename"],files[0]["path"])
+        self.assertEqual(len(got["items"][0]["candidates"]),2)
+        self.assertEqual(got["items"][1]["status"],"отрывок найден")
+        self.assertEqual(got["items"][2]["status"],"нет фильма в папке")
+        self.assertTrue(all(x["scene_start"] is None for x in got["items"]))
+
+    def test_titled_full_movie_preferred_over_generic_excerpt(self):
+        files=[{"path":"The.Batman.2022.mp4","url":"https://drive.google.com/file/d/full/view"},
+               {"path":"Screen_Recording_20261102_101336_Opera.mp4","url":"https://drive.google.com/file/d/clip/view"}]
+        req=[{"id":"w45-batman-riddler","film":"Бэтмен (2022)"}]
+        registry={"items":[{"filename":files[1]["path"],"film":req[0]["film"],"source_kind":"excerpt"}]}
+        got=intake.summarize(files,req,registry)
+        self.assertEqual(got["items"][0]["status"],"фильм найден")
+        self.assertEqual(got["items"][0]["filename"],files[0]["path"])
+        self.assertEqual(got["matched_excerpt_film_count"],0)
+
     def test_ambiguous_requires_confirmation(self):
         req = [{"id": "a", "film": "Одержимость (2014)", "status": "нужен"}]
         files = [
