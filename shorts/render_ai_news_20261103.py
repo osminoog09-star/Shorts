@@ -60,7 +60,7 @@ def timeline(actual):
             pcm = np.zeros(round(RATE * duration), dtype=np.float32)
         segments.append({"id": line["id"], "start": at, "end": at + duration,
                          "text": line["text"], "voice": "ru-RU-DmitryNeural"})
-        groups = [words[j:j + 3] for j in range(0, len(words), 3)]
+        groups = [words[j:j + 2] for j in range(0, len(words), 2)]
         for j, group in enumerate(groups):
             start = at + max(0, group[0]["start"])
             end = at + (groups[j + 1][0]["start"] if j + 1 < len(groups) else duration)
