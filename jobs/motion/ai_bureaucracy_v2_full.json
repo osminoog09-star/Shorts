@@ -1,0 +1,17 @@
+{
+  "renderer": "python",
+  "script": "shorts/render_ai_bureaucracy_v2.py",
+  "output": "videos/ai_bureaucracy_claude_v2.mp4",
+  "save_review_mp4": false,
+  "no_youtube_upload": true,
+  "preflight_evidence": {
+    "run_id": 41552653556,
+    "artifact_id": 13193721701,
+    "frames_viewed": [
+      1,
+      12,
+      25,
+      47
+    ]
+  }
+}
