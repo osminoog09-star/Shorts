@@ -6,7 +6,7 @@
   "preflight_only": false,
   "save_review_mp4": true,
   "no_youtube_upload": true,
-  "note": "QA fix check.py loudness fail -16.5 LUFS; body-only -14 target, approved outro unchanged. One-item diagnosis before all four private MP4.",
+  "note": "Final diagnostic against -16 LUFS QA minimum: -13 LUFS target +1.5 dB body only; approved outro untouched, exact check.py fail remains a blocker.",
   "only_ids": [
     "ai_vacation_202611"
   ]
