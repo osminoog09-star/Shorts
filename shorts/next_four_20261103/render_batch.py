@@ -139,7 +139,16 @@ with sync_playwright() as p:
             run(['ffmpeg','-v','error','-y','-i',folder/'silent.mp4','-i',folder/'score.wav','-map','0:v','-map','1:a','-t',str(data['total']),'-c:v','copy','-c:a','pcm_s16le',folder/'body.mkv'])
             run([sys.executable,ROOT/'tools/assemble_with_outro.py',folder/'body.mkv','-o',out,'--audio-bitrate','320k','--preset','fast','--crf','18','--max-seconds','65'])
             check=folder/'check.json'
-            with check.open('w') as h:run([sys.executable,ROOT/'skills/ext/ffmpeg-skill/scripts/check.py',out,'--platform','shorts','--json'],stdout=h)
+            with check.open('w') as h:
+                checked=subprocess.run([sys.executable,str(ROOT/'skills/ext/ffmpeg-skill/scripts/check.py'),str(out),'--platform','shorts','--json'],stdout=h,stderr=subprocess.PIPE,text=True)
+            if checked.returncode:
+                try:
+                    evidence=json.loads(check.read_text())
+                    failed=[{'check':x.get('check'),'value':x.get('value'),'expected':x.get('expected')} for x in evidence.get('rows',[]) if x.get('status')=='FAIL']
+                    print('M1LASH_CHECK_FAIL',json.dumps(failed,ensure_ascii=False),flush=True)
+                except (ValueError,KeyError):
+                    print('M1LASH_CHECK_RAW',check.read_text()[:1800],flush=True)
+                raise RuntimeError('Shorts technical check failed; see M1LASH_CHECK_FAIL above')
             run([sys.executable,ROOT/'skills/ext/ffmpeg-skill/scripts/look.py',out,'--tiles','3x2','--output',folder/'final_look.png'])
             run(['ffmpeg','-v','error','-xerror','-i',out,'-f','null','-'])
             report.update(sha256=hashlib.sha256(out.read_bytes()).hexdigest(),bytes=out.stat().st_size,assembly=json.loads(Path(str(out)+'.qa.json').read_text()),check=json.loads(check.read_text()))
