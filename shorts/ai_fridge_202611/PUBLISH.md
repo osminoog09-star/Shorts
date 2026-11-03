@@ -19,9 +19,11 @@ m1lash, shorts, рисованная анимация, юмор, искусст�
 Вы бы доверили холодильнику выбирать ваш ужин?
 
 ## Настройки
+- YouTube video ID: QS66i62EgJk; receipt: publishing/receipts/ai_fridge_202611.json; PRIVATE, no publishAt.
 - ru, madeForKids=false
 - Категория: COMEDY (23)
-- Приватная загрузка без даты после QA; владелец смотрит/выбирает дату
+- Приватно загружен и подтверждён YouTube API (без даты, канал M1lash): https://studio.youtube.com/video/QS66i62EgJk/edit
+- Одобрение владельца: «Все 4 ок» (03.11.2026). Повторно не загружать. Дата только по следующему решению владельца.
 - Голос: Дима, ru-RU-DmitryNeural / edge-tts
 - Рисованный2D, стиль S1-D25
 - Файл собран: videos/ai_fridge_202611_v1.mp4
