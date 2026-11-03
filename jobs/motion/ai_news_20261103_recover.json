@@ -1,0 +1,11 @@
+{
+  "renderer": "python",
+  "script": "shorts/render_ai_news_20261103.py",
+  "output": "videos/m1lash_ai_news_20261103_ru.mp4",
+  "mode": "recover",
+  "source_run": 41567900438,
+  "artifact_id": 13199498632,
+  "save_review_mp4": true,
+  "no_youtube_upload": true,
+  "note": "Transport the already-rendered corrected MP4 and QA. No browser capture, speech synthesis or rerender. Verify provenance, ZIP CRC, final decode and check."
+}
