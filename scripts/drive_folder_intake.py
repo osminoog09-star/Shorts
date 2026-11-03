@@ -144,34 +144,65 @@ def list_folder_authenticated(raw_url: str, credentials: dict[str, str] | None =
 
 
 
-def summarize(entries: list[dict], requests: list[dict]) -> dict:
+REGISTRY = ROOT / "publishing/verified_clip_sources.json"
+
+
+def summarize(entries: list[dict], requests: list[dict], registry: dict | None = None) -> dict:
+    """Match full masters from names and privately inspected generic-name excerpts.
+
+    Excerpt recordings are not full films, scene confirmation, or Russian dub.
+    Filename mapping is evidence from a separate six-frame private QA, not a
+    heuristic that claims any screen recording belongs to a film.
+    """
     films = list(dict.fromkeys(r["film"] for r in requests if r.get("film") and r["film"] != "Свой клип"))
     video = [e for e in entries if Path(e["path"]).suffix.lower() in MEDIA_EXT]
+    if registry is None:
+        try:
+            registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            registry = {"items": []}
+    entries_by_name = {e["path"]: e for e in video}
+    known_excerpts = {}
+    for item in registry.get("items", []) if isinstance(registry.get("items", []), list) else []:
+        if (not isinstance(item, dict) or item.get("source_kind") != "excerpt"
+                or not isinstance(item.get("film"), str)
+                or item.get("filename") not in entries_by_name):
+            continue
+        known_excerpts.setdefault(item["film"], []).append(
+            (item.get("priority", 100), entries_by_name[item["filename"]]))
     matches = {}
     for film in films:
         candidates = sorted([(score(film, e["path"]), e) for e in video],
                             key=lambda t: t[0], reverse=True)
         good = [(s, e) for s, e in candidates if s >= 85]
         if len(good) == 1:
-            s, e = good[0]
-            matches[film] = {"status": "фильм найден", "filename": e["path"], "file_url": e["url"],
-                             "confidence": s}
+            strength, entry = good[0]
+            matches[film] = {"status": "фильм найден", "filename": entry["path"],
+                             "file_url": entry["url"], "confidence": strength,
+                             "source_kind": "full_movie"}
         elif len(good) > 1:
             confirmed = {r.get("match_confirmed_filename") for r in requests if r.get("film") == film}
             selected = [e for _, e in good if e["path"] in confirmed]
             if len(selected) == 1:
-                e = selected[0]
-                matches[film] = {"status": "фильм найден", "filename": e["path"], "file_url": e["url"],
-                                 "confidence": 100}
+                entry = selected[0]
+                matches[film] = {"status": "фильм найден", "filename": entry["path"],
+                                 "file_url": entry["url"], "confidence": 100,
+                                 "source_kind": "full_movie"}
             else:
-                matches[film] = {"status": "нужно подтвердить фильм", "candidates": [e["path"] for _, e in good[:5]]}
+                matches[film] = {"status": "нужно подтвердить фильм",
+                                 "candidates": [e["path"] for _, e in good[:5]]}
+        elif known_excerpts.get(film):
+            ranked = sorted(known_excerpts[film], key=lambda t: (t[0], t[1]["path"]))
+            entry = ranked[0][1]
+            matches[film] = {"status": "отрывок найден", "filename": entry["path"],
+                             "file_url": entry["url"], "source_kind": "excerpt",
+                             "candidates": [e["path"] for _, e in ranked]}
         else:
             matches[film] = {"status": "нет фильма в папке"}
     items = []
     for r in requests:
         film = r.get("film", "")
         m = matches.get(film, {"status": "нужен файл"})
-        # A manually verified scene remains verified until its source changes.
         verified = r.get("scene_verified") if isinstance(r.get("scene_verified"), dict) else None
         status = m["status"]
         if verified and status == "фильм найден" and verified.get("file_url") == m.get("file_url"):
@@ -179,11 +210,16 @@ def summarize(entries: list[dict], requests: list[dict]) -> dict:
                 status = "сцена найдена"
         items.append({"id": r.get("id"), "film": film, "status": status,
                       "filename": m.get("filename"), "file_url": m.get("file_url"),
+                      "source_kind": m.get("source_kind"),
                       "candidates": m.get("candidates", []),
                       "scene_start": verified.get("start") if verified and status == "сцена найдена" else None})
     return {"status": "ok", "file_count": len(entries), "video_files": len(video),
-            "required_film_count": len(films), "matched_film_count": sum(m["status"] == "фильм найден" for m in matches.values()),
-            "missing": [k for k, v in matches.items() if v["status"] != "фильм найден"], "items": items}
+            "required_film_count": len(films),
+            "matched_film_count": sum(m["status"] == "фильм найден" for m in matches.values()),
+            "matched_excerpt_film_count": sum(m["status"] == "отрывок найден" for m in matches.values()),
+            "missing": [k for k, v in matches.items()
+                        if v["status"] not in ("фильм найден", "отрывок найден")],
+            "items": items}
 
 
 def main() -> None:
@@ -200,7 +236,7 @@ def main() -> None:
             entries = list_folder_authenticated(config["url"])
             summary = summarize(entries, request)
             summary["scanned_at"] = ts
-            summary["message"] = "Только поиск файлов. ASR/монтаж не запускались."
+            summary["message"] = "Фильмы из имён, три конкретные записи из частной визуальной проверки. Отрывок ≠ подтверждённая сцена; ASR/монтаж не запускались."
         except (ValueError, RuntimeError, subprocess.TimeoutExpired) as exc:
             summary = {"status": "error", "scanned_at": ts,
                        "message": str(exc)[:480], "items": []}
