@@ -1,0 +1,49 @@
+{
+  "purpose": "New film Shorts source overlap and private provenance; no movie bytes",
+  "film": {
+    "title_ru": "Старикам тут не место",
+    "title_en": "No Country for Old Men",
+    "year": 2007,
+    "production_status": "in_work",
+    "longform": "longform/chigur",
+    "rights": "Original Russian dub and film not licensed by public availability; Content ID risk understood"
+  },
+  "cuts": [
+    {
+      "id": "chigur_roadstop_20261104",
+      "artifact_id": 13070052528,
+      "original_mp4": "chigur_actual_driver_2007_ru.mp4",
+      "source_start_seconds": 66,
+      "source_end_seconds": 98,
+      "longform_prior_source_window": [
+        30,
+        39
+      ],
+      "scene": "Road stop sequence",
+      "audio": "original_source_audio",
+      "publish_at": null
+    },
+    {
+      "id": "chigur_tracker_20261104",
+      "artifact_id": 13070325354,
+      "original_mp4": "chigur_tracker_ok_candidate.mp4",
+      "source_start_seconds": 5,
+      "source_end_seconds": 43,
+      "longform_prior_source_window": [
+        91,
+        101
+      ],
+      "scene": "Motel tracking device / escaping car",
+      "audio": "original_source_audio",
+      "publish_at": null
+    }
+  ],
+  "checks": {
+    "reuse_of_covered_longform_proof": false,
+    "visual_contact_examined": true,
+    "movie_dialogue_asr_pending": true,
+    "human_sound_pending": true,
+    "final_check_pending": true,
+    "no_upload": true
+  }
+}
