@@ -91,6 +91,10 @@ def main():
   },ensure_ascii=False,indent=2)+"\n")
   print("ACTING_GATE","samples",len(acting),
         "hand_clips",sum(not q["hands_inside_viewport"] for q in acting),flush=True)
+  if any(not q["hands_inside_viewport"] for q in acting):
+   raise RuntimeError("ART_QA_HAND_CLIP: hand outside 25..1055px horizontal or 190..1690px vertical safe-area")
+  if not all(q["elbows_articulated"] for q in acting):
+   raise RuntimeError("ART_QA_ELBOW: one or more sample poses have straight, unarticulated arms")
   sheet=Image.new("RGB",(900,1100),(21,29,44))
   draw=ImageDraw.Draw(sheet)
   for i,path in enumerate(stills):
