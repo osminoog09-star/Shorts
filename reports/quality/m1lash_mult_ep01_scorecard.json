@@ -117,5 +117,53 @@
       "Intro text unchanged through 7 seconds; need second physical beat rather than relying on zoom",
       "6.5s pilot includes abrupt cut into next scene (valid timing, but clip must have synchronized audio later)"
     ]
+  },
+  "revision_r8": {
+    "status": "STRICT_CI_FAILED",
+    "run_stills": 41738810634,
+    "artifact_stills": 13279154300,
+    "technical": "FAIL_HAND_UI_GATE",
+    "actual_gate": {
+      "hand_clip_count": 1,
+      "samples": 9,
+      "t": 3.5,
+      "side": "right",
+      "x": 1056,
+      "old_max_x": 1055
+    },
+    "root_cause": "Raised 3-beat arm leaves camera view at critical moment",
+    "fix": "Camera look target shifted; rerun r8b then tightened YouTube control exclusion"
+  },
+  "revision_r8b": {
+    "status": "STILLS_CI_SUCCESS",
+    "run_stills": 41739139664,
+    "artifact_stills": 13279338377,
+    "actual_gate": {
+      "hand_clip_count": 0,
+      "samples": 9,
+      "elbows_articulated_count": 9,
+      "max_right_hand_x": 1012
+    },
+    "editorial": "IMPROVED_BUT_HAND_TOO_CLOSE_TO_SHORTS_RIGHT_UI",
+    "fix": "Replace physical-canvas gate with x<=950 action UI safe area"
+  },
+  "revision_r8c": {
+    "status": "STILLS_CI_SUCCESS_PILOT_RUNNING",
+    "run_stills": 41739463065,
+    "artifact_stills": 13280816775,
+    "actual_gate": {
+      "hand_clip_count": 0,
+      "samples": 9,
+      "elbows_articulated_count": 9,
+      "max_right_hand_x": 907,
+      "ui_safe_right_threshold_px": 950
+    },
+    "frames_saved": [
+      "acting_2_0s.jpg",
+      "acting_3_5s.jpg",
+      "acting_4_5s.jpg"
+    ],
+    "run_pilot": 41739736643,
+    "editorial": "SINGLE_FRAME_GESTURE_VISIBLE_PILOT_NOT_YET_VERIFIED"
   }
 }
