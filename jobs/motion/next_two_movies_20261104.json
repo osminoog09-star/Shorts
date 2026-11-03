@@ -1,0 +1,13 @@
+{
+  "renderer": "python",
+  "script": "shorts/next_four_20261104/render_movies.py",
+  "output": "videos/chigur_roadstop_20261104.mp4",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "tts_job": "jobs/tts/next_two_movies_20261104.json",
+  "only_ids": [
+    "chigur_roadstop_20261104",
+    "chigur_tracker_20261104"
+  ],
+  "note": "No movie or output committed to public repo; two PRIVATE REVIEW MP4s and QA in GitHub Actions artifact; no YouTube upload."
+}
