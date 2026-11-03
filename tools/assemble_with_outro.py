@@ -15,12 +15,12 @@
 
 Код возврата 0 — все проверки прошли (отчёт JSON рядом: <out>.qa.json). Иначе NO-GO с причиной.
 """
-import argparse, json, math, re, subprocess, sys, tempfile
+import argparse, json, math, re, subprocess, sys, tempfile, hashlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTRO = {"v": ROOT / "media/outro/m1lash_outro_v1_vertical.mp4",
-         "h": ROOT / "media/outro/m1lash_outro_v1_horizontal.mp4"}
+OUTRO = {"v": ROOT / "media/outro/m1lash_outro_denis_v3_vertical.mp4",
+         "h": ROOT / "media/outro/m1lash_outro_denis_v3_horizontal.mp4"}
 FPS, SR = 30, 48000
 TARGET_I, TARGET_TP = -15.0, -1.5
 
@@ -129,6 +129,12 @@ def main():
     TARGET_I = a.body_lufs
 
     outro = OUTRO["h" if a.horizontal else "v"]
+    approved = json.loads((ROOT / "tools/outro/approved.json").read_text())
+    asset = approved["assets"]["horizontal" if a.horizontal else "vertical"]
+    if not outro.is_file():
+        sys.exit("BLOCKED: материализуй частную концовку Дениса из tools/outro/approved.json в " + str(outro) + "; старый Дима запрещён")
+    if hashlib.sha256(outro.read_bytes()).hexdigest() != asset["sha256"]:
+        sys.exit("NO-GO: хеш концовки не совпал с approved.json; старый или изменённый файл")
     W, H = (1920, 1080) if a.horizontal else (1080, 1920)
     if a.max_seconds is None and not a.horizontal:
         a.max_seconds = 59.0

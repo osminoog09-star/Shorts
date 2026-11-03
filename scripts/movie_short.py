@@ -233,23 +233,6 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     return len(groups)
 
 
-async def outro_voice(text, out_mp3):
-    import tts_job  # noqa: PLC0415
-    import voice_humanize  # noqa: PLC0415
-    meta = Path(str(out_mp3) + ".json")
-
-    async def _one(t, v, r, p, m, j):
-        await tts_job.one(t, v, r, p, m, j)
-    for k in range(6):
-        try:
-            await voice_humanize.humanized(_one, text, "ru-RU-DmitryNeural", "+8%", "+0Hz", out_mp3, meta, {})
-            return
-        except Exception:  # noqa: BLE001
-            if k == 5:
-                raise
-            await asyncio.sleep(5 + k * 5)
-
-
 def norm(s):
     return "".join(c for c in unicodedata.normalize("NFKC", s).casefold().replace("ё", "е") if c.isalnum())
 
@@ -262,6 +245,7 @@ def main():
     ap.add_argument("--end", default="")
     ap.add_argument("--title", required=True)
     ap.add_argument("--film", required=True, help="название фильма — звучит голосом только в самом конце")
+    ap.add_argument("--title-voice", required=True, help="Готовая частная реплика названия голосом Дениса; без edge-tts fallback")
     ap.add_argument("--lang", default="ru")
     ap.add_argument("--request", default="", help="@ник для «По заявке»")
     ap.add_argument("--question", default="А ты бы как поступил?")
@@ -286,10 +270,12 @@ def main():
     end = tsec(a.end) if a.end else total
     # Финал (AGENTS §4, решение Дениса 31.10): готовая фирменная концовка media/outro/… + для кино
     # одна фраза Димы с названием фильма — последние слова ролика (§8). Вопрос зрителям — в описании/закрепе.
-    std = ROOT / "media/outro/m1lash_outro_v1_vertical.mp4"
+    std = ROOT / "media/outro/m1lash_outro_denis_v3_vertical.mp4"
     std_d = dur(std)
     vo = work / "name.mp3"
-    asyncio.run(outro_voice(f"Это был фильм… {a.film}.", vo))
+    if not Path(a.title_voice).is_file():
+        sys.exit("BLOCKED: нет --title-voice с голосом Дениса")
+    shutil.copy2(a.title_voice, vo)
     vd = dur(vo)
     length = min(end - start, 52.0, 59.3 - std_d - (vd + 0.4))
     if length < 8:

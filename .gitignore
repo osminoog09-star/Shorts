@@ -9,3 +9,6 @@ android-widget/.gradle/
 android-widget/build/
 android-widget/app/build/
 reports/youtube/pulse.json
+
+# Private owner-voice outro assets: materialize per tools/outro/approved.json
+media/outro/m1lash_outro_denis_*.mp4
