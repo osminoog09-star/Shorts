@@ -22,6 +22,21 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
+        if: github.event_name == 'push' && startsWith(github.event.head_commit.message, 'shorts-stills-')
+        with:
+          fetch-depth: 2
+          filter: blob:none
+          sparse-checkout: |
+            shorts
+            jobs
+            scripts
+            tools
+            publishing
+            reports/research
+            media/outro
+            skills/ext/ffmpeg-skill
+      - uses: actions/checkout@v4
+        if: github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'shorts-stills-')
         with:
           fetch-depth: 2
       - uses: actions/setup-python@v5
