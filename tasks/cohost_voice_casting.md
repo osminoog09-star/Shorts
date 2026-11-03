@@ -1,4 +1,17 @@
-# Текущий этап — выбрана Serena, три её настройки выданы03.11
+# Текущий этап — четыре других исходных голоса, раунд3
+
+Владелец отклонил3DSPSerena, исходнаяSerenaлишьориентир. Поиск других тембров выполнен реальными парами наодномвопросе/неизменномответеДениса:
+1 KokoroSveta: libfile_2cc8116fa5c48191a4efe088871746a7
+2 KokoroMasha: libfile_c9f4a969d7948191b30b3f9b67108d3e
+3 QwenVoiceDesignWarm: libfile_a9373b6bb0588191891d8f1c01f956bb
+4 QwenVoiceDesignClear: libfile_39c8aa8a61d8819195a8b983834e2a00
+Частныйпроект: libfile_5adb57f621c081918b4cc919e5841b92. Статус NEW_SOURCES_AUDITIONS_DELIVERED_OWNER_CHOICE_PENDING. Все4ASR1.0/полныйdecode; malePCMmaxdiff0.0вWAV, нетличногослуховогоутверждения. ЛицензионныетекстыKokoroDialogs/Apache иполныеQAсохраненывпроекте. Отчёт reports/research/2026-11-03_FEMALE_VOICE_SEARCH_ROUND3.md, код tools/voice_casting/round3/.
+
+Следующийшаг: выбор владельцем. ЕслиVoiceDesign — закрепитьчастныйsyntheticreferenceиvoiceID дляодинаковоготембраследующихреплик; еслиKokoro — фиксированныйvoicepack. Потом согласованная30–60ссцена, неавтопеределкадлинного. НикакойженщинывShorts/outroбезновогорешения.
+
+## История предыдущих раундов — не текущие решения
+
+### Исторический раунд2 — обработанные варианты Serena (затем отклонены)
 
 Владелец выбрал прежний№1Serena, просит доработку под свойголос. Базовыйтембр повторно не согласовывать. Новый раунд:
 -1 ниже/спокойнее: libfile_0c911ed4b8708191ada431c72902133e
