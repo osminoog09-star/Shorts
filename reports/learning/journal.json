@@ -49,6 +49,20 @@
       "status": "verified",
       "evidence": "reports/research/2026-11-04_OUTRO_V6_VOICE30.md",
       "acceptance": "PCM ratio0.30 и сохранение voice/FX, отсутствие старого envelope, full decode и finalcheck/look; слух новой версии ожидает владельца",
+      "owner_review": "rejected",
+      "audience_effect": "unknown",
+      "regression": true,
+      "owner_feedback": "Владелец после прослушивания: «Все ещё слишком громкая музыка»;30% не подходит."
+    },
+    {
+      "id": "OUTRO-V7-VOICE10",
+      "project": "coffee_voice_test_v2_20261103",
+      "issue": "30% RMS не устроили владельца по громкости",
+      "cause": "Измеренный RMS не равен субъективной громкости/разборчивости на устройстве",
+      "fix": "Music stem /3, проба10% RMS, voice/FXgain1",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-04_OUTRO_V7_VOICE10.md",
+      "acceptance": "Проверка stem scaling, full decode3MP4, check финала0FAIL, look глазами; личное прослушивание pending",
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": true

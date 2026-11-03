@@ -1,5 +1,5 @@
 {
-  "version": "denis-v6-voice30",
+  "version": "denis-v7-voice10",
   "approved_by": "owner",
   "decision_date": "2026-11-04",
   "speaker": "denis",
@@ -11,36 +11,38 @@
   "storage": "private; materialize from Library into ignored local path before assembly",
   "assets": {
     "vertical": {
-      "path": "media/outro/m1lash_outro_denis_v6_vertical.mp4",
-      "sha256": "9a06faa20c1402aeacdc0c3bbb3318e4a58a9c1967d4b1cf2a596238ab47c568",
-      "library_file_id": "libfile_754f289a0b188191918145c55f381916"
+      "path": "media/outro/m1lash_outro_denis_v7_vertical.mp4",
+      "sha256": "2e514186940d130e6aea6aa5171b59ba7691d5cfe14fb329d65a8d12184a6b60",
+      "library_file_id": "libfile_bf6bee946d58819185bfb55241a8c964"
     },
     "horizontal": {
-      "path": "media/outro/m1lash_outro_denis_v6_horizontal.mp4",
-      "sha256": "5fb7307a545b82bdf5b6b9f5f1451fa462e6e47c3ee70c045e84bb9b34b3e065",
-      "library_file_id": "libfile_694fb3bd20908191878b2b15a5483ebb"
+      "path": "media/outro/m1lash_outro_denis_v7_horizontal.mp4",
+      "sha256": "70b066b067cec45dbaaae91ef39ee79543ac9c396d0d1bd896885b1511867dae",
+      "library_file_id": "libfile_e19395645efc81919d21f843d4326ff5"
     }
   },
   "previous_approved_version": {
-    "version": "denis-v5-music57p6",
+    "version": "denis-v6-voice30",
     "assets": {
       "vertical": {
-        "path": "media/outro/m1lash_outro_denis_v5_vertical.mp4",
-        "sha256": "58c088c8c025a03f813f6084720740f65f07e6da26efca14c931a2247b298d00",
-        "library_file_id": "libfile_bd64cdd9abac819182b461c53581a58f"
+        "path": "media/outro/m1lash_outro_denis_v6_vertical.mp4",
+        "sha256": "9a06faa20c1402aeacdc0c3bbb3318e4a58a9c1967d4b1cf2a596238ab47c568",
+        "library_file_id": "libfile_754f289a0b188191918145c55f381916"
       },
       "horizontal": {
-        "path": "media/outro/m1lash_outro_denis_v5_horizontal.mp4",
-        "sha256": "4383ba9660f4830e2c973b990c2b4056185db50ccfbd296712d1f68b11bda0af",
-        "library_file_id": "libfile_8d9ce8c9441881919e9a16b900d96e0c"
+        "path": "media/outro/m1lash_outro_denis_v6_horizontal.mp4",
+        "sha256": "5fb7307a545b82bdf5b6b9f5f1451fa462e6e47c3ee70c045e84bb9b34b3e065",
+        "library_file_id": "libfile_694fb3bd20908191878b2b15a5483ebb"
       }
     }
   },
   "voice_and_fx_gain_vs_v3": 1,
-  "standalone_lufs": -16.9,
-  "mastering_note": "Owner requested music at30% voice RMS. Do not restore loudness with full-mix gain; whole video QA separately.",
-  "music_to_active_voice_rms": 0.3,
-  "music_below_active_voice_db": -10.4575749056,
+  "standalone_lufs": -16.4,
+  "mastering_note": "Quiet10% candidate following owner rejection of30%; voice/FX unchanged, no global normalization.",
+  "music_to_active_voice_rms": 0.1,
+  "music_below_active_voice_db": -20,
   "music_envelope": "steady 1s RMS leveling; intro fade180ms, outro fade350ms; no duck/release jumps",
-  "owner_hearing_review": "pending"
+  "owner_hearing_review": "pending",
+  "music_gain_vs_v6": 0.3333333333333333,
+  "revision_reason": "Owner rejected30% as too loud; agent prepared10% quieter candidate, listening approval pending"
 }

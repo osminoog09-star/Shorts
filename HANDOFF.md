@@ -1,5 +1,10 @@
 # 04.11 · GPT · Чигур V22 — два настоящих six-still прогона, улучшено кадрирование, ART NO-GO
 
+## 04.11 — Концовка v7 voice10: владелец отверг30% как громкие
+
+Тихая новая проба: music10% RMSголоса, втрое тишеv6 (−9.54dB), голос/FX сохранены. Owner review pending, не утверждать что10% лично одобрены. Обе v7 assets и assemblerpaths обновлены; private whole CoffeeV6 `libfile_fb8b7e52e5608191a8176f91e89107f5` версия3, ZIP `libfile_e078c346c3748191bbe479c5b2d68cf6` версия6. Check whole0FAIL, standalone−16.4LUFS genericloudnessFAIL; look глазами/decode3MP4 реально сделаны. Report `reports/research/2026-11-04_OUTRO_V7_VOICE10.md`. Публикации нет.
+
+
 ## 04.11 — Концовка v6: музыка30% голоса, без скачков
 
 По последнему отзыву Дениса заменена пятикратно скачущая огибающая музыки на ровный stem: RMSmusic/activevoice0.30, плавные края, voice/FX gain сохранён. Обе v6 концовки/assembler/AGENTS обновлены, hashes tools/outro/approved.json. Whole CoffeeV5 MP4 `libfile_fb8b7e52e5608191a8176f91e89107f5` версия2, проект `libfile_e078c346c3748191bbe479c5b2d68cf6` версия5. Check полного0FAIL, standaloneoutro−16.9LUFS/loudnessFAIL честно указан. Look глазами/full decode сделаны; новый слуховой review pending. Report `reports/research/2026-11-04_OUTRO_V6_VOICE30.md`. Ничего не публиковалось.
