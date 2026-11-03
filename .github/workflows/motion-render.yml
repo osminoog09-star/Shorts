@@ -75,6 +75,9 @@ jobs:
                           print('Approved TTS assets missing; requesting via existing validated script',flush=True)
                           subprocess.run(['python','scripts/tts_job.py',str(tts_job)],check=True)
                   subprocess.run(['python',str(script)],check=True,env=dict(os.environ,M1LASH_JOB_PATH=str(p)))
+                  if spec.get('preflight_only'):
+                      if spec.get('save_review_mp4'):raise ValueError('Preflight cannot save a review MP4')
+                      continue  # Stills in motion-output are uploaded below; no fake video.
                   if not output.is_file() or output.stat().st_size<200000:raise RuntimeError('Python render did not produce MP4')
                   # Full decode & formal stream gate before any review-only save.
                   import json as jsonmod
