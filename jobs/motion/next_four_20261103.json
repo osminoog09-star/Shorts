@@ -2,9 +2,9 @@
   "renderer": "python",
   "script": "shorts/next_four_20261103/render_batch.py",
   "output": "videos/ai_vacation_202611_v1.mp4",
-  "mode": "stills",
-  "preflight_only": true,
-  "save_review_mp4": false,
+  "mode": "full",
+  "preflight_only": false,
+  "save_review_mp4": true,
   "no_youtube_upload": true,
-  "note": "Second preflight: first candidate passed; title overflow failed later; CSS font76/word-wrap plus caption safe-area. Need all 24 stills before MP4."
+  "note": "24 HTML/SVG preflight frames run 41627171650 SUCCESS, contact sheets visually reviewed. Generate 4 voices Dima and 4 review MP4; do not YouTube upload or schedule."
 }
