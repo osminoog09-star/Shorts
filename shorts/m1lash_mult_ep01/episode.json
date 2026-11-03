@@ -12,7 +12,7 @@
   ],
   "fps": 30,
   "body_duration": 39,
-  "status": "CHARACTER_DESIGN_AND_SILENT_PILOT",
+  "status": "CHARACTERS_DEFINED_VOICE_CAST_PENDING",
   "publishing": {
     "owner_review_required": true,
     "publish_allowed": false,
@@ -36,10 +36,10 @@
       "name": "АКС",
       "description": "Original suspended navy-lilac faceted AI with a silver visor, two cyan triangular eyes and floating thin brass rings; NO legs/box/orange mascot.",
       "voice": {
-        "speaker": "denis",
-        "voice_id": "denis-qwen3tts-reference-v1",
-        "engine": "qwen3-tts-local",
-        "rate": "0.92",
+        "speaker": "aks",
+        "voice_id": "aks-licensed-synthetic-tbd",
+        "engine": "licensed-tts-voice-cast-pending",
+        "rate": "TBD",
         "source_file": null
       }
     }
@@ -163,5 +163,6 @@
       ],
       "text": "НОВАЯ ДОЛЖНОСТЬ"
     }
-  ]
+  ],
+  "voice_policy": "MIL and approved outro: Denis; AKS and supporting roles: separate licensed synthetic voice; never clone strangers; final audio review required"
 }
