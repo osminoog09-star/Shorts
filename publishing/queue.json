@@ -270,13 +270,13 @@
       "id": "science_mirror_202611",
       "kind": "short",
       "author": "GPT",
-      "status": "draft",
+      "status": "review",
       "slot": null,
       "style": "S1-D25 / рисованный2D",
-      "mp4": null,
+      "mp4": "videos/science_mirror_202611_v1.mp4",
       "publish_md": "shorts/science_mirror_202611/PUBLISH.md",
       "title": "Зеркало не меняет лево и право. Проверь рукой #shorts",
-      "note": "Новое поручение03.11: минимум4 Shorts ДО Чигура. Сценарий/раскадровка написаны,24стопа в Actions. MP4/YouTubeID ещё нет; не считать резервом.",
+      "note": "Rebuilt mirror after visual QA floor/label overlap; GitHub run41633327006 SUCCESS, check.py 0 FAIL and look.py reviewed. Дима TTS, outro rev4. Personal listening not verified, no YouTube upload/date.",
       "production_file": "shorts/next_four_20261103/TREATMENT.md",
       "owner_requested_on": "2026-11-03"
     }
