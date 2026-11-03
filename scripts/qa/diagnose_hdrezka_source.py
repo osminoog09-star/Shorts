@@ -63,6 +63,10 @@ def classify_cli(output: str, returncode: int) -> str:
         return "tls_failure"
     if re.search(r"timeout|deadline exceeded|connection refused|connection reset", lower):
         return "network_timeout_or_reset"
+    if "video id not found" in lower:
+        return "movie_page_has_no_video_id"
+    if "sign in required" in lower:
+        return "account_sign_in_required"
     if re.search(r"unauthorized|authentication|login|premium|subscription", lower):
         return "account_or_premium_required"
     if re.search(r"cannot find|video not found|no video|invalid video|parse|unexpected html", lower):
