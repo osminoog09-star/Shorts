@@ -2,18 +2,41 @@
    Browser writes JSON with owner's GitHub token; read-only scheduled scanner handles matching.
    No fake ready status: ASR, licensing and media QA are separate gates.
 */
+function clipFilmKey(name){
+  const aliases={"no country for old men":"старикам тут не место","whiplash":"одержимость","ex machina":"из машины","nightcrawler":"стрингер","interstellar":"интерстеллар","the batman":"бэтмен","oppenheimer":"оппенгеймер","the menu":"меню"};
+  const raw=String(name||"").toLowerCase().replace(/ё/g,"е").trim();
+  const year=raw.match(/\((\d{4})\)\s*$/)?.[1]||"";
+  const title=raw.replace(/\s*\(\d{4}\)\s*$/,"").trim();
+  return (aliases[title]||title).replace(/[^а-яa-z0-9]/g,"")+year;
+}
+function clipFilmGroups(){
+  const publicIds=new Set([...(D.videos||[]).filter(v=>v.privacy==="public"),...(D.live?.recent||[])].map(v=>v.id));
+  return ((D.film_lifecycle||{}).items||[]).map(f=>{
+    const projects=(f.projects||[]).map(p=>({...p,state:publicIds.has(p.youtube_id)?"published":p.state}));
+    return {...f,projects,state:projects.some(p=>p.state!=="published")?"in_progress":projects.length?"published":"needed"};
+  });
+}
+function clipNeededRequests(){
+  const films=new Map(clipFilmGroups().map(f=>[clipFilmKey(f.film),f]));
+  return ((D.clip_requests||{}).items||[]).filter(r=>
+    (films.get(clipFilmKey(r.film))?.state||r.lifecycle||"needed")==="needed"&&
+    !["собран","опубликован","архив"].includes(r.status));
+}
 function clips(){
-  const req=(D.clip_requests||{}).items||[];
+  const req=clipNeededRequests();
+  const groups=clipFilmGroups();
   const scan=D.drive_scan||{};
   const folder=D.drive_folder||{};
   const found=new Map((scan.items||[]).map(x=>[x.id,x]));
   const probes=(D.scene_candidates||{}).items||{};
   const missing=req.filter(r=>!["собран","сцена найдена"].includes((found.get(r.id)||{}).status||r.status)).length;
+  const neededFilms=[...new Set(req.map(r=>r.film))];
+  const missingFilms=neededFilms.filter(f=>!req.some(r=>r.film===f&&found.get(r.id)?.status==="фильм найден"));
   const active=!!folder.scan_enabled&&!!folder.url;
   const stat=scan.status==="ok"
     ? 'В папке '+num(scan.file_count)+' файлов, из них видео '+num(scan.video_files)+
-      ' · нужно фильмов '+num(scan.required_film_count)+
-      ' · найдено '+num(scan.matched_film_count)
+      ' · нужно фильмов '+num(neededFilms.length)+
+      ' · найдено '+num(neededFilms.length-missingFilms.length)
     : scan.status==="error"?'Ошибка сканирования: '+esc(scan.message||"доступ закрыт")
     : folder.url?'Папка подключена для приватной проверки через Google OAuth. Публичный доступ НЕ требуется. Семь старых фильмов повторно не нужны.':'Папка ещё не подключена. Уже собранные 7 видео повторно скачивать не нужно.';
   let html='<section class="card reveal"><h2>Одна папка Google Drive</h2>'+
@@ -24,11 +47,11 @@ function clips(){
     '<button class="btn" data-folder-scan '+(!active?'disabled':'')+'>Проверить папку</button>'+
     (folder.url?'<a class="btn" target="_blank" rel="noopener noreferrer" href="'+esc(folder.url)+'">Открыть Drive</a>':'')+'</div>'+
     '<p class="muted">'+stat+'</p>'+
-    ((scan.missing||[]).length?'<p class="muted">Не хватает: '+(scan.missing||[]).map(esc).join(' · ')+'</p>':'')+
+    (missingFilms.length?'<p class="muted">Нужны новые фильмы: '+missingFilms.map(esc).join(' · ')+'</p>':'')+
     '<p class="muted">Последняя проверка: '+esc(scan.scanned_at||"ещё не было")+
     '. Сканер пока определяет файлы, но не скачивает фильмы и не заявляет о готовом монтаже.</p></section>';
-  html+='<section class="card reveal"><h2>Заявки <span class="cnt">'+missing+' ожидают исходники/сцены</span></h2>'+
-    '<p class="muted">Без ссылок на каждую сцену: сканер сопоставляет фильмы автоматически. При неоднозначности — подтверждение ниже.</p></section>';
+  html+='<section class="card reveal"><h2>Новые фильмы <span class="cnt">'+missing+' ожидают исходники/сцены</span></h2>'+
+    '<p class="muted">Здесь только фильмы без начатого ролика. Занятые — в «В процессе», опубликованные убраны в архив.</p></section>';
   html+='<div class="grid">'+req.map(r=>{
     const id=esc(r.id);
     const m=found.get(r.id)||{};
@@ -54,6 +77,16 @@ function clips(){
       (m.scene_start!=null?'<p class="muted">Сцена проверена с '+Math.floor(m.scene_start/60)+':'+String(Math.floor(m.scene_start%60)).padStart(2,"0")+'</p>':'')+
       chosen+'<p class="muted">'+esc(r.note||"")+'</p></section>';
   }).join('')+'</div>';
+  const projectCard=f=>'<section class="idea reveal"><b>'+esc(f.film)+'</b>'+f.projects.map(p=>{
+    const label=({published:"Опубликован",scheduled:"Запланирован",private:"Приватно загружен",production:"В производстве"})[p.state]||"В производстве";
+    const date=p.publish_at?' · '+new Date(p.publish_at).toLocaleString("ru-RU",{timeZone:"Europe/Tallinn",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})+' (Таллин)':"";
+    return '<p><span class="chip">'+esc(label+date)+'</span> '+esc(p.title||p.id)+
+      (p.youtube_id?' <a class="btn sm" target="_blank" rel="noopener noreferrer" href="https://studio.youtube.com/video/'+encodeURIComponent(p.youtube_id)+'/edit">YouTube Studio</a>':"")+'</p>'+
+      (p.blocker?'<p class="muted">'+esc(p.blocker)+'</p>':"");
+  }).join("")+'<p class="muted">Повторно загружать фильм не нужно. Другие сцены этого фильма сняты с активных заявок.</p></section>';
+  const progress=groups.filter(f=>f.state==="in_progress"), archive=groups.filter(f=>f.state==="published");
+  html+='<section class="card reveal"><h2>В процессе <span class="cnt">'+progress.length+' фильмов</span></h2><p class="muted">Производство, приватная проверка или ожидание публикации. После подтверждённого выхода всех роликов фильм уйдёт в архив.</p></section><div class="grid">'+progress.map(projectCard).join("")+'</div>';
+  html+='<details class="card"><summary>Опубликованные · '+archive.length+' фильмов</summary><div class="grid">'+archive.map(projectCard).join("")+'</div></details>';
   html+='<section class="card reveal"><h2>Своя заявка</h2>'+
       '<label class="muted" for="newclip-film">Фильм и год</label><input id="newclip-film" class="t" maxlength="120" placeholder="Название фильма (2022)">'+
       '<label class="muted" for="newclip-note">Какая сцена?</label><input id="newclip-note" class="t" maxlength="200" placeholder="Опиши сцену">'+

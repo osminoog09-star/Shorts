@@ -29,9 +29,9 @@
 ### 03.11 — Жизненный цикл фильмов и аудит остатка · GPT
 Цель: новые заявки отдельно, занятые фильмы в процессе, опубликованные скрыты; остаток по фактическим данным.
 - [x] Правила/Studio/NOW/HANDOFF и текущие main receipts прочитаны. Старый checkout расходился с main; отдельный worktree от origin/main, чужие файлы не тронуты.
-- [ ] Связать фильмы с проектами/YouTube, фильтровать UI и Drive/ASR, проверить регрессии.
+- [x] Связать фильмы с проектами/YouTube: общий lifecycle UI/бейдж/Drive/ASR. 13 Python + Node regression PASS; 3 новых заявки,4 группы в процессе,1 архив.
 - [ ] Аудит отсутствующих роликов, deploy и мобильная проверка.
-Следующий шаг: scripts/clip_lifecycle.py + publishing/film_projects.json; интеграция build_studio_site.py/clips_ui.js/Drive. Не менять владельческие даты и MP4.
+Следующий шаг: дождаться motion-pages.yml после lifecycle-коммита, проверить живой раздел Клипы. Аудит reports/research/2026-11-03_FILM_LIFECYCLE_AND_BACKLOG.md. Даты и MP4 не менялись.
 Где промежуточное: /workspace/scratch/2071953dc074/Shorts, branch codex/clip-lifecycle.
 Ждёт Дениса: нет.
 

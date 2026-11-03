@@ -11,6 +11,7 @@ import json
 import re
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from clip_lifecycle import resolve as film_lifecycle, classify_requests
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "site" / "studio" / "data.json"
@@ -332,7 +333,8 @@ def main():
         "weekly": {"name": weekly[-1].stem if weekly else None, "text": weekly_txt},
         "ideas": ideas, "events": events, "app": app, "ypp": ypp, "best_times": load("publishing/best_times.json"), "taken": taken, "live": live, "comments": comments, "comments_status": (pulse.get("status") or {}).get("comments"), "experiments": exp,
         "playlists": {k: v.get("id") for k, v in playlists.items() if isinstance(v, dict)},
-        "clip_requests": load("publishing/clip_requests.json", {"items": []}),
+        "clip_requests": {"items": classify_requests(load("publishing/clip_requests.json", {"items": []}).get("items", []), film_lifecycle(ROOT))},
+        "film_lifecycle": film_lifecycle(ROOT),
         "drive_folder": load("publishing/drive_folder.json", {"url": "", "scan_enabled": False}),
         "drive_scan": load("publishing/drive_scan.json", {"status": "not_configured", "items": []}),
         "hdrezka_intake": load("publishing/hdrezka_status.json", {"status": "not_started"}),

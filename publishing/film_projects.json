@@ -1,0 +1,68 @@
+{
+  "policy": "Один фильм — одна группа. Пока есть незавершённый проект: в процессе. После подтверждённой публикации всех проектов: архив. Новые сцены этого фильма не требуют повторной загрузки и не запускаются автоматически.",
+  "items": [
+    {
+      "film": "Старикам тут не место (2007)",
+      "projects": [
+        {
+          "id": "kino_001"
+        },
+        {
+          "id": "kino_002"
+        },
+        {
+          "id": "chigur_long",
+          "title": "Антон Чигур: почему с ним нельзя договориться",
+          "blocker": "28 графических окон, финальный монтаж и QA; старые исходники уже получены",
+          "source": "tasks/gpt_fix_after_claude_audit.md"
+        },
+        {
+          "id": "chigur_coin_published",
+          "youtube_id": "bpaR4hHC6YU",
+          "status": "published",
+          "title": "Орёл или решка — на кону ЖИЗНЬ",
+          "source": "tasks/2026-11-07_kino_chigur.md"
+        }
+      ]
+    },
+    {
+      "film": "Одержимость (2014)",
+      "projects": [
+        {
+          "id": "kino_003"
+        }
+      ]
+    },
+    {
+      "film": "Из машины (2014)",
+      "projects": [
+        {
+          "id": "kino_004"
+        }
+      ]
+    },
+    {
+      "film": "Стрингер (2014)",
+      "projects": [
+        {
+          "id": "kino_005"
+        }
+      ]
+    },
+    {
+      "film": "Интерстеллар (2014)",
+      "projects": [
+        {
+          "id": "kino_006"
+        },
+        {
+          "id": "interstellar_dock_published",
+          "youtube_id": "XtSnXx4nVq8",
+          "status": "published",
+          "title": "ЭТО НЕВОЗМОЖНО! Легендарная стыковка",
+          "source": "reports/youtube/latest.json"
+        }
+      ]
+    }
+  ]
+}

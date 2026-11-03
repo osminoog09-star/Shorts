@@ -7,6 +7,7 @@ Statuses "сцена найдена" / "собран" require separate evidence,
 """
 from __future__ import annotations
 
+from clip_lifecycle import needed_requests
 import datetime as dt
 import json
 import os
@@ -187,7 +188,7 @@ def summarize(entries: list[dict], requests: list[dict]) -> dict:
 
 def main() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
-    request = json.loads(REQUESTS.read_text(encoding="utf-8"))["items"]
+    request = needed_requests(json.loads(REQUESTS.read_text(encoding="utf-8"))["items"], ROOT)
     ts = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     if not config.get("scan_enabled") or not config.get("url"):
         summary = {"status": "not_configured", "scanned_at": ts, "file_count": 0,

@@ -730,7 +730,7 @@ let threeP=0;function loadThree(){if(threeP)return;threeP=1;const s=document.cre
 
 /* ---------- навигация и события ---------- */
 const VIEWS={home,clips,videos,ideas,fans,money};
-function badges(){return{fans:cflags("request").concat(cflags("to_me")).filter((c,i,a)=>!seen.has(c.id)&&a.findIndex(x=>x.id===c.id)===i).length,ideas:((D.ideas||{}).ideas||[]).filter(i=>(i.status||"proposed")==="proposed").length,videos:D.review.length,clips:((D.clip_requests||{}).items||[]).filter(x=>x.status==="нужен").length}}
+function badges(){return{fans:cflags("request").concat(cflags("to_me")).filter((c,i,a)=>!seen.has(c.id)&&a.findIndex(x=>x.id===c.id)===i).length,ideas:((D.ideas||{}).ideas||[]).filter(i=>(i.status||"proposed")==="proposed").length,videos:D.review.length,clips:clipNeededRequests().length}}
 function nav(){
   const b=D?badges():{};
   $("#bnav").innerHTML=TABS.map(([k,t,i])=>`<button data-tab="${k}" ${tab===k?'aria-current="page"':""}><span class="ico">${ic3(i)}</span>${t}${b[k]?`<span class="dot">${b[k]}</span>`:""}</button>`).join("");

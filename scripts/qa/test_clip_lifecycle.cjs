@@ -1,0 +1,12 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const D={clip_requests:{items:[{id:'a',film:'Whiplash (2014)',status:'нужен'},{id:'b',film:'Меню (2022)',status:'нужен'}]},film_lifecycle:{items:[{film:'Одержимость (2014)',projects:[{id:'short',youtube_id:'abc',state:'scheduled'}],state:'in_progress'}]}};
+const ctx=vm.createContext({D,document:{addEventListener(){}},Set,Map});
+vm.runInContext(fs.readFileSync('site/studio/clips_ui.js','utf8'),ctx);
+assert.equal(vm.runInContext('clipNeededRequests().length',ctx),1);
+assert.equal(vm.runInContext('clipFilmGroups()[0].state',ctx),'in_progress');
+D.live={recent:[{id:'abc'}]};
+assert.equal(vm.runInContext('clipFilmGroups()[0].state',ctx),'published');
+assert.equal(vm.runInContext('clipNeededRequests().length',ctx),1);
+D.film_lifecycle.items[0].projects.push({id:'long',state:'production'});
+assert.equal(vm.runInContext('clipFilmGroups()[0].state',ctx),'in_progress');
+console.log('film lifecycle UI: PASS (duplicate film, fresh public pulse, active long)');

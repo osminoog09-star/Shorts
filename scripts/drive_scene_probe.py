@@ -4,6 +4,7 @@
 Creates only approximate timing candidates. Russian soundtrack and real scene
 must still pass human visual/audio QA before any private Short assembly.
 """
+from clip_lifecycle import needed_requests
 import argparse
 import datetime as dt
 import hashlib
@@ -120,7 +121,7 @@ def cmd(*args, timeout=120):
 
 def pending():
     scan = json.loads(SCAN.read_text(encoding="utf-8"))
-    reqs = {x["id"]: x for x in json.loads(REQUESTS.read_text(encoding="utf-8"))["items"]}
+    reqs = {x["id"]: x for x in needed_requests(json.loads(REQUESTS.read_text(encoding="utf-8"))["items"], ROOT)}
     state = json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else {"items": {}}
     if scan.get("status") != "ok":
         return [], state
