@@ -22,9 +22,11 @@ m1lash, shorts, рисованная анимация, наука, объясн�
 Какое объяснение невесомости вы слышали раньше?
 
 ## Настройки
+- YouTube video ID: 9XeZBiX7Pr8; receipt: publishing/receipts/science_orbit_202611.json; PRIVATE, no publishAt.
 - ru, madeForKids=false
 - Категория: EDUCATION (27)
-- Приватная загрузка без даты после QA; владелец смотрит/выбирает дату
+- Приватно загружен и подтверждён YouTube API (без даты, канал M1lash): https://studio.youtube.com/video/9XeZBiX7Pr8/edit
+- Одобрение владельца: «Все 4 ок» (03.11.2026). Повторно не загружать. Дата только по следующему решению владельца.
 - Голос: Дима, ru-RU-DmitryNeural / edge-tts
 - Рисованный2D, стиль S1-D25
 - Файл собран: videos/science_orbit_202611_v1.mp4
