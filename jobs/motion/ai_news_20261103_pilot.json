@@ -1,0 +1,11 @@
+{
+  "renderer": "python",
+  "script": "shorts/render_ai_news_20261103.py",
+  "output": "videos/m1lash_ai_news_20261103_ru.mp4",
+  "mode": "pilot",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "no_youtube_upload": true,
+  "stills_visual_evidence": "41563843584 SUCCESS, six corrected stills inspected; grid unchanged",
+  "note": "Complete n03 phrase, forced free Edge Dima. Pilot/look/ASR/voice assets saved to Git. Not a completed Short."
+}
