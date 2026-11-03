@@ -2,12 +2,6 @@ name: YouTube direct · review then schedule
 run-name: '${{ inputs.mode }} ${{ inputs.manifest }} ${{ inputs.expected_publish_at }} ${{ inputs.request_id }}'
 
 on:
-  # One-time event adapter for four owner-reviewed private-only uploads.
-  # Scheduling still requires explicit workflow_dispatch after a separate owner date decision.
-  push:
-    branches: [main]
-    paths:
-      - 'publishing/private_upload_requests/next_four_20261103.json'
   workflow_dispatch:
     inputs:
       manifest:
@@ -43,7 +37,7 @@ concurrency:
 
 jobs:
   publish:
-    if: github.event_name != 'push'
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
@@ -187,49 +181,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: youtube-receipt-${{ github.run_id }}
-          path: publishing/receipts/
-          retention-days: 30
-          if-no-files-found: ignore
-
-  upload_four_reviewed_private:
-    # Push trigger path is exact; all four IDs, video hashes, manifest flags,
-    # channel and owner's review are independently hard-gated by the script.
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
-    permissions:
-      contents: write
-    concurrency:
-      group: youtube-owner-reviewed-four-private-20261103
-      cancel-in-progress: false
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 2
-          persist-credentials: true
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Install uploader requirements
-        run: python -m pip install 'requests>=2.32,<3'
-      - name: PRIVATE-only upload of four owner-approved final MP4s (no schedule)
-        env:
-          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
-          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
-          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
-          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
-          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
-          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-        run: |
-          set -euo pipefail
-          python -m py_compile scripts/private_upload_approved_four.py scripts/youtube_direct.py
-          python scripts/private_upload_approved_four.py
-      - name: Preserve any private-upload receipts for no-retry recovery
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: owner-reviewed-four-private-receipts-${{ github.run_id }}
           path: publishing/receipts/
           retention-days: 30
           if-no-files-found: ignore
