@@ -33,5 +33,11 @@
     "review_archive_entry": "01_kino_001_v53.mp4",
     "owner_audio_approved": true,
     "owner_audio_approval_date": "2026-11-03"
+  },
+  "publish_at": "2026-11-04T10:00:00+02:00",
+  "schedule_request": {
+    "id": "24bddf7c-b868-4be5-b4b2-7cab010c4357",
+    "requested_at": "2026-11-03T09:35:08.854Z",
+    "publish_at": "2026-11-04T10:00:00+02:00"
   }
 }
