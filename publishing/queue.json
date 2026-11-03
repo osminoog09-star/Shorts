@@ -89,6 +89,18 @@
       "title": "Урок музыки вышел из-под контроля #shorts",
       "note": "V54 52.6s uploaded PRIVATE, no schedule. Studio: HD complete; no copyright claims found on 2026-11-02. Owner audio review confirmed. Await owner publication decision; never re-upload.",
       "youtube_id": "FxIlxGWVCuw"
+    },
+    {
+      "id": "ai_bureaucracy_claude",
+      "kind": "short",
+      "author": "Claude + GPT",
+      "status": "draft",
+      "slot": null,
+      "style": "существующий Three.js Claude",
+      "mp4": "videos/ai_bureaucracy_claude_v2.mp4",
+      "publish_md": "shorts/ai_bureaucracy/PUBLISH.md",
+      "title": "Нанял ИИ, чтобы меньше работать. Получил 40 подчинённых 🤖 #shorts",
+      "note": "V2: полный рендер41553021293; старый ведущий отключён, финал rev4. Финальный MP4/check/look ожидаются; полное личное прослушивание не выполнено. Без YouTube и даты."
     }
   ]
 }
