@@ -1,0 +1,11 @@
+{
+  "renderer": "python",
+  "script": "shorts/science_popcorn_20261104/render_visual.py",
+  "only_id": "science_popcorn_20261104",
+  "mode": "full_silent",
+  "output": "videos/science_popcorn_20261104_NOT_FINAL.mp4",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "approved_motion_pilot_run": 41726511804,
+  "note": "36.66s storyboard render, SILENT and provisional captions only. Not a finished Short, no Dima/Azure fallback, no YouTube writes, single-popcorn asset."
+}
