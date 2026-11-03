@@ -110,7 +110,8 @@
       runBox.textContent = "GitHub Actions #" + run.id + ": " + label;
     }
     const download = document.querySelector("[data-hd-download]");
-    if (download && !drive.connected) download.disabled = true;
+    if (download) download.disabled = !(drive.connected && s.status === "ok" &&
+      Object.values(s.available || {}).includes("available"));
   }
   function safeToRender() {
     if (document.getElementById("sheet")?.classList.contains("open")) return false;
