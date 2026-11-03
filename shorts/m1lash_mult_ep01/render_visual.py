@@ -88,7 +88,7 @@ def main():
    "measurements":acting,"hand_clip_count":sum(not q["hands_inside_viewport"] for q in acting),
    "joint_articulation_count":sum(q["elbows_articulated"] for q in acting),
    "notes":"Numeric preflight only. Must visually inspect full MP4 for occlusions and pose quality."
-  },ensure_ascii=False,indent=2)+"\\n")
+  },ensure_ascii=False,indent=2)+"\n")
   print("ACTING_GATE","samples",len(acting),
         "hand_clips",sum(not q["hands_inside_viewport"] for q in acting),flush=True)
   sheet=Image.new("RGB",(900,1100),(21,29,44))
