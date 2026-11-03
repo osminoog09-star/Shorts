@@ -2,5 +2,5 @@
   "url": "https://drive.google.com/drive/folders/1ANvcXlUj0wBv1CG5U0bBQGdH-32OyaAi",
   "scan_enabled": true,
   "updated": "2026-11-02",
-  "note": "02.11 metadata: anyone=writer, but reader is sufficient for scanner; owner can upload while logged in. WARNING: public writer allows strangers with link to modify folder. New scenes only; do not re-request seven existing movie sources."
+  "note": "03.11: private OAuth-based scan verified (run 41551952914). Public sharing is NOT required; folder currently has dangerous anyone=writer, owner should change to Restricted. Only full movie source files belong here; existing seven finished shorts do not require re-upload."
 }
