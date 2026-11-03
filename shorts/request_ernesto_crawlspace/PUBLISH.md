@@ -1,4 +1,4 @@
-# ErnestoMarsel — публикационный паспорт (DRAFT, исходник отсутствует)
+# ErnestoMarsel — публикационный паспорт (DRAFT, полный русский исходник не найден)
 
 ## Название
 По заявке @ErnestoMarsel 💀 #shorts
@@ -6,6 +6,11 @@
 ## Описание
 Иногда отчаяние превращается в жуткий смех. Эту сцену попросил @ErnestoMarsel.
 А какую сцену разобрать следующей?
+
+Song: Laeko - DONT WANNA KNOW!!!
+Music provided by NoCopyrightSounds
+Free Download/Stream: http://ncs.io/dontwannaknow
+Watch: https://ncs.lnk.to/dontwannaknowAT/youtube
 
 #shorts #кино #угадайфильм #сцена #драма #реакция #m1lash
 
@@ -24,3 +29,5 @@
 - Категория 1 (Film & Animation), madeForKids=false, язык ru, доступ **private** и **без publish_at** только после QA.
 - Исходник с канала Movieclips принадлежит правообладателю, его размещение на Movieclips не даёт M1lash лицензию на повторную загрузку. Риск Content ID принят владельцем; проверить возможные претензии.
 - До готового MP4 и полного QA — **DRAFT/NO UPLOAD**, никогда не запускать execute=true на пустом пути.
+
+03.11: SOURCE_INCOMPLETE. Имеющийся22с отрывок обрывается до требуемого смеха. Поиск соответствующих видео в Drive не дал совпадений; полный слух/монтаж не выполнены. Не выдавать006/EN/синтетический голос за эту заявку.
