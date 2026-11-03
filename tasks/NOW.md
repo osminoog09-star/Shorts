@@ -33,11 +33,14 @@
 - [x] Физика проверена по Virot/Ponomarenko DOI 10.1098/rsif.2014.1247 и USDA: температура около 180C, крахмальная ножка прыжка, звук от резкого выхода пара. Новый сценарий записан отдельно shorts/science_popcorn_20261104/spec.json (commit 5bfa7fe1).
 - [x] HTML/SVG попкорна изолирован в shorts/science_popcorn_20261104/film.html (commit dead6162), общий файл и пылесос неизменны.
 - [x] Создан отдельный строго silent рендерер shorts/science_popcorn_20261104/render_visual.py с 6 стопами/кадрами, layout gate, 7с пилотом; не вызывает Edge/TTS, не публикует (commit 9d79642e).
-- [x] Запущен ОДИН job jobs/motion/popcorn_solo_stills_20261103.json (commit 078604d8), GitHub run 41725149202. Проверить артефакт, затем глазами 6 кадров.
-- [ ] После PASS кадров отдельным job 7с пилот движения; оценить текст/крупность.
+- [x] Реальные 6 стопов r1: 41725149202 SUCCESS, artifact 13273524657, контакт открыт глазами. Отмечена простота графики.
+- [x] Первый 7с motion pilot 41725560730 PASS технически (7с H264 1080×1920, FFmpeg full decode), но редакторский NO-GO из-за почти статичного зерна.
+- [x] Исправлено движение **только** отдельного popcorn HTML, commit bb8cb5b6 (зерно дрожит, пар поднимается, хлопья падают). Повторные 6 стопов 41726195805 SUCCESS artifact 13275421486, контакт открыт глазами.
+- [x] Второй 7с pilot 41726511804 SUCCESS artifact 13274421698. 210 кадров 30fps, FFmpeg full decode PASS, контакт 7 кадров открыт, видимое движение зерна и пара; Motion visual gate PASS, но это НЕ озвученный финал.
+- [ ] Полная только графика (без звука) 36.66с Actions **41726921275** запущена, job `jobs/motion/popcorn_solo_full_silent_20261103.json`; проверить artifact, full decode и contact после окончания. Без Qwen голос остаётся BLOCKED.
 - [ ] Синтезировать только голос Дениса локальной Qwen3-TTS-0.6B Base из private reference; ASR и точные word timings. В текущем контейнере qwen_tts и cached model weights отсутствуют, сеть недоступна. Пока VOICE_BLOCKED: не использовать Диму, Azure/Edge; не объявлять READY.
 - [ ] Штатная сборка с approved outro, official check.py/look.py/FFmpeg full decode/ASR/audio gate и owner review. Приватный голос/MP4 в public git запрещён.
-Следующий шаг: artifact run 41725149202 → осмотреть 6 новых кадров попкорна → после PASS запустить 7с motion pilot. Затем решить Qwen-voice gate без подмены, собрать частный финал и дать на оценку владельцу.
+Следующий шаг: Actions 41726921275 → скачать **только немой popcorn** artifact → проверить полный 36.66с silent body FFmpeg и контакт. Затем для готового MP4 требуется разрешённый локальный Qwen3-TTS-0.6B Base (весов в этом runtime нет) + private Denis reference (есть), настоящие word timings/ASR, новая private v3 outro (SHA совпадает), штатный assembler, check/look/decode. НЕ переходить к следующему Short и не публикация.
 Где промежуточное: shorts/science_popcorn_20261104/, jobs/motion/popcorn_solo_stills_20261103.json, частная папка /mnt/data/m1lash_popcorn_private/.
 Ждёт владельца: только оценка финального MP4, не разрешение на технические этапы.
 
