@@ -69,7 +69,7 @@
     ]
   },
   "revision_r7": {
-    "status": "STILLS_RENDER_RUNNING",
+    "status": "STILLS_RENDERED_AND_VISUALLY_INSPECTED_PILOT_RUNNING",
     "run_stills": 41737672546,
     "commits": [
       "d1bce7ea76c91231991641dc25c1cf28c6eefb4b",
@@ -83,7 +83,23 @@
       "meeting clock UI",
       "visible plug and cable withdrawal"
     ],
-    "editorial": null,
-    "pilot_status": "NOT_RENDERED"
+    "editorial": "PARTIAL_PASS_FIRST_SCENE_ONLY",
+    "pilot_status": "CI_RUNNING",
+    "artifact_stills": 13280580174,
+    "stills_visual_inspected": true,
+    "actual_gate": {
+      "camera_samples": 9,
+      "hand_clip_count": 0,
+      "elbows_articulated_count": 9,
+      "comparison_r6_hand_clip_count": 4,
+      "valid_json": true
+    },
+    "remaining_defects": [
+      "Scene 2 meeting prop too small to convey meaning without subtitle",
+      "Scene 3 XP must be verified in late motion, not only coin at t14.5",
+      "Scene 5 unplugging gesture and hand-to-cable connection still weak",
+      "Scene 6 phone visually readable as AI on a screen, but final comedic reaction still absent"
+    ],
+    "run_pilot": 41737977951
   }
 }
