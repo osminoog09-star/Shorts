@@ -33,5 +33,11 @@
     "review_archive_entry": "05_kino_005_v49_natural_open.mp4",
     "owner_audio_approved": true,
     "owner_audio_approval_date": "2026-11-03"
+  },
+  "publish_at": "2026-11-04T20:00:00+02:00",
+  "schedule_request": {
+    "id": "30e33dfb-8e63-4ebf-b8ba-f0abbcf35204",
+    "requested_at": "2026-11-03T09:40:49.549Z",
+    "publish_at": "2026-11-04T20:00:00+02:00"
   }
 }
