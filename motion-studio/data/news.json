@@ -1,17 +1,188 @@
 {
   "status": "partial",
-  "updated_at": "2026-11-02T15:51:33.355098Z",
-  "last_attempt_at": "2026-11-02T15:51:33.355098Z",
+  "updated_at": "2026-11-03T00:57:50.242018Z",
+  "last_attempt_at": "2026-11-03T00:57:50.242018Z",
   "feeds_ok": 6,
   "feeds_failed": 1,
   "errors": [
     {
-      "source": "NASA Technology",
-      "error_type": "HTTPError"
+      "source": "NASA News",
+      "error_type": "ValueError"
     }
   ],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "d602924f3d5976b210",
+      "title": "\"At Home in Space\" opens, caps Air and Space Museum renovation",
+      "url": "https://arstechnica.com/space/2026/11/at-home-in-space-opens-caps-air-and-space-museum-renovation/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-02T23:30:16Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c8564f3a68709075cd",
+      "title": "Trajectory raises $45M to make AI model training accessible to nontechnical experts",
+      "url": "https://techcrunch.com/2026/11/02/trajectory-raises-45m-to-make-ai-model-training-accessible-to-nontechnical-experts/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-02T23:13:53Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b3ee027816e2808811",
+      "title": "Why large dogs age faster than small ones, and other October research highlights",
+      "url": "https://arstechnica.com/science/2026/11/research-roundup-6-cool-science-stories-we-almost-missed-7/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-02T22:54:35Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ca204e1c0052a71213",
+      "title": "Anthropic warns that it’s very close to RSI capability, aka self-building AI",
+      "url": "https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-02T22:14:50Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "01a98002e74ebb064b",
+      "title": "Third person dies of bird flu since virus started jumping to livestock",
+      "url": "https://arstechnica.com/health/2026/11/third-person-dies-of-bird-flu-since-virus-started-jumping-to-livestock/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-02T21:21:43Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "5fc0241e25c90db0d1",
+      "title": "Powering up for a pivotal moment",
+      "url": "https://news.mit.edu/2026/powering-up-for-pivotal-moment-1102",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-02T19:55:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ae79e5a5d33712f69e",
+      "title": "Googling \"Zelda\" today offers a glimpse of how search worked in 1998",
+      "url": "https://arstechnica.com/gaming/2026/11/googles-legend-of-zelda-easter-egg-transports-you-back-to-1998/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-02T19:52:23Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4ca5045e7ee7fda152",
+      "title": "Web host Squarespace lays off 19% of its employees",
+      "url": "https://techcrunch.com/2026/11/02/web-host-squarespace-lays-off-19-of-its-employees/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-02T19:25:59Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e7389883fb553bcf42",
+      "title": "New York Times and other outlets sue web browser Brave over alleged content scraping",
+      "url": "https://techcrunch.com/2026/11/02/new-york-times-and-other-outlets-sue-web-browser-brave-over-alleged-content-scraping/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-02T19:19:17Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "3e9dcdc397b3892de1",
+      "title": "Most of our measures of a key cognitive process don't agree",
+      "url": "https://arstechnica.com/science/2026/11/most-of-our-measures-of-a-key-cognitive-process-dont-agree/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-02T19:13:26Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "5426dcc4966dc21984",
+      "title": "Anthropic clamps down on Claude’s AI video game clones",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1024632/anthropic-claude-ai-video-game-clones",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-02T18:56:02Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e0d31c17157775e2a5",
+      "title": "Coming in 2027: Apple’s $1,000 home robot for FaceTime and switching on lights",
+      "url": "https://arstechnica.com/apple/2026/11/apples-roaming-home-robot-may-do-facetime-switch-lights-on-and-yell-at-your-cat/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-02T18:32:21Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "3f64a695b0aa8d6fd1",
+      "title": "Claude’s new rules against game cloning won’t stop the AI copying boom",
+      "url": "https://arstechnica.com/ai/2026/11/claudes-new-rules-against-game-cloning-wont-stop-the-ai-copying-boom/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-02T18:05:31Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "565e6fad1f4c3724a2",
+      "title": "OpenAI pitches data center power plants as a way to protect nearby areas",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1024604/openai-data-center-grid-protection-program",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-02T18:01:30Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "0b86c010857d521d91",
+      "title": "The New York Times sues Brave web browser for AI scraping and bypassing paywalls",
+      "url": "https://www.theverge.com/tech/1024588/brave-lawsuit-ai-scraping-new-york-times",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-02T17:51:19Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "da39f83d950efd97ec",
+      "title": "China publicly discloses plan for a lunar landing within three years",
+      "url": "https://arstechnica.com/space/2026/11/china-releases-timeline-for-lunar-landing-on-the-moon-targeting-before-2030/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-02T17:09:13Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8bfd7590d71c0d95ed",
+      "title": "42AI comes out of stealth with $62.5M and a world model that can ‘predict human behavior’",
+      "url": "https://techcrunch.com/2026/11/02/42ai-comes-out-of-stealth-with-62-5m-and-a-world-model-that-can-predict-human-behavior/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-02T16:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "fdd130ae0361b6072c",
+      "title": "Elon Musk throttles Grok Bot limits due to ‘unsustainably high’ costs",
+      "url": "https://techcrunch.com/2026/11/02/elon-musk-throttles-grok-bot-limits-due-to-unsustainably-high-costs/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-02T16:23:21Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "379032a1391d4c1998",
+      "title": "F1 in Mexico City: Yet another Ferrari fiasco, but that’s not all",
+      "url": "https://arstechnica.com/cars/2026/11/f1-in-mexico-city-we-have-a-new-world-champion/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-02T15:57:24Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "5a201e1426e1fb30b6",
       "title": "Omen AI adds liquid know-how in $16 million Aquatic Labs acquisition",
@@ -41,7 +212,7 @@
     },
     {
       "id": "e732affa3e390d123d",
-      "title": "OpenAI is finally merging ChatGPT’s chat and Work tabs",
+      "title": "OpenAI is finally merging ChatGPT’s Chat and Work tabs",
       "url": "https://techcrunch.com/2026/11/02/openai-is-finally-merging-chatgpts-chat-and-work-tabs/",
       "category": "ai",
       "source": "TechCrunch AI",
@@ -55,6 +226,15 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-02T12:00:07Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "981c51fa20c4c252ae",
+      "title": "Regina Barzilay and Jim Collins win Pritzker Prize for AI and Science Research Excellence for work in AI-enabled antibiotic discovery",
+      "url": "https://news.mit.edu/2026/regina-barzilay-jim-collins-win-pritzker-prize-ai-and-science-research-excellence-1102",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-02T05:35:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -73,6 +253,15 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-11-01T20:57:58Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1cf8f670adac64720d",
+      "title": "Data centers are now a midterm issue, even in Brooklyn",
+      "url": "https://techcrunch.com/2026/10/31/data-centers-are-now-a-midterm-issue-even-in-brooklyn/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-01T02:22:10Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -541,195 +730,6 @@
       "category": "ai",
       "source": "The Verge AI",
       "published_at": "2026-10-30T09:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c4d34ddeaf925ee456",
-      "title": "You don’t need to believe in a god to get a religious exemption from using AI at work",
-      "url": "https://techcrunch.com/2026/10/29/you-dont-need-to-believe-in-a-god-to-get-a-religious-exemption-from-using-ai-at-work/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-30T01:20:48Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "772e2e8e8ca4a19f25",
-      "title": "AWS will be a $1T business, Jassy says — but first, it will spend big",
-      "url": "https://techcrunch.com/2026/10/29/aws-will-be-a-1t-business-jassy-says-but-first-it-will-spend-big/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-29T23:42:22Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ccef4b21c6474d3723",
-      "title": "Reddit is moving to “a logged-in-only experience,” CEO says",
-      "url": "https://arstechnica.com/gadgets/2026/10/reddit-will-require-you-to-log-in-eventually-ceo-confirms/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-29T21:47:57Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ed6e3d4d78aea9350f",
-      "title": "Halloween Aboard the International Space Station",
-      "url": "https://www.nasa.gov/centers-and-facilities/johnson/halloween-aboard-the-international-space-station/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-10-29T21:44:23Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "77d6bd61a607ad83c9",
-      "title": "Microsoft fixes a Windows 11 annoyance as PC revenue declines",
-      "url": "https://arstechnica.com/gadgets/2026/10/windows-11-gets-right-click-menu-improvements-as-pc-revenue-slides/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-29T20:18:49Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4a81ec2699fd48445f",
-      "title": "As search traffic dries up, Reddit announces it’s shifting to a logged-in experience",
-      "url": "https://techcrunch.com/2026/10/29/as-search-traffic-dries-up-reddit-announces-its-shifting-to-a-logged-in-experience/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-29T20:08:31Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "467b398d06b7c805c5",
-      "title": "Pentagon IG refuses to investigate Starlink/Starshield slowdown in Ukraine",
-      "url": "https://arstechnica.com/tech-policy/2026/10/pentagon-ig-refuses-to-investigate-starlink-starshield-slowdown-in-ukraine/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-29T20:08:10Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "eb97518808c83f5e64",
-      "title": "Rivian expands joint venture with VW to include AI assistant",
-      "url": "https://techcrunch.com/2026/10/29/rivian-expands-joint-venture-with-vw-to-include-ai-assistant/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-29T20:05:47Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c64d19fa0032f9cea1",
-      "title": "OpenAI-backed Thrive Holdings acquires ADT",
-      "url": "https://techcrunch.com/2026/10/29/openai-backed-thrive-holdings-acquires-adt/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-29T19:56:19Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "1584446fbcb1943809",
-      "title": "Meta quietly launches an AI fashion app called Style Sketch",
-      "url": "https://techcrunch.com/2026/10/29/meta-quietly-launches-an-ai-fashion-app-called-style-sketch/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-29T19:14:36Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "85248bd11eaa5ccdfa",
-      "title": "Trump declares robot imports a national security threat",
-      "url": "https://arstechnica.com/gadgets/2026/10/trump-declares-robot-imports-a-national-security-threat/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-29T19:07:53Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4aa6b4f10322be2ed1",
-      "title": "You can generate and edit Google Docs files directly in Gemini chats now",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1022519/google-gemini-file-editing-documents-pdfs",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-10-29T18:45:31Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "af98ad7feba36c8fac",
-      "title": "Trump ignored intel on China’s Nvidia spy to protect company’s stock, report says",
-      "url": "https://arstechnica.com/tech-policy/2026/10/report-trump-did-nothing-with-intel-that-china-planted-spy-close-to-nvidia-ceo/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-29T18:29:12Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4b2c059bd94e7ed8fd",
-      "title": "NASA-funded Study Details One of Oldest Mars Meteorites Ever Found",
-      "url": "https://www.nasa.gov/solar-system/planets/mars/nasa-funded-study-details-one-of-oldest-mars-meteorites-ever-found/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-10-29T18:18:09Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "cd2de5f83b6c9607bd",
-      "title": "Turning a solar power system into its own backup",
-      "url": "https://arstechnica.com/science/2026/10/turning-a-solar-power-system-into-its-own-backup/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-29T18:02:26Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "6a8e8f4a60c542051c",
-      "title": "NASA Names Troy Asher Armstrong Flight Research Center Director",
-      "url": "https://www.nasa.gov/news-release/nasa-names-troy-asher-armstrong-flight-research-center-director/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-10-29T18:00:35Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "20776e88d00f350280",
-      "title": "Granola crunches up a dictation feature to compete with Wispr",
-      "url": "https://techcrunch.com/2026/10/29/granola-crunches-up-a-dictation-feature-to-compete-with-wispr/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-29T17:54:38Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "dbf41850dbaefd91e2",
-      "title": "NIH–NASA QuSAFE Challenge",
-      "url": "https://www.nasa.gov/directorates/stmd/prizes-challenges-crowdsourcing-program/center-of-excellence-for-collaborative-innovation-coeci/nih-nasa-qusafe-challenge/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-10-29T17:44:37Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ba823d52c4011c6cf1",
-      "title": "Kalshi and its co-founders face felony charges for violating Utah gambling laws",
-      "url": "https://arstechnica.com/tech-policy/2026/10/trump-admin-sues-utah-to-save-kalshi-from-the-states-total-ban-on-gambling/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-29T17:21:33Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b138df71b1659a331d",
-      "title": "Mistral releases weights for its trillion-parameter AI model, targeting cybersecurity",
-      "url": "https://techcrunch.com/2026/10/29/mistral-releases-weights-for-its-trillion-parameter-ai-model-targeting-cybersecurity/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-29T17:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "8b38a3a44bca7fc78f",
-      "title": "US investigated Chinese spy plot aimed at Nvidia CEO",
-      "url": "https://techcrunch.com/2026/10/29/u-s-investigated-chinese-spy-plot-aimed-at-nvidia-ceo/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-29T16:42:32Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
