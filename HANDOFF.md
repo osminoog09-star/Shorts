@@ -1,3 +1,20 @@
+# 04.11 · GPT · Попкорн — приватный архив, 11/11 голосовых защит, только реальный Qwen блокирует финал
+
+По прямому запросу «Продолжи» работал **только с** `shorts/science_popcorn_20261104/`, **не трогал** `ai_vacuum_20261104`/другие video/queue/dates. Актуальные AGENTS§3–4/Studio SKILL прочитаны. Никакого нового формата без владельца.
+
+VISUAL: ранее изготовленный физический немой MP4 `/mnt/data/M1lash_Popcorn_SILENT_VISUAL_DRAFT_v2.mp4` 36.666667с, 1080×1920/30, SHA256 `9a64c97ca8efc0aa2853ff8c09b0bbffd8b4c8103877c4e17bfc2a68664efa10`; FFmpeg full decode и реальный контакт подтверждены, `libfile_f4c175cb4ca88191a739f9c571f3a40d` личная Library.
+
+**Новая сохранённая приватная копия** `/mnt/data/M1lash_Popcorn_Private_Assembly_Pack_20261104.zip` 5,735,650 B SHA256 `0d6001aaf451c40a43a76e1194eb733415b7d4505f784743698f7b722792ddda`: личный разрешённый reference Дениса, approved `denis-v3-music80` vertical outro (SHA256 `1bd5aa58…`), silent body; ZIP test+все три SHA PASS. Сохранено в Library `/Youtube/`, **`libfile_92bc62f24df0819180f31d9440302c85`**. Не commit GitHub, не YouTube, не финал.
+
+Производство: `shorts/science_popcorn_20261104/synthesize_denis_private.py` — offline Qwen3-TTS 12Hz 0.6B Base CPU+Whisper с настоящими RU word times, улучшенными caption groups, приватным SHA256+provenance **на каждую из 12 речевых реплик**, безопасным resume без перезаписи WAV. `build_private_master.py` требует 12 таких проверенных receipts, genuine timings и private source, рендерит full visual заново под речь, exact v3 outro (hash + gitignore), вызывает штатный `tools/assemble_with_outro.py`, `check.py`, `look.py`, FFmpeg `-xerror`, не публикует. `RESUME_PRIVATE.md` с точными командами; public repo содержит только код/отчёты.
+
+Фактические GitHub regression tests: первый runner путь `tests/` не прошёл whitelist/sparse checkout (2 неудачных CI, ошибка переноса tests, не видео). Исправлено без глобальной правки workflow, локальные тесты в `shorts/science_popcorn_20261104/gate_tests.py`. **41735884366 SUCCESS 7/7, 41736448743 SUCCESS 9/9, 41736907367 SUCCESS 11/11** (последний лог содержит `Ran 11 tests / OK`, в том числе rejecting Dima, fake timing, wrong outro, orphan/tampered voice SHA). Уроки добавлены в `skills/m1lash-studio/SKILL.md`.
+
+**Почему не финал:** контейнер не имеет `qwen_tts`, transformers, cached Qwen-Base и offline Whisper; доступ к HF/PyPI DNS отсутствует. Весов модели в личных сохранённых ZIP нет. Реальные 12 реплик и ASR не синтезированы, готового голосового MP4 нет. НЕЛЬЗЯ подставлять Диму/Azure/Edge или старые «попкорн с Димой». Следующий шаг в `tasks/NOW.md`: при фактическом наличии локальных offline weights исполнить `RESUME_PRIVATE.md` из приватного ZIP, выдать 12 WAV+true timeline, затем финальный owner QA. Ни private upload ни publish_at не запускались.
+
+Детали: `reports/research/2026-11-03_POPCORN_SINGLE_SHORT_PRODUCTION.md`.
+
+---
 # 04.11 · GPT · «M1lash Мульт»: второй 7с pilot r5 TECH PASS, ART NO-GO
 
 Продолжена задача из `tasks/NOW.md`. Ревизия анимации `film.html` commit `1912ab9`: МИЛ теперь машет обеими руками и отшатывается, у него меняется рот/положение головы, камера переходит на крупный план. Новый набор шести физически просмотренных стопов: Actions **41734720429 SUCCESS**, artifact **13277433751**. Второй 7-секундный MP4 без звука: Actions **41734993905 SUCCESS**, artifact **13279290069**; 1080x1920/30, 210 кадров, 7с, 2479309 B, SHA256 `ac5fc33bd46f0f7533116120faa80f33bbccec40c1c7d72646c14c63ef8a87d1`. Физический `ffmpeg -xerror` full decode PASS и реальный контакт t0–6с осмотрен глазами. **Движение стало явно лучше, но слишком прямые руки и частичная обрезка на t3–4с — редакторский NO-GO для final.** Статус, ошибки и следующее точное действие: `reports/research/2026-11-04_M1LASH_MULT_EP01_VISUAL_PILOT.md` и `tasks/NOW.md`. Плейлист `PLFsog_YzXnAc` остаётся пустым. Аудио Дениса/АКСа и outro в пилоте нет, ничего не загружалось на YouTube.
