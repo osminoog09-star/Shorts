@@ -19,9 +19,11 @@ m1lash, shorts, рисованная анимация, юмор, искусст�
 А кто у вас обычно тормозит отпуск?
 
 ## Настройки
+- YouTube video ID: R0y8D9MZanc; receipt: publishing/receipts/ai_vacation_202611.json; PRIVATE, no publishAt.
 - ru, madeForKids=false
 - Категория: COMEDY (23)
-- Приватная загрузка без даты после QA; владелец смотрит/выбирает дату
+- Приватно загружен и подтверждён YouTube API (без даты, канал M1lash): https://studio.youtube.com/video/R0y8D9MZanc/edit
+- Одобрение владельца: «Все 4 ок» (03.11.2026). Повторно не загружать. Дата только по следующему решению владельца.
 - Голос: Дима, ru-RU-DmitryNeural / edge-tts
 - Рисованный2D, стиль S1-D25
 - Файл собран: videos/ai_vacation_202611_v1.mp4
