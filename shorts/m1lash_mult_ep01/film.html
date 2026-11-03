@@ -180,7 +180,7 @@ function seek(t){
    camera.position.x+=(-1.73-camera.position.x)*humanClose;
    // Leave room for a fully raised bent elbow and the partner in the next two-shot.
    camera.position.z+=(8.10-camera.position.z)*humanClose;
-   camera.lookAt(-.12-1.12*humanClose,2.65,-.05);
+   camera.lookAt(-.05-1.06*humanClose,2.65,-.05);
  }else camera.lookAt(...L.at);
  camera.updateProjectionMatrix();
  // deliberate staged action, not a static picture
