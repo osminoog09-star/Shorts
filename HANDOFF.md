@@ -1,3 +1,11 @@
+## GPT 03.11 — Серверный импорт прямого разрешённого MP4 и реальный Drive WRITE PASS
+
+- По требованию «реши всё сам, без телефона» не стали делать ложный bypass HDRezka: обычный Chromium на Actions **41558540041** получил только challenge (HTTP200, нет страницы фильма/кнопки загрузки), CLI также FAIL на разрешениях 720/1080p. Сам MP4 «Оппенгеймера» НЕ получен. Не писать, что HDRezka автоматизирована.
+- Сделан независимый серверный fallback: `scripts/direct_movie_intake.py`, workflow `direct-movie-intake.yml`. Публичная **прямая** HTTPS MP4 из ограниченных хостов Archive.org/Blender/GitHub Releases, защита от SSRF/редиректов, MP4 `ftyp`, лимит6,5ГБ, ffprobe >=20мин/720–1080p и наличие звука; затем `rclone copyto` и проверка точного размера в private Drive; byte-файлы не коммитить. Русский дубляж помечается `russian_dub_verified=false` до ASR/QA, публикации нет.
+- UI `site/studio/clips_ui.js` добавляет **серверные** кнопки проверить/передать в Drive из прямой MP4-ссылки, status `publishing/direct_movie_status.json`+raw poll `auto_refresh.js`; Pages `41559990034 SUCCESS`. Старый browser-only file helper оставлен во вкладке details, но телефон не нужен.
+- **Живые проверки:** GitHub `41560256794 SUCCESS` → 6/6 unit tests + реальный HTTPS MP4 signature из официально документированного `archive.org/download/ArcherProductionsInc/DuckandC1951.mp4` (до4096байт, не целый фильм, без загрузки). **GitHub 41560398775 SUCCESS**: через существующий Drive OAuth *создан временный файл в корне Drive*, проверен exact size, удалён; movie folder неизменён. Это доказывает, что Drive API запись работает, но полный фильм через rclone ещё НЕ тестировался.
+- Отчёт `reports/research/2026-11-03_DIRECT_MP4_FALLBACK.md`, Studio skill, `tasks/NOW.md` обновлены. Следующий гейт — реально доступный и разрешённый полный MP4; для HDRezka такой сейчас не получен. Никаких секретов/фильмов/публикаций YouTube не создавали и не меняли.
+
 ## GPT 03.11 — попытка автономного браузера HDRezka: исходник недоступен
 
 - В ответ на «сделай всё сам без телефона» запущен **настоящий обычный Chromium на GitHub runner** в read-only режиме без аккаунта, stealth, обхода капчи/DRM, cookies, потоков или загрузки фильма. Workflow `hdrezka-source-audit.yml`, run **41558540041** (step browser finished); код `scripts/qa/hdrezka_browser_probe.py`.
