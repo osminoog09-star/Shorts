@@ -75,7 +75,7 @@ def main():
         run([sys.executable, str(ROOT / "skills/ext/ffmpeg-skill/scripts/check.py"),
              str(output), "--platform", "shorts", "--json"], stdout=f)
     run([sys.executable, str(ROOT / "skills/ext/ffmpeg-skill/scripts/look.py"),
-         str(output), "--tiles", "3x2", "-o", str(work / "final_look.jpg")])
+         str(output), "--tiles", "3x2", "--overwrite", "-o", str(work / "final_verified_v3.jpg")])
     (work / "edit.json").write_text(json.dumps({
         "source": str(source), "keep_seconds": KEEP, "story_seconds": 45.0,
         "replaced_overlap_source_frames": bad_frames,
