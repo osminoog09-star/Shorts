@@ -1,3 +1,10 @@
+## GPT 03.11 — HDRezka inspect на сайте: статус и запись ошибок
+
+- По клику владельца «Проверить качество» Actions **41548828784** и **41548866880** реально отработали `inspect`, оба вернули **`source_unavailable`**: плеер не открылся из GitHub Actions, 1080p НЕ подтверждено, MP4 в Drive НЕ загружен. Drive OAuth сохраняется `connected=true`.
+- Причина «ничего не показывает»: 204 dispatch не содержит результата, CI долго готовит Go загрузчик, а страница до конца проверки показывала устаревшее «ещё не запускалась»; GitHub API опрашивался отдельно. Добавлены мгновенный pending, живой run/ошибка и ссылка на конкретный Action в `clips_ui.js`/`auto_refresh.js`; тест `test_studio_auto_refresh.cjs`, **Pages 41549464524 SUCCESS**.
+- Второй `inspect` не записал JSON-статус из-за конфликта `git pull --rebase` с main (job `Record safe metadata status` FAIL). Workflow перезаписывает только свой status на свежем origin/main с retry, коммит **308a31e2**, CI **41549566628 SUCCESS** (unit+Go, не реальный upload). Не возвращаться к `git pull --rebase` внутри status job. Урок в Studio skill, детали `reports/research/2026-11-03_HDREZKA_INSPECT_STATUS_AND_UI.md`.
+- Задача загрузки целого фильма остаётся открытой; новых OAuth-кодов не нужно, обход DRM/капчи не делать. Следующий шаг по NOW.md — работающий разрешённый источник и реальный MP4 в Drive, не ложное READY.
+
 ## GPT 03.11 — Drive OAuth подключён: реальная проверка rclone успешна
 
 - После нажатия владельцем «Завершить уже подтверждённый доступ» пользовательский `hdrezka-intake.yml` run **41546799326** подтвердил сохранение нового `GDRIVE_REFRESH_TOKEN` и Google API folder-write preflight OK, но `rclone` 1.60.1 отклонил bootstrap пустого access token: `oauth_or_folder_denied`; GitHub Secret был сохранён, нового Google consent не требовалось.
