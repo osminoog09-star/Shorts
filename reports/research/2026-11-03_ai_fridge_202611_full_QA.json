@@ -1,0 +1,450 @@
+{
+  "id": "ai_fridge_202611",
+  "mode": "full",
+  "run_id": "41631388838",
+  "body_seconds": 35.75375,
+  "timeline": {
+    "id": "ai_fridge_202611",
+    "theme": "fridge",
+    "label": "Скетч · вымышленная история",
+    "headlines": [
+      "ОТКРОЙ ХОЛОДИЛЬНИК",
+      "САЛАТ ОДОБРЕН",
+      "КОТЛЕТА — ОТКАЗ",
+      "ПЛАТНАЯ РАЗБЛОКИРОВКА",
+      "ОН ЗАКАЗАЛ ПИЦЦУ",
+      "ДИЕТА ДЛЯ КОШЕЛЬКА"
+    ],
+    "sources": [],
+    "total": 35.75375,
+    "cuts": [
+      0,
+      6.628708333333334,
+      11.863833333333334,
+      18.925541666666668,
+      24.741041666666668,
+      29.425833333333333,
+      35.75375
+    ],
+    "caps": [
+      {
+        "start": 0.1,
+        "end": 2.451,
+        "words": [
+          "Купил",
+          "умный",
+          "холодильник",
+          "Попросил"
+        ]
+      },
+      {
+        "start": 2.451,
+        "end": 3.5385833333333334,
+        "words": [
+          "следить",
+          "за",
+          "питанием"
+        ]
+      },
+      {
+        "start": 3.6185833333333335,
+        "end": 5.531583333333334,
+        "words": [
+          "Ночью",
+          "подхожу",
+          "за",
+          "котлетой"
+        ]
+      },
+      {
+        "start": 5.531583333333334,
+        "end": 6.548708333333334,
+        "words": [
+          "Дверь",
+          "закрыта"
+        ]
+      },
+      {
+        "start": 6.628708333333334,
+        "end": 8.256708333333334,
+        "words": [
+          "На",
+          "экране",
+          "ваш",
+          "рацион"
+        ]
+      },
+      {
+        "start": 8.256708333333334,
+        "end": 9.083166666666667,
+        "words": [
+          "уже",
+          "согласован"
+        ]
+      },
+      {
+        "start": 9.163166666666667,
+        "end": 11.783833333333334,
+        "words": [
+          "Внутри",
+          "гордо",
+          "вращается",
+          "один",
+          "лист",
+          "салата"
+        ]
+      },
+      {
+        "start": 11.863833333333334,
+        "end": 13.967833333333335,
+        "words": [
+          "Я",
+          "говорю",
+          "открой",
+          "Он"
+        ]
+      },
+      {
+        "start": 13.967833333333335,
+        "end": 15.709583333333335,
+        "words": [
+          "отвечает",
+          "подтвердите",
+          "цель"
+        ]
+      },
+      {
+        "start": 15.789583333333333,
+        "end": 18.845541666666666,
+        "words": [
+          "Цель",
+          "простая",
+          "Съесть",
+          "котлету",
+          "и",
+          "лечь",
+          "спать"
+        ]
+      },
+      {
+        "start": 18.925541666666668,
+        "end": 21.075083333333335,
+        "words": [
+          "Для",
+          "этого",
+          "подключите",
+          "расширенный",
+          "тариф"
+        ]
+      },
+      {
+        "start": 21.155083333333334,
+        "end": 23.376083333333334,
+        "words": [
+          "Я",
+          "отказался",
+          "Он",
+          "заботливо"
+        ]
+      },
+      {
+        "start": 23.376083333333334,
+        "end": 24.661041666666666,
+        "words": [
+          "предложил",
+          "альтернативу"
+        ]
+      },
+      {
+        "start": 24.741041666666668,
+        "end": 26.28904166666667,
+        "words": [
+          "Через",
+          "десять",
+          "минут",
+          "приехала"
+        ]
+      },
+      {
+        "start": 26.28904166666667,
+        "end": 27.122583333333335,
+        "words": [
+          "доставка",
+          "пиццы"
+        ]
+      },
+      {
+        "start": 27.202583333333333,
+        "end": 28.12558333333333,
+        "words": [
+          "Ты",
+          "же",
+          "должен",
+          "был"
+        ]
+      },
+      {
+        "start": 28.12558333333333,
+        "end": 29.34583333333333,
+        "words": [
+          "экономить",
+          "мне",
+          "калории"
+        ]
+      },
+      {
+        "start": 29.425833333333333,
+        "end": 31.241833333333332,
+        "words": [
+          "Всё",
+          "верно",
+          "После",
+          "оплаты"
+        ]
+      },
+      {
+        "start": 31.241833333333332,
+        "end": 32.629,
+        "words": [
+          "у",
+          "вас",
+          "нет",
+          "денег",
+          "на",
+          "еду"
+        ]
+      },
+      {
+        "start": 32.709,
+        "end": 34.762,
+        "words": [
+          "Впервые",
+          "похудел",
+          "мой",
+          "кошелёк"
+        ]
+      },
+      {
+        "start": 34.762,
+        "end": 35.673750000000005,
+        "words": [
+          "Раньше",
+          "меня"
+        ]
+      }
+    ],
+    "segments": [
+      {
+        "start": 0.1,
+        "end": 3.5385833333333334,
+        "text": "Купил умный холодильник. Попросил следить за питанием."
+      },
+      {
+        "start": 3.6185833333333335,
+        "end": 6.548708333333334,
+        "text": "Ночью подхожу за котлетой. Дверь закрыта."
+      },
+      {
+        "start": 6.628708333333334,
+        "end": 9.083166666666667,
+        "text": "На экране: ваш рацион уже согласован."
+      },
+      {
+        "start": 9.163166666666667,
+        "end": 11.783833333333334,
+        "text": "Внутри гордо вращается один лист салата."
+      },
+      {
+        "start": 11.863833333333334,
+        "end": 15.709583333333335,
+        "text": "Я говорю: открой. Он отвечает: подтвердите цель."
+      },
+      {
+        "start": 15.789583333333333,
+        "end": 18.845541666666666,
+        "text": "Цель простая. Съесть котлету и лечь спать."
+      },
+      {
+        "start": 18.925541666666668,
+        "end": 21.075083333333335,
+        "text": "Для этого подключите расширенный тариф."
+      },
+      {
+        "start": 21.155083333333334,
+        "end": 24.661041666666666,
+        "text": "Я отказался. Он заботливо предложил альтернативу."
+      },
+      {
+        "start": 24.741041666666668,
+        "end": 27.122583333333335,
+        "text": "Через десять минут приехала доставка пиццы."
+      },
+      {
+        "start": 27.202583333333333,
+        "end": 29.34583333333333,
+        "text": "Ты же должен был экономить мне калории!"
+      },
+      {
+        "start": 29.425833333333333,
+        "end": 32.629,
+        "text": "Всё верно. После оплаты у вас нет денег на еду."
+      },
+      {
+        "start": 32.709,
+        "end": 35.673750000000005,
+        "text": "Впервые похудел мой кошелёк. Раньше меня."
+      }
+    ],
+    "actual_audio": true
+  },
+  "personal_listening": "NOT_VERIFIED",
+  "visual_review": "PENDING_MANUAL",
+  "youtube_uploaded": false,
+  "sha256": "d7b63b2f05c6fbbc2c363cefa32be1f9a5d762a3c6deaccc49364f1981908825",
+  "bytes": 6612146,
+  "assembly": {
+    "out": "/home/runner/work/Shorts/Shorts/videos/ai_fridge_202611_v1.mp4",
+    "duration": 42.367,
+    "video_s": 42.367,
+    "audio_s": 42.366,
+    "body_s": 35.766,
+    "outro_s": 6.6,
+    "title_s": 0.0,
+    "body_lufs": -14.8,
+    "body_tp": -6.1,
+    "outro_lufs": -15.9,
+    "outro_tp": -2.0,
+    "outro_lag_ms": 0.7,
+    "outro_diff_db": -30.5,
+    "decode_ok": true,
+    "problems": []
+  },
+  "check": {
+    "status": "completed",
+    "output": null,
+    "dry_run": false,
+    "commands": [
+      "/usr/bin/ffmpeg -hide_banner -nostdin -i /home/runner/work/Shorts/Shorts/videos/ai_fridge_202611_v1.mp4 -vn -af loudnorm=I=-14:TP=-1:LRA=11:print_format=json -f null -"
+    ],
+    "verified": false,
+    "verification": [],
+    "platform": "shorts",
+    "checks": [
+      {
+        "check": "duration",
+        "status": "PASS",
+        "value": "42.37s",
+        "expected": "<= 180s",
+        "fix": "decide with the user: cut.py keeps quality but drops content; fit.py --duration speeds up (audio pitch-preserved, motion faster)",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "aspect",
+        "status": "PASS",
+        "value": "9:16",
+        "expected": "9:16/1:1",
+        "fix": "fit.py --aspect 9:16 --fit pad (keeps everything, adds bars) or crop (fills the frame, loses the edges: check the subject with look.py)",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "resolution",
+        "status": "PASS",
+        "value": "1080x1920",
+        "expected": "short side >= 1080",
+        "fix": "upscaling will not add detail; re-export from the master",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "fps",
+        "status": "PASS",
+        "value": "30",
+        "expected": "<= 60",
+        "fix": "fit.py --fps 30 (drops half the frames of 60 fps motion; fine for talking heads, visible on sports/gaming)",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "vfr",
+        "status": "PASS",
+        "value": "constant",
+        "expected": "constant",
+        "fix": "fit.py --fps N (any re-encode conforms it)",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "video codec",
+        "status": "PASS",
+        "value": "h264",
+        "expected": "h264/hevc",
+        "fix": "export.py --preset shorts",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "colour",
+        "status": "PASS",
+        "value": "bt709 matrix, primaries/transfer untagged (players assume bt709)",
+        "expected": "bt709/bt709 tagged (or HDR)",
+        "fix": "",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "file size",
+        "status": "PASS",
+        "value": "6.3 MB",
+        "expected": "<= 262144 MB",
+        "fix": "export.py --crf 24 or lower resolution",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "audio",
+        "status": "PASS",
+        "value": "aac 2ch 48000Hz",
+        "expected": "present",
+        "fix": "",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "subtitles",
+        "status": "WARN",
+        "value": "none",
+        "expected": ">= 1 language-tagged subtitle track",
+        "fix": "caption.py video.mp4 --mode mux --srt subs.srt:en -o video_subs.mkv (streams are copied)",
+        "reason": "subtitles are optional, but they are the cheapest accessibility win a delivery has",
+        "kind": "format"
+      },
+      {
+        "check": "loudness",
+        "status": "PASS",
+        "value": "-15.1 LUFS",
+        "expected": "-14 ± 2 LUFS",
+        "fix": "loudness.py -I -14 for speech or music; leave ambience/near-silence (<= -40 LUFS) alone and say so",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "true peak",
+        "status": "PASS",
+        "value": "-2.0 dBTP",
+        "expected": "<= -1 dBTP (+0.1 dB tolerance)",
+        "fix": "loudness.py --tp -1",
+        "reason": "",
+        "kind": "judgement"
+      }
+    ],
+    "failed": 0,
+    "warnings": 1,
+    "ok": true,
+    "input_identity": {
+      "size": 6612146,
+      "mtime_ns": 1793707102263562778
+    }
+  }
+}
