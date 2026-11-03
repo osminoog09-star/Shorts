@@ -223,7 +223,7 @@ function rezkaIntakePanel(){
     '<label class="f" for="hd-translation">Озвучка (необязательно)'+
     '<input class="t" id="hd-translation" maxlength="80" placeholder="Пусто = озвучка по умолчанию"></label>'+
     '<div class="row"><button class="btn" data-hd-inspect>Проверить качество</button>'+
-    '<button class="btn pri" data-hd-download '+(!connected?'disabled':'')+'>Скачать в Drive</button></div>'+
+    '<button class="btn pri" data-hd-download '+(!connected||s.status!=="ok"?'disabled':'')+'>Скачать в Drive</button></div>'+
     '<p class="muted" role="status">Последнее действие: <span id="hd-status">'+esc(state)+'</span>'+ 
     '. Доступно: <span id="hd-qualities">'+esc(qualities)+'</span>. <span id="hd-checked">'+(s.checked_at?"Проверено "+esc(s.checked_at):"")+'</span></p>'+
     '<p class="muted">Google Drive: <span id="drive-oauth-state">'+esc(driveMessage)+'</span>. Качество проверяется отдельно. Скачивание доступно только после успешной проверки OAuth. <button class="btn sm" type="button" data-settings-section="tokens">🔐 Токены и доступы</button></p>'+
