@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/science_mirror_202611.json",
+  "manifest_sha256": "4e24c4ee88ce95afdef00195bb302102679317029dd842e623a1fbbc8ab820a7",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
