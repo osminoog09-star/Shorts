@@ -26,16 +26,40 @@ class ProbeTests(unittest.TestCase):
             def read(self, size): 
                 if not hasattr(self, "_buffer"): self._buffer=self.__init_buffer()
                 return self._buffer.read(size)
+        from drive_oauth_config import FOLDER
+        class MetadataReply:
+            def __enter__(self):
+                return BytesIO((
+                    '{"id":"ABCDEFGHIJKLMN","parents":["'+FOLDER+
+                    '"],"mimeType":"video/mp4","size":"1000001"}').encode())
+            def __exit__(self, *args): return False
         with tempfile.TemporaryDirectory() as temp, patch(
             "drive_oauth_config.resolve_existing_client",
             return_value=({"_GDRIVE_ACCESS_TOKEN":"mock-access"}, "youtube")
-        ), patch("drive_scene_probe.urlopen", return_value=Reply()) as api:
+        ), patch("drive_scene_probe.urlopen", side_effect=[MetadataReply(),Reply()]) as api:
             saved=fetch_private_film(
                 "https://drive.google.com/file/d/ABCDEFGHIJKLMN/view",
                 Path(temp)/"film.bin", {"GDRIVE_REFRESH_TOKEN":"mock-refresh"})
             self.assertEqual(saved,1_000_001)
             self.assertIn("Bearer mock-access", api.call_args.args[0].headers.values())
             self.assertIn("alt=media",api.call_args.args[0].full_url)
+
+    def test_private_media_rejects_file_outside_owner_folder(self):
+        from drive_scene_probe import fetch_private_film
+        from drive_oauth_config import FOLDER
+        class MetadataReply:
+            def __enter__(self):
+                return BytesIO(b'{"id":"ABCDEFGHIJKLMN","parents":["another-folder"],"mimeType":"video/mp4","size":"1000001"}')
+            def __exit__(self, *args): return False
+        with tempfile.TemporaryDirectory() as temp, patch(
+            "drive_oauth_config.resolve_existing_client",
+            return_value=({"_GDRIVE_ACCESS_TOKEN":"mock-access"}, "youtube")
+        ), patch("drive_scene_probe.urlopen", return_value=MetadataReply()) as api:
+            with self.assertRaisesRegex(RuntimeError, "разрешённой папки"):
+                fetch_private_film(
+                    "https://drive.google.com/file/d/ABCDEFGHIJKLMN/view",
+                    Path(temp)/"film.bin", {"GDRIVE_REFRESH_TOKEN":"mock-refresh"})
+            self.assertEqual(api.call_count, 1, "No media bytes may be requested outside M1lash owner folder")
 
     def test_drive_id_allowlist(self):
         self.assertEqual(drive_id("https://drive.google.com/uc?id=ABCDEFGHIJKLMN"), "ABCDEFGHIJKLMN")
