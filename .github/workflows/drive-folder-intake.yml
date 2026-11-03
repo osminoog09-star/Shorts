@@ -24,13 +24,17 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
-      - name: Install public-folder scanner
-        run: pip install -q 'gdown>=6.1,<7'
-      - name: Unit tests (URL allowlist, titles and scene gates)
+      - name: Unit tests (URL allowlist, titles, private auth and scene gates)
         run: |
           python -m py_compile scripts/drive_folder_intake.py
           python -m unittest discover -s scripts/qa -p 'test_drive_folder_intake.py'
-      - name: Scan names only, NEVER download films
+      - name: Scan owner private Drive metadata (never download films)
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
         run: python scripts/drive_folder_intake.py
       - name: Commit scan summary
         if: always()
@@ -38,11 +42,15 @@ jobs:
           set -euo pipefail
           git config user.name 'drive-scanner[bot]'
           git config user.email 'drive-scanner@users.noreply.github.com'
-          git add publishing/drive_scan.json
-          git diff --staged --quiet && exit 0
-          git commit -m 'drive: refresh public folder inventory (metadata only)'
+          cp publishing/drive_scan.json "$RUNNER_TEMP/drive_scan.json"
           for i in 1 2 3; do
-            if git pull -q --rebase origin main && git push -q origin HEAD:main; then exit 0; fi
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            cp "$RUNNER_TEMP/drive_scan.json" publishing/drive_scan.json
+            git add publishing/drive_scan.json
+            git diff --cached --quiet && exit 0
+            git commit -q -m 'drive: refresh private folder inventory (metadata only)'
+            if git push -q origin HEAD:main; then exit 0; fi
             sleep 5
           done
           exit 1
