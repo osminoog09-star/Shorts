@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><title>M1lash · Новости 02.11.2026</title>
+<html lang="ru" data-composition-id="m1lash-news-20261103" data-duration="39" data-fps="30"><head><meta charset="utf-8"><title>M1lash · Новости 02.11.2026</title>
 <style>
 @font-face{font-family:Rubik;src:url("../../ai_bureaucracy/film/assets/fonts/rubik-cyrillic-900-normal.woff2");font-weight:900;unicode-range:U+0400-052F,U+2116}
 @font-face{font-family:Rubik;src:url("../../ai_bureaucracy/film/assets/fonts/rubik-latin-900-normal.woff2");font-weight:900;unicode-range:U+0000-00FF,U+2000-206F}
@@ -17,7 +17,7 @@ svg{overflow:visible}svg.art{width:1080px;height:740px;display:block}svg text{st
 #source{position:absolute;left:100px;right:160px;top:1350px;text-align:left;font-size:64px;line-height:1.05;letter-spacing:-1.8px;color:var(--teal)}
 #edge{position:absolute;bottom:0;left:0;right:0;height:300px;background:linear-gradient(transparent,#b19b7320);pointer-events:none}
 #progress{position:absolute;left:0;bottom:0;height:10px;background:var(--teal)}
-</style></head><body><div id="film"><div id="paper"></div><div id="date">02.11.2026</div><div id="headline"></div><div id="underline"></div>
+</style><script src="../../ai_bureaucracy/film/vendor/gsap.min.js"></script></head><body><div id="film" data-composition-id="m1lash-news-20261103" data-duration="39"><div id="paper"></div><div id="date">02.11.2026</div><div id="headline"></div><div id="underline"></div>
 <svg width="0" height="0" style="position:absolute"><defs>
 <filter id="shadow"><feDropShadow dx="10" dy="16" stdDeviation="9" flood-color="#393020" flood-opacity=".18"/></filter>
 <pattern id="hatch" patternUnits="userSpaceOnUse" width="14" height="14" patternTransform="rotate(20)"><path d="M0 0V14" stroke="#1b2830" opacity=".12" stroke-width="3"/></pattern>
@@ -27,7 +27,7 @@ svg{overflow:visible}svg.art{width:1080px;height:740px;display:block}svg text{st
 <symbol id="house" viewBox="0 0 360 350"><path d="M47 153L45 321L309 325L311 153" fill="#fffdf4" stroke="#1b2830" stroke-width="7"/><path d="M17 163L174 28L339 162L321 183L176 67L37 181Z" fill="#df6138" stroke="#1b2830" stroke-width="7"/><path d="M242 69V28H285V104" fill="#c9e2df" stroke="#1b2830" stroke-width="6"/><path d="M87 179H151V242H87ZM213 178H276V243H213Z" fill="#ffda84" stroke="#1b2830" stroke-width="6"/><path d="M119 179V242M87 211H151M244 178V243M213 211H276" stroke="#1b2830" stroke-width="4"/><path d="M173 238H220V324H173" fill="#137e76" stroke="#1b2830" stroke-width="6"/></symbol>
 <symbol id="bulb" viewBox="0 0 180 220"><path d="M59 143C40 122 27 99 30 74C36-3 147-4 152 73C156 103 141 125 121 145L118 173H61Z" fill="#ffda84" stroke="#1b2830" stroke-width="7"/><path d="M60 177L120 172M65 191L116 186M75 203L107 201M72 95L89 117L108 91M89 117L88 154" fill="none" stroke="#1b2830" stroke-width="6"/><path d="M12 27L25 39M83-9V9M163 26L151 38" stroke="#df6138" stroke-width="8" stroke-linecap="round"/></symbol>
 </defs></svg>
-<div id="scene"></div><div id="caption"></div><div id="source"></div><div id="edge"></div><div id="progress"></div></div>
+<div id="scene" class="clip" data-start="0" data-duration="39" data-track-kind="graphics"></div><div id="caption" class="clip" data-start="0" data-duration="39" data-track-kind="captions"></div><div id="source"></div><div id="edge"></div><div id="progress"></div></div>
 <script>
 "use strict";
 const ink="#1b2830",teal="#137e76",orange="#df6138";
@@ -48,10 +48,22 @@ const titles=["LifeVal","БЫТОВУХА","СЕТЬ","ПЛАН","+47%","−$567
 const sources=["OpenAI · Unite.AI","OpenAI · Unite.AI","OpenAI · Georgia Power","OpenAI · Georgia Power","SEC · Reuters","SEC · Reuters"];
 const shades=["#f4efe2","#f4efe2","#dce9e5","#dce9e5","#eee2df","#eee2df"];
 let current=-1;
-window.setTimeline=data=>{timeline=data;current=-1};
+let master=null;
+const clock={value:0};
+function rebuildClock(){
+ if(master)master.kill();
+ clock.value=0;
+ master=gsap.timeline({paused:true});
+ master.to(clock,{value:timeline.total,duration:timeline.total,ease:"none",
+  onUpdate:()=>window.renderAt(clock.value)});
+ window.__timelines={"m1lash-news-20261103":master};
+ for(const id of ["film","scene","caption"])document.getElementById(id).setAttribute("data-duration",timeline.total);
+ document.documentElement.setAttribute("data-duration",timeline.total);
+}
+window.setTimeline=data=>{timeline=data;current=-1;rebuildClock();window.renderAt(0)};
 function attr(id,key,value){const e=document.getElementById(id);if(e)e.setAttribute(key,String(value))}
 function trans(id,value){attr(id,"transform",value)}
-window.seek=function(t){
+window.renderAt=function(t){
  const ix=Math.min(5,Math.max(0,timeline.cuts.findIndex((end,i)=>i>0&&t<end)-1));
  const index=t>=timeline.cuts[6]?5:ix;
  if(current!==index){current=index;document.getElementById("scene").innerHTML=scenes[index];document.getElementById("headline").textContent=titles[index];document.getElementById("source").textContent=sources[index];document.getElementById("film").style.background=shades[index]}
@@ -71,5 +83,8 @@ window.seek=function(t){
  return {time:t,scene:index};
 };
 function escapeText(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
-window.seek(0);
+// Paused, registered composition clock: all pictures remain a function of time.
+window.seek=function(t){master.seek(t,false);return {time:clock.value,scene:current}};
+rebuildClock();
+window.renderAt(0);
 </script></body></html>
