@@ -5,7 +5,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-test = ROOT / "tests/test_popcorn_private_gates.py"
+test = Path(__file__).resolve().parent / "gate_tests.py"
 if not test.is_file():
     raise RuntimeError("Popcorn tests not checked out")
 subprocess.run([sys.executable, str(test)], cwd=ROOT, check=True)
