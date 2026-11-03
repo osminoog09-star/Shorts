@@ -1,0 +1,8 @@
+{
+  "renderer": "python",
+  "script": "shorts/chigur_export_ffmpeg_qa.py",
+  "output": "videos/chigur_official_qa_tools_NOT_A_VIDEO.mp4",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "render_revision": 1
+}
