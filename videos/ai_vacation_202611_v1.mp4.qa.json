@@ -1,0 +1,17 @@
+{
+ "out": "/home/runner/work/Shorts/Shorts/videos/ai_vacation_202611_v1.mp4",
+ "duration": 41.9,
+ "video_s": 41.9,
+ "audio_s": 41.9,
+ "body_s": 35.3,
+ "outro_s": 6.6,
+ "title_s": 0.0,
+ "body_lufs": -14.8,
+ "body_tp": -6.0,
+ "outro_lufs": -15.9,
+ "outro_tp": -1.8,
+ "outro_lag_ms": 0.0,
+ "outro_diff_db": -31.9,
+ "decode_ok": true,
+ "problems": []
+}
