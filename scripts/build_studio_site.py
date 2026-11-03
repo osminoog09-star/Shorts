@@ -74,7 +74,8 @@ def build_review_queue(queue, receipts, manifests):
             continue
         receipt = receipts.get(key, {})
         # An existing confirmed schedule is NEVER a new review, even if queue.json is stale.
-        if receipt.get("status") in ("scheduled", "published") or receipt.get("publish_at_utc"):
+        if (receipt.get("status") in ("scheduled", "published")
+                or receipt.get("publish_at_utc") or not receipt.get("video_id")):
             continue
         result.append({"id": key, "video_id": receipt.get("video_id"),
                        "title": item.get("title") or (manifests.get(key, {}).get("metadata") or {}).get("title") or key})
