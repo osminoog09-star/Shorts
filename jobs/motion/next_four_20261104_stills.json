@@ -8,5 +8,6 @@
   "only_ids": [
     "ai_vacuum_20261104",
     "science_popcorn_20261104"
-  ]
+  ],
+  "run_gate_version": 2
 }
