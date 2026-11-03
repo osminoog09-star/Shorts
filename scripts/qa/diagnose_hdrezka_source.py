@@ -14,10 +14,11 @@ from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
 FILM_PAGE = "https://rezka.ag/films/drama/54016-oppengeymer-2023-latest.html"
+ROOT_PAGE = "https://rezka.ag/"
 
 
-def diagnose_http(method: str) -> dict:
-    req = Request(FILM_PAGE, method=method, headers={"User-Agent": "M1lash-Studio-Diagnostics/1.0"})
+def diagnose_http(method: str, url: str) -> dict:
+    req = Request(url, method=method, headers={"User-Agent": "M1lash-Studio-Diagnostics/1.0"})
     try:
         with urlopen(req, timeout=20) as response:
             code = response.status
@@ -37,7 +38,7 @@ def diagnose_http(method: str) -> dict:
     # Do not log URLs, page titles, cookies, redirect locations or content.
     return {
         "status": int(code),
-        "redirected_host": host != urlsplit(FILM_PAGE).hostname,
+        "redirected_host": host != urlsplit(url).hostname,
         "challenge_indicators": challenge,
     }
 
@@ -74,8 +75,10 @@ def classify_cli(output: str, returncode: int) -> str:
 
 
 def main() -> None:
-    print("source_audit HTTP_HEAD:", json.dumps(diagnose_http("HEAD"), sort_keys=True))
-    print("source_audit HTTP_GET_page_prefix:", json.dumps(diagnose_http("GET"), sort_keys=True))
+    print("source_audit FILM_HEAD:", json.dumps(diagnose_http("HEAD", FILM_PAGE), sort_keys=True))
+    print("source_audit FILM_GET_prefix:", json.dumps(diagnose_http("GET", FILM_PAGE), sort_keys=True))
+    # The pinned CLI calls the site ROOT before loading the film page.
+    print("source_audit ROOT_GET_prefix:", json.dumps(diagnose_http("GET", ROOT_PAGE), sort_keys=True))
     try:
         result = subprocess.run(
             ["hdrezka-dl", "--no-antibot-solver", "--info", FILM_PAGE],
