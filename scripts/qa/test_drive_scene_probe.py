@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import sys
 import unittest
+import tempfile
+from io import BytesIO
+from unittest.mock import patch
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -13,8 +16,30 @@ class ProbeTests(unittest.TestCase):
         self.assertEqual(hint_range("~02:05–02:22"), (7500, 8520))
         self.assertEqual(hint_range("~01:45–01:55"), (6300, 6900))
 
+    def test_private_fetch_uses_drive_api_bearer_not_public_gdown(self):
+        from drive_scene_probe import fetch_private_film
+        class Reply:
+            def __init__(self): self.headers={"Content-Length":str(1_000_001)}
+            def __enter__(self): return self
+            def __exit__(self, *args): return False
+            def __init_buffer(self): return BytesIO(b"x"*1_000_001)
+            def read(self, size): 
+                if not hasattr(self, "_buffer"): self._buffer=self.__init_buffer()
+                return self._buffer.read(size)
+        with tempfile.TemporaryDirectory() as temp, patch(
+            "drive_oauth_config.resolve_existing_client",
+            return_value=({"_GDRIVE_ACCESS_TOKEN":"mock-access"}, "youtube")
+        ), patch("drive_scene_probe.urlopen", return_value=Reply()) as api:
+            saved=fetch_private_film(
+                "https://drive.google.com/file/d/ABCDEFGHIJKLMN/view",
+                Path(temp)/"film.bin", {"GDRIVE_REFRESH_TOKEN":"mock-refresh"})
+            self.assertEqual(saved,1_000_001)
+            self.assertIn("Bearer mock-access", api.call_args.args[0].headers.values())
+            self.assertIn("alt=media",api.call_args.args[0].full_url)
+
     def test_drive_id_allowlist(self):
         self.assertEqual(drive_id("https://drive.google.com/uc?id=ABCDEFGHIJKLMN"), "ABCDEFGHIJKLMN")
+        self.assertEqual(drive_id("https://drive.google.com/file/d/ABCDEFGHIJKLMN/view"), "ABCDEFGHIJKLMN")
         for bad in ["https://evil.test/uc?id=ABCDEFGHIJKLMN",
                     "https://drive.google.com/file/d/ABCDEFGHIJKLMN",
                     "http://drive.google.com/uc?id=ABCDEFGHIJKLMN"]:
