@@ -1,0 +1,71 @@
+{
+ "text": "Нейросети устроили экзамен по бытовухе. Три новости второго ноября.",
+ "words": [
+  {
+   "w": "Нейросети",
+   "start": 0.0,
+   "end": 0.802
+  },
+  {
+   "w": "устроили",
+   "start": 0.802,
+   "end": 1.45
+  },
+  {
+   "w": "экзамен",
+   "start": 1.45,
+   "end": 1.958
+  },
+  {
+   "w": "по",
+   "start": 1.958,
+   "end": 2.052
+  },
+  {
+   "w": "бытовухе",
+   "start": 2.052,
+   "end": 2.712
+  },
+  {
+   "w": "Три",
+   "start": 2.884,
+   "end": 3.161
+  },
+  {
+   "w": "новости",
+   "start": 3.161,
+   "end": 3.605
+  },
+  {
+   "w": "второго",
+   "start": 3.605,
+   "end": 3.978
+  },
+  {
+   "w": "ноября",
+   "start": 3.978,
+   "end": 4.483
+  }
+ ],
+ "voice_id": "ru-RU-DmitryNeural",
+ "speaker": "dima",
+ "engine": "edge-tts",
+ "rate": "+8%",
+ "pitch": "+0Hz",
+ "boundary": "WordBoundary",
+ "source_file": "media/tts/news_20261103/n01.mp3",
+ "humanize": true,
+ "prosody": [
+  {
+   "s": "Нейросети устроили экзамен по бытовухе.",
+   "rate": "+6%",
+   "pitch": "-3Hz"
+  },
+  {
+   "s": "Три новости второго ноября.",
+   "rate": "+4%",
+   "pitch": "+0Hz"
+  }
+ ],
+ "post": "highpass=f=70,equalizer=f=180:t=q:w=0.9:g=2,equalizer=f=3400:t=q:w=1.2:g=-1.5,deesser=i=0.35:m=0.5:f=0.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=140:makeup=1.5,aecho=0.85:0.82:23|41:0.10|0.06,loudnorm=I=-16:TP=-1.5:LRA=9"
+}
