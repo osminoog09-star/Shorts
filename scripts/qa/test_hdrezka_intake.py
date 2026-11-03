@@ -12,6 +12,30 @@ spec.loader.exec_module(mod)
 
 
 class IntakeTests(unittest.TestCase):
+    def test_safe_classifier_identifies_bot_and_http_without_exposing_source(self):
+        cases = (
+            ("request to https://example.invalid/secret?token=PRIVATE blocked by an anti-bot challenge (Cloudflare/DDoS-Guard/Anubis)", "source_antibot"),
+            ("no working mirrors found: status code error: 403 403 Forbidden", "source_http_403"),
+            ("no working mirrors found: status code error: 404 404 Not Found", "source_http_404"),
+            ("server status code error: 502 Bad Gateway", "source_http_5xx"),
+            ("dial tcp: lookup rezka.ag: no such host", "source_dns"),
+        )
+        for upstream, expected in cases:
+            with self.subTest(expected=expected):
+                code, message = mod.classify_source_failure(upstream)
+                self.assertEqual(code, expected)
+                self.assertNotIn("PRIVATE", message)
+                self.assertNotIn("example.invalid", message)
+
+    def test_nonzero_cli_exit_produces_safe_specific_error(self):
+        from types import SimpleNamespace
+        fake = SimpleNamespace(returncode=2, stdout="blocked by an anti-bot challenge URL_PRIVATE", stderr="")
+        with patch.object(mod.subprocess, "run", return_value=fake):
+            with self.assertRaises(mod.IntakeError) as ctx:
+                mod.run_process(["hdrezka-dl", "--no-antibot-solver", "--info", "https://example.invalid"], 10)
+        self.assertEqual(ctx.exception.code, "source_antibot")
+        self.assertNotIn("URL_PRIVATE", str(ctx.exception))
+
     def test_https_rezka_film(self):
         url = "https://rezka.ag/films/drama/54016-oppengeymer-2023-latest.html"
         self.assertEqual(mod.validate_source(url), url)
