@@ -9,8 +9,12 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import os
 import re
 import subprocess
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 import sys
 import unicodedata
 from pathlib import Path
@@ -90,6 +94,67 @@ def list_folder(url: str) -> list[dict]:
     return data
 
 
+
+def list_folder_authenticated(raw_url: str, credentials: dict[str, str] | None = None) -> list[dict]:
+    """Read metadata from the owner's *private* Drive folder via existing OAuth.
+
+    No film bytes, cookies or credentials are ever written to disk or logs.
+    A public sharing setting is not required.
+    """
+    from drive_oauth_config import FOLDER, DriveSetupError, resolve_existing_client
+    url = folder_url(raw_url)
+    folder_id = url.rsplit("/", 1)[-1]
+    # One known owner-controlled folder, no arbitrary Drive resource enumeration.
+    if folder_id != FOLDER:
+        raise RuntimeError("Папка не совпадает с настроенной личной папкой M1lash.")
+    env = dict(credentials if credentials is not None else os.environ)
+    if not env.get("GDRIVE_REFRESH_TOKEN"):
+        raise RuntimeError("GitHub Secret GDRIVE_REFRESH_TOKEN отсутствует: приватное сканирование невозможно.")
+    try:
+        verified, _ = resolve_existing_client(env)
+    except DriveSetupError as exc:
+        raise RuntimeError("Приватный Drive недоступен (" + exc.code + ").") from None
+    access_token = verified.get("_GDRIVE_ACCESS_TOKEN")
+    if not access_token:
+        raise RuntimeError("Google OAuth не выдал access token для списка файлов.")
+    files: list[dict] = []
+    page_token = ""
+    for _ in range(20):
+        params = {
+            "q": "'" + folder_id + "' in parents and trashed = false",
+            "fields": "nextPageToken,files(id,name,mimeType,size)",
+            "pageSize": "1000", "supportsAllDrives": "true",
+            "includeItemsFromAllDrives": "true"
+        }
+        if page_token:
+            params["pageToken"] = page_token
+        request = Request(
+            "https://www.googleapis.com/drive/v3/files?" + urlencode(params),
+            headers={"Authorization": "Bearer " + access_token})
+        try:
+            with urlopen(request, timeout=40) as response:
+                payload = json.load(response)
+        except HTTPError as exc:
+            raise RuntimeError("Google Drive API отклонил приватный список (HTTP " + str(exc.code) + ").") from None
+        except (URLError, OSError, ValueError):
+            raise RuntimeError("Google Drive API не вернул список файлов.") from None
+        if not isinstance(payload, dict) or not isinstance(payload.get("files"), list):
+            raise RuntimeError("Google Drive API вернул неправильный список.")
+        for entry in payload["files"]:
+            file_id = entry.get("id", "")
+            name = entry.get("name", "")
+            if not re.fullmatch(r"[A-Za-z0-9_-]{10,}", file_id) or not isinstance(name, str):
+                continue
+            if entry.get("mimeType") == "application/vnd.google-apps.folder":
+                continue
+            files.append({"path": name, "url": "https://drive.google.com/file/d/" + file_id + "/view"})
+        page_token = payload.get("nextPageToken", "")
+        if not page_token:
+            return files
+    raise RuntimeError("Google Drive вернул слишком много страниц; сканирование остановлено.")
+
+
+
 def summarize(entries: list[dict], requests: list[dict]) -> dict:
     films = list(dict.fromkeys(r["film"] for r in requests if r.get("film") and r["film"] != "Свой клип"))
     video = [e for e in entries if Path(e["path"]).suffix.lower() in MEDIA_EXT]
@@ -143,7 +208,7 @@ def main() -> None:
                    "message": "Папка ещё не задана. Старые 7 роликов повторно скачивать не нужно."}
     else:
         try:
-            entries = list_folder(folder_url(config["url"]))
+            entries = list_folder_authenticated(config["url"])
             summary = summarize(entries, request)
             summary["scanned_at"] = ts
             summary["message"] = "Только поиск файлов. ASR/монтаж не запускались."
