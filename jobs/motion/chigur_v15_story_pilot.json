@@ -1,0 +1,9 @@
+{
+  "renderer": "python",
+  "script": "shorts/chigur_v15_story_pilot.py",
+  "output": "videos/chigur_v15_REVIEW_ONLY_not_generated.mp4",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "qa_run_marker": "reports/research/chigur_v15_pilot_run.json",
+  "render_revision": 1
+}
