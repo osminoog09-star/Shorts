@@ -132,6 +132,25 @@ def capture(data, frame_window=None):
         page.goto((PROJECT / "film/index.html").as_uri())
         page.evaluate("() => document.fonts.ready")
         page.evaluate("data => window.setTimeline(data)", data)
+        layout = []
+        for cap in data["caps"]:
+            when = (cap["start"] + cap["end"]) / 2
+            result = page.evaluate("""t => {
+                const state = window.seek(t);
+                const box = document.getElementById('caption').getBoundingClientRect();
+                const source = document.getElementById('source').getBoundingClientRect();
+                return {time:state.time,left:box.left,right:box.right,bottom:box.bottom,
+                        sourceTop:source.top,clockRegistered:!!window.__timelines['m1lash-news-20261103']};
+            }""", when)
+            if (not result["clockRegistered"] or abs(result["time"] - when) > .0001
+                    or result["left"] < 95 or result["right"] > 925
+                    or result["bottom"] > result["sourceTop"] - 12):
+                raise RuntimeError("NO-GO: actual browser caption/clock bounds " + str(result))
+            layout.append(result)
+        (WORK / "layout_gate.json").write_text(json.dumps({
+            "actual_browser_checks": layout, "overlap_failures": 0,
+            "registered_paused_clock": True
+        }, indent=2))
         for i in range(6):
             a, b = data["cuts"][i:i + 2]
             when = .8 if i == 0 else (a + b) / 2
@@ -194,7 +213,7 @@ def save_remote_evidence(data):
         "personal_listening": "NOT_VERIFIED", "publish_date": None
     }, ensure_ascii=False, indent=2) + "\n")
     selected.append(report)
-    for name in ["check.json", "assembly.json", "pilot_asr.json", "final_asr.json"]:
+    for name in ["check.json", "assembly.json", "pilot_asr.json", "final_asr.json", "layout_gate.json"]:
         source = WORK / name
         if source.is_file():
             target = ROOT / f"reports/research/2026-11-03_NEWS_{MODE.upper()}_{name}"
