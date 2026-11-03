@@ -45,7 +45,7 @@ with sync_playwright() as pw:
         dur=float(shot['seconds'])
         frames=int(round(dur*30))
         command=['ffmpeg','-hide_banner','-nostdin','-y','-v','error','-f','image2pipe','-framerate','30',
-                 '-vcodec','png','-i','pipe:0',
+                 '-vcodec','mjpeg','-i','pipe:0',
                  '-f','lavfi','-i','anullsrc=r=48000:cl=stereo',
                  '-t',str(dur),'-vf','scale=1920:1080:flags=lanczos',
                  '-r','30','-pix_fmt','yuv420p','-c:v','libx264',
@@ -53,8 +53,8 @@ with sync_playwright() as pw:
                  '-movflags','+faststart',str(output)]
         process=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE)
         for n in range(frames):
-            pos=min(5.78,n/30)
-            data64=page.evaluate('([s,t])=>window.frameV21(s,t)',[shot,pos])
+            pos=n/30
+            data64=page.evaluate('([s,t])=>window.frameV21(s,t,'image/jpeg')',[shot,pos])
             process.stdin.write(base64.b64decode(data64.split(',',1)[1]))
         process.stdin.close()
         err=process.stderr.read().decode(errors='replace')
