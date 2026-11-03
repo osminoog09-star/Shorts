@@ -26,15 +26,6 @@
 
 ## GPT/Codex
 
-### 03.11 — ОТДЕЛЬНЫЙ пробный рисованный скетч с голосом Дениса · GPT
-Цель: новый PRIVATE MP4, рисованный2D S1-D25, явное разрешение владельца использовать собственный голос в теле теста. Остальные задачи/4готовых Shorts/Чигур не заменяет.
-- [x] Актуальные AGENTS/NOW/HANDOFF/Studio прочитаны. Новая история: кофемашина с ИИ требует подтверждение бодрости и продаёт мотивацию.6 сцен/6 голосовых блоков, без внешних фильмов/платных API.
-- [x] Голос локально Qwen3-TTS по частному образцу: 6 WAV/40.50225с; независимые base+small ASR, точные сценарные слова выровнены по small word timestamps, 26 титров. Голос/reference/embedding не в публичномGit.
-- [x] HTML/SVG6стопов реально отрендерены Actions41696055429, контакт глазами просмотрен: читаемо, safe bounds. Исправлены длинные captions/headline, выключение машины. Голос остаётся локально.
-- [ ] Silent full visual → локальный монтаж голоса+approved outro/check/look → MP4 владельцу.
-Следующий шаг: full silent visual через jobs/motion/coffee_voice_test_fast.json; голос локально /workspace/scratch/2071953dc074/voice_test/coffee_sketch/. После скачать videos/coffee_voice_test_visual_v1.mp4, выполнить finish_local.py, смотреть final_contact.png. Никаких YouTube upload/date.
-Ждёт Дениса: нет, стиль существующий рисованный; голос разрешён последним сообщением.
-
 ### 03.11 — Очередь 4 новых Shorts → сайт M1lash Studio → аудит · GPT
 Цель: исполнить новое решение владельца строго по очереди: (1) четыре НОВЫХ качественных Shorts, не дубликаты; (2) улучшения сайта по live-progress/антидублям; (3) анализ YouTube. Все изменения фиксировать отдельным коммитом после каждого шага, вести NOW + HANDOFF.
 - [x] Проверены текущие NOW, AGENTS.md, Studio SKILL, HANDOFF.md, queue; уже залитые приватно 4 Shorts (ai_vacation/ai_fridge/science_orbit/science_mirror), запланированные kino_001…006 и ai_news — НЕ дублировать/НЕ перезаливать.

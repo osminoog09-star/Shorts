@@ -42,7 +42,7 @@ for p in W.glob('*.jpg'):
  target=qa/(mode+'_'+p.name);shutil.copy2(p,target);selected.append(target)
 if mode=='full':selected.append(out)
 subprocess.run(['git','config','user.name','m1lash-render-bot'],check=True);subprocess.run(['git','config','user.email','m1lash-render-bot@users.noreply.github.com'],check=True)
-subprocess.run(['git','add','--']+[str(p.relative_to(ROOT)) for p in selected],check=True)
+subprocess.run(['git','add','--sparse','--']+[str(p.relative_to(ROOT)) for p in selected],check=True)
 subprocess.run(['git','commit','-m','qa: save '+mode+' silent drawn coffee visuals; no owner voice'],check=True)
 for _ in range(4):
  subprocess.run(['git','pull','--rebase','origin','main'],check=True)
