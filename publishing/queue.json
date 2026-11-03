@@ -223,6 +223,62 @@
       "owner_audio_approval_date": "2026-11-03",
       "owner_audio_approval_note": "Владелец после пакета 8 Shorts: «Все ок».",
       "youtube_id": "sCThiwmigy0"
+    },
+    {
+      "id": "ai_vacation_202611",
+      "kind": "short",
+      "author": "GPT",
+      "status": "draft",
+      "slot": null,
+      "style": "S1-D25 / рисованный2D",
+      "mp4": null,
+      "publish_md": "shorts/ai_vacation_202611/PUBLISH.md",
+      "title": "ИИ согласовал отпуск. Отдыхать будет он #shorts",
+      "note": "Новое поручение03.11: минимум4 Shorts ДО Чигура. Сценарий/раскадровка написаны,24стопа в Actions. MP4/YouTubeID ещё нет; не считать резервом.",
+      "production_file": "shorts/next_four_20261103/TREATMENT.md",
+      "owner_requested_on": "2026-11-03"
+    },
+    {
+      "id": "ai_fridge_202611",
+      "kind": "short",
+      "author": "GPT",
+      "status": "draft",
+      "slot": null,
+      "style": "S1-D25 / рисованный2D",
+      "mp4": null,
+      "publish_md": "shorts/ai_fridge_202611/PUBLISH.md",
+      "title": "Холодильник с ИИ взял мою диету под контроль #shorts",
+      "note": "Новое поручение03.11: минимум4 Shorts ДО Чигура. Сценарий/раскадровка написаны,24стопа в Actions. MP4/YouTubeID ещё нет; не считать резервом.",
+      "production_file": "shorts/next_four_20261103/TREATMENT.md",
+      "owner_requested_on": "2026-11-03"
+    },
+    {
+      "id": "science_orbit_202611",
+      "kind": "short",
+      "author": "GPT",
+      "status": "draft",
+      "slot": null,
+      "style": "S1-D25 / рисованный2D",
+      "mp4": null,
+      "publish_md": "shorts/science_orbit_202611/PUBLISH.md",
+      "title": "На МКС почти земная гравитация. Почему все летают? #shorts",
+      "note": "Новое поручение03.11: минимум4 Shorts ДО Чигура. Сценарий/раскадровка написаны,24стопа в Actions. MP4/YouTubeID ещё нет; не считать резервом.",
+      "production_file": "shorts/next_four_20261103/TREATMENT.md",
+      "owner_requested_on": "2026-11-03"
+    },
+    {
+      "id": "science_mirror_202611",
+      "kind": "short",
+      "author": "GPT",
+      "status": "draft",
+      "slot": null,
+      "style": "S1-D25 / рисованный2D",
+      "mp4": null,
+      "publish_md": "shorts/science_mirror_202611/PUBLISH.md",
+      "title": "Зеркало не меняет лево и право. Проверь рукой #shorts",
+      "note": "Новое поручение03.11: минимум4 Shorts ДО Чигура. Сценарий/раскадровка написаны,24стопа в Actions. MP4/YouTubeID ещё нет; не считать резервом.",
+      "production_file": "shorts/next_four_20261103/TREATMENT.md",
+      "owner_requested_on": "2026-11-03"
     }
   ]
 }
