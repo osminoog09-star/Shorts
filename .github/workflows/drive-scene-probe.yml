@@ -39,9 +39,15 @@ jobs:
         if: steps.preflight.outputs.has_work == 'true'
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-          pip install -q 'gdown>=6.1,<7' 'faster-whisper>=1.0,<2'
-      - name: Download selected film temporarily and find ASR candidates
+          pip install -q 'faster-whisper>=1.0,<2'
+      - name: Download selected private film temporarily and find ASR candidates
         if: steps.preflight.outputs.has_work == 'true'
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
         run: python scripts/drive_scene_probe.py
       - name: Commit ONLY candidate timestamps/errors
         if: always() && steps.preflight.outputs.has_work == 'true'
