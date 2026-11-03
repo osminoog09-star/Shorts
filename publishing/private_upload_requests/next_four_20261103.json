@@ -1,0 +1,27 @@
+{
+  "action": "private_upload_once",
+  "private_only": true,
+  "owner_approval_date": "2026-11-03",
+  "items": [
+    {
+      "id": "ai_vacation_202611",
+      "manifest": "publishing/queue/ai_vacation_202611.json",
+      "sha256": "3de6317eaf5226e67c48058a046e7921928a53e7506a235bb9fe7bf8e551ed20"
+    },
+    {
+      "id": "ai_fridge_202611",
+      "manifest": "publishing/queue/ai_fridge_202611.json",
+      "sha256": "d7b63b2f05c6fbbc2c363cefa32be1f9a5d762a3c6deaccc49364f1981908825"
+    },
+    {
+      "id": "science_orbit_202611",
+      "manifest": "publishing/queue/science_orbit_202611.json",
+      "sha256": "80f5f4044885a4e139f8c32049dc7494f362e85bbe37b84e5d32a0454f5656ee"
+    },
+    {
+      "id": "science_mirror_202611",
+      "manifest": "publishing/queue/science_mirror_202611.json",
+      "sha256": "b9bfb516fc14f16af3d065645fcd0f0501653afba624fd874cdd3336f342a5cd"
+    }
+  ]
+}
