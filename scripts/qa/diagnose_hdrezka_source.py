@@ -99,6 +99,27 @@ def main() -> None:
     except OSError:
         print("source_audit CLI:", json.dumps({"category":"cli_missing_or_unexecutable"}))
 
+    # Anubis proof-of-work is an intended challenge/response mechanism of the
+    # pinned upstream CLI, distinct from CAPTCHA/DRM and stealth impersonation.
+    # Probe metadata ONLY. No downloads, passwords, cookies or protected media.
+    try:
+        alternative = subprocess.run(
+            ["hdrezka-dl", "--info", FILM_PAGE],
+            capture_output=True, text=True, errors="replace", timeout=120,
+            check=False,
+        )
+        output = (alternative.stdout or "") + "\n" + (alternative.stderr or "")
+        print("source_audit CLI_builtin_challenge_response:", json.dumps({
+            "exit_code": alternative.returncode,
+            "category": classify_cli(output, alternative.returncode),
+            "has_720p": bool(re.search(r"(?m)^\s{2,}720p\b", output, re.I)),
+            "has_1080p": bool(re.search(r"(?m)^\s{2,}1080p\b", output, re.I)),
+        }, sort_keys=True))
+    except subprocess.TimeoutExpired:
+        print("source_audit CLI_builtin_challenge_response:", json.dumps({"category":"timeout_120s"}))
+    except OSError:
+        print("source_audit CLI_builtin_challenge_response:", json.dumps({"category":"cli_missing_or_unexecutable"}))
+
 
 if __name__ == "__main__":
     main()
