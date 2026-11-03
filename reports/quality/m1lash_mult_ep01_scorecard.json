@@ -26,7 +26,7 @@
     "source": "reports/research/2026-11-04_M1LASH_MULT_EP01_VISUAL_PILOT.md"
   },
   "revision_r6": {
-    "status": "STILLS_CI_RUNNING",
+    "status": "STILLS_RENDERED_AND_VISUALLY_INSPECTED",
     "run_stills": 41737051363,
     "commits": [
       "5b1a30a61b2781cf80b6755d2e823cbaef0c7686",
@@ -42,14 +42,48 @@
       "mini AI on phone",
       "browser-captured camera-space hand QA"
     ],
-    "stills_visual_inspected": false,
-    "editorial": null,
-    "pilot_status": "NOT_RENDERED",
+    "stills_visual_inspected": true,
+    "editorial": "NO_GO",
+    "pilot_status": "NOT_RENDERED_ART_NO_GO",
     "qa_pending": [
       "inspect 6 stills",
       "check acting_gate.json for clipping",
       "if visual passes run new 7s motion pilot",
       "inspect actual frames and full-decode"
+    ],
+    "artifact_stills": 13280315660,
+    "tech": "PASS",
+    "actual_gate": {
+      "hand_clip_count": 4,
+      "measurement_samples": 9,
+      "joint_articulation_count": 9,
+      "data_file": "motion-output/m1lash_mult_ep01/stills/acting_gate.json",
+      "invalid_json_trailing_literal_newline_detected": true,
+      "bugfix_commit": "ffa74ac663cf4d793c83adf904762a9afbd67143"
+    },
+    "confirmed_defects": [
+      "left palm crosses left screen boundary at 2.1,2.5,5.1,5.9s (x=7,14,18,-1 px)",
+      "coin occludes actor in salary shot",
+      "paper and phone layout still hard to read",
+      "scene5 unplug prop invisible in original camera"
     ]
+  },
+  "revision_r7": {
+    "status": "STILLS_RENDER_RUNNING",
+    "run_stills": 41737672546,
+    "commits": [
+      "d1bce7ea76c91231991641dc25c1cf28c6eefb4b",
+      "f00f6ccc2ce95fd70c7a0d07b5c6f98161246266"
+    ],
+    "expected_fixes": [
+      "move closeup frame/actor to keep hands inside view",
+      "small salary coin below faces",
+      "paper ejection moved laterally",
+      "phone upright showing small hologram",
+      "meeting clock UI",
+      "visible plug and cable withdrawal"
+    ],
+    "editorial": null,
+    "pilot_status": "NOT_RENDERED"
   }
 }
