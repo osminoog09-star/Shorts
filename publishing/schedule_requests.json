@@ -34,6 +34,14 @@
       "video_id": "qYSbQisqEpc",
       "request_id": "42ba6151-7d8b-4342-9f73-89af1ebac0c2",
       "requested_at": "2026-11-03T09:35:26.480Z"
+    },
+    "kino_004": {
+      "at": "2026-11-03T20:00:00+02:00",
+      "kind": "short",
+      "title": "Она знает, кому нельзя верить #shorts",
+      "video_id": "wweAPl3P29w",
+      "request_id": "a9351e46-61cd-4040-9075-1c222347f879",
+      "requested_at": "2026-11-03T09:40:32.274Z"
     }
   }
 }
