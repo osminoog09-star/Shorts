@@ -6,5 +6,6 @@
   "preflight_only": true,
   "save_review_mp4": false,
   "no_youtube_upload": true,
-  "note": "Six real HTML/SVG stills only, no TTS/spend/publication. Existing approved S1-D25 format."
+  "note": "Six corrected stills: two-word captions in a single panel, no chart triangle, LED-only dimming; no TTS/spend.",
+  "preflight_revision": 2
 }
