@@ -1,3 +1,6 @@
+# 04.11 · GPT · Shorts nqhy218RmlA: референс обучающего диалога
+По новой ссылке владельца Higgsfield scene analysis завершён: 1:13 / 25 сцен; метод лишь PROVIDER_SCENE_ANALYSIS, физический MP4 и оригинальный звук не проверялись. Отчёт с таймкодами, уроками и оригинальным промптом — `reports/research/references/2026-11-04_short_nqhy218RmlA.md`. Правила добавлены в `skills/m1lash-studio/references/watch-shortform.md`, урок — в `skills/m1lash-studio/SKILL.md` §7. Отдельное производство и выбор нового стиля остаются владельческим решением; текущий popcorn, чужие ролики, очередь и даты не трогались.
+
 # 03.11 · GPT · Один Shorts «Почему попкорн взрывается?» — VISUAL COMPLETE, VOICE_BLOCKED
 
 По решению владельца взят **только один ролик**. `ai_vacuum_20261104`, другие Shorts, queue/слоты и YouTube не менялись; проверен дифф GitHub. Актуальные AGENTS§3–4: **только собственный голос Дениса и denis-v3-music80 outro**; прежний Dima batch не выпускать. Физика сверена по Virot/Ponomarenko DOI 10.1098/rsif.2014.1247 + USDA: starch-leg jump и pop sound от пара разделены в `shorts/science_popcorn_20261104/spec.json`.
