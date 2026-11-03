@@ -1,3 +1,11 @@
+## GPT 03.11 — восстановлено продолжение Shorts, Claude sketch рендерится
+
+- Прочитаны свежие NOW/HANDOFF/AGENTS/Studio; отдельная Drive-задача сохранена, она не подменяет монтаж. Исправленные002V53/004V49/006V51 не пересобирались. Паспорта002 обновлены; README Ernesto приведён к настоящему RU дубляжу.
+- `ai_bureaucracy`: старый Claude-код/звук восстановлены. Локальный Chrome запрещён средой (`socket() Operation not permitted`), выбрана штатная GitHub Actions среда, не обход ограничений.
+- Common `motion-render.yml` получил явный `preflight_only` без фиктивного MP4. Первый4-frame preflight41552283025 SUCCESS/artifact13191708302: host убран, но найдены старые side-captions. После фикса centre70px left100/right160, side=false второй41552653556 SUCCESS/artifact13193721701; 4 реальных1080pстопа1/12/25/47 открыты глазами.
+- Полный рендер **41553021293** (commit1e283af) реально запущен. Код `shorts/render_ai_bureaucracy_v2.py` + `shorts/ai_bureaucracy/preflight_hostfree.mjs --render`:1531кадр1080p30fps; старые сцены/голоса до51.033с, затем approvedoutro6.6с только штатным assembler,AAC320k. Никаких YouTube upload/date. Дождаться actual artifact MP4+check.json+assembly.json+final_look.jpg, посмотреть финальный look; до этого не READY.
+- Остальные источники/блокеры: reports/research/2026-11-03_PENDING_SHORTS_SOURCE_AUDIT.md. У пса уже completed free generation, но всего6с; Ernesto не имеет финального русского смеха; старый news-фактчек обновлён по primary sources, но oldPIL/Piper/Liam запрещены, нужен самостоятельный compliant rebuild после sketch.
+
 ## GPT 03.11 — Подключённый Drive: приватный скан, чтение видео и ASR OAuth
 
 - Исправлено узкое место после аудита: `drive-folder-intake.yml` больше не требует `gdown` и открытого доступа всем по ссылке, читает приватную owner-папку через `GDRIVE_REFRESH_TOKEN` (Drive API metadata only). Реальные run **41551952914**, **41552127740**, **41552172774** SUCCESS: 2 существующих видео, 0/8 новых фильмов. Права `anyone=writer` владельцем ещё не изменены.
