@@ -47,10 +47,12 @@
       "status": "draft",
       "slot": null,
       "style": "S1-D25",
-      "mp4": "videos/m1lash_ai_news_2026_10_28_ru.mp4",
-      "publish_md": null,
-      "title": "ИИ совершил научный прорыв? $3 МЛРД для Meta и опасный сбой!",
-      "note": "Не публиковать: озвучен Piper, а не Димой, финал с Liam. Нужна переозвучка через Azure."
+      "mp4": null,
+      "publish_md": "shorts/ai_news_20261103/PUBLISH.md",
+      "title": "ИИ сдаёт экзамен по бытовухе. Кто платит за свет? #shorts",
+      "note": "ОбновляетсятотжеS1-D25черновик подфакты02.11. СтарыйPiper/Liamэкспортархив,непубликовать. HTML/SVGстопыrun41562810920;actualvoice/MP4ещёнет. БезYouTube/date.",
+      "working_project": "ai_news_20261103",
+      "news_event_date": "2026-11-02"
     },
     {
       "id": "pretend_bot3_gpt",
