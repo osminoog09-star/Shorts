@@ -33,5 +33,11 @@
     "review_archive_entry": "04_004_V49_OFFICIAL_PRIVATE.mp4",
     "owner_audio_approved": true,
     "owner_audio_approval_date": "2026-11-03"
+  },
+  "publish_at": "2026-11-03T20:00:00+02:00",
+  "schedule_request": {
+    "id": "a9351e46-61cd-4040-9075-1c222347f879",
+    "requested_at": "2026-11-03T09:40:32.274Z",
+    "publish_at": "2026-11-03T20:00:00+02:00"
   }
 }
