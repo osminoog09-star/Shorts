@@ -14,7 +14,7 @@ permissions:
 concurrency:
   # Only private preflight render jobs with the exact reserved commit prefix run
   # independently; all normal production renders retain the serialized group.
-  group: ${{ github.event_name == 'push' && (startsWith(github.event.head_commit.message, 'chigur-v21-art-') || startsWith(github.event.head_commit.message, 'shorts-stills-')) && github.event.head_commit.message || 'motion-render' }}
+  group: ${{ github.event_name == 'push' && (startsWith(github.event.head_commit.message, 'chigur-v21-art-') || startsWith(github.event.head_commit.message, 'shorts-stills-') || startsWith(github.event.head_commit.message, 'shorts-private-movie-')) && github.event.head_commit.message || 'motion-render' }}
   cancel-in-progress: false
 jobs:
   render:
