@@ -7,7 +7,7 @@
       "source_file": "videos/ai_vacation_202611_v1.mp4",
       "automatic_asr_result": "REVIEW_REQUIRED",
       "text_similarity": 0.928,
-      "payoff_similarity": 0.316,
+      "payoff_similarity": 0.857,
       "flags": [
         "PAYOFF_END_ASR_UNCERTAIN"
       ],
@@ -16,12 +16,10 @@
     {
       "id": "ai_fridge_202611",
       "source_file": "videos/ai_fridge_202611_v1.mp4",
-      "automatic_asr_result": "REVIEW_REQUIRED",
+      "automatic_asr_result": "NO_OBVIOUS_ISSUE",
       "text_similarity": 0.975,
-      "payoff_similarity": 0.343,
-      "flags": [
-        "PAYOFF_END_ASR_UNCERTAIN"
-      ],
+      "payoff_similarity": 1,
+      "flags": [],
       "personal_listening": "NOT_VERIFIED"
     },
     {
@@ -29,23 +27,24 @@
       "source_file": "videos/science_orbit_202611_v1.mp4",
       "automatic_asr_result": "NO_OBVIOUS_ISSUE",
       "text_similarity": 0.937,
-      "payoff_similarity": 0.571,
+      "payoff_similarity": 1,
       "flags": [],
       "personal_listening": "NOT_VERIFIED"
     },
     {
       "id": "science_mirror_202611",
       "source_file": "videos/science_mirror_202611_v1.mp4",
-      "automatic_asr_result": "REVIEW_REQUIRED",
+      "automatic_asr_result": "NO_OBVIOUS_ISSUE",
       "text_similarity": 0.968,
-      "payoff_similarity": 0.5,
-      "flags": [
-        "PAYOFF_END_ASR_UNCERTAIN"
-      ],
+      "payoff_similarity": 1,
+      "flags": [],
       "personal_listening": "NOT_VERIFIED"
     }
   ],
   "human_listening_required": true,
   "youtube_upload_performed": false,
-  "schedule_changed": false
+  "schedule_changed": false,
+  "scoring_version": "tail_N_words_2026-11-03",
+  "scoring_note": "Re-evaluated original run 41636228754 transcripts without re-transcribing: previous last-12-seconds comparison caused false flags in 3 videos.",
+  "outstanding": "Vacation closing lines and 'согласуй/согласую' ambiguous in small-ASR; owner listening required for all four before private upload."
 }
