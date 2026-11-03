@@ -1,0 +1,97 @@
+{
+  "id": "science_popcorn_20261104",
+  "title": "Почему попкорн взрывается и прыгает? #shorts",
+  "kind": "short",
+  "channel": "m1lash-ru",
+  "status": "visual-preflight-only",
+  "isolation": "single-short; never touch ai_vacuum_20261104",
+  "style": "S1-D25 2D",
+  "frame": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "voice": {
+    "speaker": "denis",
+    "voice_id": "denis-qwen3tts-reference-v1",
+    "engine": "qwen3-tts-local",
+    "source_file": null,
+    "status": "requires private local Qwen weights and owner reference; no fallback"
+  },
+  "outro": {
+    "id": "denis-v3-music80",
+    "asset": "media/outro/m1lash_outro_denis_v3_vertical.mp4",
+    "sha256": "1bd5aa5866b70a9b9b3368105626c05b6807a887f1588abcc43224cd8be972ce"
+  },
+  "sources": [
+    "https://pubmed.ncbi.nlm.nih.gov/25673298/",
+    "https://www.nal.usda.gov/exhibits/speccoll/exhibits/show/popcorn/how-does-popcorn-pop-"
+  ],
+  "headlines": [
+    "ЗЕРНО — СКОРОВАРКА",
+    "ВНУТРИ ЕСТЬ ВОДА",
+    "ДАВЛЕНИЕ РАСТЁТ",
+    "КРАХМАЛ РАСШИРЯЕТСЯ",
+    "ОНО ЕЩЁ И ПРЫГАЕТ",
+    "ХЛОПОК = ФИЗИКА"
+  ],
+  "scenes": [
+    {
+      "n": 1,
+      "action": "Зерно подпрыгивает на горячей поверхности; камера крупно на оболочку",
+      "voice": [
+        "Зерно попкорна — это маленькая скороварка.",
+        "Только вместо крышки у него очень прочная оболочка."
+      ]
+    },
+    {
+      "n": 2,
+      "action": "Крупный разрез зерна: капля воды внутри крахмальной массы",
+      "voice": [
+        "Внутри каждого зерна спрятаны крахмал и немного воды.",
+        "При нагревании вода создаёт всё больше пара."
+      ]
+    },
+    {
+      "n": 3,
+      "action": "Пар давит изнутри, оболочка растягивается, надпись ≈180 °C",
+      "voice": [
+        "Давление растёт, а оболочка пока держится.",
+        "Примерно при ста восьмидесяти градусах она лопается."
+      ]
+    },
+    {
+      "n": 4,
+      "action": "Оболочка раскрывается, крахмал резко расширяется в белую пену",
+      "voice": [
+        "Крахмал резко расширяется и вырывается наружу.",
+        "За долю секунды он становится белой воздушной пеной."
+      ]
+    },
+    {
+      "n": 5,
+      "action": "Крахмальная ножка сжимается о поверхность, зерно скачет",
+      "voice": [
+        "Но почему попкорн ещё и подпрыгивает?",
+        "Крахмальная ножка упирается в поверхность, словно пружина."
+      ]
+    },
+    {
+      "n": 6,
+      "action": "Слышен воображаемый хлопок от выхода пара, несколько готовых хлопьев падают в кастрюлю",
+      "voice": [
+        "А характерный хлопок связан с резким выходом пара.",
+        "Вот тебе и физика: взрыв, прыжок и звук."
+      ]
+    }
+  ],
+  "qa": {
+    "scientific_sources_verified": "2026-11-03",
+    "existing_stills_reviewed": true,
+    "updated_stills_pending": true,
+    "motion_pilot_pending": true,
+    "owner_voice_pending": true,
+    "final_file_pending": true,
+    "publication_allowed": false
+  }
+}
