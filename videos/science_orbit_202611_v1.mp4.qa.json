@@ -1,0 +1,17 @@
+{
+ "out": "/home/runner/work/Shorts/Shorts/videos/science_orbit_202611_v1.mp4",
+ "duration": 41.967,
+ "video_s": 41.967,
+ "audio_s": 41.966,
+ "body_s": 35.366,
+ "outro_s": 6.6,
+ "title_s": 0.0,
+ "body_lufs": -14.7,
+ "body_tp": -5.6,
+ "outro_lufs": -15.9,
+ "outro_tp": -2.0,
+ "outro_lag_ms": 0.7,
+ "outro_diff_db": -30.8,
+ "decode_ok": true,
+ "problems": []
+}

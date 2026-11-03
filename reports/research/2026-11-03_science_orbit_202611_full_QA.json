@@ -1,0 +1,466 @@
+{
+  "id": "science_orbit_202611",
+  "mode": "full",
+  "run_id": "41631388838",
+  "body_seconds": 35.35370833333333,
+  "timeline": {
+    "id": "science_orbit_202611",
+    "theme": "orbit",
+    "label": "Наука · орбитальная механика",
+    "headlines": [
+      "ГРАВИТАЦИЯ НЕ ПРОПАЛА",
+      "ПРИМЕРНО 90%",
+      "ПАДАЮТ ВМЕСТЕ",
+      "ПОЧЕМУ НЕ ПАДАЮТ?",
+      "ЗЕМЛЯ ЗАКРУГЛЯЕТСЯ",
+      "ПАДЕНИЕ БЕЗ ПОСАДКИ"
+    ],
+    "sources": [
+      "https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-microgravity-grades-5-8/"
+    ],
+    "total": 35.35370833333333,
+    "cuts": [
+      0,
+      5.800375,
+      11.584375,
+      17.810791666666667,
+      22.550875,
+      28.279041666666668,
+      35.35370833333333
+    ],
+    "caps": [
+      {
+        "start": 0.1,
+        "end": 1.993,
+        "words": [
+          "На",
+          "космической",
+          "станции",
+          "гравитация"
+        ]
+      },
+      {
+        "start": 1.993,
+        "end": 3.06025,
+        "words": [
+          "почти",
+          "как",
+          "на",
+          "Земле"
+        ]
+      },
+      {
+        "start": 3.14025,
+        "end": 4.76325,
+        "words": [
+          "Так",
+          "почему",
+          "космонавты",
+          "там"
+        ]
+      },
+      {
+        "start": 4.76325,
+        "end": 5.720375,
+        "words": [
+          "свободно",
+          "летают"
+        ]
+      },
+      {
+        "start": 5.800375,
+        "end": 7.431375,
+        "words": [
+          "На",
+          "высоте",
+          "МКС",
+          "остаётся"
+        ]
+      },
+      {
+        "start": 7.431375,
+        "end": 9.871791666666667,
+        "words": [
+          "примерно",
+          "девяносто",
+          "процентов",
+          "земного",
+          "притяжения"
+        ]
+      },
+      {
+        "start": 9.951791666666667,
+        "end": 11.504375,
+        "words": [
+          "Оно",
+          "никуда",
+          "не",
+          "выключалось"
+        ]
+      },
+      {
+        "start": 11.584375,
+        "end": 13.459375,
+        "words": [
+          "Станция",
+          "человек",
+          "и",
+          "капля"
+        ]
+      },
+      {
+        "start": 13.459375,
+        "end": 14.589791666666667,
+        "words": [
+          "воды",
+          "падают",
+          "вместе"
+        ]
+      },
+      {
+        "start": 14.669791666666667,
+        "end": 16.014791666666667,
+        "words": [
+          "Поэтому",
+          "человек",
+          "не",
+          "давит"
+        ]
+      },
+      {
+        "start": 16.014791666666667,
+        "end": 17.73079166666667,
+        "words": [
+          "на",
+          "пол",
+          "а",
+          "капля",
+          "висит",
+          "рядом"
+        ]
+      },
+      {
+        "start": 17.810791666666667,
+        "end": 18.828791666666667,
+        "words": [
+          "Но",
+          "почему",
+          "вся",
+          "эта"
+        ]
+      },
+      {
+        "start": 18.828791666666667,
+        "end": 20.18091666666667,
+        "words": [
+          "компания",
+          "не",
+          "падает",
+          "вниз"
+        ]
+      },
+      {
+        "start": 20.260916666666667,
+        "end": 21.39591666666667,
+        "words": [
+          "Она",
+          "ещё",
+          "и",
+          "очень"
+        ]
+      },
+      {
+        "start": 21.39591666666667,
+        "end": 22.470875,
+        "words": [
+          "быстро",
+          "летит",
+          "вбок"
+        ]
+      },
+      {
+        "start": 22.550875,
+        "end": 24.516875000000002,
+        "words": [
+          "Пока",
+          "станция",
+          "падает",
+          "поверхность"
+        ]
+      },
+      {
+        "start": 24.516875000000002,
+        "end": 25.909000000000002,
+        "words": [
+          "Земли",
+          "закругляется",
+          "под",
+          "ней"
+        ]
+      },
+      {
+        "start": 25.989,
+        "end": 28.199041666666666,
+        "words": [
+          "Так",
+          "падение",
+          "продолжается",
+          "вокруг",
+          "планеты"
+        ]
+      },
+      {
+        "start": 28.279041666666668,
+        "end": 30.202041666666666,
+        "words": [
+          "Невесомость",
+          "здесь",
+          "получается",
+          "из"
+        ]
+      },
+      {
+        "start": 30.202041666666666,
+        "end": 31.585208333333334,
+        "words": [
+          "общего",
+          "свободного",
+          "падения"
+        ]
+      },
+      {
+        "start": 31.665208333333336,
+        "end": 33.764208333333336,
+        "words": [
+          "Космос",
+          "не",
+          "отменил",
+          "гравитацию"
+        ]
+      },
+      {
+        "start": 33.764208333333336,
+        "end": 35.27370833333334,
+        "words": [
+          "Просто",
+          "пол",
+          "тоже",
+          "падает"
+        ]
+      }
+    ],
+    "segments": [
+      {
+        "start": 0.1,
+        "end": 3.06025,
+        "text": "На космической станции гравитация почти как на Земле."
+      },
+      {
+        "start": 3.14025,
+        "end": 5.720375,
+        "text": "Так почему космонавты там свободно летают?"
+      },
+      {
+        "start": 5.800375,
+        "end": 9.871791666666667,
+        "text": "На высоте МКС остаётся примерно девяносто процентов земного притяжения."
+      },
+      {
+        "start": 9.951791666666667,
+        "end": 11.504375,
+        "text": "Оно никуда не выключалось."
+      },
+      {
+        "start": 11.584375,
+        "end": 14.589791666666667,
+        "text": "Станция, человек и капля воды падают вместе."
+      },
+      {
+        "start": 14.669791666666667,
+        "end": 17.73079166666667,
+        "text": "Поэтому человек не давит на пол, а капля висит рядом."
+      },
+      {
+        "start": 17.810791666666667,
+        "end": 20.18091666666667,
+        "text": "Но почему вся эта компания не падает вниз?"
+      },
+      {
+        "start": 20.260916666666667,
+        "end": 22.470875,
+        "text": "Она ещё и очень быстро летит вбок."
+      },
+      {
+        "start": 22.550875,
+        "end": 25.909000000000002,
+        "text": "Пока станция падает, поверхность Земли закругляется под ней."
+      },
+      {
+        "start": 25.989,
+        "end": 28.199041666666666,
+        "text": "Так падение продолжается вокруг планеты."
+      },
+      {
+        "start": 28.279041666666668,
+        "end": 31.585208333333334,
+        "text": "Невесомость здесь получается из общего свободного падения."
+      },
+      {
+        "start": 31.665208333333336,
+        "end": 35.27370833333334,
+        "text": "Космос не отменил гравитацию. Просто пол тоже падает."
+      }
+    ],
+    "actual_audio": true
+  },
+  "personal_listening": "NOT_VERIFIED",
+  "visual_review": "PENDING_MANUAL",
+  "youtube_uploaded": false,
+  "sha256": "80f5f4044885a4e139f8c32049dc7494f362e85bbe37b84e5d32a0454f5656ee",
+  "bytes": 7832183,
+  "assembly": {
+    "out": "/home/runner/work/Shorts/Shorts/videos/science_orbit_202611_v1.mp4",
+    "duration": 41.967,
+    "video_s": 41.967,
+    "audio_s": 41.966,
+    "body_s": 35.366,
+    "outro_s": 6.6,
+    "title_s": 0.0,
+    "body_lufs": -14.7,
+    "body_tp": -5.6,
+    "outro_lufs": -15.9,
+    "outro_tp": -2.0,
+    "outro_lag_ms": 0.7,
+    "outro_diff_db": -30.8,
+    "decode_ok": true,
+    "problems": []
+  },
+  "check": {
+    "status": "completed",
+    "output": null,
+    "dry_run": false,
+    "commands": [
+      "/usr/bin/ffmpeg -hide_banner -nostdin -i /home/runner/work/Shorts/Shorts/videos/science_orbit_202611_v1.mp4 -vn -af loudnorm=I=-14:TP=-1:LRA=11:print_format=json -f null -"
+    ],
+    "verified": false,
+    "verification": [],
+    "platform": "shorts",
+    "checks": [
+      {
+        "check": "duration",
+        "status": "PASS",
+        "value": "41.97s",
+        "expected": "<= 180s",
+        "fix": "decide with the user: cut.py keeps quality but drops content; fit.py --duration speeds up (audio pitch-preserved, motion faster)",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "aspect",
+        "status": "PASS",
+        "value": "9:16",
+        "expected": "9:16/1:1",
+        "fix": "fit.py --aspect 9:16 --fit pad (keeps everything, adds bars) or crop (fills the frame, loses the edges: check the subject with look.py)",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "resolution",
+        "status": "PASS",
+        "value": "1080x1920",
+        "expected": "short side >= 1080",
+        "fix": "upscaling will not add detail; re-export from the master",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "fps",
+        "status": "PASS",
+        "value": "30",
+        "expected": "<= 60",
+        "fix": "fit.py --fps 30 (drops half the frames of 60 fps motion; fine for talking heads, visible on sports/gaming)",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "vfr",
+        "status": "PASS",
+        "value": "constant",
+        "expected": "constant",
+        "fix": "fit.py --fps N (any re-encode conforms it)",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "video codec",
+        "status": "PASS",
+        "value": "h264",
+        "expected": "h264/hevc",
+        "fix": "export.py --preset shorts",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "colour",
+        "status": "PASS",
+        "value": "bt709 matrix, primaries/transfer untagged (players assume bt709)",
+        "expected": "bt709/bt709 tagged (or HDR)",
+        "fix": "",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "file size",
+        "status": "PASS",
+        "value": "7.5 MB",
+        "expected": "<= 262144 MB",
+        "fix": "export.py --crf 24 or lower resolution",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "audio",
+        "status": "PASS",
+        "value": "aac 2ch 48000Hz",
+        "expected": "present",
+        "fix": "",
+        "reason": "",
+        "kind": "format"
+      },
+      {
+        "check": "subtitles",
+        "status": "WARN",
+        "value": "none",
+        "expected": ">= 1 language-tagged subtitle track",
+        "fix": "caption.py video.mp4 --mode mux --srt subs.srt:en -o video_subs.mkv (streams are copied)",
+        "reason": "subtitles are optional, but they are the cheapest accessibility win a delivery has",
+        "kind": "format"
+      },
+      {
+        "check": "loudness",
+        "status": "PASS",
+        "value": "-14.9 LUFS",
+        "expected": "-14 ± 2 LUFS",
+        "fix": "loudness.py -I -14 for speech or music; leave ambience/near-silence (<= -40 LUFS) alone and say so",
+        "reason": "",
+        "kind": "judgement"
+      },
+      {
+        "check": "true peak",
+        "status": "PASS",
+        "value": "-2.0 dBTP",
+        "expected": "<= -1 dBTP (+0.1 dB tolerance)",
+        "fix": "loudness.py --tp -1",
+        "reason": "",
+        "kind": "judgement"
+      }
+    ],
+    "failed": 0,
+    "warnings": 1,
+    "ok": true,
+    "input_identity": {
+      "size": 7832183,
+      "mtime_ns": 1793707227600356303
+    }
+  }
+}
