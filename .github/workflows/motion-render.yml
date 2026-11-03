@@ -10,6 +10,7 @@ on:
         default: 'jobs/motion/demo.json'
 permissions:
   contents: write
+  actions: read
 concurrency:
   group: motion-render
   cancel-in-progress: false
