@@ -15,6 +15,7 @@ import json
 import os
 import re
 import sys
+import time
 from pathlib import Path
 from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
@@ -259,17 +260,23 @@ def youtube_schedule(video_id, data, publish_at, token):
     if not got:
         raise RuntimeError("YouTube did not confirm publishAt; check Studio")
     # A queued dispatch or a successful PUT alone is not a confirmed schedule.
-    check = requests.get(API + "/videos", params={"part": "status", "id": video_id},
-                         headers={"Authorization": "Bearer " + token}, timeout=40)
-    if not check.ok:
-        raise RuntimeError("YouTube schedule readback failed; inspect Studio before retry")
-    items = check.json().get("items", [])
-    status = items[0].get("status", {}) if len(items) == 1 and items[0].get("id") == video_id else {}
-    confirmed = status.get("publishAt")
-    if (status.get("privacyStatus") != "private" or not confirmed
-            or dt.datetime.fromisoformat(confirmed.replace("Z", "+00:00")) != publish_at):
-        raise RuntimeError("YouTube schedule readback differs from owner-selected time")
-    return confirmed
+    confirmed = None
+    status = {}
+    for attempt in range(4):
+        if attempt:
+            time.sleep(2 ** (attempt - 1))  # Retry READ only; never repeat the PUT.
+        check = requests.get(API + "/videos", params={"part": "status", "id": video_id},
+                             headers={"Authorization": "Bearer " + token, "Cache-Control": "no-cache"}, timeout=40)
+        if not check.ok:
+            continue
+        items = check.json().get("items", [])
+        status = items[0].get("status", {}) if len(items) == 1 and items[0].get("id") == video_id else {}
+        confirmed = status.get("publishAt")
+        if (status.get("privacyStatus") == "private" and confirmed
+                and dt.datetime.fromisoformat(confirmed.replace("Z", "+00:00")) == publish_at):
+            return confirmed
+    raise RuntimeError("YouTube schedule readback differs from owner-selected time (publishAt=%s, privacy=%s); inspect Studio" %
+                       (confirmed, status.get("privacyStatus")))
 
 
 def main():

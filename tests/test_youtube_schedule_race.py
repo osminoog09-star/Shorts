@@ -39,9 +39,18 @@ class ScheduleRaceTests(unittest.TestCase):
         put=Mock(ok=True);put.json.return_value={'status':{'publishAt':'2099-01-03T13:00:00Z'}}
         for status,at in [('private','2099-01-04T13:00:00Z'),('public','2099-01-03T13:00:00Z'),('private','2099-01-03T13:00:00Z')]:
             get=Mock(ok=True);get.json.return_value={'items':[{'id':'xRwwXYXVxSc','status':{'privacyStatus':status,'publishAt':at}}]}
-            with self.subTest(status=status,at=at),patch.object(u.requests,'put',return_value=put),patch.object(u.requests,'get',return_value=get):
+            with self.subTest(status=status,at=at),patch.object(u.requests,'put',return_value=put),patch.object(u.requests,'get',return_value=get),patch.object(u.time,'sleep'):
                 if status=='private' and at=='2099-01-03T13:00:00Z':self.assertEqual(u.youtube_schedule('xRwwXYXVxSc',data,when,'fake'),at)
                 else:
                     with self.assertRaisesRegex(RuntimeError,'readback differs'):u.youtube_schedule('xRwwXYXVxSc',data,when,'fake')
+
+    def test_stale_readback_retries_reads_without_repeating_put(self):
+        data={'metadata':{'made_for_kids':False,'contains_synthetic_media':False}}
+        def response(at):
+            r=Mock(ok=True);r.json.return_value={'items':[{'id':'xRwwXYXVxSc','status':{'privacyStatus':'private','publishAt':at}}]};return r
+        put=Mock(ok=True);put.json.return_value={'status':{'publishAt':'2099-01-03T13:00:00Z'}}
+        with patch.object(u.requests,'put',return_value=put) as write,patch.object(u.requests,'get',side_effect=[response('2099-01-04T13:00:00Z'),response('2099-01-03T13:00:00Z')]) as read,patch.object(u.time,'sleep'):
+            self.assertEqual(u.youtube_schedule('xRwwXYXVxSc',data,dt.datetime(2099,1,3,13,tzinfo=dt.timezone.utc),'fake'),'2099-01-03T13:00:00Z')
+            self.assertEqual(write.call_count,1);self.assertEqual(read.call_count,2)
 
 if __name__=='__main__':unittest.main()
