@@ -1,7 +1,7 @@
 {
   "id": "science_mirror_202611",
   "mode": "full",
-  "run_id": "41631388838",
+  "run_id": "41632620947",
   "body_seconds": 36.069041666666664,
   "timeline": {
     "id": "science_mirror_202611",
@@ -324,8 +324,8 @@
   "personal_listening": "NOT_VERIFIED",
   "visual_review": "PENDING_MANUAL",
   "youtube_uploaded": false,
-  "sha256": "1ae2f9f33f166f1239e3552ff07ca2e9bcbff8a880c2cc7716829b6847a3c1cb",
-  "bytes": 6960301,
+  "sha256": "bf235f86dac5c1e18d66c18f8e759fe9f3e705a5fa1dc70abbc835aa65ebad28",
+  "bytes": 6928565,
   "assembly": {
     "out": "/home/runner/work/Shorts/Shorts/videos/science_mirror_202611_v1.mp4",
     "duration": 42.7,
@@ -467,8 +467,8 @@
     "warnings": 1,
     "ok": true,
     "input_identity": {
-      "size": 6960301,
-      "mtime_ns": 1793707342410668667
+      "size": 6928565,
+      "mtime_ns": 1793707679028448546
     }
   }
 }
