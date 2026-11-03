@@ -7,7 +7,7 @@
   "only_id": "science_popcorn_20261104",
   "mode": "unit_tests",
   "note": "Just offline unittest: verify voice/outro/caption strict release gates; produce no media or personal audio.",
-  "revision": 4,
+  "revision": 5,
   "sparse_checkout_fix": true,
-  "check": "9 tests including private Qwen checkpoint syntax"
+  "check": "11 tests including true voice SHA receipts fail closed"
 }
