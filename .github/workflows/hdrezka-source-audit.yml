@@ -2,7 +2,7 @@ name: M1lash · safe film source reachability audit
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/hdrezka-source-audit.yml', 'scripts/qa/diagnose_hdrezka_source.py']
+    paths: ['.github/workflows/hdrezka-source-audit.yml', 'scripts/qa/diagnose_hdrezka_source.py', 'scripts/qa/hdrezka_browser_probe.py']
   workflow_dispatch:
 
 permissions:
@@ -26,3 +26,9 @@ jobs:
         run: python3 -m py_compile scripts/qa/diagnose_hdrezka_source.py
       - name: Diagnose only public page reachability and CLI info, without bypass or media download
         run: python3 scripts/qa/diagnose_hdrezka_source.py
+      - name: Verify ordinary browser page access (no login or media)
+        run: |
+          python3 -m pip install -q 'playwright>=1.48,<2'
+          python3 -m playwright install --with-deps chromium
+          python3 -m py_compile scripts/qa/hdrezka_browser_probe.py
+          python3 scripts/qa/hdrezka_browser_probe.py
