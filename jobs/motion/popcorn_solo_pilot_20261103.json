@@ -6,5 +6,7 @@
   "output": "videos/science_popcorn_20261104_pilot_silent_preflight.mp4",
   "preflight_only": true,
   "save_review_mp4": false,
-  "note": "Approved six frames gate 41725149202, single popcorn only. Render 7s motion pilot NO AUDIO, owner voice stays private."
+  "note": "Approved six frames gate 41725149202, single popcorn only. Render 7s motion pilot NO AUDIO, owner voice stays private.",
+  "revision": 2,
+  "stills_gate_run": 41726195805
 }
