@@ -18,7 +18,7 @@ spec.loader.exec_module(mod)
 class ProbeResult:
     headers = {"Content-Length": "1048576"}
     def __init__(self, video=True):
-        self.data = b"\\x00\\x00\\x00\\x18ftypisom" + b"X" * 4096 if video else b"<html>challenge</html>"
+        self.data = bytes((0, 0, 0, 24)) + b"ftypisom" + b"X" * 4096 if video else b"<html>challenge</html>"
     def read(self, n):
         return self.data[:n]
     def __enter__(self):
@@ -74,12 +74,12 @@ class DirectMovieTests(unittest.TestCase):
             video = Path(tmp) / "movie.mp4"
             video.write_bytes(b"valid-content")
             fake = SimpleNamespace(returncode=0, stdout=json.dumps([
-                {"Name":"movie.mp4","Size":12}
+                {"Name":"movie.mp4","Size":13}
             ]))
             with patch.object(mod.subprocess, "run", return_value=fake):
                 mod.confirm_drive_file(video, "/fake.conf")
             bad = SimpleNamespace(returncode=0, stdout=json.dumps([
-                {"Name":"movie.mp4","Size":13}
+                {"Name":"movie.mp4","Size":14}
             ]))
             with patch.object(mod.subprocess, "run", return_value=bad):
                 with self.assertRaises(mod.IntakeError) as error:
