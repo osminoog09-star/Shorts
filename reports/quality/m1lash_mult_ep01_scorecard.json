@@ -1,0 +1,55 @@
+{
+  "schema": "m1lash_visual_qa_v1",
+  "project": "m1lash_mult_ep01",
+  "owner_approved_style": "S9-D3",
+  "release_policy": "No publication without owner OK; no READY without real voice, real outro and check/look/full FFmpeg QA.",
+  "review_protocol": {
+    "technical_gate": "GitHub Actions status, ffprobe, full ffmpeg -xerror decode, frames/pixels",
+    "editorial_gate": "Inspect six browser stills and contact from actual MP4 every 0.5-1.0s; judge physical cause/effect, actor visibility, hands, camera, dialogue, punchline",
+    "voice_gate": "MIL only Denis Qwen private; AKS distinct licensed voice; actual ASR, timing and owner listens",
+    "rationale": "A CI success does not pass editorial or voice gates."
+  },
+  "baseline_r5": {
+    "run_stills": 41734720429,
+    "run_pilot": 41734993905,
+    "artifact_pilot": 13279290069,
+    "actual_h264_seconds": 7,
+    "verified_frames": 210,
+    "tech": "PASS",
+    "editorial": "NO_GO",
+    "critical_defects": [
+      "Rigid single-piece arms with no elbow control; hands cropped during camera closeup",
+      "Only scene 1 has visible animation; props in scenes 3,4,6 do not explain story without text",
+      "Generic faceted silhouettes and repetitive closeups; lip shape unsupported by sound",
+      "There is no Denis/AKS audio or approved outro in silent pilot"
+    ],
+    "source": "reports/research/2026-11-04_M1LASH_MULT_EP01_VISUAL_PILOT.md"
+  },
+  "revision_r6": {
+    "status": "STILLS_CI_RUNNING",
+    "run_stills": 41737051363,
+    "commits": [
+      "5b1a30a61b2781cf80b6755d2e823cbaef0c7686",
+      "e816bb3d178fb3812f029ad69fea96c1c9d6f274",
+      "b402c454b215f8bb110e77b4e404462ae5938c05",
+      "b31fa9047d003aad0a2b81a7cc44219bb8e15538"
+    ],
+    "patches": [
+      "independent shoulder-elbow-hand bones",
+      "smaller studio badge",
+      "coin shrinks and releases XP particles",
+      "printer ejects sheets",
+      "mini AI on phone",
+      "browser-captured camera-space hand QA"
+    ],
+    "stills_visual_inspected": false,
+    "editorial": null,
+    "pilot_status": "NOT_RENDERED",
+    "qa_pending": [
+      "inspect 6 stills",
+      "check acting_gate.json for clipping",
+      "if visual passes run new 7s motion pilot",
+      "inspect actual frames and full-decode"
+    ]
+  }
+}
