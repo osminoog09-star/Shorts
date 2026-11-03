@@ -1,0 +1,18 @@
+{
+  "model": "medium",
+  "source": "jobs/audioqa/vacation_medium_20261103.json",
+  "results": [
+    {
+      "id": "ai_vacation_202611",
+      "source_file": "videos/ai_vacation_202611_v1.mp4",
+      "automatic_asr_result": "NO_OBVIOUS_ISSUE",
+      "text_similarity": 0.928,
+      "payoff_similarity": 1.0,
+      "flags": [],
+      "personal_listening": "NOT_VERIFIED"
+    }
+  ],
+  "human_listening_required": true,
+  "youtube_upload_performed": false,
+  "schedule_changed": false
+}
