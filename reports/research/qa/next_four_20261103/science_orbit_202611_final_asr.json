@@ -10,7 +10,7 @@
   "recognized_text": "На космической станции, гравитация почти как на земле. Так почему космонавты там свободно летают? На высоте МКЭС остается примерно 90% земного притяжения. Оно никуда не выключалось. В станции человек и капля воды падают вместе. Поэтому человек не давит на пол, а капля висит рядом. Но почему вся эта компания не падает вниз? Она еще и очень быстро летит в бок. Пока станция падает, поверхность земли закругляется под ней. Так падение продолжается вокруг планеты. Невесомость здесь получается из общего свободного падения. Космос не отменил гравитацию. Просто пол тоже падает.",
   "segments": [
     {
-      "start": 0.0,
+      "start": 0,
       "end": 3.16,
       "text": "На космической станции, гравитация почти как на земле."
     },
@@ -21,11 +21,11 @@
     },
     {
       "start": 5.92,
-      "end": 10.0,
+      "end": 10,
       "text": "На высоте МКЭС остается примерно 90% земного притяжения."
     },
     {
-      "start": 10.0,
+      "start": 10,
       "end": 11.56,
       "text": "Оно никуда не выключалось."
     },
@@ -76,12 +76,16 @@
     }
   ],
   "text_similarity": 0.937,
-  "payoff_similarity": 0.571,
+  "payoff_similarity": 1,
   "expected_negations": 4,
   "recognized_negations": 4,
   "flags": [],
   "automatic_asr_result": "NO_OBVIOUS_ISSUE",
   "personal_listening": "NOT_VERIFIED",
   "owner_audio_approved": false,
-  "next_action": "Give final MP4 to owner for uninterrupted listening; never auto-upload/schedule."
+  "next_action": "Give final MP4 to owner for uninterrupted listening; never auto-upload/schedule.",
+  "payoff_expected_text": "Космос не отменил гравитацию. Просто пол тоже падает.",
+  "payoff_recognized_tail": "космос не отменил гравитацию просто пол тоже падает",
+  "scoring_version": "tail_N_words_2026-11-03",
+  "scoring_note": "Recomputed only payoff comparison from previously saved real-ASR text (run 41636228754); no media changed or new transcription generated."
 }
