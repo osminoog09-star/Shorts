@@ -13,7 +13,7 @@ for k,v in {
  "TOKENIZERS_PARALLELISM":"false",
 }.items(): os.environ[k]=v
 
-import argparse, difflib, json, re
+import argparse, difflib, hashlib, json, re
 from pathlib import Path
 import numpy as np
 import soundfile as sf
@@ -57,15 +57,36 @@ def run(args):
  for scene in SPEC["scenes"]:
   for line_idx,line in enumerate(scene["voice"]):
    idx=len(segments)+1; wav_path=out/("denis_%02d.wav"%idx)
-   if wav_path.exists(): raise RuntimeError("VOICE_BLOCKED: existing voice output would be overwritten")
-   torch.manual_seed(300+idx)
-   generated,sr=engine.generate_voice_clone(text=line,language="Russian",
-       voice_clone_prompt=voice_prompt,max_new_tokens=320,temperature=.7)
-   audio=np.asarray(generated[0],dtype=np.float32)
-   nonzero=np.flatnonzero(np.abs(audio)>.002)
-   if len(nonzero): audio=audio[max(0,nonzero[0]-round(sr*.06)):min(len(audio),nonzero[-1]+round(sr*.12))]
-   if audio.size<sr*.4: raise RuntimeError("VOICE_BLOCKED: anomalous zero-length utterance")
-   sf.write(wav_path,audio,sr)
+   receipt=out/("denis_%02d.provenance.json"%idx)
+   identity=dict(text=line,model=str(model_path),engine=VOICE["engine"],
+                 voice_id=VOICE["voice_id"],speaker="denis",
+                 ref_sha256=hashlib.sha256(ref.read_bytes()).hexdigest(),
+                 seed=300+idx,temperature=.7,max_new_tokens=320)
+   if wav_path.exists() or receipt.exists():
+    if not wav_path.is_file() or not receipt.is_file():
+     raise RuntimeError(f"VOICE_BLOCKED: incomplete checkpoint line {idx}; never trust orphan WAV")
+    old=json.loads(receipt.read_text(encoding="utf8"))
+    if any(old.get(k)!=v for k,v in identity.items()):
+     raise RuntimeError(f"VOICE_BLOCKED: line {idx} checkpoint voice/ref/text mismatch")
+    if old.get("wav_sha256")!=hashlib.sha256(wav_path.read_bytes()).hexdigest():
+     raise RuntimeError(f"VOICE_BLOCKED: line {idx} checkpoint bytes changed")
+    audio,sr=sf.read(wav_path,dtype="float32")
+    print("VOICE_CHECKPOINT_REUSED",idx,flush=True)
+   else:
+    torch.manual_seed(300+idx)
+    generated,sr=engine.generate_voice_clone(text=line,language="Russian",
+        voice_clone_prompt=voice_prompt,max_new_tokens=320,temperature=.7)
+    audio=np.asarray(generated[0],dtype=np.float32)
+    nonzero=np.flatnonzero(np.abs(audio)>.002)
+    if len(nonzero): audio=audio[max(0,nonzero[0]-round(sr*.06)):min(len(audio),nonzero[-1]+round(sr*.12))]
+    if audio.size<sr*.4: raise RuntimeError("VOICE_BLOCKED: anomalous zero-length utterance")
+    tmp=out/("denis_%02d.partial.wav"%idx)
+    sf.write(tmp,audio,sr)
+    wav_sha=hashlib.sha256(tmp.read_bytes()).hexdigest()
+    tmp.replace(wav_path)
+    identity["wav_sha256"]=wav_sha
+    receipt.write_text(json.dumps(identity,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
+    print("VOICE_CHECKPOINT_SAVED",idx,wav_sha[:16],flush=True)
    rows,info=whisper.transcribe(str(wav_path),beam_size=3,language="ru",
          word_timestamps=True,vad_filter=True,condition_on_previous_text=False)
    rows=list(rows)
