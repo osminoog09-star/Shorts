@@ -122,6 +122,9 @@ def main():
     config = json.loads((ROOT / job).read_text(encoding="utf-8"))
     specs = {x["id"]: x for x in json.loads(SPECS.read_text(encoding="utf-8"))["items"]}
     entries = config["videos"]
+    variant = config.get("report_variant", "")
+    if variant and (not re.fullmatch(r"[a-z0-9_-]{1,16}", variant)):
+        raise ValueError("Invalid report variant")
     if not entries or len(entries) > 4:
         raise ValueError("One to four videos required")
     from faster_whisper import WhisperModel
@@ -138,7 +141,8 @@ def main():
         if not (ROOT / path).is_file():
             raise FileNotFoundError(ROOT / path)
         result = analyze(model, specs[id_], ROOT / path, float(config.get("outro_seconds", 6.6)))
-        (OUTPUT_DIR / (id_ + "_final_asr.json")).write_text(
+        filename = id_ + ("_final_" + variant if variant else "_final") + "_asr.json"
+        (OUTPUT_DIR / filename).write_text(
             json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
         )
         results.append({k: result[k] for k in (
@@ -150,7 +154,8 @@ def main():
     summary = {"model": config.get("model", "small"), "source": args.job,
                "results": results, "human_listening_required": True,
                "youtube_upload_performed": False, "schedule_changed": False}
-    (OUTPUT_DIR / "final_asr_summary.json").write_text(
+    summary_path = (variant + "_asr_summary.json") if variant else "final_asr_summary.json"
+    (OUTPUT_DIR / summary_path).write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
 
