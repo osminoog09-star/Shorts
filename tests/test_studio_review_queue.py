@@ -23,11 +23,16 @@ class StudioReviewStateTests(unittest.TestCase):
         self.assertEqual(got[0]["video_id"], "abcdefghijk")
         self.assertEqual(got[0]["manifest"], "publishing/queue/a.json")
 
-    def test_unuploaded_review_appears_with_no_youtube_id(self):
+    def test_unuploaded_review_never_prompts_owner(self):
         q = [{"id": "new", "status": "review", "title": "New Short"}]
-        self.assertEqual(build_review_queue(q, {}, {}), [
-            {"id": "new", "title": "New Short", "video_id": None}
-        ])
+        self.assertEqual(build_review_queue(q, {}, {}), [])
+
+    def test_existing_unconfirmed_review_with_video_id_is_visible(self):
+        q = [{"id": "old", "status": "review", "title": "Old Short"}]
+        receipts = {"old": {"status": "review", "video_id": "abcdefghijk"}}
+        self.assertEqual(build_review_queue(q, receipts, {}), [{
+            "id": "old", "video_id": "abcdefghijk", "title": "Old Short"
+        }])
 
     def test_scheduled_receipt_even_without_utc_field_never_review(self):
         q = [{"id": "a", "status": "review"}]
