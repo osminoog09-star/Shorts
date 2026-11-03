@@ -31,8 +31,9 @@
 - [x] Актуальные правила/Studio/визуал/NOW/HANDOFF, queue/receipts и идеи прочитаны; NASA/IOP проверены для научных тем.
 - [x] 4 сценария/spec/рисованный SVG/HTML и render_batch.py в репозитории; текущий preflight 41616818956 реально упал на caption bottom=1453.7>1420 (не PASS).
 - [x] 03.11 — исправлены safe area: art ниже headline и выше captions, cap top1100/font64, коммит ba1b6b2; повторить рендер и проверить все 24 стопа, не писать QA OK раньше времени.
-- [ ] После просмотра стопов — TTS через Actions, 4 финальныхMP4, check/look/ASR/сверка, приватная загрузка штатным workflow без даты.
-Следующий шаг: `shorts/next_four_20261103/` — spec.json/film.html/render_batch.py; общий motion-render, сначала preflight_only=true. Чигур не запускать до4 реальных Shorts. Публикация/даты — отдельный владельческий gate.
+- [x] 4×6=24 стоп-кадра отрендерены и визуально просмотрены, run 41627171650 SUCCESS. Контакт-листы `reports/research/qa/next_four_20261103/*_stills_stills_contact.jpg`; 2 конкретных layout-blocker исправлены (caption bottom и titleOverflow), не считать это финальным MP4.
+- [ ] Дальше TTS Дима через Actions, 4 финальных MP4, check/look/ASR/слух, приватная загрузка без даты. Контрольный вход `jobs/motion/next_four_20261103.json` mode=full. Публикация только после «ок» владельца.
+Следующий шаг: 24 стопа просмотрены, разрешено перейти на full render через `jobs/motion/next_four_20261103.json`. Затем открыть финальные `*_final_look.png`, провести check/look и слуховую QA Димы; только после подтверждения MP4 — private upload без schedule. Чигур не запускать до4 реальных Shorts. Публикация/даты — отдельный владельческий gate.
 Где промежуточное: /workspace/scratch/2071953dc074/shorts-next-four, jobs/motion/next_four_20261103.json.
 Ждёт Дениса: нет; стиль существующий рисованный2D выбран в рамках поручения «сам всё сделай».
 
