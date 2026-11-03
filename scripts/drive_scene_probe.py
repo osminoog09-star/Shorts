@@ -13,7 +13,9 @@ import re
 import subprocess
 import tempfile
 from pathlib import Path
+from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qs, urlparse
+from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 SCAN = ROOT / "publishing/drive_scan.json"
@@ -34,12 +36,57 @@ def hint_range(s):
 
 def drive_id(url):
     u = urlparse(url)
-    ids = parse_qs(u.query).get("id", [])
-    if u.scheme != "https" or u.hostname != "drive.google.com" or u.path != "/uc" or len(ids) != 1:
-        raise ValueError("No public Google Drive file ID")
-    if not re.fullmatch(r"[A-Za-z0-9_-]{10,}", ids[0]):
+    if u.scheme != "https" or u.hostname != "drive.google.com" or u.username or u.password:
+        raise ValueError("Not a Google Drive file URL")
+    ids = parse_qs(u.query).get("id", []) if u.path == "/uc" else []
+    if not ids:
+        match = re.fullmatch(r"/file/d/([A-Za-z0-9_-]{10,})/view/?", u.path)
+        if match and not u.query:
+            ids = [match.group(1)]
+    if len(ids) != 1 or not re.fullmatch(r"[A-Za-z0-9_-]{10,}", ids[0]):
         raise ValueError("Invalid Google Drive ID")
     return ids[0]
+
+
+def fetch_private_film(url, dest, credentials=None):
+    """Download only the selected private Drive file. Never log bearer tokens."""
+    from drive_oauth_config import resolve_existing_client, DriveSetupError
+    token_env = dict(credentials if credentials is not None else os.environ)
+    if not token_env.get("GDRIVE_REFRESH_TOKEN"):
+        raise RuntimeError("Нужен уже подключённый Google Drive OAuth в GitHub Secrets.")
+    try:
+        verified, _ = resolve_existing_client(token_env)
+    except DriveSetupError as exc:
+        raise RuntimeError("Google Drive OAuth отказал: " + exc.code) from None
+    token = verified.get("_GDRIVE_ACCESS_TOKEN")
+    if not token:
+        raise RuntimeError("Google OAuth не выдал токен для чтения фильма.")
+    file_id = drive_id(url)
+    request = Request(
+        "https://www.googleapis.com/drive/v3/files/" + file_id + "?alt=media&supportsAllDrives=true",
+        headers={"Authorization":"Bearer " + token})
+    max_size = 6_500_000_000
+    written = 0
+    try:
+        with urlopen(request, timeout=120) as response, open(dest, "wb") as out:
+            length = response.headers.get("Content-Length")
+            if length and int(length) > max_size:
+                raise RuntimeError("Фильм превышает лимит 6,5 ГБ на временном runner.")
+            while True:
+                chunk = response.read(8 * 1024 * 1024)
+                if not chunk:
+                    break
+                written += len(chunk)
+                if written > max_size:
+                    raise RuntimeError("Фильм превышает лимит 6,5 ГБ.")
+                out.write(chunk)
+    except HTTPError as exc:
+        raise RuntimeError("Google Drive не дал прочитать файл (HTTP " + str(exc.code) + ").") from None
+    except (OSError, URLError, ValueError):
+        raise RuntimeError("Не получилось временно скачать файл из закрытого Drive.") from None
+    if written < 1_000_000:
+        raise RuntimeError("Файл слишком мал для киноисходника.")
+    return written
 
 
 def cmd(*args, timeout=120):
@@ -71,8 +118,7 @@ def analyze(url, reqs, directory):
     from faster_whisper import WhisperModel
 
     film = directory / "movie.bin"
-    cmd("gdown", "--id", drive_id(url), "-O", str(film), "--quiet",
-        "--timeout", "30", "--retries", "2", timeout=12000)
+    fetch_private_film(url, film)
     if not 1_000_000 <= film.stat().st_size <= 6_500_000_000:
         raise ValueError("Movie size outside temp runner safety bounds")
     duration = float(cmd("ffprobe", "-v", "error", "-show_entries", "format=duration",
