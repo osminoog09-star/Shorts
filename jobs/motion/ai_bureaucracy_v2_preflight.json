@@ -1,0 +1,8 @@
+{
+  "renderer": "python",
+  "script": "shorts/preflight_ai_bureaucracy_v2.py",
+  "output": "videos/ai_bureaucracy_v2_preflight.mp4",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "no_youtube_upload": true
+}
