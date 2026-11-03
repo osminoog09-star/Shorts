@@ -1,4 +1,23 @@
 {
   "schema": 1,
-  "requests": {}
+  "requests": {
+    "ai_bureaucracy_claude": {
+      "at": "2026-11-03T16:00:00+02:00",
+      "kind": "short",
+      "title": "Нанял ИИ, чтобы меньше работать. Получил 40 подчинённых 🤖 #shorts",
+      "video_id": "9Bhnbw5bFeE",
+      "request_id": null,
+      "requested_at": "2026-11-03T09:05:41.207Z",
+      "origin": "reconciled_existing_owner_schedule"
+    },
+    "ai_news_2026_11_03": {
+      "at": "2026-11-05T10:00:00+02:00",
+      "kind": "short",
+      "title": "Экзамен по бытовухе: 3 новости ИИ за 2 ноября #shorts",
+      "video_id": "oMhef8NQg1s",
+      "request_id": null,
+      "requested_at": "2026-11-03T09:05:41.207Z",
+      "origin": "reconciled_existing_owner_schedule"
+    }
+  }
 }

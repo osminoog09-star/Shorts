@@ -164,6 +164,8 @@ description: Карта и пошаговый конвейер студии ка
 
 - 03.11 · GPT · **Не заменять youtube-direct.yml ручной заливкой при доступном UI GitHub Actions.** Семь одобренных файлов уже были переданы через Studio до замечания владельца; исправление — собрать реальные IDs/PRIVATE и receipts, не создавать дубли. Recovery source.type=uploaded допускает только schedule с совпадением ID/channel/SHA; новые ролики загружать штатным workflow с самого начала. 17 offline tests PASS; отчёт reports/research/2026-11-03_SEVEN_SHORTS_PRIVATE_UPLOAD_RECEIPTS.md.
 
+- 03.11 · GPT · **Расписание: dispatch204 — только принятие запроса.** CAS-резерв на общий ledger, per-video concurrency, frozen expected date/request и подтверждение GET YouTube обязательны; не читать выбранную дату из меняющегося main без сверки. stale refresh не должен освобождать слот; taken+plan dedupe. Немедленное readback бывает старым — повторять только GET с ограничением, не upload/PUT в цикле. Реальный recovery41607737039 SUCCESS;22tests+Node PASS; отчёт reports/research/2026-11-03_AUTO_SCHEDULING_FIX.md.
+
 ### Чек-лист (проверено на ошибках)
 
 **Кино: исходник**

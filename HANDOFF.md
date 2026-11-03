@@ -1,3 +1,10 @@
+## 03.11 · GPT — исправлено Авто и восстановлена последняя выбранная дата
+
+- Причины: stale Pages стирал локальный резерв, taken+plan считались дважды, не было CAS между вкладками, global concurrency отменял разные pending jobs, workflow читал mutable main, dispatch204 выдавался за назначение.
+- Сайт: общий publishing/schedule_requests.json, Tallinn, unique occupied slots, refresh-safe reservations; карточки показывают pending/confirmed dates; published нельзя пересоставлять через план. Workflow per-manifest, immutable expected_publish_at/request_id, server ledger checks + GET readback.
+- **Скетч9Bhnbw5bFeE:03.11 16:00 Tallinn подтверждён** штатным run41607737039 SUCCESS/receipt14:00Z. Это восстановление последнего выбора владельца c36f3c78, не новая дата от агента. НовостиoMhef8NQg1s05.11 10:00 сохранены. Остальные видео не перемещались.
+- 22Python + Node scheduler/auto-refresh PASS; Pages41606819037 SUCCESS. Отчёт reports/research/2026-11-03_AUTO_SCHEDULING_FIX.md. Первый recovery41607117254 фактически применил PUT, но GET ещё устаревал: добавлены bounded READ retries, не повторять upload.
+
 ## 03.11 · GPT — 7/7 одобренных Shorts реально PRIVATE в YouTube
 
 - Реальные IDs: kino_001=xRwwXYXVxSc, kino_002=qYSbQisqEpc, kino_004=wweAPl3P29w, kino_005=ACy21tT97a4, kino_006=sCThiwmigy0, ai_bureaucracy_claude=9Bhnbw5bFeE, ai_news_2026_11_03=oMhef8NQg1s. В Studio семь строк «Ограниченный», «Загружено», без расписания. Kino003 FxIlxGWVCuw уже public подтверждён, не дублирован; пёс не тронут.

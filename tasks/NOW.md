@@ -26,16 +26,6 @@
 
 ## GPT/Codex
 
-### 03.11 — Исправление Авто-расписания · GPT
-Цель: уникальные занятые слоты, неизменяемая дата на каждый запуск и подтверждение YouTube вместо ложного успеха.
-- [x] Найдены stale D overwrite, двойной подсчёт taken+plan, global concurrency отменяет pending jobs; workflow читает mutable latest main date.
-- [x] Владельческие даты зафиксированы только чтением: news manifest05.11 10:00/receipt05.11 08:00Z; sketch manifest03.11 16:00/receipt04.11 14:00Z расходятся. Даты не менять без фактического сверения.
-- [ ] Исправить резервирование/обновление интерфейса, per-video concurrency, expected_publish_at и readback/receipt.
-- [ ] Regression tests + Pages/живой безопасный UI QA, не назначать тестовые даты реальным видео.
-Следующий шаг: локальные текущие исходники /workspace/scratch/2071953dc074/schedule_fix; source snapshots functions store sched:*. После кода сверить Studio и receipts, сохранённые даты владельца не перезаписывать.
-
-
-
 ### 03.11 — Автономный резервный серверный импорт MP4 · GPT
 Цель: без телефона и без обхода защиты сторонних сайтов — прямой импорт разрешённого MP4 с сервера в личный Google Drive.
 Шаги:
