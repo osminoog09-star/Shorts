@@ -1,0 +1,45 @@
+<!doctype html><html lang="ru" data-composition-id="m1lash-popcorn-single" data-fps="30" data-om-signature="off" data-private-no-audio="true"><head><meta charset="utf-8"><style>
+@font-face{font-family:R;src:url('../ai_bureaucracy/film/assets/fonts/rubik-cyrillic-900-normal.woff2');font-weight:900;unicode-range:U+0400-052F,U+2116}
+@font-face{font-family:R;src:url('../ai_bureaucracy/film/assets/fonts/rubik-latin-900-normal.woff2');font-weight:900;unicode-range:U+0000-00FF,U+2000-206F}
+*{box-sizing:border-box}html,body{margin:0;width:1080px;height:1920px;overflow:hidden}#film{width:1080px;height:1920px;position:relative;background:#f4efe2;color:#202e38;font-family:R,Arial;font-weight:900;overflow:hidden}
+#paper{position:absolute;inset:0;background:repeating-linear-gradient(1deg,transparent 0 52px,#202e3809 53px 54px),radial-gradient(ellipse at 20% 20%,#ffffff80,transparent 65%)}
+#label{position:absolute;left:100px;top:76px;font-size:64px;letter-spacing:1px;color:#365968}#title{position:absolute;left:100px;right:160px;top:163px;font-size:76px;line-height:1.06;letter-spacing:-1.5px;overflow-wrap:anywhere;min-height:200px}#line{position:absolute;left:100px;top:399px;height:9px;width:260px;background:#cf562f;border-radius:70%}
+#art{position:absolute;left:35px;top:449px;width:970px;height:600px;transform-origin:50% 60%}svg{width:100%;height:100%;overflow:visible}svg *{stroke-linecap:round;stroke-linejoin:round}svg text{font-family:R,Arial;stroke:none;fill:#202e38;font-weight:900}
+#cap{position:absolute;left:100px;right:160px;top:1100px;min-height:130px;padding:20px;font-size:64px;line-height:1.17;text-align:center;background:#fffdf5;border:4px solid #202e38;border-radius:20px;box-shadow:7px 10px 0 #202e3818}#cap em{color:#137e76;font-style:normal}#credit{position:absolute;left:102px;top:1405px;font-size:38px;color:#365968}#progress{position:absolute;left:0;bottom:0;height:9px;background:#137e76}
+</style><script src="../ai_bureaucracy/film/vendor/gsap.min.js"></script></head><body><div id="film"><div id="paper"></div><div id="label"></div><div id="title" data-om-id="headline"></div><div id="line"></div><div id="art" data-om-id="scene"></div><div id="cap" data-om-id="speech"></div><div id="credit"></div><div id="progress"></div></div><script>
+const I='#202e38',T='#137e76',O='#cf562f',C='#fffdf5',Y='#efbd61',B='#c8e2e0';
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clamp=x=>Math.max(0,Math.min(1,x)),ease=x=>1-Math.pow(1-clamp(x),3);
+const path=(d,fill=C,sw=7)=>`<path d="${d}" fill="${fill}" stroke="${I}" stroke-width="${sw}"/>`;
+const rect=(x,y,w,h,fill=C,r=12)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}" stroke="${I}" stroke-width="7"/>`;
+const text=(x,y,s,size=38,fill=I)=>`<text x="${x}" y="${y}" font-size="${size}" style="fill:${fill}">${esc(s)}</text>`;
+const g=(x,y,s,html,r=0)=>`<g transform="translate(${x} ${y}) scale(${s} ${Math.abs(s)}) rotate(${r})">${html}</g>`;
+function kernel(u){
+ return path('M147 21Q267 4 316 163Q333 262 218 398Q131 440 49 337Q-7 258 28 139Q59 35 147 21Z',Y,12)
+ +path('M154 52Q241 51 268 165Q273 245 203 351Q132 376 75 308Q44 235 69 150Q93 64 154 52Z','#fbe3b0',6)
+ +path('M166 156Q100 230 168 272Q217 230 166 156Z','#66bad6',7)
+ +path('M110 110Q153 89 209 118M95 289Q146 321 210 303','none',5);
+}
+function fluffy(){
+ return [[156,184,80,77],[65,149,70,66],[246,138,72,69],[66,243,67,61],[249,240,70,69],[155,79,70,68]]
+ .map(a=>'<ellipse cx="'+a[0]+'" cy="'+a[1]+'" rx="'+a[2]+'" ry="'+a[3]+'" fill="'+C+'" stroke="'+I+'" stroke-width="8"/>').join('')
+ +'<ellipse cx="155" cy="195" rx="75" ry="69" fill="'+Y+'" stroke="'+I+'" stroke-width="7"/>';
+}
+function saucepan(){
+ return rect(81,122,735,355,'#9eb4c1',36)+rect(46,107,802,61,I,24)+rect(9,193,83,41,I,8)+rect(811,195,84,44,I,8)
+ +path('M225 496L252 561M647 495L671 560','none',16);
+}
+function popcorn(n,u,p){
+ const floor=path('M16 592H974','none',5);
+ if(n===0)return floor+g(275,25,1.02,kernel(u))+g(3,388,.65,saucepan())+g(648,230,.72,path('M15 142Q-32 90 10 42Q48 0 16-33','none',12));
+ if(n===1)return floor+g(262,20,1.3,kernel(u))+g(635,172,.85,path('M10 135Q-36 88 14 38Q46-7 7-30','none',12))+g(81,443,.80,rect(0,0,294,80,B)+text(27,56,'ВОДА',49,T));
+ if(n===2)return floor+g(277,12,1.42+.07*Math.sin(u*4),kernel(u))+g(296,454,1,rect(0,0,433,103,O)+text(37,70,'≈180°C',65,C));
+ if(n===3)return floor+g(284-120*p,59-115*p,1.1+p*.80,fluffy(),p*15)+g(639,334,.73,text(0,0,'ХЛОП!',85,O),-12);
+ if(n===4)return floor+g(289,104-164*Math.sin(Math.PI*p),1.22,fluffy(),p*35)+g(365,382,.83,path('M42 3L7 184L232 184','none',19))
+ +g(33,486,.80,rect(0,0,475,81,Y)+text(14,56,'КРАХМАЛ-ПРУЖИНА',39));
+ return floor+g(45,322,.99,saucepan())+g(81,89,.48,fluffy(),24)+g(340,29,.56,fluffy(),-9)+g(613,79,.49,fluffy(),18);
+}
+
+let DATA=null;window.setTimeline=d=>{DATA=d;window.__timelines={};const tl=gsap.timeline({paused:true});tl.to({}, {duration:d.total});window.__timelines['m1lash-popcorn-single']=tl;};
+window.seek=t=>{const d=DATA;let n=d.cuts.findIndex((v,i)=>i<6&&t>=v&&t<d.cuts[i+1]);if(n<0)n=5;const local=t-d.cuts[n],p=clamp(local/(d.cuts[n+1]-d.cuts[n]));const themes={popcorn};const bg=['#f4efe2','#e7efea','#f9e7d8','#e1ecef','#f6edda','#ebeee4'];document.getElementById('film').style.background=bg[n];document.getElementById('label').textContent='M1lash · '+('НАУКА');document.getElementById('title').textContent=d.headlines[n];document.getElementById('art').innerHTML=`<svg viewBox="0 0 1000 660"><defs><filter id="s"><feDropShadow dx="5" dy="10" stdDeviation="5" flood-color="#202e38" flood-opacity=".1"/></filter></defs><g filter="url(#s)">${themes[d.theme](n,local,p)}</g></svg>`;document.getElementById('art').style.transform=`translate(${Math.sin(local*.8)*3}px,${Math.cos(local*.7)*3}px) scale(${1+p*.026})`;const c=d.caps.find(c=>t>=c.start&&t<c.end);document.getElementById('cap').innerHTML=c?c.words.map((w,i)=>i===0?'<em>'+esc(w)+'</em>':esc(w)).join(' '):'';document.getElementById('cap').style.opacity=c?'1':'0';document.getElementById('credit').textContent='';document.getElementById('progress').style.width=100*t/d.total+'%';window.__timelines['m1lash-popcorn-single'].seek(t);return{scene:n,time:t};};
+</script></body></html>
