@@ -1,0 +1,261 @@
+{
+  "version": "V21",
+  "stage": "RENDER_GRAPHICS_ONLY",
+  "contains_movie_frames": false,
+  "contains_movie_audio": false,
+  "notes": "28 deterministic separate Three.js clips for local private V20 edit. Does not include film. Old REV19 timestamps do NOT apply to this V20 cut.",
+  "shots": [
+    {
+      "id": "v21_01",
+      "index": 0,
+      "chapter": "d01",
+      "chapter_title": "ВЫБОР ИЛИ ПРИКАЗ?",
+      "scene_id": 0,
+      "creative_action": "Монета ударяется о стойку",
+      "seconds": 7
+    },
+    {
+      "id": "v21_02",
+      "index": 1,
+      "chapter": "d01",
+      "chapter_title": "ВЫБОР ИЛИ ПРИКАЗ?",
+      "scene_id": 1,
+      "creative_action": "Угроза рождается в разговоре",
+      "seconds": 7
+    },
+    {
+      "id": "v21_03",
+      "index": 2,
+      "chapter": "d02",
+      "chapter_title": "КТО ЗАДАЁТ ВОПРОСЫ",
+      "scene_id": 3,
+      "creative_action": "Разговор становится неравным",
+      "seconds": 7
+    },
+    {
+      "id": "v21_04",
+      "index": 3,
+      "chapter": "d02",
+      "chapter_title": "КТО ЗАДАЁТ ВОПРОСЫ",
+      "scene_id": 0,
+      "creative_action": "Монета теперь диктует условия",
+      "seconds": 7
+    },
+    {
+      "id": "v21_05",
+      "index": 4,
+      "chapter": "d02",
+      "chapter_title": "КТО ЗАДАЁТ ВОПРОСЫ",
+      "scene_id": 4,
+      "creative_action": "Предложение не спасает",
+      "seconds": 7
+    },
+    {
+      "id": "v21_06",
+      "index": 5,
+      "chapter": "d03",
+      "chapter_title": "МОНЕТА НЕ РЕШАЕТ",
+      "scene_id": 1,
+      "creative_action": "Выход из разговора закрыт",
+      "seconds": 7
+    },
+    {
+      "id": "v21_07",
+      "index": 6,
+      "chapter": "d03",
+      "chapter_title": "МОНЕТА НЕ РЕШАЕТ",
+      "scene_id": 0,
+      "creative_action": "Правила назначает человек",
+      "seconds": 7
+    },
+    {
+      "id": "v21_08",
+      "index": 7,
+      "chapter": "d03",
+      "chapter_title": "МОНЕТА НЕ РЕШАЕТ",
+      "scene_id": 3,
+      "creative_action": "Пустой стул — ложная свобода",
+      "seconds": 7
+    },
+    {
+      "id": "v21_09",
+      "index": 8,
+      "chapter": "d04",
+      "chapter_title": "СКОЛЬКО СТОИТ ОТКАЗ?",
+      "scene_id": 0,
+      "creative_action": "У монеты две стороны",
+      "seconds": 7
+    },
+    {
+      "id": "v21_10",
+      "index": 9,
+      "chapter": "d04",
+      "chapter_title": "СКОЛЬКО СТОИТ ОТКАЗ?",
+      "scene_id": 3,
+      "creative_action": "Но можно отвергнуть саму игру",
+      "seconds": 7
+    },
+    {
+      "id": "v21_11",
+      "index": 10,
+      "chapter": "d05",
+      "chapter_title": "НЕТ ОБЩИХ ПРАВИЛ",
+      "scene_id": 0,
+      "creative_action": "Кто бросает монету?",
+      "seconds": 7
+    },
+    {
+      "id": "v21_12",
+      "index": 11,
+      "chapter": "d05",
+      "chapter_title": "НЕТ ОБЩИХ ПРАВИЛ",
+      "scene_id": 4,
+      "creative_action": "Карсон пытается заплатить",
+      "seconds": 7
+    },
+    {
+      "id": "v21_13",
+      "index": 12,
+      "chapter": "d05",
+      "chapter_title": "НЕТ ОБЩИХ ПРАВИЛ",
+      "scene_id": 4,
+      "creative_action": "Чемодан остаётся невостребованным",
+      "seconds": 7
+    },
+    {
+      "id": "v21_14",
+      "index": 13,
+      "chapter": "d06",
+      "chapter_title": "ИНСТРУМЕНТ И ВЕЖЛИВОСТЬ",
+      "scene_id": 2,
+      "creative_action": "Странный холодный прибор",
+      "seconds": 7
+    },
+    {
+      "id": "v21_15",
+      "index": 14,
+      "chapter": "d06",
+      "chapter_title": "ИНСТРУМЕНТ И ВЕЖЛИВОСТЬ",
+      "scene_id": 5,
+      "creative_action": "Обычная дорога. Чужие правила",
+      "seconds": 7
+    },
+    {
+      "id": "v21_16",
+      "index": 15,
+      "chapter": "d07",
+      "chapter_title": "ХОЛОДНАЯ ПРОЦЕДУРА",
+      "scene_id": 5,
+      "creative_action": "Злодей физически уязвим",
+      "seconds": 7
+    },
+    {
+      "id": "v21_17",
+      "index": 16,
+      "chapter": "d07",
+      "chapter_title": "ХОЛОДНАЯ ПРОЦЕДУРА",
+      "scene_id": 1,
+      "creative_action": "Он сам принимает решения",
+      "seconds": 7
+    },
+    {
+      "id": "v21_18",
+      "index": 17,
+      "chapter": "d08",
+      "chapter_title": "ТИШИНА В ГОСТИНИЦЕ",
+      "scene_id": 1,
+      "creative_action": "Полоса света под дверью",
+      "seconds": 7
+    },
+    {
+      "id": "v21_19",
+      "index": 18,
+      "chapter": "d08",
+      "chapter_title": "ТИШИНА В ГОСТИНИЦЕ",
+      "scene_id": 1,
+      "creative_action": "Кто на другом конце коридора?",
+      "seconds": 7
+    },
+    {
+      "id": "v21_20",
+      "index": 19,
+      "chapter": "d08",
+      "chapter_title": "ТИШИНА В ГОСТИНИЦЕ",
+      "scene_id": 3,
+      "creative_action": "Свет и тень вместо ответа",
+      "seconds": 7
+    },
+    {
+      "id": "v21_21",
+      "index": 20,
+      "chapter": "d09",
+      "chapter_title": "ЗВУК КАК УГРОЗА",
+      "scene_id": 2,
+      "creative_action": "Сигнал меняет ожидание",
+      "seconds": 7
+    },
+    {
+      "id": "v21_22",
+      "index": 21,
+      "chapter": "d09",
+      "chapter_title": "ЗВУК КАК УГРОЗА",
+      "scene_id": 1,
+      "creative_action": "Один шорох звучит громче",
+      "seconds": 7
+    },
+    {
+      "id": "v21_23",
+      "index": 22,
+      "chapter": "d10",
+      "chapter_title": "КАРЛА НЕ ИГРАЕТ",
+      "scene_id": 3,
+      "creative_action": "Карла отодвигает руку",
+      "seconds": 7
+    },
+    {
+      "id": "v21_24",
+      "index": 23,
+      "chapter": "d10",
+      "chapter_title": "КАРЛА НЕ ИГРАЕТ",
+      "scene_id": 0,
+      "creative_action": "Случай не снимает вину",
+      "seconds": 7
+    },
+    {
+      "id": "v21_25",
+      "index": 24,
+      "chapter": "d11",
+      "chapter_title": "ОТВЕТСТВЕННОСТЬ",
+      "scene_id": 3,
+      "creative_action": "После отказа — пустое место",
+      "seconds": 7
+    },
+    {
+      "id": "v21_26",
+      "index": 25,
+      "chapter": "d11",
+      "chapter_title": "ОТВЕТСТВЕННОСТЬ",
+      "scene_id": 5,
+      "creative_action": "Авария показывает уязвимость",
+      "seconds": 7
+    },
+    {
+      "id": "v21_27",
+      "index": 26,
+      "chapter": "d12",
+      "chapter_title": "ПОЧЕМУ НЕ ДОГОВОРИТЬСЯ",
+      "scene_id": 4,
+      "creative_action": "Договору нужны общие правила",
+      "seconds": 7
+    },
+    {
+      "id": "v21_28",
+      "index": 27,
+      "chapter": "d12",
+      "chapter_title": "ПОЧЕМУ НЕ ДОГОВОРИТЬСЯ",
+      "scene_id": 0,
+      "creative_action": "Кто здесь действительно выбирает?",
+      "seconds": 7
+    }
+  ]
+}
