@@ -234,7 +234,7 @@
       "mp4": "videos/ai_vacation_202611_v1.mp4",
       "publish_md": "shorts/ai_vacation_202611/PUBLISH.md",
       "title": "ИИ согласовал отпуск. Отдыхать будет он #shorts",
-      "note": "Финальный MP4 собран; check.py/look.py без FAIL. Фактический ASR запущен (run 41635846789), личный слух и разрешение владельца ещё не подтверждены. Нет YouTube ID и даты, в «На проверке» не показывать.",
+      "note": "MP4 собран; decode/check.py/look.py без FAIL. ASR фактического финала: small run 41636228754 SUCCESS, medium run 41637088642 SUCCESS; явных пропусков текста нет. Личное прослушивание владельца ещё не подтверждено. YouTube ID/даты нет; не показывать как приватно загруженный и не назначать публикацию.",
       "production_file": "shorts/next_four_20261103/TREATMENT.md",
       "owner_requested_on": "2026-11-03"
     },
@@ -248,7 +248,7 @@
       "mp4": "videos/ai_fridge_202611_v1.mp4",
       "publish_md": "shorts/ai_fridge_202611/PUBLISH.md",
       "title": "Холодильник с ИИ взял мою диету под контроль #shorts",
-      "note": "Финальный MP4 собран; check.py/look.py без FAIL. Фактический ASR запущен (run 41635846789), личный слух и разрешение владельца ещё не подтверждены. Нет YouTube ID и даты, в «На проверке» не показывать.",
+      "note": "MP4 собран; decode/check.py/look.py без FAIL. ASR фактического финала: small run 41636228754 SUCCESS; явных пропусков текста нет. Личное прослушивание владельца ещё не подтверждено. YouTube ID/даты нет; не показывать как приватно загруженный и не назначать публикацию.",
       "production_file": "shorts/next_four_20261103/TREATMENT.md",
       "owner_requested_on": "2026-11-03"
     },
@@ -262,7 +262,7 @@
       "mp4": "videos/science_orbit_202611_v1.mp4",
       "publish_md": "shorts/science_orbit_202611/PUBLISH.md",
       "title": "На МКС почти земная гравитация. Почему все летают? #shorts",
-      "note": "Финальный MP4 собран; check.py/look.py без FAIL. Фактический ASR запущен (run 41635846789), личный слух и разрешение владельца ещё не подтверждены. Нет YouTube ID и даты, в «На проверке» не показывать.",
+      "note": "MP4 собран; decode/check.py/look.py без FAIL. ASR фактического финала: small run 41636228754 SUCCESS; явных пропусков текста нет. Личное прослушивание владельца ещё не подтверждено. YouTube ID/даты нет; не показывать как приватно загруженный и не назначать публикацию.",
       "production_file": "shorts/next_four_20261103/TREATMENT.md",
       "owner_requested_on": "2026-11-03"
     },
@@ -276,7 +276,7 @@
       "mp4": "videos/science_mirror_202611_v1.mp4",
       "publish_md": "shorts/science_mirror_202611/PUBLISH.md",
       "title": "Зеркало не меняет лево и право. Проверь рукой #shorts",
-      "note": "Финальный MP4 собран; check.py/look.py без FAIL. Фактический ASR запущен (run 41635846789), личный слух и разрешение владельца ещё не подтверждены. Нет YouTube ID и даты, в «На проверке» не показывать.",
+      "note": "MP4 собран; decode/check.py/look.py без FAIL. ASR фактического финала: small run 41636228754 SUCCESS; явных пропусков текста нет. Личное прослушивание владельца ещё не подтверждено. YouTube ID/даты нет; не показывать как приватно загруженный и не назначать публикацию.",
       "production_file": "shorts/next_four_20261103/TREATMENT.md",
       "owner_requested_on": "2026-11-03"
     }
