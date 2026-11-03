@@ -6,6 +6,6 @@
   "preflight_only": true,
   "save_review_mp4": false,
   "no_youtube_upload": true,
-  "note": "Six corrected stills: two-word captions in a single panel, no chart triangle, LED-only dimming; no TTS/spend.",
-  "preflight_revision": 2
+  "note": "Same corrected artwork; save six JPEGs/contact to Git for inspection while chat executor is offline. No TTS/spend.",
+  "preflight_revision": 3
 }
