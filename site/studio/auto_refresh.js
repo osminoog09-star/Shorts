@@ -112,6 +112,25 @@
     const download = document.querySelector("[data-hd-download]");
     if (download) download.disabled = !(drive.connected && s.status === "ok" &&
       Object.values(s.available || {}).includes("available"));
+    const direct = D?.direct_movie_status || {};
+    const directState = document.getElementById("direct-movie-state");
+    const directRun = window.__m1LatestDirectRun;
+    const directTime = Math.max(timeMs(directRun?.created_at),
+                                timeMs(window.__m1DirectRequestedAt));
+    const pendingDirect = directTime > timeMs(direct.checked_at) &&
+      Date.now()-directTime < 2*3600000;
+    if (directState) directState.textContent = pendingDirect &&
+      ["in_progress","queued","pending"].includes(directRun?.status)
+      ? "GitHub Actions #" + directRun.id + ": " +
+        (directRun.status === "in_progress" ? "проверка или загрузка" : "в очереди")
+      : pendingDirect ? "Задача запущена; ожидаем результат GitHub Actions"
+      : direct.status === "ok"
+        ? direct.drive_uploaded ? "Полный MP4 проверен и загружен в Drive"
+                                : "Прямая ссылка доступна (разрешение пока не проверено)"
+      : direct.status === "error" ? "Ошибка: " + (direct.message || direct.error_code || "см. Actions")
+      : "Серверный импорт ещё не запускался";
+    const directUpload = document.querySelector("[data-media-server-upload]");
+    if (directUpload) directUpload.disabled = !drive.connected;
   }
   function safeToRender() {
     if (document.getElementById("sheet")?.classList.contains("open")) return false;
@@ -243,7 +262,8 @@
     statusBusy = true;
     try {
       const pairs = [["drive_auth","drive_auth_status.json"],
-                     ["hdrezka_intake","hdrezka_status.json"]];
+                     ["hdrezka_intake","hdrezka_status.json"],
+                     ["direct_movie_status","direct_movie_status.json"]];
       let changed = false;
       const results = await Promise.allSettled(pairs.map(async ([key, name]) => {
         const response = await fetch(STATUS_BASE + name + "?t=" + Date.now(), {cache:"no-store"});
@@ -268,16 +288,20 @@
         typeof gh !== "function" || typeof tok !== "function" || !tok()) return;
     runBusy = true;
     try {
-      const data = await gh("/actions/workflows/hdrezka-intake.yml/runs?event=workflow_dispatch&per_page=6");
-      const runs = (data?.workflow_runs || []).filter(r => r.head_branch === "main");
-      const run = runs.find(r => r.status === "in_progress")
-        || runs.find(r => r.status === "queued" || r.status === "pending")
-        || runs[0];
-      if (!run) return;
-      const prev = window.__m1LatestIntakeRun;
-      if (!prev || run.id !== prev.id || run.status !== prev.status || run.conclusion !== prev.conclusion) {
-        window.__m1LatestIntakeRun = {id:run.id,status:run.status,conclusion:run.conclusion,created_at:run.created_at};
-        patchClipStatus();
+      for (const [workflow, key] of [
+        ["hdrezka-intake.yml", "__m1LatestIntakeRun"],
+        ["direct-movie-intake.yml", "__m1LatestDirectRun"]]) {
+        const data = await gh("/actions/workflows/" + workflow + "/runs?event=workflow_dispatch&per_page=6");
+        const runs = (data?.workflow_runs || []).filter(r => r.head_branch === "main");
+        const run = runs.find(r => r.status === "in_progress")
+          || runs.find(r => r.status === "queued" || r.status === "pending")
+          || runs[0];
+        if (!run) continue;
+        const prev = window[key];
+        if (!prev || run.id !== prev.id || run.status !== prev.status || run.conclusion !== prev.conclusion) {
+          window[key] = {id:run.id,status:run.status,conclusion:run.conclusion,created_at:run.created_at};
+          patchClipStatus();
+        }
       }
     } catch (_) {
       // OAuth/permissions errors must not break the Studio or erase known statuses.
