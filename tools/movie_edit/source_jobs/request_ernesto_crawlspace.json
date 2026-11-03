@@ -1,7 +1,10 @@
 {
-  "purpose": "Shorts по заявке зрителя @ErnestoMarsel: смех Уолтера в подвале (S4E11), оригинальная дорожка + русские субтитры (решение Дениса 30.10)",
-  "rights_note": "Лицензированный клип Movieclips (© Sony); риск Content ID принят Денисом (AGENTS §8)",
+  "purpose": "Референс заявки @ErnestoMarsel: финальный смех в подвале. Монтаж только из настоящего русского дубляжа (AGENTS§8/решение31.10), не EN+RUтитры. Имеющийся22с отрывок не содержит нужного смеха; SOURCE_INCOMPLETE. Ссылку YouTube повторно не скачивать: известный bot-check, обход запрещён.",
+  "rights_note": "Официально опубликованный Movieclips/Sony клип — референс, а не лицензия M1lash на повторную публикацию и не подтверждение русского звука. Риск ContentID принят владельцем; полный пригодный RU source пока не получен.",
   "sources": [
-    {"id": "crawlspace_movieclips", "url": "https://www.youtube.com/watch?v=ZRp77ae7tkQ"}
+    {
+      "id": "crawlspace_movieclips",
+      "url": "https://www.youtube.com/watch?v=ZRp77ae7tkQ"
+    }
   ]
 }
