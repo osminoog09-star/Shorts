@@ -73,17 +73,6 @@
 Где промежуточное: shorts/science_popcorn_20261104/, jobs/motion/popcorn_solo_stills_20261103.json, частная папка /mnt/data/m1lash_popcorn_private/.
 Ждёт владельца: только оценка финального MP4, не разрешение на технические этапы.
 
-### 03.11–04.11 — Кофемашина V2: русские окончания и завершённые рисунки · GPT
-Цель: PRIVATE законченный MP4 с исправлением речи/рисунков и approved Denisv3music80 концовкой. Публикации нет.
-- [x] 04.11 восстановлены private reference/outro из Library, новый чистый coffee_repo/, установлен torchCPU/Qwen/Whisper; сеть200, фактически скачаны и запущены1.7BBaseICL.
-- [x] 6WAV с собственным голосом изготовлены, independentSmall/Base и контрольключевыхокончаний. Четыре прошлыхнеудачныхметода не выдавать зафинал. Частный аудиочекпоинт+код+reference сохранён libfile_e078c346c3748191bbe479c5b2d68cf6 (версия1 содержитвсе6WAV).
-- [x] Рисунки6стопов и7.5с unpluggingpilot реально просмотрены, исправленпол/мебель/поза. Actions41711781228/41712279721 SUCCESS.
-- [x] Полный silent204 run41737663183 SUCCESS, **НЕфинальный**: обнаружен caption0.52с и неясное «Мне» в3реплике.
-- [ ] В coffee_restore/retry3.log пересинтезируется целая3фраза «На работу через десять минут! А она предлагает платное пробуждение.»; затем qa_align.py и repair_caption_holds.py (минимум0.8с).
-- [ ] Запустить full205 по новым timeline/story, скачатьMP4, выполнить coffee_restore/finish.py, officialcheck/look/decode +ASRфинала, сохранитьfinal иобновитьprivateproject.
-Следующий шаг: /workspace/scratch/2071953dc074/coffee_restore/ (модельmodel/, аудиоvoice/,reference,sketchscripts), Python ../coffee_env/bin/python; repo ../coffee_repo/. Дождаться retry3→qa, repair_caption_holds.py→скопироватьtimeline/story в shorts/coffee_voice_test_v2_20261103/→jobs/motion/coffee_voice_test_fast.json full revision205, push. Все собственные голоса только приватно, наActions только немаяграфика.
-Ждёт Дениса: нет, исходные исправления авторизованы; после конечногоMP4 только личныйreview звука/публикации.
-
 ### 03.11 — Очередь 4 новых Shorts → сайт M1lash Studio → аудит · GPT
 Цель: исполнить новое решение владельца строго по очереди: (1) четыре НОВЫХ качественных Shorts, не дубликаты; (2) улучшения сайта по live-progress/антидублям; (3) анализ YouTube. Все изменения фиксировать отдельным коммитом после каждого шага, вести NOW + HANDOFF.
 - [x] Проверены текущие NOW, AGENTS.md, Studio SKILL, HANDOFF.md, queue; уже залитые приватно 4 Shorts (ai_vacation/ai_fridge/science_orbit/science_mirror), запланированные kino_001…006 и ai_news — НЕ дублировать/НЕ перезаливать.
