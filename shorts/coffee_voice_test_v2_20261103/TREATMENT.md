@@ -16,4 +16,6 @@
 
 Порядок:6настоящихстопов→глазами→короткийmotionпилотсложногофрагмента→fullsilentвизуал→локальныйголос+approvedDenisv3music80outro→check/look/decode. Никаких частныхreference/WAV/embedding вpublicGit/Actions.
 
-04.11: после runtime reset6голосовыхблоков восстановлены локально1.7BICL и сохраненыприватно, actualbody38.340с; новыеcaptionтаймкодыизфактическойречи. НаActions толькоsilentfull.
+04.11: после runtime reset6голосовыхблоков восстановлены локально1.7BICL и сохраненыприватно, actualbody37.780с; новыеcaptionтаймкодыизфактическойречи. НаActions толькоsilentfull.
+
+Full205:3реплика «На работу черездесятьминут…» пересоздана целиком, подтвержденаsmall/base; короткийcaptionудерживается≥0.8с, сдвинута одна границана0.28с.
