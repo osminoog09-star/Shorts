@@ -13,7 +13,7 @@
 <script src="./three.min.js"></script>
 <script>
 "use strict";
-let renderer,scene,camera,clock=0, mil,aks,badge,desk,chair,computer,phone,printer,forms=[],checks=[],coin,meeting=[],socket,wire;
+let renderer,scene,camera,clock=0, mil,aks,badge,desk,chair,computer,phone,printer,forms=[],checks=[],coin,meeting=[],socket,wire,xpBits=[],holo;
 const W=1080,H=1920, PI=Math.PI;
 function mat(c,r=.55,m=0){return new THREE.MeshStandardMaterial({color:c,roughness:r,metalness:m})}
 const M={wall:mat(0x182239,.83),floor:mat(0x1c2c43,.7),desk:mat(0x38526a,.4),deskEdge:mat(0xa7b3c6,.32,.5),skin:mat(0xd8a387,.79),hair:mat(0x26232c,.9),jacket:mat(0x278e99,.69),jacketDark:mat(0x174e63,.7),trousers:mat(0x333a4d,.83),shoes:mat(0x111d2c,.52),shirt:mat(0xedbb77,.86),steel:mat(0x8993ba,.25,.8),brass:mat(0xc9a063,.31,.65),navy:mat(0x222d56,.28,.26),lilac:mat(0x6255ba,.29,.4),eyes:mat(0x8cecff,.14,.6),ink:mat(0x13182a,.65),white:mat(0xf5f1e9,.4),paper:mat(0xe5ebf2,.8),red:mat(0xf45562,.42),green:mat(0x76e0bd,.5)};
@@ -32,13 +32,16 @@ function human(){
  box(.1,1.46,.09,-.17,1.75,.45,M.jacketDark,root);
  box(.09,1.46,.09,.18,1.75,.45,M.jacketDark,root);
  for(let s of [-1,1]){
-   // Pivoting shoulders: sleeves and hands follow the actual acting gesture.
-   const arm=new THREE.Group();arm.position.set(s*.70,2.30,.05);root.add(arm);
-   joint([0,0,0],[s*.28,-.78,.14],.21,M.jacket,arm);
-   joint([s*.28,-.78,.14],[s*.14,-1.28,.34],.145,M.skin,arm);
-   ico(.18,s*.14,-1.33,.34,M.skin,arm,1);
-   box(.13,.07,.11,s*.04,-.07,.32,M.brass,arm);
-   arms.push(arm);
+   // Explicit clavicle -> upper-arm -> elbow -> forearm -> palm, keyed independently.
+   const shoulder=new THREE.Group();shoulder.position.set(s*.68,2.29,.03);root.add(shoulder);
+   joint([0,0,0],[s*.17,-.65,.10],.205,M.jacket,shoulder);
+   const elbow=new THREE.Group();elbow.position.set(s*.17,-.65,.10);shoulder.add(elbow);
+   ico(.17,0,0,0,M.jacketDark,elbow,1);
+   joint([0,0,0],[-s*.10,-.47,.20],.127,M.skin,elbow);
+   const hand=ico(.16,-s*.10,-.53,.21,M.skin,elbow,2);
+   hand.scale.set(1.02,1.17,.85);
+   box(.24,.09,.24,-s*.035,-.035,.04,M.jacketDark,elbow);
+   arms.push({shoulder,elbow,hand,side:s});
  }
  const head=new THREE.Group();head.position.set(0,3.18,.06);root.add(head);const brows=[];
  ico(.77,0,0,0,M.skin,head,2);
@@ -52,6 +55,7 @@ function human(){
    ico(.16,s*.70,-.05,0,M.skin,head,1);
  }
  const mouth=box(.31,.055,.09,0,-.34,.69,M.ink,head);
+ for(const s of [-1,1]){const cheek=ico(.105,s*.47,-.22,.59,mat(0xb98277,.82),head,1);cheek.scale.set(1.2,.46,.3)}
  return {root,head,mouth,hair,brows,arms};
 }
 function ai(){
@@ -141,10 +145,16 @@ function seek(t){
  const startled=s===0?ease(1.20,2.05,dt)*(1-.38*ease(5.9,6.5,dt)):0;
  const protests=s===0?ease(2.9,3.6,dt)*(1-ease(4.85,5.65,dt)):0;
  // Keyframed acting: anticipation -> shocked raise -> pointing -> defeated slump.
- mil.arms[0].rotation.z=-.08-1.08*startled+.26*protests;
- mil.arms[1].rotation.z=.08+.90*startled+.52*protests;
- mil.arms[0].rotation.x=-.22*startled;
- mil.arms[1].rotation.x=-.32*startled+.15*Math.sin(t*6)*protests;
+ // Rounded hand motion stays beside the torso even in a close-up.
+ // Recompute every value for arbitrary seek(t): no accumulated rotation.
+ const settle=ease(5.0,6.15,dt);
+ mil.arms.forEach(a=>{
+   const v=a.side,base=s===0?startled:.20;
+   a.shoulder.rotation.set(-.18*base,0,v*(.06+.32*base)-v*.09*protests);
+   a.elbow.rotation.set(-.24*base,0,-v*(.16+.80*base+.15*protests));
+   a.hand.rotation.set(0,0,.06*Math.sin(t*6));
+   if(s===0){a.shoulder.rotation.z*=1-.60*settle;a.elbow.rotation.z*=1-.35*settle}
+ });
  mil.head.rotation.z=(s===0?-.12-.12*startled:s===2?.08:s===4?.10:0)+Math.sin(t*3.4)*.035;
  mil.head.rotation.y=s===0?-.38*ease(1.2,2.45,dt)*(1-ease(4.8,5.7,dt)):0;
  mil.brows.forEach((br,i)=>{br.rotation.z=(i===0?-1:1)*(s===1?.30:s===4?-.32:s===5?.40:.12)});
