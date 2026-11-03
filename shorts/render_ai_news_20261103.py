@@ -60,7 +60,20 @@ def timeline(actual):
             pcm = np.zeros(round(RATE * duration), dtype=np.float32)
         segments.append({"id": line["id"], "start": at, "end": at + duration,
                          "text": line["text"], "voice": "ru-RU-DmitryNeural"})
-        groups = [words[j:j + 2] for j in range(0, len(words), 2)]
+        pairs = [words[j:j + 2] for j in range(0, len(words), 2)]
+        groups, cursor = [], 0
+        while cursor < len(pairs):
+            group = list(pairs[cursor])
+            cursor += 1
+            end = pairs[cursor][0]["start"] if cursor < len(pairs) else duration
+            while end - group[0]["start"] < .8 and cursor < len(pairs):
+                group.extend(pairs[cursor])
+                cursor += 1
+                end = pairs[cursor][0]["start"] if cursor < len(pairs) else duration
+            if end - group[0]["start"] < .8 and groups:
+                groups[-1].extend(group)
+            else:
+                groups.append(group)
         for j, group in enumerate(groups):
             start = at + max(0, group[0]["start"])
             end = at + (groups[j + 1][0]["start"] if j + 1 < len(groups) else duration)
@@ -120,7 +133,7 @@ def contacts(images, name):
     board.save(WORK / name, quality=78)
 
 
-def capture(data, frame_window=None):
+def capture(data, frame_window=None, caption_only=False):
     images = []
     chrome = shutil.which("google-chrome") or shutil.which("chromium")
     with sync_playwright() as p:
@@ -132,6 +145,8 @@ def capture(data, frame_window=None):
         page.goto((PROJECT / "film/index.html").as_uri())
         page.evaluate("() => document.fonts.ready")
         page.evaluate("data => window.setTimeline(data)", data)
+        if min(c["end"] - c["start"] for c in data["caps"]) < .799:
+            raise RuntimeError("NO-GO: a caption is shorter than the 0.8-second reading gate")
         layout = []
         for cap in data["caps"]:
             when = (cap["start"] + cap["end"]) / 2
@@ -167,7 +182,8 @@ def capture(data, frame_window=None):
             began = time.monotonic()
             for i in range(total):
                 page.evaluate("t => window.seek(t)", start + i / 30)
-                page.screenshot(path=str(frames / f"{i:05d}.jpg"), type="jpeg", quality=91)
+                shot = {"x": 90, "y": 1090, "width": 850, "height": 254} if caption_only else None
+                page.screenshot(path=str(frames / f"{i:05d}.jpg"), type="jpeg", quality=91, clip=shot)
                 if i % 100 == 0:
                     print("FRAME", i, "/", total, "elapsed", round(time.monotonic() - began, 1), flush=True)
         browser.close()
@@ -185,6 +201,38 @@ def encode(duration, start, output):
          str(output)])
     run(["ffmpeg", "-v", "error", "-xerror", "-i", str(output), "-f", "null", "-"])
 
+
+
+
+def encode_caption_repair(duration, body):
+    """Replace only the 850x254 caption area; retain the existing scene footage."""
+    import hashlib
+    source = ROOT / "videos/m1lash_ai_news_20261103_ru.mp4"
+    if not source.is_file():
+        raise RuntimeError("Caption repair needs the existing full master from the previous successful run")
+    source_sha = hashlib.sha256(source.read_bytes()).hexdigest()
+    overlay = WORK / "caption_overlay.mp4"
+    run(["ffmpeg", "-v", "error", "-y", "-framerate", "30", "-i",
+         str(WORK / "frames/%05d.jpg"), "-t", str(duration), "-vf",
+         "scale=in_color_matrix=bt601:out_color_matrix=bt709:out_range=tv",
+         "-c:v", "libx264", "-preset", "fast", "-crf", "17", "-threads", "2",
+         "-pix_fmt", "yuv420p", "-r", "30", "-colorspace", "bt709",
+         "-color_primaries", "bt709", "-color_trc", "bt709", str(overlay)])
+    run(["ffmpeg", "-v", "error", "-y", "-i", str(source), "-i", str(overlay),
+         "-i", str(WORK / "narration_score.wav"), "-filter_complex_threads", "2",
+         "-filter_complex", "[0:v][1:v]overlay=90:1090:shortest=1[v]",
+         "-map", "[v]", "-map", "2:a", "-t", str(duration),
+         "-c:v", "libx264", "-preset", "fast", "-crf", "18", "-threads", "2",
+         "-pix_fmt", "yuv420p", "-r", "30", "-colorspace", "bt709",
+         "-color_primaries", "bt709", "-color_trc", "bt709",
+         "-c:a", "aac", "-b:a", "320k", "-ar", "48000", "-ac", "2", str(body)])
+    (WORK / "caption_repair.json").write_text(json.dumps({
+        "source_master_sha256": source_sha, "overlay_rectangle": [90, 1090, 850, 254],
+        "body_seconds": duration, "minimum_caption_seconds":
+            min(c["end"] - c["start"] for c in DATA_FOR_REPAIR["caps"]),
+        "narration_source": "same cached Edge MP3s; deterministic original score rebuilt",
+        "outro_method": "official assembler, never overlay the approved outro"
+    }, indent=2))
 
 
 def save_remote_evidence(data):
@@ -213,7 +261,7 @@ def save_remote_evidence(data):
         "personal_listening": "NOT_VERIFIED", "publish_date": None
     }, ensure_ascii=False, indent=2) + "\n")
     selected.append(report)
-    for name in ["check.json", "assembly.json", "pilot_asr.json", "final_asr.json", "layout_gate.json"]:
+    for name in ["check.json", "assembly.json", "pilot_asr.json", "final_asr.json", "layout_gate.json", "caption_repair.json"]:
         source = WORK / name
         if source.is_file():
             target = ROOT / f"reports/research/2026-11-03_NEWS_{MODE.upper()}_{name}"
@@ -282,9 +330,13 @@ elif MODE in ("pilot", "full"):
         speech_evidence(out, "pilot_asr.json")
     else:
         duration = math.ceil(data["total"] * 30) / 30
-        capture(data, (0, duration))
+        DATA_FOR_REPAIR = data
+        capture(data, (0, duration), caption_only=bool(SPEC.get("caption_only")))
         body = WORK / "body.mp4"
-        encode(duration, 0, body)
+        if SPEC.get("caption_only"):
+            encode_caption_repair(duration, body)
+        else:
+            encode(duration, 0, body)
         out = ROOT / "videos/m1lash_ai_news_20261103_ru.mp4"
         run([sys.executable, str(ROOT / "tools/assemble_with_outro.py"), str(body),
              "-o", str(out), "--audio-bitrate", "320k", "--preset", "fast"])
