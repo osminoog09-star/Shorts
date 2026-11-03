@@ -167,6 +167,79 @@ def encode(duration, start, output):
     run(["ffmpeg", "-v", "error", "-xerror", "-i", str(output), "-f", "null", "-"])
 
 
+
+def save_remote_evidence(data):
+    """Commit small inspectable QA assets; works when the chat executor is offline."""
+    from PIL import Image
+    qa = ROOT / "reports/research/qa"
+    qa.mkdir(parents=True, exist_ok=True)
+    selected = []
+    for source in sorted(WORK.glob("still_*.jpg")):
+        name = f"news_20261103_{MODE}_{source.name}"
+        target = qa / name
+        im = Image.open(source)
+        im.resize((720, 1280)).save(target, quality=66, optimize=True)
+        selected.append(target)
+    for source in [WORK / "stills_contact.jpg", WORK / "pilot_look.jpg",
+                   WORK / "final_look.jpg", WORK / "caption_contact.jpg"]:
+        if source.is_file():
+            target = qa / f"news_20261103_{MODE}_{source.name}"
+            shutil.copy2(source, target)
+            selected.append(target)
+    report = ROOT / f"reports/research/2026-11-03_NEWS_{MODE.upper()}_QA.json"
+    report.write_text(json.dumps({
+        "mode": MODE, "run_id": os.environ.get("GITHUB_RUN_ID"),
+        "body_seconds": data["total"], "actual_audio": data["actual_audio"],
+        "timeline": data, "visual_review": "PENDING_MANUAL_INSPECTION",
+        "personal_listening": "NOT_VERIFIED", "publish_date": None
+    }, ensure_ascii=False, indent=2) + "\n")
+    selected.append(report)
+    for name in ["check.json", "assembly.json", "pilot_asr.json", "final_asr.json"]:
+        source = WORK / name
+        if source.is_file():
+            target = ROOT / f"reports/research/2026-11-03_NEWS_{MODE.upper()}_{name}"
+            shutil.copy2(source, target)
+            selected.append(target)
+    if MODE in ("pilot", "full"):
+        selected.extend(sorted((ROOT / "media/tts/news_20261103").glob("*.mp3")))
+        selected.extend(sorted((ROOT / "media/tts/news_20261103").glob("*.json")))
+    if MODE == "pilot":
+        target = ROOT / "videos/news_20261103_PILOT_INTERNAL.mp4"
+        shutil.copy2(WORK / "NEWS_PILOT_COMPLETE_PHRASE.mp4", target)
+        selected.append(target)
+    run(["git", "config", "user.name", "m1lash-render-bot"], cwd=ROOT)
+    run(["git", "config", "user.email", "m1lash-render-bot@users.noreply.github.com"], cwd=ROOT)
+    run(["git", "add", "--"] + [str(p.relative_to(ROOT)) for p in selected], cwd=ROOT)
+    if subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT).returncode:
+        run(["git", "commit", "-m", f"qa(news): save actual {MODE} evidence for direct inspection"], cwd=ROOT)
+        for attempt in range(3):
+            run(["git", "pull", "--rebase", "origin", "main"], cwd=ROOT)
+            pushed = subprocess.run(["git", "push", "origin", "HEAD:main"], cwd=ROOT)
+            if pushed.returncode == 0:
+                break
+        else:
+            raise RuntimeError("QA commit could not be pushed; do not claim remote evidence")
+
+
+def speech_evidence(video, name):
+    from faster_whisper import WhisperModel
+    pcm = np.frombuffer(subprocess.check_output([
+        "ffmpeg", "-v", "error", "-i", str(video), "-vn", "-ac", "1", "-ar",
+        "16000", "-f", "f32le", "-"
+    ]), dtype=np.float32)
+    model = WhisperModel("small", device="cpu", compute_type="int8", cpu_threads=2)
+    segments, info = model.transcribe(pcm, language="ru", beam_size=3,
+                                     word_timestamps=True, vad_filter=True,
+                                     condition_on_previous_text=False)
+    rows = [{"start": s.start, "end": s.end, "text": s.text,
+             "words": [{"word": w.word, "start": w.start, "end": w.end}
+                       for w in s.words]} for s in segments]
+    (WORK / name).write_text(json.dumps({
+        "language": info.language, "segments": rows,
+        "personal_listening": "NOT_VERIFIED"
+    }, ensure_ascii=False, indent=2) + "\n")
+
+
 if MODE == "stills":
     data = timeline(False)
     capture(data)
@@ -187,6 +260,7 @@ elif MODE in ("pilot", "full"):
         encode(duration, start, out)
         run([sys.executable, str(ROOT / "skills/ext/ffmpeg-skill/scripts/look.py"),
              str(out), "--tiles", "3x2", "-o", str(WORK / "pilot_look.jpg")])
+        speech_evidence(out, "pilot_asr.json")
     else:
         duration = math.ceil(data["total"] * 30) / 30
         capture(data, (0, duration))
@@ -202,6 +276,9 @@ elif MODE in ("pilot", "full"):
                  str(out), "--platform", "shorts", "--json"], stdout=f)
         run([sys.executable, str(ROOT / "skills/ext/ffmpeg-skill/scripts/look.py"),
              str(out), "--tiles", "3x2", "-o", str(WORK / "final_look.jpg")])
+        speech_evidence(out, "final_asr.json")
     shutil.rmtree(WORK / "frames")
 else:
     raise ValueError("Unknown approved production mode")
+
+save_remote_evidence(data)
