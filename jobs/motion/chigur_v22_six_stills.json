@@ -1,0 +1,9 @@
+{
+  "renderer": "python",
+  "script": "shorts/chigur_v22_six_stills.py",
+  "output": "videos/chigur_v22_NO_FILM_preflight.mp4",
+  "revision": 1,
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "note": "Six deterministic physical original Three.js stills. No movie, private voice or YouTube."
+}
