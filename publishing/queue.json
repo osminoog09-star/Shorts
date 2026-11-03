@@ -50,13 +50,16 @@
       "mp4": "videos/m1lash_ai_news_20261103_ru.mp4",
       "publish_md": "shorts/ai_news_20261103/PUBLISH.md",
       "title": "Экзамен по бытовухе: 3 новости ИИ за 2 ноября #shorts",
-      "note": "Фактический MP440.433с, ДимаEdge, S1-D25 HTML/SVG, rev4. 0FAIL/1WARN,decode,final look/6stills просмотрены,27титров min0.817с,ASR+отдельная caveat/CTA проверка. Полный человеческий слух NOT_VERIFIED; YouTube/date нет. Старый Piper/Liam черновик заменён.",
+      "note": "Фактический MP440.433с, ДимаEdge, S1-D25 HTML/SVG, rev4. 0FAIL/1WARN,decode,final look/6stills просмотрены,27титров min0.817с,ASR+отдельная caveat/CTA проверка.  YouTube/date нет. Старый Piper/Liam черновик заменён. Звук одобрен владельцем 03.11; готовить приватную заливку без даты, существующие ID не дублировать.",
       "working_project": "ai_news_20261103",
       "news_event_date": "2026-11-02",
       "replaces_id": "ai_news_2026_10_28",
       "private_review_url": "https://raw.githubusercontent.com/osminoog09-star/Shorts/62a8b36137515ca6587b078dc449c4146154e26f/videos/m1lash_ai_news_20261103_ru.mp4",
       "duration_seconds": 40.433,
-      "review_version": "readable captions / commit62a8b361"
+      "review_version": "readable captions / commit62a8b361",
+      "owner_audio_approved": true,
+      "owner_audio_approval_date": "2026-11-03",
+      "owner_audio_approval_note": "Владелец после пакета 8 Shorts: «Все ок»."
     },
     {
       "id": "pretend_bot3_gpt",
@@ -94,8 +97,11 @@
       "mp4": "videos/kino_003_v54.mp4",
       "publish_md": "shorts/kino_003/PUBLISH.md",
       "title": "Урок музыки вышел из-под контроля #shorts",
-      "note": "V54 52.6s uploaded PRIVATE, no schedule. Studio: HD complete; no copyright claims found on 2026-11-02. Owner audio review confirmed. Await owner publication decision; never re-upload.",
-      "youtube_id": "FxIlxGWVCuw"
+      "note": "V54 52.6s uploaded PRIVATE, no schedule. Studio: HD complete; no copyright claims found on 2026-11-02. Owner audio review confirmed. Await owner publication decision; never re-upload. Звук одобрен владельцем 03.11; готовить приватную заливку без даты, существующие ID не дублировать.",
+      "youtube_id": "FxIlxGWVCuw",
+      "owner_audio_approved": true,
+      "owner_audio_approval_date": "2026-11-03",
+      "owner_audio_approval_note": "Владелец после пакета 8 Shorts: «Все ок»."
     },
     {
       "id": "ai_bureaucracy_claude",
@@ -107,11 +113,14 @@
       "mp4": null,
       "publish_md": "shorts/ai_bureaucracy/PUBLISH.md",
       "title": "Нанял ИИ, чтобы меньше работать. Получил 40 подчинённых 🤖 #shorts",
-      "note": "V3 фактический51.6с MP4 сохранён:45систории+rev4. 0FAIL/1WARN, полныйdecode, look/стыки/17ремонтовcaps просмотрены; финальныйASR есть. Полное человеческое прослушивание не выполнено; draft до слухового QA, YouTube/date нет.",
+      "note": "V3 фактический51.6с MP4 сохранён:45систории+rev4. 0FAIL/1WARN, полныйdecode, look/стыки/17ремонтовcaps просмотрены; финальныйASR есть.  draft до слухового QA, YouTube/date нет. Звук одобрен владельцем 03.11; готовить приватную заливку без даты, существующие ID не дублировать.",
       "review_version": "V3",
       "duration_seconds": 51.6,
       "private_review_url": "https://chatgpt.com/library?file_id=libfile_6bcf1ab0f1a88191b799a945c2fbf6a2&account_id=personal",
-      "library_file_id": "libfile_6bcf1ab0f1a88191b799a945c2fbf6a2"
+      "library_file_id": "libfile_6bcf1ab0f1a88191b799a945c2fbf6a2",
+      "owner_audio_approved": true,
+      "owner_audio_approval_date": "2026-11-03",
+      "owner_audio_approval_note": "Владелец после пакета 8 Shorts: «Все ок»."
     },
     {
       "id": "kino_001",
@@ -127,7 +136,10 @@
       "library_file_id": "libfile_70d6170d233c8191b2d15be4e5732e51",
       "review_version": "V53",
       "duration_seconds": 55,
-      "note": "V53, 55с: фактический MP4 сохранён для приватного просмотра. check.py, decode и выборочные кадры выполнены; полное собственное прослушивание не подтверждено. Черновик до закрытия слухового QA; YouTube upload/date нет. MP4 не опубликован в публичном Git."
+      "note": "V53, 55с: фактический MP4 сохранён для приватного просмотра. check.py, decode и выборочные кадры выполнены;   YouTube upload/date нет. MP4 не опубликован в публичном Git. Звук одобрен владельцем 03.11; готовить приватную заливку без даты, существующие ID не дублировать.",
+      "owner_audio_approved": true,
+      "owner_audio_approval_date": "2026-11-03",
+      "owner_audio_approval_note": "Владелец после пакета 8 Shorts: «Все ок»."
     },
     {
       "id": "kino_002",
@@ -143,7 +155,10 @@
       "library_file_id": "libfile_30ce8e1242988191b7caf37d694cda66",
       "review_version": "V53",
       "duration_seconds": 40.167,
-      "note": "V53, 40.167с: фактический MP4 сохранён для приватного просмотра. check.py, decode и выборочные кадры выполнены; полное собственное прослушивание не подтверждено. Черновик до закрытия слухового QA; YouTube upload/date нет. MP4 не опубликован в публичном Git."
+      "note": "V53, 40.167с: фактический MP4 сохранён для приватного просмотра. check.py, decode и выборочные кадры выполнены;   YouTube upload/date нет. MP4 не опубликован в публичном Git. Звук одобрен владельцем 03.11; готовить приватную заливку без даты, существующие ID не дублировать.",
+      "owner_audio_approved": true,
+      "owner_audio_approval_date": "2026-11-03",
+      "owner_audio_approval_note": "Владелец после пакета 8 Shorts: «Все ок»."
     },
     {
       "id": "kino_004",
@@ -159,7 +174,10 @@
       "library_file_id": "libfile_18b0162b199881918e93e16a5582fcff",
       "review_version": "V49",
       "duration_seconds": 40.667,
-      "note": "V49, 40.667с: фактический MP4 сохранён для приватного просмотра. check.py, decode и выборочные кадры выполнены; полное собственное прослушивание не подтверждено. Черновик до закрытия слухового QA; YouTube upload/date нет. MP4 не опубликован в публичном Git."
+      "note": "V49, 40.667с: фактический MP4 сохранён для приватного просмотра. check.py, decode и выборочные кадры выполнены;   YouTube upload/date нет. MP4 не опубликован в публичном Git. Звук одобрен владельцем 03.11; готовить приватную заливку без даты, существующие ID не дублировать.",
+      "owner_audio_approved": true,
+      "owner_audio_approval_date": "2026-11-03",
+      "owner_audio_approval_note": "Владелец после пакета 8 Shorts: «Все ок»."
     },
     {
       "id": "kino_005",
@@ -175,7 +193,10 @@
       "library_file_id": "libfile_de1f0f3a9a5c8191a5914bed24adb376",
       "review_version": "V49",
       "duration_seconds": 42.279,
-      "note": "V49, 42.279с: фактический MP4 сохранён для приватного просмотра. check.py, decode и выборочные кадры выполнены; полное собственное прослушивание не подтверждено. Черновик до закрытия слухового QA; YouTube upload/date нет. MP4 не опубликован в публичном Git."
+      "note": "V49, 42.279с: фактический MP4 сохранён для приватного просмотра. check.py, decode и выборочные кадры выполнены;   YouTube upload/date нет. MP4 не опубликован в публичном Git. Звук одобрен владельцем 03.11; готовить приватную заливку без даты, существующие ID не дублировать.",
+      "owner_audio_approved": true,
+      "owner_audio_approval_date": "2026-11-03",
+      "owner_audio_approval_note": "Владелец после пакета 8 Shorts: «Все ок»."
     },
     {
       "id": "kino_006",
@@ -191,20 +212,10 @@
       "library_file_id": "libfile_ce3db4fcbfa8819189ce00574a37fed0",
       "review_version": "V51",
       "duration_seconds": 53.3,
-      "note": "V51, 53.3с: фактический MP4 сохранён для приватного просмотра. check.py, decode и выборочные кадры выполнены; полное собственное прослушивание не подтверждено. Черновик до закрытия слухового QA; YouTube upload/date нет. MP4 не опубликован в публичном Git."
-    },
-    {
-      "id": "dog_second_dinner",
-      "kind": "short",
-      "author": "Claude + GPT",
-      "status": "draft",
-      "slot": null,
-      "style": "реалистичный пёс, выбор25.10",
-      "mp4": null,
-      "publish_md": "shorts/dog_second_dinner/PUBLISH.md",
-      "title": "Его только что покормили. Он не согласен #shorts",
-      "blocked_reason": "NO_FREE_VIDEO_RUNS",
-      "note": "Только6.041667с preview720×1280. БесплатныхGenjutsu video runs0, paid credits не тратить; финального30–45ссюжета/QAнет. Не зацикливать и не подменять отклонённым мультфильмом."
+      "note": "V51, 53.3с: фактический MP4 сохранён для приватного просмотра. check.py, decode и выборочные кадры выполнены;   YouTube upload/date нет. MP4 не опубликован в публичном Git. Звук одобрен владельцем 03.11; готовить приватную заливку без даты, существующие ID не дублировать.",
+      "owner_audio_approved": true,
+      "owner_audio_approval_date": "2026-11-03",
+      "owner_audio_approval_note": "Владелец после пакета 8 Shorts: «Все ок»."
     }
   ]
 }
