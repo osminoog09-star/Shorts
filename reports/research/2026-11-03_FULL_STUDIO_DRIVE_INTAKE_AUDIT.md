@@ -44,3 +44,12 @@
 3. Владелец должен перевести доступ Drive-папки из `anyone:writer` в Restricted (или другой минимальный доступ), иначе любой с ссылкой сможет удалять/подменять фильмы. Без разрешения владельца права не менять.
 
 **Оценка:** исходный источник — BLOCKED; Google Drive — READ/LSF VERIFIED, WRITE NOT YET VERIFIED; Studio progress/status — fixed in code with CI; actual movie upload — NOT DONE.
+
+
+## 03.11 — исправления после повторного запроса владельца
+
+- Приватный скан папки внедрён: `scripts/drive_folder_intake.py` и `drive-folder-intake.yml` больше не используют gdown/public sharing. OAuth `Drive API files.list`, реальные run **41551952914 SUCCESS**, **41552127740 SUCCESS**, **41552172774 SUCCESS** (2 файла, 0/8 новых фильмов). Без чтения байтов на этапе сканирования.
+- Исправлен следующий звено: `scripts/drive_scene_probe.py` теперь принимает Google Drive `file/d/ID/view`, проверяет, что файл принадлежит единственной папке M1lash, MIME `video/*`, размер 1МБ–6,5ГБ, и только затем потоково скачивает временный фильм через OAuth, а не публичный `gdown`. `drive-scene-probe.yml` получает GitHub Secrets только в рабочем шаге ASR. Новые mock tests.
+- Реальный read-only probe **41552769772 SUCCESS**: из одного существующего MP4 в папке GitHub Actions через OAuth прочитал до 1024 байт. Контент не коммитился, файла в Drive не меняли. Это доказывает чтение файла, но не загрузку нового фильма и не выполнение ASR длинного фильма.
+- В Студии теперь есть «Открыть Drive», пояснение что public-sharing не требуется. Pages **41552564326 SUCCESS**.
+- Остаток ограничения: HDRezka `source_antibot` из GitHub runner, автоматическая загрузка с этого источника не выполняется; ни 1080p ни полный MP4 не подтверждены. Отдельно нужна проверка ASR на фактическом полнометражном русском кинофайле. Права `anyone=writer` владелец должен сузить, агент их не менял.
