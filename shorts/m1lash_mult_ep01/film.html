@@ -218,5 +218,18 @@ function seek(t){
  badge.visible=s===0;badge.rotation.y=Math.sin(t*1.4)*.14;badge.rotation.z=-.06*Math.sin(t*2);badge.position.set(.2,3.75+Math.sin(t*3)*.09,.15);badge.scale.setScalar(s===0?Math.min(1,Math.max(.01,(t-.25)*1.5)):1);
  renderer.render(scene,camera);
 }
+// Deterministic camera-space actor visibility probes, used by r6 visual QA.
+window.inspectActing=(t)=>{
+  window.seek(t);
+  const hands=mil.arms.map(a=>{
+    const v=a.hand.getWorldPosition(new THREE.Vector3()).project(camera);
+    return {side:a.side,x:Math.round((v.x+1)*W/2),y:Math.round((1-v.y)*H/2),
+      shoulder:Number(a.shoulder.rotation.z.toFixed(3)),
+      elbow:Number(a.elbow.rotation.z.toFixed(3))};
+  });
+  return {t,scene:Math.min(6,Math.floor(t/6.5)+1),hands,
+    actorBodyX:mil.root.position.x,robotVisible:aks.root.visible,
+    coinVisible:coin.visible,printerVisible:printer.visible,phoneVisible:phone.visible};
+};
 window.seek=seek;window.ready=true;init();
 </script></body></html>
