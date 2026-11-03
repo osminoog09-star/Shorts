@@ -1,0 +1,8 @@
+{
+  "renderer": "python",
+  "script": "shorts/chigur_recover_approved_outro.py",
+  "output": "videos/chigur_recovered_outro_NOT_A_SHORT.mp4",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "render_revision": 1
+}
