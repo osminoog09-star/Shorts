@@ -41,18 +41,22 @@
       "youtube_id": "oTe1dEelJPs"
     },
     {
-      "id": "ai_news_2026_10_28",
+      "id": "ai_news_2026_11_03",
       "kind": "short",
       "author": "Codex",
       "status": "draft",
       "slot": null,
       "style": "S1-D25",
-      "mp4": null,
+      "mp4": "videos/m1lash_ai_news_20261103_ru.mp4",
       "publish_md": "shorts/ai_news_20261103/PUBLISH.md",
-      "title": "ИИ сдаёт экзамен по бытовухе. Кто платит за свет? #shorts",
-      "note": "ОбновляетсятотжеS1-D25черновик подфакты02.11. СтарыйPiper/Liamэкспортархив,непубликовать. HTML/SVGстопыrun41562810920;actualvoice/MP4ещёнет. БезYouTube/date.",
+      "title": "Экзамен по бытовухе: 3 новости ИИ за 2 ноября #shorts",
+      "note": "Фактический MP440.433с, ДимаEdge, S1-D25 HTML/SVG, rev4. 0FAIL/1WARN,decode,final look/6stills просмотрены,27титров min0.817с,ASR+отдельная caveat/CTA проверка. Полный человеческий слух NOT_VERIFIED; YouTube/date нет. Старый Piper/Liam черновик заменён.",
       "working_project": "ai_news_20261103",
-      "news_event_date": "2026-11-02"
+      "news_event_date": "2026-11-02",
+      "replaces_id": "ai_news_2026_10_28",
+      "private_review_url": "https://raw.githubusercontent.com/osminoog09-star/Shorts/62a8b36137515ca6587b078dc449c4146154e26f/videos/m1lash_ai_news_20261103_ru.mp4",
+      "duration_seconds": 40.433,
+      "review_version": "readable captions / commit62a8b361"
     },
     {
       "id": "pretend_bot3_gpt",
