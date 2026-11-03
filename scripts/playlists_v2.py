@@ -58,7 +58,9 @@ def main():
     verify_channel(token, RU_ID)
     cfg = json.loads(CFG.read_text(encoding="utf-8"))
     keys = [k for k, v in cfg.items() if isinstance(v, dict) and "title" in v and "seed" in v]
-    existing = {x["snippet"]["title"]: x["id"] for x in pages("/playlists", token, part="snippet", mine="true")}
+    owned = pages("/playlists", token, part="snippet", mine="true")
+    existing = {x["snippet"]["title"]: x["id"] for x in owned}
+    owned_by_id = {x["id"]: x["snippet"] for x in owned}
     for key in keys:
         p = cfg[key]
         if not p.get("id"):
@@ -72,6 +74,16 @@ def main():
                 p["id"] = made["id"]
                 print("CREATED", p["title"], p["id"])
             CFG.write_text(json.dumps(cfg, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # Owner-approved M1lash Мульт casting: sync metadata only for the new playlist.
+    mult = cfg.get("m1lash_mult", {})
+    mid = mult.get("id")
+    if mid and mid in owned_by_id and owned_by_id[mid].get("description", "") != mult.get("description", ""):
+        call("PUT", "/playlists", token, params={"part": "snippet"}, json={
+            "id": mid, "snippet": {
+                "title": mult["title"], "description": mult["description"], "defaultLanguage": "ru"
+            }
+        })
+        print("UPDATED_M1LASH_MULT_DESCRIPTION", mid)
     channels = call("GET", "/channels", token, params={"part": "contentDetails", "mine": "true"})
     uploads = channels["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
     listed = pages("/playlistItems", token, part="contentDetails", playlistId=uploads)
