@@ -10,7 +10,7 @@
   "recognized_text": "Говорят, зеркало меняет местами левую и правую стороны. Тогда почему оно не переворачивает вверх и низ, подними руку справа от себя? В отражении она останется на той же стороне зеркала. Зеркало меняет направление вперед и назад. Твой нос смотрит к стеклу. Отраженный нос обратно. А почему надпись на футболке выглядит наоборот? Потому что мы сравниваем ее с повернутым к нам человеком. Напиши слово на прозрачном листе и поверни его к зеркалу. Ты уже сам развернул лист еще до отражения. лево и право путает привычка мысленно разворачиваться беседника. У зеркала нет любимой стороны. Оно отражает глубину.",
   "segments": [
     {
-      "start": 0.0,
+      "start": 0,
       "end": 3.58,
       "text": "Говорят, зеркало меняет местами левую и правую стороны."
     },
@@ -41,11 +41,11 @@
     },
     {
       "start": 15.2,
-      "end": 17.0,
+      "end": 17,
       "text": "Отраженный нос обратно."
     },
     {
-      "start": 17.0,
+      "start": 17,
       "end": 19.96,
       "text": "А почему надпись на футболке выглядит наоборот?"
     },
@@ -86,14 +86,16 @@
     }
   ],
   "text_similarity": 0.968,
-  "payoff_similarity": 0.5,
+  "payoff_similarity": 1,
   "expected_negations": 1,
   "recognized_negations": 1,
-  "flags": [
-    "PAYOFF_END_ASR_UNCERTAIN"
-  ],
-  "automatic_asr_result": "REVIEW_REQUIRED",
+  "flags": [],
+  "automatic_asr_result": "NO_OBVIOUS_ISSUE",
   "personal_listening": "NOT_VERIFIED",
   "owner_audio_approved": false,
-  "next_action": "Give final MP4 to owner for uninterrupted listening; never auto-upload/schedule."
+  "next_action": "Give final MP4 to owner for uninterrupted listening; never auto-upload/schedule.",
+  "payoff_expected_text": "У зеркала нет любимой стороны. Оно отражает глубину.",
+  "payoff_recognized_tail": "у зеркала нет любимой стороны оно отражает глубину",
+  "scoring_version": "tail_N_words_2026-11-03",
+  "scoring_note": "Recomputed only payoff comparison from previously saved real-ASR text (run 41636228754); no media changed or new transcription generated."
 }
