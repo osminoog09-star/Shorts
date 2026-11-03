@@ -1,0 +1,40 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "repo",
+    "path": "videos/science_orbit_202611_v1.mp4",
+    "sha256": "80f5f4044885a4e139f8c32049dc7494f362e85bbe37b84e5d32a0454f5656ee"
+  },
+  "metadata": {
+    "type": "short",
+    "title": "На МКС почти земная гравитация. Почему все летают? #shorts",
+    "description": "Авторское рисованное объяснение.\nКакое объяснение невесомости вы слышали раньше?\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\nИсточники:\nhttps://www.nasa.gov/learning-resources/for-kids-and-students/what-is-microgravity-grades-5-8/\n\n#shorts #наука #физика #эксперимент #объяснение #анимация #m1lash",
+    "tags": [
+      "m1lash",
+      "shorts",
+      "рисованная анимация",
+      "наука",
+      "объяснение",
+      "физика",
+      "анимация",
+      "короткие видео",
+      "на русском",
+      "эксперимент"
+    ],
+    "category_id": "27",
+    "made_for_kids": false,
+    "contains_synthetic_media": false,
+    "default_language": "ru",
+    "default_audio_language": "ru"
+  },
+  "provenance": {
+    "reviewed_final_mp4": "videos/science_orbit_202611_v1.mp4",
+    "owner_audio_approved": true,
+    "owner_audio_approval_date": "2026-11-03",
+    "owner_audio_approval_note": "Владелец прослушал четыре финальных MP4 в чате и сказал: Все 4 ок; это разрешение только на PRIVATE upload без даты.",
+    "final_check": "PASS",
+    "final_check_report": "reports/research/2026-11-03_science_orbit_202611_full_QA.json",
+    "asr": "reports/research/qa/next_four_20261103/final_asr_summary.json",
+    "no_schedule_authorized": true
+  }
+}
