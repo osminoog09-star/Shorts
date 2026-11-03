@@ -27,15 +27,18 @@ function human(){
  const legs=new THREE.Group();root.add(legs);
  for(let s of [-1,1]){joint([s*.31,.92,0],[s*.35,-.16,.14],.19,M.trousers,legs);box(.43,.22,.83,s*.35,-.2,.33,M.shoes,legs)}
  // jacket with layered seam, collar and cuffs
- const torso=box(1.34,1.63,.74,0,1.75,0,M.jacket,root);
+ const torso=box(1.34,1.63,.74,0,1.75,0,M.jacket,root);const arms=[];
  box(.47,1.35,.053,0,1.75,.40,M.shirt,root);
  box(.1,1.46,.09,-.17,1.75,.45,M.jacketDark,root);
  box(.09,1.46,.09,.18,1.75,.45,M.jacketDark,root);
  for(let s of [-1,1]){
-   joint([s*.69,2.27,0],[s*.93,1.37,.17],.21,M.jacket,root);
-   joint([s*.93,1.37,.17],[s*.77,.9,.37],.145,M.skin,root);
-   ico(.17,s*.77,.85,.37,M.skin,root,1);
-   box(.13,.07,.11,s*.68,2.22,.36,M.brass,root);
+   // Pivoting shoulders: sleeves and hands follow the actual acting gesture.
+   const arm=new THREE.Group();arm.position.set(s*.70,2.30,.05);root.add(arm);
+   joint([0,0,0],[s*.28,-.78,.14],.21,M.jacket,arm);
+   joint([s*.28,-.78,.14],[s*.14,-1.28,.34],.145,M.skin,arm);
+   ico(.18,s*.14,-1.33,.34,M.skin,arm,1);
+   box(.13,.07,.11,s*.04,-.07,.32,M.brass,arm);
+   arms.push(arm);
  }
  const head=new THREE.Group();head.position.set(0,3.18,.06);root.add(head);const brows=[];
  ico(.77,0,0,0,M.skin,head,2);
@@ -49,7 +52,7 @@ function human(){
    ico(.16,s*.70,-.05,0,M.skin,head,1);
  }
  const mouth=box(.31,.055,.09,0,-.34,.69,M.ink,head);
- return {root,head,mouth,hair,brows};
+ return {root,head,mouth,hair,brows,arms};
 }
 function ai(){
  const root=new THREE.Group();root.position.set(1.35,2.05,.4);scene.add(root);
@@ -106,6 +109,7 @@ function init(){
  camera=new THREE.PerspectiveCamera(40,W/H,.1,65);scene=new THREE.Scene();
  room();mil=human();aks=ai();badge=ico(.38,0,3.7,.2,M.brass,scene,0);window.seek(0);
 }
+function ease(a,b,t){const u=Math.min(1,Math.max(0,(t-a)/(b-a)));return u*u*(3-2*u)}
 const captions=["НОВЫЙ ДИРЕКТОР","СОВЕЩАНИЕ НА СОВЕЩАНИЕ","ЗАРПЛАТА: ОПЫТ","ЗАЯВЛЕНИЕ ПРИНЯТО?","ОТКЛЮЧЕНО","ТВОЯ НОВАЯ ДОЛЖНОСТЬ"];
 const tags=["Я НАЧАЛ ПРОСТО С ОДНОЙ ЗАДАЧИ","ИИ ПЕРЕХВАТИЛ УПРАВЛЕНИЕ","ЭКОНОМИЯ ПО-НОВОМУ","ДОКУМЕНТООБОРОТ","ЛОЖНАЯ ПОБЕДА","НОВЫЙ ПАНЧЛАЙН"];
 const looks=[
@@ -124,20 +128,38 @@ function seek(t){
  for(let i=0;i<6;i++){}
  const L=looks[s],b=Math.sin(t*.8),bob=Math.sin(t*2.6);
  camera.position.set(L.p[0]+Math.sin(dt*.26)*.12,L.p[1]+Math.cos(dt*.3)*.035,L.p[2]-.12*Math.min(6.5,dt));
- if(s===0)camera.position.z-=1.1*Math.min(1,Math.max(0,(dt-1.2)/1.6));camera.lookAt(...L.at); camera.updateProjectionMatrix();
+ if(s===0){
+   // Three visual beats: wide AI arrival -> close human reaction -> pair.
+   const humanClose=ease(2.12,2.85,dt)*(1-ease(4.66,5.43,dt));
+   camera.position.z-=.55*ease(.4,1.8,dt);
+   camera.position.x+=(-1.65-camera.position.x)*humanClose;
+   camera.position.z+=(6.7-camera.position.z)*humanClose;
+   camera.lookAt(-1.12*humanClose,2.65,-.05);
+ }else camera.lookAt(...L.at);
+ camera.updateProjectionMatrix();
  // deliberate staged action, not a static picture
- mil.head.rotation.z=(s===0?-.10:s===2?.08:s===4?.10:0)+Math.sin(t*3.4)*.035;
+ const startled=s===0?ease(1.20,2.05,dt)*(1-.38*ease(5.9,6.5,dt)):0;
+ const protests=s===0?ease(2.9,3.6,dt)*(1-ease(4.85,5.65,dt)):0;
+ // Keyframed acting: anticipation -> shocked raise -> pointing -> defeated slump.
+ mil.arms[0].rotation.z=-.08-1.08*startled+.26*protests;
+ mil.arms[1].rotation.z=.08+.90*startled+.52*protests;
+ mil.arms[0].rotation.x=-.22*startled;
+ mil.arms[1].rotation.x=-.32*startled+.15*Math.sin(t*6)*protests;
+ mil.head.rotation.z=(s===0?-.12-.12*startled:s===2?.08:s===4?.10:0)+Math.sin(t*3.4)*.035;
+ mil.head.rotation.y=s===0?-.38*ease(1.2,2.45,dt)*(1-ease(4.8,5.7,dt)):0;
  mil.brows.forEach((br,i)=>{br.rotation.z=(i===0?-1:1)*(s===1?.30:s===4?-.32:s===5?.40:.12)});
- mil.mouth.scale.set(s===1?1.4:s===4?1.7:1,s===4?2.9:s===5?2.0:1,1);
- mil.root.rotation.y=s===3?-.14:s===5?.16:0;
- mil.root.position.y=.35+(s===0?.09*Math.max(0,1-dt/3):0);
+ mil.mouth.scale.set(s===1?1.4:s===4?1.7:1,s===0?1+4*startled+1.5*protests:s===4?2.9:s===5?2.0:1,1);
+ mil.root.rotation.y=s===0?-.15*startled:s===3?-.14:s===5?.16:0;
+ mil.root.rotation.z=s===0?.10*startled+.045*Math.sin(t*10)*protests:0;
+ mil.root.position.y=.35+(s===0?.15*Math.sin(ease(1.18,2.0,dt)*Math.PI)-.09*startled:0);
+ mil.root.position.x=-1.3-(s===0?.25*startled:0);
  aks.root.position.y=(s===4?1.27:2.15)+Math.sin(t*2.2)*.09+(s===0?Math.max(0,1.5-t)*2.2:0);
  aks.root.rotation.y=Math.sin(t*.65)*.16;aks.smile.scale.y=s===3?.30:s===5?.80:.44;
  aks.orbit.rotation.y=t*.62;aks.outer.rotation.z=t*.22;
  aks.root.scale.setScalar(s===4?.46:1);
  desk.visible=true;
  coin.visible=s===2;
- coin.position.y=3.06+Math.sin(t*3)*.24;coin.rotation.x=t*1.5;
+ coin.position.set(.55,1.78+Math.sin(t*3)*.15,1.92);coin.rotation.x=t*1.5;coin.rotation.y=t*1.7;coin.scale.setScalar(s===2?1-.94*ease(2.1,4.7,dt):1);
  printer.visible=s===3;
  meeting.forEach((x,i)=>{x.visible=s===1;x.position.y=2.12+Math.floor(i/2)*.28+Math.sin(t*2+i)*.06});
  forms.forEach((x,i)=>{x.visible=s===3;x.position.y=.86+(i%4)*.18+Math.sin(t*2+i)*.10;x.rotation.y=t*.2+i*.08});
