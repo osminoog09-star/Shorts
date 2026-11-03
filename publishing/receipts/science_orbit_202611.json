@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/science_orbit_202611.json",
+  "manifest_sha256": "ace70b063c2e81173597ade7cec8e74cd71a66a72d5900e59c9265c44617a7d2",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
