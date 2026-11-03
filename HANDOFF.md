@@ -1,3 +1,10 @@
+## GPT 03.11 — Drive: приватный автоматический инвентарь реально работает
+
+- По прямому поручению владельца улучшен рабочий путь с существующей папкой вместо бесполезных повторных попыток HDRezka при `anti_bot_challenge`. Путь `drive-folder-intake.yml` переведён с публичного `gdown --folder` на приватный `Google Drive API files.list` через уже имеющийся `GDRIVE_REFRESH_TOKEN` + Google OAuth-клиент из GitHub Secrets. Ключи, raw access token и тела фильмов в git/logs не записываются. Проверяется только прежняя owner-папка; нельзя считать публичную ссылку OAuth-разрешением.
+- **Реальный GitHub Actions run 41551952914 SUCCESS:** unit-тесты (в т.ч. новый mock OAuth metadata), список Google Drive получен без public folder; два видео, ноль из 8 новых фильмов; обновление `publishing/drive_scan.json status=ok`. Старый scanner удалён, workflow больше не устанавливает gdown; коммит metadata конфликтует меньше (fresh origin/main на каждом push retry).
+- UI «Клипы» теперь говорит, что доступ по ссылке «всем» не нужен, а Google OAuth достаточно; сайт не должен просить включить public reader. Имеющиеся права `anyone=writer` всё ещё опасны; их изменение — решение владельца. Существующие файлы не удалены, ничего не залито в YouTube.
+- **Ограничение остаётся:** кнопка HDRezka → Drive не может скачать конкретный фильм, потому что чужой сервер требует антибот-проверку (подтверждён `source_antibot` на GitHub runner). Не обходить DRM/капчу/Premium и не выдавать успешный scan за загрузку полного MP4. Дальше нужен доступный лицензированный MP4 и отдельный upload QA.
+
 ## GPT 03.11 — ПОЛНЫЙ аудит неработающего импорта фильма: источник anti-bot, Drive исправен
 
 - По просьбе владельца проведён сквозной аудит сайта, GitHub Actions, pinned Go CLI, качества, Google Drive, статусов и прав. Главный отчёт: `reports/research/2026-11-03_FULL_STUDIO_DRIVE_INTAKE_AUDIT.md`.
