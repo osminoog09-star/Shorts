@@ -1,0 +1,64 @@
+name: M1lash Shorts · final audio ASR (review only)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'jobs/audioqa/*.json'
+  workflow_dispatch:
+    inputs:
+      job:
+        description: 'Read-only ASR job under jobs/audioqa/'
+        required: true
+        default: 'jobs/audioqa/next_four_20261103.json'
+permissions:
+  contents: write
+concurrency:
+  group: m1lash-shorts-asr
+  cancel-in-progress: false
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify media tools and install free on-runner ASR
+        run: |
+          ffmpeg -version | head -n 1
+          ffprobe -version | head -n 1
+          python -m pip install -q 'faster-whisper>=1,<2'
+      - name: Transcribe actual final MP4 audio without modifying it
+        env:
+          INPUT_JOB: ${{ inputs.job }}
+        run: |
+          set -euo pipefail
+          job="${INPUT_JOB:-}"
+          if [ -z "$job" ]; then
+            job="$(git diff --name-only HEAD^ HEAD -- jobs/audioqa/ | grep -E '^jobs/audioqa/[^/]+[.]json$' | head -n 1 || true)"
+          fi
+          if [ -z "$job" ]; then echo 'No new ASR job'; exit 1; fi
+          python scripts/qa/shorts_final_asr.py --job "$job"
+      - name: Preserve ASR evidence as private review artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shorts-final-asr-${{ github.run_id }}
+          path: reports/research/qa/next_four_20261103/*_asr.json
+          retention-days: 14
+      - name: Commit factual results to GitHub (no YouTube operation)
+        run: |
+          set -euo pipefail
+          git add reports/research/qa/next_four_20261103/*_asr.json reports/research/qa/next_four_20261103/final_asr_summary.json
+          if git diff --staged --quiet; then exit 0; fi
+          git config user.name 'm1lash-audio-qa[bot]'
+          git config user.email 'm1lash-audio-qa@users.noreply.github.com'
+          git commit -m 'qa(shorts): record actual four-final-MP4 ASR results'
+          for i in 1 2 3; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then exit 0; fi
+            sleep 3
+          done
+          exit 1
