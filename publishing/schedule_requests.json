@@ -18,6 +18,14 @@
       "request_id": null,
       "requested_at": "2026-11-03T09:05:41.207Z",
       "origin": "reconciled_existing_owner_schedule"
+    },
+    "kino_001": {
+      "at": "2026-11-04T10:00:00+02:00",
+      "kind": "short",
+      "title": "Он предложил деньги. Ответ оказался страшнее угрозы #shorts",
+      "video_id": "xRwwXYXVxSc",
+      "request_id": "24bddf7c-b868-4be5-b4b2-7cab010c4357",
+      "requested_at": "2026-11-03T09:35:08.854Z"
     }
   }
 }
