@@ -26,6 +26,15 @@
 
 ## GPT/Codex
 
+### 03.11 — Новый поиск женских голосов после отклонения DSPSerena · GPT
+Цель: другие исходные женские голоса с ясной русской речью, реальные короткие пары с одним ответом Дениса, только частные пробы.
+- [x] Владелец отклонил3DSPнастройкиSerena; исходнаяSerena лишь ориентир, не утверждённая соведущая. Случайные чужие записи не клонировать; разрешён поиск/пробы готовых лицензированных или новых синтетических тембров.
+- [x] Первичные карточки: zaakirio/kokoro-ru(Sveta/Masha, автор заявляетconsented/OpenRAIL) и Qwen3-TTS1.7BVoiceDesign(Apache2,Russian). Начат downloadVoiceDesign вscratchcache, не в /home tmpfs.
+- [ ] Синтез альтернатив, независимыйASR/уровни/decode, одинаковый мужскойответ, выдачаMP3/сохранениечастногопроекта.
+Следующий шаг: /workspace/scratch/2071953dc074/voice_test/voice_search_round3/, design_download.log/design_model_path.txt; после кеша synthesize designvariants. Kokoro ru_g2p.py изучить до запуска, проверитьlicense/dependencies. ОтветДениса неизменный /workspace/scratch/2071953dc074/voice_test/cohost_casting/Denis_answer_norm.wav. Никаких новых платныхAPI/публикаций/автоподмены голоса.
+Ждёт владельца: только прослушивание готовых новых проб.
+
+
 ### 03.11 — Очередь 4 новых Shorts → сайт M1lash Studio → аудит · GPT
 Цель: исполнить новое решение владельца строго по очереди: (1) четыре НОВЫХ качественных Shorts, не дубликаты; (2) улучшения сайта по live-progress/антидублям; (3) анализ YouTube. Все изменения фиксировать отдельным коммитом после каждого шага, вести NOW + HANDOFF.
 - [x] Проверены текущие NOW, AGENTS.md, Studio SKILL, HANDOFF.md, queue; уже залитые приватно 4 Shorts (ai_vacation/ai_fridge/science_orbit/science_mirror), запланированные kino_001…006 и ai_news — НЕ дублировать/НЕ перезаливать.
