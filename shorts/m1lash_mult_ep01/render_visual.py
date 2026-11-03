@@ -89,6 +89,11 @@ def main():
    "joint_articulation_count":sum(q["elbows_articulated"] for q in acting),
    "notes":"Numeric preflight only. Must visually inspect full MP4 for occlusions and pose quality."
   },ensure_ascii=False,indent=2)+"\n")
+  # Save actual close-up frames even if a hard gate rejects the render.
+  for t in (2.0,3.5,4.5):
+   page.evaluate("(t)=>window.seek(t)",t)
+   page.screenshot(path=str(OUT/f"acting_{str(t).replace('.','_')}s.jpg"),
+                   type="jpeg",quality=88)
   print("ACTING_GATE","samples",len(acting),
         "hand_clips",sum(not q["hands_inside_viewport"] for q in acting),flush=True)
   if any(not q["hands_inside_viewport"] for q in acting):
