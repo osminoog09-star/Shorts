@@ -234,9 +234,12 @@
       "mp4": "videos/ai_vacation_202611_v1.mp4",
       "publish_md": "shorts/ai_vacation_202611/PUBLISH.md",
       "title": "ИИ согласовал отпуск. Отдыхать будет он #shorts",
-      "note": "MP4 собран; decode/check.py/look.py без FAIL. ASR фактического финала: small run 41636228754 SUCCESS, medium run 41637088642 SUCCESS; явных пропусков текста нет. Личное прослушивание владельца ещё не подтверждено. YouTube ID/даты нет; не показывать как приватно загруженный и не назначать публикацию.",
+      "note": "Владелец одобрил финальный MP4 и звук. PRIVATE upload без даты подготовлен; YouTube ID/receipt ещё нет. Не показывать как уже загруженный до подтверждения.",
       "production_file": "shorts/next_four_20261103/TREATMENT.md",
-      "owner_requested_on": "2026-11-03"
+      "owner_requested_on": "2026-11-03",
+      "owner_audio_approved": true,
+      "owner_audio_approval_date": "2026-11-03",
+      "owner_audio_approval_note": "«Все 4 ок» — одобрены финальные MP4/звук, разрешена только приватная загрузка без даты."
     },
     {
       "id": "ai_fridge_202611",
@@ -248,9 +251,12 @@
       "mp4": "videos/ai_fridge_202611_v1.mp4",
       "publish_md": "shorts/ai_fridge_202611/PUBLISH.md",
       "title": "Холодильник с ИИ взял мою диету под контроль #shorts",
-      "note": "MP4 собран; decode/check.py/look.py без FAIL. ASR фактического финала: small run 41636228754 SUCCESS; явных пропусков текста нет. Личное прослушивание владельца ещё не подтверждено. YouTube ID/даты нет; не показывать как приватно загруженный и не назначать публикацию.",
+      "note": "Владелец одобрил финальный MP4 и звук. PRIVATE upload без даты подготовлен; YouTube ID/receipt ещё нет. Не показывать как уже загруженный до подтверждения.",
       "production_file": "shorts/next_four_20261103/TREATMENT.md",
-      "owner_requested_on": "2026-11-03"
+      "owner_requested_on": "2026-11-03",
+      "owner_audio_approved": true,
+      "owner_audio_approval_date": "2026-11-03",
+      "owner_audio_approval_note": "«Все 4 ок» — одобрены финальные MP4/звук, разрешена только приватная загрузка без даты."
     },
     {
       "id": "science_orbit_202611",
@@ -262,9 +268,12 @@
       "mp4": "videos/science_orbit_202611_v1.mp4",
       "publish_md": "shorts/science_orbit_202611/PUBLISH.md",
       "title": "На МКС почти земная гравитация. Почему все летают? #shorts",
-      "note": "MP4 собран; decode/check.py/look.py без FAIL. ASR фактического финала: small run 41636228754 SUCCESS; явных пропусков текста нет. Личное прослушивание владельца ещё не подтверждено. YouTube ID/даты нет; не показывать как приватно загруженный и не назначать публикацию.",
+      "note": "Владелец одобрил финальный MP4 и звук. PRIVATE upload без даты подготовлен; YouTube ID/receipt ещё нет. Не показывать как уже загруженный до подтверждения.",
       "production_file": "shorts/next_four_20261103/TREATMENT.md",
-      "owner_requested_on": "2026-11-03"
+      "owner_requested_on": "2026-11-03",
+      "owner_audio_approved": true,
+      "owner_audio_approval_date": "2026-11-03",
+      "owner_audio_approval_note": "«Все 4 ок» — одобрены финальные MP4/звук, разрешена только приватная загрузка без даты."
     },
     {
       "id": "science_mirror_202611",
@@ -276,9 +285,12 @@
       "mp4": "videos/science_mirror_202611_v1.mp4",
       "publish_md": "shorts/science_mirror_202611/PUBLISH.md",
       "title": "Зеркало не меняет лево и право. Проверь рукой #shorts",
-      "note": "MP4 собран; decode/check.py/look.py без FAIL. ASR фактического финала: small run 41636228754 SUCCESS; явных пропусков текста нет. Личное прослушивание владельца ещё не подтверждено. YouTube ID/даты нет; не показывать как приватно загруженный и не назначать публикацию.",
+      "note": "Владелец одобрил финальный MP4 и звук. PRIVATE upload без даты подготовлен; YouTube ID/receipt ещё нет. Не показывать как уже загруженный до подтверждения.",
       "production_file": "shorts/next_four_20261103/TREATMENT.md",
-      "owner_requested_on": "2026-11-03"
+      "owner_requested_on": "2026-11-03",
+      "owner_audio_approved": true,
+      "owner_audio_approval_date": "2026-11-03",
+      "owner_audio_approval_note": "«Все 4 ок» — одобрены финальные MP4/звук, разрешена только приватная загрузка без даты."
     }
   ]
 }
