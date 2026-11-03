@@ -51,6 +51,23 @@ def main():
     if len(edits)!=28:raise ValueError("Expected 28 graphics windows")
     meta=probe(src);n_total=count(src)
     if int(next(x["width"] for x in meta["streams"] if x["codec_type"]=="video"))!=1920:raise ValueError("1080p baseline required")
+    # Fail closed if a proposed graphics window would cover a verified actor clip.
+    # Read physical segment durations; nominal editorial timestamps can drift.
+    timeline_file=mapping.parent/"V20_EDITORIAL_TIMELINE_PRIVATE.json"
+    if not timeline_file.exists():raise FileNotFoundError(timeline_file)
+    parts=json.loads(timeline_file.read_text(encoding="utf8"))["parts"]
+    film_windows=[];cursor=0.0
+    for part in parts:
+        segment=mapping.parent/"segments"/(part["id"]+".mp4")
+        if not segment.exists():raise FileNotFoundError(segment)
+        duration=float(probe(segment)["format"]["duration"])
+        if part["id"].startswith("film_"):
+            film_windows.append((cursor,cursor+duration,part["id"]))
+        cursor+=duration
+    for shot in edits:
+        for start,end,film_id in film_windows:
+            if shot["start_sec"]<end+.05 and shot["end_sec"]>start-.05:
+                raise RuntimeError("Graphic would cover original film dialogue "+film_id)
     spans=[];previous=0;spid=0
     for shot in edits:
         left,right=round(shot["start_sec"]*FPS),round(shot["end_sec"]*FPS)
