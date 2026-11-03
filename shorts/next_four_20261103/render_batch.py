@@ -144,7 +144,7 @@ with sync_playwright() as p:
             if checked.returncode:
                 try:
                     evidence=json.loads(check.read_text())
-                    failed=[{'check':x.get('check'),'value':x.get('value'),'expected':x.get('expected')} for x in evidence.get('rows',[]) if x.get('status')=='FAIL']
+                    failed=[{'check':x.get('check'),'value':x.get('value'),'expected':x.get('expected')} for x in evidence.get('checks',[]) if x.get('status')=='FAIL']
                     print('M1LASH_CHECK_FAIL',json.dumps(failed,ensure_ascii=False),flush=True)
                 except (ValueError,KeyError):
                     print('M1LASH_CHECK_RAW',check.read_text()[:1800],flush=True)
