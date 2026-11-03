@@ -47,9 +47,9 @@ with sync_playwright() as pw:
     page.add_script_tag(path=str(LIB))
     for name in SOURCES:
         page.add_script_tag(path=str(SC/name))
-    page.wait_for_function("window.chigurV22ActionReady===true",timeout=30000)
+    page.wait_for_function("window.chigurV22ActionReady===true && window.chigurV22CameraReady===true",timeout=30000)
     for shot in SHOTS:
-        payload=page.evaluate("([s,t])=>window.frameV21(s,t,'image/png')",[shot,3.3])
+        payload=page.evaluate("([s,t])=>window.frameV22(s,t,'image/png')",[shot,3.3])
         dest=OUT/("chigur_v22_"+shot["id"]+"_stills_ONLY.png")
         dest.write_bytes(base64.b64decode(payload.split(",",1)[1]))
         if dest.stat().st_size<24000:
