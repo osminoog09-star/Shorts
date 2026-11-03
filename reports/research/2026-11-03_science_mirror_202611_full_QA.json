@@ -1,7 +1,7 @@
 {
   "id": "science_mirror_202611",
   "mode": "full",
-  "run_id": "41632620947",
+  "run_id": "41633327006",
   "body_seconds": 36.069041666666664,
   "timeline": {
     "id": "science_mirror_202611",
@@ -324,8 +324,8 @@
   "personal_listening": "NOT_VERIFIED",
   "visual_review": "PENDING_MANUAL",
   "youtube_uploaded": false,
-  "sha256": "bf235f86dac5c1e18d66c18f8e759fe9f3e705a5fa1dc70abbc835aa65ebad28",
-  "bytes": 6928565,
+  "sha256": "b9bfb516fc14f16af3d065645fcd0f0501653afba624fd874cdd3336f342a5cd",
+  "bytes": 6739411,
   "assembly": {
     "out": "/home/runner/work/Shorts/Shorts/videos/science_mirror_202611_v1.mp4",
     "duration": 42.7,
@@ -420,7 +420,7 @@
       {
         "check": "file size",
         "status": "PASS",
-        "value": "6.6 MB",
+        "value": "6.4 MB",
         "expected": "<= 262144 MB",
         "fix": "export.py --crf 24 or lower resolution",
         "reason": "",
@@ -467,8 +467,8 @@
     "warnings": 1,
     "ok": true,
     "input_identity": {
-      "size": 6928565,
-      "mtime_ns": 1793707679028448546
+      "size": 6739411,
+      "mtime_ns": 1793707943523598452
     }
   }
 }
