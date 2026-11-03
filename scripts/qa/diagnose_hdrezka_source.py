@@ -124,6 +124,27 @@ def main() -> None:
     except OSError:
         print("source_audit CLI_builtin_challenge_response:", json.dumps({"category":"cli_missing_or_unexecutable"}))
 
+    # Use only the second already allowlisted domain; metadata probe only.
+    # No anonymous proxies, fingerprint spoofing, cookie imports or video bytes.
+    try:
+        alternate = subprocess.run(
+            ["hdrezka-dl", "--no-antibot-solver", "--base-url",
+             "https://hdrezka.ag", "--info", FILM_PAGE],
+            capture_output=True, text=True, errors="replace", timeout=110,
+            check=False,
+        )
+        combined = (alternate.stdout or "") + "\n" + (alternate.stderr or "")
+        print("source_audit ALLOWLISTED_SECOND_DOMAIN:", json.dumps({
+            "exit_code": alternate.returncode,
+            "category": classify_cli(combined, alternate.returncode),
+            "has_720p": bool(re.search(r"(?m)^\s{2,}720p\b", combined, re.I)),
+            "has_1080p": bool(re.search(r"(?m)^\s{2,}1080p\b", combined, re.I)),
+        }, sort_keys=True))
+    except subprocess.TimeoutExpired:
+        print("source_audit ALLOWLISTED_SECOND_DOMAIN:", json.dumps({"category":"timeout_110s"}))
+    except OSError:
+        print("source_audit ALLOWLISTED_SECOND_DOMAIN:", json.dumps({"category":"cli_missing_or_unexecutable"}))
+
 
 if __name__ == "__main__":
     main()
