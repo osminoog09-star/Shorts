@@ -1,0 +1,673 @@
+{
+  "version": "V15",
+  "project": "Антон Чигур: почему с ним нельзя договориться",
+  "status": "STORYBOARD_ONLY",
+  "format": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "style": "S6-D25"
+  },
+  "base_legacy": "REV19 681.349333s (not accessible as bytes this session)",
+  "source_ranges": "longform/chigur/graphics/new_graphics_ranges.json",
+  "cinema_evidence_segments": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06"
+  ],
+  "required_audio_sequence": "Автор Дима → проверенная русская кинореплика с реальным звуком/русскими субтитрами → Дима разбирает",
+  "never_overlay_actor_speech": true,
+  "never_fake_missing_film_audio": true,
+  "avoid_pil_scenes": true,
+  "owner_approved_private_only": false,
+  "owner_scheduling_authorized": false,
+  "shots": [
+    {
+      "id": "cg_01",
+      "timeline_seconds": {
+        "start": 5,
+        "end": 21
+      },
+      "legacy_reference": {
+        "type": "coin",
+        "title": "ВЫБОР ИЛИ ПРИКАЗ?"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Движение вдоль поверхности, макро на гурт",
+      "physical_action": "Монета подбрасывается, тяжело ударяется о стойку и прокручивается перед остановкой",
+      "lighting": "тепло лампы слева / контровой холод",
+      "editorial": "ВЫБОР ИЛИ ПРИКАЗ? — Кто заранее установил условия. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C01 отдельно.",
+      "film_evidence": "C01",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_01_V15.mp4"
+    },
+    {
+      "id": "cg_02",
+      "timeline_seconds": {
+        "start": 36,
+        "end": 47
+      },
+      "legacy_reference": {
+        "type": "talk",
+        "title": "ОБЫЧНЫЙ ВОПРОС"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "От кассы к пустующему месту напротив",
+      "physical_action": "Тень руки ложится на кассовый чек, чек медленно подтягивают из-под ладони",
+      "lighting": "свет витрины / обрыв теплого блика",
+      "editorial": "ОБЫЧНЫЙ ВОПРОС — Тон превращается в угрозу. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C02 отдельно.",
+      "film_evidence": "C02",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_02_V15.mp4"
+    },
+    {
+      "id": "cg_03",
+      "timeline_seconds": {
+        "start": 56,
+        "end": 69
+      },
+      "legacy_reference": {
+        "type": "deal",
+        "title": "ПРАВИЛА РАЗГОВОРА"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Боковой проезд на уровне стекла",
+      "physical_action": "Блик сдвигается по стеклу стойки; колокольчик кассы вздрагивает без касания",
+      "lighting": "плотный янтарный свет / боковой холод",
+      "editorial": "ПРАВИЛА РАЗГОВОРА — Одна сторона назначает цену. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C02 отдельно.",
+      "film_evidence": "C02",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_03_V15.mp4"
+    },
+    {
+      "id": "cg_04",
+      "timeline_seconds": {
+        "start": 92,
+        "end": 109
+      },
+      "legacy_reference": {
+        "type": "talk",
+        "title": "НЕРАВНЫЙ ДИАЛОГ"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Низкий косой ракурс, короткая дуга",
+      "physical_action": "В пустом разговорном пространстве один стул отодвигают на скользящей ножке",
+      "lighting": "один теплый практикал / глубокая тень",
+      "editorial": "НЕРАВНЫЙ ДИАЛОГ — Один спрашивает. Другой оправдывается. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C02 отдельно.",
+      "film_evidence": "C02",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_04_V15.mp4"
+    },
+    {
+      "id": "cg_05",
+      "timeline_seconds": {
+        "start": 121,
+        "end": 137
+      },
+      "legacy_reference": {
+        "type": "paths",
+        "title": "КТО РЕШАЕТ?"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Плечевой наезд через створки",
+      "physical_action": "Две реальных дверцы на стойке закрываются с разных сторон, оставляя узкий проход",
+      "lighting": "контраст теплой стойки и зеленоватого прохода",
+      "editorial": "КТО РЕШАЕТ? — Два варианта. Один хозяин игры. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C03 отдельно.",
+      "film_evidence": "C03",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_05_V15.mp4"
+    },
+    {
+      "id": "cg_06",
+      "timeline_seconds": {
+        "start": 141,
+        "end": 151
+      },
+      "legacy_reference": {
+        "type": "talk",
+        "title": "НЕ РОБОТ"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Медленный перевес фокуса на тень",
+      "physical_action": "Пустая куртка висит неподвижно, а живая тень за дверью меняет направление",
+      "lighting": "краевой свет из дверного проема",
+      "editorial": "НЕ РОБОТ — Это человек. Не алгоритм. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C03 отдельно.",
+      "film_evidence": "C03",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_06_V15.mp4"
+    },
+    {
+      "id": "cg_07",
+      "timeline_seconds": {
+        "start": 156,
+        "end": 173
+      },
+      "legacy_reference": {
+        "type": "deal",
+        "title": "ОТВЕТСТВЕННОСТЬ"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Крупный план ногтей и ребра монеты",
+      "physical_action": "Палец накрывает монету, но не выпускает её; ладонь отказывается открыться",
+      "lighting": "боковой высокий контраст / свет с кассы",
+      "editorial": "ОТВЕТСТВЕННОСТЬ — За решение отвечает человек. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C03 отдельно.",
+      "film_evidence": "C03",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_07_V15.mp4"
+    },
+    {
+      "id": "cg_08",
+      "timeline_seconds": {
+        "start": 187,
+        "end": 198
+      },
+      "legacy_reference": {
+        "type": "talk",
+        "title": "ВЕЖЛИВЫЕ СЛОВА"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Кассовая машинка в три четверти, смена фокуса на чек",
+      "physical_action": "Чек выползает из кассы и останавливается до конца, отражение лица остается вне кадра",
+      "lighting": "мягкий холод спереди / теплый контур",
+      "editorial": "ВЕЖЛИВЫЕ СЛОВА — Мягкий голос не снимает угрозу. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C04 отдельно.",
+      "film_evidence": "C04",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_08_V15.mp4"
+    },
+    {
+      "id": "cg_09",
+      "timeline_seconds": {
+        "start": 203,
+        "end": 208
+      },
+      "legacy_reference": {
+        "type": "machine",
+        "title": "МЕХАНИЗМ СТРАХА"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Строгий профиль на стык металла и дверной коробки",
+      "physical_action": "Рычаг дверного механизма движется с сопротивлением; никаких чертежей оружия",
+      "lighting": "узкий практический свет на металле",
+      "editorial": "МЕХАНИЗМ СТРАХА — Человек становится частью процедуры. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C04 отдельно.",
+      "film_evidence": "C04",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_09_V15.mp4"
+    },
+    {
+      "id": "cg_10",
+      "timeline_seconds": {
+        "start": 220,
+        "end": 226
+      },
+      "legacy_reference": {
+        "type": "motel",
+        "title": "ПО ТУ СТОРОНУ ДВЕРИ"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Медленный наезд низко над ковром",
+      "physical_action": "Щель гостиничной двери расширяется на несколько сантиметров, свет вырезает полоску на ковре",
+      "lighting": "полоса tungsten / остальной кадр сине-черный",
+      "editorial": "ПО ТУ СТОРОНУ ДВЕРИ — Тишина говорит сильнее слов. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C05 отдельно.",
+      "film_evidence": "C05",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_10_V15.mp4"
+    },
+    {
+      "id": "cg_11",
+      "timeline_seconds": {
+        "start": 232,
+        "end": 235
+      },
+      "legacy_reference": {
+        "type": "motel",
+        "title": "У НЕГО НЕТ ПАУЗЫ"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Широкая перспектива на одной оси коридора",
+      "physical_action": "В конце коридора распахивается вторая дверь, полоса света скользит вдоль стен",
+      "lighting": "дальний свет, ближняя зона темная",
+      "editorial": "У НЕГО НЕТ ПАУЗЫ — Дверь закрыта. Угроза остаётся. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C05 отдельно.",
+      "film_evidence": "C05",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_11_V15.mp4"
+    },
+    {
+      "id": "cg_12",
+      "timeline_seconds": {
+        "start": 255,
+        "end": 258
+      },
+      "legacy_reference": {
+        "type": "coin",
+        "title": "ЧУЖИЕ УСЛОВИЯ"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Вертикальное смещение камеры над столешницей",
+      "physical_action": "Монета остается на стойке; уходящая рука исчезает из отражения",
+      "lighting": "один бликующий край монеты",
+      "editorial": "ЧУЖИЕ УСЛОВИЯ — Отказ меняет правила. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C06 отдельно.",
+      "film_evidence": "C06",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_12_V15.mp4"
+    },
+    {
+      "id": "cg_13",
+      "timeline_seconds": {
+        "start": 290,
+        "end": 294
+      },
+      "legacy_reference": {
+        "type": "paths",
+        "title": "ПРАВИЛА НЕ ИСЧЕЗЛИ"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Дальний боковой план без узнаваемой марки машины",
+      "physical_action": "Машина проходит под фонарем, красный свет скользит по мокрому асфальту",
+      "lighting": "натриевый фонарь / прохладный дождь",
+      "editorial": "ПРАВИЛА НЕ ИСЧЕЗЛИ — Даже когда меняется место. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C05 отдельно.",
+      "film_evidence": "C05",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_13_V15.mp4"
+    },
+    {
+      "id": "cg_14",
+      "timeline_seconds": {
+        "start": 333,
+        "end": 345
+      },
+      "legacy_reference": {
+        "type": "motel",
+        "title": "ПОЛОСА СВЕТА"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Низко над полом, дальняя дверь в центре",
+      "physical_action": "Прямоугольник света из-под двери растет, затем пересекается тенью",
+      "lighting": "узкая полоска мягкого света",
+      "editorial": "ПОЛОСА СВЕТА — Он слушает пространство. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C05 отдельно.",
+      "film_evidence": "C05",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_14_V15.mp4"
+    },
+    {
+      "id": "cg_15",
+      "timeline_seconds": {
+        "start": 351,
+        "end": 354
+      },
+      "legacy_reference": {
+        "type": "radar",
+        "title": "КОГДА ТИХО"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Макро на стекло и механическую стрелку",
+      "physical_action": "Стрелка аналогового приемника дергается, фиксируется и медленно возвращается",
+      "lighting": "зелено-янтарное свечение прибора",
+      "editorial": "КОГДА ТИХО — Каждый звук становится сигналом. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C05 отдельно.",
+      "film_evidence": "C05",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_15_V15.mp4"
+    },
+    {
+      "id": "cg_16",
+      "timeline_seconds": {
+        "start": 361,
+        "end": 378
+      },
+      "legacy_reference": {
+        "type": "radar",
+        "title": "ЗВУК ЗА СТЕНОЙ"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Скольжение вдоль корпуса с передачей фокуса",
+      "physical_action": "Колебание волны на электронном дисплее ускоряется, а отражение источника в стекле уходит",
+      "lighting": "зеленый свет дисплея / темный металл",
+      "editorial": "ЗВУК ЗА СТЕНОЙ — Сигнал приближается. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C05 отдельно.",
+      "film_evidence": "C05",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_16_V15.mp4"
+    },
+    {
+      "id": "cg_17",
+      "timeline_seconds": {
+        "start": 411,
+        "end": 415
+      },
+      "legacy_reference": {
+        "type": "motel",
+        "title": "КОГДА ПАУЗА ВАЖНЕЕ"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Крупный статичный ракурс с длинной паузой перед рывком",
+      "physical_action": "Защёлка изнутри проходит половину хода и останавливается; снаружи слышно только настоящее кино",
+      "lighting": "теплый блик на замке / синяя тень",
+      "editorial": "КОГДА ПАУЗА ВАЖНЕЕ — Тишина работает как угроза. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C05 отдельно.",
+      "film_evidence": "C05",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_17_V15.mp4"
+    },
+    {
+      "id": "cg_18",
+      "timeline_seconds": {
+        "start": 421,
+        "end": 434
+      },
+      "legacy_reference": {
+        "type": "deal",
+        "title": "В ЧЁМ ЕГО ВЛАСТЬ?"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Диагональный полукруг вокруг чемодана",
+      "physical_action": "Крышка чемодана с купюрами начинает закрываться, но останавливается перед защелкой",
+      "lighting": "бронзовый свет на пачках, фон уходящий в черный",
+      "editorial": "В ЧЁМ ЕГО ВЛАСТЬ? — Монета — лишь удобный предлог. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C06 отдельно.",
+      "film_evidence": "C06",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_18_V15.mp4"
+    },
+    {
+      "id": "cg_19",
+      "timeline_seconds": {
+        "start": 441,
+        "end": 451
+      },
+      "legacy_reference": {
+        "type": "carla",
+        "title": "ЭТО НЕ ЗАКОН"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Смена фокуса со стула на неподвижную монету",
+      "physical_action": "Стул у стола резко отодвигается, а монета остается в центре теплого пятна",
+      "lighting": "практикал сверху / слабый холодный контровой",
+      "editorial": "ЭТО НЕ ЗАКОН — Никто не обязан принимать игру. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C06 отдельно.",
+      "film_evidence": "C06",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_19_V15.mp4"
+    },
+    {
+      "id": "cg_20",
+      "timeline_seconds": {
+        "start": 459,
+        "end": 467
+      },
+      "legacy_reference": {
+        "type": "carla",
+        "title": "ОТВЕТ ЗВУЧИТ ТИХО"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Очень близкий боковой ракурс, монета не закрыта титром",
+      "physical_action": "Открытая ладонь не касается монеты, медленно отходит в тень",
+      "lighting": "теплый стол, холодная рука",
+      "editorial": "ОТВЕТ ЗВУЧИТ ТИХО — Отказ разрушает процедуру. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C06 отдельно.",
+      "film_evidence": "C06",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_20_V15.mp4"
+    },
+    {
+      "id": "cg_21",
+      "timeline_seconds": {
+        "start": 475,
+        "end": 487
+      },
+      "legacy_reference": {
+        "type": "paths",
+        "title": "ПОЧЕМУ НЕ ДОГОВОРИТЬСЯ?"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Дверной крупный план с глубиной на дальнюю комнату",
+      "physical_action": "Два реальных ключа подходят к одной двери, ни один не поворачивает механизм",
+      "lighting": "узкий свет в скважине / боковая тень",
+      "editorial": "ПОЧЕМУ НЕ ДОГОВОРИТЬСЯ? — Нет общих условий. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C06 отдельно.",
+      "film_evidence": "C06",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_21_V15.mp4"
+    },
+    {
+      "id": "cg_22",
+      "timeline_seconds": {
+        "start": 495,
+        "end": 502
+      },
+      "legacy_reference": {
+        "type": "final",
+        "title": "ТРИ МЕХАНИЗМА"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Три физические зоны в одной сцене, наезд с долли",
+      "physical_action": "В едином движении камера проходит вдоль монеты, закрытого замка и пустого стула",
+      "lighting": "три разные цветовые температуры",
+      "editorial": "ТРИ МЕХАНИЗМА — Контроль · страх · отказ. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C06 отдельно.",
+      "film_evidence": "C06",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_22_V15.mp4"
+    },
+    {
+      "id": "cg_23",
+      "timeline_seconds": {
+        "start": 509,
+        "end": 522
+      },
+      "legacy_reference": {
+        "type": "carla",
+        "title": "ОТКАЗ — ТОЖЕ ДЕЙСТВИЕ"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Низкий взгляд через стеклянную кромку",
+      "physical_action": "Подписанный лист соскальзывает со стола лицом вниз; монета остается лицом вверх",
+      "lighting": "нейтральный верхний свет / тень под бумагой",
+      "editorial": "ОТКАЗ — ТОЖЕ ДЕЙСТВИЕ — Правила не принадлежат всем. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C06 отдельно.",
+      "film_evidence": "C06",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_23_V15.mp4"
+    },
+    {
+      "id": "cg_24",
+      "timeline_seconds": {
+        "start": 544,
+        "end": 552
+      },
+      "legacy_reference": {
+        "type": "coin",
+        "title": "МОНЕТА НЕ РЕШАЕТ"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Большое макро, камера движется по окружности монеты",
+      "physical_action": "Монета вращается на ребре все медленнее, но действие останавливается ДО того, как выпадет сторона",
+      "lighting": "двухцветный металлический блик",
+      "editorial": "МОНЕТА НЕ РЕШАЕТ — Решение принимает человек. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C06 отдельно.",
+      "film_evidence": "C06",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_24_V15.mp4"
+    },
+    {
+      "id": "cg_25",
+      "timeline_seconds": {
+        "start": 559,
+        "end": 577
+      },
+      "legacy_reference": {
+        "type": "carla",
+        "title": "СВОБОДА СКАЗАТЬ «НЕТ»"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Обратный трекинг из-за стола",
+      "physical_action": "Кресло откатывается от стола, оставляя пустое пространство вместо второго собеседника",
+      "lighting": "холодное окно / теплый провал комнаты",
+      "editorial": "СВОБОДА СКАЗАТЬ «НЕТ» — Выбор — не обязанность. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C06 отдельно.",
+      "film_evidence": "C06",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_25_V15.mp4"
+    },
+    {
+      "id": "cg_26",
+      "timeline_seconds": {
+        "start": 620,
+        "end": 627
+      },
+      "legacy_reference": {
+        "type": "talk",
+        "title": "УСЛОВИЕ ИЛИ ЛОВУШКА"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Профиль на пальцы и номер комнаты",
+      "physical_action": "Ключ от номера медленно поворачивается в руке, но не входит в замок",
+      "lighting": "сине-серый коридор / бронзовый отблеск ключа",
+      "editorial": "УСЛОВИЕ ИЛИ ЛОВУШКА — Вслушайтесь в интонацию. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C05 отдельно.",
+      "film_evidence": "C05",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_26_V15.mp4"
+    },
+    {
+      "id": "cg_27",
+      "timeline_seconds": {
+        "start": 636,
+        "end": 641
+      },
+      "legacy_reference": {
+        "type": "final",
+        "title": "ПРАВИЛО / КОНТРОЛЬ / ОТКАЗ"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Контраст общего и крупного плана в глубине кадра",
+      "physical_action": "На столе начинает вибрировать металлическая чашка, камера открывает дальнюю закрытую дверь",
+      "lighting": "лампа справа / синяя рамка окна",
+      "editorial": "ПРАВИЛО / КОНТРОЛЬ / ОТКАЗ — Три разных источника напряжения. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C05 отдельно.",
+      "film_evidence": "C05",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_27_V15.mp4"
+    },
+    {
+      "id": "cg_28",
+      "timeline_seconds": {
+        "start": 648,
+        "end": 655
+      },
+      "legacy_reference": {
+        "type": "motel",
+        "title": "СТРАХ РОЖДАЕТСЯ В ТИШИНЕ"
+      },
+      "method": "Three.js/HTML deterministic 30fps",
+      "camera": "Медленный отъезд вдоль пола, без финального текста из сюжета",
+      "physical_action": "Последняя полоска света исчезает под дверью; остаётся место, где был разговор",
+      "lighting": "гаснущий теплый practical / холодный остаток",
+      "editorial": "СТРАХ РОЖДАЕТСЯ В ТИШИНЕ — Чигур не спорит. Он навязывает. Иллюстрация нашей мысли, НЕ кинокадр; кино-доказательство C06 отдельно.",
+      "film_evidence": "C06",
+      "is_reconstruction": true,
+      "may_mute_or_replace_movie_dialogue": false,
+      "still_gate": "PENDING",
+      "motion_gate": "PENDING",
+      "actor_audio_gate": "BLOCKED_SOURCE",
+      "output": "graphics/chigur_28_V15.mp4"
+    }
+  ]
+}
