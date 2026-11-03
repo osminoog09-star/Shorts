@@ -1,0 +1,45 @@
+{
+  "checked_at": "2026-11-03T11:33:37.844152+00:00",
+  "note": "PRIVATE Drive contacts only. Frame snapshots are NOT film classification without manual review.",
+  "items": [
+    {
+      "file": "Screen_Recording_20261102_101336_Opera.mp4",
+      "status": "contact_private_drive",
+      "film": "unverified",
+      "seconds": 1261.0,
+      "width": 1258,
+      "height": 1080,
+      "video_codec": "h264",
+      "audio_present": true,
+      "audio_codec": "aac",
+      "bytes": 163418560,
+      "contact_name": "M1lash_QA_7659fc5afb69.jpg"
+    },
+    {
+      "file": "Screen_Recording_20261102_103133_Opera.mp4",
+      "status": "contact_private_drive",
+      "film": "unverified",
+      "seconds": 1063.4,
+      "width": 1258,
+      "height": 1080,
+      "video_codec": "h264",
+      "audio_present": true,
+      "audio_codec": "aac",
+      "bytes": 205690202,
+      "contact_name": "M1lash_QA_8d2a63e122b0.jpg"
+    },
+    {
+      "file": "Screen_Recording_20261103_124519_Opera.mp4",
+      "status": "contact_private_drive",
+      "film": "unverified",
+      "seconds": 2418.4,
+      "width": 1258,
+      "height": 1080,
+      "video_codec": "h264",
+      "audio_present": true,
+      "audio_codec": "aac",
+      "bytes": 836471622,
+      "contact_name": "M1lash_QA_9bf7c004ab63.jpg"
+    }
+  ]
+}
