@@ -1,0 +1,8 @@
+{
+  "renderer": "python",
+  "script": "shorts/next_four_20261104/export_vertical_outro.py",
+  "output": "videos/approved_outro_export_not_video.mp4",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "note": "Exact approved vertical outro only, no movie or YouTube upload."
+}
