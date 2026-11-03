@@ -1,3 +1,10 @@
+## 03.11 · GPT — актуальные правила и загрузки сверены с GitHub
+
+- Отчёт: `reports/research/2026-11-03_REPOSITORY_UPLOAD_STATE_AUDIT.md`. Инвентаризировано полное дерево main (4373 записи), прочитаны AGENTS/Studio, очередь, все receipts, текущий checkpoint и pipeline. Не заявляется чтение каждого файла/новое прослушивание MP4.
+- **Семь одобренных мастеров ещё НЕ залиты:** нет manifests/receipts; шесть точных masters надо восстановить из сохранённых review-файлов, news уже в videos. Согласие владельца на звук уже есть, снова не спрашивать.
+- kino003 FxIlxGWVCuw уже scheduled 03.11 10:00 Tallinn в receipt и manifest; исправлен устаревший queue, YouTube/date не менялись. Публичный выход003 свежим API не подтверждён. Пёс-байкер KIGLaVhTlhw подтверждён в pulse recent; не дублировать. Последний pulse03.11 03:07Z не доказывает статус003 после08:00Z.
+- Заново открыты 3 конечных контакт-листа (003V54/AI V3/news); без нового decode/слуха. Никаких новых upload/date. Следующий шаг — восстановить утверждённые файлы/SHA и семь приватных manifests без даты, затем штатный upload с записью ID.
+
 ## 03.11 · GPT — единый пакет 8 Shorts передан на слух владельцу
 
 - Архив 171600417B: [M1lash_8_SHORTS_AUDIO_REVIEW_20261103.zip](https://chatgpt.com/library?file_id=libfile_4bc580a185208191900e4e8fd4aae1f5&account_id=personal). 6 кино последних версий + AIbureaucracyV3 + news02.11, паспорта и SHA-manifest. Все8 заново full decode PASS, ZIP CRC PASS; звук/видео не менялись.
