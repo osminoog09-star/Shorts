@@ -22,6 +22,7 @@ on:
     paths:
       - 'scripts/direct_movie_intake.py'
       - 'scripts/qa/test_direct_movie_intake.py'
+      - 'scripts/qa/check_direct_public_mp4.py'
       - '.github/workflows/direct-movie-intake.yml'
 
 permissions:
@@ -44,6 +45,9 @@ jobs:
         run: |
           python3 -m py_compile scripts/direct_movie_intake.py
           python3 -m unittest discover -s scripts/qa -p 'test_direct_movie_intake.py' -v
+      - name: Safe real public file header probe (nonfatal; no download)
+        continue-on-error: true
+        run: python3 scripts/qa/check_direct_public_mp4.py
 
   source-intake:
     if: github.event_name == 'workflow_dispatch'
