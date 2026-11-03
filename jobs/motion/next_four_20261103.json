@@ -6,5 +6,5 @@
   "preflight_only": true,
   "save_review_mp4": false,
   "no_youtube_upload": true,
-  "note": "03.11 12:xx Tallinn: revised caption safe-area following NO-GO run 41616818956; re-run genuine 24-frame stills QA before any MP4."
+  "note": "Second preflight: first candidate passed; title overflow failed later; CSS font76/word-wrap plus caption safe-area. Need all 24 stills before MP4."
 }
