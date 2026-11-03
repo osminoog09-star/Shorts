@@ -57,6 +57,31 @@ def section(md, name):
     return [i for i in items if not i.startswith("_(")]
 
 
+def build_review_queue(queue, receipts, manifests):
+    """Only actual review candidates; receipt scheduling wins over stale queue rows."""
+    result, seen = [], set()
+    for key, receipt in receipts.items():
+        if receipt.get("status") != "uploaded" or receipt.get("publish_at_utc") or not receipt.get("video_id"):
+            continue
+        title = (manifests.get(key, {}).get("metadata") or {}).get("title")
+        result.append({"id": key, "video_id": receipt["video_id"],
+                       "title": receipt.get("title") or title or key,
+                       "manifest": f"publishing/queue/{key}.json"})
+        seen.add(key)
+    for item in queue:
+        key = item.get("id")
+        if item.get("status") != "review" or not key or key in seen:
+            continue
+        receipt = receipts.get(key, {})
+        # An existing confirmed schedule is NEVER a new review, even if queue.json is stale.
+        if receipt.get("status") in ("scheduled", "published") or receipt.get("publish_at_utc"):
+            continue
+        result.append({"id": key, "video_id": receipt.get("video_id"),
+                       "title": item.get("title") or (manifests.get(key, {}).get("metadata") or {}).get("title") or key})
+        seen.add(key)
+    return result
+
+
 def main():
     latest = load("reports/youtube/latest.json", {}) or {}
     queue = (load("publishing/queue.json", {}) or {}).get("items", [])
@@ -192,15 +217,7 @@ def main():
                          "title": hit["title"] if hit else None, "status": hit["status"] if hit else "пусто",
                          "video_id": hit.get("video_id") if hit else None})
 
-    def _mtitle(k):
-        try:
-            return json.load(open(ROOT / f"publishing/queue/{k}.json", encoding="utf-8"))["metadata"]["title"]
-        except Exception:  # noqa: BLE001
-            return None
-    review = [{"id": k, "video_id": r.get("video_id"), "title": r.get("title") or _mtitle(k) or k, "manifest": f"publishing/queue/{k}.json"} for k, r in receipts.items()
-              if r.get("status") == "uploaded" and not r.get("publish_at_utc")]
-    review += [{"id": q["id"], "title": q.get("title") or q["id"], "video_id": None}
-               for q in queue if q.get("status") == "review"]
+    review = build_review_queue(queue, receipts, manifests)
 
     learn_md = (ROOT / "reports" / "learnings.md").read_text(encoding="utf-8") if (ROOT / "reports" / "learnings.md").exists() else ""
     weekly = sorted((ROOT / "reports" / "weekly").glob("*.md"))
