@@ -1,0 +1,25 @@
+{
+  "voice": "ru-RU-DmitryNeural",
+  "rate": "+5%",
+  "pitch": "+0Hz",
+  "humanize": true,
+  "production_note": "Two distinct additional Chigur Shorts: real original RU film audio only in actor segments; new Dima hook and last-second reveal; do not upload/publish until QA.",
+  "lines": [
+    {
+      "id": "driver_hook",
+      "text": "Он спокойно подходит к машине. Смотри, что происходит дальше."
+    },
+    {
+      "id": "driver_reveal",
+      "text": "Это фильм «Старикам тут не место»."
+    },
+    {
+      "id": "tracker_hook",
+      "text": "Это не простой писк. Кто-то понял, что его могут найти."
+    },
+    {
+      "id": "tracker_reveal",
+      "text": "Это фильм «Старикам тут не место»."
+    }
+  ]
+}
