@@ -1,10 +1,10 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/ai_news_2026_11_03.json",
   "channel": "ru",
   "video_id": "oMhef8NQg1s",
   "video_url": "https://youtu.be/oMhef8NQg1s",
-  "publish_at_utc": null,
+  "publish_at_utc": "2026-11-05T08:00:00Z",
   "source_sha256": "7fdb95b889966ff614f768b335c03252e0c664dd0123f11c2ee3cc99fa61148a",
   "privacy_status": "private",
   "upload_method": "youtube_studio_ui",
