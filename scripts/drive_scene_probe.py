@@ -50,7 +50,7 @@ def drive_id(url):
 
 def fetch_private_film(url, dest, credentials=None):
     """Download only the selected private Drive file. Never log bearer tokens."""
-    from drive_oauth_config import resolve_existing_client, DriveSetupError
+    from drive_oauth_config import FOLDER, resolve_existing_client, DriveSetupError
     token_env = dict(credentials if credentials is not None else os.environ)
     if not token_env.get("GDRIVE_REFRESH_TOKEN"):
         raise RuntimeError("Нужен уже подключённый Google Drive OAuth в GitHub Secrets.")
@@ -62,10 +62,32 @@ def fetch_private_film(url, dest, credentials=None):
     if not token:
         raise RuntimeError("Google OAuth не выдал токен для чтения фильма.")
     file_id = drive_id(url)
-    request = Request(
-        "https://www.googleapis.com/drive/v3/files/" + file_id + "?alt=media&supportsAllDrives=true",
+    base = "https://www.googleapis.com/drive/v3/files/" + file_id
+    # The status JSON is publicly readable. Treat file IDs inside it as
+    # untrusted and verify membership in the ONE configured owner folder.
+    meta_req = Request(
+        base + "?fields=id%2Cparents%2CmimeType%2Csize&supportsAllDrives=true",
         headers={"Authorization":"Bearer " + token})
     max_size = 6_500_000_000
+    try:
+        with urlopen(meta_req, timeout=40) as metadata_response:
+            meta = json.load(metadata_response)
+    except HTTPError as exc:
+        raise RuntimeError("Google Drive не дал метаданные файла (HTTP " + str(exc.code) + ").") from None
+    except (URLError, OSError, ValueError):
+        raise RuntimeError("Google Drive не вернул метаданные файла.") from None
+    if (meta.get("id") != file_id or FOLDER not in meta.get("parents", [])
+            or not str(meta.get("mimeType", "")).startswith("video/")):
+        raise RuntimeError("Выбранный файл не является видео из разрешённой папки M1lash.")
+    try:
+        media_size = int(meta.get("size", "0"))
+    except (ValueError, TypeError):
+        raise RuntimeError("Google Drive не дал размер видео.") from None
+    if not 1_000_000 <= media_size <= max_size:
+        raise RuntimeError("Фильм вне допустимого размера для временной обработки.")
+    request = Request(
+        base + "?alt=media&supportsAllDrives=true",
+        headers={"Authorization":"Bearer " + token})
     written = 0
     try:
         with urlopen(request, timeout=120) as response, open(dest, "wb") as out:
