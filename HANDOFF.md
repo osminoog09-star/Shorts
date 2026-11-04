@@ -8,7 +8,7 @@
 
 GitHub receipts всех семи обновлены после readback; четыре queue status=scheduled, три editorial_hold; манифесты/ledger отразили owner migration, дублирующих загрузок нет. Изменены AGENTS §5/9, Studio SKILL, `publishing/best_times.json`, `scripts/build_studio_site.py` (10/20 ежедневно, 15 ср/сб мультфильмы), `site/studio/index.html`, `site/studio/scheduling.js` + тест. `publishing/autopilot.json` остался disabled.
 
-**Проверки/ограничения:** предыдущий Pages CI падал на противоречии science_orbit (queue review при scheduled receipt); свежие receipts+queue теперь согласованы. Самые поздние Pages run/status надо проверить отдельно: только GitHub CI SUCCESS и readback сайта позволяют сказать, что деплой подтверждён. Новых кино-Shorts сверх `kino_006` пока нет для покрытия каждой следующей утренней даты, полноценных готовых Film-Mult на ср/сб пока нет; пустые слоты не занимать фиктивными видео.
+**Проверки/ограничения:** первоначальный Pages CI падал на старой несогласованности science_orbit (queue review при scheduled receipt); receipts+queue исправлены после GET. **GitHub Pages workflow 41922519045 завершился SUCCESS**, тесты и deploy прошли; прямой браузерный readback публичного Pages URL из этой сессии не прошёл (внешний fetch недоступен), поэтому подтверждён GitHub deploy, не независимый визуальный браузерный просмотр. Новых кино-Shorts сверх `kino_006` пока нет для покрытия каждой следующей утренней даты, полноценных готовых Film-Mult на ср/сб пока нет; пустые слоты не занимать фиктивными видео.
 
 ---
 # 04.11 · GPT · МультНовости #01: подробный аудит v5, полностью беззвучный 24с демо v6, ошибки в Studio
