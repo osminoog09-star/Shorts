@@ -16,14 +16,19 @@
   function occupied(data,exclude){
     const slots=new Map();
     for(const x of data.taken||[]){const t=Date.parse(x.at);if(x.id===exclude||x.id===exclude+"/previous"||!Number.isFinite(t))continue;slots.set((x.id||'slot')+'|'+t,{...x,t,kind:x.kind||'short'});}
-    for(const x of data.plan||[]){if(!x.title||x.id===exclude)continue;const t=localTime(x.date+'T'+x.time.slice(0,5));if([...slots.values()].some(s=>s.t===t))continue;slots.set((x.id||'slot')+'|'+t,{...x,t,kind:x.kind||(x.what==='кино-разбор'?'long':'short')});}
+    for(const x of data.plan||[]){if(!x.title||x.id===exclude)continue;const t=localTime(x.date+'T'+x.time.slice(0,5));if([...slots.values()].some(s=>s.t===t))continue;slots.set((x.id||'slot')+'|'+t,{...x,t,kind:x.kind||(x.what==='Рисованный мультфильм'||x.what==='кино-разбор'?'long':'short')});}
     return [...slots.values()];
   }
-  function assertFree(data,id,t,kind='short',leadMinutes=45){
+  function assertFree(data,id,t,kind='short',leadMinutes=45,role=null){
     if(!Number.isFinite(t)||t<Date.now()+leadMinutes*60000)throw new Error('Нужно минимум '+leadMinutes+' минут до публикации');
     const r=data.best_times?.rules||{},gap=(r.min_gap_hours||4)*3600000,all=occupied(data,id);
     if(all.some(x=>Math.abs(x.t-t)<gap))throw new Error('Время занято: между роликами нужно минимум '+(r.min_gap_hours||4)+' часа. Выбери другой слот');
-    if(kind!=='long'&&all.filter(x=>x.kind!=='long'&&parts(x.t).date===parts(t).date).length>=4)throw new Error('На этот день уже назначены четыре Shorts');
+        if(kind!=='long'&&all.filter(x=>x.kind!=='long'&&parts(x.t).date===parts(t).date).length>=(r.max_shorts_per_day||2))throw new Error('На этот день уже назначены два Shorts');
+    if(role){
+      const p=parts(t),day=new Date(p.date+'T12:00:00Z').getUTCDay();
+      if(kind==='long'&&!(role==='cartoon'&&p.hour===15&&(day===3||day===6)))throw new Error('Длинные разрешены только как оригинальные рисованные мультфильмы в ср/сб 15:00');
+      if(kind!=='long'&&!(role==='movie'&&p.hour===10||role==='sketch'&&p.hour===20))throw new Error('Кино-Shorts только 10:00, скетчи только 20:00');
+    }
     return true;
   }
   const api={parts,localTime,occupied,assertFree};
