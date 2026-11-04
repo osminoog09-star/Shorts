@@ -122,6 +122,25 @@ def slice_video(source,start,length,dest,actor_audio,review_720=False):
     # Only private body-review may be encoded 720p/ultrafast for fast QA;
     # publishable full render remains 1920x1080 with approved outro SHA.
     width,height,preset=(1280,720,"ultrafast") if review_720 else (1920,1080,"veryfast")
+    source=Path(source)
+    # Actual source SHA is checked in validate() once per build. This local
+    # cache is strictly for resuming a bound PRIVATE render after a timeout,
+    # never for reusing a clip from changed source/IN/OUT or a new encoder.
+    stamp=dest.with_suffix(".build.json")
+    signature={"version":"film-only-balanced-shots-v3","source":str(source.resolve()),
+               "source_size":source.stat().st_size,"source_mtime_ns":source.stat().st_mtime_ns,
+               "start":round(start,6),"length":round(length,6),
+               "actor_audio":actor_audio,"width":width,"height":height,"preset":preset}
+    if stamp.is_file() and dest.is_file():
+        try:
+            if json.loads(stamp.read_text())==signature:
+                q=probe(dest)
+                v=next(v for v in q["streams"] if v.get("codec_type")=="video")
+                audio=any(v.get("codec_type")=="audio" for v in q["streams"])
+                if (v.get("width"),v.get("height"),audio)==(width,height,actor_audio) and abs(float(q["format"]["duration"])-length)<.18:
+                    return
+        except (ValueError,StopIteration,OSError,KeyError,subprocess.CalledProcessError):
+            pass
     argv=["ffmpeg","-v","error","-nostdin","-y","-ss",str(round(start,6)),
           "-i",str(source),"-t",str(round(length,6)),
           "-vf",f"fps=30,scale={width}:{height}:flags=lanczos,format=yuv420p",
@@ -134,6 +153,7 @@ def slice_video(source,start,length,dest,actor_audio,review_720=False):
                "-ar","48000","-ac","2","-c:a","aac","-b:a","192k"]
     else:argv+=["-an"]
     run(argv+["-movflags","+faststart",str(dest)])
+    stamp.write_text(json.dumps(signature,sort_keys=True))
 
 def sum_wav(paths):
     secs=0
