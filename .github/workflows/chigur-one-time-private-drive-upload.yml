@@ -1,0 +1,87 @@
+name: M1lash Chigur · exact-SHA PRIVATE review upload from owner Drive
+run-name: 'CHIGUR one-time PRIVATE upload (no date; never automatic retry)'
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/chigur-one-time-private-drive-upload.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: chigur-once-private-review
+  cancel-in-progress: false
+
+jobs:
+  private-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install standard HTTP dependency
+        run: python3 -m pip install 'requests>=2.32,<3'
+      - name: Confirm narrow uploader, manifest and absence of duplicate receipt
+        run: |
+          python3 -m py_compile longform/chigur/chigur_private_upload_once.py
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          req=json.loads(Path('longform/chigur/chigur_private_upload_request.json').read_text())
+          assert req['action']=='upload_private_once' and req['visibility']=='private'
+          assert req['publish_at'] is None
+          assert req['sha256']=='d9278386aa2eb2b55b56d91a849820a5c24c9c4a739305d7953b3fd4f6a347c7'
+          assert req['drive_file_id']=='1ysQ5mnSmtxv8xnjAq4uMt3DV6FZnVvVs'
+          assert not Path('publishing/receipts/chigur_long_denis_v7.json').exists()
+          assert not Path('publishing/queue/chigur_long_denis_v7.json').exists()
+          print('ONE-TIME PRIVATE source+metadata gates passed; YouTube publication NOT authorized.')
+          PY
+      - name: Download owner Drive privately, validate exact SHA, reserve then upload PRIVATE only
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python3 longform/chigur/chigur_private_upload_once.py
+      - name: Verify video remains PRIVATE on YouTube (read-only)
+        if: success()
+        env:
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json,requests
+          from scripts.youtube_direct import token_for,API
+          rec=json.load(open('publishing/receipts/chigur_long_denis_v7.json'))
+          assert rec['status']=='uploaded' and rec['publish_at'] is None
+          token=token_for('ru')
+          data=requests.get(API+'/videos',params={'part':'status','id':rec['video_id']},
+                            headers={'Authorization':'Bearer '+token},timeout=40)
+          data.raise_for_status()
+          items=data.json().get('items',[])
+          if len(items)!=1 or items[0].get('status',{}).get('privacyStatus')!='private':
+              raise RuntimeError('NO-GO: YouTube failed PRIVATE status readback')
+          print('YOUTUBE_PRIVATE_READBACK_PASS',rec['video_id'],'no publish date')
+          PY
+      - name: Preserve receipt for manual no-retry recovery
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chigur-private-upload-receipt-${{ github.run_id }}
+          path: publishing/receipts/chigur_long_denis_v7.json
+          if-no-files-found: ignore
+          retention-days: 30
