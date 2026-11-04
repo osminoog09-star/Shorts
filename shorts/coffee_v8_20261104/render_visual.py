@@ -12,7 +12,7 @@ with sync_playwright() as p:
  (W/'layout.json').write_text(json.dumps(layout,ensure_ascii=False,indent=2));assert not errors,errors
  times=[s['start']+min(2.3,(s['end']-s['start'])*.55) for s in d['shots']]
  # Plus the real contact/reaction phases, including first second and final kettle.
- times += [.05,.5,1.1,d['shots'][3]['start']+.6,d['shots'][4]['start']+.45,d['shots'][4]['start']+1.1,d['shots'][5]['start']+1.5,d['shots'][5]['start']+3.5]
+ times += [.05,.5,1.1,d['shots'][3]['start']+.6,d['shots'][3]['start']+.85,d['shots'][3]['start']+4.5,d['shots'][4]['start']+.45,d['shots'][4]['start']+1.1,d['shots'][5]['start']+1.5,d['shots'][5]['start']+3.5]
  for i,t in enumerate(times):page.evaluate('t=>seek(t)',t);page.screenshot(path=str(W/f'still_{i:02}.jpg'),type='jpeg',quality=91)
  subprocess.run(['ffmpeg','-v','error','-y','-framerate','1','-i',str(W/'still_%02d.jpg'),'-vf','scale=270:480,tile=4x4','-frames:v','1',str(W/'contact.jpg')],check=True)
  if mode in ('pilot','full'):

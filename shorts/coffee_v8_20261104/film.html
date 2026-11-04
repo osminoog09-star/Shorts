@@ -20,9 +20,9 @@ if(n===0){let reach=ease(u/.7),recoil=bell((u-1.0)/.6),angry=u>3.0;
  if(err){h+=g(95,978,1,rect(0,0,790,107,O,19)+txt(33,105-31,'ОШИБКА: ЭТО КРУЖКА',48,C));}
  if(u>3.5){let rr=bell((u-3.5)/.8);h+=g(100+8*rr,700,1.25,hero(u,'angry',280,290,'cup',-12*rr));box='0 130 1000 1240';}
 }else if(n===2){
- let offer=ease(u/.48);h=kitchen()+g(29,420,1.2,hero(u,u>dur-1.2?'worry':'angry',310,286,'wallet',u>dur-1.2?-7:0))+g(585,530,.75,machine(u,'НЕТ ПОДПИСКИ'));
+ let offer=ease(u/.48);h=kitchen()+g(29,420,1.2,hero(u,u>2.1?'worry':'angry',310+24*ease((u-5.1)/.8),286-18*ease((u-5.1)/.8),'wallet',u>2.1?-7:0))+g(585,530,.75,machine(u,'НЕТ ПОДПИСКИ'));
  h+=g(443,50-180*(1-offer),1,rect(0,0,495,280,Y,22)+txt(28,58,'ПРОБУЖДЕНИЕ',44)+txt(46,158,'9,99 €',92)+rect(25,191,445,69,T,14)+txt(108,238,'КУПИТЬ',43,C));
- if(u>dur-1.4){let a=ease((u-dur+1.4)/.6);h+=g(370+64*a,800-80*a,1,rect(0,0,200,123,Y,16)+rect(19,24,43,31,C,8)+path('M22 86H123','none',6));}
+
 }else if(n===3){
  let paid=u>.7,paper=ease((u-2.6)/.75);h=kitchen()+g(535,280,1.22,machine(u,paid?'ОПЛАЧЕНО':'ПРИЛОЖИ КАРТУ',false,paper));
  h+=g(305,624,.95,rect(0,0,159,125,T,17)+(paid?path('M28 64L64 96L129 26','none',12,C):path('M30 70Q80 10 130 70','none',9,C)));
@@ -40,14 +40,14 @@ if(n===0){let reach=ease(u/.7),recoil=bell((u-1.0)/.6),angry=u>3.0;
  if(off&&u<2.1)h+=path('M285 444L306 391M318 473L367 452M302 511L349 539','none',9,O);
  if(u>dur-.85)h+=balloon(414,214,490,'ОТ ЗЛОСТИ.',Y,57);
 }else{
- const pour=ease((u-.25)/.55)*(1-ease((u-2.9)/.5)),tilt=-22*pour;
+ const pour=ease((u-.25)/.55)*(1-ease((u-2.9)/.5)),tilt=22*pour;
  h=kitchen()+g(54,420,1.2,hero(u,'awake',330,200,'none',-3))+g(630,530,.75,machine(u,'',true));
  // Manual coffee: the dead machine is now literally a stand. Cup rests on top.
  h+=g(720,455,.53,cup());
- let kx=480+62*pour,ky=390-20*pour;
+ let kx=460+26*pour,ky=390-20*pour;
  h+=path(`M300 713Q375 689 ${kx-30} ${ky+110}`,'none',30,O)+hand(kx-30,ky+109,-8);
  h+=g(kx,ky,1,`<g transform="rotate(${tilt} 109 103)">${path('M22 58Q15 14 75 3H143Q202 19 193 112L177 166H24Z',Y,7)+path('M193 61L258 23L219 122L188 135',Y,7)+path('M33 55Q-42 43-39 112Q-38 152 25 140','none',16,I)+rect(64,-14,73,20,I,7)+path('M49 73H158M49 97H158','none',4,'#cd9d43')}</g>`);
- if(pour>.15){h+=path(`M${kx+230} ${ky+32}Q815 405 763 477`,'none',10,'#784c30');}
+ if(pour>.15){let a=tilt*Math.PI/180,sx=kx+109+149*Math.cos(a)+80*Math.sin(a),sy=ky+103+149*Math.sin(a)-80*Math.cos(a);h+=path(`M${sx} ${sy}Q${sx} 468 763 477`,'none',10,'#784c30');}
  if(u>3.15){h+=balloon(422,122,535,'ПОДСТАВКА',Y,61)+g(588,274,1,txt(0,0,'9,99 €',72));}
  if(u>dur-1.7){h+=g(382,965,1,rect(0,0,549,103,T,20)+txt(27,71,'БЕЗ ПОДПИСКИ',52,C));}
 }
