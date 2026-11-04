@@ -582,33 +582,24 @@ async function refreshSchedulingState(exact=false){
 window.refreshSchedulingState=refreshSchedulingState;
 
 
-function bestSlots(kind,exclude){
-  const B=D.best_times||{},R=B.rules||{short_hours:[10,15,20],long_hours:[19],max_shorts_per_day:3,min_gap_hours:4,min_lead_hours:2,horizon_days:3,near_best_ratio:.85},heat=B.heat||{};
-  const hours=kind==="long"?R.long_hours:R.short_hours, now=Date.now();
-  const taken=M1Schedule.occupied(D,exclude);
-  // поправка по нашим роликам: средние просмотры Shorts, вышедших в этот слот (±2 ч), если таких ≥4
-  const pub=D.videos.filter(v=>v.privacy==="public"&&v.published&&(v.duration||0)<=180);const FA=fmtAvg();
-  const rel=v=>{const a=(FA[v.format]||{}).views;return a?(v.views||0)/a:null};
-  const samples=h=>pub.filter(v=>Math.abs(M1Schedule.parts(Date.parse(v.published)).hour-h)<=1).map(rel).filter(x=>x!=null);
-  const own={};const xh=kind==="long"?[]:(R.explore_hours||[]);
-  [...hours,...xh].forEach(h=>{const a=samples(h);own[h]=a.length>=(R.explore_min_samples||4)?Math.max(.8,Math.min(1.25,avg(a))):1});
-  const c=[];
-  for(let d=0;d<=R.horizon_days;d++)for(const h of [...hours,...xh]){const explore=!hours.includes(h);
-    const day=new Date(M1Schedule.parts(now).date+"T12:00:00Z");day.setUTCDate(day.getUTCDate()+d);const date=day.toISOString().slice(0,10),t=M1Schedule.localTime(date+"T"+String(h).padStart(2,"0")+":00"),x=new Date(t);
-    if(t<now+R.min_lead_hours*36e5)continue;
-    const sameDay=taken.filter(y=>M1Schedule.parts(y.t).date===date&&y.kind!=="long");
-    if(kind!=="long"&&sameDay.length>=R.max_shorts_per_day)continue;
-    if(taken.some(y=>Math.abs(y.t-t)<R.min_gap_hours*36e5))continue;
-    const dow=((day.getUTCDay()+6)%7)+1, v=((heat[dow]||[])[h]||5000)*own[h];
-    c.push({t,score:v,dow,explore,h});
+function bestSlots(kind,exclude,role){
+  const B=D.best_times||{},R=B.rules||{short_hours:[10,20],long_hours:[15],max_shorts_per_day:2,min_gap_hours:4,min_lead_hours:2,horizon_days:3,near_best_ratio:.85},heat=B.heat||{};
+  if(role==='off_grid'||role==='paused_long')return {best:null,list:[]};
+  const isLong=kind==='long';
+  const hours=isLong?[15]:role==='movie'?[10]:role==='sketch'?[20]:[10,20];
+  const now=Date.now(),taken=M1Schedule.occupied(D,exclude),c=[];
+  for(let d=0;d<=(R.horizon_days||3);d++)for(const h of hours){
+    const day=new Date(M1Schedule.parts(now).date+'T12:00:00Z');day.setUTCDate(day.getUTCDate()+d);
+    const date=day.toISOString().slice(0,10),dow=((day.getUTCDay()+6)%7)+1;
+    if(isLong&&dow!==3&&dow!==6)continue;
+    const t=M1Schedule.localTime(date+'T'+String(h).padStart(2,'0')+':00');
+    if(t<now+(R.min_lead_hours||2)*36e5)continue;
+    if(!isLong&&taken.filter(y=>M1Schedule.parts(y.t).date===date&&y.kind!=='long').length>=(R.max_shorts_per_day||2))continue;
+    if(taken.some(y=>Math.abs(y.t-t)<(R.min_gap_hours||4)*36e5))continue;
+    const score=(heat[dow]||[])[h]||5000;c.push({t,score,dow,explore:false,h});
   }
-  const xs=c.filter(x=>x.explore);const main=c.filter(x=>!x.explore);
-  if(!main.length&&!xs.length)return{best:null,list:[]};
-  // нужен ли тест времени: в каком-то тестовом часу мало данных и за 7 дней тестов было меньше нормы
-  const weekAgo=Date.now()-7*864e5;
-  const testsThisWeek=[...pub.filter(v=>new Date(v.published).getTime()>weekAgo).map(v=>M1Schedule.parts(Date.parse(v.published)).hour),...taken.filter(y=>y.t>weekAgo).map(y=>M1Schedule.parts(y.t).hour)].filter(h=>xh.includes(h)).length;
-  const needTest=xh.filter(h=>samples(h).length<(R.explore_min_samples||4)).length>0&&testsThisWeek<(R.explore_per_week||2);
-  return pickBest(main.length?main:xs,xs,needTest,R);
+  if(!c.length)return{best:null,list:[]};
+  return pickBest(c,[],false,R);
 }
 function pickBest(c,xs,needTest,R){
   const now=Date.now();
@@ -627,8 +618,8 @@ async function openOk(id){
   if(scheduleBusy)throw new Error("Предыдущее назначение ещё сохраняется");
   await refreshSchedulingState(true);
   if(D.videos.some(v=>v.id===scheduleState[id]?.video_id&&v.privacy==="public"))throw new Error("Ролик уже вышел; повторное назначение не выполняется");
-  const r=D.review.find(x=>x.id===id)||scheduleState[id]||{},kind=r.kind||"short",S=bestSlots(kind,id);
-  const auto=S.best?`<div class="idea" style="border-color:color-mix(in srgb,var(--pink) 45%,var(--line))"><div class="row"><span class="chip c-pink">⚡ Авто · рекомендую</span>${S.best.explore?'<span class="chip c-info">🧪 тест времени</span>':""}</div><b style="font-size:20px">${slotLabel(S.best.t)}</b><p>${S.best.explore?"Эксперимент со временем: в этом часе у нас мало данных, а тестов на этой неделе было меньше двух. Так находим, вдруг другой час работает лучше. Не хочешь — выбери слот ниже.":"Самый ранний слот в ближайшие 48 ч, где активность аудитории ≥ 85% от лучшего в этом окне (Metricool + наши ролики, с поправкой на результаты прошлых тестов). Правила: Shorts в 10:00/15:00/20:00, до 3 в день в режиме Авто, ≥ 4 ч между роликами."}</p><button class="btn pri" data-okat="${S.best.t}" data-id="${esc(id)}">Поставить на ${slotLabel(S.best.t)}</button></div>`:`<div class="empty">Свободных слотов на 3 дня нет — выбери время вручную.</div>`;
+  const r=D.review.find(x=>x.id===id)||scheduleState[id]||{},kind=r.kind||"short",role=r.slot_type||null,S=bestSlots(kind,id,role);
+  const auto=S.best?`<div class="idea" style="border-color:color-mix(in srgb,var(--pink) 45%,var(--line))"><div class="row"><span class="chip c-pink">⚡ Авто · рекомендую</span>${S.best.explore?'<span class="chip c-info">🧪 тест времени</span>':""}</div><b style="font-size:20px">${slotLabel(S.best.t)}</b><p>${S.best.explore?"Эксперимент со временем: в этом часе у нас мало данных, а тестов на этой неделе было меньше двух. Так находим, вдруг другой час работает лучше. Не хочешь — выбери слот ниже.":"Самый ранний слот в ближайшие 48 ч, где активность аудитории ≥ 85% от лучшего в этом окне (Metricool + наши ролики, с поправкой на результаты прошлых тестов). Правила: кино только 10:00, юмористический/новостной скетч только 20:00, рисованный мультфильм ср/сб 15:00; максимум 2 Shorts в день."}</p><button class="btn pri" data-okat="${S.best.t}" data-id="${esc(id)}">Поставить на ${slotLabel(S.best.t)}</button></div>`:`<div class="empty">Свободных слотов на 3 дня нет — выбери время вручную.</div>`;
   const alt=S.list.length>1?`<p class="muted" style="font-size:12px;margin:12px 0 6px">Другие слоты (активность аудитории):</p><div class="row">${S.list.map(x=>`<button class="btn sm${S.best&&x.t===S.best.t?" pri":""}" data-okat="${x.t}" data-id="${esc(id)}">${x.explore?"🧪 ":""}${slotLabel(x.t)} · ${Math.round(x.score/S.top*100)}%</button>`).join("")}</div>`:"";
   openSheet(`<h2 style="font-size:18px">Заливаем: когда открыть ролик?</h2><p class="muted" style="margin-top:0">${esc(r.title||id)}<br>Ролик уже на YouTube приватно — YouTube сам опубликует его в выбранное время.</p>${auto}${alt}
     <div class="idea" style="margin-top:12px"><b>✋ Своё время</b><label class="f">Дата и время — Europe/Tallinn<input class="t" type="datetime-local" id="okAt" step="60" value="${S.best?toLocal(S.best.t):toLocal(Date.now()+864e5)}"></label><div id="okHint" class="muted" style="font-size:12.5px"></div><div class="row"><button class="btn" id="okGo" data-id="${esc(id)}">Поставить на это время</button><button class="btn" data-close>Отмена</button></div></div>`);
@@ -652,13 +643,14 @@ async function doSchedule(id,iso){
   try{
     iso=tallinnISO(new Date(iso).getTime());
     await refreshSchedulingState(true);
-    const r=D.review.find(x=>x.id===id)||scheduleState[id]||{},kind=r.kind||'short',stamp=new Date().toISOString(),request_id=crypto.randomUUID();
+    const r=D.review.find(x=>x.id===id)||scheduleState[id]||{},kind=r.kind||'short',role=r.slot_type||null,stamp=new Date().toISOString(),request_id=crypto.randomUUID();
+     if(role==='off_grid'||role==='paused_long')throw new Error('Ролик вне новой сетки; оставляем приватным.');
     const snapshot={...D,plan:[],taken:[...(D.taken||[])]};
     const request={at:iso,kind,title:r.title||id,video_id:r.video_id,request_id,requested_at:stamp};
     await editJSON('publishing/schedule_requests.json',ledger=>{
       const requests=ledger.requests||{};
       const latest={...snapshot,taken:[...snapshot.taken.filter(x=>!requests[x.id]),...Object.entries(requests).map(([key,x])=>({id:key,at:x.at,kind:x.kind}))]};
-      M1Schedule.assertFree(latest,id,Date.parse(iso),kind);
+      M1Schedule.assertFree(latest,id,Date.parse(iso),kind,45,role);
       requests[id]=request;ledger.requests=requests;
     },`schedule: reserve ${id} at ${iso}`);
     mergeScheduleState({[id]:{...request,updated_at:stamp}});applySchedulingState(D);
