@@ -17,17 +17,16 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "site" / "studio" / "data.json"
 TZ = ZoneInfo("Europe/Tallinn")
 
-# AGENTS.md §5 — день недели (0=пн) -> [(время, что, кто)]
-GRID = {  # AGENTS.md §5 (решение Дениса 31.10) — менять вместе
-    0: [("10:00", "Shorts"), ("15:00", "Shorts"), ("20:00", "Shorts")],
-    1: [("10:00", "новости ИИ"), ("15:00", "Shorts"), ("20:00", "Shorts")],
-    2: [("10:00", "Shorts"), ("15:00", "Shorts"), ("20:00", "Shorts")],
-    3: [("10:00", "Shorts"), ("15:00", "кино-Shorts воронки"), ("20:00", "Shorts")],
-    4: [("10:00", "Shorts"), ("15:00", "кино-Shorts воронки"), ("20:00", "Shorts")],
-    5: [("10:00", "Shorts"), ("15:00", "Shorts"), ("19:00", "кино-разбор")],
-    6: [("10:00", "Shorts"), ("15:00", "Shorts"), ("20:00", "Shorts")],
+# AGENTS.md §5 (решение 04.11) — 2 Shorts ежедневно + 2 оригинальных мультфильма в неделю.
+GRID = {
+    0: [("10:00", "Кино-Shorts"), ("20:00", "Комедийный/новостной скетч")],
+    1: [("10:00", "Кино-Shorts"), ("20:00", "Комедийный/новостной скетч")],
+    2: [("10:00", "Кино-Shorts"), ("15:00", "Рисованный мультфильм"), ("20:00", "Комедийный/новостной скетч")],
+    3: [("10:00", "Кино-Shorts"), ("20:00", "Комедийный/новостной скетч")],
+    4: [("10:00", "Кино-Shorts"), ("20:00", "Комедийный/новостной скетч")],
+    5: [("10:00", "Кино-Shorts"), ("15:00", "Рисованный мультфильм"), ("20:00", "Комедийный/новостной скетч")],
+    6: [("10:00", "Кино-Shorts"), ("20:00", "Комедийный/новостной скетч")],
 }
-
 
 def load(path, default=None):
     p = ROOT / path
@@ -307,7 +306,8 @@ def main():
         m = load(str(mf.relative_to(ROOT)), {}) or {}
         if m.get("publish_at"):
             taken.append({"id": mf.stem, "at": m["publish_at"], "kind": (m.get("metadata") or {}).get("type")})
-    kinds = {mf.stem: ((load(str(mf.relative_to(ROOT)), {}) or {}).get("metadata") or {}).get("type") for mf in (ROOT / "publishing" / "queue").glob("*.json")}
+    meta = {mf.stem: (load(str(mf.relative_to(ROOT)), {}) or {}).get("metadata", {}) for mf in (ROOT / "publishing" / "queue").glob("*.json")}
+    kinds = {k: m.get("type") for k, m in meta.items()}
     pending = {mf.stem for mf in (ROOT / "publishing" / "queue").glob("*.json")
                if (load(str(mf.relative_to(ROOT)), {}) or {}).get("publish_at")}
     review = [r for r in review if r["id"] not in pending]
@@ -320,6 +320,11 @@ def main():
     review = list(merged.values())
     for r in review:
         r["kind"] = kinds.get(r["id"]) or "short"
+        m = meta.get(r["id"], {})
+        r["slot_type"] = ("cartoon" if r["kind"] == "long" and m.get("studio_format") == "film_mult" else
+                          "paused_long" if r["kind"] == "long" else
+                          "movie" if m.get("category_id") == "1" else
+                          "sketch" if m.get("category_id") == "23" else "off_grid")
         r["manifest"] = r.get("manifest") or (f"publishing/queue/{r['id']}.json" if r["id"] in kinds else None)
     ch = latest.get("channel_statistics", {}) or {}
     daily = latest.get("recent_daily_views", []) or []
