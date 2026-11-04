@@ -10,15 +10,6 @@
       "requested_at": "2026-11-03T09:05:41.207Z",
       "origin": "reconciled_existing_owner_schedule"
     },
-    "ai_news_2026_11_03": {
-      "at": "2026-11-05T10:00:00+02:00",
-      "kind": "short",
-      "title": "Экзамен по бытовухе: 3 новости ИИ за 2 ноября #shorts",
-      "video_id": "oMhef8NQg1s",
-      "request_id": null,
-      "requested_at": "2026-11-03T09:05:41.207Z",
-      "origin": "reconciled_existing_owner_schedule"
-    },
     "kino_001": {
       "at": "2026-11-04T10:00:00+02:00",
       "kind": "short",
@@ -52,52 +43,40 @@
       "requested_at": "2026-11-03T09:40:49.549Z"
     },
     "kino_006": {
-      "at": "2026-11-06T10:00:00+02:00",
+      "at": "2026-11-05T10:00:00+02:00",
       "kind": "short",
       "title": "Они заметили волну слишком поздно #shorts",
       "video_id": "sCThiwmigy0",
-      "request_id": "6f97758b-cd5b-4064-ba9b-88926c86957d",
-      "requested_at": "2026-11-03T09:41:06.601Z"
+      "request_id": "migration-20261104-kino_006",
+      "requested_at": "2026-11-04T21:59:00Z",
+      "origin": "owner_approved_editorial_migration_20261104"
     },
     "ai_fridge_202611": {
-      "at": "2026-11-05T15:00:00+02:00",
+      "at": "2026-11-05T20:00:00+02:00",
       "kind": "short",
       "title": "Холодильник с ИИ взял мою диету под контроль #shorts",
       "video_id": "QS66i62EgJk",
-      "request_id": "7e59996a-e808-4b58-b4af-d440e8d2eec8",
-      "requested_at": "2026-11-03T17:50:57.710Z"
+      "request_id": "migration-20261104-ai_fridge_202611",
+      "requested_at": "2026-11-04T21:59:00Z",
+      "origin": "owner_approved_editorial_migration_20261104"
     },
     "ai_vacation_202611": {
-      "at": "2026-11-06T15:00:00+02:00",
+      "at": "2026-11-06T20:00:00+02:00",
       "kind": "short",
       "title": "ИИ согласовал отпуск. Отдыхать будет он #shorts",
       "video_id": "R0y8D9MZanc",
-      "request_id": "6aa45f62-3b7f-4f17-9c3a-d2209507624b",
-      "requested_at": "2026-11-03T17:51:17.555Z"
+      "request_id": "migration-20261104-ai_vacation_202611",
+      "requested_at": "2026-11-04T21:59:00Z",
+      "origin": "owner_approved_editorial_migration_20261104"
     },
     "coffee_v8_20261104": {
-      "at": "2026-11-07T10:00:00+02:00",
+      "at": "2026-11-07T20:00:00+02:00",
       "kind": "short",
       "title": "Моя кофемашина требует доказать, что я проснулся #shorts",
       "video_id": "bEdC0uFDvl4",
-      "request_id": "b9b8710f-9781-4deb-937a-e5822efc05ba",
-      "requested_at": "2026-11-04T14:06:56.590Z"
-    },
-    "science_mirror_202611": {
-      "at": "2026-11-05T20:00:00+02:00",
-      "kind": "short",
-      "title": "Зеркало не меняет лево и право. Проверь рукой #shorts",
-      "video_id": "6KgLv_omqao",
-      "request_id": "c6fbf301-2c93-4b5c-8d73-dff156672080",
-      "requested_at": "2026-11-04T14:07:16.537Z"
-    },
-    "science_orbit_202611": {
-      "at": "2026-11-06T20:00:00+02:00",
-      "kind": "short",
-      "title": "На МКС почти земная гравитация. Почему все летают? #shorts",
-      "video_id": "9XeZBiX7Pr8",
-      "request_id": "9cc6ab0e-066b-4b70-85f2-b7cc3324e9c3",
-      "requested_at": "2026-11-04T14:07:46.784Z"
+      "request_id": "migration-20261104-coffee_v8_20261104",
+      "requested_at": "2026-11-04T21:59:00Z",
+      "origin": "owner_approved_editorial_migration_20261104"
     }
   }
 }
