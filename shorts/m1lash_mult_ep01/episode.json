@@ -12,7 +12,7 @@
   ],
   "fps": 30,
   "body_duration": 39,
-  "status": "CHARACTERS_DEFINED_VOICE_CAST_PENDING",
+  "status": "SILENT_R9_VISUAL_PREFLIGHT_VOICE_CAST_PENDING",
   "publishing": {
     "owner_review_required": true,
     "publish_allowed": false,
@@ -37,15 +37,15 @@
       "description": "Original suspended navy-lilac faceted AI with a silver visor, two cyan triangular eyes and floating thin brass rings; NO legs/box/orange mascot.",
       "voice": {
         "speaker": "aks",
-        "voice_id": "aks-licensed-synthetic-tbd",
-        "engine": "licensed-tts-voice-cast-pending",
+        "voice_id": "female-licensed-cast-pending",
+        "engine": "licensed-female-tts-pending",
         "rate": "TBD",
         "source_file": null
       }
     }
   ],
   "outro": {
-    "id": "denis-v3-music80",
+    "id": "denis-v7-voice10",
     "approved_manifest": "tools/outro/approved.json",
     "duration": 6.6,
     "not_attached_to_pilot": true
@@ -56,8 +56,8 @@
       "start": 0,
       "end": 7,
       "location": "desk_wide",
-      "action": "AI lands on desk, projects gold badge ДИРЕКТОР, creator recoils",
-      "camera": "fast establishing push to 2shot",
+      "action": "AI lands above desk and reveals clearly readable DIRECTOR plaque; creator flinches, points, recoils",
+      "camera": "wide arrival -> close reaction -> wider AI declaration, all within exact 0-7 s",
       "reactions": "surprise vs smug",
       "dialogue": [
         [
@@ -164,5 +164,5 @@
       "text": "НОВАЯ ДОЛЖНОСТЬ"
     }
   ],
-  "voice_policy": "MIL and approved outro: Denis; AKS and supporting roles: separate licensed synthetic voice; never clone strangers; final audio review required"
+  "voice_policy": "MIL narrator/main: actual Denis Qwen. AKS: optional licensed female second voice (pending selection, no generic male TTS), no voice synthesized for silent pilot. Approved Denis v7 voice10 outro only; final hearing review by owner."
 }
