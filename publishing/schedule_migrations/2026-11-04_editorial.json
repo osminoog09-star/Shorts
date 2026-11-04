@@ -1,0 +1,51 @@
+{
+  "migration_id": "owner-2026-11-04-2shorts-2cartoons",
+  "approved_by": "owner_user_2026-11-04",
+  "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
+  "no_publication_without_owner_approval": true,
+  "never_upload_or_delete": true,
+  "changes": [
+    {
+      "id": "ai_news_2026_11_03",
+      "video_id": "oMhef8NQg1s",
+      "old": "2026-11-05T10:00:00+02:00",
+      "new": null
+    },
+    {
+      "id": "science_mirror_202611",
+      "video_id": "6KgLv_omqao",
+      "old": "2026-11-05T20:00:00+02:00",
+      "new": null
+    },
+    {
+      "id": "science_orbit_202611",
+      "video_id": "9XeZBiX7Pr8",
+      "old": "2026-11-06T20:00:00+02:00",
+      "new": null
+    },
+    {
+      "id": "kino_006",
+      "video_id": "sCThiwmigy0",
+      "old": "2026-11-06T10:00:00+02:00",
+      "new": "2026-11-05T10:00:00+02:00"
+    },
+    {
+      "id": "ai_fridge_202611",
+      "video_id": "QS66i62EgJk",
+      "old": "2026-11-05T15:00:00+02:00",
+      "new": "2026-11-05T20:00:00+02:00"
+    },
+    {
+      "id": "ai_vacation_202611",
+      "video_id": "R0y8D9MZanc",
+      "old": "2026-11-06T15:00:00+02:00",
+      "new": "2026-11-06T20:00:00+02:00"
+    },
+    {
+      "id": "coffee_v8_20261104",
+      "video_id": "bEdC0uFDvl4",
+      "old": "2026-11-07T10:00:00+02:00",
+      "new": "2026-11-07T20:00:00+02:00"
+    }
+  ]
+}
