@@ -227,8 +227,11 @@ def main():
         print("PRIVATE BODY REVIEW: approved Denis-v7 not accessible in this environment; DO NOT PUBLISH.",flush=True)
     args.output.parent.mkdir(exist_ok=True,parents=True)
     concat(finalpieces,args.output)
-    run(["ffmpeg","-v","error","-xerror","-i",str(args.output),
-         "-map","0:v:0","-map","0:a:0","-f","null","-"])
+    if args.mode=="render":
+        run(["ffmpeg","-v","error","-xerror","-i",str(args.output),
+             "-map","0:v:0","-map","0:a:0","-f","null","-"])
+    else:
+        print("BODY-REVIEW RENDERED: full independent ffmpeg decode/check/look still REQUIRED; not technically passed.",flush=True)
     sec=float(probe(args.output)["format"]["duration"])
     if not 480<=sec<=720:
         raise RuntimeError("NO-GO: final duration outside movie-review range "+str(sec))
