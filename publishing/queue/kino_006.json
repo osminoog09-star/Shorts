@@ -34,10 +34,10 @@
     "owner_audio_approved": true,
     "owner_audio_approval_date": "2026-11-03"
   },
-  "publish_at": "2026-11-06T10:00:00+02:00",
+  "publish_at": "2026-11-05T10:00:00+02:00",
   "schedule_request": {
-    "id": "6f97758b-cd5b-4064-ba9b-88926c86957d",
-    "requested_at": "2026-11-03T09:41:06.601Z",
-    "publish_at": "2026-11-06T10:00:00+02:00"
+    "id": "migration-20261104-kino_006",
+    "requested_at": "2026-11-04T21:59:00Z",
+    "publish_at": "2026-11-05T10:00:00+02:00"
   }
 }
