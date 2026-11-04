@@ -4,12 +4,13 @@
   "channel": "ru",
   "video_id": "sCThiwmigy0",
   "video_url": "https://youtu.be/sCThiwmigy0",
-  "publish_at_utc": "2026-11-06T08:00:00Z",
+  "publish_at_utc": "2026-11-05T08:00:00Z",
   "source_sha256": "d4f8f4db869df610ff3060683e281a4a70ffddcccbfd4af06eedd8a5f94377f5",
   "privacy_status": "private",
   "upload_method": "youtube_studio_ui",
   "verification": "Confirmed in M1lash Studio content table, limited access, no schedule; exact local MP4 SHA256 matched approved review archive.",
   "note": "Manual recovery receipt for an existing upload. NEVER upload again; schedule only after owner publication decision.",
-  "schedule_confirmed_at": "2026-11-03T09:41:55.628646+00:00",
-  "schedule_request_id": "6f97758b-cd5b-4064-ba9b-88926c86957d"
+  "schedule_confirmed_at": "2026-11-04T22:06:11Z",
+  "schedule_request_id": "migration-20261104-kino_006",
+  "owner_migration_20261104": "Confirmed via live YouTube API GET, Actions run 41922020447; no upload or deletion"
 }
