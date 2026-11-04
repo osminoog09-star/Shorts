@@ -1,0 +1,12 @@
+{
+  "renderer": "python",
+  "script": "shorts/m1lash_mult_ep01/render_visual.py",
+  "output": "videos/m1lash_mult_ep01_PREVIEW_ONLY.mp4",
+  "only_id": "m1lash_mult_ep01",
+  "mode": "stills",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "voice_generated": false,
+  "publish": false,
+  "revision": "r15_scene4_resignation_paper_stamp_30days_physical_art_gate"
+}
