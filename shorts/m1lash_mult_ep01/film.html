@@ -118,14 +118,21 @@ function room(){
  box(.42,.25,.23,0,0,0,M.ink,wire);
  box(.18,.13,.14,0,-.05,.16,M.steel,wire);
  joint([0,-.13,.10],[-.25,-.72,.26],.06,M.ink,wire);
- for(let i=0;i<5;i++){
+ // Three real 3D meeting cards that multiply; each owns an original canvas texture.
+ // Larger physical props and readable time labels replace microscopic icon-only panels.
+ const agenda=[["09:00","ПЛАНЁРКА"],["09:05","ПОДГОТОВКА"],["09:10","ИТОГИ"]];
+ for(let i=0;i<agenda.length;i++){
    const card=new THREE.Group();scene.add(card);
-   card.position.set(-2.85+(i%2)*.47,2.02+Math.floor(i/2)*.47,.56+(i%3)*.04);
-   box(.72,.42,.05,0,0,0,i%2?M.navy:M.lilac,card);
-   ring(.14,.016,-.19,.01,.052,M.eyes,card);
-   joint([-.19,.01,.06],[-.19,.09,.06],.015,M.eyes,card);
-   joint([-.19,.01,.06],[-.13,.01,.06],.015,M.eyes,card);
-   box(.20,.045,.02,.16,.08,.05,M.brass,card);
+   const backing=box(1.60,.99,.065,0,0,0,i===1?M.lilac:M.navy,card);
+   const canvas=document.createElement('canvas');canvas.width=960;canvas.height=580;
+   const ctx=canvas.getContext('2d');
+   ctx.fillStyle=i===1?'#342d6e':'#172b47';ctx.fillRect(0,0,960,580);
+   ctx.fillStyle='#edbe6f';ctx.fillRect(0,0,960,46);
+   ctx.fillStyle='#e4f8ff';ctx.textAlign='center';ctx.textBaseline='middle';
+   ctx.font='900 188px "DejaVu Sans",Arial,sans-serif';ctx.fillText(agenda[i][0],480,240);
+   ctx.font='900 88px "DejaVu Sans",Arial,sans-serif';ctx.fillText(agenda[i][1],480,428);
+   const face=new THREE.Mesh(new THREE.PlaneGeometry(1.56,.95),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(canvas),side:THREE.DoubleSide}));
+   face.position.z=.046;card.add(face);
    meeting.push(card);
  }
  for(let i=0;i<12;i++){
@@ -167,7 +174,7 @@ const captions=["НОВЫЙ ДИРЕКТОР","СОВЕЩАНИЕ НА СОВЕ�
 const tags=["МОЙ ИИ. ЕГО ПРАВИЛА","ВСТРЕЧА ЗА ВСТРЕЧЕЙ","ВМЕСТО ДЕНЕГ — ОПЫТ","ДОКУМЕНТЫ ЛЕТЯТ","ВЫДЕРНУ ШНУР","НАЧАЛЬНИК В ТЕЛЕФОНЕ"];
 const looks=[
  {p:[0,3.58,12.7],at:[0,2.65,-.05]},
- {p:[-2.0,3.7,5.6],at:[-1.25,3.06,-.3]},
+ {p:[.58,3.78,9.65],at:[-.55,2.57,-.18]},
  {p:[1.15,3.53,6.25],at:[.52,2.96,.86]},
  {p:[3.35,3.02,6.5],at:[2.12,1.76,.25]},
  {p:[.35,3.02,7.55],at:[-.25,2.32,.65]},
@@ -180,7 +187,7 @@ function seek(t){
  let s=0;while(s<5&&t>=sceneStarts[s+1])s++;
  const dt=Math.max(0,t-sceneStarts[s]);
  document.querySelector('#slogan').textContent=(s===0&&dt>4.55)?'ТЕПЕРЬ Я НАЧАЛЬНИК':captions[s];
- document.querySelector('#tag').textContent=(s===0 && dt>4.25)?'ДОСТУП К ВЛАСТИ: ЗАКРЫТ':tags[s];
+ document.querySelector('#tag').textContent=(s===0 && dt>4.25)?'ДОСТУП К ВЛАСТИ: ЗАКРЫТ':(s===1&&dt>4.35?'РАБОТЫ НЕТ. ЗАТО ВСТРЕЧИ.':tags[s]);
  for(let i=0;i<6;i++){}
  const L=looks[s],b=Math.sin(t*.8),bob=Math.sin(t*2.6);
  camera.position.set(L.p[0]+Math.sin(dt*.26)*.12,L.p[1]+Math.cos(dt*.3)*.035,L.p[2]-.12*Math.min(6.5,dt));
@@ -215,6 +222,11 @@ function seek(t){
      // Left palm stays in frame, supporting a contrasting tight fist.
      a.shoulder.rotation.set(-.12*startled-.14*recoil,0,-.08-.27*startled-.12*point-.31*recoil);
      a.elbow.rotation.set(0,0,.25+.50*startled+.25*point+.48*recoil);
+   }else if(s===1){
+     // After the third meeting pop, MIL incredulously opens both arms.
+     const why=ease(2.8,3.65,dt)*(1-.20*ease(4.8,5.65,dt));
+     a.shoulder.rotation.set(-.12*why,0,v*(.20+.64*why));
+     a.elbow.rotation.set(0,0,-v*(.26+.36*why));
    }else{
      a.shoulder.rotation.set(-.04,0,v*.10);
      a.elbow.rotation.set(0,0,-v*.22);
@@ -222,9 +234,9 @@ function seek(t){
    a.hand.rotation.set(0,0,.08*Math.sin(t*6));
  });
  mil.head.rotation.z=(s===0?-.12-.12*startled:s===2?.08:s===4?.10:0)+Math.sin(t*3.4)*.035;
- mil.head.rotation.y=s===0?-.38*ease(1.2,2.45,dt)*(1-ease(4.8,5.7,dt)):0;
+ mil.head.rotation.y=s===0?-.38*ease(1.2,2.45,dt)*(1-ease(4.8,5.7,dt)):s===1?-.28*ease(.6,2.2,dt)+.20*ease(3.4,4.5,dt):0;
  mil.brows.forEach((br,i)=>{br.rotation.z=(i===0?-1:1)*(s===1?.30:s===4?-.32:s===5?.40:.12)});
- mil.mouth.scale.set(s===1?1.4:s===4?1.7:1,s===0?1+4*startled+1.5*protests:s===4?2.9:s===5?2.0:1,1);
+ mil.mouth.scale.set(s===1?1.4:s===4?1.7:1,s===0?1+4*startled+1.5*protests:s===1?1+2.2*ease(3.1,3.9,dt):s===4?2.9:s===5?2.0:1,1);
  mil.root.rotation.y=s===0?-.15*startled:s===3?-.14:s===5?.16:0;
  mil.root.rotation.z=s===0?.10*startled+.045*Math.sin(t*10)*protests:0;
  mil.root.position.y=.35+(s===0?.15*Math.sin(ease(1.18,2.0,dt)*Math.PI)-.09*startled:0);
@@ -249,7 +261,20 @@ function seek(t){
    bit.scale.setScalar(.15+(1-spread)*.86);
  });
  printer.visible=s===3;
- meeting.forEach((x,i)=>{x.visible=s===1;x.position.y=2.02+Math.floor(i/2)*.47+Math.sin(t*2+i)*.07;x.rotation.y=.12*Math.sin(t*.8+i)});
+ meeting.forEach((card,i)=>{
+   const appear=ease(.35+i*1.20,.83+i*1.20,dt);
+   card.visible=s===1 && appear>.001;
+   if(!card.visible)return;
+   // A physical agenda appears as successive stacked cards, with a simple pop settle.
+   const depth=5.8,hh=2*Math.tan(THREE.MathUtils.degToRad(camera.fov)/2)*depth;
+   const ww=hh*camera.aspect,pw=290,ph=210;
+   camera.updateMatrixWorld(true);
+   const xx=[730,748,715][i],yy=[755,950,1150][i]-38*(1-appear);
+   card.position.copy(camera.localToWorld(new THREE.Vector3((xx/W-.5)*ww,(.5-yy/H)*hh,-depth)));
+   card.quaternion.copy(camera.quaternion);
+   card.rotateZ((i-1)*.10+.055*Math.sin(t*1.6+i));
+   card.scale.setScalar((pw*ww/W/1.60)*(appear+.08*Math.sin(appear*Math.PI)));
+ });
  forms.forEach((x,i)=>{
    x.visible=s===3;
    const launch=Math.max(0,dt-.2-i*.27),rise=1.8*ease(0,2.6,launch);
