@@ -1,13 +1,14 @@
 {
-  "status": "scheduled",
+  "status": "uploaded",
   "manifest": "publishing/queue/ai_news_2026_11_03.json",
   "channel": "ru",
   "video_id": "oMhef8NQg1s",
   "video_url": "https://youtu.be/oMhef8NQg1s",
-  "publish_at_utc": "2026-11-05T08:00:00Z",
+  "publish_at_utc": null,
   "source_sha256": "7fdb95b889966ff614f768b335c03252e0c664dd0123f11c2ee3cc99fa61148a",
   "privacy_status": "private",
   "upload_method": "youtube_studio_ui",
   "verification": "Confirmed in M1lash Studio content table, limited access, no schedule; exact local MP4 SHA256 matched approved review archive.",
-  "note": "Manual recovery receipt for an existing upload. NEVER upload again; schedule only after owner publication decision."
+  "note": "Manual recovery receipt for an existing upload. NEVER upload again; schedule only after owner publication decision.",
+  "owner_migration_20261104": "Confirmed via live YouTube API GET, Actions run 41922020447; no upload or deletion"
 }
