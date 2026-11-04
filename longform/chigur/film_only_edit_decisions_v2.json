@@ -1,12 +1,12 @@
 {
   "project": "longform/chigur",
-  "version": "film-only-EDL-v2-2026-11-04",
-  "status": "EDITORIAL_SHOT_POOLS_SOURCE_VERIFIED_ACTOR_AUDIO_SEMANTICS_PENDING",
+  "version": "film-only-EDL-v3-real-RU-proof-timestamps-2026-11-04",
+  "status": "EDITORIAL_SHOT_POOLS_ASR_VERIFIED_3_PROOFS_OTHER_PROOFS_PENDING",
   "rules": "AGENTS.md §9; no CGI; no Dima; use only film frames; proof source dialogue audible after Denis analysis",
   "source_metadata": "longform/chigur/film_only_source_index.json",
   "voice_manifest": "longform/chigur/voice_chunks_denis_film_only.json",
   "source_restrictions": "Exclude all gas>=255 and carson>=160 RED bumpers; every source time is relative to extracted local clip",
-  "proofs_count": 8,
+  "proofs_count": 9,
   "pools_coverage_seconds": {
     "gas": 253,
     "carson": 155,
@@ -16,7 +16,7 @@
   },
   "movie_audio_policy": "mute ONLY B-roll while Denis speaks; keep actor original audio for actor proof windows; do not use fake/synth actor clips",
   "outro": "Denis v7 voice10 horizontal 6.600s, SHA256=70b066b067cec45dbaaae91ef39ee79543ac9c396d0d1bd896885b1511867dae",
-  "editor_note": "Chapter plan informed by real inspected film-frame contacts. In/out are candidate source windows, not proof of exact Russian dialogue or final cut timing; Qwen voice duration, final edit and 8 actor audio semantics pending. Allocated extra 9s of motel exterior to d08; preserve 44–49.2 actor proof; chapter d08 pool now 53s without overlap, d09 62.8s.",
+  "editor_note": "Chapter plan informed by real inspected film-frame contacts. In/out are candidate source windows, not proof of exact Russian dialogue or final cut timing; Qwen voice duration, final edit and 8 actor audio semantics pending. Allocated extra 9s of motel exterior to d08; preserve 44–49.2 actor proof; chapter d08 pool now 53s without overlap, d09 62.8s. 04.11 re-edited actual actor-audio windows using historical real Russian ASR GitHub Actions runs 41273807923 and 41273154882. Exact Carla refusal 194.35–198.97 fully preserved; actor coin offer 178.63–181.79; driver polite order 94–99. Three proof windows have ASR; all still need owner hearing.",
   "chapters": [
     {
       "chapter": "d01",
@@ -199,12 +199,31 @@
         {
           "source": "driver",
           "in_s": 47,
+          "out_s": 94,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "driver",
+          "in_s": 99,
           "out_s": 111,
           "visual_role": "original film under owner narration; cinema audio muted",
           "use_once": true
         }
       ],
-      "proofs_after_author_section": []
+      "proofs_after_author_section": [
+        {
+          "id": "driver_ru_polite_order",
+          "source": "driver",
+          "in_s": 94,
+          "out_s": 99,
+          "source_audio": "retain original; no Denis narration during actual RU police-stop dialogue",
+          "semantics_verified": true,
+          "asr_reference": "GitHub Actions 41273154882, chigur_driver_ru_asr.json t=86,103; \"Пожалуйста, выйдите из машины, сэр\" and \"Замрите, пожалуйста\"",
+          "human_listening": "pending",
+          "must_not_auto_publish": true
+        }
+      ]
     },
     {
       "chapter": "d08",
@@ -273,13 +292,14 @@
       ],
       "proofs_after_author_section": [
         {
-          "id": "carla_reaction",
+          "id": "carla_coin_offer_ru",
           "source": "carla",
-          "in_s": 116,
-          "out_s": 121.2,
-          "source_audio": "retain original; no Denis speech over proof",
-          "semantics_verified": false,
-          "status": "PENDING_LISTEN_ASR",
+          "in_s": 178.55,
+          "out_s": 181.85,
+          "source_audio": "retain original; do not overlay Denis",
+          "semantics_verified": true,
+          "asr_reference": "GitHub Actions 41273807923 carla_word_times.json: 178.63–181.79 \"Орёл? Или решка?\"",
+          "human_listening": "pending",
           "must_not_auto_publish": true
         }
       ]
@@ -291,13 +311,20 @@
         {
           "source": "carla",
           "in_s": 144,
-          "out_s": 192.7,
+          "out_s": 178.55,
           "visual_role": "original film under owner narration; cinema audio muted",
           "use_once": true
         },
         {
           "source": "carla",
-          "in_s": 197.9,
+          "in_s": 181.85,
+          "out_s": 194.25,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "carla",
+          "in_s": 199.2,
           "out_s": 216,
           "visual_role": "original film under owner narration; cinema audio muted",
           "use_once": true
@@ -305,13 +332,14 @@
       ],
       "proofs_after_author_section": [
         {
-          "id": "carla_refusal",
+          "id": "carla_actual_refusal_ru",
           "source": "carla",
-          "in_s": 192.7,
-          "out_s": 197.9,
-          "source_audio": "retain original; no Denis speech over proof",
-          "semantics_verified": false,
-          "status": "PENDING_LISTEN_ASR",
+          "in_s": 194.25,
+          "out_s": 199.2,
+          "source_audio": "retain original; no owner VO",
+          "semantics_verified": true,
+          "asr_reference": "GitHub Actions 41273807923 carla_word_times.json 194.35–198.97 \"Нет. Не буду выбирать.\"",
+          "human_listening": "pending",
           "must_not_auto_publish": true
         }
       ]
@@ -344,5 +372,6 @@
       ],
       "proofs_after_author_section": []
     }
-  ]
+  ],
+  "proofs_asr_verified": 3
 }
