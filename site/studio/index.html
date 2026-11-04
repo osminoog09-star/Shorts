@@ -320,18 +320,18 @@ const head=(eb,title,sub)=>{const k=(TABS.find(x=>x[0]===tab)||[])[2];return `<d
 function home(){
   const L=D.live||{}, ch=D.channel, wc=weekCmp(), y=D.ypp, base=y&&y.tiers[0];
   const h=new Date().getHours(), hi=h<5?"Доброй ночи":h<12?"Доброе утро":h<18?"Добрый день":"Добрый вечер";
-  const daily=D.daily.slice(-28);
+  const daily=chartSeries(D.daily),lastDaily=(D.daily||[]).filter(d=>Number.isFinite(d.views)).sort((a,b)=>a.day.localeCompare(b.day)).at(-1)||{};
   const sg=(L.span_h||0)>=20&&L.subs_24h!=null?` · <span class="${L.subs_24h>0?"up":"flat"}">${L.subs_24h>0?"+":""}${L.subs_24h} за 24 ч</span>`:"";
   let s=`<section class="card hero reveal"><canvas id="c3d" aria-label="3D-логотип M1lash Studio"></canvas><div class="hi"><small>${dshort(new Date().toISOString())} · studio</small><h1>${hi}, Денис</h1></div>
     <div class="big"><span class="n num">${num(ch.subs)}</span><span>подписчиков${sg}</span></div></section>`;
   const td=todoItems();
   s+=`<section class="card reveal"><h2>Сегодня <span class="cnt">${td.length}</span></h2>${td.length?`<div class="todo">${td.map((t,i)=>`<button data-todo="${i}"><span class="ti ${t[1]}">${t[0]}</span><span><b>${t[2]}</b><small>${t[3]}</small></span><span class="go">›</span></button>`).join("")}</div>`:`<div class="empty">Всё спокойно — новых дел нет ✨</div>`}</section>`;
   s+=`<div class="kpis reveal">
-    ${(L.span_h||0)>=20?`<div class="card kpi"><div class="l">Просмотры за 24 ч</div><div class="n num">+${num(L.views_24h)}</div><div class="d muted">${L.views_12h!=null?"+"+num(L.views_12h)+" за 12 ч · ":""}+${num(L.views_1h||0)} за час</div></div>`:`<div class="card kpi"><div class="l">Просмотры за ${dshort((daily.at(-1)||{}).day)}</div><div class="n num">${num((daily.at(-1)||{}).views)}</div><div class="d muted">${L.views_1h>0?"+"+num(L.views_1h)+" за последний час":"по аналитике YouTube"}</div></div>`}
+    ${(L.span_h||0)>=20?`<div class="card kpi"><div class="l">Просмотры за 24 ч</div><div class="n num">+${num(L.views_24h)}</div><div class="d muted">${L.views_12h!=null?"+"+num(L.views_12h)+" за 12 ч · ":""}+${num(L.views_1h||0)} за час</div></div>`:`<div class="card kpi"><div class="l">Просмотры за ${dshort(lastDaily.day)}</div><div class="n num">${num(lastDaily.views)}</div><div class="d muted">${L.views_1h>0?"+"+num(L.views_1h)+" за последний час":"по аналитике YouTube"}</div></div>`}
     <div class="card kpi"><div class="l">Shorts за 7 дней</div><div class="n num">${short(wc.w)}</div><div class="d">${delta(pct(wc.w,wc.p),wc.p)}${wc.p!=null&&wc.p>=500?' к прошлой неделе':''}</div></div>
     <div class="card kpi"><div class="l">Всего просмотров</div><div class="n num">${short(ch.views)}</div><div class="d muted">${num(ch.videos)} видео</div></div>
     <button class="card kpi" data-go="money" style="text-align:left"><div class="l">До монетизации</div><div class="n num">${base?Math.round(ch.subs/5)+"%":"—"}</div><div class="d muted">${num(ch.subs)}/500 подп. ›</div></button></div>`;
-  s+=`<section class="card reveal"><h2>Просмотры за 28 дней <span class="cnt">пик ${num(Math.max(0,...daily.map(d=>d.views||0)))}</span></h2>${chart(daily.map(d=>({x:d.day,y:d.views||0})))}</section>`;
+  s+=`<section class="card reveal"><h2>Просмотры за 28 календарных дней</h2><p class="muted" style="font-size:12px;margin:0 0 12px">${dshort(daily[0].x)} — ${dshort(daily.at(-1).x)} · аналитика по ${dshort(D.analytics_as_of)}. Серые дни — данные ещё не получены, это не ноль.</p>${chart(daily)}</section>`;
   s+=`<section class="reveal"><h2 style="margin-left:2px">Свежие ролики <button class="more" data-go="videos">все ›</button></h2><div class="hs">${freshList().map(vcard).join("")}</div></section>`;
   const fa=Object.entries(fmtAvg()).sort((a,b)=>b[1].views-a[1].views), mx=Math.max(1,...fa.map(f=>f[1].views));
   s+=`<section class="card reveal"><h2>Что заходит лучше всего</h2><div class="bars">${fa.map(([k,f])=>`<div class="bar"><span>${esc(k)}</span><div class="track"><div class="fill" style="width:${(f.views/mx*100).toFixed(1)}%"></div></div><span class="v">${short(Math.round(f.views))}</span></div>`).join("")}</div><p class="muted" style="font-size:12px;margin:10px 0 0">Средние просмотры на ролик по формату.</p></section>`;
@@ -345,14 +345,31 @@ function freshList(){
 }
 const vcard=v=>`<button class="vc" data-vid="${esc(v.id)}"><div class="th"><img loading="lazy" src="${esc(v.thumb)}" alt="">${v.h1>0?`<span class="live">+${num(v.h1)}/ч</span>`:""}${v.duration?`<span class="dur">${dur(v.duration)}</span>`:""}</div><b>${esc(clean(v.title))}</b><small>${num(v.views)} просм. · ${dshort(v.published)}</small></button>`;
 const CH=[];
+function chartSeries(rows,today){
+  // Calendar days, not the last N returned API rows. Missing is unknown, never zero.
+  const dateParts=new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Tallinn",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
+  const day=today||["year","month","day"].map(k=>dateParts.find(p=>p.type===k).value).join("-");
+  const end=new Date(day+"T12:00:00Z"),byDay=new Map((rows||[]).map(r=>[r.day,r.views]));
+  return Array.from({length:28},(_,i)=>{
+    const date=new Date(end);date.setUTCDate(date.getUTCDate()-27+i);
+    const x=date.toISOString().slice(0,10),value=byDay.get(x);
+    return {x,y:Number.isFinite(value)&&value>=0?value:null};
+  });
+}
 function chart(pts){
   if(pts.length<2)return'<div class="empty">Мало данных</div>';
-  const W=640,H=170,mx=Math.max(1,...pts.map(p=>p.y)),st=W/(pts.length-1);
-  const P=pts.map((p,i)=>[i*st,H-10-p.y/mx*(H-26)]);
-  const line=P.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+","+p[1].toFixed(1)).join("");
+  const W=640,H=170,mx=Math.max(1,...pts.map(p=>p.y??0)),st=W/(pts.length-1);
+  const P=pts.map((p,i)=>p.y==null?null:[i*st,H-10-p.y/mx*(H-26)]);
+  const segments=[];let run=[];
+  for(const p of P){if(p)run.push(p);else if(run.length){segments.push(run);run=[]}}
+  if(run.length)segments.push(run);
+  const lines=segments.map(s=>s.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+","+p[1].toFixed(1)).join(""));
+  const areas=segments.map((s,i)=>lines[i]+"L"+s.at(-1)[0].toFixed(1)+","+H+"L"+s[0][0].toFixed(1)+","+H+"Z").join(" ");
   const id="g"+CH.length;CH.push(pts);
-  return `<div class="chart" data-ci="${CH.length-1}"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="График просмотров"><defs><linearGradient id="${id}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--pink)" stop-opacity=".35"/><stop offset="1" stop-color="var(--pink)" stop-opacity="0"/></linearGradient><linearGradient id="${id}l" x1="0" x2="1"><stop offset="0" stop-color="var(--blue)"/><stop offset="1" stop-color="var(--pink)"/></linearGradient></defs>
-    <path d="${line}L${W},${H}L0,${H}Z" fill="url(#${id})"/><path d="${line}" fill="none" stroke="url(#${id}l)" stroke-width="3" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg><div class="tip"></div><div class="axis"><span>${dshort(pts[0].x)}</span><span>${dshort(pts[Math.floor(pts.length/2)].x)}</span><span>${dshort(pts.at(-1).x)}</span></div></div>`;
+  const gaps=pts.map((p,i)=>p.y==null?`<rect x="${Math.max(0,i*st-st/2)}" y="0" width="${i===0||i===pts.length-1?st/2:st}" height="${H}" fill="var(--faint)" opacity=".12"/>`:"").join("");
+  const dots=P.filter(Boolean).map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="2.5" fill="var(--pink)"/>`).join("");
+  return `<div class="chart" data-ci="${CH.length-1}"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="График просмотров по календарным дням; серые дни — нет данных"><defs><linearGradient id="${id}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--pink)" stop-opacity=".35"/><stop offset="1" stop-color="var(--pink)" stop-opacity="0"/></linearGradient><linearGradient id="${id}l" x1="0" x2="1"><stop offset="0" stop-color="var(--blue)"/><stop offset="1" stop-color="var(--pink)"/></linearGradient></defs>
+    ${gaps}<path d="${areas}" fill="url(#${id})"/><path d="${lines.join(" ")}" fill="none" stroke="url(#${id}l)" stroke-width="3" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>${dots}</svg><div class="tip"></div><div class="axis"><span>${dshort(pts[0].x)}</span><span>${dshort(pts[Math.floor(pts.length/2)].x)}</span><span>${dshort(pts.at(-1).x)}</span></div></div>`;
 }
 function videos(){
   let s=head("Контент","Ролики","Все ролики канала с цифрами. Нажми на ролик — откроется подробная карточка.");
@@ -780,7 +797,7 @@ $("#scrim").onclick=closeSheet;
 document.addEventListener("change",e=>{if(e.target.id==="vsort"){vSort=e.target.value;render()}});
 document.addEventListener("input",e=>{if(e.target.id==="okAt")okHint()});
 $("#refresh").onclick=async()=>{const b=$("#refresh");b.classList.add("spin");if(tok()){try{await dispatch("youtube-pulse.yml");toast("Запустил сбор живых цифр — обновится через пару минут")}catch(e){toast("Не вышло: "+e.message)}}await load(true);b.classList.remove("spin")};
-document.addEventListener("pointermove",e=>{const c=e.target.closest&&e.target.closest(".chart");document.querySelectorAll(".chart .tip").forEach(t=>{if(!c||!c.contains(t))t.style.opacity=0});if(!c)return;const pts=CH[+c.dataset.ci];if(!pts)return;const r=c.getBoundingClientRect(),i=Math.max(0,Math.min(pts.length-1,Math.round((e.clientX-r.left)/r.width*(pts.length-1))));const t=c.querySelector(".tip");t.style.left=(i/(pts.length-1)*100)+"%";t.textContent=`${dshort(pts[i].x)}: ${num(pts[i].y)}`;t.style.opacity=1});
+document.addEventListener("pointermove",e=>{const c=e.target.closest&&e.target.closest(".chart");document.querySelectorAll(".chart .tip").forEach(t=>{if(!c||!c.contains(t))t.style.opacity=0});if(!c)return;const pts=CH[+c.dataset.ci];if(!pts)return;const r=c.getBoundingClientRect(),i=Math.max(0,Math.min(pts.length-1,Math.round((e.clientX-r.left)/r.width*(pts.length-1))));const t=c.querySelector(".tip");t.style.left=(i/(pts.length-1)*100)+"%";t.textContent=`${dshort(pts[i].x)}: ${pts[i].y==null?"данных пока нет":num(pts[i].y)}`;t.style.opacity=1});
 async function load(quiet){
   try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});D=await r.json();D.comments=D.comments||[];D.experiments=D.experiments||[];D.review=D.review||[];D.plan=D.plan||[];applySchedulingState(D);
     const L=D.live;$("#asof").textContent=L?`обновлено ${ago(L.t)} назад`:`аналитика по ${dshort(D.analytics_as_of)}`;
