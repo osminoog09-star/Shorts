@@ -145,15 +145,19 @@ def main():
    sheet.paste(im,(x,y+18));draw.text((x+9,y+3),f"{i+1:02} • {times[i]}s",fill="#ffffff")
   sheet.save(OUT/"contact_6_original_3d.jpg",quality=89)
   if job["mode"]=="pilot":
-   out=OUT/"M1lashMult_ep01_SILENT_7s_pilot.mp4"
+   start=float(job.get("pilot_start",0))
+   seconds=float(job.get("pilot_seconds",7))
+   if (start,seconds) not in ((0.0,7.0),(7.0,6.0)):raise RuntimeError("Pilot window not whitelisted")
+   frames=int(seconds*30)
+   out=OUT/f"M1lashMult_ep01_SILENT_{int(seconds)}s_from_{int(start)}s_pilot.mp4"
    cmd=["ffmpeg","-v","error","-nostdin","-y","-f","image2pipe","-vcodec","mjpeg",
    "-framerate","30","-i","-","-c:v","libx264","-preset","fast","-crf","22",
    "-pix_fmt","yuv420p","-r","30","-colorspace","bt709",
    "-color_primaries","bt709","-color_trc","bt709",str(out)]
    proc=subprocess.Popen(cmd,stdin=subprocess.PIPE)
    try:
-    for n in range(210):
-     page.evaluate("(t)=>window.seek(t)",n/30)
+    for n in range(frames):
+     page.evaluate("(t)=>window.seek(t)",start+n/30)
      proc.stdin.write(page.screenshot(type="jpeg",quality=80))
     proc.stdin.close()
     if proc.wait():raise RuntimeError("ffmpeg pilot encode failed")
