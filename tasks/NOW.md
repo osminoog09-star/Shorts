@@ -36,9 +36,9 @@
 - [x] 1. Прочитаны AGENTS.md, NOW.md, HANDOFF.md, Studio SKILL, visuals-by-code, reference-analysis и animation-production; утверждение стиля получено.
 - [x] 2. Референсы: второй O-oQEDKCsUk проанализирован внешним инструментом на уровне описания 7 сцен (без проверенных физических кадров); первый bq1gOXifqe8 ещё SOURCE_UNVERIFIED, повторная попытка анализа запущена; не выдавать гипотезы за пиксели.
 - [x] 3. Созданы skills/film-mult/SKILL.md (commit a44266e) и references/REFERENCE_AUDIT.md (commit 682b8fc); S10 внесён в style-library (b5141b6), 1-й референс UNVERIFIED, 2-й AUTO_SUMMARY_UNVERIFIED.
-- [ ] 4. Записать узкое утверждение в AGENTS, S10-D25 в style-library, маршрутизировать из m1lash-studio и ссылок агентов.
+- [x] 4. AGENTS S10 narrow commit d4bed4e; style library b5141b6; Studio routing be079a7; .agents/.claude symlinks commit 4494919 (main push). GitHub readback всех пяти документов и обоих symlink PASS.
 - [ ] 5. Проверить через GitHub readback, обновить HANDOFF и удалить этот блок из NOW после завершения.
-Следующий шаг: записать точное решение в AGENTS.md и маршрутизацию Film-Mult в Studio, затем подключить агентские пути, проверить readback и HANDOFF. Два референса не считаются физически просмотренными.
+Следующий шаг: записать результат и ограничение исходников в начало HANDOFF.md; затем убрать завершённый Film-Mult блок из tasks/NOW.md, остальные задачи не трогать. Два референса не считаются физически просмотренными.
 Где промежуточное: skills/film-mult/, skills/vizavi-motion/references/style-library.md, skills/m1lash-studio/SKILL.md.
 Ждёт Дениса: нет, формат и S10-D25 уже утверждены.
 
