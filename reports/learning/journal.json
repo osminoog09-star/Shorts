@@ -67,6 +67,19 @@
       "audience_effect": "unknown",
       "regression": true,
       "owner_feedback": "04.11.2026: «Отлично так и оставим.» — баланс концовки утверждён; разрешение публикации из этого не следует."
+    },
+    {
+      "id": "COFFEE-V7-PROP-CONTINUITY",
+      "project": "coffee_voice_test_v2_20261103",
+      "issue": "Карта не достигала терминала; вилка была уже вынута; инструкция заменена чеком",
+      "cause": "Реквизит, рука, состояние экрана и речь имели независимые координаты/триггеры",
+      "fix": "Общие координаты контакта; единая шкала событий по речи; настоящий текст инструкции",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-04_COFFEE_V7_VISUAL_AUDIT.md",
+      "acceptance": "Открыты16фаз SVG и4×48фаз финальногоMP4; finalcheck0FAIL/full-decodePASS; AAC и декодированныйPCM совпали с baseline. Непрерывный просмотр/слух не заявляются.",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }

@@ -18,12 +18,12 @@ with sync_playwright() as p:
   if row['titleWidth']>row['titleMax']+2 or row['titleBottom']>405 or row['capBottom']>1440 or row['capWidth']>row['capMax']+2:raise RuntimeError('Layout NO-GO '+str(row))
  (W/'layout.json').write_text(json.dumps(layout,ensure_ascii=False,indent=2))
  images=[]
- for i in range(6):
-  at=d['cuts'][i]+(d['cuts'][i+1]-d['cuts'][i])*[.17,.76,.52,.78,.60,.69][i];page.evaluate('t=>window.seek(t)',at);f=W/f'still_{i+1:02d}.jpg';page.screenshot(path=str(f),type='jpeg',quality=92);images.append(f)
+ for i,at in enumerate([0,7.95,9.2,10.6,14.3,18.3,19.3,20.6,23,25,29.91,30.15,30.5,31,36,37.7]):
+  page.evaluate('t=>window.seek(t)',at);f=W/f'still_{i+1:02d}.jpg';page.screenshot(path=str(f),type='jpeg',quality=92);images.append(f)
  from PIL import Image,ImageDraw
- sheet=Image.new('RGB',(900,1104),'#21313c')
+ sheet=Image.new('RGB',(1200,2208),'#21313c')
  for i,f in enumerate(images):
-  im=Image.open(f);im.thumbnail((300,533));sheet.paste(im,(i%3*300,i//3*552+19));ImageDraw.Draw(sheet).text((i%3*300+5,i//3*552+2),str(i+1),fill='white')
+  im=Image.open(f);im.thumbnail((300,533));sheet.paste(im,(i%4*300,i//4*552+19));ImageDraw.Draw(sheet).text((i%4*300+5,i//4*552+2),str(i+1),fill='white')
  sheet.save(W/'contact.jpg',quality=88)
  if mode in ('pilot','full'):
   start=d['cuts'][5] if mode=='pilot' else 0;duration=d['total']-start

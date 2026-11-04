@@ -1,1 +1,1 @@
-{"renderer": "python", "script": "shorts/coffee_voice_test_v2_20261103/render_visual.py", "output": "videos/coffee_voice_test_visual_v2.mp4", "mode": "full", "preflight_only": true, "save_review_mp4": false, "no_youtube_upload": true, "revision": 205}
+{"renderer": "python", "script": "shorts/coffee_voice_test_v2_20261103/render_visual.py", "output": "videos/coffee_voice_test_visual_v2.mp4", "mode": "stills", "preflight_only": true, "save_review_mp4": false, "no_youtube_upload": true, "revision": 207}
