@@ -16,7 +16,7 @@
   },
   "movie_audio_policy": "mute ONLY B-roll while Denis speaks; keep actor original audio for actor proof windows; do not use fake/synth actor clips",
   "outro": "Denis v7 voice10 horizontal 6.600s, SHA256=70b066b067cec45dbaaae91ef39ee79543ac9c396d0d1bd896885b1511867dae",
-  "editor_note": "Chapter plan informed by real inspected film-frame contacts. In/out are candidate source windows, not proof of exact Russian dialogue or final cut timing; Qwen voice duration, final edit and 8 actor audio semantics pending. Allocated extra 9s of motel exterior to d08; preserve 44–49.2 actor proof; chapter d08 pool now 53s without overlap, d09 62.8s. 04.11 re-edited actual actor-audio windows using historical real Russian ASR GitHub Actions runs 41273807923 and 41273154882. Exact Carla refusal 194.35–198.97 fully preserved; actor coin offer 178.63–181.79; driver polite order 94–99. Three proof windows have ASR; all still need owner hearing. 04.11 asr-fine rewrite gas narrator interrogation 119.32–125.90, gas life threat 191.84–195.10 and Carson money 37.60–46.84. 9 proof windows, 7 ASR-observed dialogued and 2 ambient-only sources; all owner listening pending. Frames are unique across source ranges.",
+  "editor_note": "Chapter plan informed by real inspected film-frame contacts. In/out are candidate source windows, not proof of exact Russian dialogue or final cut timing; Qwen voice duration, final edit and 8 actor audio semantics pending. Allocated extra 9s of motel exterior to d08; preserve 44–49.2 actor proof; chapter d08 pool now 53s without overlap, d09 62.8s. 04.11 re-edited actual actor-audio windows using historical real Russian ASR GitHub Actions runs 41273807923 and 41273154882. Exact Carla refusal 194.35–198.97 fully preserved; actor coin offer 178.63–181.79; driver polite order 94–99. Three proof windows have ASR; all still need owner hearing. 04.11 asr-fine rewrite gas narrator interrogation 119.32–125.90, gas life threat 191.84–195.10 and Carson money 37.60–46.84. 9 proof windows, 7 ASR-observed dialogued and 2 ambient-only sources; all owner listening pending. Frames are unique across source ranges. 04.11 Remote actual Qwen d01 25.04s and d02 46.4s; adjust allocations while preserving all eight actor-proof windows: d01 gas0-29, d02 gas29-77.4, d03 gains unused gas144-148.5 and package gesture gas160-167, d04 gas167-191.75, d07 gains driver43-47, d09 gains tracker121-123. Recalculate actual chapter lengths after voice inference; no original shot duplicated.",
   "chapters": [
     {
       "chapter": "d01",
@@ -25,14 +25,7 @@
         {
           "source": "gas",
           "in_s": 0,
-          "out_s": 33,
-          "visual_role": "original film under owner narration; cinema audio muted",
-          "use_once": true
-        },
-        {
-          "source": "gas",
-          "in_s": 144,
-          "out_s": 148.5,
+          "out_s": 29,
           "visual_role": "original film under owner narration; cinema audio muted",
           "use_once": true
         }
@@ -45,7 +38,7 @@
       "broll": [
         {
           "source": "gas",
-          "in_s": 33,
+          "in_s": 29,
           "out_s": 77.4,
           "visual_role": "original film under owner narration; cinema audio muted",
           "use_once": true
@@ -91,6 +84,20 @@
           "out_s": 160,
           "visual_role": "original film under owner narration; cinema audio muted",
           "use_once": true
+        },
+        {
+          "source": "gas",
+          "in_s": 144,
+          "out_s": 148.5,
+          "visual_role": "original film under Denis narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "gas",
+          "in_s": 160,
+          "out_s": 167,
+          "visual_role": "original film under Denis narration; cinema audio muted",
+          "use_once": true
         }
       ],
       "proofs_after_author_section": [
@@ -115,7 +122,7 @@
       "broll": [
         {
           "source": "gas",
-          "in_s": 160,
+          "in_s": 167,
           "out_s": 191.75,
           "visual_role": "original film under owner narration; cinema audio muted",
           "use_once": true
@@ -245,6 +252,13 @@
           "out_s": 111,
           "visual_role": "original film under owner narration; cinema audio muted",
           "use_once": true
+        },
+        {
+          "source": "driver",
+          "in_s": 43,
+          "out_s": 47,
+          "visual_role": "original film under Denis narration; cinema audio muted",
+          "use_once": true
         }
       ],
       "proofs_after_author_section": [
@@ -292,6 +306,13 @@
           "in_s": 58.2,
           "out_s": 121,
           "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "tracker",
+          "in_s": 121,
+          "out_s": 123,
+          "visual_role": "original film under Denis narration; cinema audio muted",
           "use_once": true
         }
       ],
