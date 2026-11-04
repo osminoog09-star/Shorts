@@ -165,10 +165,10 @@
       "project": "longform/chigur",
       "issue": "Киноисходники под видом полных сцен содержали посторонние красные хвосты; выбор клипа по названию 'монетка' мог бы ложно приписать конкретный крупный план; короткий film-only пилот тихий/VFR",
       "cause": "Исходники скачаны как фрагменты с возможным чужим outro; работали по имени ролика без полного распределения содержания по таймлайну; каждый полученный 'proof' не равен фактической проверке русской реплики",
-      "fix": "Контакты каждые 6с на всех пяти mp4 (157 миниатюр), blacklist gas≥255s/carson≥160s, source_sha256+source IN/OUT на 12 глав; отдельный 8-window private pilot и официальный check/look с честным FAIL loudness −22LUFS, WARN VFR/subtitles",
+      "fix": "Контакты каждые 6с на всех пяти mp4 (157 миниатюр), blacklist gas≥255s/carson≥160s, source_sha256+source IN/OUT на 12 глав; отдельный 8-window private pilot и официальный check/look с честным FAIL loudness −22LUFS, WARN VFR/subtitles; последовательно исправлено через V3 CFR30+AAC48k+delicate compressor/loudnorm до -15.7 LUFS без подмены фильмозвука, и замена шести ошибочных авторских блоков на то, что реально видно",
       "status": "verified",
-      "evidence": "reports/research/2026-11-04_CHIGUR_FILM_ONLY_SOURCE_EDL_AND_PROOF_QA.md",
-      "acceptance": "5 реальных контактов покадрово открыты, 8 frames pilot открыты, ffmpeg -xerror decode PASS, официальный check 1 FAIL/2 WARN. Verified только источник и фрагментарная техническая сборка; русские реплики/громкость финального long pending",
+      "evidence": "reports/research/2026-11-04_CHIGUR_FILM_ONLY_EDIT_V3_QA_AND_VOICE_BLOCKERS.md",
+      "acceptance": "8-window PRIVATE V3 реальный MP4, full ffmpeg -xerror PASS, официальный check.py 0FAIL/1WARN (subtitles), -15.7LUFS/-1.4dBTP/CFR30, 12-frame look.py визуально открыт, 2×24 реальные фото-сцены просмотра глав. Голос Дениса, оригинальный русский текст и полный 9–10min film-only long пока NOT VERIFIED.",
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
