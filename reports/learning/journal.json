@@ -132,6 +132,19 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": true
+    },
+    {
+      "id": "M1LASH-MULT-R10-PROP-OCCLUSION",
+      "project": "m1lash_mult_ep01",
+      "issue": "r10 попытка общего anchor ладонь/директорская табличка перекрыла корпус МИЛа и кольца АКСа заслонили буквы; r10b сохранил обрезание текста справа при формально 0/9 hand clips",
+      "cause": "Общий world anchor сам по себе не учитывает перспективную площадь таблички/очерёдность глубины реквизита, а hand gate проверяет только координаты кистей",
+      "fix": "r10c уменьшает табличку, опускает относительно ладони и выдвигает её перед AI ring, чтобы текст и лицо оставались читабельны",
+      "status": "fixed",
+      "evidence": "reports/research/2026-11-04_M1LASH_MULT_R9_MOTION_QA.md",
+      "acceptance": "r10 Actions41793242367 и r10b41793620908 визуально ART NO-GO, хотя 0/9 clips. r10c 6 настоящих JPG Actions41793973265 artifact13303918768 открыты: t3.5 полный текст, лицо видно, 0/9 hand clips и9/9 elbows. Движущийся r10c pilot ещё не оценён",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": true
     }
   ]
 }
