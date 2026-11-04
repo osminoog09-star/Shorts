@@ -3,7 +3,7 @@
 No CGI, Dima/Edge fallback, public upload, or invented actor dialogue.
 """
 from __future__ import annotations
-import argparse, hashlib, json, subprocess, sys, wave
+import argparse, hashlib, json, math, subprocess, sys, wave
 from pathlib import Path
 
 REPO=Path(__file__).resolve().parents[2]
@@ -89,17 +89,26 @@ def validate(args,edl,voices,media_index):
     return sources,result
 
 def pick_shots(pool,length):
+    """Use every film frame at most once, with balanced 3-7sec edits.
+    Tiny last flashes are a planning bug, not a creative transition.
+    """
     shots=[]
     remaining=length
     for row in pool:
-        cursor=row["in_s"]
-        while remaining>.003 and cursor<row["out_s"]-.10:
-            dur=min(6.8,row["out_s"]-cursor,remaining)
-            if dur<.15:break
-            shots.append((row["source"],cursor,dur))
-            remaining-=dur
-            cursor+=dur
         if remaining<=.003:break
+        source_duration=row["out_s"]-row["in_s"]
+        usable=min(source_duration,remaining)
+        if usable<.01:continue
+        if usable<1.2:
+            raise RuntimeError("NO-GO: micro-shot (<1.2s) in "+row["source"]+
+                               " at "+str(row["in_s"])+": fix EDL first")
+        n=max(1,math.ceil(usable/6.8))
+        step=usable/n
+        if step<1.2:
+            raise RuntimeError("NO-GO: tiny balanced shot: revise EDL")
+        for k in range(n):
+            shots.append((row["source"],row["in_s"]+step*k,step))
+        remaining-=usable
     if remaining>.04:raise RuntimeError("NO-GO: ran out of unused cinema: "+str(remaining))
     return shots
 
