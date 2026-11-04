@@ -29,20 +29,6 @@
 
 ## GPT/Codex
 
-### 04.11 — Film-Mult / Фильм-мульт: новый навык оригинальных историй S10-D25 · GPT
-**РЕШЕНИЕ ДЕНИСА 04.11:** новый навык для оригинальных историй, не возобновляет PAUSED_BY_OWNER M1lash Мульт EP01 / 3D Coffee. Без рендеров и публикаций в этой задаче.
-Цель: навыки + S10-D25 в style library + маршрутизация Studio/AGENTS + честный паспорт двух YouTube-референсов.
-Шаги:
-- [x] 1. Прочитаны AGENTS.md, NOW.md, HANDOFF.md, Studio SKILL, visuals-by-code, reference-analysis и animation-production; утверждение стиля получено.
-- [x] 2. Референсы: второй O-oQEDKCsUk проанализирован внешним инструментом на уровне описания 7 сцен (без проверенных физических кадров); первый bq1gOXifqe8 ещё SOURCE_UNVERIFIED, повторная попытка анализа запущена; не выдавать гипотезы за пиксели.
-- [x] 3. Созданы skills/film-mult/SKILL.md (commit a44266e) и references/REFERENCE_AUDIT.md (commit 682b8fc); S10 внесён в style-library (b5141b6), 1-й референс UNVERIFIED, 2-й AUTO_SUMMARY_UNVERIFIED.
-- [x] 4. AGENTS S10 narrow commit d4bed4e; style library b5141b6; Studio routing be079a7; .agents/.claude symlinks commit 4494919 (main push). GitHub readback всех пяти документов и обоих symlink PASS.
-- [ ] 5. Проверить через GitHub readback, обновить HANDOFF и удалить этот блок из NOW после завершения.
-Следующий шаг: записать результат и ограничение исходников в начало HANDOFF.md; затем убрать завершённый Film-Mult блок из tasks/NOW.md, остальные задачи не трогать. Два референса не считаются физически просмотренными.
-Где промежуточное: skills/film-mult/, skills/vizavi-motion/references/style-library.md, skills/m1lash-studio/SKILL.md.
-Ждёт Дениса: нет, формат и S10-D25 уже утверждены.
-
-
 ### 04.11 — M1lash МультНовости #01, отдельный S3-D25 21–23 мин · GPT
 **ВЛАДЕЛЕЦ УТВЕРДИЛ 04.11:** новая отдельная новостная рубрика, яркий комикс S3-D25, 21–23 мин, только его голос как основной автор. Не возобновляет PAUSED_BY_OWNER M1lash Мульт EP01/3D Coffee.
 Цель: реальный рисованный, фактологически проверенный горизонтальный MP4 с Denis Qwen voice, 2 Shorts-воронками, только PRIVATE review без публикации и без даты.
