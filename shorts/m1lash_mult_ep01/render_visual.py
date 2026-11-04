@@ -129,6 +129,11 @@ def main():
    page.evaluate("(t)=>window.seek(t)",t)
    page.screenshot(path=str(OUT/f"salary_{str(t).replace('.','_')}s.jpg"),
                    type="jpeg",quality=88)
+  # Scene 4 resignation form handoff -> stamped refusal -> paper avalanche.
+  for t in (19.4,20.2,21.4,22.2,23.4,24.4):
+   page.evaluate("(t)=>window.seek(t)",t)
+   page.screenshot(path=str(OUT/f"resign_{str(t).replace('.','_')}s.jpg"),
+                   type="jpeg",quality=88)
   if any(not q["safe"] for q in badge_checks):
    raise RuntimeError("ART_QA_PLAQUE_CLIPPED: scene's director text outside Shorts-safe image")
   contact_samples=[q for q in badge_checks if 3.1<=q["t"]<=3.7]
