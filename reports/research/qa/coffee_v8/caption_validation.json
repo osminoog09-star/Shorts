@@ -1,0 +1,15 @@
+{
+  "zero_duration": false,
+  "word_sequence_exact": true,
+  "overlap": false,
+  "fixed_interval": [
+    12.74,
+    15.16
+  ],
+  "cause": "negative-index augmented assignment after pop changed target index",
+  "caption_words": [
+    "пробуждение",
+    "9",
+    "евро"
+  ]
+}

@@ -1,10 +1,11 @@
 """Silent HTML/Playwright evidence. Never reads or generates any private voice."""
 from pathlib import Path
-import os,json,math,subprocess,shutil
+import os,json,math,subprocess,shutil,sys
 from playwright.sync_api import sync_playwright
 P=Path(__file__).resolve().parent;R=P.parents[1];cfg=json.loads((R/os.environ['M1LASH_JOB_PATH']).read_text());d=json.loads((P/'timeline.json').read_text());W=R/'motion-output/coffee_v8';W.mkdir(parents=True,exist_ok=True);mode=cfg.get('mode','stills')
 with sync_playwright() as p:
  b=p.chromium.launch(headless=True,args=['--no-sandbox','--disable-dev-shm-usage','--allow-file-access-from-files']);page=b.new_page(viewport={'width':1080,'height':1920},device_scale_factor=1);errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.goto((P/'film.html').as_uri());page.evaluate('() => document.fonts.ready');page.evaluate('d=>setTimeline(d)',d)
+ subprocess.run([sys.executable,str(P/'validate_captions.py')],check=True)
  layout=[]
  for c in d['caps']:
   row=page.evaluate('''t=>{seek(t);let c=document.querySelector('#cap'),r=c.getBoundingClientRect();return {text:c.textContent,x:r.x,right:r.right,bottom:r.bottom,scroll:c.scrollWidth,width:c.clientWidth}}''',(c['start']+c['end'])/2);layout.append(row)

@@ -106,6 +106,19 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": true
+    },
+    {
+      "id": "COFFEE-V8-CAPTION-POP",
+      "project": "coffee_v8_20261104",
+      "issue": "В финальном MP4 пропали слова пробуждение9евро; дублированная/нулевая плашка",
+      "cause": "Negative-index augmented assignment groups[-2] += groups.pop() changes assignment target after pop",
+      "fix": "Positive index before pop + extend; exact ASR-word coverage/non-overlap/minimum-hold validation; libass caption interval repair and canonical rebuild",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-04_COFFEE_V8_RETENTION_AND_VISUAL_REVIEW.md",
+      "acceptance": "22groups/63words exact order/coverage, no overlap/zero duration, min0.8s; latest final interval13.8s enlarged and whole4fps timeline viewed; final check0FAIL/full-decode; audio SHA matches ASR-verified final",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": true
     }
   ]
 }
