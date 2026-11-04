@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/coffee_v8_20261104.json",
+  "manifest_sha256": "1f276287880d1dbfcdbf53119bac96c30ef01e3da0e16b02a18d0e0dcc5cd9af",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
