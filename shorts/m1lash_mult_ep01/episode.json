@@ -12,11 +12,14 @@
   ],
   "fps": 30,
   "body_duration": 39,
-  "status": "SILENT_R9_VISUAL_PREFLIGHT_VOICE_CAST_PENDING",
+  "status": "PAUSED_BY_OWNER_2026-11-04",
   "publishing": {
     "owner_review_required": true,
     "publish_allowed": false,
-    "queue_not_modified": true
+    "queue_not_modified": true,
+    "production_paused": true,
+    "pause_date": "2026-11-04",
+    "resume_requires_explicit_owner_instruction": true
   },
   "characters": [
     {
@@ -164,5 +167,6 @@
       "text": "НОВАЯ ДОЛЖНОСТЬ"
     }
   ],
-  "voice_policy": "MIL narrator/main: actual Denis Qwen. AKS: optional licensed female second voice (pending selection, no generic male TTS), no voice synthesized for silent pilot. Approved Denis v7 voice10 outro only; final hearing review by owner."
+  "voice_policy": "MIL narrator/main: actual Denis Qwen. AKS: optional licensed female second voice (pending selection, no generic male TTS), no voice synthesized for silent pilot. Approved Denis v7 voice10 outro only; final hearing review by owner.",
+  "production_pause_checkpoint": "shorts/m1lash_mult_ep01/PRODUCTION_PAUSED.md"
 }
