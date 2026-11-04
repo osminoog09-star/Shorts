@@ -1,0 +1,341 @@
+{
+  "project": "longform/chigur",
+  "version": "film-only-EDL-v2-2026-11-04",
+  "status": "EDITORIAL_SHOT_POOLS_SOURCE_VERIFIED_ACTOR_AUDIO_SEMANTICS_PENDING",
+  "rules": "AGENTS.md §9; no CGI; no Dima; use only film frames; proof source dialogue audible after Denis analysis",
+  "source_metadata": "longform/chigur/film_only_source_index.json",
+  "voice_manifest": "longform/chigur/voice_chunks_denis_film_only.json",
+  "source_restrictions": "Exclude all gas>=255 and carson>=160 RED bumpers; every source time is relative to extracted local clip",
+  "proofs_count": 8,
+  "pools_coverage_seconds": {
+    "gas": 253,
+    "carson": 155,
+    "driver": 107,
+    "tracker": 121,
+    "carla": 216
+  },
+  "movie_audio_policy": "mute ONLY B-roll while Denis speaks; keep actor original audio for actor proof windows; do not use fake/synth actor clips",
+  "outro": "Denis v7 voice10 horizontal 6.600s, SHA256=70b066b067cec45dbaaae91ef39ee79543ac9c396d0d1bd896885b1511867dae",
+  "editor_note": "Chapter plan informed by real inspected film-frame contacts. In/out are candidate source windows, not proof of exact Russian dialogue or final cut timing; Qwen voice duration, final edit and 8 actor audio semantics pending.",
+  "chapters": [
+    {
+      "chapter": "d01",
+      "topic": "Хук: заправка",
+      "broll": [
+        {
+          "source": "gas",
+          "in_s": 0,
+          "out_s": 33,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "gas",
+          "in_s": 144,
+          "out_s": 148.5,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        }
+      ],
+      "proofs_after_author_section": []
+    },
+    {
+      "chapter": "d02",
+      "topic": "Допрос без угрозы",
+      "broll": [
+        {
+          "source": "gas",
+          "in_s": 33,
+          "out_s": 77.4,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        }
+      ],
+      "proofs_after_author_section": [
+        {
+          "id": "gas_01",
+          "source": "gas",
+          "in_s": 77.4,
+          "out_s": 82.6,
+          "source_audio": "retain original; no Denis speech over proof",
+          "semantics_verified": false,
+          "status": "PENDING_LISTEN_ASR",
+          "must_not_auto_publish": true
+        }
+      ]
+    },
+    {
+      "chapter": "d03",
+      "topic": "Неравный разговор",
+      "broll": [
+        {
+          "source": "gas",
+          "in_s": 82.6,
+          "out_s": 144,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "gas",
+          "in_s": 153.7,
+          "out_s": 160,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        }
+      ],
+      "proofs_after_author_section": [
+        {
+          "id": "gas_02",
+          "source": "gas",
+          "in_s": 148.5,
+          "out_s": 153.7,
+          "source_audio": "retain original; no Denis speech over proof",
+          "semantics_verified": false,
+          "status": "PENDING_LISTEN_ASR",
+          "must_not_auto_publish": true
+        }
+      ]
+    },
+    {
+      "chapter": "d04",
+      "topic": "Монета как навязанная игра",
+      "broll": [
+        {
+          "source": "gas",
+          "in_s": 160,
+          "out_s": 210,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "gas",
+          "in_s": 215.2,
+          "out_s": 225,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        }
+      ],
+      "proofs_after_author_section": [
+        {
+          "id": "gas_03",
+          "source": "gas",
+          "in_s": 210,
+          "out_s": 215.2,
+          "source_audio": "retain original; no Denis speech over proof",
+          "semantics_verified": false,
+          "status": "PENDING_LISTEN_ASR",
+          "must_not_auto_publish": true
+        }
+      ]
+    },
+    {
+      "chapter": "d05",
+      "topic": "Карсон: деньги не спасают",
+      "broll": [
+        {
+          "source": "carson",
+          "in_s": 0,
+          "out_s": 104,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        }
+      ],
+      "proofs_after_author_section": [
+        {
+          "id": "carson",
+          "source": "carson",
+          "in_s": 104,
+          "out_s": 109.2,
+          "source_audio": "retain original; no Denis speech over proof",
+          "semantics_verified": false,
+          "status": "PENDING_LISTEN_ASR",
+          "must_not_auto_publish": true
+        }
+      ]
+    },
+    {
+      "chapter": "d06",
+      "topic": "Насилие как процедура",
+      "broll": [
+        {
+          "source": "driver",
+          "in_s": 0,
+          "out_s": 30,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "driver",
+          "in_s": 35.2,
+          "out_s": 43,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "carson",
+          "in_s": 109.2,
+          "out_s": 124,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        }
+      ],
+      "proofs_after_author_section": [
+        {
+          "id": "driver_wash",
+          "source": "driver",
+          "in_s": 30,
+          "out_s": 35.2,
+          "source_audio": "retain original; no Denis speech over proof",
+          "semantics_verified": false,
+          "status": "PENDING_LISTEN_ASR",
+          "must_not_auto_publish": true
+        }
+      ]
+    },
+    {
+      "chapter": "d07",
+      "topic": "Разговор на пустой дороге",
+      "broll": [
+        {
+          "source": "driver",
+          "in_s": 47,
+          "out_s": 111,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        }
+      ],
+      "proofs_after_author_section": []
+    },
+    {
+      "chapter": "d08",
+      "topic": "Мосс и гостиница",
+      "broll": [
+        {
+          "source": "tracker",
+          "in_s": 0,
+          "out_s": 44,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        }
+      ],
+      "proofs_after_author_section": []
+    },
+    {
+      "chapter": "d09",
+      "topic": "Прибор и ожидание",
+      "broll": [
+        {
+          "source": "tracker",
+          "in_s": 49.2,
+          "out_s": 121,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        }
+      ],
+      "proofs_after_author_section": [
+        {
+          "id": "tracker",
+          "source": "tracker",
+          "in_s": 44,
+          "out_s": 49.2,
+          "source_audio": "retain original; no Denis speech over proof",
+          "semantics_verified": false,
+          "status": "PENDING_LISTEN_ASR",
+          "must_not_auto_publish": true
+        }
+      ]
+    },
+    {
+      "chapter": "d10",
+      "topic": "Карла отказывается от правил",
+      "broll": [
+        {
+          "source": "carla",
+          "in_s": 55,
+          "out_s": 116,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "carla",
+          "in_s": 121.2,
+          "out_s": 144,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        }
+      ],
+      "proofs_after_author_section": [
+        {
+          "id": "carla_reaction",
+          "source": "carla",
+          "in_s": 116,
+          "out_s": 121.2,
+          "source_audio": "retain original; no Denis speech over proof",
+          "semantics_verified": false,
+          "status": "PENDING_LISTEN_ASR",
+          "must_not_auto_publish": true
+        }
+      ]
+    },
+    {
+      "chapter": "d11",
+      "topic": "Кто отвечает за решение",
+      "broll": [
+        {
+          "source": "carla",
+          "in_s": 144,
+          "out_s": 192.7,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "carla",
+          "in_s": 197.9,
+          "out_s": 216,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        }
+      ],
+      "proofs_after_author_section": [
+        {
+          "id": "carla_refusal",
+          "source": "carla",
+          "in_s": 192.7,
+          "out_s": 197.9,
+          "source_audio": "retain original; no Denis speech over proof",
+          "semantics_verified": false,
+          "status": "PENDING_LISTEN_ASR",
+          "must_not_auto_publish": true
+        }
+      ]
+    },
+    {
+      "chapter": "d12",
+      "topic": "Итог: монета не освобождает",
+      "broll": [
+        {
+          "source": "gas",
+          "in_s": 225,
+          "out_s": 253,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "carson",
+          "in_s": 124,
+          "out_s": 155,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "carla",
+          "in_s": 0,
+          "out_s": 55,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        }
+      ],
+      "proofs_after_author_section": []
+    }
+  ]
+}
