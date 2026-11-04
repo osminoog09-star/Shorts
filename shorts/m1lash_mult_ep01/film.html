@@ -13,7 +13,7 @@
 <script src="./three.min.js"></script>
 <script>
 "use strict";
-let renderer,scene,camera,clock=0, mil,aks,badge,desk,chair,computer,phone,printer,forms=[],checks=[],coin,meeting=[],socket,wire,xpBits=[],holo;
+let renderer,scene,camera,clock=0, mil,aks,badge,desk,chair,computer,phone,printer,forms=[],checks=[],coin,meeting=[],socket,wire,xpBits=[],holo,moneyPanel,xpPanel;
 const W=1080,H=1920, PI=Math.PI;
 function mat(c,r=.55,m=0){return new THREE.MeshStandardMaterial({color:c,roughness:r,metalness:m})}
 const M={wall:mat(0x182239,.83),floor:mat(0x1c2c43,.7),desk:mat(0x38526a,.4),deskEdge:mat(0xa7b3c6,.32,.5),skin:mat(0xd8a387,.79),hair:mat(0x26232c,.9),jacket:mat(0x278e99,.69),jacketDark:mat(0x174e63,.7),trousers:mat(0x333a4d,.83),shoes:mat(0x111d2c,.52),shirt:mat(0xedbb77,.86),steel:mat(0x8993ba,.25,.8),brass:mat(0xc9a063,.31,.65),navy:mat(0x222d56,.28,.26),lilac:mat(0x6255ba,.29,.4),eyes:mat(0x8cecff,.14,.6),ink:mat(0x13182a,.65),white:mat(0xf5f1e9,.4),paper:mat(0xe5ebf2,.8),red:mat(0xf45562,.42),green:mat(0x76e0bd,.5)};
@@ -106,6 +106,21 @@ function room(){
  printer=new THREE.Group();printer.position.set(2.2,1.72,.0);scene.add(printer);
  box(1.7,.83,1.33,0,0,0,M.steel,printer);box(1.2,.05,.5,0,.48,-.07,M.ink,printer);
  coin=cyl(.24,.24,.075,.15,2.30,1.15,M.brass,scene,32);coin.rotation.x=PI/2;
+ // Physical floating money and experience receipts, made with original Three.js geometry.
+ const receipt=(label,accent)=>{
+   const r=new THREE.Group();scene.add(r);
+   box(1.70,.81,.07,0,0,0,M.navy,r);
+   const canvas=document.createElement('canvas');canvas.width=960;canvas.height=480;
+   const g=canvas.getContext('2d');g.fillStyle='#172a42';g.fillRect(0,0,960,480);
+   g.fillStyle=accent;g.fillRect(0,0,960,55);g.fillStyle='#f0faff';
+   g.textAlign='center';g.textBaseline='middle';
+   g.font='900 137px "DejaVu Sans",Arial,sans-serif';g.fillText(label,480,265);
+   const face=new THREE.Mesh(new THREE.PlaneGeometry(1.67,.78),
+     new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(canvas),side:THREE.DoubleSide}));
+   face.position.z=.05;r.add(face);return r;
+ };
+ moneyPanel=receipt('100 €','#e9c172');
+ xpPanel=receipt('ОПЫТ +100','#70dcbc');
  for(let i=0;i<9;i++){
    const star=ico(.08+(i%3)*.025,.2,2.2,1.70,M.green,scene,1);
    xpBits.push(star);
@@ -181,7 +196,7 @@ const tags=["МОЙ ИИ. ЕГО ПРАВИЛА","ВСТРЕЧА ЗА ВСТРЕ
 const looks=[
  {p:[0,3.58,12.7],at:[0,2.65,-.05]},
  {p:[.58,3.78,9.65],at:[-.55,2.57,-.18]},
- {p:[1.15,3.53,6.25],at:[.52,2.96,.86]},
+ {p:[.42,3.75,9.65],at:[-.13,2.56,.35]},
  {p:[3.35,3.02,6.5],at:[2.12,1.76,.25]},
  {p:[.35,3.02,7.55],at:[-.25,2.32,.65]},
  {p:[2.42,3.05,5.75],at:[1.77,2.10,1.57]}
@@ -234,6 +249,12 @@ function seek(t){
      const why=ease(2.80,3.65,dt)*(1-.88*ease(4.22,5.50,dt));
      a.shoulder.rotation.set(-.12*why,0,v*(.20+.64*why));
      a.elbow.rotation.set(0,0,-v*(.26+.36*why));
+   }else if(s===2){
+     // Reach toward the coin, then spread hands in disbelief as money becomes XP.
+     const offer=ease(.60,1.30,dt)*(1-ease(2.50,3.10,dt));
+     const shocked=ease(3.10,4.25,dt);
+     a.shoulder.rotation.set(-.07*offer,0,v*(.13+.50*offer+.20*shocked));
+     a.elbow.rotation.set(0,0,-v*(.22+.35*offer+.23*shocked));
    }else{
      a.shoulder.rotation.set(-.04,0,v*.10);
      a.elbow.rotation.set(0,0,-v*.22);
@@ -267,9 +288,24 @@ function seek(t){
  aks.root.visible=s!==5;aks.root.scale.setScalar(s===4?.46:1);
  desk.visible=true;
  coin.visible=s===2;
- coin.position.set(.14,2.12+Math.sin(t*2.7)*.08,1.02);
- coin.rotation.x=PI/2+.13*Math.sin(t*2);coin.rotation.y=.12*Math.sin(t*1.5);
- coin.scale.setScalar(s===2?1-.94*ease(2.1,4.4,dt):1);
+ const m=s===2?ease(1.05,3.24,dt):0;
+ coin.position.set(-.70+1.80*m,2.48+.62*Math.sin(m*Math.PI)+Math.sin(t*2.7)*.045,1.36);
+ coin.rotation.x=PI/2+PI*m;coin.rotation.y=.12*Math.sin(t*1.5);
+ coin.scale.setScalar(s===2?1-.95*ease(2.95,4.3,dt):1);
+ if(moneyPanel && xpPanel){
+   // The visible object flies to AKS; payment becomes XP, never 100 euros cash.
+   camera.updateMatrixWorld(true);
+   const depth=5.6,hh=2*Math.tan(THREE.MathUtils.degToRad(camera.fov)/2)*depth,ww=hh*camera.aspect;
+   const show=[{obj:moneyPanel,xx:747,yy:777,alpha:ease(.25,.8,dt)*(1-ease(3.0,3.4,dt))},
+               {obj:xpPanel,xx:747,yy:1090,alpha:ease(2.92,3.60,dt)}];
+   show.forEach(q=>{
+     q.obj.visible=s===2&&q.alpha>.01;
+     if(!q.obj.visible)return;
+     q.obj.position.copy(camera.localToWorld(new THREE.Vector3((q.xx/W-.5)*ww,(.5-q.yy/H)*hh,-depth)));
+     q.obj.quaternion.copy(camera.quaternion);
+     q.obj.scale.setScalar(ww/W*285/1.70*q.alpha);
+   });
+ }
  xpBits.forEach((bit,i)=>{
    bit.visible=s===2 && dt>2.2;
    const spread=ease(2.2,5.7,dt),theta=i*2.399;
