@@ -29,6 +29,19 @@
 
 ## GPT/Codex
 
+### 04.11 — M1lash МультНовости #01, отдельный S3-D25 21–23 мин · GPT
+**ВЛАДЕЛЕЦ УТВЕРДИЛ 04.11:** новая отдельная новостная рубрика, яркий комикс S3-D25, 21–23 мин, только его голос как основной автор. Не возобновляет PAUSED_BY_OWNER M1lash Мульт EP01/3D Coffee.
+Цель: реальный рисованный, фактологически проверенный горизонтальный MP4 с Denis Qwen voice, 2 Shorts-воронками, только PRIVATE review без публикации и без даты.
+Шаги:
+- [x] 1. Прочитаны main AGENTS.md, Studio SKILL, NOW, HANDOFF, visuals-by-code, style-library, motion/animation/QA, накопленные learnings; изучены источники новостей от 31.10–04.11.
+- [ ] 2. Письменно зафиксировать narrow утверждение формата в AGENTS.md; отдельная папка longform/multnews_20261104/ с research, verified facts, 21–23мин сценарным конвейером и shotlist.
+- [ ] 3. Нарисовать S3-D25 HTML/CSS/SVG кодом (никакого PIL для сцен); 6 разных 1920×1080 stills → глазной ART QA; затем реальный 8–10с silent pilot и движение.
+- [ ] 4. Локальный **private** Qwen3-TTS с образцом Дениса, word timings, финальные 21–23 мин без растягивания, approved Denis-v7 horizontal outro; не класть voice/MP4 в публичный Git.
+- [ ] 5. На финале longform_duration_gate.py, official check.py/look.py, full decode, слух, artist QA; 2 вертикальных Shorts только из отдельно перерендеренных сцен; паспорт и owner review, НЕ публиковать без «ок».
+Следующий шаг: подготовить longform/multnews_20261104/FACTS.md + SCRIPT.md и 6 кодовых сцен; если private voice runtime или рендер недоступен, записать точный FAIL и checkpoint, а не READY.
+Где промежуточное: longform/multnews_20261104/; reports/research/2026-11-04_MULTNEWS_01.md.
+Ждёт Дениса: только review готового MP4; стиль и формат уже одобрены.
+
 ### 04.11 — M1lash Мульт: S9-D3 пилот и плейлист · GPT
 **СТАТУС: PAUSED_BY_OWNER (04.11). Все ниже — ИСТОРИЯ, НЕ ЗАДАЧИ К ИСПОЛНЕНИЮ.** Новые действия запрещены до отдельного явного возобновления Денисом; состояние и подробности: `shorts/m1lash_mult_ep01/PRODUCTION_PAUSED.md`. Ранее запущенные GitHub Actions могут завершиться автоматически, но это не разрешение продолжать.
 
