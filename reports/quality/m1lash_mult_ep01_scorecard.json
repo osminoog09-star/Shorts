@@ -185,5 +185,41 @@
       "Robot not shown punishing/overriding hero before scene transition; pilot remains silent and lacks approved outro"
     ],
     "qa_report": "reports/research/2026-11-04_M1LASH_MULT_R8C_7S_QA.md"
+  },
+  "revision_r9": {
+    "status": "PILOT_VERIFIED_EDITORIAL_NO_GO",
+    "run_stills": 41792143532,
+    "artifact_stills": 13303273333,
+    "run_pilot": 41792401505,
+    "artifact_pilot": 13303444894,
+    "actual_gate": {
+      "hand_clips": 0,
+      "samples": 9,
+      "elbows_articulated": 9
+    },
+    "pilot": {
+      "duration_s": 7,
+      "frames": 210,
+      "fps": 30,
+      "width": 1080,
+      "height": 1920,
+      "bytes": 2317290,
+      "sha256": "2df6e8c6b726e66142618c1b066b7f59a43c7454ed5f0a751522510116ae9a6f",
+      "full_ffmpeg_xerror": "PASS",
+      "real_frames_reviewed": 14,
+      "contact": "/mnt/data/m1lash_mult_r9_14frames_contact.jpg"
+    },
+    "improvements": [
+      "First scene holds to t7 per episode specification; no false scene2 cut at6.5",
+      "Director plaque legible in wide shots and AI above tabletop",
+      "Arms visibly move between t3.5 and t4.5; 0/9 hand clips"
+    ],
+    "editorial": "NO_GO",
+    "critical_defects": [
+      "Narrative plaque is cut off during close-up 2.5-4.0s",
+      "Pointing arm does not physically affect AI or boss placard; absent subject-object causality",
+      "No voice/outro; scene2-6 acting remains unverified"
+    ],
+    "qa_report": "reports/research/2026-11-04_M1LASH_MULT_R9_MOTION_QA.md"
   }
 }
