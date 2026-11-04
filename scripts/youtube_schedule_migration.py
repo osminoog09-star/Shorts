@@ -171,7 +171,9 @@ def migrate_one(token, slug, video_id, old_iso, new_iso):
     for p, data in [(manifest_path, manifest), (receipt_path, receipt),
                     (queue_path, q), (request_path, ledger)]:
         save_json(p, data)
-    push_checkpoint([manifest_path, receipt_path, queue_path, request_path], slug, new_iso)
+    # Do not push here: a concurrent agent can edit queue.json while this job runs.
+    # Print one verified result per video; GitHub sync is performed through per-file
+    # content-SHA updates after the LIVE YouTube readback, not a broad git rebase.
     print(f"VERIFIED {slug}: {video_id} -> {new_iso or 'PRIVATE with no publishAt'}", flush=True)
 
 
@@ -191,7 +193,7 @@ def main():
     if failures:
         print("MANUAL_RECONCILIATION_REQUIRED:", ", ".join(failures), flush=True)
         raise SystemExit(1)
-    print("All seven existing schedules verified; no new media uploaded.", flush=True)
+    print("All seven existing YouTube states verified. Persist to GitHub via content-SHA updates; no new media uploaded.", flush=True)
 
 
 if __name__ == "__main__":
