@@ -126,7 +126,8 @@ def migrate_one(token, slug, video_id, old_iso, new_iso):
         else:
             # Explicitly clear the scheduled date, keep the same video PRIVATE.
             status = {"privacyStatus": "private",
-                      "selfDeclaredMadeForKids": manifest["metadata"].get("made_for_kids", False)}
+                      "selfDeclaredMadeForKids": manifest["metadata"].get("made_for_kids", False),
+                      "containsSyntheticMedia": manifest["metadata"].get("contains_synthetic_media", False)}
             resp = requests.put(yt.API + "/videos",
                                 params={"part": "status"},
                                 headers={"Authorization": "Bearer " + token},
