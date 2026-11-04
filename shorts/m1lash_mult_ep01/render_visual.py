@@ -98,7 +98,13 @@ def main():
    if not bounds:raise RuntimeError(f"Director plaque has no projected bounds at {t}")
    safe=(50<bounds["left"]<bounds["right"]<970 and
          350<bounds["top"]<bounds["bottom"]<1530)
-   badge_checks.append({"t":t,"bounds":bounds,"safe":safe,"hand":q["hands"][1]})
+   palm=q["hands"][1]
+   # Screen-projected contact is a visual blocking gate, not proof of 3D collision physics.
+   touch_distance=abs(bounds["right"]-palm["x"])
+   hand_vertical_overlap=bounds["top"]-10 <= palm["y"] <= bounds["bottom"]+10
+   badge_checks.append({"t":t,"bounds":bounds,"safe":safe,"hand":palm,
+                        "screen_edge_touch_distance_px":touch_distance,
+                        "screen_edge_hand_y_overlap":hand_vertical_overlap})
   (OUT/"badge_gate.json").write_text(json.dumps({
     "source":"Actual Three.js camera/projection of 3D prop corners",
     "samples":badge_checks,
@@ -116,6 +122,10 @@ def main():
                    type="jpeg",quality=88)
   if any(not q["safe"] for q in badge_checks):
    raise RuntimeError("ART_QA_PLAQUE_CLIPPED: scene's director text outside Shorts-safe image")
+  contact_samples=[q for q in badge_checks if 3.1<=q["t"]<=3.7]
+  if any(q["screen_edge_touch_distance_px"]>26 or not q["screen_edge_hand_y_overlap"]
+         for q in contact_samples):
+   raise RuntimeError("ART_QA_SCREEN_CONTACT: hand not visually touching plaque right edge at 3.1–3.7s")
   # Save actual close-up frames even if a hard gate rejects the render.
   for t in (2.0,3.5,4.5):
    page.evaluate("(t)=>window.seek(t)",t)
