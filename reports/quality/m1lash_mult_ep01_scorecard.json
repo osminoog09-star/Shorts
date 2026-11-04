@@ -221,5 +221,67 @@
       "No voice/outro; scene2-6 acting remains unverified"
     ],
     "qa_report": "reports/research/2026-11-04_M1LASH_MULT_R9_MOTION_QA.md"
+  },
+  "revision_r10": {
+    "status": "ACTUAL_STILLS_ART_NO_GO",
+    "run_stills": 41793242367,
+    "artifact_stills": 13304183296,
+    "actual_gate": {
+      "hand_clips": 0,
+      "elbows_articulated": 9,
+      "samples": 9
+    },
+    "editorial": "NO_GO",
+    "defect": "Plaque obscures MIL chest; AI ring overlays text; no real motion pilot run"
+  },
+  "revision_r10b": {
+    "status": "ACTUAL_STILLS_ART_NO_GO",
+    "run_stills": 41793620908,
+    "artifact_stills": 13304487702,
+    "actual_gate": {
+      "hand_clips": 0,
+      "elbows_articulated": 9,
+      "samples": 9
+    },
+    "editorial": "NO_GO",
+    "defect": "Plaque partly clipped and text still occluded by AI ring; no real motion pilot"
+  },
+  "revision_r10c": {
+    "status": "REAL_H264_VERIFIED_ART_NO_GO",
+    "run_stills": 41793973265,
+    "artifact_stills": 13303918768,
+    "run_pilot": 41794318357,
+    "artifact_pilot": 13305350522,
+    "actual_gate": {
+      "hand_clips": 0,
+      "elbows_articulated": 9,
+      "samples": 9
+    },
+    "pilot": {
+      "duration_s": 7,
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "frames": 210,
+      "bytes": 2370000,
+      "sha256": "425b31699937f4aaf5b68efe2a249022e579bf3c59ee859f9ff6905d778377e2",
+      "full_ffmpeg_xerror": "PASS",
+      "real_frames_reviewed": 14,
+      "contact": "/mnt/data/m1lash_mult_r10c_14frames_contact.jpg"
+    },
+    "editorial": "NO_GO",
+    "defects": [
+      "Plaque shrinks down and moves away from reaching hand around 3.0–3.5, no actual contact",
+      "Plaque suddenly grows and repositions between 3.5 and 4.0 seconds",
+      "Continued visually flat two-shot with no audio"
+    ],
+    "qa_report": "reports/research/2026-11-04_M1LASH_MULT_R10_R10C_HAND_PROP_AUDIT.md"
+  },
+  "current_working_visual_baseline": {
+    "revision": "r9",
+    "status": "STABLE_REFERENCE_ONLY_ART_NO_GO",
+    "restored_badge_code_commit": "1d26ce5dd97d7ea98accdc1e1b44cc5ffce475b7",
+    "reason": "r10-r10c technical green but editorial failed; restore exactly validated r9 badge behavior, preserve exact scene times/3-beat human/AI raised over desk",
+    "next": "Physical 3-shot causal contact with bounded projection + real stills and pilot before full animation"
   }
 }
