@@ -25,10 +25,10 @@
     "made_for_kids": false,
     "contains_synthetic_media": true
   },
-  "publish_at": "2026-11-07T10:00:00+02:00",
+  "publish_at": "2026-11-07T20:00:00+02:00",
   "schedule_request": {
-    "id": "b9b8710f-9781-4deb-937a-e5822efc05ba",
-    "requested_at": "2026-11-04T14:06:56.590Z",
-    "publish_at": "2026-11-07T10:00:00+02:00"
+    "id": "migration-20261104-coffee_v8_20261104",
+    "requested_at": "2026-11-04T21:59:00Z",
+    "publish_at": "2026-11-07T20:00:00+02:00"
   }
 }
