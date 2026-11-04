@@ -1,5 +1,5 @@
 {
-  "status": "reserved",
+  "status": "uploaded",
   "action": "upload_private_once",
   "source": "owner_google_drive_private",
   "drive_file_id": "1ysQ5mnSmtxv8xnjAq4uMt3DV6FZnVvVs",
@@ -7,5 +7,8 @@
   "size_bytes": 80725337,
   "reserved_at": "2026-11-04T19:12:08.051886+00:00",
   "publish_at": null,
-  "never_retry_automatically": true
+  "never_retry_automatically": true,
+  "video_id": "RJEZKHegzUY",
+  "youtube_url": "https://www.youtube.com/watch?v=RJEZKHegzUY",
+  "uploaded_at": "2026-11-04T19:12:14.221637+00:00"
 }
