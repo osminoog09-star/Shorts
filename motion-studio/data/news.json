@@ -1,12 +1,48 @@
 {
   "status": "success",
-  "updated_at": "2026-11-03T23:23:02.636441Z",
-  "last_attempt_at": "2026-11-03T23:23:02.636441Z",
+  "updated_at": "2026-11-04T14:31:25.706225Z",
+  "last_attempt_at": "2026-11-04T14:31:25.706225Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "83abbe2c5d4334fb79",
+      "title": "TechCrunch Founder Summit 2026: Doors open at 9 a.m. ET in Boston",
+      "url": "https://techcrunch.com/2026/11/04/techcrunch-founder-summit-2026-todays-the-day/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-04T13:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "9a66a9476221031c0e",
+      "title": "Google hasn’t figured out how to make AI pay like its search engine",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1024862/google-search-ai-overviews-alphabet-earnings-q3",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-04T12:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "92c50f67a507db6c80",
+      "title": "The biggest modding site in PC gaming is taking a stance on AI",
+      "url": "https://www.theverge.com/games/1026085/nexus-mods-ai-disclosures",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-04T00:42:10Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "9d97c8271a19f07f21",
+      "title": "Please stop asking me when the AI bubble will pop",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1025826/ai-bubble-pimco-apollo-bonds",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-03T23:37:45Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "52eb9ce7b224919af0",
       "title": "Anthropic is working on a system to prove AI models’ identity",
@@ -14,6 +50,15 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-11-03T22:41:03Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "fd06ec21e8cb403e1d",
+      "title": "California fights \"preposterous\" Trump admin demand to scrap state broadband laws",
+      "url": "https://arstechnica.com/tech-policy/2026/11/california-fights-preposterous-trump-admin-demand-to-scrap-state-broadband-laws/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-03T22:39:37Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -306,7 +351,7 @@
     },
     {
       "id": "d683890ef6589f420e",
-      "title": "The TechCrunch Founder Summit agenda is only half the reason to be in Boston on Nov. 4",
+      "title": "The TechCrunch Founder Summit agenda is only half the reason to be in Boston on November 4",
       "url": "https://techcrunch.com/2026/11/03/the-techcrunch-founder-summit-agenda-is-only-half-the-reason-to-be-in-boston-on-nov-4/",
       "category": "ai",
       "source": "TechCrunch AI",
@@ -680,51 +725,6 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-10-31T21:17:03Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "6ec02213d45abe3da5",
-      "title": "OpenAI reportedly lowers funding target for new round",
-      "url": "https://techcrunch.com/2026/10/31/openai-reportedly-lowers-funding-target-for-new-round/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-31T16:12:55Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "95235900cc342af4eb",
-      "title": "I built an AI Tamagotchi before Meta could",
-      "url": "https://www.theverge.com/gadgets/1013375/muse-charm-gadgets-preview-waveshare-esp32-claude-vibe-code",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-10-31T16:05:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "09310e121b13f32204",
-      "title": "Seabirds racing home over the ocean can get jet-lagged",
-      "url": "https://arstechnica.com/science/2026/10/seabirds-racing-home-over-the-ocean-can-get-jet-lagged/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-31T11:15:26Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "fc87e12aea801dc699",
-      "title": "The FDA wants to pull its approval of a drug. It’s not so easy.",
-      "url": "https://arstechnica.com/science/2026/10/the-fda-wants-to-pull-its-approval-of-a-drug-its-not-so-easy/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-10-31T11:02:34Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "420fd151ca6ffeb42a",
-      "title": "Nvidia weighs playing the cosigner for Nscale’s AI data center in West Virginia",
-      "url": "https://techcrunch.com/2026/10/30/nvidia-weighs-playing-the-cosigner-for-nscales-ai-data-center-in-west-virginia/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-10-31T01:20:05Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
