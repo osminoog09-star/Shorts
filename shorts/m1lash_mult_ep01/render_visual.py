@@ -12,6 +12,10 @@ ROOT=Path(__file__).resolve().parents[2]
 HERE=Path(__file__).resolve().parent
 JOB=ROOT/os.environ["M1LASH_JOB_PATH"]
 cfg=json.loads((HERE/"episode.json").read_text(encoding="utf8"))
+# Owner stop order 2026-11-04. This lock prevents all EP01 stills, previews
+# and motion renders until Denis explicitly unpauses production in GitHub.
+if cfg.get("status","").startswith("PAUSED_BY_OWNER") or (HERE/"PRODUCTION_PAUSED.md").exists():
+ raise SystemExit("PAUSED_BY_OWNER: M1lash Mult EP01 production must not render until explicit owner restart.")
 job=json.loads(JOB.read_text(encoding="utf8"))
 assert cfg["id"]=="m1lash_mult_ep01"
 assert cfg["style"]=="S9-D3"
