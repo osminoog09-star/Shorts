@@ -60,9 +60,15 @@ def validate(args,edl,voices,media_index):
     result={"chapters":{}, "estimated_total_seconds":6.6,
             "author_wav_count":sum((args.voice/(u["id"]+".wav")).is_file() for u in voices["utterances"]),
             "author_wav_expected":len(voices["utterances"]),
-            "proof_semantics_verified":all(
+            "actor_dialogue_semantics_verified":all(
                 p["semantics_verified"] for c in edl["chapters"]
-                for p in c["proofs_after_author_section"]),
+                for p in c["proofs_after_author_section"]
+                if p.get("proof_type","actor_dialogue")=="actor_dialogue"),
+            "ambient_windows_owner_hearing_pending":[
+                p["id"] for c in edl["chapters"]
+                for p in c["proofs_after_author_section"]
+                if p.get("proof_type")=="source_ambient_sound"
+                   and p.get("human_listening")!="verified"],
             "outro_sha256":OUTRO_SHA,"sources_sha256":"verified",
             "status":"INPUT_PLAN_ONLY_NOT_APPROVED"}
     for ch in edl["chapters"]:
@@ -137,9 +143,17 @@ def main():
     source,plan=validate(args,edl,voices,media)
     if args.mode=="plan":
         print(json.dumps(plan,ensure_ascii=False,indent=2));return
-    bad=[p["id"] for c in edl["chapters"] for p in c["proofs_after_author_section"]
-         if not p["semantics_verified"]]
-    if bad:raise RuntimeError("NO-GO: actor Russian audio not independently checked: "+", ".join(bad))
+    proofs=[p for c in edl["chapters"] for p in c["proofs_after_author_section"]]
+    unclassified=[p["id"] for p in proofs if p.get("proof_type","actor_dialogue") not in ("actor_dialogue","source_ambient_sound")]
+    if unclassified:raise RuntimeError("NO-GO: unclassified proof windows: "+", ".join(unclassified))
+    bad=[p["id"] for p in proofs if p.get("proof_type","actor_dialogue")=="actor_dialogue" and not p["semantics_verified"]]
+    if bad:raise RuntimeError("NO-GO: actual actor RU dialogue not independently checked: "+", ".join(bad))
+    # Sound-only windows are NOT spoken RU lines: require source-specific
+    # waveform/signal measurement before private render. Owner must listen
+    # before any upload, but this cannot veto assembly of a PRIVATE draft.
+    unmeasured=[p["id"] for p in proofs if p.get("proof_type")=="source_ambient_sound"
+                and ("RMS" not in p.get("asr_reference","") or p.get("human_listening") not in ("pending","verified"))]
+    if unmeasured:raise RuntimeError("NO-GO: source ambience not measured: "+", ".join(unmeasured))
     absent=[u["id"] for u in voices["utterances"] if not (args.voice/(u["id"]+".wav")).is_file()]
     if absent:raise RuntimeError("NO-GO: "+str(len(absent))+" real Denis Qwen3 WAVs missing")
     tmp=args.media/"film_only_compose_work";tmp.mkdir(exist_ok=True,parents=True)
