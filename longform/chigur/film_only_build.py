@@ -109,11 +109,14 @@ def concat(paths,out):
     run(["ffmpeg","-v","error","-nostdin","-y","-f","concat",
          "-safe","0","-i",str(txt),"-c","copy",str(out)])
 
-def slice_video(source,start,length,dest,actor_audio):
+def slice_video(source,start,length,dest,actor_audio,review_720=False):
+    # Only private body-review may be encoded 720p/ultrafast for fast QA;
+    # publishable full render remains 1920x1080 with approved outro SHA.
+    width,height,preset=(1280,720,"ultrafast") if review_720 else (1920,1080,"veryfast")
     argv=["ffmpeg","-v","error","-nostdin","-y","-ss",str(round(start,6)),
           "-i",str(source),"-t",str(round(length,6)),
-          "-vf","fps=30,scale=1920:1080:flags=lanczos,format=yuv420p",
-          "-fps_mode","cfr","-r","30","-c:v","libx264","-preset","veryfast",
+          "-vf",f"fps=30,scale={width}:{height}:flags=lanczos,format=yuv420p",
+          "-fps_mode","cfr","-r","30","-c:v","libx264","-preset",preset,
           "-crf","21","-pix_fmt","yuv420p",
           "-color_primaries","bt709","-color_trc","bt709","-colorspace","bt709"]
     if actor_audio:
@@ -170,7 +173,7 @@ def main():
         encoded=[]
         for ix,(src,start,dur) in enumerate(shots):
             segment=tmp/f"{id}_shot{ix:02d}.mp4"
-            slice_video(source[src],start,dur,segment,False)
+            slice_video(source[src],start,dur,segment,False,review_720=(args.mode=="body-review"))
             encoded.append(segment)
         broll=tmp/f"{id}_broll.mp4";concat(encoded,broll)
         wavlist=tmp/f"{id}_wavs.txt"
@@ -187,7 +190,7 @@ def main():
         finalpieces.append(chapterfilm)
         for p in ch["proofs_after_author_section"]:
             actor=tmp/f"{id}_{p['id']}_actor.mp4"
-            slice_video(source[p["source"]],p["in_s"],p["out_s"]-p["in_s"],actor,True)
+            slice_video(source[p["source"]],p["in_s"],p["out_s"]-p["in_s"],actor,True,review_720=(args.mode=="body-review"))
             finalpieces.append(actor)
     if args.mode=="render":
         finalpieces.append(args.outro)
