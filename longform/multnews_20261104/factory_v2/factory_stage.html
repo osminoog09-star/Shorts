@@ -1,0 +1,185 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>M1lash MultNews — animated mega factory</title><style>
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#1e2b48}svg{display:block;width:100%;height:100%}*{box-sizing:border-box}
+</style></head><body><svg id="stage" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2600 1462" preserveAspectRatio="xMidYMid slice"></svg>
+<script>
+'use strict';
+// Original procedural hand-drawn vector environment. Deterministic sample at any second.
+const W=2600,H=1462,OL='#24334a',P=['#f5b83a','#f47d53','#44b9b0','#467db7','#ef596e','#b49ad8'];
+const R=(x,y,w,h,fill,stroke=OL,sw=6,rx=0)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>`;
+const E=(x,y,rx,ry,fill,stroke=OL,sw=6)=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>`;
+const L=(x1,y1,x2,y2,col=OL,sw=5)=>`<path d="M${x1} ${y1}L${x2} ${y2}" stroke="${col}" stroke-width="${sw}" fill="none" stroke-linecap="round"/>`;
+const A=(d,fill,stroke=OL,sw=6)=>`<path d="${d}" fill="${fill}" stroke="${stroke}" stroke-linejoin="round" stroke-linecap="round" stroke-width="${sw}"/>`;
+const T=(x,y,text,size=30,col='#fff',weight=850)=>`<text x="${x}" y="${y}" fill="${col}" font-family="DejaVu Sans,Arial,sans-serif" font-size="${size}" font-weight="${weight}">${text}</text>`;
+const G=(x,y,s,inside)=>`<g transform="translate(${x},${y}) scale(${s})">${inside}</g>`;
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v)),ease=t=>t*t*(3-2*t),lerp=(a,b,t)=>a+(b-a)*t;
+const HAZ=(x,y,w,h)=>{let out=R(x,y,w,h,'#f2cc4f','#293044',2);for(let i=0;i<w/33;i++)out+=A(`M${x+i*33} ${y+h} l20 -${h} h12 l-20 ${h}z`,'#31364f','none',0);return out};
+const coil=(x,y,s)=>G(x,y,s,E(0,0,80,88,'#d8e6e9','#32445a',10)+E(0,0,38,51,'#667889','#344357',9)+A('M-54 -60 Q0 -100 52 -58','none','#fff',8));
+const worker=(x,y,s,t,col='#286bb3')=>G(x,y,s,`<g transform="rotate(${Math.sin(t*2+x)*3})">${E(0,4,12,18,'#f2b783')}${R(-15,23,30,57,col,OL,4,5)}${A('M-15 32L-35 55L-27 65L-6 46','none',OL,7)}${A('M14 32L32 48L23 66','none',OL,7)}${R(-14,76,12,31,'#273b5a',OL,3,3)}${R(3,76,12,31,'#273b5a',OL,3,3)}${A('M-19 1Q-13 -27 11 -25Q22 -21 20 5Z','#f6c34e',OL,4)}${R(-20,-4,40,9,'#f7da69',OL,3,3)}</g>`);
+const car=(x,y,s,col='#e9f2f7')=>G(x,y,s,`<g>${E(0,115,166,15,'#29344e','none',0)}${A('M-177 65 L-148 0 L-90 -40 L86 -40 L142 -5 L185 35 L187 95 L-185 95Z',col,OL,9)}${A('M-122 2L-77 -28L58 -28L100 3Z','#b8def0',OL,5)}${L(-4,-24,-4,2,'#3d5573',5)}${R(-165,55,44,17,'#f9da77',OL,3,7)}${R(115,55,49,17,'#f9da77',OL,3,7)}${E(-111,99,40,40,'#303750',OL,5)}${E(111,99,40,40,'#303750',OL,5)}${E(-111,99,20,20,'#a2b6c0',OL,5)}${E(111,99,20,20,'#a2b6c0',OL,5)}${L(-176,85,176,85,'#3b465e',5)}</g>`);
+const arm=(x,y,s,t,c='#f79a33',phase=0)=>{let a=Math.sin(t*1.8+phase),b=Math.cos(t*2+phase);return G(x,y,s,`${R(-76,-25,152,47,'#51627e',OL,7,12)}${E(0,-22,62,25,'#263852')}${A(`M-10 -20L${-60+a*25} ${-155+a*15}L${57+a*25} ${-167+a*15}L66 -9Z`,c,OL,11)}${E(-60+a*25,-155+a*15,36,36,'#df8543',OL,9)}${A(`M${-60+a*25} ${-155+a*15}L${75+a*57} ${-300+b*50}L${130+a*40} ${-277+b*50}L${-4+a*25} ${-128+a*15}Z`,c,OL,10)}${E(100+a*55,-287+b*50,29,29,'#425474',OL,8)}${A(`M${100+a*55} ${-285+b*50}l63 37 -24 45 -64 -38Z`,'#384a67',OL,8)}${L(165+a*55,-235+b*50,185+a*50,-210+b*50,'#28344f',8)}`);};
+const forklift=(x,y,s,t)=>G(x,y,s,`${E(-26,113,126,14,'#242942','none',0)}${R(-110,7,208,83,'#f1c034',OL,8,10)}${R(-75,-98,132,108,'#f5c135',OL,9,11)}${R(-59,-82,102,71,'#9cd2d9',OL,6,6)}${L(38,-100,60,10,OL,8)}${E(-68,90,28,28,'#24334b')}${E(65,90,28,28,'#24334b')}${R(90,-122,14,214,'#293648',OL,5,3)}${R(102,-85,12,178,'#293648',OL,3,3)}${A('M103 79 L193 79 L193 90 L103 90','none','#2e3c50',9)}${R(123,-15,94,69,'#c28c58',OL,4,4)}${T(130,23,'BOX',20,'#29334a')}${E(-26,-51,18,20,'#f5b18d')}${R(-40,-28,35,39,'#326ba4',OL,5,5)}${A('M-47 -61Q-48 -87 -20 -87Q-2 -85 -4 -56Z','#f0c34a',OL,5)}`);
+const robot=(x,y,s,t,carry=false)=>{let lift=carry?.62:0;let pulse=Math.sin(t*3.4)*8;let left=carry?-102:-77;let right=carry?92:81;let eye= Math.sin(t*3.4)>0.97?1:0; return G(x,y+pulse,s,`${E(0,163,93,18,'#1d293f','none',0)}${A('M-60 84L-65 151L-28 152L-9 90','#437c9e',OL,7)}${A('M59 84L64 151L27 153L8 90','#437c9e',OL,7)}${A(`M-73 4 L${left} ${-36-66*lift}L${left-21} ${-9-66*lift}`,'none','#e9f1de',24)}${E(left-21,-9-66*lift,16,17,'#2a4c71',OL,5)}${A(`M72 6L${right} ${-28-55*lift}L${right+32} ${3-55*lift}`,'none','#e9f1de',24)}${E(right+32,3-55*lift,17,18,'#2a4c71',OL,4)}${R(-83,-22,166,133,'#f7f5e2',OL,9,40)}${R(-61,7,122,75,'#245078',OL,6,22)}${E(-27,44,eye?19:11,eye?3:14,'#7df0e3','#7df0e3',2)}${E(27,44,eye?19:11,eye?3:14,'#7df0e3','#7df0e3',2)}${A('M-28 66Q0 88 28 66','none','#7df0e3',5)}${R(-94,-135,188,110,'#f8efcb',OL,9,30)}${R(-67,-116,134,64,'#243f63',OL,4,19)}${E(-30,-83,15,17,'#78f7e7','#78f7e7',1)}${E(28,-83,15,17,'#78f7e7','#78f7e7',1)}${L(-8,-135,-8,-160,OL,6)}${E(-8,-173,12,12,'#fa706f')}${A('M-21 100L0 84L21 100','none','#f8bc45',6)}`);};
+const gear=(x,y,r,a,c='#a9d5df')=>{let d='';for(let i=0;i<24;i++){let th=2*Math.PI*i/24;let rr=i%3===0?r*1.2:r;d+=(i?'L':'M')+(x+Math.cos(th+a)*rr).toFixed(1)+' '+(y+Math.sin(th+a)*rr).toFixed(1)}return A(d+'Z',c,OL,4)+E(x,y,r*.35,r*.35,'#2c4b61',OL,3)};
+function building(t){let s='';
+ s+=R(-25,-15,2670,850,'#e3e7ec','none',0);
+ // Far glass bays / depth: bright sky beyond the plant.
+ for(let k=0;k<16;k++){
+  let x=k*180-30;s+=R(x,65,150,605,k%2?'#accdda':'#9ec4d4','#56677e',5,2);
+  for(let j=0;j<5;j++)s+=R(x+13,88+j*109,125,95,j%2?'#c7e2e8':'#b9d5de','none',0);
+  s+=L(x+75,65,x+75,680,'#6d8596',5);
+ }
+ // Skylight / roof structure and original perspective trusses.
+ s+=A('M-10 35 L520 -115 L2670 15 L2670 140 L-10 116 Z','#4b6074','#253b50',15);
+ for(let i=0;i<16;i++){
+  let x=i*195-70;
+  s+=L(x,-15,x+170,204,'#3b5166',16)+L(x+170,22,x-15,207,'#50677b',10);
+  s+=R(x,-16,28,550,'#677789','#34485b',5);
+ }
+ for(let y of [178,380,602]){
+  s+=L(-30,y,2630,y+42,'#51637a',21)+L(-30,y+25,2630,y+66,'#9badb8',6);
+ }
+ // Lamps suspended, pulsing, and a functional ceiling fan.
+ for(let i=0;i<15;i++){let x=i*191+47;let yp=245+(i%3)*17; s+=L(x,176,x,yp,'#364758',7)+A(`M${x-57} ${yp}Q${x} ${yp-56} ${x+57} ${yp}Z`,'#eabb60',OL,6)+E(x,yp+8,40,8,'#fff2ae','none',0);}
+ // Distant industrial lines.
+ for(let j=0;j<3;j++){let scale=0.36+j*.10; for(let i=0;i<11;i++){let x=54+i*242+j*28, y=650-j*72;s+=G(x,y,scale,`${R(-80,-140,160,200,j%2?'#73929d':'#7ca9b4',OL,7,5)}${R(-60,-112,120,100,'#aed5da',OL,5)}${R(-118,48,236,30,'#e8b341',OL,5)}${E(-55,87,23,23,'#536478')}${E(65,87,23,23,'#536478')}`);}}
+ // Catwalk with a handrail, workers and stairs.
+ s+=R(210,450,2030,31,'#ebb64a',OL,7,4);
+ for(let x=232;x<2240;x+=105)s+=L(x,361,x,454,'#e6b841',9)+L(x+45,361,x+45,454,'#324659',3);
+ s+=L(220,365,2240,365,'#f5cf60',13)+L(220,402,2240,402,'#eac45a',9);
+ s+=A('M2240 454L2580 652L2540 674L2200 481Z','#efbd4f',OL,7);
+ for(let i=0;i<6;i++)s+=worker(370+i*295,443,.54,t+i);
+ // Massive structural columns with signage.
+ for(let i=0;i<6;i++){
+   let x=250+i*435;s+=R(x,118,67,745,'#aab4be',OL,12,2)+R(x+6,214,54,117,'#e95b50',OL,3)+T(x+10,282,['A1','A2','B1','B2','C1','C2'][i],29,'#fff');
+   s+=HAZ(x+5,332,56,80);
+ }
+ // Destination signs.
+ const signs=[['ШТАМПОВКА',480],['КУЗОВНОЙ ЦЕХ',840],['ОКРАСКА',1240],['СБОРКА',1660],['КОНТРОЛЬ',2070]];
+ signs.forEach(([name,x],idx)=>{let w=idx===1?340:300; s+=R(x,175,w,91,idx===4?'#448f77':'#485d88','#24344e',8,13)+T(x+22,227,name,idx===1?29:31,'#fff')+T(x+w-40,241,'›',42,'#e9d364');});
+ return s;
+}
+function extras(t){let s='';
+ // Upper-left operations booth with real dashboards and staff.
+ s+=G(35,300,1,`${R(0,0,590,199,'#819eb1',OL,9,8)}${R(20,12,545,157,'#9cd4dc',OL,7,6)}${R(48,21,198,111,'#223c5d',OL,4,4)}${T(65,57,'ЦЕХ: 03',24,'#ffdb7e')}
+ ${A('M65 105L99 82L129 101L159 64L190 80L225 45','none','#7cedc4',8)}
+ ${R(280,20,224,120,'#263f5d',OL,4,5)}${T(294,60,'ЛИНИИ',25,'#eaf7f2')}${T(298,108,'4 / 5',40,'#7decbe')}
+ ${worker(470,167,.58,t+1)}${worker(260,163,.55,t+2)}`);
+ // Subtle machine pipes below the catwalk and cable runs.
+ for(let k=0;k<17;k++){
+  const x=70+k*164;
+  s+=A(`M${x} 590q-14 67 35 84l44 0`,'none',k%2?'#4b667e':'#718997',10);
+  s+=E(x+35,671,9,9,'#ffc14f',OL,2);
+ }
+ // Painted safety signs on distant pillars.
+ for(let i=0;i<5;i++){let x=672+i*439;s+=G(x,570,.85,`${R(0,0,101,68,'#ffdb79',OL,4,6)}${T(8,27,'!  PPE',23,'#27384a')}${T(8,54,'ЗОНА',21,'#27384a')}`);}
+ // Rolling stock, toolboxes, and pallets in a spare aisle near the building.
+ for(let j=0;j<7;j++){
+  let x=120+j*320;
+  s+=G(x,692,.53,`${R(-78,-70,156,109,j%2?'#eab85d':'#78a9ba',OL,6,8)}${R(-63,-54,125,29,'#293e55',OL,3,4)}${E(-42,53,20,20,'#3e5262')}${E(45,53,20,20,'#3e5262')}`);
+ }
+ return s;
+}
+function foreground(t){let s='';
+ // Hand-drawn industrial inventory in a foreground edge for parallax richness.
+ s+=G(-80,1202,1.15,`${R(0,12,310,196,'#b88654',OL,9,6)}${coil(92,-24,.9)}${coil(221,-16,.7)}${R(27,87,240,27,'#d4a674',OL,6)}${T(26,167,'СТАЛЬ',31,'#2e344e')}`);
+ s+=G(195,1385,.8,`${R(-10,-83,314,154,'#c58d57',OL,7,5)}${R(12,-63,257,92,'#42566f',OL,7,8)}${Array.from({length:8},(_,j)=>R(24+j*29,-45,23,59,'#b3ccd1',OL,3,3)).join('')}${T(18,67,'ДЕТАЛИ',24,'#283e51')}`);
+ return s;
+}
+function floor(t){let s='';s+=A('M-100 715L2750 715L2750 1540L-100 1540Z','#b6c3c7','#6d7f90',3);
+ for(let i=0;i<23;i++)s+=L(-160+i*125,715,-300+i*155,1510,'#92a4ad',3);
+ for(let j=0;j<7;j++)s+=L(-70,760+j*115,2740,760+j*115,'#93a5aa',3);
+ s+=A('M1250 730L1700 730L2380 1470L1820 1470Z','#8c9eaa','none',0);
+ s+=A('M1288 740L1312 740L1855 1468L1821 1468Z','#f1ce65','none',0);
+ s+=A('M1670 740L1694 740L2445 1468L2411 1468Z','#f1ce65','none',0);
+ for(let i=0;i<9;i++){let y=840+i*86;let a=(y-700)*.67;s+=L(1430+a,y,1455+a,y,'#f7d76b',9);}
+ // storage racks and background vehicles
+ for(let k=0;k<5;k++){let x=1580+k*199;s+=R(x,590,138,131,k%2?'#c99362':'#a9b8c7',OL,6,6)+L(x+40,589,x+40,718,'#4b596b',4)+L(x,648,x+136,648,'#4b596b',4);}
+ return s;
+}
+function crane(t){let x=780+Math.sin(t*.39)*115,y=240+Math.sin(t*.42)*12;let hook=430+Math.sin(t*.65)*38;
+ let s=R(390,265,1115,39,'#edb93b',OL,9,4)+L(435,259,435,326,'#576879',7)+L(1460,259,1460,326,'#576879',7);
+ s+=R(x,y+40,120,65,'#f0b83e',OL,8,10)+E(x+28,y+100,17,17,'#374f60')+E(x+98,y+100,17,17,'#374f60');
+ s+=L(x+60,y+105,x+60,hook,'#364a63',6)+A(`M${x+48} ${hook}Q${x+75} ${hook+34} ${x+91} ${hook+3}`,'none','#293647',9);
+ s+=G(x+75,hook+44,.70,`${A('M-145 58L-109 -18L85 -18L149 60Z','#e2ebf0',OL,8)}${A('M-95 -7L-60 -32L62 -32L96 -5Z','#9bc7d6',OL,6)}`);
+ return s;
+}
+function assembly(t){let s='';
+ s+=A('M80 1010L1265 700L1612 936L373 1247Z','#d0d8d8',OL,10);
+ for(let i=0;i<10;i++){let x=125+i*129,y=997-i*33;s+=L(x,y,x+277,y+199,'#e3b645',15);}
+ for(let i=0;i<4;i++){let x=120+i*292,y=1048-i*75;s+=G(x,y,1-.16*i,`${R(-205,135,400,38,'#f5c849',OL,9,5)}${E(-155,175,30,30,'#293b50')}${E(160,175,30,30,'#293b50')}${car(0,-40,.85,i%2?'#eff4ed':'#dfe7ee')}`);}
+ for(let i=0;i<5;i++){let xx=195+i*277, yy=980-i*69;s+=arm(xx,yy,.7-i*.065,t, i%2?'#ef9141':'#e7a037',i*1.5);}
+ const welding=Math.sin(t*5.8)>-.28;let sx=500+Math.sin(t*.65)*35,sy=750;
+ if(welding){for(let j=0;j<23;j++){let a=j*Math.PI*2/23+Math.floor(t*11)*.15,r=16+(j%4)*15;s+=L(sx,sy,sx+Math.cos(a)*r,sy+Math.sin(a)*r,j%2?'#fff2a0':'#fa864e',j%3?6:3);}s+=E(sx,sy,18,18,'#fff5c8','none',0);}
+ s+=G(240,1085,.85,worker(0,0,1,t)) + G(810,940,.62,worker(0,0,1,t+1));
+ return s;
+}
+function quality(t){let s='';
+ s+=R(1770,700,755,350,'#6686a5',OL,13,14);
+ for(let i=0;i<6;i++){let x=1793+i*122;s+=A(`M${x} 760L${x+35} 723L${x+114} 723L${x+76} 760Z`,'#f3fcfc',OL,4)+R(x,773,94,216,'#e4fbf8',OL,4,7);}
+ s+=R(1750,647,803,72,'#387f83',OL,9,12)+T(1855,694,'КОНТРОЛЬ КАЧЕСТВА',36,'#fff');
+ s+=car(2164+Math.sin(t*.50)*25,890,.9,'#ef6271');
+ s+=worker(2535,1035,.84,t);
+ // distant finished cars and moving small tail lights.
+ for(let i=0;i<5;i++)s+=G(1780+i*175,643-i*15,.29,car(0,0,1,i%2?'#e6ecf4':'#e96c6c'));
+ return s;
+}
+function sorter(t){let s='';
+ // Long mechanized sorting line, not a flat foreground card.
+ s+=A('M665 1260L1690 1098L2230 1320L1420 1499Z','#f6c24a',OL,11);
+ s+=A('M728 1256L1677 1119L2138 1313L1396 1455Z','#5c7189',OL,9);
+ for(let i=0;i<12;i++){let x=890+i*102,y=1252-i*11;s+=L(x,y,x+145,y+93,'#aebcbe',10);}
+ for(let j=0;j<8;j++){let pos=(j*202+t*54)%1520;let x=786+pos,y=1248-pos*.100;
+  s+=G(x,y,.75, `${R(-44,-18,88,51,j%2?'#efae56':'#85d4ce',OL,5,5)}${j%3===0?gear(0,6,18,t*2):R(-18,-4,40,18,'#f3da83',OL,4,4)}`);
+ }
+ // floor bins rows and safety guard rails
+ for(let i=0;i<7;i++){
+  let x=710+i*205, y=1384-i*21;s+=R(x,y,177,90,['#67bbca','#e7a245','#de6977','#5b9bc2'][i%4],OL,7,7);
+  for(let j=0;j<3;j++)s+=gear(x+34+j*44,y+45,15,t*.4+i+j,'#dbe7e7');
+ }
+ s+=R(900,1045,576,62,'#eed784',OL,8,8)+T(948,1086,'СОРТИРОВКА ДЕТАЛЕЙ',32,'#2e3d50');
+ // Small mascot inside enormous world. At sequence 11–20 robot interacts with a travelling gear.
+ let carry=t>=10.5 && t<16.3;
+ s+=robot(1760,1236,.78,t,carry);
+ let fx=carry? (1780+Math.sin(t*2)*5):(t>=16.3?1790+(t-16.3)*115:1733),fy=carry?1120+(Math.sin(t*3)*4):(t>=16.3?1100+(t-16.3)*23:1240);
+ s+=gear(fx,fy,30,t*1.2,'#bfe2e0');
+ s+=R(1785,1345,27,69,'#303c59',OL,4,3)+R(1766,1281,66,70,'#434b60',OL,5,5)+R(1770,1288,58,19,Math.sin(t*3)>0?'#efcf60':'#61c995','none',0,4);
+ return s;
+}
+function traffic(t){let s='';let x=890 + (t*61)%820,y=1060+Math.sin(t*.6)*8;
+ s+=forklift(x,y,.73,t);
+ for(let i=0;i<4;i++){let xx=x-225-i*120;s+=G(xx,y+34+i*5,.67,`${R(-50,-70,100,104,'#75a5bf',OL,5,8)}${R(-36,-60,70,20,'#e8c15f',OL,3)}${E(-28,30,17,17,'#334257')}${E(33,30,17,17,'#334257')}`);}
+ return s;
+}
+function header(t){let s=`<g>${R(0,0,2600,105,'#263451','none',0)}${A('M12 11L400 11L366 97L12 97Z','#dc5059',OL,7)}${T(36,69,'M1lash',70,'#fff')}${T(432,68,'МУЛЬТНОВОСТИ',42,'#f7da82')}${R(1848,18,720,68,'#2f5472','#547a89',3,10)}${T(1902,65,'ЗАВОД БУДУЩЕГО',43,'#fff')}</g>`;
+ // Bottom news plate sits outside key story details; not over worker faces.
+ s+=`<g>${R(25,1372,1010,67,'#263451','none',0,8)}${T(64,1419,'XIAOMI  •  ЗАВОДСКОЕ ИСПЫТАНИЕ',38,'#fff')}${R(2220,1372,342,62,'#f2ba45','none',0,11)}${T(2255,1416,'СКЕТЧ / ФАКТ',31,'#253953')}</g>`;
+ return s;
+}
+const SHOTS=[
+ [0,0,2600,1462],     // giant complete factory
+ [200,140,2400,1350], // gantry and upper zones
+ [30,305,1930,1086], // car bodies and welding robots
+ [720,380,1695,953], // logistics / forklift with parallel zones
+ [760,600,1680,945], // sorting & bolt character
+ [1140,420,1450,816] // large robot & outgoing QA; right side
+];
+function camera(t){const sl=[0,4,8,12,16,20,24];let i=0;for(let j=0;j<6;j++)if(t>=sl[j])i=j;
+ let u=clamp((t-sl[i])/(sl[i+1]-sl[i]),0,1),s=SHOTS[i];
+ // Slow cinematic drift in each scene, no hard scale jump in character pickup.
+ return [s[0]+u*20,s[1]+u*7,s[2],s[3]];
+}
+window.frame=(t, forcedShot=null)=>{
+ const time=Number(t)||0;const cameraBox=forcedShot===null?camera(time):SHOTS[forcedShot];
+ const svg=document.getElementById('stage');svg.setAttribute('viewBox',cameraBox.join(' '));
+ const html=`<defs>
+ <pattern id="dot" x="0" y="0" width="27" height="27" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.5" fill="#26334e" opacity=".09"/></pattern>
+ <filter id="ink"><feDropShadow dx="3" dy="5" stdDeviation="0" flood-color="#202a43" flood-opacity=".14"/></filter>
+ </defs>
+ ${building(time)}${extras(time)}${floor(time)}${crane(time)}${assembly(time)}${quality(time)}${sorter(time)}${traffic(time)}${foreground(time)}
+ <rect width="2600" height="1462" fill="url(#dot)" pointer-events="none" opacity=".35"/>${G(cameraBox[0],cameraBox[1],1,`<g transform="scale(${cameraBox[2]/2600} ${cameraBox[3]/1462})">${header(time)}</g>`)}`;
+ svg.innerHTML=html;
+ return {time,shot:forcedShot,viewBox:cameraBox};
+};
+window.frame(0,0);
+const params=new URLSearchParams(location.search);if(params.get('preview')==='1'){const begin=performance.now();function tick(now){window.frame(((now-begin)/1000)%24);requestAnimationFrame(tick)}requestAnimationFrame(tick)}
+</script></body></html>
