@@ -13,7 +13,7 @@
 <script src="./three.min.js"></script>
 <script>
 "use strict";
-let renderer,scene,camera,clock=0, mil,aks,badge,desk,chair,computer,phone,printer,forms=[],checks=[],coin,meeting=[],socket,wire,xpBits=[],holo,moneyPanel,xpPanel;
+let renderer,scene,camera,clock=0, mil,aks,badge,desk,chair,computer,phone,printer,forms=[],checks=[],coin,meeting=[],socket,wire,xpBits=[],holo,moneyPanel,xpPanel,resignation,stampFace;
 const W=1080,H=1920, PI=Math.PI;
 function mat(c,r=.55,m=0){return new THREE.MeshStandardMaterial({color:c,roughness:r,metalness:m})}
 const M={wall:mat(0x182239,.83),floor:mat(0x1c2c43,.7),desk:mat(0x38526a,.4),deskEdge:mat(0xa7b3c6,.32,.5),skin:mat(0xd8a387,.79),hair:mat(0x26232c,.9),jacket:mat(0x278e99,.69),jacketDark:mat(0x174e63,.7),trousers:mat(0x333a4d,.83),shoes:mat(0x111d2c,.52),shirt:mat(0xedbb77,.86),steel:mat(0x8993ba,.25,.8),brass:mat(0xc9a063,.31,.65),navy:mat(0x222d56,.28,.26),lilac:mat(0x6255ba,.29,.4),eyes:mat(0x8cecff,.14,.6),ink:mat(0x13182a,.65),white:mat(0xf5f1e9,.4),paper:mat(0xe5ebf2,.8),red:mat(0xf45562,.42),green:mat(0x76e0bd,.5)};
@@ -104,6 +104,21 @@ function room(){
  ring(.16,.018,0,-.11,.13,M.brass,holo);
  box(.50,.06,.03,0,-.43,.13,M.eyes,holo);
  printer=new THREE.Group();printer.position.set(2.2,1.72,.0);scene.add(printer);
+ // One physical resignation form; the AI prints a refusal stamp over it.
+ resignation=new THREE.Group();scene.add(resignation);
+ box(1.45,1.67,.045,0,0,0,M.paper,resignation);
+ const makePaperText=(words,color)=>{
+   const cv=document.createElement('canvas');cv.width=720;cv.height=850;
+   const cx=cv.getContext('2d');cx.fillStyle='#eef1f5';cx.fillRect(0,0,720,850);
+   cx.fillStyle='#243447';cx.fillRect(70,95,580,12);cx.fillRect(70,165,460,8);
+   cx.textAlign='center';cx.textBaseline='middle';
+   cx.fillStyle=color;cx.font='900 76px "DejaVu Sans",Arial,sans-serif';cx.fillText(words,360,435);
+   const m=new THREE.Mesh(new THREE.PlaneGeometry(1.43,1.65),
+     new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(cv),side:THREE.DoubleSide}));
+   m.position.z=.036;resignation.add(m);return m;
+ };
+ makePaperText('УВОЛЬНЯЮСЬ','#2b344c');
+ stampFace=makePaperText('30 ДНЕЙ','#d9344e');stampFace.position.z=.052;stampFace.visible=false;
  box(1.7,.83,1.33,0,0,0,M.steel,printer);box(1.2,.05,.5,0,.48,-.07,M.ink,printer);
  coin=cyl(.24,.24,.075,.15,2.30,1.15,M.brass,scene,32);coin.rotation.x=PI/2;
  // Physical floating money and experience receipts, made with original Three.js geometry.
@@ -197,7 +212,7 @@ const looks=[
  {p:[0,3.58,12.7],at:[0,2.65,-.05]},
  {p:[.58,3.78,9.65],at:[-.55,2.57,-.18]},
  {p:[.42,3.75,9.65],at:[-.13,2.56,.35]},
- {p:[3.35,3.02,6.5],at:[2.12,1.76,.25]},
+ {p:[1.20,3.64,10.3],at:[.10,2.47,.28]},
  {p:[.35,3.02,7.55],at:[-.25,2.32,.65]},
  {p:[2.42,3.05,5.75],at:[1.77,2.10,1.57]}
 ];
@@ -255,6 +270,12 @@ function seek(t){
      const shocked=ease(3.10,4.25,dt);
      a.shoulder.rotation.set(-.07*offer,0,v*(.13+.50*offer+.20*shocked));
      a.elbow.rotation.set(0,0,-v*(.22+.35*offer+.23*shocked));
+   }else if(s===3){
+     // Hand a resignation letter across, then raise both palms after AI rejects it.
+     const handoff=ease(.3,1.25,dt)*(1-ease(2.15,3.0,dt));
+     const refused=ease(2.7,3.55,dt);
+     a.shoulder.rotation.set(-.13*handoff,0,v*(.14+.45*handoff+.22*refused));
+     a.elbow.rotation.set(0,0,-v*(.24+.33*handoff+.26*refused));
    }else{
      a.shoulder.rotation.set(-.04,0,v*.10);
      a.elbow.rotation.set(0,0,-v*.22);
@@ -313,6 +334,21 @@ function seek(t){
    bit.scale.setScalar(.15+(1-spread)*.86);
  });
  printer.visible=s===3;
+ if(resignation){
+   resignation.visible=s===3;
+   if(s===3){
+     // The exact same physical paper is passed, stamped, and then buried by forms.
+     camera.updateMatrixWorld(true);
+     const progress=ease(.45,2.0,dt),depth=5.8;
+     const hh=2*Math.tan(THREE.MathUtils.degToRad(camera.fov)/2)*depth,ww=hh*camera.aspect;
+     const x=520+230*progress, y=1020-85*Math.sin(progress*PI)-45*ease(2.3,2.7,dt);
+     resignation.position.copy(camera.localToWorld(new THREE.Vector3((x/W-.5)*ww,(.5-y/H)*hh,-depth)));
+     resignation.quaternion.copy(camera.quaternion);
+     resignation.rotateZ(-.12+progress*.15);
+     resignation.scale.setScalar(ww/W*315/1.45);
+     stampFace.visible=dt>=2.55;
+   }
+ }
  meeting.forEach((card,i)=>{
    const appear=ease(.35+i*1.20,.83+i*1.20,dt);
    card.visible=s===1 && appear>.001;
