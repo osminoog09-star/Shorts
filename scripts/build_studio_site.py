@@ -318,6 +318,9 @@ def main():
             if v and (k not in m or not m[k] or (k == "title" and m[k] == r["id"])):
                 m[k] = v
     review = list(merged.values())
+    # Editorial holds are PRIVATE archive items, not review cards or candidates for Auto.
+    held = {q.get("id") for q in queue if q.get("status") == "editorial_hold"}
+    review = [r for r in review if r.get("id") not in held]
     for r in review:
         r["kind"] = kinds.get(r["id"]) or "short"
         m = meta.get(r["id"], {})
