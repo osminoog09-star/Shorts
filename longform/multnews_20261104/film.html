@@ -1,0 +1,63 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"/><style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#111}svg{display:block;width:100%;height:100%}</style><body><svg id="art" width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"></svg><script>
+const S=[
+ {title:'РОБОТ НА СМЕНЕ',kicker:'ЗАВОД · 03 НОЯБРЯ',bg:'#ffdcc8',dark:'#352c4d',accent:'#e44d6e',bright:'#ffe7a6'},
+ {title:'СКЛАД БЕЗ ВЫХОДНЫХ?',kicker:'ЛОГИСТИКА · 03 НОЯБРЯ',bg:'#c0e9f0',dark:'#242c50',accent:'#ef6b4a',bright:'#ffd460'},
+ {title:'ШКОЛА ДЛЯ РОБОТОВ',kicker:'КОРЕЯ · 03 НОЯБРЯ',bg:'#e2dbfa',dark:'#34305b',accent:'#6c64ef',bright:'#ffbbad'},
+ {title:'РОБОТ В ПАРКЕ',kicker:'DISNEY · 03 НОЯБРЯ',bg:'#d7f2cc',dark:'#293c53',accent:'#ff7186',bright:'#ffdf75'},
+ {title:'ПРОТОТИП ДОМА',kicker:'META · 31 ОКТЯБРЯ',bg:'#d9eaf9',dark:'#2b3655',accent:'#656cef',bright:'#f9ce79'},
+ {title:'КОГДА КОДА МНОГО',kicker:'OPENAI · 02 НОЯБРЯ',bg:'#efe1ca',dark:'#2c3651',accent:'#52baae',bright:'#ffbc64'}
+];
+const E=(x,y,rx,ry,fill,stroke='#292941',sw=8)=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>`;
+const R=(x,y,w,h,fill,rx=8,stroke='#292941',sw=8)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>`;
+const P=(d,fill,stroke='#292941',sw=9)=>`<path d="${d}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}" stroke-linejoin="round" stroke-linecap="round"/>`;
+const T=(x,y,txt,s=48,col='#292941',stroke='none')=>`<text x="${x}" y="${y}" font-size="${s}" font-family="DejaVu Sans,Arial,sans-serif" font-weight="900" fill="${col}" stroke="${stroke}" stroke-width="0">${txt}</text>`;
+const lines=(i,t)=>{let h='';for(let j=0;j<10;j++){let x=95+j*182+Math.sin(j*13)*31;h+=`<circle cx="${x}" cy="${140+(j%3)*62}" r="${j%2?11:6}" fill="#22213c" opacity=".08"/>`; }return h};
+const bolt=(x,y,s,t,pose=0)=>{let b=Math.sin(t*4)*7, hand=Math.sin(t*4+.4)*38;return `<g transform="translate(${x} ${y+b}) scale(${s})">
+  <ellipse cx="0" cy="215" rx="155" ry="25" fill="#161931" opacity=".18" stroke="none"/>
+  ${P('M -76 115 L -87 180 L -28 187 L -10 122',' #463e66')}${P('M 66 115 L 42 184 L 102 188 L 91 117','#463e66')}
+  ${P(`M -112 -24 Q -193 ${-85+hand/2} -219 ${-12+hand} L -199 ${21+hand} Q -159 ${-16+hand/2} -99 66`,'#ffcf96')}
+  ${P(`M 95 -13 Q 167 ${-92-hand/3} 214 ${-37-hand} L 239 ${-9-hand} Q 179 ${-35-hand/4} 110 64`,'#ffcf96')}
+  ${R(-119,-61,239,201,'#62d8d0',38)} ${R(-83,-19,162,96,'#242944',19)}
+  ${E(-39,27,11,21,'#fff6db','#fff6db',0)} ${E(38,27,11,21,'#fff6db','#fff6db',0)}
+  ${R(-91,121,176,25,'#393454',10)}
+  ${P('M -35 -65 L -20 -103 L 20 -103 L 36 -65','#ffcf96')} ${R(-130,-230,260,173,'#fff1bc',48)}
+  ${R(-98,-189,196,79,'#302e53',22)}
+  ${E(-46,-154,12,18,'#fff','#fff',0)} ${E(43,-154,12,18,'#fff','#fff',0)}
+  ${P('M -32 -92 Q 0 -72 34 -92','none','#302e53',7)}
+  ${P('M -5 -230 L -5 -262','none','#302e53',9)} ${E(-5,-272,14,14,'#ff7291')}
+  <path d="M-94,-187 Q-52,-211 -14,-195" stroke="#fff" opacity=".8" stroke-width="8" fill="none"/>
+  </g>`;};
+const bubble=(x,y,s,txt)=>{y+=105;return `<g>${R(x,y,s,77,'#ffffff',35,'#272b44',8)}${T(x+24,y+55,txt,38)}${P(`M${x+45} ${y+73} l-16 35 49 -35`,'#fff','#272b44',7)}</g>`;};
+function chapter(i,t){let p=S[i];let move=Math.sin(t*2);let a='';
+ if(i===0){
+   let phase=t<2?0:t<4?1:t<6?2:t<8?3:4;
+   a+=`${R(90,480,1115,280,'#59607f',16)}${R(115,499,1060,50,'#f8a76d',4)}${R(140,558,990,170,'#cbd9e4',8)}${P('M115 795 L1205 795','none','#2c2e4c',14)}`;
+   for(let j=0;j<6;j++)a+=`${E(185+j*190,795,31,31,'#34365b')}`;
+   a+=`${T(108,442,'СОРТИРОВКА',35)}`;
+   let x = t<4 ? 240+160*t : t<7 ? 905+(t-4)*105 : 1540;
+   let y = t<4 ? 622 : t<7 ? 622-(t-4)*69 : 400+(t-7)*95;
+   if(t<7.6){a+=`${R(x,y,184,74,'#f9d977',15)}${R(x+24,y+14,135,38,'#ff9f65',8)}`;}
+   if(t>=3.1&&t<4.8) a+=`${P('M 915 600 Q 990 500 1040 614','none','#ffc653',15)}${E(977,579,50,50,'none','#f66d76',12)}${T(950,566,'!',54,'#fa5073')}`;
+   if(t>=7.4) a+=`${R(1420,672,300,156,'#ffe0a6',18)}${T(1457,733,'ГОТОВО',36)}`;
+   if(t>=8) for(let j=0;j<13;j++)a+=`${E(1415+j*21,432+Math.sin(t*3+j*1.8)*44,6+(j%3)*3,6,'#f68b93','none',0)}`;
+   a+=bolt(1370,600,1.05,t);
+   a+=phase===0?bubble(1270,95,345,'ПЕРВАЯ СМЕНА'):phase===1?bubble(1270,95,310,'ЭТО ОШИБКА?!'):phase===2?bubble(1270,95,345,'ИСПРАВЛЯЮ!'):bubble(1270,95,310,'ПОЧИНИЛ!');
+ }
+ if(i===1){for(let k=0;k<5;k++)for(let j=0;j<3;j++)a+=R(105+j*230,520-k*84,205,72,['#f2ab77','#f5cb8e','#e79964'][(j+k)%3],8,'#31304e',6);a+=`${R(930,475,660,45,'#303652',10)}${P('M 1234 511 L 1300 575 L 1410 478','none','#2b2d4d',45)}${E(1410,457,85,32,'#5de0ca')}${R(1320,625,270,156,'#7bc0c9',35)}${E(1370,792,33,33,'#252944')}${E(1535,792,33,33,'#252944')}`;a+=`<g transform="translate(0 ${(t*24)%100})">${R(1260,540,195,102,'#ffd15f',8)}${T(1277,607,'BOX',35)}</g>`;a+=bubble(1095,85,500,'МЕНЬШЕ ПОЛОМОК');}
+ if(i===2){a+=`${R(97,450,1148,328,'#b7a1d6',18)}${R(126,481,1090,261,'#f7f3e9',20)}${R(252,570,155,112,'#fbc99d',5)}${R(482,562,172,118,'#a7d2f1',22)}${R(731,567,188,109,'#7fd3bc',22)}${T(160,530,'ПРАКТИКА',38)}`;a+=bolt(1355,600,1.05,t);a+=`${P('M 1270 580 Q 1053 470 1040 610','none','#34335d',11)}${R(995,615,130,62,'#fbf0bc',8)}${T(1005,654,'00:08',32)}`;a+=bubble(1246,110,430,'А ГДЕ ДОМ?');}
+ if(i===3){a+=`${P('M 145 765 L 145 400 L 1150 400 L 1150 765','#e7ceab')}${R(250,455,750,225,'#fff5c6',14)}${R(445,488,360,143,'#4b7b95',14)}${T(465,569,'3D',70,'#fff')}`;for(let j=0;j<3;j++)a+=`<g transform="translate(${j*150} 0)">${E(600,715,53,28,'#303657')}${E(600,701,37,27,'#f7eaad')}${E(575,701,12,10,'#292c4d')}${E(625,701,12,10,'#292c4d')}</g>`;a+=bolt(1420,575,1.07,t);a+=bubble(1190,99,500,'ОЧКИ НА МОЙКУ!');}
+ if(i===4){a+=`${R(140,420,1115,360,'#d6b7a0',18)}${R(181,458,490,276,'#f2eedf',30)}${R(730,520,390,213,'#93c8bc',30)}${R(740,476,270,48,'#e9b18b',20)}${P('M 1180 778 l0 -320 75 0 0 320','#7e8a90')}${P('M 1080 475 Q 1150 345 1220 475','none','#3a896e',40)}${E(1195,445,40,65,'#62a88c')}`;a+=bolt(1470,605,1.06,t);a+=bubble(1190,87,455,'ЭТО ПОКА СЛУХ');}
+ if(i===5){a+=`${R(95,410,1190,375,'#647a8c',20)}${R(134,451,1130,293,'#192b45',22)}`;for(let j=0;j<5;j++){let xx=176+j*205;a+=`${R(xx,490+Math.sin(t*2+j)*13,158,106,['#54d3be','#ffcb63','#ef8d91','#c0a6f5','#b5e3eb'][j],10)}${T(xx+15,561,['01','02','03','04','05'][j],47)}`;a+=P(`M${xx+77} 601 Q ${xx+100} ${635+j*5} 1147 700`,'none','#a1e6cf',4)}a+=bolt(1456,595,1.04,t);a+=bubble(1215,95,480,'СЛИШКОМ МНОГО GIT');}
+ return a;
+}
+window.frame=(time,forcedScene=null)=>{let scene=forcedScene===null?Math.min(5,Math.floor(time/10)):forcedScene;let t=time;let q=S[scene];let shift=Math.sin(t*.4)*17;let nodes=lines(scene,t);let wave=Array.from({length:18},(_,j)=>`<circle cx="${100+j*93}" cy="${1000+Math.sin(j+time)*6}" r="4" fill="#fff" opacity=".6"/>`).join('');
+ document.getElementById('art').innerHTML=`<defs><pattern id="half" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="8" cy="8" r="3" fill="#36334e" opacity=".11"/></pattern><filter id="shadow"><feDropShadow dx="6" dy="9" stdDeviation="0" flood-color="#22243f" flood-opacity="0.15"/></filter></defs>
+ <rect width="1920" height="1080" fill="${q.bg}"/><rect width="1920" height="1080" fill="url(#half)"/>
+ <g opacity=".5">${E(1500+shift,240,530,240,q.bright,'none',0)}${P('M -60 854 Q 530 700 1020 855 Q 1370 700 2050 860 L 2050 1100 L -60 1100 Z',q.bright,'none',0)}</g>
+ ${nodes}<g filter="url(#shadow)">${chapter(scene,time)}</g>
+ <g><path d="M 0 0 L 1920 0 L1920 120 L0 120 Z" fill="${q.dark}"/><path d="M 0 906 L 1920 906 L1920 1080 L0 1080 Z" fill="${q.dark}"/>
+ ${R(90,36,344,61,q.accent,12,'#18192e',5)}${T(112,81,'M1lash МультНовости',26,'#fff')}
+ ${T(483,83,q.kicker,34,'#fff')}${T(90,988,q.title,64,'#fff')}
+ <rect x="1694" y="947" width="156" height="49" rx="22" fill="${q.accent}"/>${T(1711,982,'ФАКТ + СКЕТЧ',19,'#fff')}
+ ${wave}</g>`;return {scene,time};};window.frame(1,0);
+</script></body></html>
