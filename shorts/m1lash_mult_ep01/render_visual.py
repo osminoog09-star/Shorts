@@ -109,6 +109,11 @@ def main():
    page.evaluate("(t)=>window.seek(t)",t)
    page.screenshot(path=str(OUT/f"contact_{str(t).replace('.','_')}s.jpg"),
                    type="jpeg",quality=88)
+  # Scene 2 visual cause/effect: one -> two -> three real agenda cards.
+  for t in (7.5,8.4,9.7,10.5,11.6,12.4):
+   page.evaluate("(t)=>window.seek(t)",t)
+   page.screenshot(path=str(OUT/f"agenda_{str(t).replace('.','_')}s.jpg"),
+                   type="jpeg",quality=88)
   if any(not q["safe"] for q in badge_checks):
    raise RuntimeError("ART_QA_PLAQUE_CLIPPED: scene's director text outside Shorts-safe image")
   # Save actual close-up frames even if a hard gate rejects the render.
