@@ -1,3 +1,13 @@
+# 04.11 · GPT · МультНовости #01: подробный аудит v5, полностью беззвучный 24с демо v6, ошибки в Studio
+
+По прямому отзыву владельца «звуки вообще убери» **полностью удалены** все ранее самодельные заводские моторы/писки/сварочные Foley — не muted AAC, а **0 audio streams**, подтверждено `ffprobe`. Финальный демонстрационный **v6: 24.000с / H264 1920×1080 / 30fps / 720 кадров / 16,287,304 B**, SHA256 `44ff974afefb82b2d29b7fdcc9526350d81e21fe63cc02603850816d62f9eac6`; полный `ffmpeg -xerror` decode PASS, реальный contact по 20 кадрам из MP4 осмотрен. Локально `/mnt/data/M1lash_MultNews_v6_SILENT_FullHD_24s.mp4`; приватная Library `/Youtube/M1lash_MultNews_20261104/PRIVATE_FACTORY_v6_SILENT_24s_1080p.mp4` (libfile_744b7a495b04819192ff2980685d12cd), **не Git и не YouTube**.
+
+Полный source `longform/multnews_20261104/factory_v2/factory_stage_v6.html` и `render_v6_silent.py` запушены; фактический таймкодный разбор `factory_v2/QA_v6_2026-11-04.md`. Исправлены физический контакт Болтика с gear t17.3→19.16→19.54, надпись лотка, один лицевой экран + тень опоры, stationary QA scanner только с t20 при проезде автомобиля и исчезновение старой метки после смены сцены. Остаточный **ART NO-GO для долгого выпуска:** однородные манипуляторы 0–8с, независимая от сварочной точки вспышка 8–12с, слабая предметная логистика 12–16с, нет остальных шести масштабных локаций, реального Qwen Denis voice и финальных 21–23 мин. Не писать READY или public.
+
+Ошибки записаны в `reports/learning/journal.json` (4 новых + verify старого prop), `skills/m1lash-studio/references/large-animated-world-qa.md`, `skills/m1lash-studio/SKILL.md`, project narrow `AGENTS.md`. **Следующий шаг:** открыть `tasks/NOW.md` блок «M1lash МультНовости #01» пункт 3б-5; сделать осмысленный сварочный инструмент, отдельный логистический shot, 6 настоящих стопов, 24с silent pilot и повторный ART QA; затем шесть других больших миров и личную озвучку Дениса. `M1lash Мульт EP01` и 3D Coffee по-прежнему PAUSED_BY_OWNER. Никаких публикаций, дат и платных вызовов.
+
+---
+
 # 04.11 · GPT · Film-Mult: настоящий удалённый браузер, 2 YouTube обложки и metadata, но воспроизведение блокировано
 
 - По вопросу владельца «у тебя же есть удалёнка» использована подключённая **Higgsfield remote Linux sandbox** с **Chromium/Playwright, yt-dlp, ffmpeg**, без платежей, обхода антибота или работы с приватным OVH VPS. Оба YouTube watch URL дали HTTP 200 и реальные названия/авторов. YouTube oEmbed + официальные maxres thumbnails (1280x720) получены, **обе обложки физически открыты и осмотрены**.
