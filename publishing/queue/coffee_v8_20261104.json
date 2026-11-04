@@ -1,0 +1,28 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "repo",
+    "path": "videos/coffee_v8_20261104.mp4",
+    "sha256": "44de695ffdc5b3c66c607c687a35add9f7a20612b7dd21d4587764b5bcae74bb"
+  },
+  "metadata": {
+    "type": "short",
+    "title": "Моя кофемашина требует доказать, что я проснулся #shorts",
+    "description": "Умная кофемашина решила продавать пробуждение. А кофе придётся сварить самому.\nКакой прибор у тебя первым попросит подписку?\n\n#shorts #M1lash #скетч #юмор #кофе #искусственныйинтеллект #анимация\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube",
+    "tags": [
+      "M1lash",
+      "скетч",
+      "юмор",
+      "кофемашина",
+      "кофе",
+      "искусственный интеллект",
+      "умный дом",
+      "подписка",
+      "анимация",
+      "мини скетч"
+    ],
+    "category_id": "23",
+    "made_for_kids": false,
+    "contains_synthetic_media": true
+  }
+}

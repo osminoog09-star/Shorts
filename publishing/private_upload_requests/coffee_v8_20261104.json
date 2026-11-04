@@ -1,0 +1,6 @@
+{
+  "action": "private_upload_once",
+  "manifest": "publishing/queue/coffee_v8_20261104.json",
+  "sha256": "44de695ffdc5b3c66c607c687a35add9f7a20612b7dd21d4587764b5bcae74bb",
+  "private_only": true
+}

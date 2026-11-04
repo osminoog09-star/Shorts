@@ -299,6 +299,19 @@
       "owner_audio_approval_note": "«Все 4 ок» — одобрены финальные MP4/звук, разрешена только приватная загрузка без даты.",
       "youtube_id": "6KgLv_omqao",
       "private_review_url": "https://studio.youtube.com/video/6KgLv_omqao/edit"
+    },
+    {
+      "id": "coffee_v8_20261104",
+      "kind": "short",
+      "author": "Codex",
+      "status": "draft",
+      "slot": null,
+      "style": "2D",
+      "mp4": "videos/coffee_v8_20261104.mp4",
+      "publish_md": "shorts/coffee_v8_20261104/PUBLISH.md",
+      "title": "Моя кофемашина требует доказать, что я проснулся #shorts",
+      "note": "Владелец04.11 одобрил V8 и явно разрешил публичный Git только готового MP4. Загрузка PRIVATE без даты; пока нет receipt/YouTube ID — не считать залитым.",
+      "working_project": "coffee_v8_20261104"
     }
   ]
 }
