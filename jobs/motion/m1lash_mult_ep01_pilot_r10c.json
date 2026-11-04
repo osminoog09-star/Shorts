@@ -1,0 +1,12 @@
+{
+  "renderer": "python",
+  "script": "shorts/m1lash_mult_ep01/render_visual.py",
+  "output": "videos/m1lash_mult_ep01_PREVIEW_ONLY.mp4",
+  "only_id": "m1lash_mult_ep01",
+  "mode": "pilot",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "voice_generated": false,
+  "publish": false,
+  "revision": "r10c_7sec_real_motion_hero_attempt_and_ai_snatches_director_plaque"
+}
