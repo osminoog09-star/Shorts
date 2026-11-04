@@ -156,7 +156,7 @@ def main():
   if job["mode"]=="pilot":
    start=float(job.get("pilot_start",0))
    seconds=float(job.get("pilot_seconds",7))
-   if (start,seconds) not in ((0.0,7.0),(7.0,6.0)):raise RuntimeError("Pilot window not whitelisted")
+   if (start,seconds) not in ((0.0,7.0),(7.0,6.0),(13.0,6.0)):raise RuntimeError("Pilot window not whitelisted")
    frames=int(seconds*30)
    out=OUT/f"M1lashMult_ep01_SILENT_{int(seconds)}s_from_{int(start)}s_pilot.mp4"
    cmd=["ffmpeg","-v","error","-nostdin","-y","-f","image2pipe","-vcodec","mjpeg",
