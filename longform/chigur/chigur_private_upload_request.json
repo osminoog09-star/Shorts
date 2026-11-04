@@ -1,0 +1,31 @@
+{
+  "action": "upload_private_once",
+  "channel": "ru",
+  "drive_file_id": "1ysQ5mnSmtxv8xnjAq4uMt3DV6FZnVvVs",
+  "sha256": "d9278386aa2eb2b55b56d91a849820a5c24c9c4a739305d7953b3fd4f6a347c7",
+  "size_bytes": 80725337,
+  "visibility": "private",
+  "publish_at": null,
+  "metadata": {
+    "type": "long",
+    "title": "Антон Чигур: почему с ним нельзя договориться",
+    "description": "Почему с Антоном Чигуром нельзя договориться? Разбираем реальные сцены фильма «Старикам тут не место» (No Country for Old Men, 2007): монета на заправке, разговор с Карсоном и отказ Карлы Джин.\n\nАвторский разбор M1lash. Голос рассказчика — авторская синтетическая озвучка Дениса (собственный образец, Qwen3-TTS). В киноэпизодах звучит оригинальный русский дубляж. Фрагменты фильма приведены для анализа и обсуждения.\n\nКакой момент с Чигуром показался тебе самым напряжённым? Пиши в комментариях.\n\nМузыка фирменной концовки:\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#M1lash #Киноразбор #АнтонЧигур #СтарикамТутНеМесто #Кино",
+    "tags": [
+      "Антон Чигур",
+      "Старикам тут не место",
+      "No Country for Old Men",
+      "разбор фильма",
+      "братья Коэн",
+      "Хавьер Бардем",
+      "монета",
+      "психология кино",
+      "киноразбор",
+      "M1lash"
+    ],
+    "category_id": "1",
+    "made_for_kids": false,
+    "contains_synthetic_media": true,
+    "default_language": "ru",
+    "default_audio_language": "ru"
+  }
+}
