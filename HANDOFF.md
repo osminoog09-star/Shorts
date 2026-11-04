@@ -1,3 +1,16 @@
+# 04.11 · GPT · M1lash: live-перенос всей будущей очереди YouTube + двухформатная сетка
+
+**Решение владельца:** ежедневно 10:00 кино-Shorts и 20:00 оригинальный комедийный/новостной скетч (не сухая новостная подборка), ср/сб 15:00 два оригинальных рисованных фильма S10-D25 ≥21 мин. Новые длинные киноразборы прекратить из-за Content ID. PAUSED_BY_OWNER M1lash Мульт EP01/3D Coffee не возобновлять; никаких новых рендеров/заливок/публикаций этой задачей.
+
+**Реально подтверждено на YouTube:** GitHub Actions `m1lash-schedule-migration.yml` run **41922020447 SUCCESS**; все семь действий проверены API GET (privacyStatus=private, publishAt точный или отсутствует). Время Europe/Tallinn:
+- `kino_006` sCThiwmigy0 → 05.11 10:00 (кино); `ai_fridge_202611` QS66i62EgJk → 05.11 20:00 (скетч); `ai_vacation_202611` R0y8D9MZanc → 06.11 20:00; `coffee_v8_20261104` bEdC0uFDvl4 → 07.11 20:00.
+- `ai_news_2026_11_03` oMhef8NQg1s, `science_mirror_202611` 6KgLv_omqao и `science_orbit_202611` 9XeZBiX7Pr8 → **PRIVATE без даты**, не удалены и не перезалиты (устаревшая подборка/научпоп вне новой сетки).
+
+GitHub receipts всех семи обновлены после readback; четыре queue status=scheduled, три editorial_hold; манифесты/ledger отразили owner migration, дублирующих загрузок нет. Изменены AGENTS §5/9, Studio SKILL, `publishing/best_times.json`, `scripts/build_studio_site.py` (10/20 ежедневно, 15 ср/сб мультфильмы), `site/studio/index.html`, `site/studio/scheduling.js` + тест. `publishing/autopilot.json` остался disabled.
+
+**Проверки/ограничения:** предыдущий Pages CI падал на противоречии science_orbit (queue review при scheduled receipt); свежие receipts+queue теперь согласованы. Самые поздние Pages run/status надо проверить отдельно: только GitHub CI SUCCESS и readback сайта позволяют сказать, что деплой подтверждён. Новых кино-Shorts сверх `kino_006` пока нет для покрытия каждой следующей утренней даты, полноценных готовых Film-Mult на ср/сб пока нет; пустые слоты не занимать фиктивными видео.
+
+---
 # 04.11 · GPT · МультНовости #01: подробный аудит v5, полностью беззвучный 24с демо v6, ошибки в Studio
 
 По прямому отзыву владельца «звуки вообще убери» **полностью удалены** все ранее самодельные заводские моторы/писки/сварочные Foley — не muted AAC, а **0 audio streams**, подтверждено `ffprobe`. Финальный демонстрационный **v6: 24.000с / H264 1920×1080 / 30fps / 720 кадров / 16,287,304 B**, SHA256 `44ff974afefb82b2d29b7fdcc9526350d81e21fe63cc02603850816d62f9eac6`; полный `ffmpeg -xerror` decode PASS, реальный contact по 20 кадрам из MP4 осмотрен. Локально `/mnt/data/M1lash_MultNews_v6_SILENT_FullHD_24s.mp4`; приватная Library `/Youtube/M1lash_MultNews_20261104/PRIVATE_FACTORY_v6_SILENT_24s_1080p.mp4` (libfile_744b7a495b04819192ff2980685d12cd), **не Git и не YouTube**.
