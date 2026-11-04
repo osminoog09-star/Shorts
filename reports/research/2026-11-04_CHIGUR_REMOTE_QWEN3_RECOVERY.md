@@ -15,3 +15,12 @@
 - Исходный личный 10.72с `reference_clean.wav` остался **private**. В public GitHub только уже разрешённый владельцем full CoffeeV8.mp4; отдельный образец/эмбеддинг не загружать. Новый voice-прослушивание в Higgsfield пользовательской media library (не в репозиторий).
 - Не запускать устаревшие Edge/Dima workflows; не менять стиль/3D, не публиковать Чигура и не выдавать 9:51 picture-lock с субтитрами за полный ролик.
 - После завершения 38 WAV необходимы RU ASR каждого сегмента, реальная проверка восьми русских актёрских киноокон, final 1080p movie-only audio-mix, approved Denis-v7 horizontal, check.py/look.py/full decode+слух, личный review. Исторический текущий 9:51 PRIVATE picture-lock ещё **без голоса автора**.
+
+## Физический checkpoint: remote CPU batch №1
+
+- XL remote Linux 4CPU/16GB: persistent-volume Python imports зависали на дисковом I/O. Установлен локальный /tmp/chigur_qwen_env из pip; импорт модели и prompt заняли 3.4с. Локальный /tmp ephemeral, постоянные файлы исходников/голоса отдельно под /home/user/chigur_private/.
+- Батч №1 РЕАЛЬНО завершился exit 0: 15/38 WAV с собственным голосом через Qwen3 1.7B Base, в user-scoped private /home/user/chigur_private/segments/; лог synth_batch_localenv.log. Временной лимит batch 743.1s, остановился перед d05_p04. Реальная ASR была проверена только для первого тестового d01_p02, остальные WAV пока ASR pending. Batch №2 начал synth_batch2.log, статус background /home/user/.bg/e38aebce.exit, не заявлять его результаты до фактической проверки.
+- Все пять ранее вырезанных киноисточников восстановлены на remote через подписанные GitHub Actions artifact download links (без публичного Git файлов): gas/carson/driver/tracker/carla 5/5 оригинальных SHA256 MATCH с film_only_source_index.json; хранятся PRIVATE в /home/user/chigur_private/source/{id}/originals/{id}.mp4.
+- Независимо восстановлен архив реальных русских кино-ASR: GitHub Actions run 41273807923 Carla word times: 178.63–181.79 «Орёл? Или решка?», 194.35–198.97 «Нет. Не буду выбирать»; run 41273154882 driver: «Пожалуйста, выйдите из машины, сэр», «Замрите, пожалуйста». На их основании исправлен film_only_edit_decisions_v2.json: Carla отказ 194.25–199.20 (полная фраза), coin offer 178.55–181.85, driver proof 94–99. 9 cinema proof окон, 3 имеют настоящую RU-ASR опору, 6 ещё pending; владелец пока не прослушивал.
+- Ни на YouTube, ни в публичный GitHub защищённые MP4/WAV/исходные образцы НЕ отправлялись. До final QA длинный выпуск НЕ готов.
+
