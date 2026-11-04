@@ -7,7 +7,7 @@ function oldHero(u,mood='sleepy',hx=290,hy=315,prop='cup'){
  let face=`<ellipse cx="139" cy="123" rx="86" ry="100" fill="${S}" stroke="${I}" stroke-width="7"/>`+path('M56 117Q36 33 92 22Q123-2 162 22Q230 7 228 105L197 91L178 59L150 85L91 78L72 120',I)+`<ellipse cx="106" cy="126" rx="9" ry="${ey}" fill="${I}"/><ellipse cx="176" cy="126" rx="9" ry="${ey}" fill="${I}"/>`+path('M142 131L135 154H149','none',4);
  face+=mood==='angry'?path('M87 99L119 113M164 112L192 96M111 182Q144 164 174 181','none',7):mood==='awake'?path('M87 91Q106 77 121 88M160 88Q178 75 194 91','none',6)+path('M116 177Q142 207 171 175Q143 187 116 177',C,4):mood==='worry'?path('M91 101L119 93M163 95L190 104M114 181Q141 169 172 181','none',6):`<ellipse cx="139" cy="182" rx="17" ry="8" fill="${I}"/>`;
  let body=path('M74 220Q131 202 200 221L226 407Q139 436 56 406Z',O)+path('M104 220L137 254L173 219','none',5)+path('M136 256V386','none',4,'#a9432e')+rect(88,404,48,140,'#365968',12)+rect(161,404,48,140,'#365968',12)+path('M88 523Q58 526 60 552L139 552L135 523Z',I)+path('M163 522L207 523Q245 530 236 551H163Z',I);
- body+=path('M73 243Q11 261 25 351Q35 379 66 368','none',27,O)+path(`M204 244Q${(204+hx)/2+15} ${hy+22} ${hx} ${hy}`,'none',29,O)+(prop==='plug'?'':hand(hx-3,hy-10,-12));
+ body+=path('M73 243Q11 261 25 351Q35 379 66 368','none',27,O)+(prop==='none'?'':path(`M204 244Q${(204+hx)/2+15} ${hy+22} ${hx} ${hy}`,'none',29,O)+(prop==='plug'?'':hand(hx-3,hy-10,-12)));
  if(prop==='cup')body+=g(hx+14,hy-10,.48,cup(),-4);
  if(prop==='receipt')body+=g(hx+12,hy-29,.69,receipt(180,true));
  if(prop==='wallet')body+=g(hx+3,hy-15,.7,rect(0,0,143,102,'#845e48')+rect(90,26,64,51,Y,8)+circ(119,52,7,I,0),-10+Math.sin(u*2)*3);

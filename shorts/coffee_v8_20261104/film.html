@@ -7,20 +7,20 @@ function balloon(x,y,w,line,fill=Y,size=55){return g(x,y,1,rect(0,0,w,100,fill,2
 function money(u){let vanish=ease((u-.6)/.8);return g(300-120*vanish,660-160*vanish,1,`<g opacity="${1-vanish}">${rect(0,0,220,112,Y,12)+txt(22,77,'9,99 €',51)}</g>`)}
 function getScene(n,u,dur){let h='',box='0 0 1000 1240';
 if(n===0){let reach=ease(u/.7),recoil=bell((u-1.0)/.6),angry=u>3.0;
- h=kitchen()+g(50-38*recoil,580,.94,hero(u,angry?'worry':'sleepy',310+40*reach-35*recoil,270,'cup',-8*recoil))+g(585,349,1.14,machine(u,u<.6?'КОФЕ?':'ДОКАЖИ!'));
+ h=kitchen()+g(35-20*recoil,420,1.2,hero(u,angry?'worry':'sleepy',310+40*reach-35*recoil,270,'cup',-8*recoil))+g(585,530,.75,machine(u,u<.15?'КОФЕ?':'ДОКАЖИ!'));
  h+=g(420,30,1,rect(0,0,470,125,I,20)+txt(29,44,'ДО РАБОТЫ',28,C)+txt(35,101,'09:'+String(59-Math.floor(u)).padStart(2,'0'),66,Y));
- if(u>.6){h+=g(596-48*recoil,658,.95,circ(0,0,48,O)+path('M-19-19L19 19M19-19L-19 19','none',9,C));}
+ if(u>.6){h+=g(567-25*recoil,740,.95,circ(0,0,48,O)+path('M-19-19L19 19M19-19L-19 19','none',9,C));}
  if(u>3.1){h+=balloon(397,188,530,'ТЫ ПРОСНУЛСЯ?',Y,45);box='20 160 880 1091';}
- if(u<.85){box=`${140-140*ease(u/.85)} ${60-60*ease(u/.85)} ${780+220*ease(u/.85)} ${967+273*ease(u/.85)}`;}
+ if(u<.85){box='0 0 1000 1240';}
 }else if(n===1){
  h=rect(0,0,1000,1240,'#e7ede5',0,0)+rect(54,65,875,1015,C,25)+txt(99,143,'ВЫБЕРИ ВСЕ ЧАШКИ',50);
- const ts=[.08,.24,.40,.56,.72,.88],err=u>=1.65;
+ const ts=[.08,.24,.40,.56,.72,.88],err=u>=1.88;
  for(let k=0;k<6;k++){let x=110+(k%2)*390,y=205+Math.floor(k/2)*245,selected=u>ts[k];h+=g(x,y,1,rect(0,0,335,217,selected?(err&&k===4?'#f2c9b4':'#cce5d9'):C,19,5)+g(75,19,.96,cup(k===4))+(selected?g(277,170,.6,err&&k===4?circ(17,17,30,O)+path('M4 4L30 30M30 4L4 30','none',7,C):circ(17,17,30,T)+path('M-1 16L14 30L38 3','none',7,C)):''));}
  if(u<1.2){let k=Math.min(5,Math.floor(u/.16)),x=110+(k%2)*390+215,y=205+Math.floor(k/2)*245+140;h+=g(x,y,.8,path('M0 0L13 89L36 63L69 66Z',I,3));}
  if(err){h+=g(95,978,1,rect(0,0,790,107,O,19)+txt(33,105-31,'ОШИБКА: ЭТО КРУЖКА',48,C));}
  if(u>3.5){let rr=bell((u-3.5)/.8);h+=g(100+8*rr,700,1.25,hero(u,'angry',280,290,'cup',-12*rr));box='0 130 1000 1240';}
 }else if(n===2){
- let offer=ease(u/.48);h=kitchen()+g(29,580,.94,hero(u,u>dur-1.2?'worry':'angry',310,286,'wallet',u>dur-1.2?-7:0))+g(580,350,1.14,machine(u,'НЕТ ПОДПИСКИ'));
+ let offer=ease(u/.48);h=kitchen()+g(29,420,1.2,hero(u,u>dur-1.2?'worry':'angry',310,286,'wallet',u>dur-1.2?-7:0))+g(585,530,.75,machine(u,'НЕТ ПОДПИСКИ'));
  h+=g(443,50-180*(1-offer),1,rect(0,0,495,280,Y,22)+txt(28,58,'ПРОБУЖДЕНИЕ',44)+txt(46,158,'9,99 €',92)+rect(25,191,445,69,T,14)+txt(108,238,'КУПИТЬ',43,C));
  if(u>dur-1.4){let a=ease((u-dur+1.4)/.6);h+=g(370+64*a,800-80*a,1,rect(0,0,200,123,Y,16)+rect(19,24,43,31,C,8)+path('M22 86H123','none',6));}
 }else if(n===3){
@@ -33,21 +33,21 @@ if(n===0){let reach=ease(u/.7),recoil=bell((u-1.0)/.6),angry=u>3.0;
 }else if(n===4){
  let pull=ease((u-.42)/.62),px=484-135*pull,py=474,off=pull>.40;
  h=kitchen()+g(535,766,1,rect(0,0,77,119,C,14)+circ(26,39,7,I,0)+circ(26,78,7,I,0));
- h+=path(`M849 848Q845 1018 610 998Q${px-3} 1000 ${px+5} ${py+371}`,'none',10,I)+g(660,498,.75,machine(u,'ПРОСНИСЬ',off));
- let rise=38*ease((u-1.55)/.32),shrug=bell((u-2.2)/.65);
- h+=g(55,500-rise,.97,hero(u,off?'angry':'worry',(px-55)/.97,(py+352-500+rise)/.97,'plug',off?-7+5*shrug:0));
+ h+=path(`M849 848Q845 1018 610 998Q${px-3} 1000 ${px+5} ${py+371}`,'none',10,I)+g(660,530,.75,machine(u,'ПРОСНИСЬ',off));
+ let rise=20*bell((u-1.55)/.45),shrug=bell((u-2.2)/.65);
+ h+=g(55,420-rise,1.2,hero(u,off?(u<2.5?'awake':'angry'):'worry',(px-55)/1.2,(py+352-420+rise)/1.2,'plug',off?-7+5*shrug:0));
  h+=g(px,py+312,1,path('M47 19H77M47 58H77','none',9,'#9ca8a8')+rect(0,0,47,81,Y,9))+hand(px-6,py+346,-10);
  if(off&&u<2.1)h+=path('M285 444L306 391M318 473L367 452M302 511L349 539','none',9,O);
  if(u>dur-.85)h+=balloon(414,214,490,'ОТ ЗЛОСТИ.',Y,57);
 }else{
  const pour=ease((u-.25)/.55)*(1-ease((u-2.9)/.5)),tilt=-22*pour;
- h=kitchen()+g(54,580,.94,hero(u,'awake',330,200,'none',-3))+g(630,760,.83,machine(u,'',true));
+ h=kitchen()+g(54,420,1.2,hero(u,'awake',330,200,'none',-3))+g(630,530,.75,machine(u,'',true));
  // Manual coffee: the dead machine is now literally a stand. Cup rests on top.
- h+=g(720,690,.53,cup());
- let kx=480+62*pour,ky=590-20*pour;
- h+=path(`M273 813Q375 689 ${kx-30} ${ky+110}`,'none',30,O)+hand(kx-30,ky+109,-8);
+ h+=g(720,455,.53,cup());
+ let kx=480+62*pour,ky=390-20*pour;
+ h+=path(`M300 713Q375 689 ${kx-30} ${ky+110}`,'none',30,O)+hand(kx-30,ky+109,-8);
  h+=g(kx,ky,1,`<g transform="rotate(${tilt} 109 103)">${path('M22 58Q15 14 75 3H143Q202 19 193 112L177 166H24Z',Y,7)+path('M193 61L258 23L219 122L188 135',Y,7)+path('M33 55Q-42 43-39 112Q-38 152 25 140','none',16,I)+rect(64,-14,73,20,I,7)+path('M49 73H158M49 97H158','none',4,'#cd9d43')}</g>`);
- if(pour>.15){h+=path(`M${kx+230} ${ky+32}Q815 655 763 712`,'none',10,'#784c30');}
+ if(pour>.15){h+=path(`M${kx+230} ${ky+32}Q815 405 763 477`,'none',10,'#784c30');}
  if(u>3.15){h+=balloon(422,122,535,'ПОДСТАВКА',Y,61)+g(588,274,1,txt(0,0,'9,99 €',72));}
  if(u>dur-1.7){h+=g(382,965,1,rect(0,0,549,103,T,20)+txt(27,71,'БЕЗ ПОДПИСКИ',52,C));}
 }
