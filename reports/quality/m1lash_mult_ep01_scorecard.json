@@ -148,7 +148,7 @@
     "fix": "Replace physical-canvas gate with x<=950 action UI safe area"
   },
   "revision_r8c": {
-    "status": "STILLS_CI_SUCCESS_PILOT_RUNNING",
+    "status": "PILOT_VERIFIED_EDITORIAL_NO_GO",
     "run_stills": 41739463065,
     "artifact_stills": 13280816775,
     "actual_gate": {
@@ -164,6 +164,26 @@
       "acting_4_5s.jpg"
     ],
     "run_pilot": 41739738958,
-    "editorial": "SINGLE_FRAME_GESTURE_VISIBLE_PILOT_NOT_YET_VERIFIED"
+    "editorial": "NO_GO",
+    "artifact_pilot": 13280533360,
+    "pilot": {
+      "duration_s": 7,
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "frames": 210,
+      "bytes": 2421076,
+      "sha256": "c6fff05d34af73d382ce624964af4b054d4925e8528f309971546e7f83524eea",
+      "full_ffmpeg_xerror": "PASS",
+      "real_frames_reviewed": 14,
+      "frame_stride_s": 0.5,
+      "contact": "/mnt/data/m1lash_mult_r8c_14frames_contact.jpg"
+    },
+    "critical_defects": [
+      "AI sinks visually below desk edge during approach; director badge not part of perceivable action",
+      "Hero raises hand but holds near-identical pose 2.5-4.5s; no tangible contact or visual cause/effect",
+      "Robot not shown punishing/overriding hero before scene transition; pilot remains silent and lacks approved outro"
+    ],
+    "qa_report": "reports/research/2026-11-04_M1LASH_MULT_R8C_7S_QA.md"
   }
 }
