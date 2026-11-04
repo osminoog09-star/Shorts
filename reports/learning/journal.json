@@ -185,6 +185,45 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "MULTNEWS-FACTORY-V5-HUD",
+      "project": "multnews_20261104",
+      "issue": "Плашки в прошлой версии обрезались и двигались вместе с камерой",
+      "cause": "Оверлей титров находился в том же SVG/viewBox, что и масштабируемый мир",
+      "fix": "Разнести stage world SVG и hud SVG с независимыми viewBox; v5 24с рендер",
+      "status": "verified",
+      "evidence": "longform/multnews_20261104/factory_v2/QA_v5_2026-11-04.md",
+      "acceptance": "На 6 декодированных контрольных кадрах t1/5/9/13/17/22 HUD остаётся на экране, без обрезки заголовка; FFmpeg full decode 24с PASS",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "MULTNEWS-FACTORY-V5-PROP-CONTACT",
+      "project": "multnews_20261104",
+      "issue": "Шестерёнка визуально висит сбоку от руки, а приёмный лоток закрывает Болтика и подпись",
+      "cause": "Неправильный порядок слоёв и приближённая координатная привязка gear к кисти без grip/окклюзии",
+      "fix": "План v6: единый grab event с совпадением кисти/gear, затем явно видимый release в открытый лоток; поправить layer-order и safe bounding boxes",
+      "status": "observed",
+      "evidence": "longform/multnews_20261104/factory_v2/QA_v5_2026-11-04.md",
+      "acceptance": "На реальных кадрах MP4 t16.5/17.1/17.8/18.5/19.1/19.7 объект зажат кистью до release, попадает в лоток; текст не обрезан, глаза/кисти видны",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "MULTNEWS-FACTORY-V5-SCALE",
+      "project": "multnews_20261104",
+      "issue": "Ранний S3-D25 мультик выглядел как малая декорация и статичная картинка, не завод и не анимация",
+      "cause": "Один крупный Болтик на одном плоском фоне и ошибочный standalone image_gen кадр вместо реального кодового фильма",
+      "fix": "Разработан многоцеховой HTML/SVG завод, 6 разных планов, 24с 1080p анимированный MP4; распространить правило на остальные 6 миров",
+      "status": "verified",
+      "evidence": "longform/multnews_20261104/factory_v2/QA_v5_2026-11-04.md",
+      "acceptance": "Существуют реальные разные кадры одного промышленного мира и декодированный 24с MP4 1920x1080; это только TECH/staging, не художественное принятие выпуска",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }
