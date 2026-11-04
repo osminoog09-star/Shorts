@@ -14,6 +14,15 @@
 - Отдельный мини-гайд PDF «Первый 3D-мультик»: тест «Кофейный бунт» (VTK, не Three.js) 30с, с оригинальной музыкой и субтитрами; честный ART NO-GO, подробности `reports/research/2026-11-04_3D_COFFEE_GUIDE_FULL_POSTMORTEM.md` и `reports/research/2026-11-04_THREEJS_MINI_GUIDE_COFFEE_PILOT.md`.
 - Независимый r11 аудит: `reports/research/2026-11-04_M1LASH_MULT_R11_INDEPENDENT_STILL_QA.md`; все найденные уроки и причины дефектов находятся в `skills/m1lash-studio/SKILL.md`, `skills/m1lash-studio/references/character-animation-qa.md` и `reports/learning/journal.json`.
 
+## Приватная сохранённая копия отдельного 3D coffee пилота (04.11, без публичного Git)
+По решению владельца «всё запиши, потом буду делать» сохранены **реальные байты**, не временные ссылки из чата. Library folder: `/Youtube/M1lash_3D_Coffee_Paused_20261104/` (не Google Drive и не публичный GitHub).
+- `source_and_qa.zip` — исходник `make_cartoon.py` (VTK), **непроверенный браузером** `threejs_scene.html`, `README.md`, `shot_plan.json`, `qa.json`, контакт-лист и patch. SHA256 `1c0b3580e596d8e19041a928fd53d0d0d7505f2e6fc45e1add691056330a6a09`, Library ID `libfile_515f23553db08191b283e891172138a8`.
+- `failed_visual_pilot_30s.mp4` — **предыдущий плохой визуальный пилот, ART NO-GO**, 30.000с / 24fps / исходное разрешение рендера 540×960 апскейлено до 1080×1920; SHA256 `dbacf059dce272bbdef5380f1d45f980294f13f4ba642b231d302668091fa991`, Library ID `libfile_7cff6b73750c8191a8dcce37b54aff54`. Не выдавать за финальный выпуск.
+- `actual_30_frame_audit.jpg` — контакт 30 секунд по реальным MP4-кадрам, Library ID `libfile_c734f95f7cd08191877a582ee89b8dea`.
+- `original_3d_mini_guide.pdf` — исходный PDF (5 страниц, **1 явный промпт**, а не обещанные рекламой 30), Library ID `libfile_3f4ea506114c81919b4e72f36e7078ce`.
+
+Детальный аудит **14 дефектов и причин** — `reports/research/2026-11-04_3D_COFFEE_GUIDE_FULL_POSTMORTEM.md`; четыре **наших** адаптированных рабочих промпта — `skills/m1lash-studio/references/threejs-coffee-guide-prompt-adapter.md`. Для возобновления не латать VTK-рендер, а вновь запустить Three.js → 6 настоящих browser stills → 7–10с motion pilot ART PASS → голос Denis Qwen → утверждённая концовка → официальный full QA → личное «ок». Это запланированная последовательность, **не разрешение автоматически продолжать**.
+
 ## Открытые вопросы (НЕ выполнять, пока пауза)
 1. Посмотреть итоговые реальный motion r12b/r13 и выдать ART verdict без подмены геометрических проверок реальным просмотром — только после явного возобновления.
 2. Сцены 3–6: причинный монтаж/реквизит/синхронная реакция; отдельные 4–6 stills, потом motion pilot; не делать 39с полный рендер до ART gate.
