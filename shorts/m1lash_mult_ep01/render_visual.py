@@ -89,6 +89,28 @@ def main():
    "joint_articulation_count":sum(q["elbows_articulated"] for q in acting),
    "notes":"Numeric preflight only. Must visually inspect full MP4 for occlusions and pose quality."
   },ensure_ascii=False,indent=2)+"\n")
+  # R11: independent 3D-projection gate for the plot-critical Director plaque.
+  # Real screenshot at each story beat, not synthetic PIL drawing.
+  badge_checks=[]
+  for t in (2.8,3.1,3.3,3.5,3.7,3.9,4.1,4.3,4.5):
+   q=page.evaluate("(t)=>window.inspectActing(t)",t)
+   bounds=q.get("badge_bounds")
+   if not bounds:raise RuntimeError(f"Director plaque has no projected bounds at {t}")
+   safe=(50<bounds["left"]<bounds["right"]<970 and
+         350<bounds["top"]<bounds["bottom"]<1530)
+   badge_checks.append({"t":t,"bounds":bounds,"safe":safe,"hand":q["hands"][1]})
+  (OUT/"badge_gate.json").write_text(json.dumps({
+    "source":"Actual Three.js camera/projection of 3D prop corners",
+    "samples":badge_checks,
+    "unsafe_count":sum(not q["safe"] for q in badge_checks),
+    "warning":"Safe bounding boxes do not establish physically readable story motion."
+  },ensure_ascii=False,indent=2)+"\n")
+  for t in (2.8,3.1,3.5,3.9,4.3,4.5):
+   page.evaluate("(t)=>window.seek(t)",t)
+   page.screenshot(path=str(OUT/f"contact_{str(t).replace('.','_')}s.jpg"),
+                   type="jpeg",quality=88)
+  if any(not q["safe"] for q in badge_checks):
+   raise RuntimeError("ART_QA_PLAQUE_CLIPPED: scene's director text outside Shorts-safe image")
   # Save actual close-up frames even if a hard gate rejects the render.
   for t in (2.0,3.5,4.5):
    page.evaluate("(t)=>window.seek(t)",t)
