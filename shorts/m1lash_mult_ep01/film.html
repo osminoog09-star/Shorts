@@ -230,7 +230,8 @@ function seek(t){
      a.elbow.rotation.set(0,0,.25+.50*startled+.25*point+.48*recoil);
    }else if(s===1){
      // After the third meeting pop, MIL incredulously opens both arms.
-     const why=ease(2.8,3.65,dt)*(1-.20*ease(4.8,5.65,dt));
+     // Three card comedy: disbelief -> both arms up -> tired defeat, never freeze.
+     const why=ease(2.80,3.65,dt)*(1-.88*ease(4.22,5.50,dt));
      a.shoulder.rotation.set(-.12*why,0,v*(.20+.64*why));
      a.elbow.rotation.set(0,0,-v*(.26+.36*why));
    }else{
@@ -239,13 +240,15 @@ function seek(t){
    }
    a.hand.rotation.set(0,0,.08*Math.sin(t*6));
  });
- mil.head.rotation.z=(s===0?-.12-.12*startled:s===2?.08:s===4?.10:0)+Math.sin(t*3.4)*.035;
+ mil.head.rotation.z=(s===0?-.12-.12*startled:s===1?.09*ease(4.50,5.45,dt):s===2?.08:s===4?.10:0)+Math.sin(t*3.4)*.035;
+ mil.head.rotation.x=s===1?.24*ease(4.32,5.28,dt):0;
+ mil.head.position.y=3.18-(s===1?.19*ease(4.32,5.28,dt):0);
  mil.head.rotation.y=s===0?-.38*ease(1.2,2.45,dt)*(1-ease(4.8,5.7,dt)):s===1?-.28*ease(.6,2.2,dt)+.20*ease(3.4,4.5,dt):0;
  mil.brows.forEach((br,i)=>{br.rotation.z=(i===0?-1:1)*(s===1?.30:s===4?-.32:s===5?.40:.12)});
  mil.mouth.scale.set(s===1?1.4:s===4?1.7:1,s===0?1+4*startled+1.5*protests:s===1?1+2.2*ease(3.1,3.9,dt):s===4?2.9:s===5?2.0:1,1);
  mil.root.rotation.y=s===0?-.15*startled:s===3?-.14:s===5?.16:0;
- mil.root.rotation.z=s===0?.10*startled+.045*Math.sin(t*10)*protests:0;
- mil.root.position.y=.35+(s===0?.15*Math.sin(ease(1.18,2.0,dt)*Math.PI)-.09*startled:0);
+ mil.root.rotation.z=s===0?.10*startled+.045*Math.sin(t*10)*protests:s===1?-.065*ease(4.35,5.4,dt):0;
+ mil.root.position.y=.35+(s===0?.15*Math.sin(ease(1.18,2.0,dt)*Math.PI)-.09*startled:s===1?-.09*ease(4.35,5.35,dt):0);
  mil.root.position.x=-1.24-(s===0?.13*startled:0);
  // Above-desk AI arrival, rather than visually sinking through table.
  const landing=s===0?ease(.18,1.08,dt):1;
