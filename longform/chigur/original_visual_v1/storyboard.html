@@ -1,0 +1,87 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>
+*{box-sizing:border-box} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#071019;color:#f5f1e9;font-family:Arial,Helvetica,sans-serif}
+#world{position:absolute;inset:0;display:block;width:100%;height:100%}
+#soft{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,11,18,.98) 0%,rgba(5,11,18,.94) 25%,rgba(5,11,18,.66) 43%,rgba(5,11,18,.02) 70%);pointer-events:none}
+#vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 63% 47%,transparent 26%,rgba(2,6,12,.6) 90%);pointer-events:none}
+#copy{position:absolute;top:9.2%;left:5.5%;width:42%;pointer-events:none}
+#kicker{font-size:19px;letter-spacing:.39em;font-weight:800;color:#86aee5;text-transform:uppercase}
+#bar{margin:32px 0 23px;width:88px;height:5px;border-radius:5px;background:#f3a76a;box-shadow:0 0 30px #d6844e60}
+#headline{max-width:690px;font-weight:900;font-size:clamp(50px,5.25vw,106px);line-height:1.015;letter-spacing:-.057em;text-transform:uppercase;text-shadow:0 8px 25px #06090d80}
+#headline em{font-style:normal;color:#f5b27c}
+#deck{margin-top:36px;max-width:540px;color:#c6cbd2;font-size:clamp(21px,1.45vw,29px);line-height:1.36;font-weight:500}
+#footer{position:absolute;bottom:6.2%;left:5.5%;right:5.5%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #ffffff40;padding-top:24px;color:#dde4ea;font-size:18px;letter-spacing:.18em;font-weight:700}
+#chapter{color:#a8b6c5}.brand{font-size:26px;letter-spacing:.03em;color:#fff}.brand strong{color:#f4ac76}
+#tag{position:absolute;top:8%;right:5.2%;font-size:15px;letter-spacing:.19em;color:#b6bfca;opacity:.88}
+</style></head><body><canvas id="world"></canvas><div id="soft"></div><div id="vignette"></div><div id="copy"><div id="kicker">КИНОПОРТРЕТ · M1LASH</div><div id="bar"></div><div id="headline"></div><div id="deck"></div></div><div id="tag">ORIGINAL VISUAL ESSAY</div><div id="footer"><span id="chapter"></span><span class="brand">M1<strong>lash</strong></span></div><script src="three.min.js"></script><script>
+'use strict';
+// Purely original conceptual sets. No movie clips, frames, stills, soundtrack, cast likenesses, costumes or filmed-scene tracing.
+const W=1920,H=1080;const renderer=new THREE.WebGLRenderer({canvas:document.querySelector('#world'),antialias:true,preserveDrawingBuffer:true});renderer.setSize(W,H,false);renderer.setPixelRatio(1);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.22;
+const scene=new THREE.Scene();scene.background=new THREE.Color('#080f17');scene.fog=new THREE.FogExp2('#111b29',.045);const camera=new THREE.PerspectiveCamera(37,W/H,.1,140);
+scene.add(new THREE.HemisphereLight(0xb3d5ff,0x0e0c0b,.47));const key=new THREE.DirectionalLight(0xffd6a0,2.3);key.position.set(-3.5,8,5);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-16;key.shadow.camera.right=16;key.shadow.camera.top=13;key.shadow.camera.bottom=-13;scene.add(key);
+const rim=new THREE.PointLight(0x3b8dc1,2.0,25);rim.position.set(6,4,-2);scene.add(rim);const glow=new THREE.PointLight(0xff924b,1.5,15);glow.position.set(4,2.4,4);scene.add(glow);
+const mat=(c,m=0,r=.55)=>new THREE.MeshStandardMaterial({color:c,metalness:m,roughness:r});
+const MAT={ink:mat('#111d2a',.35,.48),iron:mat('#566673',.76,.32),copper:mat('#bd7b48',.75,.29),gold:mat('#eac28b',.72,.31),pale:mat('#eee4d2',.05,.79),glass:new THREE.MeshPhysicalMaterial({color:0xa6c5da,roughness:.13,metalness:.15,transparent:true,opacity:.23,clearcoat:.8}),teal:mat('#205066',.2,.55),red:mat('#8f3842',.2,.5),black:mat('#0d1118',.45,.45),wood:mat('#463329',.1,.65)};
+function mesh(g,m,x=0,y=0,z=0,cast=true){const o=new THREE.Mesh(g,m);o.position.set(x,y,z);o.castShadow=cast;o.receiveShadow=true;scene.add(o);return o}
+function box(x,y,z,w,h,d,m){return mesh(new THREE.BoxGeometry(w,h,d),m,x,y,z)}
+function cyl(x,y,z,r,depth,m,r2=r){return mesh(new THREE.CylinderGeometry(r,r2,depth,80),m,x,y,z)}
+function sphere(x,y,z,r,m){return mesh(new THREE.SphereGeometry(r,24,18),m,x,y,z)}
+function ring(x,y,z,r,t,m){return mesh(new THREE.TorusGeometry(r,t,14,100),m,x,y,z)}
+function beam(x1,y1,z1,x2,y2,z2,r,m){const a=new THREE.Vector3(x1,y1,z1),b=new THREE.Vector3(x2,y2,z2),d=b.clone().sub(a),o=mesh(new THREE.CylinderGeometry(r,r,d.length(),16),m,(x1+x2)/2,(y1+y2)/2,(z1+z2)/2);o.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());return o}
+function point(x,y,z,col,intensity,distance){const l=new THREE.PointLight(col,intensity,distance);l.position.set(x,y,z);scene.add(l);return l}
+function floor(color='#131b22'){box(1,-.2,0,20,.3,22,mat(color,.2,.72));for(let i=-8;i<9;i++){const l=box(i*.86,-.035,-2,.012,.004,20,mat('#596273',.05,1));l.material.transparent=true;l.material.opacity=.12}}
+function framedWindow(x,y,z,w,h){box(x,y,z,w+.11,h+.11,.18,MAT.iron);const p=box(x,y,z+.095,w,h,.012,MAT.glass);box(x,y+h/2,z+.17,w,.04,.04,MAT.copper);return p}
+function glowingPanel(x,y,z,w,h,col){const o=box(x,y,z,w,h,.03,new THREE.MeshBasicMaterial({color:col}));point(x,y,z+.3,col,.8,5);return o}
+function token(x,y,z,scale=1){const g=new THREE.Group();g.position.set(x,y,z);g.scale.setScalar(scale);const body=new THREE.Mesh(new THREE.CylinderGeometry(.88,.88,.10,96),MAT.gold);body.castShadow=true;g.add(body);for(const side of [-1,1]){const rr=new THREE.Mesh(new THREE.TorusGeometry(.72,.027,10,90),MAT.copper);rr.position.y=side*.055;rr.rotation.x=Math.PI/2;g.add(rr);const c=new THREE.Mesh(new THREE.CylinderGeometry(.28,.28,.005,64),MAT.copper);c.position.y=side*.057;g.add(c)}const edge=new THREE.Mesh(new THREE.TorusGeometry(.885,.037,14,120),MAT.copper);edge.rotation.x=Math.PI/2;g.add(edge);scene.add(g);return g}
+function textCard(group,x,y,z,w,h,angle=0){const b=box(x,y,z,w,h,.026,MAT.pale);b.rotation.y=angle;return b}
+const scenes=[
+ {id:'01',title:'КТО <em>НАЗНАЧАЕТ</em><br>ПРАВИЛА?',sub:'Монета даёт два ответа. Но кто заставил тебя выбирать?',caption:'ХУК · ЛОВУШКА ВЕЖЛИВОСТИ',color:'#e8a76b'},
+ {id:'02',title:'ВОПРОС<br><em>СТАНОВИТСЯ</em><br>ЛОВУШКОЙ',sub:'Каждая попытка объясниться открывает новую дверь для давления.',caption:'ЧАСТЬ 02 · АСИММЕТРИЯ',color:'#93c2d6'},
+ {id:'03',title:'ВЫБОР<br><em>НЕ РАВЕН</em><br>СВОБОДЕ',sub:'Если условия назначили за тебя, честная монета ничего не меняет.',caption:'ЧАСТЬ 04 · МОДЕЛЬ РЕШЕНИЯ',color:'#efad75'},
+ {id:'04',title:'ПОЧЕМУ<br><em>ДЕНЬГИ</em><br>НЕ ПОМОГУТ?',sub:'Предложение работает только там, где обе стороны признают цену.',caption:'ЧАСТЬ 05 · КАРСОН И СДЕЛКА',color:'#d7af7b'},
+ {id:'05',title:'УГРОЗА<br><em>ЖИВЁТ</em><br>В ПАУЗЕ',sub:'Коридор, закрытая дверь и неизвестность могут быть страшнее преследования.',caption:'ЧАСТЬ 08 · ВРЕМЯ И ПРОСТРАНСТВО',color:'#a6c3d8'},
+ {id:'06',title:'ТВОЙ ОТВЕТ<br><em>НИЧЕГО</em><br>НЕ РЕШАЕТ',sub:'Случай не может отвечать за выбор того, кто придумал правила.',caption:'ФИНАЛ · ОТВЕТСТВЕННОСТЬ',color:'#d6a9a0'}
+];
+const groupList=[];const animations=[];
+function design(n){
+ document.querySelector('#headline').innerHTML=scenes[n].title;document.querySelector('#deck').textContent=scenes[n].sub;document.querySelector('#chapter').textContent=scenes[n].caption;document.querySelector('#bar').style.background=scenes[n].color;
+ floor(n===1?'#111d25':n===4?'#121c23':'#171a1d');
+ if(n===0){
+  // Original, non-film-specific roadside counter in an invented empty service station.
+  box(1.55,1.11,-1,6,.22,2.0,MAT.wood);box(1.55,.40,-1,5.8,1.25,1.88,MAT.teal);box(1.65,2.6,-3.5,9,5,.25,MAT.ink);framedWindow(2.6,3.0,-3.27,4.8,2.75);
+  box(-.3,1.45,-1.2,.85,.62,.75,MAT.black);box(-.30,1.86,-1.2,1.04,.18,.78,MAT.iron);
+  for(let k=0;k<4;k++){box(-.58+k*.19,1.58,-.76,.14,.03,.1,MAT.gold)}
+  const tk=token(2.1,1.40,.0,.75);tk.rotation.x=.5;animations.push(t=>{tk.rotation.z=-.05+t*.5;tk.rotation.x=.4+t*.25});
+  glowingPanel(1.45,4.8,-2.9,3.6,.17,0xf9e2b2);point(2,3,0,0xffbd77,2.6,12);
+  camera.position.set(6.4,3.8,9.5);camera.lookAt(1,1.8,-1.2);
+ }else if(n===1){
+  box(1.45,.78,-.5,5.8,.25,2.5,MAT.wood);box(1.3,1.42,-1,2.2,1.15,1.5,MAT.iron);box(1.2,2.12,-.83,2.45,.25,1.6,MAT.black);
+  for(let k=0;k<5;k++){const slip=textCard(null,.45+k*.66,2.3+k*.28,.13+k*.14,.55,.78,.06*(k-2));slip.rotation.z=(k-2)*.08;animations.push(t=>{slip.rotation.z=(k-2)*.08+Math.sin(t*2+k)*.025})}
+  for(let k=0;k<7;k++){box(.55+k*.25,1.4,.0,.14,.02,.13,MAT.pale)}
+  const t=token(3.7,1.05,.2,.24);t.rotation.x=.5;
+  point(1,3,2,0x6cacc7,2.3,12);camera.position.set(5.8,4.1,7.8);camera.lookAt(1.4,2.0,-.4);
+ }else if(n===2){
+  box(1.5,.58,0,7,.28,4.1,MAT.wood);cyl(1.5,1.26,0,.25,1.1,MAT.copper);beam(-1.1,2.0,0,4.3,2.0,0,.09,MAT.iron);
+  const left=cyl(-.4,1.08,.0,1.1,.11,MAT.iron),right=cyl(3.45,.95,0,1.1,.11,MAT.iron);beam(-.4,2.0,0,-.4,1.25,0,.027,MAT.copper);beam(3.45,2.0,0,3.45,1.11,0,.027,MAT.copper);
+  for(let k=0;k<4;k++)cyl(3.18+(k%2)*.45,1.08,.1+(k>1?.4:-.25),.16,.1,MAT.gold);
+  const t=token(-.4,1.25,0,.53);animations.push(t0=>{t.rotation.y=t0*.4;t.position.y=1.25+.1*Math.sin(t0*2)});
+  point(2,3,1,0xffc18e,2.6,12);camera.position.set(5.7,4.4,8.3);camera.lookAt(1.5,1.65,0);
+ }else if(n===3){
+  box(1.6,.68,-.2,6.6,.25,4,MAT.wood);const base=box(1.7,1.17,-.1,3.15,.8,1.75,MAT.black);const lid=box(1.7,1.72,-1,3.3,.15,1.85,MAT.iron);lid.rotation.x=-.74;
+  box(1.7,1.17,.82,2.88,.09,.07,MAT.copper);for(let k=0;k<7;k++){const b=box(.55+(k%4)*.57,1.58,-.15+Math.floor(k/4)*.34,.49,.03,.25,MAT.pale);b.rotation.y=(k-3)*.09}
+  const keyring=ring(3.85,.95,.8,.35,.05,MAT.gold);keyring.rotation.y=.58;point(1.9,3,1,0xffcb8b,2.4,13);camera.position.set(6.2,4.0,8);camera.lookAt(1.35,1.35,-.5);
+ }else if(n===4){
+  // An original anonymous corridor (not a reconstruction of the film's hotel).
+  for(let k=0;k<6;k++){const z=-2-k*2.5;box(-1.35,1.68,z,.12,3.6,1.85,MAT.iron);box(4.9,1.68,z,.13,3.6,1.85,MAT.iron);
+   const door=box(4.84,1.58,z+1.03,.08,2.66,1.6,k===3?MAT.red:MAT.wood);box(4.66,1.57,z+.99,.13,.08,.08,MAT.copper);
+   glowingPanel(1.2,3.7,z,.8,.07,0xf8cf90)}
+  box(1.8,3.99,-7.5,7,.18,20,MAT.ink);box(1.8,0,-7.5,7,.1,20,MAT.iron);point(5,2,-7,0xd96f56,3.1,12);
+  camera.position.set(3.3,2.15,10.4);camera.lookAt(2,1.6,-9);
+ }else{
+  box(1.4,.48,0,7.3,.3,4.8,MAT.wood);for(const side of [-1,1]){const x=1.4+side*2.1;box(x,.96,0,1.32,.24,1.22,MAT.teal);box(x,1.73,-.54,1.32,1.35,.18,MAT.iron);for(const legx of [-.47,.47])box(x+legx,.46,.42,.11,.7,.1,MAT.copper)}
+  cyl(1.4,.89,0,.71,.11,MAT.black);const t=token(1.4,1.10,0,.53);t.rotation.x=.8;animations.push(t0=>{t.rotation.z=t0*.5});ring(1.4,.89,0,.86,.016,MAT.gold).rotation.x=Math.PI/2;
+  point(1.4,4,0,0xf5d0bd,2.8,12);camera.position.set(5.1,3.4,8.6);camera.lookAt(1.3,1.22,0);
+ }
+}
+const index=Math.max(0,Math.min(5,parseInt(new URLSearchParams(location.search).get('scene')||'0',10)));design(index);
+window.frame=function(t){animations.forEach(f=>f(t));const tt=Math.max(0,t);camera.position.x+=Math.sin(tt*.15)*.003;camera.updateProjectionMatrix();renderer.render(scene,camera);return true};window.ready=true;window.frame(2.2);
+</script></body></html>
