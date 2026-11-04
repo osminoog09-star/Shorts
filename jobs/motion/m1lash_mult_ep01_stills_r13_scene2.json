@@ -1,0 +1,12 @@
+{
+  "renderer": "python",
+  "script": "shorts/m1lash_mult_ep01/render_visual.py",
+  "output": "videos/m1lash_mult_ep01_PREVIEW_ONLY.mp4",
+  "only_id": "m1lash_mult_ep01",
+  "mode": "stills",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "voice_generated": false,
+  "publish": false,
+  "revision": "r13_scene2_reaction_arm_disbelief_to_head_slump_stills"
+}
