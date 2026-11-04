@@ -54,10 +54,12 @@ def validate(args,edl,voices,media_index):
         if sha(matched[0])!=meta["sha256"]:
             raise RuntimeError("NO-GO: movie SHA mismatch "+key)
         sources[key]=matched[0]
-    if not args.outro.is_file() or sha(args.outro)!=OUTRO_SHA:
+    if args.mode=="render" and (not args.outro.is_file() or sha(args.outro)!=OUTRO_SHA):
         raise RuntimeError("NO-GO: approved private Denis-v7 horizontal outro missing/mismatch")
+    # body-review is strictly a PRIVATE intermediate, never a finished master.
+    # The approved horizontal v7 must still be supplied for 'render'.
     expected={c["chapter"]:c for c in voices["chapters"]}
-    result={"chapters":{}, "estimated_total_seconds":6.6,
+    result={"chapters":{}, "estimated_total_seconds":(0 if args.mode=="body-review" else 6.6),
             "author_wav_count":sum((args.voice/(u["id"]+".wav")).is_file() for u in voices["utterances"]),
             "author_wav_expected":len(voices["utterances"]),
             "actor_dialogue_semantics_verified":all(
@@ -69,7 +71,9 @@ def validate(args,edl,voices,media_index):
                 for p in c["proofs_after_author_section"]
                 if p.get("proof_type")=="source_ambient_sound"
                    and p.get("human_listening")!="verified"],
-            "outro_sha256":OUTRO_SHA,"sources_sha256":"verified",
+            "outro_sha256":OUTRO_SHA if args.mode=="render" else None,
+            "outro_present":args.outro.is_file() and sha(args.outro)==OUTRO_SHA,
+            "sources_sha256":"verified",
             "status":"INPUT_PLAN_ONLY_NOT_APPROVED"}
     for ch in edl["chapters"]:
         c=expected[ch["chapter"]]
@@ -131,7 +135,7 @@ def sum_wav(paths):
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument("mode",choices=["plan","render"])
+    ap.add_argument("mode",choices=["plan","render","body-review"])
     ap.add_argument("--media",type=Path,default=Path("/mnt/data/chigur_film_only"))
     ap.add_argument("--voice",type=Path,default=Path("/mnt/data/chigur_film_only/private_restored/voice/chigur_segments"))
     ap.add_argument("--outro",type=Path,default=Path("/mnt/data/chigur_film_only/private_restored/M1lash_outro_Denis_v7_voice10_horizontal.mp4"))
@@ -185,7 +189,10 @@ def main():
             actor=tmp/f"{id}_{p['id']}_actor.mp4"
             slice_video(source[p["source"]],p["in_s"],p["out_s"]-p["in_s"],actor,True)
             finalpieces.append(actor)
-    finalpieces.append(args.outro)
+    if args.mode=="render":
+        finalpieces.append(args.outro)
+    else:
+        print("PRIVATE BODY REVIEW: approved Denis-v7 not accessible in this environment; DO NOT PUBLISH.",flush=True)
     args.output.parent.mkdir(exist_ok=True,parents=True)
     concat(finalpieces,args.output)
     run(["ffmpeg","-v","error","-xerror","-i",str(args.output),
@@ -193,7 +200,7 @@ def main():
     sec=float(probe(args.output)["format"]["duration"])
     if not 480<=sec<=720:
         raise RuntimeError("NO-GO: final duration outside movie-review range "+str(sec))
-    print("PRIVATE REVIEW ONLY, no publishing authorization:",args.output,sec)
+    print("PRIVATE "+("BODY WITHOUT OUTRO" if args.mode=="body-review" else "FULL WITH APPROVED OUTRO")+" REVIEW ONLY, no publishing authorization:",args.output,sec)
 
 if __name__=="__main__":
     try:main()
