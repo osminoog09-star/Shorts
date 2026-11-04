@@ -29,6 +29,20 @@
 
 ## GPT/Codex
 
+### 04.11 — Film-Mult / Фильм-мульт: новый навык оригинальных историй S10-D25 · GPT
+**РЕШЕНИЕ ДЕНИСА 04.11:** новый навык для оригинальных историй, не возобновляет PAUSED_BY_OWNER M1lash Мульт EP01 / 3D Coffee. Без рендеров и публикаций в этой задаче.
+Цель: навыки + S10-D25 в style library + маршрутизация Studio/AGENTS + честный паспорт двух YouTube-референсов.
+Шаги:
+- [x] 1. Прочитаны AGENTS.md, NOW.md, HANDOFF.md, Studio SKILL, visuals-by-code, reference-analysis и animation-production; утверждение стиля получено.
+- [x] 2. Референсы: второй O-oQEDKCsUk проанализирован внешним инструментом на уровне описания 7 сцен (без проверенных физических кадров); первый bq1gOXifqe8 ещё SOURCE_UNVERIFIED, повторная попытка анализа запущена; не выдавать гипотезы за пиксели.
+- [ ] 3. Создать skills/film-mult/SKILL.md и references/REFERENCE_AUDIT.md с честным статусом, production pipeline и художественными гейтами.
+- [ ] 4. Записать узкое утверждение в AGENTS, S10-D25 в style-library, маршрутизировать из m1lash-studio и ссылок агентов.
+- [ ] 5. Проверить через GitHub readback, обновить HANDOFF и удалить этот блок из NOW после завершения.
+Следующий шаг: создать skills/film-mult/SKILL.md; затем references/REFERENCE_AUDIT.md, S10 в библиотеке стилей и интеграция в Studio/AGENTS. Два референса не считаются физически просмотренными.
+Где промежуточное: skills/film-mult/, skills/vizavi-motion/references/style-library.md, skills/m1lash-studio/SKILL.md.
+Ждёт Дениса: нет, формат и S10-D25 уже утверждены.
+
+
 ### 04.11 — M1lash МультНовости #01, отдельный S3-D25 21–23 мин · GPT
 **ВЛАДЕЛЕЦ УТВЕРДИЛ 04.11:** новая отдельная новостная рубрика, яркий комикс S3-D25, 21–23 мин, только его голос как основной автор. Не возобновляет PAUSED_BY_OWNER M1lash Мульт EP01/3D Coffee.
 Цель: реальный рисованный, фактологически проверенный горизонтальный MP4 с Denis Qwen voice, 2 Shorts-воронками, только PRIVATE review без публикации и без даты.
