@@ -136,12 +136,12 @@
     {
       "id": "M1LASH-MULT-R10-PROP-OCCLUSION",
       "project": "m1lash_mult_ep01",
-      "issue": "r10 попытка общего anchor ладонь/директорская табличка перекрыла корпус МИЛа и кольца АКСа заслонили буквы; r10b сохранил обрезание текста справа при формально 0/9 hand clips",
-      "cause": "Общий world anchor сам по себе не учитывает перспективную площадь таблички/очерёдность глубины реквизита, а hand gate проверяет только координаты кистей",
-      "fix": "r10c уменьшает табличку, опускает относительно ладони и выдвигает её перед AI ring, чтобы текст и лицо оставались читабельны",
-      "status": "fixed",
-      "evidence": "reports/research/2026-11-04_M1LASH_MULT_R9_MOTION_QA.md",
-      "acceptance": "r10 Actions41793242367 и r10b41793620908 визуально ART NO-GO, хотя 0/9 clips. r10c 6 настоящих JPG Actions41793973265 artifact13303918768 открыты: t3.5 полный текст, лицо видно, 0/9 hand clips и9/9 elbows. Движущийся r10c pilot ещё не оценён",
+      "issue": "r10/r10b Director plaque occluded MIL or was covered by AKS rings; r10c stills seemed readable but actual 7s motion exposed a sudden plaque scale/position pop at t3.5–4.0s and no real hand contact",
+      "cause": "Hand world-space anchor, plaque scale, camera/frustum and robot/ring motion were keyed separately: screen-space continuity, contact, and text legibility were not checked over time",
+      "fix": "REJECTED experimental r10–r10c tween and restored stable r9 badge animation in film.html (1d26ce5); next fix requires choreographed 3-shot contact with shared event and screen-space bounds, not more arbitrary offset tweaks",
+      "status": "observed",
+      "evidence": "reports/research/2026-11-04_M1LASH_MULT_R10_R10C_HAND_PROP_AUDIT.md",
+      "acceptance": "r10/r10b/r10c actual six-still reviews; r10c actual H264 7s/210-frame MP4 Actions 41794318357 artifact 13305350522, full FFmpeg -xerror PASS and 14 real frames every 0.5s opened: ART NO-GO. r9 rollback commit 1d26ce5, accepted only as stable technical reference; no ART-PASS or full film.",
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": true
