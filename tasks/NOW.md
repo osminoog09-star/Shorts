@@ -30,17 +30,19 @@
 ## GPT/Codex
 
 ### 04.11 — M1lash МультНовости #01, отдельный S3-D25 21–23 мин · GPT
-**ВЛАДЕЛЕЦ УТВЕРДИЛ 04.11:** новая отдельная новостная рубрика, яркий комикс S3-D25, 21–23 мин, только его голос как основной автор. Не возобновляет PAUSED_BY_OWNER M1lash Мульт EP01/3D Coffee.
-Цель: реальный рисованный, фактологически проверенный горизонтальный MP4 с Denis Qwen voice, 2 Shorts-воронками, только PRIVATE review без публикации и без даты.
+**ВЛАДЕЛЕЦ УТВЕРДИЛ 04.11:** отдельная новостная рубрика, S3-D25, 21–23 мин, только его voice Denis как основной. Уточнение владельца 04.11: **ВСЕ окружения масштабные, огромный живой мир**, завод с разными линиями и предметными сценами, не маленькая сцена и один робот; **сначала демо-видео**, не image_gen-картинка. Это НЕ возобновление PAUSED_BY_OWNER M1lash Мульт EP01/3D Coffee.
+Цель: полноценный фактологически проверенный рисованный longform MP4 21–23 мин + 2 Shorts, private owner review, без публичной публикации или даты.
 Шаги:
-- [x] 1. Прочитаны main AGENTS.md, Studio SKILL, NOW, HANDOFF, visuals-by-code, style-library, motion/animation/QA, накопленные learnings; изучены источники новостей от 31.10–04.11.
-- [ ] 2. Письменно зафиксировать narrow утверждение формата в AGENTS.md; отдельная папка longform/multnews_20261104/ с research, verified facts, 21–23мин сценарным конвейером и shotlist.
-- [ ] 3. Нарисовать S3-D25 HTML/CSS/SVG кодом (никакого PIL для сцен); 6 разных 1920×1080 stills → глазной ART QA; затем реальный 8–10с silent pilot и движение.
-- [ ] 4. Локальный **private** Qwen3-TTS с образцом Дениса, word timings, финальные 21–23 мин без растягивания, approved Denis-v7 horizontal outro; не класть voice/MP4 в публичный Git.
-- [ ] 5. На финале longform_duration_gate.py, official check.py/look.py, full decode, слух, artist QA; 2 вертикальных Shorts только из отдельно перерендеренных сцен; паспорт и owner review, НЕ публиковать без «ок».
-Следующий шаг: подготовить longform/multnews_20261104/FACTS.md + SCRIPT.md и 6 кодовых сцен; если private voice runtime или рендер недоступен, записать точный FAIL и checkpoint, а не READY.
-Где промежуточное: longform/multnews_20261104/; reports/research/2026-11-04_MULTNEWS_01.md.
-Ждёт Дениса: только review готового MP4; стиль и формат уже одобрены.
+- [x] 1. Прочитаны актуальные AGENTS.md, Studio SKILL, visuals-by-code, NOW, HANDOFF; собраны FACTS.md (7 новостей), TREATMENT.md, SCRIPT.md (V1).
+- [x] 2. Narrow утверждение отдельной рубрики внесено в AGENTS.md; сохранён первый исходный SVG pilot и QA: `longform/multnews_20261104/`.
+- [x] 3а. По замечанию «масштаб больше» кодом сделан новый mega-factory environment: `factory_v2/factory_stage.html` + `demo_render.py` на GitHub. Реально показаны 6 стопов разных кадров и физический **24.0с анимированный MP4 1280×720/30 H264/AAC**, full FFmpeg decode PASS, SHA256 `3a6a1d0d8fdab9c3cf5a01f781b2c35dcbd2b5e4ccf5ed97833b5da01e5238b6`. Реальный video-contact t1/5/9/13/17/22 осмотрен. Приватная Library `/Youtube/M1lash_MultNews_20261104/PRIVATE_FACTORY_24s_ART_REVIEW_v3.mp4`. Аудио сейчас только оригинальные заводские Foley, **голос Дениса не синтезирован**. QA `longform/multnews_20261104/factory_v2/QA_2026-11-04.md`. **TECH PASS ≠ ART PASS**.
+- [ ] 3б. ART QA: исправить коллизии вывесок, мелкие тексты, перекрытия погрузчика, обеспечить сцены с реальным контактом и камерными планами; новый 1080p демо с полной длительностью. Не публиковать.
+- [ ] 3в. Расширить **все семь новостей** в детально созданные большие окружения (цех, склад, академия, парк, дом, датацентр, экономика труда), ~190–220 неповторяющихся планов в shotlist; синхронизация с реальным Qwen voice.
+- [ ] 4. Локальный **private** Qwen3-TTS с собственным образцом Дениса; runtime preflight, word timings, финальные 21–23 мин без растягивания, approved Denis-v7 horizontal outro. Не класть voice/MP4 в публичный Git.
+- [ ] 5. На longform duration gate, official check.py/look.py, full decode, звук и art QA; 2 отдельных вертикальных Shorts; owner review. Никаких публичных публикаций, даты или нового YouTube upload без отдельного разрешения владельца.
+Следующий шаг: править `longform/multnews_20261104/factory_v2/factory_stage.html` в соответствии с `factory_v2/QA_2026-11-04.md`, 4–6 реальных stills → 24с 1080p demo и full decode; затем расширять окружающие миры и shotlist. **Не обещать выпуск к сроку без voice/runtime**.
+Где промежуточное: `longform/multnews_20261104/`; `reports/research/2026-11-04_MULTNEWS_01.md`; 24s MP4 приватно в Library.
+Ждёт Дениса: решение по art demo после самостоятельного аудита, никакой публикации до финального «ок».
 
 ### 04.11 — M1lash Мульт: S9-D3 пилот и плейлист · GPT
 **СТАТУС: PAUSED_BY_OWNER (04.11). Все ниже — ИСТОРИЯ, НЕ ЗАДАЧИ К ИСПОЛНЕНИЮ.** Новые действия запрещены до отдельного явного возобновления Денисом; состояние и подробности: `shorts/m1lash_mult_ep01/PRODUCTION_PAUSED.md`. Ранее запущенные GitHub Actions могут завершиться автоматически, но это не разрешение продолжать.
