@@ -40,18 +40,6 @@
 Ждёт Дениса: публикации и конкретные новые сюжеты мультфильмов — только после его отдельного «ок»; текущие PAUSED_BY_OWNER не трогать.
 
 
-### 04.11 — сетка M1lash: Shorts 10/20 + два рисованных мультфильма · GPT
-Цель: после решения владельца о миграции всей очереди подтвердить новые YouTube dates и актуальную сетку Studio.
-Шаги:
-- [x] 1. Проверены AGENTS, текущие YouTube receipts, очередь, сайт и Metricool. vidIQ детальный отчёт недоступен: credits exhausted.
-- [x] 2. В AGENTS §0/5/6/7/9 записано: кино-Shorts ежедневно 10:00, комедийный/новостной скетч 20:00, рисованный Film-Mult 21+ мин ср/сб 15:00. Киноразборы прекращены из-за Content ID, старые мультпаузы действуют.
-- [x] 3. Обновлены Studio SKILL, best_times, генератор GRID, UI Auto/manual picker, schedule safety и тест; создана one-shot owner migration config/workflow/script.
-- [ ] 4. Дождаться завершения workflow run 41921611751, проверить настоящие YouTube GET receipts и исправить возможные BLOCKED, затем проверить Pages CI и реальный сайт. Не объявлять перенос выполненным до readback.
-- [ ] 5. Закрыть чекпоинт, записать полный аудит в HANDOFF.md и STRATEGY.md; не запускать другие публикации.
-Следующий шаг: GitHub Actions `m1lash-schedule-migration.yml` run 41921611751 -> jobs/logs, сопоставить 7 YouTube receipts / publishing/queue/*.json / schedule_requests.json. Если блокеры — диагностика и ручная сверка, без слепых повторов PUT. Затем Pages `motion-pages.yml` и аудит плана.
-Где промежуточное: AGENTS.md, skills/m1lash-studio/SKILL.md, scripts/build_studio_site.py, site/studio/{index.html,scheduling.js}, publishing/best_times.json, publishing/migrations/20261104_execute.json, scripts/youtube_schedule_migration.py.
-Ждёт Дениса: подтверждение ART/ок на каждый новый рисованный мультфильм; новые видео не публиковать без решения.
-
 ### 04.11 — M1lash МультНовости #01, отдельный S3-D25 21–23 мин · GPT
 **ВЛАДЕЛЕЦ УТВЕРДИЛ 04.11:** отдельная новостная рубрика, S3-D25, 21–23 мин, только его voice Denis как основной. Уточнение владельца 04.11: **ВСЕ окружения масштабные, огромный живой мир**, завод с разными линиями и предметными сценами, не маленькая сцена и один робот; **сначала демо-видео**, не image_gen-картинка. Это НЕ возобновление PAUSED_BY_OWNER M1lash Мульт EP01/3D Coffee.
 **Отзыв владельца 04.11 (демо v5): удалить ВСЕ заводские SFX, провести детальный разбор с правками, записать в журнал/скил.** В демо v6 строго без audio tracks, будущий собственный голос Дениса по §3 сохраняется.
