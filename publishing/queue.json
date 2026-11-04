@@ -314,6 +314,22 @@
       "working_project": "coffee_v8_20261104",
       "youtube_id": "bEdC0uFDvl4",
       "youtube_url": "https://youtu.be/bEdC0uFDvl4"
+    },
+    {
+      "id": "chigur_long_denis_v7",
+      "kind": "long",
+      "author": "GPT",
+      "status": "review",
+      "slot": null,
+      "style": "S6-D25 FILM ONLY",
+      "mp4": null,
+      "publish_md": "longform/chigur/PUBLISH.md",
+      "title": "Антон Чигур: почему с ним нельзя договориться",
+      "private_review_url": "https://studio.youtube.com/video/RJEZKHegzUY/edit",
+      "youtube_id": "RJEZKHegzUY",
+      "duration_seconds": 658.645,
+      "voice": "Denis Qwen3 1.7B; approved Denis v7 outro",
+      "note": "04.11.2026 uploaded PRIVATE via exact-SHA Drive workflow run 41894499729, readback verified private; official QA 0 FAIL/1 WARN optional subtitles; no publish_at, no public/scheduled status. Film Content ID restrictions require YouTube Studio review. Do not re-upload."
     }
   ]
 }
