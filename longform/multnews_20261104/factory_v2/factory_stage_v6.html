@@ -170,13 +170,12 @@ function sorter(t){
  s+=E(elbow[0],elbow[1],20,20,'#5aaabb',OL,6);
  // Boots, torso and face are independently drawn, not a large bitmap sliding with the camera.
  const nod=Math.sin(t*3.0)*2.2;
+ s+=E(1652,1352,93,14,'#273f59','none',0); // boots have visible ground shadow
  s+=A('M1606 1237L1590 1330L1624 1338L1657 1241Z','#4e8da5',OL,8)
     +A('M1701 1237L1713 1333L1680 1340L1667 1240Z','#4e8da5',OL,8)
     +R(1581,1157+nod,147,137,'#f3f3e4',OL,9,35)
     +R(1597,1184+nod,114,76,'#235379',OL,6,20)
-    +E(1640,1225+nod,10,14,'#7eebd9','#7eebd9',2)
-    +E(1671,1225+nod,10,14,'#7eebd9','#7eebd9',2)
-    +A(`M1638 ${1254+nod}Q1655 ${1268+nod} 1676 ${1254+nod}`,'none','#77e5d4',4);
+    +A(`M1658 ${1200+nod}l-20 31h16l-9 27 30 -38h-18l12 -20Z`,'#ffce62',OL,3);
  // A small side arm, not crossing body text.
  s+=A('M1588 1177L1556 1218L1585 1251','none',OL,30)+A('M1588 1177L1556 1218L1585 1251','none','#e9eee0',20)+E(1585,1251,14,15,'#2c5c7e',OL,5);
  s+=R(1571,1047+nod,169,110,'#fff0cb',OL,9,31)
