@@ -37,10 +37,10 @@
     "asr": "reports/research/qa/next_four_20261103/final_asr_summary.json",
     "no_schedule_authorized": true
   },
-  "publish_at": "2026-11-05T15:00:00+02:00",
+  "publish_at": "2026-11-05T20:00:00+02:00",
   "schedule_request": {
-    "id": "7e59996a-e808-4b58-b4af-d440e8d2eec8",
-    "requested_at": "2026-11-03T17:50:57.710Z",
-    "publish_at": "2026-11-05T15:00:00+02:00"
+    "id": "migration-20261104-ai_fridge_202611",
+    "requested_at": "2026-11-04T21:59:00Z",
+    "publish_at": "2026-11-05T20:00:00+02:00"
   }
 }
