@@ -16,7 +16,7 @@
   },
   "movie_audio_policy": "mute ONLY B-roll while Denis speaks; keep actor original audio for actor proof windows; do not use fake/synth actor clips",
   "outro": "Denis v7 voice10 horizontal 6.600s, SHA256=70b066b067cec45dbaaae91ef39ee79543ac9c396d0d1bd896885b1511867dae",
-  "editor_note": "Chapter plan informed by real inspected film-frame contacts. In/out are candidate source windows, not proof of exact Russian dialogue or final cut timing; Qwen voice duration, final edit and 8 actor audio semantics pending.",
+  "editor_note": "Chapter plan informed by real inspected film-frame contacts. In/out are candidate source windows, not proof of exact Russian dialogue or final cut timing; Qwen voice duration, final edit and 8 actor audio semantics pending. Allocated extra 9s of motel exterior to d08; preserve 44–49.2 actor proof; chapter d08 pool now 53s without overlap, d09 62.8s.",
   "chapters": [
     {
       "chapter": "d01",
@@ -216,6 +216,13 @@
           "out_s": 44,
           "visual_role": "original film under owner narration; cinema audio muted",
           "use_once": true
+        },
+        {
+          "source": "tracker",
+          "in_s": 49.2,
+          "out_s": 58.2,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
         }
       ],
       "proofs_after_author_section": []
@@ -226,7 +233,7 @@
       "broll": [
         {
           "source": "tracker",
-          "in_s": 49.2,
+          "in_s": 58.2,
           "out_s": 121,
           "visual_role": "original film under owner narration; cinema audio muted",
           "use_once": true
