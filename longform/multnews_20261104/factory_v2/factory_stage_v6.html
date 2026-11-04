@@ -65,7 +65,7 @@ function extras(t){let s='';
  // Upper-left operations booth with real dashboards and staff.
  s+=G(35,300,1,`${R(0,0,590,199,'#819eb1',OL,9,8)}${R(20,12,545,157,'#9cd4dc',OL,7,6)}${R(48,21,198,111,'#223c5d',OL,4,4)}${T(65,57,'ЦЕХ: 03',24,'#ffdb7e')}
  ${A('M65 105L99 82L129 101L159 64L190 80L225 45','none','#7cedc4',8)}
- ${R(280,20,224,120,'#263f5d',OL,4,5)}${T(294,60,'ЛИНИИ',25,'#eaf7f2')}${T(298,108,'4 / 5',40,'#7decbe')}
+ ${R(280,20,224,120,'#263f5d',OL,4,5)}${T(294,60,'ЛИНИИ',25,'#eaf7f2')}${T(298,108,'OK',40,'#7decbe')}
  ${worker(470,167,.58,t+1)}${worker(260,163,.55,t+2)}`);
  // Subtle machine pipes below the catwalk and cable runs.
  for(let k=0;k<17;k++){
@@ -122,8 +122,8 @@ function quality(t){let s='';
  s+=R(1750,647,803,72,'#387f83',OL,9,12)+T(1855,694,'КОНТРОЛЬ КАЧЕСТВА',36,'#fff');
  const scanProgress=ease(clamp((t-20.0)/3.85,0,1));
  s+=car(1970+scanProgress*320,890,.9,'#ef6271');
- const scanX=1965+scanProgress*380;
- s+=R(scanX,743,10,245,'#96f5ed','none',0,4);
+ const scanX=2160; // stationary inspection beam; the car physically moves across
+ if(t>=20) s+=R(scanX,743,10,245,'#96f5ed','none',0,4);
  if(t>=23.05){s+=R(2055,1009,240,43,'#40977e',OL,5,9)+T(2074,1040,'ПРОВЕРЕНО',30,'#fff');}
  s+=worker(2535,1035,.84,t);
  // distant finished cars and moving small tail lights.
@@ -160,8 +160,8 @@ function sorter(t){
  const falling=ease(clamp((t-19.16)/.38,0,1));
  // Hand keyframe path in *world* coordinates. Grip and prop share THIS EXACT event.
  const retract=ease(clamp((t-19.56)/.38,0,1));
- const hx=lerp(lerp(1773,1849,contact)+71*raise+180*travel+10*lower,1773,retract);
- const hy=lerp(lerp(1191,1242,contact)-110*raise+13*travel+115*lower,1191,retract);
+ const hx=lerp(lerp(1773,1849,contact)+71*raise+180*travel+10*lower,1910,retract);
+ const hy=lerp(lerp(1191,1242,contact)-110*raise+13*travel+115*lower,1153,retract);
  const shoulder=[1705,1164];
  const elbow=[lerp(shoulder[0],hx,.49),Math.min(shoulder[1],hy)-42];
  const armPath=`M${shoulder[0]} ${shoulder[1]}L${elbow[0]} ${elbow[1]}L${hx} ${hy}`;
@@ -198,8 +198,8 @@ function sorter(t){
  }
  // Foreground rim only on the target tray. Depth test: the released gear drops inside.
  s+=A('M2050 1341L2271 1341L2256 1385L2067 1385Z','#e9bc55',OL,8);
- if(t>=19.56){
-   s+=R(2291,1178,178,58,'#389a80',OL,6,12)+T(2303,1220,'ГОТОВО!',35,'#fff');
+ if(t>=19.56 && t<20){
+   s+=R(2012,1001,193,58,'#389a80',OL,6,12)+T(2027,1043,'ГОТОВО!',35,'#fff');
    s+=E(2196,1244,13,13,'#b3ffc5','#297356',3);
  }
  // Debuggable exact event coordinates, excluded from the SVG/frames.
