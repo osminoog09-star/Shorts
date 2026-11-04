@@ -1,0 +1,329 @@
+{
+  "version": "film-only-2026-11-04",
+  "project": "Антон Чигур: почему с ним нельзя договориться",
+  "policy": "AGENTS.md §9 04.11 film-only, NO CGI",
+  "media_storage": "private local/artifact only, never commit copyrighted clips or voice",
+  "scene_gate": "video frames visually checked; RU speech semantics NOT checked",
+  "contact_interval_seconds": 6,
+  "sources": {
+    "gas": {
+      "artifact_id": 13041612406,
+      "run_id": 41198700306,
+      "duration_seconds": 278.478,
+      "sha256": "00ddfa6caeeb241",
+      "usable_before_seconds": 255,
+      "warning": "last 255–278s RED NONFILM BUMPER; earlier 148–171s visible blue crumpled packet, NOT proved literal coin on screen"
+    },
+    "carson": {
+      "artifact_id": 13034313090,
+      "run_id": 41179788368,
+      "duration_seconds": 181.448,
+      "sha256": "a53a3de5426087a",
+      "usable_before_seconds": 160,
+      "warning": "last 160–181s RED NONFILM BUMPER"
+    },
+    "driver": {
+      "artifact_id": 13070052528,
+      "run_id": 41272692788,
+      "duration_seconds": 140.019,
+      "sha256": "cf7629955145a3e",
+      "usable_before_seconds": 136,
+      "warning": "0–41s bathroom struggle, 48–85s highway/car, 90–111s roadside exchange; pneumatic air cylinder not visually confirmed"
+    },
+    "tracker": {
+      "artifact_id": 13070325354,
+      "run_id": 41272313789,
+      "duration_seconds": 125.019,
+      "sha256": "af74b879d6be3e0",
+      "usable_before_seconds": 123,
+      "warning": "0–18s Moss in room; 24–39s Chigur driving; ~44–49s Moss with device/long gun, 57–120s motel/car; beep human listening pending"
+    },
+    "carla": {
+      "artifact_id": 13069849250,
+      "run_id": 41273269553,
+      "duration_seconds": 220.019,
+      "sha256": "68995017beba8b4",
+      "usable_before_seconds": 217,
+      "warning": "0–56s arrivals/homes, 60–210s room conversation, 216s exterior; no on-screen death; foot check not confirmed"
+    }
+  },
+  "proof_cut": {
+    "file_private": "M1lash_Chigur_8_FILM_PROOF_CANDIDATES_PRIVATE_42s.mp4",
+    "duration_seconds": 41.621333,
+    "sha256": "4d586f44c83be91c2d2067490fa5ba66bacc5479de62b3f87091b8d53fe78da4",
+    "frame_contact": "M1lash_Chigur_8_film_proofs_contact.jpg",
+    "ffmpeg_full_decode": "PASS",
+    "actor_audio_stream": "PRESENT",
+    "russian_dialogue_asr": "PENDING",
+    "owner_voice": "NOT_PRESENT",
+    "final_long": "NOT_BUILT"
+  },
+  "proof_candidates": [
+    {
+      "proof_id": "gas_01",
+      "source": "gas",
+      "in": 77.4,
+      "out": 82.6,
+      "visible": "close-up Anton Chigurh",
+      "dialogue_status": "PENDING"
+    },
+    {
+      "proof_id": "gas_02",
+      "source": "gas",
+      "in": 148.5,
+      "out": 153.7,
+      "visible": "Chigur close-up; packet appears near 152s, NOT independently proof of coin",
+      "dialogue_status": "PENDING"
+    },
+    {
+      "proof_id": "gas_03",
+      "source": "gas",
+      "in": 210,
+      "out": 215.2,
+      "visible": "clerk's reaction",
+      "dialogue_status": "PENDING"
+    },
+    {
+      "proof_id": "carson",
+      "source": "carson",
+      "in": 104,
+      "out": 109.2,
+      "visible": "Carson seated, his reaction",
+      "dialogue_status": "PENDING"
+    },
+    {
+      "proof_id": "driver",
+      "source": "driver",
+      "in": 94,
+      "out": 99.2,
+      "visible": "roadside car driver & Chigur interaction",
+      "dialogue_status": "PENDING"
+    },
+    {
+      "proof_id": "tracker",
+      "source": "tracker",
+      "in": 44,
+      "out": 49.2,
+      "visible": "Moss in room and a tracking device around ~48s",
+      "dialogue_status": "PENDING"
+    },
+    {
+      "proof_id": "carla_coin",
+      "source": "carla",
+      "in": 116,
+      "out": 121.2,
+      "visible": "Carla face and her reaction",
+      "dialogue_status": "PENDING"
+    },
+    {
+      "proof_id": "carla_refusal",
+      "source": "carla",
+      "in": 192.7,
+      "out": 197.9,
+      "visible": "Carla face during intense speech; historical ASR refusal ~194.35–198.97 needs independent check",
+      "dialogue_status": "PENDING"
+    }
+  ],
+  "chapter_broll_candidates": [
+    {
+      "id": "d01",
+      "topic": "hook/Chigur",
+      "source_intervals": [
+        [
+          "gas",
+          76,
+          88
+        ],
+        [
+          "gas",
+          210,
+          225
+        ]
+      ],
+      "status": "FRAME_GROUNDED"
+    },
+    {
+      "id": "d02",
+      "topic": "questions",
+      "source_intervals": [
+        [
+          "gas",
+          18,
+          35
+        ],
+        [
+          "gas",
+          48,
+          62
+        ]
+      ],
+      "status": "FRAME_GROUNDED"
+    },
+    {
+      "id": "d03",
+      "topic": "asymmetric conversation",
+      "source_intervals": [
+        [
+          "gas",
+          60,
+          75
+        ],
+        [
+          "gas",
+          90,
+          103
+        ]
+      ],
+      "status": "FRAME_GROUNDED"
+    },
+    {
+      "id": "d04",
+      "topic": "coin and choice",
+      "source_intervals": [
+        [
+          "gas",
+          148,
+          174
+        ],
+        [
+          "gas",
+          216,
+          243
+        ]
+      ],
+      "status": "COIN_VISIBILITY_NOT_VERIFIED"
+    },
+    {
+      "id": "d05",
+      "topic": "responsibility/carson",
+      "source_intervals": [
+        [
+          "carson",
+          28,
+          48
+        ],
+        [
+          "carson",
+          90,
+          122
+        ]
+      ],
+      "status": "FRAME_GROUNDED"
+    },
+    {
+      "id": "d06",
+      "topic": "violence as procedure",
+      "source_intervals": [
+        [
+          "driver",
+          0,
+          38
+        ]
+      ],
+      "status": "AIR_GUN_NOT_VISIBLE_IN_CURRENT_SOURCE"
+    },
+    {
+      "id": "d07",
+      "topic": "roadside exchange",
+      "source_intervals": [
+        [
+          "driver",
+          48,
+          85
+        ],
+        [
+          "driver",
+          88,
+          110
+        ]
+      ],
+      "status": "FRAME_GROUNDED"
+    },
+    {
+      "id": "d08",
+      "topic": "hotel/door",
+      "source_intervals": [
+        [
+          "tracker",
+          0,
+          19
+        ],
+        [
+          "tracker",
+          56,
+          80
+        ]
+      ],
+      "status": "FRAME_GROUNDED"
+    },
+    {
+      "id": "d09",
+      "topic": "tracker/signal",
+      "source_intervals": [
+        [
+          "tracker",
+          40,
+          52
+        ],
+        [
+          "tracker",
+          95,
+          121
+        ]
+      ],
+      "status": "BEEP_SEMANTIC_PENDING"
+    },
+    {
+      "id": "d10",
+      "topic": "Carla refuses",
+      "source_intervals": [
+        [
+          "carla",
+          96,
+          129
+        ],
+        [
+          "carla",
+          185,
+          200
+        ]
+      ],
+      "status": "RU_REFUSAL_SEMANTIC_PENDING"
+    },
+    {
+      "id": "d11",
+      "topic": "Carla and responsibility",
+      "source_intervals": [
+        [
+          "carla",
+          199,
+          216
+        ]
+      ],
+      "status": "ONSCREEN_OUTCOME_NOT_SHOWN"
+    },
+    {
+      "id": "d12",
+      "topic": "final comparison",
+      "source_intervals": [
+        [
+          "gas",
+          215,
+          245
+        ],
+        [
+          "carson",
+          130,
+          155
+        ],
+        [
+          "carla",
+          190,
+          211
+        ]
+      ],
+      "status": "PENDING_DUPLICATION_CONTROL"
+    }
+  ],
+  "next": "Semantically audition/asr each actual chosen actor line; make per-shot nonrepeating edit decision list; produce 12 actual owner-voice chapters via checked Qwen runtime and approved Denis v7 horizontal outro; official final video QA; owner review."
+}
