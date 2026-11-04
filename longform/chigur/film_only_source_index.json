@@ -10,7 +10,7 @@
       "artifact_id": 13041612406,
       "run_id": 41198700306,
       "duration_seconds": 278.478,
-      "sha256": "00ddfa6caeeb241",
+      "sha256": "00ddfa6caeeb241a6469e93e2714dfd75fae866cde459625a495ab1ca8277633",
       "usable_before_seconds": 255,
       "warning": "last 255–278s RED NONFILM BUMPER; earlier 148–171s visible blue crumpled packet, NOT proved literal coin on screen"
     },
@@ -18,7 +18,7 @@
       "artifact_id": 13034313090,
       "run_id": 41179788368,
       "duration_seconds": 181.448,
-      "sha256": "a53a3de5426087a",
+      "sha256": "a53a3de5426087a6bb8d6a41a10c272c8fa892aa316d222945f9d9b96cdf4b7d",
       "usable_before_seconds": 160,
       "warning": "last 160–181s RED NONFILM BUMPER"
     },
@@ -26,7 +26,7 @@
       "artifact_id": 13070052528,
       "run_id": 41272692788,
       "duration_seconds": 140.019,
-      "sha256": "cf7629955145a3e",
+      "sha256": "cf7629955145a3e46d5eaa468947720fe3ae156ca6218e978fd55f94cc9dbeca",
       "usable_before_seconds": 136,
       "warning": "0–41s bathroom struggle, 48–85s highway/car, 90–111s roadside exchange; pneumatic air cylinder not visually confirmed"
     },
@@ -34,7 +34,7 @@
       "artifact_id": 13070325354,
       "run_id": 41272313789,
       "duration_seconds": 125.019,
-      "sha256": "af74b879d6be3e0",
+      "sha256": "af74b879d6be3e05cf10162cfb827b40895ae3a514731b88b3a5794d962bedb4",
       "usable_before_seconds": 123,
       "warning": "0–18s Moss in room; 24–39s Chigur driving; ~44–49s Moss with device/long gun, 57–120s motel/car; beep human listening pending"
     },
@@ -42,7 +42,7 @@
       "artifact_id": 13069849250,
       "run_id": 41273269553,
       "duration_seconds": 220.019,
-      "sha256": "68995017beba8b4",
+      "sha256": "68995017beba8b4c88a2b801d5ae431ae248f3a699ed43e4168a5c2c88a8582b",
       "usable_before_seconds": 217,
       "warning": "0–56s arrivals/homes, 60–210s room conversation, 216s exterior; no on-screen death; foot check not confirmed"
     }
