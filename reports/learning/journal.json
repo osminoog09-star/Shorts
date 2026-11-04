@@ -159,6 +159,19 @@
       "owner_feedback": "04.11: «Бля нахер рисовать 3д сцены. Мы же делаем кино разбор. Должны просто быть кадры из кино и тд» — отклонена CGI методика, не сам проект/film-only pilot",
       "audience_effect": "unknown",
       "regression": true
+    },
+    {
+      "id": "CHIGUR-REAL-SOURCE-RED-TAIL-AND-PROOF",
+      "project": "longform/chigur",
+      "issue": "Киноисходники под видом полных сцен содержали посторонние красные хвосты; выбор клипа по названию 'монетка' мог бы ложно приписать конкретный крупный план; короткий film-only пилот тихий/VFR",
+      "cause": "Исходники скачаны как фрагменты с возможным чужим outro; работали по имени ролика без полного распределения содержания по таймлайну; каждый полученный 'proof' не равен фактической проверке русской реплики",
+      "fix": "Контакты каждые 6с на всех пяти mp4 (157 миниатюр), blacklist gas≥255s/carson≥160s, source_sha256+source IN/OUT на 12 глав; отдельный 8-window private pilot и официальный check/look с честным FAIL loudness −22LUFS, WARN VFR/subtitles",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-04_CHIGUR_FILM_ONLY_SOURCE_EDL_AND_PROOF_QA.md",
+      "acceptance": "5 реальных контактов покадрово открыты, 8 frames pilot открыты, ffmpeg -xerror decode PASS, официальный check 1 FAIL/2 WARN. Verified только источник и фрагментарная техническая сборка; русские реплики/громкость финального long pending",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }
