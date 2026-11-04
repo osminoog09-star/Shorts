@@ -80,6 +80,19 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "VOICE-RUNTIME-FALSE-BLOCKED",
+      "project": "coffee_v8_20261104",
+      "issue": "Заявлена недоступность Qwen после проверки только текущего Python",
+      "cause": "Не проверены прежний venv и сохранившиеся модель/reference",
+      "fix": "Найден прежний interpreter; выполнен реальный новый синтез; обязательный runtime preflight",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-04_VOICE_RUNTIME_MISTAKE_AND_POLICY.md",
+      "acceptance": "Импорты в прежнем interpreter + config/weights + фактические WAV1/2 5.39/5.73с; полныйV8 QA ещё не завершён",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }

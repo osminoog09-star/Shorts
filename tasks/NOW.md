@@ -31,7 +31,7 @@
 - [x] V7: кадры всего таймлайна + 4fps последовательности; обнаружены медленное начало, повтор24–30с, раннее раскрытие гэгов, мелкий рисунок/пустота.
 - [ ] V8: новая последовательность целых сохранённых Denis фраз, отдельный HTML, 6стопов и motion preflight.
 - [ ] Полный MP4, check/look/decode, частное сохранение и уроки.
-Следующий шаг: shorts/coffee_v8_20261104/. Browser локально BLOCKED socket EPERM; пользоваться штатным motion-render.yml, только silent public assets. Qwen/ASR weights отсутствуют: не подменять голос, брать реальные готовые WAV и сохранённые word-times; новый синтез не заявлять.
+Следующий шаг: shorts/coffee_v8_20261104/. Browser локально BLOCKED socket EPERM; пользоваться штатным motion-render.yml, только silent public assets. Исправлен ошибочный Qwen BLOCKED: прежние coffee_env и coffee_restore/model доступны в /workspace/scratch/2071953dc074/. Реально синтезируются шесть новых реплик1.7B Base ICL; private_v8/synthesize.py, process86375. Требуется новый ASR реальных WAV.
 Частные промежуточные: ../project/voice/, ../project/asr_small.json, ../project/outro10/; MP4/voice НЕ public Git.
 
 
