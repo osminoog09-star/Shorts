@@ -93,6 +93,19 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "COFFEE-V8-POSE-AND-SPEECH",
+      "project": "coffee_v8_20261104",
+      "issue": "V8 first stills: clipped first-frame actor, duplicate kettle arm, inconsistent actor/machine scale; ASR heard поставка",
+      "cause": "Inherited hero arm drawn again; camera crop and props in separate coordinates; unclear short-word pronunciation",
+      "fix": "Remove first crop and extra arm; unify stage scale and spout transform; re-synthesize whole final sentence with подставку под чашку",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-04_COFFEE_V8_RETENTION_AND_VISUAL_REVIEW.md",
+      "acceptance": "Actual still runs41745990460/41746453362 viewed; actual7s pilot41746708661 decoded and14MP4 frames viewed; Small+Base recognized new final sentence. Full final/owner hearing still pending",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": true
     }
   ]
 }
