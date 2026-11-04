@@ -119,6 +119,19 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": true
+    },
+    {
+      "id": "M1LASH-MULT-R8C-7S-ACTING",
+      "project": "m1lash_mult_ep01",
+      "issue": "В реальном 7с silent MP4 робот ушёл за край стола, бейдж не показал директора, рука героя 2.5–4.5с зависла в похожей позе; сцена сменилась на 6.5с вместо 7.0",
+      "cause": "Слишком низкая landing-Y, непрочитываемый микробейдж, длинное удержание одной pose и деление 39с на шесть равных кусков вопреки scene durations",
+      "fix": "r9 film.html: фактические start timestamps из episode.json, AI landing выше стола, физическая 3D табличка с русским текстом, отдельные keyframes flinch/point/recoil",
+      "status": "fixed",
+      "evidence": "reports/research/2026-11-04_M1LASH_MULT_R8C_7S_QA.md",
+      "acceptance": "r8c: реальный MP4 7s/210 frames, ffmpeg -xerror PASS, 14 кадров по 0.5с открыты. r9 stills run 41792143532 не подтверждён глазами; требуется 6 JPG/acting_gate, затем r9 actual pilot MP4 и отдельный ART PASS",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": true
     }
   ]
 }
