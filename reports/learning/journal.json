@@ -172,6 +172,19 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "CHIGUR-12CH-PICTURE-LOCK-NOT-VOICE-PASS",
+      "project": "longform/chigur",
+      "issue": "The 12-chapter real-film video exists physically but lacks authentic author voice; formal loudness FAIL is caused by narration windows being silent, not a simple gain missetting",
+      "cause": "Qwen3 1.7B weights and working voice runtime do not exist in current sandbox even though earlier private workspace did run the model; actor dialogue semantics still lack independent listening/ASR",
+      "fix": "Make clearly labelled PRIVATE PICTURE LOCK (12 chapters 9:51.646 / 26 real-film sections), attach 121 Russian soft subtitle cues covering all 1213 intended narrator words, keep original actor audio in eight candidate windows, use fail-closed real owner-voice/actor-proof production builder, do not normalize silence to manufacture PASS",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-04_CHIGUR_FILM_ONLY_FULL_12CH_PICTURE_LOCK.md",
+      "acceptance": "Actual 1280x720 9:51.646 MP4 full decode exit0; official look.py 60 frames inspected; outro 590s inspected; 121 subtitles aligned to chapters and embedded mov_text/rus; official check.py 11 PASS, 0 WARN, 1 loudness FAIL (-18.6 LUFS). This verifies storyboard construction only, NOT voice/actor film proof semantics/production readiness.",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }
