@@ -1,3 +1,16 @@
+# 05.11 · GPT · Новая редакционная сетка M1lash, 7 живых переносов YouTube и сайт
+
+**Решение владельца 04.11:** 14 Shorts/неделя — КИНО 10:00 и ОРИГИНАЛЬНЫЙ ЮМОР 20:00 ежедневно; два рисованных оригинальных S10-D25 мультфильма ≥21 мин — среда/суббота 15:00 (минимум 5ч между слотами). Длинные киноразборы/Chigur A без новых дат из-за Content ID; старый Chigur RJEZKHegzUY PRIVATE, PAUSED_BY_OWNER EP01/3D Coffee не возобновлены. AGENTS.md §0/5/6/9, Studio SKILL, GRID, best_times, UI/JS rules обновлены.
+
+**YouTube фактически подтверждён API GET, отдельный workflow 41922020447 SUCCESS:** сняты даты и сохранены PRIVATE `ai_news_2026_11_03` (oMhef8NQg1s), `science_mirror_202611` (6KgLv_omqao), `science_orbit_202611` (9XeZBiX7Pr8); без новых upload. Перенесены проверенные существующие видео: `kino_006` sCThiwmigy0 → 05.11 10:00 Tallinn; `ai_fridge_202611` QS66i62EgJk → 05.11 20:00; `ai_vacation_202611` R0y8D9MZanc → 06.11 20:00; `coffee_v8_20261104` bEdC0uFDvl4 → 07.11 20:00. Фактические GET подтверждения видны в logs run. Все семь `publishing/receipts/*.json`, manifest queue, `publishing/schedule_requests.json`, `publishing/queue.json` сверены с этими значениями; три вне сетки `editorial_hold`, четыре `scheduled`. Уже публичные 03/04.11 не тронуты.
+
+**Сайт:** GitHub Pages `motion-pages.yml` run 41922519045 **SUCCESS** на source SHA 8f488beb, Validate JavaScript / scheduling / calendar / site smoke PASS, сборка `studio data: 53 videos, 16 slots, 1 to review`, реальный deploy-pages PASS. Новый календарь 7 дней = 14 Shorts + 2 мультфильма. URL https://osminoog09-star.github.io/Shorts/studio/ . Прямая загрузка URL из этого агента не удалась (сетевой DNS/веб fetch), поэтому браузерный визуальный readback не утверждать. Новейшая небольшая текстовая корректировка 'оригинальный юмористический скетч' в best_times после source deploy не меняет интервалы/состав.
+
+**Недостающие материалы:** для 06/07.11 пока нет нового кино-Shorts на 10:00; оба S10 мультфильма ещё не изготовлены/не прошли owner review — 15:00 по ср/сб только пустые редакционные слоты. Нельзя подменять новостями или автопубликовать новый фильм.
+
+**Косяки:** одновременные две migration Actions конфликтовали в `publishing/queue.json` (41921611751 FAILURE); дублирующий мой workflow 41921788385 был заблокирован FAIL-CLOSED из-за отсутствующего `source_sha256` у корректного Coffee receipt, YouTube не менял. После успеха единственного подтверждённого канала duplicate workflow + script + ticket удалены из main. Урок: одна миграция за раз, readback по каждому ID, старые ручные receipts могут иметь пустой SHA; не путать локальное состояние с YouTube. Ничего не перезалито и никого не сделано public.
+
+---
 # 04.11 · GPT · M1lash: live-перенос всей будущей очереди YouTube + двухформатная сетка
 
 **Решение владельца:** ежедневно 10:00 кино-Shorts и 20:00 оригинальный комедийный/новостной скетч (не сухая новостная подборка), ср/сб 15:00 два оригинальных рисованных фильма S10-D25 ≥21 мин. Новые длинные киноразборы прекратить из-за Content ID. PAUSED_BY_OWNER M1lash Мульт EP01/3D Coffee не возобновлять; никаких новых рендеров/заливок/публикаций этой задачей.
