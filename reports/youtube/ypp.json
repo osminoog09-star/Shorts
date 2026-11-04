@@ -1,10 +1,10 @@
 {
  "as_of": "2026-11-01",
- "built": "2026-11-04T05:02:03.631284+00:00",
+ "built": "2026-11-04T15:33:39.604655+00:00",
  "engaged_views": true,
  "pace": {
   "subs_per_day": 1.0,
-  "shorts_views_per_day": 1798,
+  "shorts_views_per_day": 1797,
   "long_hours_per_day": 0.0
  },
  "shorts_daily_90": [
@@ -435,8 +435,8 @@
   },
   {
    "day": "2026-10-28",
-   "views": 2556,
-   "all": 4276
+   "views": 2549,
+   "all": 4257
   },
   {
    "day": "2026-10-29",
@@ -465,23 +465,23 @@
    "title": "Базовая монетизация (донаты, спонсорство)",
    "subs": {
     "name": "500 подписчиков",
-    "current": 37,
+    "current": 38,
     "target": 500,
     "unit": "подп.",
-    "pct": 7.4,
-    "eta_days": 463,
-    "eta_date": "2028-02-10",
+    "pct": 7.6,
+    "eta_days": 462,
+    "eta_date": "2028-02-09",
     "need": "нужно ~16/день, чтобы за месяц"
    },
    "uploads": {
-    "current": 42,
+    "current": 44,
     "target": 3,
     "ok": true
    },
    "paths": [
     {
      "name": "3 млн просмотров Shorts / 90 дн",
-     "current": 16930,
+     "current": 16923,
      "target": 3000000,
      "unit": "просм.",
      "pct": 0.6,
@@ -508,18 +508,18 @@
    "title": "Полная (реклама)",
    "subs": {
     "name": "1000 подписчиков",
-    "current": 37,
+    "current": 38,
     "target": 1000,
     "unit": "подп.",
-    "pct": 3.7,
-    "eta_days": 963,
-    "eta_date": "2029-06-24",
+    "pct": 3.8,
+    "eta_days": 962,
+    "eta_date": "2029-06-23",
     "need": "нужно ~33/день, чтобы за месяц"
    },
    "paths": [
     {
      "name": "10 млн просмотров Shorts / 90 дн",
-     "current": 16930,
+     "current": 16923,
      "target": 10000000,
      "unit": "просм.",
      "pct": 0.2,

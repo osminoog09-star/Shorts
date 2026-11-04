@@ -1,6 +1,6 @@
 {
   "start": "2019-02-11",
-  "end": "2026-11-02",
+  "end": "2026-11-03",
   "videos": {
     "XANzL3z9wqY": {
       "video": "XANzL3z9wqY",
@@ -19,7 +19,7 @@
       "video": "bpaR4hHC6YU",
       "views": 3226,
       "engagedViews": 2244,
-      "averageViewPercentage": 65.13,
+      "averageViewPercentage": 65.16,
       "averageViewDuration": 48,
       "subscribersGained": 6,
       "subscribersLost": 0,
@@ -32,7 +32,7 @@
       "video": "KhaAsIVKwCM",
       "views": 1445,
       "engagedViews": 985,
-      "averageViewPercentage": 63.49,
+      "averageViewPercentage": 63.55,
       "averageViewDuration": 28,
       "subscribersGained": 1,
       "subscribersLost": 0,
@@ -149,7 +149,7 @@
       "video": "bZkIDNIRoxo",
       "views": 1170,
       "engagedViews": 627,
-      "averageViewPercentage": 39.71,
+      "averageViewPercentage": 39.76,
       "averageViewDuration": 25,
       "subscribersGained": 0,
       "subscribersLost": 0,
@@ -175,7 +175,7 @@
       "video": "dsp3ZOrwTkc",
       "views": 1127,
       "engagedViews": 581,
-      "averageViewPercentage": 37.12,
+      "averageViewPercentage": 37.06,
       "averageViewDuration": 20,
       "subscribersGained": 0,
       "subscribersLost": 0,
@@ -227,7 +227,7 @@
       "video": "uDbIq2IzlzM",
       "views": 903,
       "engagedViews": 433,
-      "averageViewPercentage": 36.83,
+      "averageViewPercentage": 36.89,
       "averageViewDuration": 21,
       "subscribersGained": 0,
       "subscribersLost": 0,
@@ -509,6 +509,42 @@
       "shares": 0,
       "estimatedMinutesWatched": 0
     },
+    "qYSbQisqEpc": {
+      "views": null,
+      "engagedViews": null,
+      "averageViewPercentage": null,
+      "averageViewDuration": null,
+      "subscribersGained": null,
+      "subscribersLost": null,
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "estimatedMinutesWatched": null
+    },
+    "xRwwXYXVxSc": {
+      "views": null,
+      "engagedViews": null,
+      "averageViewPercentage": null,
+      "averageViewDuration": null,
+      "subscribersGained": null,
+      "subscribersLost": null,
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "estimatedMinutesWatched": null
+    },
+    "bEdC0uFDvl4": {
+      "views": null,
+      "engagedViews": null,
+      "averageViewPercentage": null,
+      "averageViewDuration": null,
+      "subscribersGained": null,
+      "subscribersLost": null,
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "estimatedMinutesWatched": null
+    },
     "wweAPl3P29w": {
       "views": null,
       "engagedViews": null,
@@ -617,30 +653,6 @@
       "shares": null,
       "estimatedMinutesWatched": null
     },
-    "qYSbQisqEpc": {
-      "views": null,
-      "engagedViews": null,
-      "averageViewPercentage": null,
-      "averageViewDuration": null,
-      "subscribersGained": null,
-      "subscribersLost": null,
-      "likes": null,
-      "comments": null,
-      "shares": null,
-      "estimatedMinutesWatched": null
-    },
-    "xRwwXYXVxSc": {
-      "views": null,
-      "engagedViews": null,
-      "averageViewPercentage": null,
-      "averageViewDuration": null,
-      "subscribersGained": null,
-      "subscribersLost": null,
-      "likes": null,
-      "comments": null,
-      "shares": null,
-      "estimatedMinutesWatched": null
-    },
     "FxIlxGWVCuw": {
       "views": null,
       "engagedViews": null,
@@ -682,8 +694,50 @@
   "schema_version": 1,
   "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
   "snapshot_date": "2026-11-04",
-  "fetched_at": "2026-11-04T05:01:48.085236+00:00",
+  "fetched_at": "2026-11-04T15:33:27.678962+00:00",
   "inventory": [
+    {
+      "video_id": "qYSbQisqEpc",
+      "title": "Она отказалась играть по его правилам #shorts",
+      "published_at": "2026-11-04T13:00:35Z",
+      "duration": "PT41S",
+      "privacy": "public",
+      "statistics": {
+        "viewCount": "269",
+        "likeCount": "1",
+        "dislikeCount": "0",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "video_id": "xRwwXYXVxSc",
+      "title": "Он предложил деньги. Ответ оказался страшнее угрозы #shorts",
+      "published_at": "2026-11-04T08:00:33Z",
+      "duration": "PT56S",
+      "privacy": "public",
+      "statistics": {
+        "viewCount": "510",
+        "likeCount": "13",
+        "dislikeCount": "0",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "video_id": "bEdC0uFDvl4",
+      "title": "Моя кофемашина требует доказать, что я проснулся #shorts",
+      "published_at": "2026-11-04T05:04:57Z",
+      "duration": "PT42S",
+      "privacy": "private",
+      "statistics": {
+        "viewCount": "0",
+        "likeCount": "0",
+        "dislikeCount": "0",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
     {
       "video_id": "wweAPl3P29w",
       "title": "Она знает, кому нельзя верить #shorts",
@@ -691,8 +745,8 @@
       "duration": "PT41S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "613",
-        "likeCount": "3",
+        "viewCount": "822",
+        "likeCount": "5",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -761,8 +815,8 @@
       "duration": "PT52S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "567",
-        "likeCount": "14",
+        "viewCount": "856",
+        "likeCount": "25",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -811,41 +865,13 @@
       }
     },
     {
-      "video_id": "qYSbQisqEpc",
-      "title": "Она отказалась играть по его правилам #shorts",
-      "published_at": "2026-11-03T08:22:59Z",
-      "duration": "PT41S",
-      "privacy": "private",
-      "statistics": {
-        "viewCount": "0",
-        "likeCount": "0",
-        "dislikeCount": "0",
-        "favoriteCount": "0",
-        "commentCount": "0"
-      }
-    },
-    {
-      "video_id": "xRwwXYXVxSc",
-      "title": "Он предложил деньги. Ответ оказался страшнее угрозы #shorts",
-      "published_at": "2026-11-03T08:22:58Z",
-      "duration": "PT56S",
-      "privacy": "private",
-      "statistics": {
-        "viewCount": "0",
-        "likeCount": "0",
-        "dislikeCount": "0",
-        "favoriteCount": "0",
-        "commentCount": "0"
-      }
-    },
-    {
       "video_id": "FxIlxGWVCuw",
       "title": "Урок музыки вышел из-под контроля #shorts",
       "published_at": "2026-11-03T08:00:44Z",
       "duration": "PT53S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "846",
+        "viewCount": "847",
         "likeCount": "10",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -859,7 +885,7 @@
       "duration": "PT41S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "98",
+        "viewCount": "103",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1027,7 +1053,7 @@
       "duration": "PT27M15S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "11",
+        "viewCount": "12",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1055,7 +1081,7 @@
       "duration": "PT50S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1239",
+        "viewCount": "1240",
         "likeCount": "22",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1069,7 +1095,7 @@
       "duration": "PT36S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "994",
+        "viewCount": "995",
         "likeCount": "2",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1111,7 +1137,7 @@
       "duration": "PT1M14S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "3235",
+        "viewCount": "3240",
         "likeCount": "191",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1237,7 +1263,7 @@
       "duration": "PT59S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "6203",
+        "viewCount": "6227",
         "likeCount": "160",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1428,10 +1454,10 @@
     }
   ],
   "channel_statistics": {
-    "viewCount": "32845",
-    "subscriberCount": "37",
+    "viewCount": "33846",
+    "subscriberCount": "38",
     "hiddenSubscriberCount": false,
-    "videoCount": "43"
+    "videoCount": "45"
   },
   "recent_daily_views": [
     {
@@ -1505,9 +1531,12 @@
   ],
   "last_observed_view_day": "2026-11-01",
   "traffic": {
-    "start": "2026-10-06",
-    "end": "2026-11-02",
+    "start": "2026-10-07",
+    "end": "2026-11-03",
     "videos": {
+      "qYSbQisqEpc": [],
+      "xRwwXYXVxSc": [],
+      "bEdC0uFDvl4": [],
       "wweAPl3P29w": [],
       "6KgLv_omqao": [],
       "9XeZBiX7Pr8": [],
@@ -1517,8 +1546,6 @@
       "oMhef8NQg1s": [],
       "sCThiwmigy0": [],
       "ACy21tT97a4": [],
-      "qYSbQisqEpc": [],
-      "xRwwXYXVxSc": [],
       "FxIlxGWVCuw": [],
       "uCqhnwWH6Uc": [],
       "KIGLaVhTlhw": [
@@ -2417,12 +2444,8 @@
           "views": 1
         },
         {
-          "insightTrafficSourceType": "SHORTS",
-          "views": 11
-        },
-        {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 2
+          "views": 1
         }
       ],
       "XqoHjcsdPtQ": [
@@ -2434,6 +2457,9 @@
       "mLlB8eL1FUE": []
     },
     "unsupported_metrics": {
+      "qYSbQisqEpc": [],
+      "xRwwXYXVxSc": [],
+      "bEdC0uFDvl4": [],
       "wweAPl3P29w": [],
       "6KgLv_omqao": [],
       "9XeZBiX7Pr8": [],
@@ -2443,8 +2469,6 @@
       "oMhef8NQg1s": [],
       "sCThiwmigy0": [],
       "ACy21tT97a4": [],
-      "qYSbQisqEpc": [],
-      "xRwwXYXVxSc": [],
       "FxIlxGWVCuw": [],
       "uCqhnwWH6Uc": [],
       "KIGLaVhTlhw": [],
