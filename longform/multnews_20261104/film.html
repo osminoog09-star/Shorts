@@ -27,15 +27,15 @@ const bolt=(x,y,s,t,pose=0)=>{let b=Math.sin(t*4)*7, hand=Math.sin(t*4+.4)*38;re
   ${P('M -5 -230 L -5 -262','none','#302e53',9)} ${E(-5,-272,14,14,'#ff7291')}
   <path d="M-94,-187 Q-52,-211 -14,-195" stroke="#fff" opacity=".8" stroke-width="8" fill="none"/>
   </g>`;};
-const bubble=(x,y,s,txt)=>{y+=105;return `<g>${R(x,y,s,77,'#ffffff',35,'#272b44',8)}${T(x+24,y+55,txt,38)}${P(`M${x+45} ${y+73} l-16 35 49 -35`,'#fff','#272b44',7)}</g>`;};
+const bubble=(x,y,s,txt)=>{y+=105;let fs=Math.max(24,Math.min(38,Math.floor((s-42)/(txt.length*.69))));return `<g>${R(x,y,s,77,'#ffffff',35,'#272b44',8)}${T(x+24,y+55,txt,fs)}${P(`M${x+45} ${y+73} l-16 35 49 -35`,'#fff','#272b44',7)}</g>`;};
 function chapter(i,t){let p=S[i];let move=Math.sin(t*2);let a='';
  if(i===0){
    let phase=t<2?0:t<4?1:t<6?2:t<8?3:4;
    a+=`${R(90,480,1115,280,'#59607f',16)}${R(115,499,1060,50,'#f8a76d',4)}${R(140,558,990,170,'#cbd9e4',8)}${P('M115 795 L1205 795','none','#2c2e4c',14)}`;
    for(let j=0;j<6;j++)a+=`${E(185+j*190,795,31,31,'#34365b')}`;
    a+=`${T(108,442,'СОРТИРОВКА',35)}`;
-   let x = t<4 ? 240+160*t : t<7 ? 905+(t-4)*105 : 1540;
-   let y = t<4 ? 622 : t<7 ? 622-(t-4)*69 : 400+(t-7)*95;
+   let x = t<4 ? 240+160*t : t<7 ? 880+(t-4)*220 : 1540;
+   let y = t<4 ? 622 : t<7 ? 622-(t-4)*74 : 400+(t-7)*95;
    if(t<7.6){a+=`${R(x,y,184,74,'#f9d977',15)}${R(x+24,y+14,135,38,'#ff9f65',8)}`;}
    if(t>=3.1&&t<4.8) a+=`${P('M 915 600 Q 990 500 1040 614','none','#ffc653',15)}${E(977,579,50,50,'none','#f66d76',12)}${T(950,566,'!',54,'#fa5073')}`;
    if(t>=7.4) a+=`${R(1420,672,300,156,'#ffe0a6',18)}${T(1457,733,'ГОТОВО',36)}`;
@@ -54,7 +54,7 @@ window.frame=(time,forcedScene=null)=>{let scene=forcedScene===null?Math.min(5,M
  document.getElementById('art').innerHTML=`<defs><pattern id="half" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="8" cy="8" r="3" fill="#36334e" opacity=".11"/></pattern><filter id="shadow"><feDropShadow dx="6" dy="9" stdDeviation="0" flood-color="#22243f" flood-opacity="0.15"/></filter></defs>
  <rect width="1920" height="1080" fill="${q.bg}"/><rect width="1920" height="1080" fill="url(#half)"/>
  <g opacity=".5">${E(1500+shift,240,530,240,q.bright,'none',0)}${P('M -60 854 Q 530 700 1020 855 Q 1370 700 2050 860 L 2050 1100 L -60 1100 Z',q.bright,'none',0)}</g>
- ${nodes}<g filter="url(#shadow)">${chapter(scene,time)}</g>
+ ${nodes}<g transform="translate(${scene===0?(time<3?0:time<6?-50:-15):0} ${scene===0?(time<3?0:time<6?-23:-7):0}) scale(${scene===0?(time<3?1:time<6?1.05:1.015):1})" filter="url(#shadow)">${chapter(scene,time)}</g>
  <g><path d="M 0 0 L 1920 0 L1920 120 L0 120 Z" fill="${q.dark}"/><path d="M 0 906 L 1920 906 L1920 1080 L0 1080 Z" fill="${q.dark}"/>
  ${R(90,36,344,61,q.accent,12,'#18192e',5)}${T(112,81,'M1lash МультНовости',26,'#fff')}
  ${T(483,83,q.kicker,34,'#fff')}${T(90,988,q.title,64,'#fff')}
