@@ -1,7 +1,7 @@
 {
   "project": "longform/chigur",
-  "version": "film-only-EDL-v3-real-RU-proof-timestamps-2026-11-04",
-  "status": "EDITORIAL_SHOT_POOLS_ASR_VERIFIED_3_PROOFS_OTHER_PROOFS_PENDING",
+  "version": "film-only-EDL-v4-actor-word-ASR-2026-11-04",
+  "status": "SEVEN_ACTOR_ASR_OBSERVED_TWO_SOURCE_AMBIENT_PROOFS_PENDING_HUMAN_AUDIO_REVIEW",
   "rules": "AGENTS.md §9; no CGI; no Dima; use only film frames; proof source dialogue audible after Denis analysis",
   "source_metadata": "longform/chigur/film_only_source_index.json",
   "voice_manifest": "longform/chigur/voice_chunks_denis_film_only.json",
@@ -16,7 +16,7 @@
   },
   "movie_audio_policy": "mute ONLY B-roll while Denis speaks; keep actor original audio for actor proof windows; do not use fake/synth actor clips",
   "outro": "Denis v7 voice10 horizontal 6.600s, SHA256=70b066b067cec45dbaaae91ef39ee79543ac9c396d0d1bd896885b1511867dae",
-  "editor_note": "Chapter plan informed by real inspected film-frame contacts. In/out are candidate source windows, not proof of exact Russian dialogue or final cut timing; Qwen voice duration, final edit and 8 actor audio semantics pending. Allocated extra 9s of motel exterior to d08; preserve 44–49.2 actor proof; chapter d08 pool now 53s without overlap, d09 62.8s. 04.11 re-edited actual actor-audio windows using historical real Russian ASR GitHub Actions runs 41273807923 and 41273154882. Exact Carla refusal 194.35–198.97 fully preserved; actor coin offer 178.63–181.79; driver polite order 94–99. Three proof windows have ASR; all still need owner hearing.",
+  "editor_note": "Chapter plan informed by real inspected film-frame contacts. In/out are candidate source windows, not proof of exact Russian dialogue or final cut timing; Qwen voice duration, final edit and 8 actor audio semantics pending. Allocated extra 9s of motel exterior to d08; preserve 44–49.2 actor proof; chapter d08 pool now 53s without overlap, d09 62.8s. 04.11 re-edited actual actor-audio windows using historical real Russian ASR GitHub Actions runs 41273807923 and 41273154882. Exact Carla refusal 194.35–198.97 fully preserved; actor coin offer 178.63–181.79; driver polite order 94–99. Three proof windows have ASR; all still need owner hearing. 04.11 asr-fine rewrite gas narrator interrogation 119.32–125.90, gas life threat 191.84–195.10 and Carson money 37.60–46.84. 9 proof windows, 7 ASR-observed dialogued and 2 ambient-only sources; all owner listening pending. Frames are unique across source ranges.",
   "chapters": [
     {
       "chapter": "d01",
@@ -58,9 +58,12 @@
           "in_s": 77.4,
           "out_s": 82.6,
           "source_audio": "retain original; no Denis speech over proof",
-          "semantics_verified": false,
-          "status": "PENDING_LISTEN_ASR",
-          "must_not_auto_publish": true
+          "semantics_verified": true,
+          "status": "ASR_OBSERVED_OWNER_LISTEN_PENDING",
+          "must_not_auto_publish": true,
+          "proof_type": "actor_dialogue",
+          "asr_reference": "Remote faster-whisper base 2026-11-04 gas 79.72–82.70: «Сам не понимаешь, что несёшь», «Сэр?»",
+          "human_listening": "pending"
         }
       ]
     },
@@ -71,6 +74,13 @@
         {
           "source": "gas",
           "in_s": 82.6,
+          "out_s": 119.15,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "gas",
+          "in_s": 126,
           "out_s": 144,
           "visual_role": "original film under owner narration; cinema audio muted",
           "use_once": true
@@ -87,12 +97,15 @@
         {
           "id": "gas_02",
           "source": "gas",
-          "in_s": 148.5,
-          "out_s": 153.7,
+          "in_s": 119.15,
+          "out_s": 125.95,
           "source_audio": "retain original; no Denis speech over proof",
-          "semantics_verified": false,
-          "status": "PENDING_LISTEN_ASR",
-          "must_not_auto_publish": true
+          "semantics_verified": true,
+          "status": "ASR_OBSERVED_OWNER_LISTEN_PENDING",
+          "must_not_auto_publish": true,
+          "proof_type": "actor_dialogue",
+          "asr_reference": "Remote faster-whisper base 2026-11-04, gas 119.32–125.90: Chigur «И ты всю жизнь прожил там?»; seller replies",
+          "human_listening": "pending"
         }
       ]
     },
@@ -103,6 +116,13 @@
         {
           "source": "gas",
           "in_s": 160,
+          "out_s": 191.75,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "gas",
+          "in_s": 195.2,
           "out_s": 210,
           "visual_role": "original film under owner narration; cinema audio muted",
           "use_once": true
@@ -119,12 +139,15 @@
         {
           "id": "gas_03",
           "source": "gas",
-          "in_s": 210,
-          "out_s": 215.2,
+          "in_s": 191.75,
+          "out_s": 195.2,
           "source_audio": "retain original; no Denis speech over proof",
-          "semantics_verified": false,
-          "status": "PENDING_LISTEN_ASR",
-          "must_not_auto_publish": true
+          "semantics_verified": true,
+          "status": "ASR_OBSERVED_OWNER_LISTEN_PENDING",
+          "must_not_auto_publish": true,
+          "proof_type": "actor_dialogue",
+          "asr_reference": "Remote faster-whisper base 2026-11-04 gas 191.84–195.10: «На кону вся твоя жизнь. Ты просто об этом не знал»",
+          "human_listening": "pending"
         }
       ]
     },
@@ -135,6 +158,13 @@
         {
           "source": "carson",
           "in_s": 0,
+          "out_s": 37.5,
+          "visual_role": "original film under owner narration; cinema audio muted",
+          "use_once": true
+        },
+        {
+          "source": "carson",
+          "in_s": 46.95,
           "out_s": 104,
           "visual_role": "original film under owner narration; cinema audio muted",
           "use_once": true
@@ -144,12 +174,15 @@
         {
           "id": "carson",
           "source": "carson",
-          "in_s": 104,
-          "out_s": 109.2,
+          "in_s": 37.5,
+          "out_s": 46.95,
           "source_audio": "retain original; no Denis speech over proof",
-          "semantics_verified": false,
-          "status": "PENDING_LISTEN_ASR",
-          "must_not_auto_publish": true
+          "semantics_verified": true,
+          "status": "ASR_OBSERVED_OWNER_LISTEN_PENDING",
+          "must_not_auto_publish": true,
+          "proof_type": "actor_dialogue",
+          "asr_reference": "Remote faster-whisper base 2026-11-04 carson 37.60–46.84: «Я знаю, где деньги» / «Почему же они ещё не у тебя?» / «Я смог отследить их путь»",
+          "human_listening": "pending"
         }
       ]
     },
@@ -187,8 +220,11 @@
           "out_s": 35.2,
           "source_audio": "retain original; no Denis speech over proof",
           "semantics_verified": false,
-          "status": "PENDING_LISTEN_ASR",
-          "must_not_auto_publish": true
+          "status": "SOURCE_AMBIENCE_ONLY_OWNER_LISTEN_PENDING",
+          "must_not_auto_publish": true,
+          "proof_type": "source_ambient_sound",
+          "asr_reference": "SINK_HANDCUFF_SOURCE_SOUND: original driver 30–35.2 PCM, low RMS .0066; no Russian dialogue, acoustic actions only",
+          "human_listening": "pending"
         }
       ]
     },
@@ -221,7 +257,8 @@
           "semantics_verified": true,
           "asr_reference": "GitHub Actions 41273154882, chigur_driver_ru_asr.json t=86,103; \"Пожалуйста, выйдите из машины, сэр\" and \"Замрите, пожалуйста\"",
           "human_listening": "pending",
-          "must_not_auto_publish": true
+          "must_not_auto_publish": true,
+          "proof_type": "actor_dialogue"
         }
       ]
     },
@@ -266,8 +303,11 @@
           "out_s": 49.2,
           "source_audio": "retain original; no Denis speech over proof",
           "semantics_verified": false,
-          "status": "PENDING_LISTEN_ASR",
-          "must_not_auto_publish": true
+          "status": "SOURCE_AMBIENCE_ONLY_OWNER_LISTEN_PENDING",
+          "must_not_auto_publish": true,
+          "proof_type": "source_ambient_sound",
+          "asr_reference": "TRACKER_ORIGINAL_AUDIO: original source 44–49.2 RMS .0106, historical narrow 828Hz pulse in source+V20 2026-11-03 report; not intelligible actor dialogue, owner hearing pending",
+          "human_listening": "pending"
         }
       ]
     },
@@ -300,7 +340,8 @@
           "semantics_verified": true,
           "asr_reference": "GitHub Actions 41273807923 carla_word_times.json: 178.63–181.79 \"Орёл? Или решка?\"",
           "human_listening": "pending",
-          "must_not_auto_publish": true
+          "must_not_auto_publish": true,
+          "proof_type": "actor_dialogue"
         }
       ]
     },
@@ -340,7 +381,8 @@
           "semantics_verified": true,
           "asr_reference": "GitHub Actions 41273807923 carla_word_times.json 194.35–198.97 \"Нет. Не буду выбирать.\"",
           "human_listening": "pending",
-          "must_not_auto_publish": true
+          "must_not_auto_publish": true,
+          "proof_type": "actor_dialogue"
         }
       ]
     },
@@ -373,5 +415,6 @@
       "proofs_after_author_section": []
     }
   ],
-  "proofs_asr_verified": 3
+  "proofs_asr_verified": 7,
+  "proofs_acoustic_pending": 2
 }
