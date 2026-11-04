@@ -1,0 +1,14 @@
+{
+  "renderer": "python",
+  "script": "shorts/m1lash_mult_ep01/render_visual.py",
+  "output": "videos/m1lash_mult_ep01_PREVIEW_ONLY.mp4",
+  "only_id": "m1lash_mult_ep01",
+  "mode": "pilot",
+  "preflight_only": true,
+  "save_review_mp4": false,
+  "voice_generated": false,
+  "publish": false,
+  "revision": "r12_scene2_actual_six_seconds_meeting_3_cards_motion",
+  "pilot_start": 7,
+  "pilot_seconds": 6
+}
