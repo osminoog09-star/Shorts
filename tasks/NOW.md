@@ -26,16 +26,6 @@
 
 ## GPT/Codex
 
-### 04.11 — CoffeeV8: одобрено, загрузить exactMP4 · GPT
-Владелец: «Отлично можно залить», затем явно разрешил publicGit для готовогоV8. Sample/reference/WAV private.
-- [x] Проверены актуальные AGENTS/Studio/queue/receipts: Coffeeне заливался; metadata/manifest PRIVATE no date проверены.
-- [x] Восстановлен LibraryV8v5; SHA44de695ffdc5b3c66c607c687a35add9f7a20612b7dd21d4587764b5bcae74bb,4668223B совпал.
-- [ ] Push approved video+manifest+scoped request в main → штатныйyoutube-direct.
-- [ ] Дождаться реального receipt/YouTubeID; обновить queue/PUBLISH/HANDOFF и снять scoped push trigger. Не повторять upload при неопределённом результате.
-Следующий шаг: `.github/workflows/youtube-direct.yml` запускается только изменением `publishing/private_upload_requests/coffee_v8_20261104.json`; gate exacthash/privateonly. Даты нет, выбрать позже на сайте владельцу. GooglebrowserвходвернулSomethingwentwrong; дальнейшихпопытоквэтомбраузеренет. APIсекреты остаютсяGitHubActions.
-Где: videos/coffee_v8_20261104.mp4; publishing/queue/coffee_v8_20261104.json; local /workspace/scratch/6693226fc18b/upload_repo. Новое подтверждение владельца не требуется.
-
-
 ### 04.11 — M1lash Мульт: S9-D3 пилот и плейлист · GPT
 Цель: первый оригинальный 3D-пилот «Человек против ИИ / ИИ решил стать моим начальником» и отдельный публичный плейлист «M1lash Мульт», без публикации ролика или подмены голоса.
 - [x] Владелец утвердил сериал, S9-D3. Актуальные AGENTS/Studio/visuals-by-code прочитаны.

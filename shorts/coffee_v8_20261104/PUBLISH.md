@@ -1,4 +1,10 @@
-# Coffee V8 — одобрено владельцем на заливку04.11
+YouTube: https://youtu.be/bEdC0uFDvl4
+Channel: M1lash / UC919eyHbOIgjsnH8z70pmZw
+Receipt: publishing/receipts/coffee_v8_20261104.json
+Run:41776962529, SUCCESS. Source SHA25644de695ffdc5b3c66c607c687a35add9f7a20612b7dd21d4587764b5bcae74bb.
+Owner approval accepted04.11. YouTube ID получен, PRIVATE без publish_at. Не создавать дубль. Дату владелец выбирает на сайте (Авто/Своё время).
+
+# Coffee V8 — UPLOADED PRIVATE, дата не назначена
 
 Проект — новая ревизия прежней «Кофемашины», не отдельный дубль. Владелец одобрил точный V8: «Отлично можно залить» (04.11). Повторно разрешение не спрашивать. Перед реальной загрузкой проверить отсутствие дубля в YouTube Studio/receipts. В этой попытке загрузка не началась: Google sign-in в cloud browser вернул «Something went wrong». После этого владелец явно разрешил публичный GitHub для точного готового V8 (SHA в манифесте). Используем штатный youtube-direct, толькоPRIVATE без даты. Образец/отдельные WAV по-прежнему private.
 

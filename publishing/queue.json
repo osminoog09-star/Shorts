@@ -304,14 +304,16 @@
       "id": "coffee_v8_20261104",
       "kind": "short",
       "author": "Codex",
-      "status": "draft",
+      "status": "ready",
       "slot": null,
       "style": "2D",
       "mp4": "videos/coffee_v8_20261104.mp4",
       "publish_md": "shorts/coffee_v8_20261104/PUBLISH.md",
       "title": "Моя кофемашина требует доказать, что я проснулся #shorts",
-      "note": "Владелец04.11 одобрил V8 и явно разрешил публичный Git только готового MP4. Загрузка PRIVATE без даты; пока нет receipt/YouTube ID — не считать залитым.",
-      "working_project": "coffee_v8_20261104"
+      "note": "V8 одобрен владельцем04.11 и реально залит PRIVATE без даты через youtube-direct run41776962529. Не перезаливать; дату выбрать на сайте.",
+      "working_project": "coffee_v8_20261104",
+      "youtube_id": "bEdC0uFDvl4",
+      "youtube_url": "https://youtu.be/bEdC0uFDvl4"
     }
   ]
 }

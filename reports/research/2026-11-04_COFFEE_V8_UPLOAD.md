@@ -1,0 +1,5 @@
+# Coffee V8: реальная загрузка04.11
+Owner: «Отлично можно залить», затем «Да пофиг можно загрузить через публичный гит». Разрешён готовый MP4, не sample/WAV/ZIP.
+Исходник Librarylibfile_fb8b7e52e5608191a8176f91e89107f5/v5 восстановлен; actualSHA44de695ffdc5b3c66c607c687a35add9f7a20612b7dd21d4587764b5bcae74bb,4668223B. Gitvideos/coffee_v8_20261104.mp4 тотжесамый. Манифест checkPRIVATE/безpublish_at; новых дублейнет.
+Run41776962529 SUCCESS: oauthpreflightmatches UC919eyHbOIgjsnH8z70pmZw; no-retryreservation persisted; sendуспешный; YouTubeID bEdC0uFDvl4; receiptuploaded/nullpublishdate. Ссылкаhttps://youtu.be/bEdC0uFDvl4. Выходвпубличныйдоступнеподтверждён/неназначался. PRIVATEзаданпринятымAPIupload; отдельныйGETreadbackнепроводился (vidIQ5creditcallrejected/nocharge). Никаких rerun send.
+Googlecloudbrowser: secureGooglelogin genericSomethingwentwrong, остановленбезповторов/обхода. РабочийOAuthAPIвGitHubнепострадал. Эторазныеспособыдоступа; неспрашиватьOAuthsecretзановопоошибкеUI. Узкийone-timepushguardвсуществующемworkflow exacthash/privateonly отключёнпослеSUCCESS; новыйworkflowнесоздавался. Датувладелецвыбираетнасайте.

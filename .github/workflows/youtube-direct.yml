@@ -2,8 +2,6 @@ name: YouTube direct · review then schedule
 run-name: '${{ inputs.mode }} ${{ inputs.manifest }} ${{ inputs.expected_publish_at }} ${{ inputs.request_id }}'
 
 on:
-  push:
-    paths: ['publishing/private_upload_requests/coffee_v8_20261104.json']
   workflow_dispatch:
     inputs:
       manifest:
@@ -34,16 +32,16 @@ permissions:
   contents: write
 
 concurrency:
-  group: youtube-direct-${{ inputs.manifest || 'publishing/queue/coffee_v8_20261104.json' }}
+  group: youtube-direct-${{ inputs.manifest || 'publishing/queue/pretend_bot3_gpt.json' }}
   cancel-in-progress: false
 
 jobs:
   publish:
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
-      EFFECTIVE_MANIFEST: ${{ github.event_name == 'push' && 'publishing/queue/coffee_v8_20261104.json' || inputs.manifest }}
+      EFFECTIVE_MANIFEST: ${{ github.event_name == 'push' && 'publishing/queue/pretend_bot3_gpt.json' || inputs.manifest }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -60,17 +58,17 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          request = json.loads(Path('publishing/private_upload_requests/coffee_v8_20261104.json').read_text(encoding='utf-8'))
-          manifest = json.loads(Path('publishing/queue/coffee_v8_20261104.json').read_text(encoding='utf-8'))
-          expected = '44de695ffdc5b3c66c607c687a35add9f7a20612b7dd21d4587764b5bcae74bb'
-          if request != {'action': 'private_upload_once', 'manifest': 'publishing/queue/coffee_v8_20261104.json',
+          request = json.loads(Path('publishing/private_upload_requests/pretend_bot3_gpt.json').read_text(encoding='utf-8'))
+          manifest = json.loads(Path('publishing/queue/pretend_bot3_gpt.json').read_text(encoding='utf-8'))
+          expected = '53dc3cfa971a4081fcecd0ba7fd2c38e6672417fca729328a5e875b489bc86dd'
+          if request != {'action': 'private_upload_once', 'manifest': 'publishing/queue/pretend_bot3_gpt.json',
                          'sha256': expected, 'private_only': True}:
               raise SystemExit('NO-GO: private upload request not strictly authorized')
           if manifest.get('publish_at') or manifest.get('channel') != 'ru':
               raise SystemExit('NO-GO: manifest contains a date or wrong channel')
-          if manifest.get('source', {}).get('sha256') != expected or manifest.get('source', {}).get('path') != 'videos/coffee_v8_20261104.mp4':
-              raise SystemExit('NO-GO: manifest differs from reviewed V8')
-          print('Authorized PRIVATE upload of exact V8 MP4; no schedule.')
+          if manifest.get('source', {}).get('sha256') != expected or manifest.get('source', {}).get('path') != 'videos/pretend_bot3_gpt_ru_v3.mp4':
+              raise SystemExit('NO-GO: manifest differs from reviewed V3')
+          print('Authorized PRIVATE upload of exact V3 MP4; no schedule.')
           PY
       - name: Validate manifest (NO upload)
         if: github.event_name == 'push' || inputs.mode == 'upload'
