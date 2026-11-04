@@ -145,6 +145,20 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": true
+    },
+    {
+      "id": "CHIGUR-CGI-WRONG-MEDIUM",
+      "project": "longform/chigur",
+      "issue": "Вместо реальных кадров фильма для киноразбора Чигура делали повторяющиеся 3D монеты, игрушечный автомобиль и условный стул; владелец явно отклонил выбор формата",
+      "cause": "Общее правило Three.js ошибочно перевесило конкретную цель киноразбора AGENTS §9 — фильм должен сам подтверждать дикторский анализ. Слишком много итераций камеры вместо смены неподходящего способа",
+      "fix": "После прямого решения владельца 04.11 отключён CGI Чигура в AGENTS/NOW; заново получены 5 физических кино MP4 из старых Actions, реально открыты 25 исходных кадров, смонтирован 20.521с private film-only cut с исходным аудио",
+      "status": "verified",
+      "evidence": "longform/chigur/FILM_ONLY_EDIT_PLAN.md",
+      "acceptance": "Это verified только для правильного medium: pilot 20.521333с H264/AAC, FFmpeg full decode exit0, пять кадров пилота реально осмотрены. Полный 8–12мин фильм, новый Denis voice, RU actor semantic listening и owner final review остаются pending",
+      "owner_review": "rejected",
+      "owner_feedback": "04.11: «Бля нахер рисовать 3д сцены. Мы же делаем кино разбор. Должны просто быть кадры из кино и тд» — отклонена CGI методика, не сам проект/film-only pilot",
+      "audience_effect": "unknown",
+      "regression": true
     }
   ]
 }
