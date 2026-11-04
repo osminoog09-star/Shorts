@@ -1,0 +1,142 @@
+{
+  "project": "chigur_original_A",
+  "date": "2026-11-04",
+  "status": "RESEARCH_CANDIDATES_NOT_DOWNLOADED_NOT_IN_VIDEO",
+  "purpose": "Supplement original analytical HTML/Three.js motion with commercially licensed practical B-roll; NO shots/audio from film",
+  "youtube_video_original": "RJEZKHegzUY",
+  "copyright_notice": "Pexels license permits commercial use but does not guarantee Content ID immunity, third-party releases, or YPP originality. Verify item-specific terms at download, keep asset URLs/date/author and build meaningful analytical montage.",
+  "license_sources": [
+    "https://help.pexels.com/hc/en-us/articles/360042295214-Can-I-use-the-photos-and-videos-for-a-commercial-project",
+    "https://help.pexels.com/hc/en-us/articles/360042827333-Can-I-upload-Pexels-images-and-videos-to-YouTube"
+  ],
+  "assets": [
+    {
+      "id": "coin_spinning_black",
+      "chapters": [
+        "d01",
+        "d04",
+        "d12"
+      ],
+      "source": "Pexels",
+      "url": "https://www.pexels.com/video/close-up-of-spinning-euro-coin-on-black-background-30882814/",
+      "kind": "stock_video",
+      "duration_seconds": 5,
+      "format": "1920x1080",
+      "author": "Just For Music And Film",
+      "license_page": "Pexels License",
+      "use": "Hands-free coin metaphor, not a shot from No Country for Old Men",
+      "status": "CANDIDATE_NOT_DOWNLOADED"
+    },
+    {
+      "id": "coin_spinning_wood",
+      "chapters": [
+        "d03",
+        "d04"
+      ],
+      "source": "Pexels",
+      "url": "https://www.pexels.com/video/quarter-dollar-closeup-rotating-on-dark-background-18977071/",
+      "kind": "stock_video",
+      "duration_seconds": 16,
+      "format": "1920x1080",
+      "author": "Jari Lobo",
+      "license_page": "Pexels License",
+      "use": "Macro metal spinning; do not repeat same clip as all-long film B-roll",
+      "status": "CANDIDATE_NOT_DOWNLOADED"
+    },
+    {
+      "id": "gas_station_evening",
+      "chapters": [
+        "d01",
+        "d02"
+      ],
+      "source": "Pexels",
+      "url": "https://www.pexels.com/video/bustling-nighttime-gas-station-scene-29340027/",
+      "kind": "stock_video",
+      "duration_seconds": 19,
+      "format": "3840x2160",
+      "author": "David Pickup",
+      "license_page": "Pexels License",
+      "use": "Contemporary generic filling station, not matching the film original set",
+      "status": "CANDIDATE_NOT_DOWNLOADED"
+    },
+    {
+      "id": "empty_desert_highway",
+      "chapters": [
+        "d07",
+        "d08"
+      ],
+      "source": "Pexels",
+      "url": "https://www.pexels.com/video/aerial-view-of-empty-desert-highway-at-sunset-30255166/",
+      "kind": "stock_video",
+      "author": "Dubang chang",
+      "license_page": "Pexels License",
+      "use": "Original independent desert-road atmosphere and overlay for threats/space",
+      "status": "CANDIDATE_NOT_DOWNLOADED"
+    },
+    {
+      "id": "desert_driving",
+      "chapters": [
+        "d07",
+        "d09"
+      ],
+      "source": "Pexels",
+      "url": "https://www.pexels.com/video/dash-camera-footage-of-traveling-a-road-built-on-a-desert-3059073/",
+      "kind": "stock_video",
+      "author": "Ricky Esquivel",
+      "license_page": "Pexels License",
+      "use": "Point of view roadway; no film footage, no actor impersonation",
+      "status": "CANDIDATE_NOT_DOWNLOADED"
+    },
+    {
+      "id": "money_briefcase",
+      "chapters": [
+        "d05"
+      ],
+      "source": "Pexels",
+      "url": "https://www.pexels.com/video/man-filling-briefcase-with-money-in-hurry-6266913/",
+      "kind": "stock_video",
+      "author": "Tima Miroshnichenko",
+      "license_page": "Pexels License",
+      "use": "Money choice metaphor; check depicted identity/logos before actual use",
+      "status": "CANDIDATE_NOT_DOWNLOADED"
+    },
+    {
+      "id": "hotel_corridor_bw",
+      "chapters": [
+        "d08",
+        "d09"
+      ],
+      "source": "Pexels",
+      "url": "https://www.pexels.com/video/black-and-white-corridor-5784035/",
+      "kind": "stock_video",
+      "author": "bruno lucas",
+      "license_page": "Pexels License",
+      "use": "Anonymous hotel corridor, original analytical map overlay instead of film motel",
+      "status": "CANDIDATE_NOT_DOWNLOADED"
+    },
+    {
+      "id": "handcuffs_metal",
+      "chapters": [
+        "d06"
+      ],
+      "source": "Pexels",
+      "url": "https://www.pexels.com/video/handcuffs-under-police-lights-6266657/",
+      "kind": "stock_video",
+      "author": "Tima Miroshnichenko",
+      "license_page": "Pexels License",
+      "use": "Symbol of consequences, no reproduction of original film handcuff scene",
+      "status": "CANDIDATE_NOT_DOWNLOADED"
+    }
+  ],
+  "rejected_license_traps": [
+    {
+      "url": "https://mixkit.co/free-stock-video/man-walking-in-a-corridor-33396/",
+      "reason": "This item offers free 720p only under RESTRICTED personal-use license; do not use in monetized video without appropriate paid rights"
+    },
+    {
+      "url": "https://mixkit.co/free-stock-video/spinning-coin-on-a-reflective-surface-31100/",
+      "reason": "This item offers free 720p only under RESTRICTED personal-use license; do not use in monetized video without appropriate paid rights"
+    }
+  ],
+  "render_policy": "Never use raw clips standalone for long stretches. Each licensed clip is supplemental to original commentary and authored visual analysis. Film clips/audio 0%, old owner-approved v7 outro rights checked separately. Retain sources and actual local receipts."
+}
