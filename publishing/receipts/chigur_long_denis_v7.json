@@ -1,0 +1,11 @@
+{
+  "status": "reserved",
+  "action": "upload_private_once",
+  "source": "owner_google_drive_private",
+  "drive_file_id": "1ysQ5mnSmtxv8xnjAq4uMt3DV6FZnVvVs",
+  "sha256": "d9278386aa2eb2b55b56d91a849820a5c24c9c4a739305d7953b3fd4f6a347c7",
+  "size_bytes": 80725337,
+  "reserved_at": "2026-11-04T19:12:08.051886+00:00",
+  "publish_at": null,
+  "never_retry_automatically": true
+}
