@@ -31,7 +31,8 @@
 - [x] V7: кадры всего таймлайна + 4fps последовательности; обнаружены медленное начало, повтор24–30с, раннее раскрытие гэгов, мелкий рисунок/пустота.
 - [x] Сценарий переписан и6новых реплик реально синтезированы прежним Qwen1.7B env; Small ASR всех6 выполнен (числа нормализованы),34.667с тело. Последнее «подставка» проверить вторым ASR (small услышал «поставка»).
 - [x] Реальные6+8стопов рендерены Actions41745990460 и41746453362; контакты открыты. Исправлены пропорции/лишняя рука/первый кадр. Новая финальная реплика Small+Base ASR распознана правильно.
-- [ ] 7s HTML/Playwright pilot unplug→kettle; затем full silent34.5с и private assembly.
+- [x] Pilot41746708661: скачан physical7.0с H2641080x1920/30/210frames; full decodePASS;14MP4-кадров2fps открыты, unplug/off/react/kettle последовательны. Не непрерывный слуховой просмотр.
+- [ ] Full silent34.5с и private assembly с новой реальной речью.
 - [ ] Полный MP4, check/look/decode, частное сохранение и уроки.
 Следующий шаг: shorts/coffee_v8_20261104/. Browser локально BLOCKED socket EPERM; пользоваться штатным motion-render.yml, только silent public assets. Исправлен ошибочный Qwen BLOCKED: прежние coffee_env и coffee_restore/model доступны в /workspace/scratch/2071953dc074/. Реально синтезируются шесть новых реплик1.7B Base ICL; private_v8/synthesize.py, process86375. Требуется новый ASR реальных WAV.
 Частные промежуточные: ../project/voice/, ../project/asr_small.json, ../project/outro10/; MP4/voice НЕ public Git.
