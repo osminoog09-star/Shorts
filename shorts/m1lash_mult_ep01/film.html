@@ -167,6 +167,12 @@ function init(){
   new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(badgeCanvas),side:THREE.DoubleSide}));
  badgeLabel.position.z=.071;badge.add(badgeLabel);
  badge.userData.label=badgeLabel;
+ // R12: fingertips in front of the plaque lip make the actor's grip legible;
+ // the actual tracked hand remains behind the plaque, near its right edge.
+ const grip=new THREE.Group();badge.add(grip);
+ const thumb=ico(.088,.855,.19,.22,M.skin,grip,2);thumb.scale.set(1.1,1.35,.75);
+ const finger=ico(.085,.865,-.17,.22,M.skin,grip,2);finger.scale.set(1.1,1.35,.75);
+ badge.userData.grip=grip;
  window.seek(0);
 }
 function ease(a,b,t){const u=Math.min(1,Math.max(0,(t-a)/(b-a)));return u*u*(3-2*u)}
@@ -247,6 +253,13 @@ function seek(t){
   (s===4?1.27:2.15)+Math.sin(t*2.2)*.09+(s===0?.93+1.30*(1-landing):0),
   s===0?.35+.20*landing:.40);
  aks.root.rotation.y=Math.sin(t*.65)*.16;aks.smile.scale.y=s===3?.30:s===5?.80:.44;
+ // R12: a second performed reaction beat, not a two-second static end card.
+ const bossBeat=s===0?ease(4.55,5.10,dt)*(1-ease(6.30,6.80,dt)):0;
+ if(s===0){
+   aks.root.position.y+=.15*bossBeat*Math.sin((dt-4.5)*7);
+   aks.root.rotation.z=.13*bossBeat*Math.sin((dt-4.5)*5);
+   mil.head.rotation.z+=.10*ease(5.00,5.75,dt);
+ }
  aks.orbit.rotation.y=t*.62;aks.outer.rotation.z=t*.22;
  aks.root.visible=s!==5;aks.root.scale.setScalar(s===4?.46:1);
  desk.visible=true;
@@ -304,7 +317,8 @@ function seek(t){
    const contactY=Math.max(795,Math.min(965,palmY-8));
    const x0=725,y0=930;
    const x=x0+(contactX-x0)*touch+45*snatch;
-   const y=y0+(contactY-y0)*touch-55*snatch;
+   // Lower plaque on snatch so the robot's visor and reaction remain visible.
+   const y=y0+(contactY-y0)*touch+135*snatch;
    const dist=4.7;
    const hh=2*Math.tan(THREE.MathUtils.degToRad(camera.fov)/2)*dist;
    const ww=hh*camera.aspect;
@@ -315,6 +329,8 @@ function seek(t){
    const pixelToScale=ww/W/1.72;
    badge.scale.setScalar(widthPx*pixelToScale*Math.max(.001,ease(.55,1.25,dt)));
    badge.userData.label.material.color.setHex(touch>.55?0xffb5b1:0xffffff);
+   badge.userData.grip.scale.setScalar(touch);
+   badge.userData.grip.visible=touch>.035;
  }
  renderer.render(scene,camera);
 }
