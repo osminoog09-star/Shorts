@@ -10,6 +10,9 @@ assert.throws(()=>S.assertFree({taken:[{id:'one',at}]},'two',Date.parse(at)),/з
 assert.equal(S.assertFree({taken:[{id:'one',at}]},'one',Date.parse(at)),true,'rescheduling excludes the same video');
 assert.throws(()=>S.assertFree({taken:[{id:'one',at}]},'two',Date.parse('2099-01-03T18:59:00+02:00')),/занято/);
 assert.equal(S.assertFree({taken:[{id:'one',at}]},'two',Date.parse('2099-01-03T19:00:00+02:00')),true);
+assert.throws(()=>S.assertFree({taken:[],best_times:{rules:{max_shorts_per_day:2}}},'film',Date.parse('2099-01-03T20:00:00+02:00'),'short',45,'movie'),/Кино-Shorts/);
+assert.equal(S.assertFree({taken:[],best_times:{rules:{max_shorts_per_day:2}}},'film',Date.parse('2099-01-03T10:00:00+02:00'),'short',45,'movie'),true);
+assert.throws(()=>S.assertFree({taken:[]},'cartoon',Date.parse('2099-01-04T15:00:00+02:00'),'long',45,'cartoon'),/мультфильмы/);
 function context(shared){
  const cache=new Map(),events=[];
  const c={D:{best_times:{rules:{min_gap_hours:4}},taken:[],plan:[],review:[{id:'one',kind:'short',title:'One',video_id:'aaaaaaaaaaa'},{id:'two',kind:'short',title:'Two',video_id:'bbbbbbbbbbb'}],videos:[]},
