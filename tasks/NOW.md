@@ -27,6 +27,21 @@
 
 ## Claude
 
+### 05.11 — Получить ВСЮ передачу от GPT · ВХОД ДЛЯ CLAUDE · AWAITING_CLAUDE_ACK
+
+**Запрос владельца:** «всё передай Клоду». GPT оформил полный handoff, но НЕ утверждает, что Claude его уже прочитал. **Следующий запуск Claude — начать с этого блока.**
+
+Цель: принять без посредничества GPT всю M1lash Studio (правила, навыки, kino_007, Denis voice/v7 outro, Drive/CI, Opuscar/прочие инструменты, QA/learning, очередь и ограничения).
+Шаги:
+- [x] 1. GPT записал единый старт `tasks/CLAUDE_START_HERE_2026-11-05.md` и дополнил верх `HANDOFF.md`; исходные документы `docs/CLAUDE_AUTONOMOUS_STUDIO_2026-11-05.md` и `tasks/CLAUDE_STUDIO_TRANSFER_2026-11-05.md`.
+- [x] 2. Код, manifest с private Drive ID/SHA, соответствующие skills/flows уже находятся в GitHub; сами личные WAV, embedding, секреты и approved binary outro сохранены только в закрытом Google Drive (не копировать в публичный Git).
+- [ ] 3. **CLAUDE:** `git pull --ff-only origin main`; прочитать `AGENTS.md` целиком → этот блок `tasks/NOW.md` → `tasks/CLAUDE_START_HERE_2026-11-05.md` → последние записи `HANDOFF.md` и `skills/m1lash-studio/SKILL.md`. Подтвердить принятие записью от Claude, а не от GPT.
+- [ ] 4. **CLAUDE:** проверить результат voice Actions run `42101115487` (при последней проверке ещё `in_progress` на ASR шаге 10). До реальных ASR 3/3, Drive receipt и прослушивания владельцем — NO-GO. Если SUCCESS — предоставить private link владельцу, затем удалить одноразовый voice push trigger; не создавать дубликат run, пока прежний работает.
+- [ ] 5. **CLAUDE:** продолжить разрешённые активные задачи из NOW; `kino_007` V8 пока DRAFT/NO-GO (лишний хвост, требуется бинарный финальный QA). `M1lash Мульт EP01` и 3D Coffee pilot остаются PAUSED_BY_OWNER; никакой заливки/расписания без «ок» владельца.
+
+**Следующий шаг Claude:** выполнить пункт 3, потом 4; не просить повторно передавать данные из GPT и не объявлять тест голоса/финальный MP4 готовыми без проверок.
+**Ждёт владельца:** только прослушивание теста, когда результат действительно появится, и отдельное решение о публикации.
+
 ## GPT/Codex
 
 ### 05.11 — Denis voice for Claude via PRIVATE Drive + GitHub Actions · GPT · ACTIVE
