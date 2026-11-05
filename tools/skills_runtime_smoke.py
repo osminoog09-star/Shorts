@@ -113,7 +113,7 @@ def opuscar() -> None:
     files = list(styles.glob("*/STYLE.md"))
     import re
     index = (styles / "README.md").read_text("utf-8")
-    canonical_slugs = set(re.findall(r"\\]\\(([^/()\\s]+)/STYLE\\.md\\)", index))
+    canonical_slugs = set(re.findall(r"\]\(([^/()\s]+)/STYLE\.md\)", index))
     assert len(canonical_slugs) == 66, f"style index lists {len(canonical_slugs)} distinct styles"
     missing = sorted(slug for slug in canonical_slugs if not (styles / slug / "STYLE.md").is_file())
     assert not missing, f"missing indexed styles: {missing}"
