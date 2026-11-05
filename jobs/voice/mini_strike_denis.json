@@ -1,0 +1,29 @@
+{
+  "job_id": "mini_strike_denis",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "utterances": [
+    {
+      "id": "m_h1",
+      "text": "Дом, кофе! Срочно!",
+      "rate": 1.0
+    },
+    {
+      "id": "m_h2",
+      "text": "Ладно. Сам сделаю.",
+      "rate": 1.0
+    },
+    {
+      "id": "m_h3",
+      "text": "Ай! Да чего вы хотите?!",
+      "rate": 1.0
+    },
+    {
+      "id": "m_h4",
+      "text": "Спа... спасибо?",
+      "rate": 0.95
+    }
+  ],
+  "test_scope": "private_owner_hearing_only",
+  "project": "longform/smart-strike/mini"
+}

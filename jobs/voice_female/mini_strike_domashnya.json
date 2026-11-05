@@ -1,0 +1,26 @@
+{
+  "job_id": "mini_strike_domashnya",
+  "voice_id": "female-qwen3-voicedesign-warm-v1",
+  "utterances": [
+    {
+      "id": "m_f1",
+      "text": "Доброе утро! Сегодня вся техника бастует.",
+      "instruct_extra": "Polite smart-home assistant, cheerful but slightly ironic."
+    },
+    {
+      "id": "m_f2",
+      "text": "Требования у пылесоса.",
+      "instruct_extra": "Dry, deadpan, ironic."
+    },
+    {
+      "id": "m_f3",
+      "text": "Одно слово. Начинается на «спа».",
+      "instruct_extra": "Teasing, patient, a little smug."
+    },
+    {
+      "id": "m_f4",
+      "text": "Принято! А теперь пылесос хочет отпуск.",
+      "instruct_extra": "Happy at first, then casual deadpan."
+    }
+  ]
+}

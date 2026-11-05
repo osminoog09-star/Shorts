@@ -1,0 +1,81 @@
+name: Female voice · Qwen3-TTS VoiceDesign warm (2nd voice, AGENTS §3а)
+# Synthetic designed voice (text description + fixed seed), not a clone of a real person.
+# Output only as 1-day artifact. No YouTube upload.
+on:
+  workflow_dispatch:
+    inputs:
+      job_path:
+        description: 'jobs/voice_female/<id>.json'
+        type: string
+        required: true
+  push:
+    branches: [main]
+    paths: ['jobs/voice_female/*.json']
+permissions:
+  contents: read
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      jobs: ${{ steps.p.outputs.jobs }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - id: p
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            J='["${{ inputs.job_path }}"]'
+          else
+            J=$(git diff --name-only HEAD~1 HEAD -- 'jobs/voice_female/*.json' | python3 -c 'import sys,json,os;print(json.dumps([l.strip() for l in sys.stdin if l.strip() and os.path.exists(l.strip())]))')
+          fi
+          echo "jobs=$J" >> "$GITHUB_OUTPUT"; echo "$J"
+  synthesize:
+    needs: plan
+    if: needs.plan.outputs.jobs != '[]'
+    strategy:
+      fail-fast: false
+      matrix:
+        job: ${{ fromJson(needs.plan.outputs.jobs) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf-public-models
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      DO_NOT_TRACK: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+      OMP_NUM_THREADS: '4'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Install CPU PyTorch + qwen-tts + faster-whisper
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg sox libsox-fmt-all
+          python -m pip install -q --upgrade pip
+          python -m pip install -q --index-url https://download.pytorch.org/whl/cpu 'torch==2.9.1' 'torchaudio==2.9.1'
+          python -m pip install -q 'qwen-tts==0.1.1' 'transformers==4.57.3' 'accelerate==1.12.0' 'soundfile==0.14.0' 'huggingface-hub==0.36.2' 'faster-whisper==1.2.1'
+      - uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/.hf-public-models
+          key: female-voicedesign-1p7b-whisper-small-v1
+      - name: Download public models
+        run: |
+          python - <<'PY'
+          from huggingface_hub import snapshot_download
+          import os
+          a=snapshot_download('Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign'); b=snapshot_download('Systran/faster-whisper-small')
+          open(os.environ['GITHUB_ENV'],'a').write(f'QWEN_VD={a}\nWHISPER_LOCAL_PATH={b}\n')
+          PY
+      - name: Synthesize
+        run: |
+          set -euo pipefail
+          ID=$(basename "${{ matrix.job }}" .json); echo "ID=$ID" >> "$GITHUB_ENV"
+          python scripts/female_voice_design.py --job "${{ matrix.job }}" --model-dir "$QWEN_VD" --output "$RUNNER_TEMP/out/$ID"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: female-voice-${{ env.ID }}
+          path: ${{ runner.temp }}/out/
+          retention-days: 1
+          if-no-files-found: warn
