@@ -1,3 +1,9 @@
+# 05.11 · GPT · Lemo-Opuscar: 66 кодовых киностилей подключены к M1lash
+
+По просьбе владельца найден официальный `lemomo-ai/lemo-opuscar` (источник `bebbbe1aa92a3cb4bb6f83500e61b23a17d1aa00`, лицензия MIT для кода/стилевых инструкций); библиотека перенесена в `skills/ext/lemo-opuscar/`. **66/66 исходных STYLE.md сверены по git blob SHA**, добавлены DIRECTOR/TECHNIQUE/MY-STYLES, style index, оригинальный `setup.sh`, адаптированный `SKILL.md` и ссылки `.agents/skills/lemo-opuscar`, `.claude/skills/lemo-opuscar`. Зарегистрировано в Studio и Film-Mult SKILL, **без** смены S10-D25, политики голоса, пауз и публикаций. Код и документы запушены commit `aceacdac85fd7420604f4da09e9bdb5104ad6da9`. **Рендер-движок/Chromium/npm/Python dependencies не запускались, MP4 не создавался, видео QA не проводился**; перед первым настоящим применением выполнить контролируемый runtime preflight в отдельной среде. Ссылки и текущие правила: `skills/ext/lemo-opuscar/SKILL.md`.
+
+---
+
 # 05.11 · GPT · МультНовости: 2 рабочих анимированных мира (factory v7 и warehouse v1), честный ART PARTIAL
 
 **Два реальных разных MP4 (НЕ 21–23-мин мастер):**
