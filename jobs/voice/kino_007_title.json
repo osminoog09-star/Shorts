@@ -1,0 +1,15 @@
+{
+  "job_id": "kino_007_title",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "utterances": [
+    {
+      "id": "title",
+      "text": "Это был фильм Бэтмен",
+      "rate": 1
+    }
+  ],
+  "test_scope": "private_owner_review_no_youtube_upload",
+  "source": "kino_007 V7 approved outro follows film 33.967..40.567, title voice starts >=40.567",
+  "publication": "forbidden_without_owner_ok"
+}
