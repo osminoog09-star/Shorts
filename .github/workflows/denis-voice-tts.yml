@@ -1,0 +1,143 @@
+name: Denis Voice · Qwen3-TTS 1.7B Base ICL (PRIVATE)
+# Owner's reference, transcript and embedding NEVER go into public Git.
+# No YouTube upload/publishing; zero fallback to another voice.
+on:
+  workflow_dispatch:
+    inputs:
+      job_path:
+        description: 'jobs/voice/<id>.json in this repository'
+        type: string
+        required: true
+  # One explicit integration test; delete this push trigger after owner test.
+  push:
+    branches: [main]
+    paths:
+      - 'jobs/voice/test_claude.json'
+
+permissions:
+  contents: read
+concurrency:
+  group: denis-voice-${{ github.event_name == 'push' && 'test_claude' || inputs.job_path }}
+  cancel-in-progress: false
+
+jobs:
+  synthesize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    env:
+      HF_HOME: ${{ runner.temp }}/m1lash-hf-public-weights
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      DO_NOT_TRACK: '1'
+      GRADIO_ANALYTICS_ENABLED: 'False'
+      TOKENIZERS_PARALLELISM: 'false'
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      TRANSFORMERS_NO_ADVISORY_WARNINGS: '1'
+      JOB_FILE: ${{ github.event_name == 'push' && 'jobs/voice/test_claude.json' || inputs.job_path }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Verify job allowlist, metadata and unit tests (without reading private voice)
+        run: |
+          set -euo pipefail
+          case "$JOB_FILE" in jobs/voice/*.json) ;; *) echo '::error::Expected jobs/voice/<id>.json'; exit 1;; esac
+          test -f "$JOB_FILE" || { echo '::error::No voice job JSON in repository'; exit 1; }
+          python -m unittest discover -s scripts/qa -p 'test_voice_private.py'
+          python -m unittest discover -s scripts/qa -p 'test_fetch_outro.py'
+          VOICE_JOB_ID="$(python - "$JOB_FILE" <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          from denis_voice_tts import job_config
+          path=Path(sys.argv[1])
+          job_id, _=job_config(path)
+          if path.stem != job_id: raise SystemExit('NO-GO: JSON job_id must match file stem')
+          print(job_id)
+          PY
+          )"
+          echo "VOICE_JOB_ID=$VOICE_JOB_ID" >> "$GITHUB_ENV"
+          echo "VOICE_RESULT_DIR=$RUNNER_TEMP/m1lash-voice-out/$VOICE_JOB_ID" >> "$GITHUB_ENV"
+      - name: Verify/private-fetch owner reference (only Google Drive OAuth)
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: |
+          set -euo pipefail
+          python scripts/voice_private_io.py fetch --dest "$RUNNER_TEMP/m1lash-private-ref"
+          python scripts/voice_private_io.py verify --dest "$RUNNER_TEMP/m1lash-private-ref"
+      - name: Prepare FFmpeg and CPU-only PyTorch (never use paid TTS API)
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python -m pip install --upgrade -q pip
+          python -m pip install -q --index-url https://download.pytorch.org/whl/cpu 'torch==2.9.1' 'torchaudio==2.9.1'
+          python -m pip install -q 'qwen-tts==0.1.1' 'transformers==4.57.3' 'accelerate==1.12.0' 'soundfile==0.14.0' 'huggingface-hub==0.36.2' 'faster-whisper==1.2.1'
+          python - <<'PY'
+          from importlib.metadata import version
+          for name in ('qwen-tts','torch','transformers','faster-whisper'):
+            print(name,version(name))
+          PY
+      - name: Cache PUBLIC Qwen/Whisper model weights only (not reference/embedding)
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/m1lash-hf-public-weights
+          key: denis-voice-qwen3-1p7b-base-and-whisper-small-20261105-v1
+      - name: Download PUBLIC Qwen3-TTS 1.7B Base to cached HF_HOME
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from huggingface_hub import snapshot_download
+          from pathlib import Path
+          import os
+          repo='Qwen/Qwen3-TTS-12Hz-1.7B-Base'
+          folder=snapshot_download(repo_id=repo)
+          if not (Path(folder)/'config.json').is_file():
+            raise SystemExit('BLOCKED: missing Qwen3-TTS model config')
+          print('Public model snapshot loaded, no owner voice assets in cache')
+          with open(os.environ['GITHUB_ENV'],'a') as out:
+            out.write('QWEN_LOCAL_PATH='+folder+'\n')
+          PY
+      - name: Generate 3/8 utterances using private Denis ICL, then faster-whisper ASR
+        run: |
+          set -euo pipefail
+          python scripts/denis_voice_tts.py \
+            --job "$JOB_FILE" \
+            --assets "$RUNNER_TEMP/m1lash-private-ref" \
+            --model-dir "$QWEN_LOCAL_PATH" \
+            --output "$VOICE_RESULT_DIR"
+          test -s "$VOICE_RESULT_DIR/manifest.json"
+      - name: Store synthesized files in owner-private Google Drive voice_out
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: |
+          set -euo pipefail
+          python scripts/voice_private_io.py upload \
+            --result-dir "$VOICE_RESULT_DIR" --job-id "$VOICE_JOB_ID"
+          test -s "$VOICE_RESULT_DIR/drive_receipt.json"
+          python - "$VOICE_RESULT_DIR/drive_receipt.json" <<'PY'
+          import json,sys
+          j=json.load(open(sys.argv[1]))
+          print('PRIVATE VOICE RESULT:',j['folder_url'])
+          print('Uploaded files:',len(j['files']),'(no voice reference, no embedding)')
+          PY
+      - name: Upload audio/manifest/ASR/Drive receipts for owner private QA (1 day)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: denis-voice-${{ env.VOICE_JOB_ID }}
+          path: ${{ env.VOICE_RESULT_DIR }}/
+          retention-days: 1
+          if-no-files-found: error
+      - name: Never expose reference files in artifacts
+        if: always()
+        run: |
+          rm -rf "$RUNNER_TEMP/m1lash-private-ref"
