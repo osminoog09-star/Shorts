@@ -68,7 +68,7 @@ jobs:
             -c:a aac -b:a 160k -shortest "$RUNNER_TEMP/outro-smoke/body.mp4"
           python tools/assemble_with_outro.py \
             "$RUNNER_TEMP/outro-smoke/body.mp4" \
-            -o "$RUNNER_TEMP/outro-smoke/private_test.mp4" --preset ultrafast --crf 22
+            -o "$RUNNER_TEMP/outro-smoke/private_test.mp4" --preset ultrafast --crf 22 --body-lufs -13.5
           python skills/ext/ffmpeg-skill/scripts/check.py \
             "$RUNNER_TEMP/outro-smoke/private_test.mp4" --platform shorts \
             | tee "$RUNNER_TEMP/outro-smoke/check.log"
