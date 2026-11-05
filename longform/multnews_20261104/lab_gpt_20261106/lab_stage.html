@@ -1,0 +1,81 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"/><style>html,body{margin:0;background:#192a42}#viewport{width:1920px;height:1080px;position:relative;overflow:hidden}svg{display:block;position:absolute;inset:0;width:1920px;height:1080px}</style></head><body><div id="viewport"><svg id="stage" viewBox="0 0 2600 1462" xmlns="http://www.w3.org/2000/svg"></svg><svg id="hud" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"></svg></div><script>
+'use strict';
+const W=2600,H=1462,OL='#23344f';
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>{x=clamp(x);return x*x*(3-2*x)};
+const mix=(a,b,t)=>a+(b-a)*t;
+const R=(x,y,w,h,f,s=OL,sw=5,rx=8)=>`<rect x="${x.toFixed?.(2)??x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="${f}" stroke="${s}" stroke-width="${sw}" stroke-linejoin="round"/>`;
+const C=(x,y,r,f,s=OL,sw=5)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${f}" stroke="${s}" stroke-width="${sw}"/>`;
+const E=(x,y,rx,ry,f,s=OL,sw=5)=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${f}" stroke="${s}" stroke-width="${sw}"/>`;
+const P=(d,f='none',s=OL,sw=6)=>`<path d="${d}" fill="${f}" stroke="${s}" stroke-width="${sw}" stroke-linejoin="round" stroke-linecap="round"/>`;
+const L=(x,y,X,Y,c=OL,sw=6)=>P(`M${x} ${y} L${X} ${Y}`,'none',c,sw);
+const T=(x,y,text,z=36,c='#21304c')=>`<text x="${x}" y="${y}" fill="${c}" font-family="DejaVu Sans,Arial,sans-serif" font-size="${z}" font-weight="800">${text}</text>`;
+const G=(x,y,sc,inside)=>`<g transform="translate(${x} ${y}) scale(${sc})">${inside}</g>`;
+function base(t){let o='';o+=R(0,0,2600,1462,'#d3e5ed','none',0,0);o+=R(0,0,2600,307,'#52768b','none',0,0);o+=R(0,307,2600,116,'#a3c4d6','none',0,0);
+for(let i=0;i<10;i++){o+=R(46+i*264,14,203,266,'#c2e5ed',OL,8,8)+R(63+i*264,30,171,233,'#83b4cb','none',0,5);o+=L(147+i*264,30,147+i*264,262,'#476b88',6)}
+for(let j=0;j<14;j++){o+=L(0,j*40,2600,j*40,'#56758f',2)};
+for(let j=0;j<15;j++){let x=j*200;o+=P(`M${x} 0 L${x+100} 305 L${x+200} 0`,'none','#263d5a',8)}
+for(let j=0;j<8;j++)o+=E(140+j*342,350,98,21,'#fbe39d','none',0)+L(140+j*342,291,140+j*342,340,'#334b67',8);
+o+=R(0,1188,2600,274,'#b5cbd0','none',0,0)+R(0,1150,2600,35,'#edf4e9','#526a75',5,0);
+for(let x=0;x<2600;x+=190){o+=L(x,1220,x-128,1462,'#91acb4',3)}for(let y=1193;y<1462;y+=80)o+=L(0,y,2600,y,'#9cb3b8',3);
+for(let i=0;i<4;i++)o+=R(i*675,395,28,791,'#567b8d','#233b58',8,0);
+return o;}
+function control(t){let o='';o+=R(90,405,932,372,'#3e728f',OL,12,14)+R(109,420,895,335,'#dcf1f1','#d7f6f3',4,8);o+=R(535,399,461,62,'#284f6a',OL,8,8)+T(567,440,'ОПЕРАТОРСКАЯ',36,'#fff');
+// Man-sized operator with exoskeleton glove, head turning toward robot.
+const wristY=618-34*Math.sin(clamp((t-5)/7)*Math.PI),wristX=428+clamp((t-5)/7)*95;
+o+=E(325,732,171,26,'#557a88','none',0)+R(196,628,305,86,'#6489a6',OL,9,18)+R(200,482,290,170,'#5f9ca9',OL,10,48);o+=C(336,461,90,'#e5a97e',OL,9)+P('M285 450Q325 471 357 450','none','#98534d',8)+C(311,438,7,'#2b3047','none',0)+C(360,438,7,'#2b3047','none',0);o+=P('M244 426 Q237 361 333 362 Q433 367 423 421','#3f435d','#34334c',9);
+o+=P(`M410 581 Q${460} 559 ${wristX} ${wristY}`,'none','#e5a97e',43)+C(wristX,wristY,23,'#d2e9f5',OL,7)+R(wristX-9,wristY-33,24,17,'#4c88a8',OL,4,5);
+o+=R(524,530,391,173,'#2b4d6b',OL,10,10);o+=R(544,550,351,134,'#12283f','#5fb2c5',5,7);o+=T(567,594,'ТЕЛЕОПЕРАЦИЯ',27,'#d6f5e3');o+=P('M566 646 Q624 591 670 642 T782 630 T870 620','none','#68edc5',7);o+=R(610,696,240,43,'#e4b75e',OL,7,7);
+// Data packets physically travel when the operator guides.
+if(t>6){for(let i=0;i<8;i++){let u=((t-6)*.34+i/8)%1;let xx=934+u*487;let yy=671+Math.sin(u*3.1)*(-50);o+=C(xx,yy,7+3*(i%2),'#65efd0','none',0)}}
+return o;}
+function kitchen(t){let o='';o+=R(27,835,785,338,'#f0ded0',OL,10,10)+R(50,847,346,288,'#f6f3e9',OL,7,6)+R(422,858,346,276,'#f7f0db',OL,7,5);o+=R(54,782,740,65,'#315f7b',OL,9,6)+T(97,832,'КУХНЯ / ЗАХВАТ ПРЕДМЕТОВ',40,'#fff');
+o+=R(78,888,266,241,'#9dcbd5',OL,10,15)+R(104,913,219,187,'#e6eef1',OL,5,10)+R(132,933,74,17,'#97b9c8','none',0,5);o+=R(430,975,326,113,'#dbb479',OL,8,8);
+for(let i=0;i<4;i++)o+=R(472+i*62,917,47,53,['#dd9f85','#f3e0a3','#95b7d6','#8dcdb6'][i],OL,4,8);
+const steam=(Math.sin(t*3)+1)/2;o+=P(`M632 921 Q${603-steam*18} 871 637 851`,'none','#90ccdc',8);return o;}
+function labTraffic(t){
+ let o='';const x=2125-36*Math.sin(t*.35);
+ // A maintenance cart and a technician on separate floor lane add environmental life.
+ o+=E(x,1243,133,21,'#5c7b8a','none',0)+R(x-117,1111,235,104,'#e6bb68',OL,7,9)+R(x-108,1098,215,22,'#8dacae',OL,6,7);
+ o+=C(x-78,1220,27,'#3a5268',OL,6)+C(x+76,1220,27,'#3a5268',OL,6);
+ for(let j=0;j<3;j++)o+=R(x-92+j*66,1140,56,60,['#c8e2e2','#edb1a1','#b6ccde'][j],OL,4,5);
+ let hx=2353+Math.sin(t*.7)*25,hy=1151+Math.sin(t*.4)*8;
+ o+=E(hx,1250,76,17,'#5e8392','none',0)+P(`M${hx-43} 1177L${hx-49} 1239L${hx-15} 1239L${hx} 1183`,'#4f8ca5',OL,5)+P(`M${hx+34} 1177L${hx+43} 1239L${hx+8} 1239L${hx} 1183`,'#4f8ca5',OL,5);
+ o+=R(hx-53,1086,104,103,'#5f9eaf',OL,6,16)+C(hx,1052,47,'#e7b08e',OL,7)+P(`M${hx-41} 1043Q${hx-8} 996 ${hx+41} 1038`,'none','#2e4e69',13);
+ o+=P(`M${hx-49} 1108L${hx-96} 1140L${hx-128} ${1128+Math.sin(t*1.5)*9}`,'none','#e7b08e',18);
+ o+=R(hx+28,1104,75,87,'#e8ead9',OL,5,10)+T(hx+40,1140,'QA',26,'#3d5c76');
+ return o;
+}
+function laundry(t){let o='';o+=R(860,831,823,340,'#dbe4d1',OL,10,10);o+=R(876,777,780,64,'#647c93',OL,8,8)+T(904,825,'БЕЛЬЁ / ПОВТОР ДВИЖЕНИЙ',39,'#fff');
+o+=R(925,934,266,181,'#b0ccdf',OL,8,13)+C(1055,1022,68,'#deedee',OL,8)+C(1055,1022,47,'#8abacc',OL,5)+R(1252,1041,347,93,'#cea77c',OL,7,9);
+for(let i=0;i<3;i++)o+=P(`M${1330+i*38} 1038 L${1296+i*40} 1005 L${1383+i*37} 1005 L${1362+i*40} 1043Z`,['#e9a79b','#9ecfbd','#ddd0a6'][i],OL,3);
+return o;}
+function carSimulation(t){let o='';o+=R(1781,570,797,572,'#c6d9dc',OL,10,18);o+=R(1801,590,759,64,'#4b7290',OL,7,8)+T(1840,638,'ИМИТАТОР САЛОНА АВТО',38,'#fff');
+o+=P('M1844 978Q1832 844 1974 788 Q2080 750 2200 778 Q2360 775 2480 870L2515 1006Z','#75b0bc',OL,13);
+o+=P('M1909 886Q1970 787 2115 831L2178 935Z','#bce2ea',OL,9);o+=R(2264,834,225,140,'#a8c8c9',OL,10,12);o+=C(2340,910,49,'#273f5b',OL,7)+C(2340,910,24,'#e4eddf',OL,6);o+=R(1823,1041,683,63,'#d6bb90',OL,7,10);
+const flash=(t>14&&t<17)?1:0;if(flash)o+=R(2330,698,161,56,'#7be1bd',OL,6,9)+T(2353,738,'ЗАПИСАНО',24,'#294964');
+return o;}
+function robot(t){let o='';const hand=(t<5.5?[1490,877]:t<7.9?[mix(1490,1320,ease((t-5.5)/2.4)),mix(877,1032,ease((t-5.5)/2.4))]:t<9.3?[1320,1032]:t<12?[mix(1320,1790,ease((t-9.3)/2.7)),1032-96*Math.sin(Math.PI*ease((t-9.3)/2.7))]:t<12.6?[1790,1032]:[mix(1790,1540,ease((t-12.6)/1.9)),mix(1032,848,ease((t-12.6)/1.9))]);
+const cupX=t<7.9?1320:t<12.05?hand[0]:1790;const cupY=t<7.9?1036:t<12.05?hand[1]+4:1036;
+// Distinct robot body shadow and hips grounded.
+o+=E(1500,1155,166,28,'#406476','none',0)+P('M1435 942L1408 1134L1473 1134L1490 976Z','#4a6d89',OL,9)+P('M1538 941L1524 1134L1591 1134L1571 973Z','#4a6d89',OL,9);
+o+=R(1385,759,206,245,'#e7d79e',OL,12,40)+R(1400,801,176,95,'#4b7c90',OL,8,19)+R(1431,821,110,57,'#203b58',OL,6,12)+T(1464,864,'↺',50,'#88ead6');o+=R(1373,580,231,170,'#dfece3',OL,10,50)+R(1402,613,176,97,'#263c5b',OL,8,29)+E(1450,653,13,18,'#c8f7df','none',0)+E(1535,653,13,18,'#c8f7df','none',0)+P('M1466 680 Q1494 698 1528 679','none','#c8f7df',5);o+=L(1490,574,1490,549,OL,9)+C(1490,542,15,'#f2a67e');
+const elbow=[mix(1413,hand[0],.48),mix(832,hand[1]-80,.52)];
+// Left support arm is in distinct pose.
+o+=P('M1402 828Q1334 894 1318 962','none','#d1b778',31)+P('M1402 828Q1334 894 1318 962','none',OL,5)+C(1318,962,23,'#d1b778',OL,6);
+// Right arm has real two-link contact, with hand mirroring the human-guided event.
+o+=P(`M1578 809L${elbow[0]} ${elbow[1]}L${hand[0]} ${hand[1]}`,'none',OL,46)+P(`M1578 809L${elbow[0]} ${elbow[1]}L${hand[0]} ${hand[1]}`,'none','#e4b66c',32)+C(elbow[0],elbow[1],26,'#f4c16d',OL,7);
+// Stationary ceramic cup on table until grip, carried with hand until release, then on destination surface.
+o+=R(1237,1131,241,31,'#e2bb82',OL,7,7)+R(1697,1131,260,31,'#e2bb82',OL,7,7);
+o+=R(cupX-40,cupY,80,90,'#f29d89',OL,7,10)+P(`M${cupX+41} ${cupY+22}Q${cupX+96} ${cupY+17} ${cupX+64} ${cupY+64}L${cupX+41} ${cupY+64}`,'none',OL,6)+R(cupX-31,cupY+9,63,16,'#f8d6b1','none',0,6);
+// The gripper comes OVER the cup rim; opening/closing are explicit.
+o+=C(hand[0],hand[1]-3,28,'#607e95',OL,7)+P(`M${hand[0]-26} ${hand[1]}l-13 36`, 'none',OL,11)+P(`M${hand[0]+26} ${hand[1]}l13 36`, 'none',OL,11);
+if(t>6&&t<12.8){const pulses=Math.floor(t*3)%2;const hx=1067+(t-6)*109;const hy=715-90*Math.sin((t-6)*.4);o+=P(`M${hx-64} ${hy}L${hx} ${hy}L${hx+20} ${hy-28}`,'none',pulses?'#5be6c4':'#8acee2',9)}
+if(t>12.8&&t<17)o+=R(1702,937,260,64,'#4f897c',OL,8,8)+T(1727,982,'ЗАПИСЬ ПРИМЕРА',30,'#fff');
+window.__labQA={time:t,operatorDriven:true,hand,elbow,cup:[cupX,cupY],state:t<5.5?'observe':t<7.9?'approach':t<9.3?'grip':t<12.05?'carry':t<12.6?'release':'recorded',attached:t>=7.9&&t<12.05,gripGap:t>=7.9&&t<12.05?Math.hypot(hand[0]-cupX,hand[1]+4-cupY):null};return o;}
+function hud(t){const title=t<3.5?'КЛАССЫ В ОГРОМНОЙ ЛАБОРАТОРИИ':t<6?'УПРАВЛЕНИЕ ЧЕЛОВЕКОМ':t<9.3?'ПОКАЗ ДВИЖЕНИЯ':t<12.6?'РОБОТ ПОВТОРЯЕТ':t<15?'ЗАПИСЬ ДАННЫХ':'ОБУЧЕНИЕ — НЕ АВТОНОМИЯ';let o=R(0,0,1920,99,'#253d59','none',0,0)+P('M0 0L324 0L297 94L0 94Z','#d84e62','none',0)+T(24,69,'M1lash',58,'#fff')+T(340,67,'МУЛЬТНОВОСТИ',41,'#ffe19f')+R(1110,17,774,63,'#426987','none',0,11)+T(1140,59,title,31,'#fff');o+=R(0,1001,1920,79,'#253d59','none',0,0)+T(42,1053,'KIMM / ETRI · СБОР ОБУЧАЮЩИХ ДАННЫХ',33,'#fff')+R(1503,1013,377,51,'#edbc60','none',0,9)+T(1527,1049,'ПОКАЗ С ОПЕРАТОРОМ',24,'#243c56');return o;}
+const SHOTS=[[0,0,2600,1462],[0,140,1810,1018],[720,355,1810,1018],[950,350,1640,922],[690,80,1780,1001],[0,0,2600,1462]];
+function camera(t){const marks=[0,3.5,6,9.3,12.6,15,18];let i=0;for(let j=0;j<6;j++)if(t>=marks[j])i=j;let a=SHOTS[i].slice();let u=(t-marks[i])/(marks[i+1]-marks[i]);a[0]+=u*16;a[1]+=u*7;return {i,b:a};}
+window.frame=(t,force=null)=>{t=Number(t)||0;const c=camera(t),n=force===null?c.i:force,box=force===null?c.b:SHOTS[force],stage=document.getElementById('stage');stage.setAttribute('viewBox',box.join(' '));const draw=`<defs><pattern id="half" width="23" height="23" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2" fill="#263850" opacity=".08"/></pattern></defs>`+base(t)+control(t)+kitchen(t)+laundry(t)+carSimulation(t)+labTraffic(t)+robot(t)+R(0,0,W,H,'url(#half)','none',0,0);stage.innerHTML=draw;document.getElementById('hud').innerHTML=hud(t);return {time:t,shot:n,viewBox:box,action:window.__labQA}};window.frame(0);
+const args=new URLSearchParams(location.search);if(args.get('preview')==='1'){const start=performance.now();function tick(t){window.frame(((t-start)/1000)%18);requestAnimationFrame(tick)}requestAnimationFrame(tick)}
+</script></body></html>
