@@ -1,5 +1,5 @@
-node_modules/
-node_modules_pc/
+node_modules
+node_modules_pc
 demo-ref/
 styles/
 film/
