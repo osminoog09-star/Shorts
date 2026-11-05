@@ -29,20 +29,6 @@
 
 ## GPT/Codex
 
-### 05.11 — Download tools from screenshots + standalone Opuscar smoke · GPT
-Цель: установить проверенные и относящиеся к M1lash источники, затем создать реальный отдельный тестовый MP4 без публикации и без изменения PAUSED проектов.
-Шаги:
-- [x] 1. Прочитать правила, установить происхождение Colibri / AutoHarness / Scrapling / Teardown / Glassy UI; проверить, что Opuscar уже есть в GitHub. Источники: JustVugg/colibri (LLM runtime, не self-learning skills), tigerless-labs/autoharness, D4Vinci/Scrapling, Opuscar teardown style. Glassy V5 только скрин, оригинальный код не подтверждён.
-- [x] 2. Сохранён официальный Scrapling agent skill + BSD licence (commit 052863b); AutoHarness vendor Python source/README/LICENSE (commit 0455bad), без включения hooks/MCP, Colibri repo pinned без моделей. Teardown уже в Opuscar.
-- [x] 3. Создан отдельный Opuscar-style isometric factory пилот: оригинальные HTML/Canvas+Python Playwright, 6 stills, MP4 9.000s 1920×1080 H264 30fps 270 кадров, silent, ZIP с исходниками. НЕ официальный upstream renderer, не паузные проекты.
-- [ ] 4. Самостоятельный `ffprobe` и `ffmpeg -xerror` full decode PASS (повторно 05.11); `look_final_contact.jpg` и 6 stills существуют, ART PARTIAL / NO-GO, официальный `check.py`/`look.py` не запускался. Сохранить итог в HANDOFF; при доступном runtime запустить официальный QA, затем отдельно решить о следующем улучшении.
-- [x] 5. По новому пакету из 10 скриншотов: сверены существующие Watch/Opuscar/Teardown/Scrapling/AutoHarness/Colibri, найден официальный Graphify v8; новый `skills/ext/graphify/SKILL.md` и обе регистрации для Claude/Codex + секция Studio запушены. Публичный аудит `skills/ext/SCREENSHOT_TOOLS_2026-11-05.md`. **Graphify CLI не установлен/не тестировался**; Glassy V5/JavaRush не являются подтверждёнными навыками, OpenClaw не развёрнут.
-- [x] 6. **Opuscar factory V2 18s** (отдельный оригинальный пилот, owner review): реально отрендерены 540/540 кадров, MP4 1920×1080 H264 yuv420p BT709 /30fps/18.000s/0 audio, SHA256 `0289c5cd198d2043579fb469b8ec4a6d2558626707f28c81ea33bfe2d6fe84d4`; 11 source stills и 18 **закодированных MP4** кадров осмотрены, full -xerror decode, blackdetect и freezedetect PASS, Chromium errors 0; числовая continuity проверка grip/install в 3.65/8.4s. Схематичные фигурки / одно пространство → **ART PARTIAL**. Не официальный upstream Opuscar engine. Приватные Library `/Youtube/M1lash_Opuscar_20261105/M1lash_Opuscar_Factory_v2_18s_PRIVATE.mp4` (libfile_dd5c4fd616e08191b6d8ea95a3dd38f4) и `M1lash_Opuscar_Factory_v2_Source_QA.zip` (libfile_f69a58f2f6288191926043083c1356a9, исходники и QA). Публичного upload НЕТ.
-Следующий шаг: когда доступен runtime с mounted `skills/ext/ffmpeg-skill/scripts/check.py` и `look.py`, материализовать private MP4, провести официальную проверку на этом же SHA256 (иначе заново на новой версии); затем улучшить ART до GO. Пока владелец может оценить приватный V2 и дать конкретные поправки. Никакой публикации.
-Где промежуточное: skills/ext/lemo-opuscar/, skills/ext/watch/; private Library /Youtube/M1lash_Opuscar_20261105/ (MP4 и воспроизводимый source QA ZIP), полное техническое QA в ZIP.
-Ждёт Дениса: только решение о публикации (этот smoke без заливки).
-
-
 ### 04.11 — M1lash МультНовости #01, отдельный S3-D25 21–23 мин · GPT
 **ВЛАДЕЛЕЦ УТВЕРДИЛ 04.11:** отдельная новостная рубрика, S3-D25, 21–23 мин, только его voice Denis как основной. Уточнение владельца 04.11: **ВСЕ окружения масштабные, огромный живой мир**, завод с разными линиями и предметными сценами, не маленькая сцена и один робот; **сначала демо-видео**, не image_gen-картинка. Это НЕ возобновление PAUSED_BY_OWNER M1lash Мульт EP01/3D Coffee.
 **Отзыв владельца 04.11 (демо v5): удалить ВСЕ заводские SFX, провести детальный разбор с правками, записать в журнал/скил.** В демо v6 строго без audio tracks, будущий собственный голос Дениса по §3 сохраняется.
