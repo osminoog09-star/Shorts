@@ -1,3 +1,21 @@
+# 05.11 · GPT · Установка и реальный QA всех screenshot tools в изолированном runtime
+
+**Задача владельца:** «Ну установи и проверь их всех». Проанализировано 10 элементов. В main внедрены воспроизводимый read-only sandbox workflow `.github/workflows/skills-runtime-smoke.yml`, `tools/skills_runtime_smoke.py`, отчёт `reports/skills/2026-11-05_SCREENSHOT_RUNTIME_QA.md`. Результаты сохраняются строго в отдельной ветке `skill-smoke-results`, `reports/skills/runtime_latest.json`. **Подтверждённый фактический run 41976454337 = все 4 runtime jobs SUCCESS + summary SUCCESS** (SHA workflow `19ac426ea5cdbb59d0f472f0e517168d49c48f91`), прочитаны реальные job logs. Позднее в CI зафиксированы проверенные версии PyPI/npm в commit `40419aa84bca6a0494c1c2d3131e11c2ce51ff67`; именно этот commit потребует отдельного readback CI, иначе предшествующий run остаётся доказательством только первоначальных установок.
+
+**Фактические отдельные тесты:**
+- Graphify `graphifyy 0.9.102`: локальный AST маленького Python файла, 2 узла/1 связь, PASS (без Cloud/hooks).
+- Scrapling `0.5.1`: CSS текста и href по статической HTML строке, PASS (без обхода anti-bot).
+- /watch: 4s synthetic MP4 → **8 реальных JPEG + report.md**, PASS (без ASR Whisper и чужих URL).
+- AutoHarness: компиляция 30 файлов + импорт и функциональная проверка `skills_guard` (распознаёт prompt injection) и `skill_store.apply_delta` (неоднозначный patch отклоняется), CORE PASS; **hooks/MCP/захват сессий не включены**.
+- Lemo-Opuscar: 66 канонических стилей (физически 67 STYLE.md с шаблоном), Teardown присутствует; upstream `plugin/skills/lemo-opuscar/scripts/setup.sh deps` реально установил Node/Python, headless Chromium 153 и Playwright; два **разных физических PNG** 1550/1551 B создано HTML+Canvas+Playwright, BROWSER SMOKE PASS. **Нет художественного теста полноценного Opuscar-фильма/MP4**.
+- Colibri: официальный C CPU engine собран `make -C c -j2 colibri`, ELF --help отвечает, PASS; **веса модели не скачивались** (не тестировать генерацию).
+- OpenClaw 2026.10.10: npm install `--ignore-scripts` в /tmp префикс и `openclaw --help` PASS, Gateway/каналы/сервис **не** активированы.
+- Glassy Dashboard V5 — нет верифицированного исходного пакета/лицензии, только экранное UI reference; JavaRush AI Academy — реклама учебного курса, не устанавливаемый skill. **Не писать «10 из 10 пакетов установлены».**
+
+**Изоляция:** GitHub-hosted runners временные; не установлен постоянный runtime в ChatGPT, ПК или телефоне. Главные правила, публикации, расписание, PAUSED проекты, голосовые образцы и секреты не затронуты. CPU Colibri не способен отвечать без больших моделей; OpenClaw без Gateway не является активным агентом; AutoHarness без hooks не «самоучится». Для повторения Actions → `Third-party skill runtime smoke (isolated)`. Ошибки и их починка: отсутствующий FFmpeg в ubuntu26, yt-dlp не в venv PATH, неверный setup path Opuscar и отличие 66 index/67 physical style. В Studio SKILL урок записан, подробный источник — `reports/skills/2026-11-05_SCREENSHOT_RUNTIME_QA.md`.
+
+---
+
 # 05.11 · GPT · Opuscar Factory V2.3 — корректировка ложного PASS по зависанию хвоста
 
 **Исправленный отдельный silent MP4 (заменяет ранее упомянутый V2):** `/mnt/data/M1lash_Opuscar_Factory_v2_3_18s_FINALTEST.mp4`, 18.000с / 540 кадров / 1920×1080 30fps H.264 yuv420p TV BT.709 / audio streams 0, **SHA256 `45f84977f048f45a2a1812b195303e5c1afa07fcc9496958b2fc31828e1ef26b`**. Полный `ffmpeg -v error -xerror` decode PASS, повторный `ffprobe` PASS, `blackdetect` + `freezedetect=n=-50dB:d=0.8` без событий, также `qa_verify.py` строгий -58dB PASS. 20 реальных закодированных MP4-кадров извлечено и открыто: `/mnt/data/opuscar_factory_v2/mp4_contact_v2_3.jpg`. Original Canvas/Playwright scene, real op grasp / move / release, source `/mnt/data/opuscar_factory_v2/index.html` восстановлен из фактически использованного оригинального архива и патчен только после t15; `create_source.py` в чистой папке воспроизводит побайтово тот же индекс. Исправленный набор исходников, отчёта и контакт-лист: `/mnt/data/M1lash_Opuscar_Factory_V2_3_SOURCE_QA.zip`.
