@@ -6,6 +6,9 @@ on:
       - 'publishing/drive_folder.json'
       - 'publishing/clip_requests.json'
       - 'scripts/drive_folder_intake.py'
+      - 'scripts/fetch_outro.py'
+      - 'scripts/qa/test_fetch_outro.py'
+      - 'tools/outro/approved.json'
       - 'scripts/qa/test_drive_folder_intake.py'
       - '.github/workflows/drive-folder-intake.yml'
   schedule:
@@ -28,6 +31,18 @@ jobs:
         run: |
           python -m py_compile scripts/drive_folder_intake.py
           python -m unittest discover -s scripts/qa -p 'test_drive_folder_intake.py'
+      - name: Load exactly two approved Denis v7 outros from private Drive
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s scripts/qa -p 'test_fetch_outro.py'
+          python scripts/fetch_outro.py
+          python scripts/fetch_outro.py --verify-only
       - name: Scan owner private Drive metadata (never download films)
         env:
           GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
