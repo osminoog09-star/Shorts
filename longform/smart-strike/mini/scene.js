@@ -333,7 +333,7 @@ const tongue = new THREE.Mesh(new THREE.SphereGeometry(.03, 14, 10), mat.tongue)
 const teeth = new THREE.Mesh(new RoundedBoxGeometry(.06, .012, .02, 2, .005), mat.white); teeth.position.set(0, .01, .012); mouthG.add(teeth);
 // hair (owner likeness): faded short sides + longer ash-blond top swept to his right and forward
 const hairG = new THREE.Group(); head.add(hairG);
-const fadeCap = new THREE.Mesh(new THREE.SphereGeometry(.216, 36, 24, 0, Math.PI * 2, 0, Math.PI * .5), mat.fade); fadeCap.scale.set(1.0, 1.22, 1.03); fadeCap.position.set(0, .03, -.01); fadeCap.rotation.x = -.22; hairG.add(fadeCap);
+const fadeCap = new THREE.Mesh(new THREE.SphereGeometry(.216, 36, 24, 0, Math.PI * 2, 0, Math.PI * .5), mat.fade); fadeCap.scale.set(1.0, 1.2, 1.03); fadeCap.position.set(0, .045, -.02); fadeCap.rotation.x = -.8; hairG.add(fadeCap);
 // top: strands swept to his right and slightly forward (side part on his left)
 for (let i = 0; i < 16; i++) {
   const u = (i % 8) / 7, row = Math.floor(i / 8);
