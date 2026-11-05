@@ -171,6 +171,9 @@ Workflow `.github/workflows/denis-voice-tts.yml` сам скачивает *тр
 
 ## 7. Уроки
 
+- **06.11 · kino_007 / частотный QA аудио + Studio gate (GPT):** общий −16.8 LUFS на полном MP4 может маскировать **2.475с почти тишины** в пост-концовке (reveal −41.1 LUFS). Проверять отдельные сегменты film/CTA/reveal с `ebur128` и `silencedetect=-35dB:d=.4`; без реального авторского голоса, binary V8, финальных official check.py/look.py — **NO-GO**, даже если кадры/стыки V7 осмотрены и full decode PASS. Сначала private review без даты; только «ок» владельца даёт слот кино в 10:00 Europe/Tallinn через Studio. `reports/research/2026-11-06_KINO_007_FULL_SECOND_PASS.md`.
+
+
 - **05.11 · Film-Mult references (GPT):** 2 Warhammer POV-видео нельзя считать полностью просмотренными после YouTube AI summary — авторские главы 30:49/6 и 34:54/8 получили из ytInitialData и страниц каналов, **три реальные keyframes/ролик** (hq1/2/3) с YouTube открыты и осмотрены; ИИ-сводки R1 только до 4:25, R2 до 1:22, второй анализатор визуально подозрителен. yt-dlp/Playwright требуют вход, официальные transcript segments=0. Разделять **FULL_MACROSTRUCTURE_VERIFIED** и **VIDEO_AUDIO_UNVERIFIED**. Перенять парадокс→возврат R1, стадии героя R2 и комиксную выразительность, но не менять утверждённый S10-D25 и не заявлять подтверждённую анимацию/звук. Полный отчёт: `reports/research/references/film_mult_2026-11-05/COMPARATIVE_AUDIT.md`.
 
 
