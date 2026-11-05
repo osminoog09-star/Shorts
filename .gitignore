@@ -12,3 +12,8 @@ reports/youtube/pulse.json
 
 # Private owner-voice outro assets: materialize per tools/outro/approved.json
 media/outro/m1lash_outro_denis_*
+
+# Confidential owner voice reference/embeddings and generated audio never belong in public Git
+media/voice/
+media/voice_out/
+voice_private/
