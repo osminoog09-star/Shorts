@@ -330,6 +330,22 @@
       "duration_seconds": 658.645,
       "voice": "Denis Qwen3 1.7B; approved Denis v7 outro",
       "note": "04.11.2026 uploaded PRIVATE via exact-SHA Drive workflow run 41894499729, readback verified private; official QA 0 FAIL/1 WARN optional subtitles; no publish_at, no public/scheduled status. Film Content ID restrictions require YouTube Studio review. Do not re-upload."
+    },
+    {
+      "id": "kino_007",
+      "kind": "short",
+      "author": "GPT",
+      "status": "draft",
+      "slot": null,
+      "style": "S6-D25",
+      "mp4": null,
+      "publish_md": "shorts/kino_007/PUBLISH.md",
+      "title": "Он думал, что они КОМАНДА… Но услышал ЭТО 😳 #shorts",
+      "review_version": "V8_PENDING_BINARY_FINAL_QA",
+      "private_review_url": null,
+      "youtube_id": null,
+      "owner_audio_approved": false,
+      "note": "06.11 независимый аудит: V7 физический MP4 42.813с визуально и FFmpeg проверен, НО 2.475с почти тишины на reveal. V8 с авторским голосом есть в Descript, бинарный экспорт для проверки и обрезки хвоста не получен. NO-GO: не назначать дату/не загружать; после V8 check.py/look.py + одобрения Дениса перейти в review. Формат kino-Shorts 10:00 Europe/Tallinn."
     }
   ]
 }
