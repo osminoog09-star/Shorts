@@ -7,6 +7,7 @@ then Reads each frame path to see the video.
 from __future__ import annotations
 
 import argparse
+import shutil
 import sys
 import tempfile
 from pathlib import Path
@@ -15,6 +16,7 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).parent.resolve()
 sys.path.insert(0, str(SCRIPT_DIR))
 
+from classify import classify  # noqa: E402
 from download import download, is_url  # noqa: E402
 from frames import (  # noqa: E402
     MAX_FPS, auto_fps, auto_fps_focus, extract, extract_scene_change,
@@ -24,10 +26,25 @@ from hook import analyse_hook  # noqa: E402
 from pacing import compute_pacing  # noqa: E402
 from report import write_report  # noqa: E402
 from transcribe import filter_range, format_transcript, parse_vtt  # noqa: E402
-from whisper import load_api_key, transcribe_video  # noqa: E402
+from whisper import resolve_backend, transcribe_video  # noqa: E402
+
+
+def _force_utf8_stdio() -> None:
+    """Stop a non-ASCII character from killing the run before it reports.
+
+    On Windows stdout defaults to the locale codepage (cp1252 on a stock
+    en-GB/en-US install). Printing the focused-mode arrow, or any video title
+    outside Latin-1, then raises UnicodeEncodeError partway through the report.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, OSError):  # pragma: no cover - exotic stdio
+            pass
 
 
 def main() -> int:
+    _force_utf8_stdio()
     ap = argparse.ArgumentParser(
         prog="watch",
         description="Download a video, extract auto-scaled frames, and surface the transcript.",
@@ -46,9 +63,10 @@ def main() -> int:
     )
     ap.add_argument(
         "--whisper",
-        choices=["groq", "openai"],
+        choices=["local", "groq", "openai"],
         default=None,
-        help="Force a specific Whisper backend. Default: prefer Groq, fall back to OpenAI.",
+        help="Transcription backend. Default: local whisper.cpp (no API, no upload). "
+             "groq/openai send audio to that API and need its key.",
     )
     ap.add_argument(
         "--intent",
@@ -66,14 +84,27 @@ def main() -> int:
         action="store_true",
         help="Skip the dense 0-10s hook re-pass.",
     )
+    ap.add_argument(
+        "--mode",
+        choices=["auto", "transcript", "balanced", "frames"],
+        default="auto",
+        help=(
+            "How to analyse the video. 'auto' (default) classifies talking-head "
+            "vs visually-dense and picks a frame budget accordingly: a talking "
+            "head gets a thin set of frames + the transcript, a screencast/"
+            "B-roll video gets the full frame budget. Force a mode to override."
+        ),
+    )
     args = ap.parse_args()
 
     max_frames = min(args.max_frames, 100)
 
     if args.out_dir:
         work = Path(args.out_dir).expanduser().resolve()
+        work_is_temp = False
     else:
         work = Path(tempfile.mkdtemp(prefix="watch-"))
+        work_is_temp = True
     work.mkdir(parents=True, exist_ok=True)
     print(f"[watch] working dir: {work}", file=sys.stderr)
 
@@ -101,6 +132,37 @@ def main() -> int:
     effective_end = end_sec if end_sec is not None else full_duration
     effective_duration = max(0.0, effective_end - effective_start)
     focused = start_sec is not None or end_sec is not None
+
+    # --- Auto-classification: spend frame budget only where it pays off -------
+    # Talking-head videos get a thin frame set (content lives in the transcript);
+    # visually-dense videos get the full budget (frames carry information). The
+    # user can force this with --mode; focused ranges always get full density
+    # (they're zooming in deliberately) and skip classification.
+    classification: dict | None = None
+    user_capped = args.max_frames != 80  # explicit --max-frames overrides auto
+    if not focused:
+        if args.mode == "auto":
+            classification = classify(
+                video_path, pacing=None, duration_seconds=full_duration
+            )
+            print(
+                f"[watch] classified as {classification['mode']} "
+                f"({classification['label']}); {classification['reason']}",
+                file=sys.stderr,
+            )
+            if not user_capped:
+                max_frames = min(max_frames, classification["frame_budget"])
+        elif args.mode in ("transcript", "balanced", "frames"):
+            forced_budget = {"transcript": 12, "balanced": 40, "frames": 80}[args.mode]
+            classification = {
+                "mode": args.mode, "label": f"forced via --mode {args.mode}",
+                "frame_budget": forced_budget, "reason": "user override",
+                "confident": True,
+            }
+            if not user_capped:
+                max_frames = min(max_frames, forced_budget)
+            print(f"[watch] mode forced to {args.mode} (budget {max_frames})",
+                  file=sys.stderr)
 
     if focused:
         fps, target = auto_fps_focus(effective_duration, max_frames=max_frames)
@@ -145,9 +207,10 @@ def main() -> int:
         )
         sampling_mode = "uniform"
 
-    # Pacing: derive scene-change timestamps from frame metadata.
+    # Pacing: derive scene-change timestamps from frame metadata. Fill frames
+    # (buckets with no cut) are not shot boundaries, so they don't count.
     if sampling_mode == "scene-change":
-        scene_times = [f["timestamp_seconds"] for f in frames]
+        scene_times = [f["timestamp_seconds"] for f in frames if f.get("source") == "scene-change"]
     else:
         scene_times = []
     pacing = compute_pacing(
@@ -161,11 +224,12 @@ def main() -> int:
         print("[watch] running hook microscope on first 10s…", file=sys.stderr)
         hook_backend, hook_key = (None, None)
         if not args.no_whisper:
-            hook_backend, hook_key = load_api_key(args.whisper)
+            hook_backend, hook_key, _note = resolve_backend(args.whisper)
         hook_result = analyse_hook(
             video_path, work,
             backend=hook_backend, api_key=hook_key,
             full_video_duration=full_duration,
+            allow_whisper=not args.no_whisper,
         )
     else:
         hook_result = {"frames": [], "words": [], "segments": [], "ran": False,
@@ -174,6 +238,9 @@ def main() -> int:
     transcript_segments: list[dict] = []
     transcript_text: str | None = None
     transcript_source: str | None = None
+    # Captures *why* a transcript is missing, so the report states the real
+    # cause (e.g. audio too large) instead of a generic "no API key" message.
+    transcript_failure: str | None = None
     if dl.get("subtitle_path"):
         try:
             all_segments = parse_vtt(dl["subtitle_path"])
@@ -184,36 +251,54 @@ def main() -> int:
             print(f"[watch] subtitle parse failed: {exc}", file=sys.stderr)
 
     if not transcript_segments and not args.no_whisper:
-        backend, api_key = load_api_key(args.whisper)
-        if backend and api_key:
+        backend, api_key, backend_note = resolve_backend(args.whisper)
+        if backend:
             try:
                 all_segments, used_backend = transcribe_video(
                     video_path,
                     work / "audio.mp3",
                     backend=backend,
                     api_key=api_key,
+                    start_seconds=start_sec,
+                    end_seconds=end_sec,
                 )
+                # Whisper timestamps are relative to the trimmed clip (starts at
+                # 0); shift them onto the absolute timeline so they align with
+                # the absolute frame timestamps.
+                if start_sec:
+                    for seg in all_segments:
+                        seg["start"] += start_sec
+                        seg["end"] += start_sec
                 transcript_segments = filter_range(all_segments, start_sec, end_sec) if focused else all_segments
                 transcript_text = format_transcript(transcript_segments)
                 transcript_source = f"whisper ({used_backend})"
             except SystemExit as exc:
+                transcript_failure = f"Whisper transcription failed: {exc}"
                 print(f"[watch] whisper fallback failed: {exc}", file=sys.stderr)
         else:
-            hint = (
-                f"--whisper {args.whisper} was set but the matching API key is missing"
-                if args.whisper else
-                "no subtitles and no Whisper API key found"
-            )
+            hint = f"no subtitles and no transcription backend ({backend_note})"
+            transcript_failure = hint
             setup_py = SCRIPT_DIR / "setup.py"
             print(
-                f"[watch] {hint} — run `python3 {setup_py}` to enable the Whisper fallback",
+                f"[watch] {hint} — run `python3 {setup_py}` to set up local whisper",
                 file=sys.stderr,
             )
+    elif not transcript_segments and args.no_whisper:
+        transcript_failure = "no subtitles and Whisper disabled with --no-whisper"
 
     info = dl.get("info") or {}
 
     # Build report.md (the ingest-ready artifact).
     hero_frames = select_hero_frames(frames, pacing=pacing)
+    # A user-supplied --out-dir may be a real directory of theirs. Never
+    # silently destroy a report.md that was already sitting in it.
+    if not work_is_temp:
+        existing_report = work / "report.md"
+        if existing_report.exists():
+            backup = work / "report.md.bak"
+            shutil.copy2(existing_report, backup)
+            print(f"[watch] existing report.md backed up to {backup}", file=sys.stderr)
+
     report_path = write_report(
         out_path=work / "report.md",
         source=args.source,
@@ -256,6 +341,24 @@ def main() -> int:
     else:
         print("- **Transcript:** none available")
 
+    if classification:
+        print(
+            f"- **Analysis mode:** {classification['mode']} — {classification['label']}"
+        )
+        if classification["mode"] == "transcript":
+            print(
+                "  > This is a talking-head/near-static video: the content lives in "
+                "the **transcript**, and the frames are near-duplicates. Read the few "
+                "frames to confirm setting/speaker, but base your answer on the "
+                "transcript. (Frame budget was trimmed to save tokens.)"
+            )
+        elif classification["mode"] == "frames":
+            print(
+                "  > This is a **visually dense** video: the frames carry information "
+                "the transcript doesn't (on-screen text, diagrams, UI, B-roll). Read "
+                "the frames — they're where the value is."
+            )
+
     if not focused and full_duration > 600:
         mins = int(full_duration // 60)
         print()
@@ -278,6 +381,21 @@ def main() -> int:
     for frame in frames:
         print(f"- `{frame['path']}` (t={format_time(frame['timestamp_seconds'])})")
 
+    # Surface hook-microscope frames in the main stream too, so they're actually
+    # Read. Previously they were extracted to disk but never printed here.
+    hook_frames = hook_result.get("frames", []) if hook_result else []
+    if hook_frames:
+        print()
+        print("## Hook frames (0-10s, dense)")
+        print()
+        print(
+            "**The first 10 seconds at 2 fps — Read these to analyse the hook.** "
+            "This is the highest-leverage window of the video."
+        )
+        print()
+        for hf in hook_frames:
+            print(f"- `{hf['path']}` (t={hf.get('timestamp_seconds', 0.0):.1f}s)")
+
     print()
     print("## Transcript")
     print()
@@ -295,17 +413,26 @@ def main() -> int:
         print(f"_No transcript lines fell inside {format_time(effective_start)} → {format_time(effective_end)}._")
     else:
         setup_py = SCRIPT_DIR / "setup.py"
-        print(
-            "_No transcript available — proceed with frames only. "
-            "Captions were missing and the Whisper fallback was unavailable "
-            "(no API key set, or `--no-whisper` was used). "
-            f"Run `python3 {setup_py}` to enable Whisper, then re-run._"
-        )
+        reason = transcript_failure or "captions were missing and no transcription backend is set up"
+        msg = f"_No transcript available — proceed with frames only. Reason: {reason}."
+        # Only point at setup.py when a key is actually missing — not for size
+        # limits, disabled Whisper, or API errors where the key is fine.
+        if "no transcription backend" in reason or "key is missing" in reason:
+            msg += f" Run `{sys.executable} {setup_py}` to set up local whisper, then re-run."
+        msg += "_"
+        print(msg)
 
     print()
     print("---")
     print(f"_Report (ingest-ready): `{report_path}`_")
-    print(f"_Work dir: `{work}` — delete when done._")
+    if work_is_temp:
+        print(f"_Work dir (temporary, created by this run - safe to delete): `{work}`_")
+    else:
+        print(
+            f"_Work dir: `{work}` - you supplied this with --out-dir, so it is "
+            f"yours. Do NOT delete it; remove only `frames/`, `download/` and "
+            f"`report.md` if you want to clean up._"
+        )
 
     return 0
 

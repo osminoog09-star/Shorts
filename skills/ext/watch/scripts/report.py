@@ -19,6 +19,9 @@ import json
 import sys
 from pathlib import Path
 
+import summary_prompt  # noqa: E402
+import timeline  # noqa: E402
+
 
 def _pending(hint: str) -> str:
     return f"<!-- pending Claude fill: {hint} -->"
@@ -33,10 +36,25 @@ def _fmt_time(seconds: float) -> str:
     return f"{m:02d}:{s:02d}"
 
 
+def _one_line(value) -> str:
+    """Collapse whitespace so a multi-line title cannot break the H1."""
+    return " ".join(str(value).split())
+
+
+def _yaml_str(value) -> str:
+    """Double-quoted YAML scalar; JSON string syntax is a valid YAML subset.
+
+    The title and source come from the uploader via yt-dlp, so they can carry
+    colons, quotes, newlines or a leading '&' - any of which turn unquoted
+    frontmatter into either invalid YAML or a different key than intended.
+    """
+    return json.dumps("" if value is None else str(value), ensure_ascii=False)
+
+
 def _yaml_list(items: list[str]) -> str:
     if not items:
         return "[]"
-    return "[" + ", ".join(items) + "]"
+    return "[" + ", ".join(_yaml_str(i) for i in items) + "]"
 
 
 def write_report(
@@ -60,17 +78,17 @@ def write_report(
     lines: list[str] = []
 
     lines.append("---")
-    lines.append(f"source: {source}")
-    lines.append(f"title: {title}")
+    lines.append(f"source: {_yaml_str(source)}")
+    lines.append(f"title: {_yaml_str(title)}")
     lines.append(f"duration: {_fmt_time(duration_seconds)}")
     lines.append(f"watched_at: {watched_at.isoformat()}")
-    lines.append(f"intent: {intent or '(none)'}")
+    lines.append(f"intent: {_yaml_str(intent or '(none)')}")
     lines.append(f"hero_frames: {_yaml_list(hero_names)}")
-    lines.append(f"transcript_source: {transcript_source or 'none'}")
+    lines.append(f"transcript_source: {_yaml_str(transcript_source or 'none')}")
     lines.append("---")
     lines.append("")
 
-    lines.append(f"# {title}")
+    lines.append(f"# {_one_line(title)}")
     lines.append("")
 
     lines.append("## TL;DR")
@@ -78,6 +96,13 @@ def write_report(
     lines.append(_pending(
         f"3-5 bullets through the lens of: '{intent or 'general summary'}'"
     ))
+    lines.append("")
+
+    transcript_chars = sum(len(seg.get("text", "")) + 1 for seg in transcript_segments)
+    preset = summary_prompt.length_for_duration(duration_seconds)
+    lines.append("## Full summary")
+    lines.append("")
+    lines.append(_pending(summary_prompt.pending_hint(duration_seconds, transcript_chars)))
     lines.append("")
 
     lines.append("## Key moments")
@@ -94,9 +119,20 @@ def write_report(
         reason = hook.get("skipped_reason", "n/a")
         lines.append(f"_Skipped: {reason}._")
     else:
-        lines.append(f"- Frames: {len(hook.get('frames', []))} at 2 fps")
+        hook_frames = hook.get("frames", [])
+        lines.append(f"- Frames: {len(hook_frames)} at 2 fps")
+        # Emit the actual frame paths so Claude can Read them. Without this the
+        # hook frames were extracted to disk but never surfaced — the section
+        # was effectively dead. (Bug fix.)
+        if hook_frames:
+            lines.append("")
+            lines.append("  **Read these hook frames with the Read tool:**")
+            for hf in hook_frames:
+                ts = hf.get("timestamp_seconds", 0.0)
+                lines.append(f"  - `{hf['path']}` (t={ts:.1f}s)")
         words = hook.get("words", [])
         if words:
+            lines.append("")
             lines.append(f"- Word-level transcript ({len(words)} words):")
             lines.append("")
             lines.append("```")
@@ -151,6 +187,17 @@ def write_report(
         "patterns. These map to wiki/concepts/ pages."
     ))
     lines.append("")
+
+    lines.append("## Frame timeline")
+    lines.append("")
+    if all_frames and transcript_segments:
+        lines.append("_What's said while each frame is on screen._")
+        lines.append("")
+        lines.extend(timeline.render(timeline.build_timeline(
+            all_frames, transcript_segments, preset, duration_seconds)))
+    else:
+        lines.append("_Needs both frames and a transcript._")
+        lines.append("")
 
     lines.append("## Transcript")
     lines.append("")

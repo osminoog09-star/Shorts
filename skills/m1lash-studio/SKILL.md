@@ -107,6 +107,10 @@ description: Карта и пошаговый конвейер студии ка
 - **Референсы:** `https://youtu.be/bq1gOXifqe8` пока SOURCE_BLOCKED/UNVERIFIED; `https://youtu.be/O-oQEDKCsUk` пока AUTO_SUMMARY_UNVERIFIED (текст 7 сцен, нет физически проверенных пикселей/звука). При доступе к законному MP4 провести фактический shot-by-shot и обновить статус, а не объявлять «точно разобрали» по сводке.
 - Согласование **навыка** не снимает PAUSED_BY_OWNER с прежнего «M1lash Мульт EP01»/3D Coffee и не разрешает автоматическую заливку/публикацию.
 
+## 2д. Видеоразбор /watch — GPT и Claude (05.11)
+
+Для проверки ролика или референса сначала `skills/ext/watch/SKILL.md`, затем `skills/m1lash-reference-analysis/SKILL.md` и playbook. Поддерживаемый MIT fork c локальным ASR заменил старую API-key-only версию. **Реально декодированные кадры и звук обязательны для VIDEO_VERIFIED**; при YouTube anti-bot — `SOURCE_BLOCKED`, без обхода или выдуманного просмотра. Платный API без решения владельца запрещён.
+
 ## 3. Где брать исходники (проверено 30.10.2026)
 
 - **YouTube с серверов GitHub не качается** (бот-проверка «Sign in to confirm you're not a bot»; оба запуска `movie-edit-source` 30.10 упали). Не обходить: никаких cookies, прокси, капч.

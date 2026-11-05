@@ -19,7 +19,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPT_DIR))
 
 from frames import extract  # noqa: E402
-from whisper import load_api_key, transcribe_audio  # noqa: E402
+from whisper import resolve_backend, transcribe_audio  # noqa: E402
 
 
 HOOK_DURATION_SECONDS = 10.0
@@ -32,6 +32,7 @@ def analyse_hook(
     backend: str | None = None,
     api_key: str | None = None,
     full_video_duration: float = 0.0,
+    allow_whisper: bool = True,
 ) -> dict:
     """Run hook microscope. Returns {frames, words, segments, ran}."""
     if full_video_duration > 0 and full_video_duration < 30.0:
@@ -48,10 +49,14 @@ def analyse_hook(
 
     words: list[dict] = []
     segments: list[dict] = []
-    if backend is None or api_key is None:
-        backend, api_key = load_api_key()
+    if not allow_whisper:
+        # --no-whisper means "do not send my audio anywhere". Re-detecting a
+        # key here would silently upload the first 10s despite the opt-out.
+        backend, api_key = None, None
+    elif backend is None:
+        backend, api_key, _note = resolve_backend()
 
-    if backend and api_key:
+    if backend:
         try:
             if shutil.which("ffmpeg") is None:
                 raise SystemExit("ffmpeg required for hook microscope")
