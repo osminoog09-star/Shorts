@@ -1,0 +1,54 @@
+name: Reference watch (/watch skill, public video → analysis only)
+# Analysis of a public reference video for owner-requested study (skills/ext/watch). No bypass of bot checks/login:
+# if YouTube refuses, the run reports SOURCE_BLOCKED. Only a small contact sheet + text report go to branch qa/reference.
+on:
+  workflow_dispatch:
+    inputs:
+      url: { description: 'public video URL', required: true }
+      id: { description: 'short id for the report', required: true }
+permissions:
+  contents: write
+jobs:
+  watch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env: { GH_TOKEN: '${{ github.token }}' }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Tools
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          python -m pip install -q yt-dlp
+      - name: Fetch public video (no cookies, no bypass)
+        id: dl
+        continue-on-error: true
+        env: { URL: '${{ inputs.url }}' }
+        run: |
+          mkdir -p "$RUNNER_TEMP/ref"
+          yt-dlp --no-playlist -f 'bv*[height<=1080]+ba/b' --merge-output-format mp4 -o "$RUNNER_TEMP/ref/v.%(ext)s" -- "$URL"
+          yt-dlp --no-playlist --skip-download --print '%(title)s | %(channel)s | %(duration)s s | %(view_count)s views' -- "$URL" > "$RUNNER_TEMP/ref/meta.txt"
+      - name: Watch (frames, scene changes, hook 0–10 s, no paid API)
+        if: steps.dl.outcome == 'success'
+        run: |
+          set -euo pipefail
+          O="$RUNNER_TEMP/out"; mkdir -p "$O"
+          python skills/ext/watch/scripts/watch.py "$RUNNER_TEMP/ref/v.mp4" --intent 'хук, монтаж, движение, звук, приёмы для M1lash' --no-whisper --out-dir "$O" || true
+          F="$RUNNER_TEMP/ref/v.mp4"
+          ffmpeg -v error -y -i "$F" -vf "fps=2,scale=180:-2,tile=10x8" -frames:v 1 "$O/sheet_2fps.jpg"
+          ffmpeg -v error -y -t 3 -i "$F" -vf "fps=8,scale=180:-2,tile=8x3" -frames:v 1 "$O/hook_0_3s.jpg"
+          ffprobe -v error -show_entries format=duration:stream=codec_type,width,height,r_frame_rate -of compact "$F" > "$O/probe.txt"
+          ffmpeg -hide_banner -i "$F" -af ebur128 -f null - 2>&1 | tail -10 > "$O/loudness.txt"
+          ffmpeg -hide_banner -i "$F" -vf "select='gt(scene,0.3)',showinfo" -f null - 2>&1 | grep -o 'pts_time:[0-9.]*' > "$O/cuts.txt" || true
+          cp "$RUNNER_TEMP/ref/meta.txt" "$O/" || true
+      - name: Push analysis to qa/reference/<id>
+        if: always()
+        run: |
+          set -euo pipefail
+          O="$RUNNER_TEMP/out"; mkdir -p "$O"
+          [ -f "$RUNNER_TEMP/ref/v.mp4" ] || echo "SOURCE_BLOCKED: download refused (no bypass by rule)" > "$O/STATUS.txt"
+          find "$O" -name '*.mp4' -delete
+          cd "$RUNNER_TEMP"; rm -rf qb && mkdir qb && cd qb && git init -q && git checkout -q -b "qa/reference-${{ inputs.id }}"
+          cp -r "$O"/. . && git add . && git -c user.name=qa-bot -c user.email=qa-bot@users.noreply.github.com commit -qm "reference ${{ inputs.id }}"
+          git push -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "qa/reference-${{ inputs.id }}"
