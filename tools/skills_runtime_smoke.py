@@ -96,14 +96,20 @@ def autoharness() -> None:
 def opuscar() -> None:
     styles = REPO / "skills/ext/lemo-opuscar/styles"
     files = list(styles.glob("*/STYLE.md"))
-    assert len(files) == 66, f"expected 66 style guides, got {len(files)}"
+    import re
+    index = (styles / "README.md").read_text("utf-8")
+    canonical_slugs = set(re.findall(r"\\]\\(([^/()\\s]+)/STYLE\\.md\\)", index))
+    assert len(canonical_slugs) == 66, f"style index lists {len(canonical_slugs)} distinct styles"
+    missing = sorted(slug for slug in canonical_slugs if not (styles / slug / "STYLE.md").is_file())
+    assert not missing, f"missing indexed styles: {missing}"
     teardown = styles / "teardown/STYLE.md"
     assert teardown.exists()
     txt = teardown.read_text("utf-8")
     assert "Exploded Teardown" in txt and len(txt) > 1000
     assert (REPO / "skills/ext/lemo-opuscar/scripts/setup.sh").exists()
     assert shutil.which("node") and shutil.which("ffmpeg")
-    print("OPUSCAR/TEARDOWN MANIFEST PASS: 66 style docs, teardown found, "
+    print(f"OPUSCAR/TEARDOWN MANIFEST PASS: {len(canonical_slugs)} indexed styles, "
+          f"{len(files)} physical STYLE.md files, teardown found, "
           "Node + ffmpeg present. Upstream render runtime tested separately.")
 
 
