@@ -29,6 +29,21 @@
 
 ## GPT/Codex
 
+### 05.11 — Denis voice for Claude via PRIVATE Drive + GitHub Actions · GPT · ACTIVE
+Цель: Claude запускает workflow_dispatch для Qwen3-TTS 1.7B Base ICL, получает свой voice-результат и может использовать approved Denis v7 без ручной помощи GPT. Никаких образцов или embeddings в public Git.
+Шаги:
+- [x] 0. До начала: вновь прочитаны AGENTS §3–4, voice-runtime-preflight.md, актуальные NOW и working Qwen3-TTS скрипты; P0 outro v7 уже подтверждён реальным GitHub Actions run 42090558386 SUCCESS (check.py 0 FAIL, look.jpg просмотрен).
+- [x] 1. Исходный private voice ref найден в ранее сохранённом PRIVATE ZIP, сверено с рабочим remote WAV SHA256 `ab6ceaeaa1035234ac22833d6b2f88a0fc81d69d1508e8b4ec474f059901ff67`; 24kHz mono 10.72s. `ref_text.txt` SHA256 `a65e7aacf142870bf811990ea61e92d21f4af7646d4d4ba74bafc0ff92af4e7b`; рабочие ICL параметры private `params.json` SHA256 `f8786ea460e6ea84bd327ef40aebd1a200baaaa10bc51cc50b125fd9752e7986`. Private Library raw bytes не передавать в public repo.
+- [x] 2. Владелец Drive: созданы отдельные private folders `M1lash/_studio/voice/` (ID `1dHg7yRbXkL6xooW2kb-FqV8FInKUUhC5`) и `M1lash/_studio/voice_out/` (ID `1TqKuZOZoPczLHChe_lFv89OKkhuSLZyP`). Три файла загружены отдельно из проверенных PRIVATE bytes, metadata owner-only и размеры 514638/234/649 подтверждены; Drive IDs reference=`1kV0i1IKEtL0wXlGfhZM-8c-pJ5HD-nnF`, text=`1bMYhAHiKw305EJyChPjKfRNI6SoNNr15`, params=`18SgTZdvG0xAZEgA5VVtG0gbCMIWM-zwp`.
+- [ ] 3. Только публичные SHA и Drive IDs сохранить в `tools/voice/approved.json`. Создать `scripts/denis_voice_tts.py` и download/upload приватных blobs, тесты, fail-closed guard.
+- [ ] 4. `.github/workflows/denis-voice-tts.yml`, cache weights, input jobs/voice/<id>.json; test_claude на 3 фразах, no fallback.
+- [ ] 5. Реальный Actions run SUCCESS, проверить ASR/тембр, дать ссылку Денису на прослушивание (без публикации/платных сервисов). Если CPU/RAM/лимиты не дают — NO-GO с run ID и точным error.
+- [ ] 6. Studio раздел «Голос Дениса для Claude», HANDOFF и journal + lesson, readback.
+Следующий шаг: public approved.json с тремя hash+file_ids, CI scripts; model qwen-tts==0.1.1, transformers 4.57.3, torch 2.15.0 из фактически рабочего remote Python; доступно offline private model /home/user/chigur_voice/model для контрольных тестов, не публиковать веса и reference.
+Где промежуточное: PRIVATE local /mnt/data/m1lash_voice_ci/validated/; PRIVATE Google Drive `M1lash/_studio/voice/` и `voice_out/`, публично только hash/ID.
+Ждёт Дениса: только прослушать реальный test_claude WAV/MP3 когда появится.
+
+
 ### 05.11 — P0 · approved Denis v7 outro in CI · GPT · ACTIVE
 Цель: финальные два бинарника только по утверждённому SHA → приватная Drive папка M1lash/_studio/outro/ → общий безопасный GitHub Actions fetch/verify → реальный тест без YouTube.
 Шаги:
