@@ -485,6 +485,58 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": true
+    },
+    {
+      "id": "MULTNEWS-LAB-TELEOP-CONTACT",
+      "project": "multnews_20261104",
+      "issue": "Третий мир раньше существовал только в сценарии: физическая демонстрация оператора и робота не была визуализирована",
+      "cause": "Отсутствовала самостоятельная локация KIMM/ETRI с отображением телеоперации и записью движений",
+      "fix": "Сделаны уникальный HTML/SVG lab-gpt, 6 разных 1080p stills, 18с H264 1080p 540 кадров silent demo; operatorDriven=true, руки робота и чашка привязаны к единому event, release в ту же координату",
+      "status": "verified",
+      "evidence": "longform/multnews_20261104/lab_gpt_20261106/QA_v1_2026-11-06.md",
+      "acceptance": "FFmpeg full decode PASS, ffprobe один H264 поток без звука, действительный MP4-контакт t7.7/8.1/10.8/11.9/12.1/16.5; programmatic gripGap=0 и равенство координат release в t12.049/12.05",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "MULTNEWS-LAB-ART-STATIC",
+      "project": "multnews_20261104",
+      "issue": "Лаборатория пока выглядит как схематичная сценическая иллюстрация: оператор почти статичен, остальные учебные зоны не выполняют самостоятельных действий",
+      "cause": "Процедурное рисование нескольких декораций и один причинный cup-event недостаточны для полноценной 2.5D-анимации 3-минутной главы",
+      "fix": "ART TODO: по каждому учебному классу новый отдельный действующий реквизит и сотрудник, 2-3 разных выразительных ракурса/жеста оператора, 360px проверки читаемости",
+      "status": "observed",
+      "evidence": "longform/multnews_20261104/lab_gpt_20261106/QA_v1_2026-11-06.md",
+      "acceptance": "Не менее 6 уникальных фактических кадра, 15–20с real MP4 с минимум 3 разными действиями, авторский худож. gate ART GO. Пока ART PARTIAL",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "MULTNEWS-LAB-CAMERA-HUD-EXPORT",
+      "project": "multnews_20261104",
+      "issue": "В лаборатории табличка оператора перекрывала голову, надпись на кухне налезала на холодильник; первый файл был ошибочно назван _720p, хотя CSS фиксировал 1920×1080",
+      "cause": "Не проверялись экранные bbox титров и размер элемента #viewport независимо от page viewport",
+      "fix": "Сместили табличку справа от головы, удалили нижний дубль, сделали рендер 1920×1080 и переименовали проверенный MP4 в _1080p, размеры берём только из ffprobe",
+      "status": "verified",
+      "evidence": "longform/multnews_20261104/lab_gpt_20261106/QA_v1_2026-11-06.md",
+      "acceptance": "Открыт настоящий still_00 в 1920×1080: не закрыта голова; ffprobe видео показывает width=1920 height=1080, nb_frames=540 и duration 18.000; без аудио",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "MULTNEWS-LAB-RENDER-TIMEOUT",
+      "project": "multnews_20261104",
+      "issue": "Запуск Playwright render all закончился по timeout после последнего кадра и при этом оставил полный MP4, который нельзя автоматически считать готовым по exit status",
+      "cause": "Слишком медленная покадровая браузерная растеризация без отдельного финального статуса на всю операцию",
+      "fix": "После timeout не считать работу успешной, отдельно проверить точный MP4 ffprobe nb_frames/duration/streams и ffmpeg -xerror по всему файлу; ресюмируемый frames-каталог сохранять, код ускорить в v2",
+      "status": "verified",
+      "evidence": "longform/multnews_20261104/lab_gpt_20261106/QA_v1_2026-11-06.md",
+      "acceptance": "216 реальных source frames, H264 540/540 decoded, ffprobe 18.000 1920x1080 видео-only, ffmpeg -xerror PASS; отличие tool timeout от проверки результата явно описано",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }
