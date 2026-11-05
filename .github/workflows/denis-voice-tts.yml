@@ -86,7 +86,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/.hf-public-models
-          key: denis-voice-qwen3-1p7b-base-and-whisper-small-20261105-v1
+          key: denis-voice-qwen3-1p7b-base-and-whisper-small-20261105-v2
       - name: Download PUBLIC Qwen3-TTS 1.7B Base to cached HF_HOME
         run: |
           set -euo pipefail
@@ -101,6 +101,21 @@ jobs:
           print('Public model snapshot loaded, no owner voice assets in cache')
           with open(os.environ['GITHUB_ENV'],'a') as out:
             out.write('QWEN_LOCAL_PATH='+folder+'\n')
+          PY
+      - name: Pre-download PUBLIC faster-whisper small (CTranslate2) for offline ASR
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from huggingface_hub import snapshot_download
+          from pathlib import Path
+          import os
+          repo = 'Systran/faster-whisper-small'
+          folder = snapshot_download(repo_id=repo)
+          if not (Path(folder)/'model.bin').is_file():
+              raise SystemExit('BLOCKED: public faster-whisper-small CTranslate2 model.bin absent')
+          print('PUBLIC ASR model cached before private inference (no voice data in model cache)')
+          with open(os.environ['GITHUB_ENV'],'a') as out:
+              out.write('WHISPER_LOCAL_PATH='+folder+'\n')
           PY
       - name: Generate 3/8 utterances using private Denis ICL, then faster-whisper ASR
         run: |
