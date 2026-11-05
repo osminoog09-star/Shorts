@@ -89,3 +89,6 @@
 - **Upscayl** — десктоп, апскейл обложек/кадров.
 - **Strix** — при желании проверить безопасность сайта студии.
 - Earshot и официальные плагины Anthropic уже в репо (`skills/ext/earshot*`, `skills/ext/claude-*`), на ПК ставятся тем же `pip install git+https://github.com/Leonxlnx/earshot@591fa3e`.
+- **MoneyPrinterTurbo** (harry0703, MIT) — генератор коротких роликов по теме: ставить на ПК (Python/Docker), использовать только как черновик/референс; наши правила (голос Дениса, концовка v7, QA) важнее его дефолтов.
+- **OpenMontage** (calesthio, AGPL-3.0) — уже в плане выше; держать отдельным инструментом, код в наш репо не копировать (AGPL).
+- **awa-video-reel**, **gstack** — подключены в репо как git submodules (`git submodule update --init`); тяжёлые модели awa скачиваются его `scripts/setup.sh` на ПК.

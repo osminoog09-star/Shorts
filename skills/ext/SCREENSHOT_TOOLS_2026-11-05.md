@@ -46,3 +46,11 @@
 | **n8n**, **Open WebUI** | серверы автоматизации/чата | нужен постоянный ПК/VPS; VPS платный → только на ПК | `LOCAL_PC_PLAN.md` |
 | **Upscayl** | апскейл картинок/кадров, без облака | десктоп-приложение → ПК | `LOCAL_PC_PLAN.md` |
 | Colibri, AutoHarness, Teardown, Scrapling, Opuscar, Graphify, Glassy Dashboard, JavaRush | первая пачка | разобраны GPT выше; Opuscar реально используется в `longform/smart-strike` | — |
+
+## Claude · 05.11 23:30 · третья пачка («Установи нам»)
+| Инструмент | Решение |
+|---|---|
+| **claude-animation-skills** (artemnovitckii, MIT, `5dbea55`) | ВНЕДРЁН: 6 навыков `anim-*` + общий `anim-kit` |
+| **awa-video-reel** (Awa67572, MIT, `0ab749b`) | ВНЕДРЁН как submodule `skills/ext/awa-video-reel` (монтаж под речь, титры по словам) |
+| **gstack** (garrytan, MIT, `4743132`) | ВНЕДРЁН как submodule `skills/ext/gstack` (набор навыков разработки: план, ревью, QA, релиз) |
+| **MoneyPrinterTurbo** (MIT), **OpenMontage** (AGPL) | приложения → `LOCAL_PC_PLAN.md`, ставить на ПК |

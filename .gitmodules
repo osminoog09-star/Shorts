@@ -1,3 +1,9 @@
 [submodule "skills/ext/huashu-motion"]
 	path = skills/ext/huashu-motion
 	url = https://github.com/alchaincyf/huashu-motion.git
+[submodule "skills/ext/awa-video-reel"]
+	path = skills/ext/awa-video-reel
+	url = https://github.com/Awa67572/awa-video-reel.git
+[submodule "skills/ext/gstack"]
+	path = skills/ext/gstack
+	url = https://github.com/garrytan/gstack.git

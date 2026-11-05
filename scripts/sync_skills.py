@@ -5,14 +5,15 @@
 должны быть только ссылки на них — не копии (копии устаревают). Запускать после добавления скила:
     python3 scripts/sync_skills.py          # починить
     python3 scripts/sync_skills.py --check  # только проверить (код 1, если что-то не так)
-huashu-motion — git submodule: на новой машине сначала `git submodule update --init skills/ext/huashu-motion`.
+huashu-motion, awa-video-reel, gstack — git submodules: на новой машине сначала `git submodule update --init`.
 """
 import os, shutil, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGETS = [ROOT / ".claude/skills", ROOT / ".agents/skills"]
-SPECIAL = {"huashu-motion": ROOT / "skills/ext/huashu-motion/skills/huashu-motion"}
+SPECIAL = {"huashu-motion": ROOT / "skills/ext/huashu-motion/skills/huashu-motion",
+           "awa-video-reel": ROOT / "skills/ext/awa-video-reel/awa-video-reel"}
 
 
 def sources():
