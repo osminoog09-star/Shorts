@@ -29,17 +29,19 @@
 
 ## GPT/Codex
 
-### 05.11 — kino_007 · новый кино-Shorts с реальным киноисходником · GPT
-Цель: 9:16 кино-Shorts из пользовательского MP4, русский оригинальный/дублированный звук, динамические субтитры, утверждённый личный голос в конце, приватный owner review. Никакой публичной заливки/даты.
+### 05.11 — kino_007 · кино-Shorts из настоящего фильма · GPT · DRAFT / NO-GO
+Цель: 9:16 cinema Shorts, русский подлинный дубляж, субтитры, одобренная заставка Дениса и финальное устное название голосом Дениса. Пока только private preview.
 Шаги:
-- [x] 1. NOW/AGENTS/Studio/movie-edit/approved outro прочитаны; фильм не дублирует current film_projects; исходник из уже разрешённого владельцем Drive найден, физически доступен; review contact на 24 кадра.
-- [x] 2. Денисов утверждённый вертикальный финал из private Library материализован в локальный runtime и SHA256 совпал с approved.json. Предыдущий работающий приватный Qwen3-TTS runtime + voice reference обнаружен в изолированной media sandbox.
-- [ ] 3. Завершить ASR русского диалога с настоящими таймкодами, сравнить 3–5 сцен по Studio §2б, выбрать 30–45с с цельной драматургией и собственным киноаудио. Не раскрывать название публично.
-- [ ] 4. Сгенерировать последнюю фразу личным voice_id, проверить ASR/файл, оригинальный киноисходник смонтировать в full-bleed 1080×1920 с безопасными кинетическими титрами, 4–6 стопов и ART audit.
-- [ ] 5. Добавить approved outro v7 и голосовое раскрытие на последнем кадре, exact QA (full decode, check.py/look.py, слух), manifest/паспорт и приватный MP4. Публикация только по решению владельца.
-Следующий шаг: remote workspace /home/user/m1lash-filmshort-batman/ (private, без публикации): проверить transcribe.log + intro/interrogation/action/midaction_asr.json и synth_title.log + denis_title_private.wav. После выбора сцены собрать MP4, проверить тёмный 9:16 crop, русские реплики и approved outro SHA. Любой NO-GO честно фиксировать.
-Где промежуточное: изолированная media sandbox /home/user/m1lash-filmshort-batman/ и текущий приватный local container /mnt/data/movie_short_work/. НЕ класть голос/полный фильм/MP4 в публичный Git.
-Ждёт Дениса: только финальное «ок» на публикацию и выбор стиля, если текущий S6-D25 ему не подходит (здесь он только черновой default).
+- [x] 1. AGENTS/NOW/Studio/movie-edit изучены; Drive source найден без повторной просьбы к владельцу, проверено отсутствие дубля по film_projects. Drive ID 1psena0V9ybb02MgJ2aUdUGUG-l2nMmJh.
+- [x] 2. Approved Denis v7 vertical 6.6s материализован из private Library, SHA256 2e514186940d130e6aea6aa5171b59ba7691d5cfe14fb329d65a8d12184a6b60.
+- [x] 3. Четыре сцены проанализированы Whisper small по-русски, выбран законченный диалог interrogation 717.35–749.00: 31.667s, подлинный кинозвук.
+- [x] 4. Сгенерирована отдельная финальная фраза личным Qwen3-TTS 1.7B, voice_id denis-qwen3tts-reference-v1, 2.640s, SHA256 582acac2c51cc59f3d743b688771629f3b620c5f635375b6b530390c86868b37; текст подтверждён ASR. В картинке 1080×1920 динамический reframe, S6-D25 subtitles, 14 реальных кадров визуально осмотрены.
+- [x] 4a. Создан именно DRAFT V3 без последней фразы: /mnt/data/m1lash_kino_007_PRIVATE_PREVIEW_v3_NO_REVEAL.mp4, 38.28s H264/AAC 30fps, SHA256 b385f383fb8972922d98d1d350d10f0cac07cb9bd771c198da3d213c30550df6. Full decode PASS, black/freezedetect no events, -16.4 LUFS, true peak -2.2 dBFS. Предыдущие V1/V2 отвергнуты по громкости; private ZIP исходников и QA: /mnt/data/m1lash_kino_007_PRIVATE_SOURCE_QA.zip.
+- [ ] 5. Финал BLOCKED до безопасного бинарного обмена: Qwen title WAV находится в отдельной Higgsfield sandbox, фильм+approved outro в текущем локальном контейнере; передавать private voice текстом/base64 нельзя. После совмещения выполнить штатный assemble_with_outro.py с --title, официальный check.py/look.py, слух и anti-spoiler validate_mystery. Никаких публикаций до решения владельца.
+Следующий шаг: соединить в одной разрешённой среде remote /home/user/m1lash-filmshort-batman/denis_title_private.wav и локальные /mnt/data/movie_short_work/kino_007_picture_cut.mp4 + M1lash_outro_Denis_v7_voice10_vertical.mp4. Использовать бинарный file transport, не помещать private voice в public Git/Drive; затем честный official QA на финальном MP4. В V3 пока нет устного названия, это NO-GO для YouTube.
+Где промежуточное: /mnt/data/movie_short_work/, /mnt/data/m1lash_kino_007_PRIVATE_PREVIEW_v3_NO_REVEAL.mp4, /mnt/data/m1lash_kino_007_PRIVATE_SOURCE_QA.zip и remote /home/user/m1lash-filmshort-batman/. Перечень/дефекты — локальный QA_KINO_007_PRIVATE.md в ZIP.
+Ждёт Дениса: только решение об утверждении после финального review, не требуется заново давать фильм.
+
 
 
 ### 04.11 — M1lash МультНовости #01, отдельный S3-D25 21–23 мин · GPT
