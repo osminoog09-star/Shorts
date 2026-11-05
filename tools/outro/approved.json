@@ -8,17 +8,19 @@
   "duration": 6.6,
   "voice_level_delta_db": 1,
   "no_fallback_to_old_dima": true,
-  "storage": "private; materialize from Library into ignored local path before assembly",
+  "storage": "private Google Drive (M1lash/_studio/outro/), retrieved by CI with Drive OAuth and strict SHA256; never committed to public Git",
   "assets": {
     "vertical": {
       "path": "media/outro/m1lash_outro_denis_v7_vertical.mp4",
       "sha256": "2e514186940d130e6aea6aa5171b59ba7691d5cfe14fb329d65a8d12184a6b60",
-      "library_file_id": "libfile_bf6bee946d58819185bfb55241a8c964"
+      "library_file_id": "libfile_bf6bee946d58819185bfb55241a8c964",
+      "drive_file_id": "1DBSoGii58WlD4MwHK8myRwWZLo-OhHig"
     },
     "horizontal": {
       "path": "media/outro/m1lash_outro_denis_v7_horizontal.mp4",
       "sha256": "70b066b067cec45dbaaae91ef39ee79543ac9c396d0d1bd896885b1511867dae",
-      "library_file_id": "libfile_e19395645efc81919d21f843d4326ff5"
+      "library_file_id": "libfile_e19395645efc81919d21f843d4326ff5",
+      "drive_file_id": "1sXYrDMWjIPDJjFNp6E_H27EK8pusjita"
     }
   },
   "previous_approved_version": {
@@ -46,5 +48,6 @@
   "music_gain_vs_v6": 0.3333333333333333,
   "revision_reason": "Owner approved voice10 version after listening feedback iterations.",
   "owner_approval_quote": "Отлично так и оставим.",
-  "owner_approval_date": "2026-11-04"
+  "owner_approval_date": "2026-11-04",
+  "drive_folder_id": "1_oGUuXdE3hTbDzx6IBRZxnjSbzyWGY5M"
 }
