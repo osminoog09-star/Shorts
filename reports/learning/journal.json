@@ -2,6 +2,32 @@
   "schema_version": 1,
   "entries": [
     {
+      "id": "FILMMULT-DARKSUN-ART-GATE",
+      "project": "dark_suns_promo_20261106",
+      "issue": "Несмотря на живую движение техники и героя, 7 сцен упрощены: несколько раз повторяется круглый затвор, лицо и кисть мало анимированы, город не ощущается полностью обитаемым.",
+      "cause": "Векторный code-only runtime делал простые геометрические фигуры и ограниченные poses вместо asset-rich последовательной персонажной и средовой анимации.",
+      "fix": "Приватно сохранён V4 как DRAFT, ART_NO_GO; следующий проход: новые модел-листы/позы, жители и физический контакт, разные дальние/средние/крупные сцены. Утверждение публикуемости только после личного просмотра.",
+      "status": "observed",
+      "evidence": "longform/dark_suns_promo_20261106/QA_PRIVATE_PREVIEW_V4.md",
+      "acceptance": "В финальном MP4 показать полноценные действия героя с изменением состояния и различимые 6–7 сцен; 4–6 стопов, 15–30 секунд motion/audio и финальный official check.py/look.py/owner review",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "FILMMULT-DARKSUN-VIDEO-RANGE",
+      "project": "dark_suns_promo_20261106",
+      "issue": "Первый полный 1080p H.264 из Playwright JPEG-frames закодировался с video pix_fmt=yuvj420p (pc range), хотя renderer задавал yuv420p.",
+      "cause": "Скриншоты MJPEG сигнализировали full-range, и одного -pix_fmt yuv420p было недостаточно для явных цветовых тегов видеопотока.",
+      "fix": "V3: преобразование scale=in_range=pc:out_range=tv,format=yuv420p; V4: H.264 SPS h264_metadata colour_primaries=1 transfer=1 matrix=1 full_range_flag=0.",
+      "status": "verified",
+      "evidence": "longform/dark_suns_promo_20261106/QA_PRIVATE_PREVIEW_V4.md",
+      "acceptance": "ffprobe V4: 1920x1080, H264, 30/1, 1260 frames, yuv420p/tv, bt709 primaries+transfer+matrix; full -xerror decode PASS",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
       "id": "COFFEE-V2-VOICE",
       "project": "coffee_voice_test_v2_20261103",
       "issue": "Модель меняла окончания и начало фразы про работу",
