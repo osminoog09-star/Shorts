@@ -17,12 +17,12 @@ on:
       end: { description: "Конец сцены (сек или мм:сс), пусто = до конца", required: false, default: "" }
       title: { description: "Название ролика (без названия фильма!)", required: true }
       film: { description: "Название фильма — только голосом в конце", required: true }
-      title_voice_url: { description: "Приватная HTTPS-ссылка на уже проверенную реплику голосом Дениса", required: false, default: "" }
+      title_voice_drive_id: { description: "Owner-private Google Drive voice_out file ID of ASR-verified Denis WAV", required: false, default: "" }
       title_voice_sha256: { description: "SHA256 личной реплики Дениса (обязателен при обычной сборке)", required: false, default: "" }
       lang: { description: "Язык речи в сцене: ru (дубляж) или en (только для заявок)", required: false, default: "ru" }
       request: { description: "@ник зрителя, если это заявка", required: false, default: "" }
       question: { description: "Вопрос зрителям в конце", required: false, default: "А ты бы как поступил?" }
-      upload: { description: "Сохранить и залить приватно (false = только тест: ролик и кадры в артефакте)", type: boolean, required: false, default: true }
+      upload: { description: "Только после отдельного разрешения владельца; false = build/QA без YouTube", type: boolean, required: false, default: false }
 permissions:
   contents: write
   actions: write
@@ -113,23 +113,22 @@ jobs:
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
           pip install -q "faster-whisper==1.0.3" "opencv-python-headless>=4.9,<5" "edge-tts>=7,<8" "Pillow>=10" "gdown>=5,<6"
-      - name: Скачать голосовое название (Denis ONLY, SHA256 required)
+      - name: Скачать личную реплику Дениса из Drive voice_out (owner-only, SHA256 + ASR manifest)
         env:
-          VOICE_URL: ${{ inputs.title_voice_url }}
+          VOICE_ID: ${{ inputs.title_voice_drive_id }}
           VOICE_SHA256: ${{ inputs.title_voice_sha256 }}
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
         run: |
           set -euo pipefail
-          if [[ ! "$VOICE_URL" =~ ^https:// ]] || [[ ! "$VOICE_SHA256" =~ ^[0-9a-f]{64}$ ]]; then
-            echo '::error::BLOCKED: нужен PRIVATE title_voice_url (HTTPS) + SHA256 личного голоса Дениса; чужой TTS запрещён'
-            exit 1
-          fi
           mkdir -p "$RUNNER_TEMP/denis-title"
-          curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' \
-            --max-time 120 --max-filesize 20000000 -o "$RUNNER_TEMP/denis-title/title.mp3" "$VOICE_URL"
-          printf '%s  %s\n' "$VOICE_SHA256" "$RUNNER_TEMP/denis-title/title.mp3" | sha256sum --check -s || {
-            echo '::error::NO-GO: SHA256 личного голоса не совпал'; exit 1;
-          }
-          ffprobe -v error -show_entries format=duration -of csv=p=0 "$RUNNER_TEMP/denis-title/title.mp3"
+          python scripts/fetch_voice_clip.py \
+            --file-id "$VOICE_ID" --sha256 "$VOICE_SHA256" \
+            --out "$RUNNER_TEMP/denis-title/title.wav"
+          ffprobe -v error -show_entries format=duration -of csv=p=0 "$RUNNER_TEMP/denis-title/title.wav"
       - name: Скачать запись во временную папку (в репо не попадает)
         env: { URL: "${{ inputs.url }}" }
         run: |
@@ -152,7 +151,7 @@ jobs:
           I_LANG: ${{ inputs.lang }}
           I_REQ: ${{ inputs.request }}
           I_Q: ${{ inputs.question }}
-          I_VOICE_FILE: ${{ runner.temp }}/denis-title/title.mp3
+          I_VOICE_FILE: ${{ runner.temp }}/denis-title/title.wav
         run: |
           set -o pipefail
           python scripts/movie_short.py --src "$RUNNER_TEMP/src/src.bin" --id "$I_ID" --start "$I_START" --end "$I_END" \
