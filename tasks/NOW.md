@@ -29,6 +29,21 @@
 
 ## GPT/Codex
 
+### 05.11 — P0 · approved Denis v7 outro in CI · GPT · ACTIVE
+Цель: финальные два бинарника только по утверждённому SHA → приватная Drive папка M1lash/_studio/outro/ → общий безопасный GitHub Actions fetch/verify → реальный тест без YouTube.
+Шаги:
+- [x] 0. Подхвачена P0 `tasks/gpt_outro_in_ci.md`; прочитаны AGENTS §3–4, NOW, Studio, `tools/outro/approved.json`. `git pull` CLI в локальной машине недоступен из-за DNS, readback main via GitHub connector перед изменениями; не перезаписывать чужие изменения.
+- [x] 1. Оба точных library_file_id материализованы в приватный локальный `/mnt/data/m1lash_outro_ci/`. SHA256 ДО отправки совпал: vertical `2e514186940d130e6aea6aa5171b59ba7691d5cfe14fb329d65a8d12184a6b60`; horizontal `70b066b067cec45dbaaae91ef39ee79543ac9c396d0d1bd896885b1511867dae`. Любая будущая загрузка — только этих байтов.
+- [ ] 2. Создать Drive M1lash/_studio/outro/, приватно загрузить и прочитать metadata оба файла. Записать два точных file ID в `approved.json` (не публичную ссылку), сверить доступ GitHub Actions OAuth.
+- [ ] 3. `scripts/fetch_outro.py` через `GDRIVE_REFRESH_TOKEN` + чтение `approved.json`: оба бинарника скачать в media/outro/, проверить SHA, fail-closed, не подставлять Диму.
+- [ ] 4. Gitignore, movie-short.yml, drive-folder-intake.yml; unit tests отказ/успех и readback.
+- [ ] 5. Реальный workflow test на малом clip upload=false (без YouTube), запись run/job/log, assemble, check.py, look.py eyes; NO PASS если не запускалось.
+- [ ] 6. HANDOFF, Studio «Уроки → Новые», learning journal, убрать этот блок после чекпоинта.
+Следующий шаг: приватная папка Drive + бинарная загрузка по verified hashes. Repo работа через GitHub Contents API, поскольку локальный git не имеет DNS.
+Где промежуточное: `/mnt/data/m1lash_outro_ci/` (PRIVATE) и main GitHub.
+Ждёт Дениса: ничего, если Drive write работает; при отказе прав сообщить явно.
+
+
 ### 05.11 — kino_007 · кино-Shorts из настоящего фильма · GPT · DRAFT / NO-GO
 Цель: 9:16 cinema Shorts, русский подлинный дубляж, субтитры, одобренная заставка Дениса и финальное устное название голосом Дениса. Пока только private preview.
 Шаги:
