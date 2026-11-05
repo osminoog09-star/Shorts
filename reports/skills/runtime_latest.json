@@ -1,17 +1,17 @@
 {
-  "run_id": 41975762166,
-  "head_sha": "375e87adf6e9938f11ecad4a0dd219aa1d367b42",
-  "run_url": "https://github.com/osminoog09-star/Shorts/actions/runs/41975762166",
+  "run_id": 41975864892,
+  "head_sha": "d169db3a5fb251b7b8534f468491b881146507a9",
+  "run_url": "https://github.com/osminoog09-star/Shorts/actions/runs/41975864892",
   "scope": "disposable_runner_only; not installed on user's computer",
-  "python_skills": "failure",
+  "python_skills": "cancelled",
   "python_details": {
-    "graphify": "success",
-    "scrapling": "success",
-    "watch": "failure",
-    "autoharness_syntax": "success",
-    "opuscar_style_manifest": "failure"
+    "graphify": "skipped",
+    "scrapling": "skipped",
+    "watch": "skipped",
+    "autoharness_syntax": "skipped",
+    "opuscar_style_manifest": "skipped"
   },
-  "colibri": "success",
-  "opuscar_runtime": "failure",
+  "colibri": "cancelled",
+  "opuscar_runtime": "success",
   "openclaw": "success"
 }
