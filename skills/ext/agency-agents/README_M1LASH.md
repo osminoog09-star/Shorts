@@ -1,0 +1,4 @@
+# Agency Agents в M1lash (Claude, 05.11.2026)
+Источник: msitarzewski/agency-agents (MIT, коммит в UPSTREAM_COMMIT), библиотека ролей в `library/` (~300 ролей: marketing, design, product, testing, research, game-development…).
+**Наши рабочие агенты студии** уже созданы в `.claude/agents/`: m1lash-director, m1lash-animator, m1lash-voice, m1lash-qa, m1lash-publisher, m1lash-analyst, m1lash-researcher. Они опираются на наши навыки и AGENTS.md.
+**Когда появится ПК (решение Дениса 05.11):** создавать новых агентов студии из этой библиотеки: взять близкую роль (например `marketing/marketing-short-video-editing-coach.md`, `marketing/marketing-video-optimization-specialist.md`, `design/design-visual-storyteller.md`, `testing/*`), переписать под M1lash (русский, AGENTS.md первым, наши навыки), положить в `.claude/agents/m1lash-<роль>.md`. Чужие роли целиком не включать — они не знают наших правил.
