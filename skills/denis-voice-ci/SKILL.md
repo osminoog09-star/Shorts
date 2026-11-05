@@ -13,3 +13,11 @@ description: Самостоятельный запуск личного голо
 5. Известный голосовой run `42092477812` — **FAIL** после 3 сгенерированных WAV из-за отсутствия локального faster-whisper small; позже добавлен predownload PUBLIC model и SoX. Запустить новый test run, убедиться SUCCESS, только тогда давать владельцу аудио на прослушивание. CPU 1.7B ~10 минут/реплика, общий timeout 110 минут. Паузы прочих проектов и запрет YouTube без «ок» неизменны.
 
 Полные пошаговые команды и ссылки на приватные папки: `tasks/CLAUDE_STUDIO_TRANSFER_2026-11-05.md`.
+
+## Проверено Claude 05.11 (факты, не план)
+- Run `42105048407` (`jobs/voice/mini_strike_denis.json`, 4 реплики): **SUCCESS**, ASR 4/4 = 1.0, ~35 с на короткую фразу (не 10 мин), весь job ≈ 12 мин с установкой. Длительность берётся из лога `WAV_GENERATED <id> <bytes>`: (bytes−44)/48000 с (24 кГц моно 16 бит).
+- Диспетчер: `gh workflow run` использует GraphQL и из облачной сессии Claude падает 403 → запускать REST: `gh api -X POST repos/osminoog09-star/Shorts/actions/workflows/<wf>.yml/dispatches -f ref=main -f 'inputs[job_path]=jobs/voice/<id>.json'`.
+- Скачать artifact из облачной сессии Claude **нельзя** (blob storage закрыт прокси). Поэтому вся работа с голосом — внутри Actions: следующий workflow берёт его `gh run download <run_id>` (permissions `actions: read`), artifact живёт 1 день. Готовый MP4 с голосом — в private Drive `voice_out` (`scripts/voice_private_io.py upload`), не в Git и не в публичный artifact.
+
+## Второй женский голос (AGENTS §3а)
+- `jobs/voice_female/<id>.json` (`voice_id: female-qwen3-voicedesign-warm-v1`, до 12 реплик, `instruct_extra` — актёрская подсказка) → push в main запускает `.github/workflows/female-voice-design.yml` (Qwen3-TTS 1.7B **VoiceDesign**, описание тембра «тёплый бархатный, 30+» + seed 151 = кастинг round 3 вариант 3, ASR ≥0.85 до 3 попыток). Синтетический тембр по описанию, не клон человека. Run `42105028306`: 4/4, ASR 0.95–1.0.

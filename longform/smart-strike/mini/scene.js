@@ -355,9 +355,18 @@ for (const s of [-1, 1]) {
   const fo = capsule(.062, .18, mat.hoodie); fo.position.y = -.13; el.add(fo);
   const cuff = capsule(.066, .02, M('#3a3d45', { r: .9 })); cuff.position.y = -.25; el.add(cuff);
   const hand = new THREE.Group(); hand.position.y = -.31; el.add(hand);
-  const palm = new THREE.Mesh(new THREE.SphereGeometry(.06, 18, 14), mat.skin); palm.scale.set(.85, 1, .6); palm.castShadow = true; hand.add(palm);
-  const thumb = capsule(.02, .04, mat.skin); thumb.position.set(-s * .05, .01, .02); thumb.rotation.z = s * .7; hand.add(thumb);
-  arms.push({ sh, el, hand, s });
+  const palm = new THREE.Mesh(new RoundedBoxGeometry(.085, .085, .035, 3, .016), mat.skin); palm.position.y = -.01; palm.castShadow = true; hand.add(palm);
+  const fingers = [];
+  for (let k = 0; k < 4; k++) {   // 4 fingers: base joint + tip joint, curl per pose
+    const base = new THREE.Group(); base.position.set((k - 1.5) * .021, -.05, 0); hand.add(base);
+    const f1 = capsule(.0095, .028, mat.skin); f1.position.y = -.02; base.add(f1);
+    const tip = new THREE.Group(); tip.position.y = -.042; base.add(tip);
+    const f2 = capsule(.0088, .02, mat.skin); f2.position.y = -.015; tip.add(f2);
+    fingers.push({ base, tip, len: k === 0 || k === 3 ? .9 : 1 }); base.scale.y = k === 3 ? .82 : k === 0 ? .92 : 1;
+  }
+  const thumbG = new THREE.Group(); thumbG.position.set(-s * .045, -.012, .012); thumbG.rotation.z = s * .9; hand.add(thumbG);
+  const thumb = capsule(.011, .03, mat.skin); thumb.position.y = -.022; thumbG.add(thumb);
+  arms.push({ sh, el, hand, s, fingers, thumbG });
 }
 // phone in right hand
 const phone = new THREE.Mesh(new RoundedBoxGeometry(.075, .15, .012, 2, .01), mat.dark); phone.position.set(0, -.05, .04); arms[1].hand.add(phone);
@@ -374,6 +383,9 @@ function pose(p) {
     const a = arms[i], q = (p.arms || [])[i] || [0, 0, 0];
     a.sh.rotation.set(q[0], 0, a.s * (.18 + q[1])); a.el.rotation.set(q[2], 0, 0);
     const L = legs[i], lq = (p.legs || [])[i] || [0, 0]; L.hip.rotation.x = lq[0]; L.knee.rotation.x = lq[1];
+    const grip = (p.grip || [.25, .25])[i]; a.hand.rotation.set(q[3] || 0, q[4] || 0, 0);
+    for (const F of a.fingers) { F.base.rotation.x = grip * 1.3; F.tip.rotation.x = grip * 1.5; }
+    a.thumbG.rotation.x = grip * .6;
   }
   const ex = p.face || {};
   for (const E of eyes) {
@@ -417,7 +429,7 @@ const SHOTS = [
   { a: 17.0, b: 22.4, cam: t => { const u = ss(seg(t, 17, 22.4)); return [V(lerp(.05, .15, u), 1.45, lerp(.55, .4, u)), V(1.1, 1.3, -1.85), 42]; } },
   { a: 22.4, b: 27.4, cam: t => { const u = ss(seg(t, 22.4, 27.4)); return [V(.45, lerp(.95, 1.05, u), lerp(2.3, 2.0, u)), V(.35, 1.85, -1.4), 60]; } },
   { a: 27.4, b: 30.6, cam: t => { const h = headPos(); const u = ss(seg(t, 27.4, 30.6)); return [V(h.x - .3, h.y + .05, h.z + lerp(1.95, 1.7, u)), V(h.x, h.y - .2, h.z), 34]; } },
-  { a: 30.6, b: 34.8, cam: t => { const u = ss(seg(t, 32.2, 34.8)); return [mix(V(-.35, 1.25, -1.1), V(.35, 1.5, .9), u), mix(V(-.85, 1.1, -2.2), V(-.1, 1.3, -1.6), u), lerp(48, 44, u)]; } },
+  { a: 30.6, b: 34.8, cam: t => { const u = ss(seg(t, 32.2, 34.8)); return [mix(V(-.35, 1.25, -1.1), V(-.75, 1.5, 1.0), u), mix(V(-.85, 1.1, -2.2), V(-.2, 1.25, -1.6), u), lerp(48, 46, u)]; } },
   { a: 34.8, b: 40.0, cam: t => { const h = headPos(); const u = ss(seg(t, 37.7, 38.9)); return [mix(V(.85, .5, 1.6), V(.5, 1.2, 1.4), u), mix(V(.3, .55, -.1), V(h.x, h.y - .35, h.z), u), 46]; } },
 ];
 const shotAt = t => SHOTS.find(s => t >= s.a && t < s.b) || SHOTS[SHOTS.length - 1];
@@ -450,7 +462,7 @@ window.render = function (t) {
   const bl = blinkAt(t, BLINKS);
   if (t < 3.1) { // sleepy, raises phone, then shock at the sign
     const raise = ss(seg(t, 0, .4)); const shock = ss(seg(t, 1.7, 2.0));
-    p = { x: -0.25, z: -1.25, ry: -0.55 + shock * -.15, lean: -shock * .08, nod: .1 - shock * .15, turn: shock * -.25, bob: Math.sin(t * 2) * .005,
+    p = { grip: [.35, .85], x: -0.25, z: -1.25, ry: -0.55 + shock * -.15, lean: -shock * .08, nod: .1 - shock * .15, turn: shock * -.25, bob: Math.sin(t * 2) * .005,
       arms: [[-.1, 0, -.2], [-.85 * raise, .1, -1.45 * raise]],
       face: { open: lerp(.45, 1.05, shock), blink: bl, mouth: Math.max(hv * .9, shock * .55 * (1 - seg(t, 2.4, 3))), brow: lerp(-.4, .8, shock), lx: -shock * .6, ly: shock * -.2, pupil: 1 - shock * .3 } };
   } else if (t < 10.8) { // listening, looks up at ring, then down at robovac
@@ -475,7 +487,7 @@ window.render = function (t) {
     const step = ss(seg(t, 17.0, 17.4)), press = ss(seg(t, 17.4, 17.6)) * (1 - ss(seg(t, 17.7, 18.0)));
     const notice = ss(seg(t, 18.3, 18.6)); const hit = t > 19.18 ? 1 : 0; const st = ss(seg(t, 19.18, 19.6)), rec2 = ss(seg(t, 20.2, 21.0));
     const x = lerp(0.25, 0.95, step), z = lerp(-1.35, -1.5, step) + st * .2;
-    p = { x, z, ry: -0.75 + notice * .2, lean: press * .18 - st * .3 * (1 - rec2 * .6), nod: press * .2 - st * .35 + rec2 * .2, turn: -.25, htilt: st * .15 * (1 - rec2),
+    p = { grip: [.4, lerp(.15, .5, rec2)], x, z, ry: -0.75 + notice * .2, lean: press * .18 - st * .3 * (1 - rec2 * .6), nod: press * .2 - st * .35 + rec2 * .2, turn: -.25, htilt: st * .15 * (1 - rec2),
       headZ: -st * .03,
       arms: [[-.2 - st * 1.5 + rec2 * .6, .2 + st * .5, -.6 - st * 1.6 + rec2 * 1.0], [-1.0 * press - rec2 * 1.2 - (1 - rec2) * st * .3, .2 + rec2 * .5, -.4 - rec2 * .9]],
       legs: [[Math.sin(t * 12) * .28 * (step < 1 ? step : 0), 0], [-Math.sin(t * 12) * .28 * (step < 1 ? step : 0), 0]],
@@ -487,7 +499,7 @@ window.render = function (t) {
       face: { open: .95, blink: bl, mouth: 0, brow: .5 * up, browA: -.25, ly: .85 * up, lx: -.2 } };
   } else if (t < 30.6) { // «Спа… спасибо?» — hesitant, scratches head
     const scratch = ss(seg(t, 27.6, 28.0)) * (1 - ss(seg(t, 29.6, 30.2)));
-    p = { x: 0.75, z: -1.2, ry: -0.15, nod: .05, turn: .1, htilt: -.08 + Math.sin(t * 7) * .01,
+    p = { grip: [.3, .55], x: 0.75, z: -1.2, ry: -0.15, nod: .05, turn: .1, htilt: -.08 + Math.sin(t * 7) * .01,
       arms: [[-.1, .05, -.3], [-2.6 * scratch, .25 * scratch, -1.9 * scratch + Math.sin(t * 22) * .12 * scratch]],
       face: { open: .85, blink: bl, mouth: hv * .85, brow: .3, browA: -.45, lx: .3, ly: -.25, smile: -.1 } };
   } else if (t < 34.8) { // lights up: hero relief, smiles, takes mug at 34

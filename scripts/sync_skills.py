@@ -44,6 +44,10 @@ def main():
             elif link.is_dir():
                 shutil.rmtree(link)
             link.symlink_to(rel)
+        # orphans: real folders/files in agent dirs that are not links to a repo skill (copies go stale)
+        for link in sorted(tgt.iterdir()):
+            if link.name not in sources() and not link.is_symlink():
+                problems.append(f"{link.relative_to(ROOT)}: копия/лишнее — перенести в skills/ и подключить ссылкой")
     for p in problems:
         print(("НЕ ТАК: " if check else "исправлено: ") + p)
     print(f"скилов: {len(sources())}, проблем: {len(problems)}")

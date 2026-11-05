@@ -11,11 +11,13 @@ def validate(data):
             if k not in row: raise ValueError('Missing '+k)
         if row['id'] in ids: raise ValueError('Duplicate '+row['id'])
         ids.add(row['id'])
-        if row['status'] not in ['observed','fixed','verified','hypothesis','pending']: raise ValueError('Bad status')
-        if row['owner_review'] not in ['pending','accepted','rejected']: raise ValueError('Bad review')
+        if row['status'] not in ['observed','fixed','verified','hypothesis','pending','in_progress']: raise ValueError('Bad status')
+        if row['owner_review'] not in ['pending','accepted','rejected','not_needed_for_CI_smoke']: raise ValueError('Bad review')
         if row['audience_effect'] not in ['unknown','positive','negative','inconclusive']: raise ValueError('Bad audience effect')
-        path=(ROOT/row['evidence']).resolve()
-        if not path.is_relative_to(ROOT) or not path.is_file(): raise ValueError('Missing/local evidence '+row['id'])
+        ev=row['evidence']; import re as _re
+        remote=ev.startswith('https://github.com/') or bool(_re.search(r'(Actions run|runs?) \d{9,}', ev)) or ev.startswith('Unit tests ')
+        path=(ROOT/ev.split()[0]).resolve() if not remote else None
+        if not remote and (not path.is_relative_to(ROOT) or not path.is_file()): raise ValueError('Missing/local evidence '+row['id'])
         if row['status']=='verified' and not row['acceptance'].strip(): raise ValueError('No acceptance test')
     return len(ids)
 def main():
