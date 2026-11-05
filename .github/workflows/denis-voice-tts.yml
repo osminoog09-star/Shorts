@@ -13,7 +13,6 @@ on:
     branches: [main]
     paths:
       - 'jobs/voice/test_claude.json'
-      - 'jobs/voice/kino_007_title.json' # one-time private Batman title recovery
 
 permissions:
   contents: read
