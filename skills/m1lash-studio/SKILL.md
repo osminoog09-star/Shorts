@@ -65,6 +65,8 @@ description: Карта и пошаговый конвейер студии ка
 10. **После выхода** — строка в `reports/videos.csv` (делает аналитика), эксперимент — в `reports/experiments.md`, итоги 48 ч / 7 д.
 
 ### Голос Дениса для Claude · приватный Qwen3-TTS 1.7B Base ICL (05.11)
+**Отдельная инструкция/доступ для Claude:** `tasks/CLAUDE_STUDIO_TRANSFER_2026-11-05.md` и `.claude/skills/denis-voice-ci/SKILL.md`. Все Python-клиенты private Drive запускаются **в GitHub Actions**, получая уже настроенные Secrets `GDRIVE_REFRESH_TOKEN` и пары Google OAuth Client ID/Secret; модель Claude не видит сами токены. Проверенный outro CI run 42090558386 SUCCESS подтверждает реальный приватный OAuth. Референс, текст, embeddings и raw voice хранить только в owner-only Drive, не public Git; в Git — только code/ID/SHA/jobs и журналы. Реальный трехфразовый Qwen run 42092477812 **FAIL** после 3 синтезированных WAV на этапе отсутствующего Whisper; новый retest 42101115487 запущен после PUBLIC ASR predownload/SoX, **не объявлять PASS до завершения**. Проверять Drive receipt/ASR 3/3 и слух владельца, а не успешный Python import.
+
 
 **Полная инструкция передачи Claude, Drive OAuth и точные команды:** [`docs/CLAUDE_AUTONOMOUS_STUDIO_2026-11-05.md`](../../docs/CLAUDE_AUTONOMOUS_STUDIO_2026-11-05.md). Читать её вместе с `AGENTS.md` и `tools/voice/approved.json`. В публичный Git передавать **только код/правила/хеши/ID**, а не биометрический voice reference, embedding и OAuth-секреты. Прошедший тест outro CI 42090558386 — только проверка склейки, **не** proof успешного Qwen+ASR.
 
@@ -168,6 +170,8 @@ Workflow `.github/workflows/denis-voice-tts.yml` сам скачивает *тр
 Пороги и даты — в docstring `scripts/ypp_progress.py`. Считаем по `engagedViews` (засчитанные). С 01.02.2027 полный порог для новых заявок 20 млн Shorts / 8000 ч. Официально — Studio → «Заработок».
 
 ## 7. Уроки
+
+- **05.11 · голос Дениса для Claude / voice CI:** CPU Qwen3-TTS 1.7B в Actions реально генерирует WAV медленно (примерно 10 минут на 60–70 символов); постфактум загружать ASR модель рискованно: run `42092477812` после трёх WAV завершился `BLOCKED faster-whisper small model unavailable`. До синтеза скачивать PUBLIC CTranslate2 `Systran/faster-whisper-small` в cache, проверять `model.bin`, передавать `WHISPER_LOCAL_PATH`. Добавить `sox` для Qwen audio pipeline. Никакого fallback/референса в public Git; даже если модель сгенерировала WAV, это **не PASS без ASR+private upload+owner hearing**. Retest run 42101115487 в работе; схема доступа Claude через Actions — `tasks/CLAUDE_STUDIO_TRANSFER_2026-11-05.md`.
 
 **05.11 · GPT · Claude voice ASR-cache gate:** GitHub Actions run `42092477812` действительно скачал owner-private reference и создал 3 WAV через Qwen3-TTS 1.7B Base на CPU, но **FAIL** сразу при загрузке Whisper small после 30+ мин генерации. Раньше неверно утверждать «всё готово», когда нет ASR/Drive receipt. Исправление в `denis-voice-tts.yml`: **сначала** скачать public `Systran/faster-whisper-small` (CTranslate2 model.bin) в cache, потом Qwen; `denis_voice_tts.py` принимает `WHISPER_LOCAL_PATH` и fail-closed при отсутствии модели. Пока новый GitHub run не SUCCESS и реальный владелец не прослушал тембр — **NO-GO**, других TTS не подставлять. Полный handoff в `docs/CLAUDE_AUTONOMOUS_STUDIO_2026-11-05.md`.
 
