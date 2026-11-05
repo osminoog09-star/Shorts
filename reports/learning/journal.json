@@ -402,11 +402,12 @@
       "cause": "Склейка без личного финального voice title и измерение только overall LUFS; quiet cards ниже -35dBFS",
       "fix": "V6 визуальные переходы исправлены, добавлены тихие оригинальные акценты; окончательный аудио-гейт остаётся только после безопасного объединения уже синтезированного Денисом голоса",
       "status": "observed",
-      "evidence": "reports/research/2026-11-05_KINO_007_V6_REAUDIT.md",
-      "acceptance": "Denis final spoken title physically present and ASR+owner hearing verified; stricter tail silence analysis of final MP4 + official check/look",
+      "evidence": "reports/research/2026-11-06_KINO_007_FULL_SECOND_PASS.md",
+      "acceptance": "Физический V8 MP4 с Denis title после t40.567, официальный check.py/look.py, в титре нет тишины >0.5с (по речи), полное последнее слово по слуху/ASR, без pre-outro spoiler",
       "owner_review": "pending",
       "audience_effect": "unknown",
-      "regression": true
+      "regression": true,
+      "retest_2026_11_06": "V7 настоящая FFmpeg-проверка: общий -16.8 LUFS, но reveal -41.1 LUFS и silencedetect 2.475s (40.341–42.816). V8 в Descript есть, binary final QA недоступен: NO-GO. Слот/YouTube не назначены."
     },
     {
       "id": "KINO-007-DUPLICATE-TITLE-BEFORE-OUTRO",
