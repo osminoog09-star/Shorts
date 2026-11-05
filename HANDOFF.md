@@ -1,3 +1,11 @@
+# 05.11 · GPT · 66 отдельных Opuscar style demo + единый 3:18 видеокаталог (private)
+
+По прямой команде владельца **выполнено 66 оригинальных коротких анимационных этюдов** по 66 STYLE.md Lemo-Opuscar, каждый **3с/72 кадра, 1280×720/24 H264 yuv420p**, 0 audio. Общий MP4 `M1lash_Opuscar_66_Style_Demos_198s.mp4` 198.000с, 4752 кадров, 9 377 685 байт, SHA256 `f4212b27d9234748c45ad3e7f70048657508cb2dae5faa5545f17b0eddd29c55`. Полный ffmpeg -xerror decode PASS; ffprobe 66/66 PASS; фактический контакт 66 кадров осмотрен глазами; 34 слишком статичных сцены пересобраны после motion QA. Итог **TECH PASS / ART STYLE SKETCH / NOT RELEASE READY** — отдельные стилевые наброски, не полноценные точные реализации Opuscar, **не официальный upstream render engine**, без настоящих CAD/LiDAR/сложной анимации героев. Штатный `check.py`/`look.py` не запускался; для будущего release обязателен.
+
+Владелец в этой сессии получил **реальные sandbox-ссылки** на MP4, контакт из финального MP4 `M1lash_Opuscar_66_Contact.jpg` и ZIP `M1lash_Opuscar_66_Individual_Demos_and_Source.zip` (66 отдельных MP4, HTML offline viewer, все исходники, screenshots, QA); ZIP SHA256 `fad58bfeec6d0039fd1c7e75daa858c12759d9dbde4589d1073da845aa2d413f`. GitHub index/manifest: `demos/opuscar_style_gallery/README.md`. **Сам бинарный ZIP и оригинальный renderer HTML не запушены в GitHub**; исходники входят в ZIP беседы и доступны для скачивания. Репо-документация честно отражает ограничения. Никаких новых форматов/роликов, публикаций, трат, голосов, новых киноисходников, AutoHarness hooks и возобновлений PAUSED проектов.
+
+---
+
 # 05.11 · GPT · Реальная изолированная установка и smoke 10 инструментов со скриншотов
 
 **Отчёт с версиями, выходами, ограничениями и SHA256 тестового MP4:** `skills/ext/RUNTIME_SMOKE_2026-11-05.md`, commit `bcdda29`. Доступ к GitHub исходникам в удалённой sandbox подтверждён, реально клонированы 7 репозиториев. Установлен **отдельный** Python 3.12 venv и npm окружения, проверен официальный Node24 бинарник по SHA256; на ПК Дениса/в ChatGPT глобально пакеты не устанавливались. Исходные зарегистрированные skills уже в репо, Studio SKILL дополнен проверенным состоянием (commit `9f45c76`). 
