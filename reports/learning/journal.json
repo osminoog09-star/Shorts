@@ -368,6 +368,19 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "KINO-007-V5-GHOSTED-CREDITS",
+      "project": "kino_007",
+      "issue": "Первая внутренняя титровая плашка показывала старые прожжённые субтитры поверх нового заголовка",
+      "cause": "Использовали кадр из V4 MP4, где уже были ASS subtitles вместо чистого киноисточника",
+      "fix": "Взять точно соответствующий frame оригинального пользовательского видео без ASS, заново сделать HTML+Playwright титровую сцену 1.2s с годом 2022",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-05_KINO_007_V5_TITLE_2022_REVIEW.md",
+      "acceptance": "Визуально открыта исправленная still credit и 20 фактических кадров MP4 включая переход, full FFmpeg decode PASS; 0 black/freezedetect",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }
