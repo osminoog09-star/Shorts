@@ -1,0 +1,110 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>M1lash MultNews — Warehouse pilot S3-D25</title><style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#24334a}#viewport{position:relative;width:100vw;height:100vh;overflow:hidden}svg{position:absolute;inset:0;width:100%;height:100%}#hud{pointer-events:none}</style></head><body><div id="viewport"><svg id="stage" viewBox="0 0 2600 1462" preserveAspectRatio="xMidYMid slice"></svg><svg id="hud" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet"></svg></div>
+<script>
+'use strict';
+// New original SVG scene. Deterministic, functional action not a single static illustration.
+const W=2600,H=1462,ink='#29354f';
+const rect=(x,y,w,h,fill,stroke=ink,sw=6,rad=3)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rad}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>`;
+const path=(d,fill,stroke=ink,sw=7)=>`<path d="${d}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}" stroke-linejoin="round" stroke-linecap="round"/>`;
+const circ=(x,y,rx,ry,fill,stroke=ink,sw=6)=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>`;
+const line=(x,y,X,Y,c=ink,sw=7)=>`<path d="M${x} ${y}L${X} ${Y}" stroke="${c}" stroke-width="${sw}" stroke-linecap="round" fill="none"/>`;
+const txt=(x,y,s,size=35,color='#fff')=>`<text x="${x}" y="${y}" font-family="DejaVu Sans,Arial,sans-serif" font-size="${size}" font-weight="850" fill="${color}">${s}</text>`;
+const group=(x,y,sc,inside)=>`<g transform="translate(${x} ${y}) scale(${sc})">${inside}</g>`;
+const clamp=(x,a,b)=>Math.min(b,Math.max(a,x)),smooth=x=>{x=clamp(x,0,1);return x*x*(3-2*x)},mix=(a,b,k)=>a+(b-a)*k;
+function box(x,y,w,h,color,label=''){return rect(x,y,w,h,color,ink,6,6)+path(`M${x+8} ${y+14}H${x+w-7}`,'none','#f9d9a5',4)+line(x+w/2,y,x+w/2,y+h,'#a77e55',5)+(label?txt(x+14,y+h*.67,label,25,'#564a46'):'');}
+function background(t){let s=rect(0,0,2600,1462,'#deeadf','none',0);
+ // Distinct warehouse with deep upper-level racking, loading docks, machinery.
+ for(let i=0;i<12;i++){let x=i*230-30;s+=rect(x,92,203,630,i%2?'#a9cbd0':'#bcdfe0','#597c90',8,3);for(let j=0;j<4;j++)s+=rect(x+17,122+j*142,170,123,'#c7e6e5','none',0,4)}
+ s+=path('M0 0L520 -93L2600 20V170L0 128Z','#576c7f',ink,17);
+ for(let i=0;i<15;i++){let x=10+i*188;s+=line(x,0,x+175,233,'#3f5c71',14)+line(x+180,12,x,205,'#718b95',10)+rect(x,0,25,920,'#8ca2aa',ink,5)}
+ for(let y of [164,355,603])s+=line(0,y,2600,y+19,'#60778a',18);
+ for(let j=0;j<13;j++){let x=70+j*193;s+=line(x,170,x,280,'#3e5467',5)+path(`M${x-57} 280Q${x} 221 ${x+57} 280Z`,'#f5be58',ink,6)+circ(x,285,39,9,'#fff5c7','none',0)}
+ // Three independent mezzanines with handrails and worker activity silhouettes.
+ s+=rect(0,421,2600,28,'#ecc04b',ink,7);for(let x=20;x<2600;x+=104)s+=line(x,327,x,420,'#e3b74d',9);s+=line(0,327,2600,327,'#f4d469',12);
+ for(let i=0;i<9;i++){let x=250+i*250;s+=group(x,418,.45,workerShape(i,t))}
+ // Vast side shelves, not cloned frames over empty sky.
+ for(let col=0;col<6;col++){let x=1470+col*192;s+=rect(x,316,20,625,'#627f91',ink,6);s+=rect(x+171,316,20,625,'#627f91',ink,6);
+  for(let row=0;row<4;row++){let y=415+row*127;s+=rect(x, y, 190,15,'#e9c15e',ink,4);let n=col*4+row;
+   s+=box(x+20,y-82,68,78,n%3?'#d3a077':'#8db2ad')+box(x+105,y-82,61,78,n%2?'#9ec5bd':'#d6af74');}}
+ // Traffic floor, mapped safety lanes, 2.5D lines.
+ s+=path('M0 913L2600 850V1462H0Z','#aebdc0','none',0);
+ for(let i=0;i<17;i++)s+=line(i*175,904,i*210-200,1462,'#96a8ab',3);
+ for(let j=0;j<5;j++)s+=line(0,980+j*113,2600,925+j*140,'#94a6ad',3);
+ s+=path('M1000 900L1252 900L1990 1462H1460Z','#869ba9','none',0);
+ s+=path('M1055 908L1080 908L1540 1460H1503Z','#f4d274','none',0);
+ s+=path('M1190 908L1215 908L1845 1460H1808Z','#f4d274','none',0);
+ for(let i=0;i<10;i++){let x=1260+i*70;let y=1150+i*30;s+=line(x,y,x+34,y,'#f3d47a',8)}
+ return s;
+}
+function workerShape(i,t){return circ(0,-140,23,24,'#f5b989')+rect(-27,-111,54,108,i%2?'#326ea2':'#3f9a9c',ink,6,10)+path('M-30 -137Q-28 -187 16 -184L35 -137Z','#f2c347',ink,5)+line(-22,-89,-47,-52,ink,13)+line(24,-89,49,-48,ink,13)+line(-17,-4,-22,48,'#344f6b',13)+line(18,-4,25,48,'#344f6b',13)}
+function loadingDock(t){let s='';
+ s+=rect(75,480,1110,512,'#51667d',ink,14,16)+rect(115,513,1032,446,'#344b60',ink,8,4);
+ // Box depth recedes into the trailer: visible rear supports, not a wall of tiles.
+ s+=rect(132,540,1000,386,'#627a86','none',0);
+ for(let row=0;row<4;row++)for(let col=0;col<7;col++){
+  let x=183+col*126+(row%2)*12,y=568+row*93;
+  if(row>=2 && col>=5)continue;
+  s+=box(x,y,116,89,['#d5a66a','#b9a77d','#a9c4b2','#d9b37b'][(row+col)%4]);
+ }
+ s+=rect(80,956,1102,45,'#e5ba59',ink,7)+rect(124,1008,975,52,'#7c8c9c',ink,6);
+ for(let i=0;i<7;i++)s+=rect(139+i*150,1042,113,33,'#d3a45b',ink,4);
+ s+=rect(250,472,730,74,'#294e68',ink,7,12)+txt(308,521,'РАЗГРУЗКА ФУРЫ',42);
+ s+=rect(140,1115,345,92,'#3b5b72',ink,7,10)+txt(174,1176,'ЗОНА ПРИЁМА',36);
+ // Distant forklift traffic physically crosses an aisle, separate from main robot action.
+ const fx=220+t*34; s+=group(fx,1214,.64,`${rect(-102,-69,209,107,'#e9b84b',ink,8,10)}${rect(-60,-174,99,102,'#eac451',ink,7,8)}${rect(-47,-161,76,67,'#a8d8d8',ink,6)}${circ(-56,39,30,30,'#32475b')}${circ(77,39,30,30,'#32475b')}${line(105,-174,105,40,ink,10)}${rect(105,28,125,13,'#415775',ink,5)}`);
+ return s;
+}
+function belt(t){let s='';s+=path('M1360 1056L2400 1056L2520 1190L1460 1210Z','#4d7285',ink,11);
+ s+=path('M1400 1075L2368 1075L2450 1151L1480 1171Z','#95c7c5',ink,8);
+ for(let i=0;i<17;i++){let x=1452+i*58;s+=line(x,1085,x+38,1163,'#6f9b9c',8)}
+ for(let i=0;i<10;i++){let x=1500+i*97;s+=circ(x,1219,21,21,'#526779',ink,5)}
+ // Fixed scanner through which boxes pass; unlike earlier moving QA beam.
+ s+=rect(2126,959,17,222,'#365e78',ink,7,4)+rect(2068,951,150,23,'#365e78',ink,6,5);
+ if(t>=13)s+=rect(2126,991,8,184,'#9af1cf','none',0,3);
+ s+=rect(2031,856,254,58,'#356a6c',ink,6,11)+txt(2054,898,'СОРТИРОВКА',35);
+ return s;
+}
+function stretchRobot(t){
+ const approach=smooth((t-4.0)/1.30);
+ const lift=smooth((t-5.30)/1.80);
+ const across=smooth((t-7.10)/2.50);
+ const down=smooth((t-9.60)/1.50);
+ const release=t>=11.10;
+ const headX=mix(1200,970,approach)+across*600;
+ const headY=mix(600,816,approach)-lift*200+down*344;
+ const cargoX=release? 1515 +Math.max(0,t-11.1)*210: headX-55;
+ const cargoY=release? 964: headY+4;
+ const botBase=[1312,1138];
+ const elbow=[mix(botBase[0]-26,headX,0.38),mix(botBase[1]-255,headY-100,.4)];
+ let s='';
+ // Mobile robot base, realistic weight and working zone; no imitation of specific branded robot.
+ s+=circ(botBase[0],1170,212,34,'#24374f','none',0);
+ s+=rect(botBase[0]-154,1046,318,105,'#45879d',ink,11,46)+rect(botBase[0]-112,1002,242,50,'#e7c451',ink,8,12);
+ s+=circ(botBase[0]-108,1143,39,39,'#354358',ink,7)+circ(botBase[0]+98,1143,39,39,'#354358',ink,7);
+ s+=rect(botBase[0]-99,1074,195,38,'#34566c',ink,4,7)+txt(botBase[0]-77,1102,'РОБОТ',28);
+ // Arm moves in two coordinated links: shoulder -> elbow -> vacuum head.
+ const armPath=`M${botBase[0]} ${1010}L${elbow[0]} ${elbow[1]}L${headX} ${headY-40}`;
+ s+=path(armPath,'none',ink,73)+path(armPath,'none','#efab4b',55);
+ s+=circ(botBase[0],1011,57,53,'#e9b453',ink,9)+circ(elbow[0],elbow[1],42,42,'#e7a24c',ink,8);
+ s+=line(botBase[0]-18,991,elbow[0]-25,elbow[1]-22,'#4b7b83',7);
+ // Vacuum pads are visible above the box: no arbitrary hovering magnet.
+ s+=rect(headX-67,headY-46,134,35,'#365d78',ink,8,8)+line(headX-47,headY-10,headX-47,headY+3,'#2b4059',7)+line(headX+47,headY-10,headX+47,headY+3,'#2b4059',7);
+ s+=circ(headX-47,headY+3,18,8,'#32495e',ink,4)+circ(headX+47,headY+3,18,8,'#32495e',ink,4);
+ // Source pallet and controlled prop motion; exact continuity at 5.3 and 11.1.
+ s+=rect(877,912,214,32,'#d1a75a',ink,7,3)+rect(899,945,35,22,'#ad8851',ink,4)+rect(1036,945,35,22,'#ad8851',ink,4);
+ if(t<5.3) s+=box(915,820,110,91,'#e0ad70','BOX');
+ else if(!release)s+=box(cargoX,cargoY,110,91,'#e0ad70','BOX');
+ else s+=box(cargoX,cargoY,110,91,'#e0ad70','BOX');
+ if(t>=11.1 && t<11.8)s+=rect(1646,907,266,53,'#3c8b74',ink,6,9)+txt(1662,945,'ГРУЗ НА ЛЕНТЕ',29);
+ if(t>=14.2)s+=rect(2094,911,268,52,'#3a8d78',ink,5,8)+txt(2120,948,'ПРОВЕРЕНО',31);
+ window.__warehouseQA={time:t,phase:t<4?'establish':t<5.3?'approach':t<7.1?'lift':t<9.6?'carry':t<11.1?'lower':'release',head:[headX,headY],cargo:[cargoX,cargoY],release,gripGap:t>=5.3&&!release?Math.hypot(cargoX+55-headX,cargoY-4-headY):null};
+ return s;
+}
+function hud(t){let title=t<4?'ОГРОМНЫЙ ЛОГИСТИЧЕСКИЙ ЦЕНТР':t<8?'ЗАХВАТ КОРОБКИ':t<12?'ПЕРЕНОС ГРУЗА':'ПОТОК СОРТИРОВКИ';return rect(0,0,1920,94,'#243b55','none',0)+path('M0 0H320L290 90H0Z','#d65260','none',0)+txt(26,67,'M1lash',60)+txt(352,62,'МУЛЬТНОВОСТИ',40,'#f9d67d')+rect(1100,16,800,62,'#345b75',ink,3,9)+txt(1140,61,title,34)+rect(0,1000,1920,80,'#243b55','none',0)+rect(24,1012,1000,54,'#365273','none',0,7)+txt(48,1049,'BOSTON DYNAMICS: STRETCH GEN 2',36)+rect(1600,1011,291,54,'#f2bf59','none',0,8)+txt(1628,1049,'ФАКТ / СКЕТЧ',32,'#243b55');}
+const SHOTS=[[0,0,2600,1462],[205,260,1980,1114],[460,300,1800,1012],[900,470,1700,957]];
+function camera(t){let shot=t<4?0:t<8?1:t<12?2:3;let b=SHOTS[shot].slice();let u=(t%4)/4;b[0]+=u*21;b[1]+=u*8;return {shot,viewBox:b};}
+window.frame=(t,forcedShot=null)=>{
+ t=Number(t)||0;const c=camera(t), idx=forcedShot===null?c.shot:forcedShot, box=forcedShot===null?c.viewBox:SHOTS[forcedShot];const stage=document.getElementById('stage');stage.setAttribute('viewBox',box.join(' '));
+ const svg=`<defs><pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="3" fill="#223952" opacity=".08"/></pattern></defs>`+background(t)+loadingDock(t)+belt(t)+stretchRobot(t)+rect(0,0,W,H,'url(#dots)','none',0);
+ stage.innerHTML=svg;document.getElementById('hud').innerHTML=hud(t);return {time:t,shot:idx,viewBox:box};
+};window.frame(0);const q=new URLSearchParams(location.search);if(q.get('preview')==='1'){let st=performance.now();function tick(now){window.frame(((now-st)/1000)%16);requestAnimationFrame(tick)}requestAnimationFrame(tick)}
+</script></body></html>
