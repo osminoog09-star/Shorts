@@ -33,10 +33,10 @@
 Цель: установить проверенные и относящиеся к M1lash источники, затем создать реальный отдельный тестовый MP4 без публикации и без изменения PAUSED проектов.
 Шаги:
 - [x] 1. Прочитать правила, установить происхождение Colibri / AutoHarness / Scrapling / Teardown / Glassy UI; проверить, что Opuscar уже есть в GitHub. Источники: JustVugg/colibri (LLM runtime, не self-learning skills), tigerless-labs/autoharness, D4Vinci/Scrapling, Opuscar teardown style. Glassy V5 только скрин, оригинальный код не подтверждён.
-- [ ] 2. Сохранить официальный агентский skill Scrapling и документацию AutoHarness **без запуска автохуков**, записать источники, лицензии и safe-mode. Не скачивать модели Colibri без проекта и бюджета.
-- [ ] 3. Сделать отдельно от PAUSED оригинальный 4–6-still proof и небольшой silent MP4 в Opuscar-технике через HTML/Canvas+Chromium/Playwright; строго отметить, если оригинальный engine не запускался.
-- [ ] 4. Фактические ffprobe/check/look/decode, глаза QA, доступная ссылка, HANDOFF, закрытие блока.
-Следующий шаг: скачать official source snippets и лицензии Scrapling/AutoHarness в skills/ext/ (без live hooks), commit; затем автономный Opuscar-style smoke 8–10s на отдельном проекте, без голоса, не публиковать.
+- [x] 2. Сохранён официальный Scrapling agent skill + BSD licence (commit 052863b); AutoHarness vendor Python source/README/LICENSE (commit 0455bad), без включения hooks/MCP, Colibri repo pinned без моделей. Teardown уже в Opuscar.
+- [x] 3. Создан отдельный Opuscar-style isometric factory пилот: оригинальные HTML/Canvas+Python Playwright, 6 stills, MP4 9.000s 1920×1080 H264 30fps 270 кадров, silent, ZIP с исходниками. НЕ официальный upstream renderer, не паузные проекты.
+- [ ] 4. Самостоятельный `ffprobe` и `ffmpeg -xerror` full decode PASS (повторно 05.11); `look_final_contact.jpg` и 6 stills существуют, ART PARTIAL / NO-GO, официальный `check.py`/`look.py` не запускался. Сохранить итог в HANDOFF; при доступном runtime запустить официальный QA, затем отдельно решить о следующем улучшении.
+Следующий шаг: официальный ffmpeg-skill check.py/look.py на MP4, просмотр контакт-листа и фиксация ошибки в studio-learning; при следующем art smoke сделать три разные крупности/физический контакт вместо схематичной общей сцены; не публиковать.
 Где промежуточное: skills/ext/lemo-opuscar/, skills/ext/watch/; локальный тест только /mnt/data и GitHub исходник после проверки.
 Ждёт Дениса: только решение о публикации (этот smoke без заливки).
 
