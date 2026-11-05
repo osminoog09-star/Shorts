@@ -17,6 +17,12 @@ jobs:
   python-skills:
     runs-on: ubuntu-latest
     timeout-minutes: 18
+    outputs:
+      graphify: ${{ steps.graphify.outcome }}
+      scrapling: ${{ steps.scrapling.outcome }}
+      watch: ${{ steps.watch.outcome }}
+      autoharness: ${{ steps.autoharness.outcome }}
+      opuscar_docs: ${{ steps.opuscar_docs.outcome }}
     env:
       PYTHONNOUSERSITE: "1"
       PIP_DISABLE_PIP_VERSION_CHECK: "1"
@@ -31,22 +37,48 @@ jobs:
         with:
           python-version: "3.12"
       - name: Setup isolated Python dependencies
+        continue-on-error: true
         run: |
           python -m venv /tmp/m1lash-skills-venv
           /tmp/m1lash-skills-venv/bin/python -m pip install --no-cache-dir graphifyy scrapling yt-dlp
           /tmp/m1lash-skills-venv/bin/python -m pip show graphifyy scrapling yt-dlp | grep -E '^(Name|Version):'
       - name: Graphify structural graph — local test only, no Cloud or hooks
+        id: graphify
+        continue-on-error: true
         run: /tmp/m1lash-skills-venv/bin/python tools/skills_runtime_smoke.py graphify
       - name: Scrapling HTML parse — local test only, no anti-bot
+        id: scrapling
+        continue-on-error: true
         run: /tmp/m1lash-skills-venv/bin/python tools/skills_runtime_smoke.py scrapling
       - name: Claude Watch /watch — synthetic offline MP4
+        id: watch
+        continue-on-error: true
         run: |
           /tmp/m1lash-skills-venv/bin/python skills/ext/watch/scripts/setup.py --json
           /tmp/m1lash-skills-venv/bin/python tools/skills_runtime_smoke.py watch
       - name: AutoHarness — syntax and isolated tests, no Claude hooks
+        id: autoharness
+        continue-on-error: true
         run: /tmp/m1lash-skills-venv/bin/python tools/skills_runtime_smoke.py autoharness
       - name: Opuscar + Teardown — style manifest and runtime preflight
+        id: opuscar_docs
+        continue-on-error: true
         run: /tmp/m1lash-skills-venv/bin/python tools/skills_runtime_smoke.py opuscar
+
+      - name: Aggregate Python smoke verdict
+        if: always()
+        env:
+          GRAPHIFY: ${{ steps.graphify.outcome }}
+          SCRAPLING: ${{ steps.scrapling.outcome }}
+          WATCH: ${{ steps.watch.outcome }}
+          AUTOHARNESS: ${{ steps.autoharness.outcome }}
+          OPUSCAR_DOCS: ${{ steps.opuscar_docs.outcome }}
+        run: |
+          for s in GRAPHIFY SCRAPLING WATCH AUTOHARNESS OPUSCAR_DOCS; do
+            echo "$s: ${!s}"
+            if [[ "${!s}" != success ]]; then failed=1; fi
+          done
+          if [[ "${failed:-0}" == 1 ]]; then exit 1; fi
 
   colibri:
     runs-on: ubuntu-latest
@@ -114,6 +146,11 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       PYTHON_RESULT: ${{ needs['python-skills'].result }}
+      GRAPHIFY_RESULT: ${{ needs['python-skills'].outputs.graphify }}
+      SCRAPLING_RESULT: ${{ needs['python-skills'].outputs.scrapling }}
+      WATCH_RESULT: ${{ needs['python-skills'].outputs.watch }}
+      AUTOHARNESS_RESULT: ${{ needs['python-skills'].outputs.autoharness }}
+      OPUSCAR_DOCS_RESULT: ${{ needs['python-skills'].outputs.opuscar_docs }}
       COLIBRI_RESULT: ${{ needs.colibri.result }}
       OPUSCAR_RESULT: ${{ needs['opuscar-runtime'].result }}
       OPENCLAW_RESULT: ${{ needs.openclaw.result }}
@@ -128,6 +165,13 @@ jobs:
               run_url=f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{os.environ["GITHUB_RUN_ID"]}',
               scope="disposable_runner_only; not installed on user's computer",
               python_skills=os.environ["PYTHON_RESULT"],
+              python_details={
+                  "graphify": os.environ["GRAPHIFY_RESULT"],
+                  "scrapling": os.environ["SCRAPLING_RESULT"],
+                  "watch": os.environ["WATCH_RESULT"],
+                  "autoharness_syntax": os.environ["AUTOHARNESS_RESULT"],
+                  "opuscar_style_manifest": os.environ["OPUSCAR_DOCS_RESULT"],
+              },
               colibri=os.environ["COLIBRI_RESULT"],
               opuscar_runtime=os.environ["OPUSCAR_RESULT"],
               openclaw=os.environ["OPENCLAW_RESULT"],
