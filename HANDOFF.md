@@ -1,3 +1,11 @@
+# 05.11 · GPT · kino_007 V5 checkpoint
+
+V5 MP4 44.505s / H264 AAC 1080×1920 / 1335 frames / SHA256 `1c82d3706f36f3457beb69bf1022654fbe3b7ae0133fd6955b5d344ed9625cf2`: титр «БЭТМЕН · 2022» до неизменённой Denis V7 концовки, после неё визуальное название «БЭТМЕН / THE BATMAN · 2022» 2.7s. Full decode PASS, 20 кадров реально просмотрены, black/freezedetect 0, −16.8 LUFS/−1.7 dBFS; исходный approved outro PCM corr 0.99619 / RMS −0.009 dB / delay 15.6ms. Private Library: `/Youtube/M1lash_Kino007_V5_20261105_REVIEW.mp4` libfile_16bb20229ac881919b07bc736c42ef7f и source QA ZIP libfile_3a610204dc0481919fead77f62cda470. Подробности `reports/research/2026-11-05_KINO_007_V5_TITLE_2022_REVIEW.md`, NOW kino_007, Studio lesson, AGENTS §8 narrow exception.
+
+**NO-GO:** личная финальная озвучка Дениса Qwen3 (2.64s) в отдельной приватной sandbox, в V5 её нет; official check.py/look.py и слух владельца не пройдены. Нельзя объявлять FINAL, публиковать или ставить дату. Следующий шаг — безопасно бинарно соединить озвучку с V5 post-outro, затем официальный QA и owner approval. Другие паузы/очередь не менялись.
+
+---
+
 # 05.11 · GPT · кино-Shorts 007 V4
 
 По просьбе владельца пересобран реальный вертикальный кино-Shorts V4: `/mnt/data/m1lash_kino_007_PRIVATE_PREVIEW_v4_IMPROVED_NO_REVEAL.mp4` (40.58с, 1080×1920, H264/AAC, 30fps; SHA256 `0b3bfea28fa08f3afb53da404b6330a9a516f8297a3c46df927eb3ec8ae7f49d`). Улучшены начало сцены, крупные синхронные титры, несколько неверно скадрированных планов и движение камеры. Подлинная русская дорожка сохранена. Утверждённая концовка не изменена.
