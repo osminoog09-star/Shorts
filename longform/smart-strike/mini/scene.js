@@ -112,7 +112,7 @@ const mat = {
   white: M('#f4f1ea', { r: .35 }), black: M('#111', { r: .3 }), glass: new THREE.MeshPhysicalMaterial({ color: '#cfe8ff', roughness: .05, transmission: 0, transparent: true, opacity: .35 }),
   skin: M('#f2c2a6', { r: .6 }), hoodie: M('#2b2d33', { r: .9 }), pants: M('#a99f82', { r: .9 }), sock: M('#e04a4a', { r: .9 }), slipper: M('#3b4a6b', { r: .9 }),
   eyeW: M('#fbfbf8', { r: .2 }), pupil: M('#1d1a19', { r: .15 }), brow: M('#2b1d16', { r: .9 }), mouth: M('#5a1d1f', { r: .6 }), tongue: M('#e0676d', { r: .5 }),
-  hair: M('#b98d57', { r: .7 }), hairTop: M('#cfa86f', { r: .6 }), fade: M('#9c7a52', { r: .95 }), coffee: M('#4a2a17', { r: .25 }), toast: M('#c98a45', { r: .9 }), toastBurnt: M('#5a3218', { r: .95 }),
+  hair: M('#bb915c', { r: .7 }), hairTop: M('#d2ad74', { r: .6 }), fade: M('#a88760', { r: .95 }), coffee: M('#4a2a17', { r: .25 }), toast: M('#c98a45', { r: .9 }), toastBurnt: M('#5a3218', { r: .95 }),
 };
 
 // ───────── room ─────────
@@ -305,15 +305,15 @@ for (const s of [-1, 1]) {
   legs.push({ hip, knee });
 }
 const torso = new THREE.Group(); hips.add(torso);
-const belly = new THREE.Mesh(new THREE.SphereGeometry(.26, 32, 24), mat.hoodie); belly.scale.set(.86, 1.42, .74); belly.position.y = .26; belly.castShadow = true; torso.add(belly);
-const pocket = new THREE.Mesh(new RoundedBoxGeometry(.3, .1, .05, 3, .03), M('#3a3d45', { r: .9 })); pocket.position.set(0, .12, .2); torso.add(pocket);
+const belly = new THREE.Mesh(new THREE.CapsuleGeometry(.215, .34, 10, 28), mat.hoodie); belly.scale.set(1, 1, .74); belly.position.y = .29; belly.castShadow = true; torso.add(belly);
+const hem = new THREE.Mesh(new THREE.TorusGeometry(.215, .035, 10, 40), mat.hoodie); hem.rotation.x = Math.PI / 2; hem.scale.set(1, .78, 1); hem.position.y = .02; torso.add(hem);
 const hood = new THREE.Mesh(new THREE.TorusGeometry(.15, .06, 12, 30), mat.hoodie); hood.rotation.x = Math.PI / 2 + .25; hood.position.set(0, .58, -.03); hood.castShadow = true; torso.add(hood);
 for (const s of [-1, 1]) { const st = capsule(.008, .16, M('#9a9ca3')); st.position.set(s * .06, .46, .2); torso.add(st); }
 const neck = new THREE.Group(); neck.position.y = .62; torso.add(neck);
 const head = new THREE.Group(); head.position.y = .2; neck.add(head);
 const skull = new THREE.Mesh(new THREE.SphereGeometry(.21, 40, 30), mat.skin); skull.scale.set(.96, 1.2, 1); skull.castShadow = true; head.add(skull);
-const jaw = new THREE.Mesh(new THREE.SphereGeometry(.18, 30, 20), mat.skin); jaw.position.set(0, -.1, .03); jaw.scale.set(1, .8, .95); head.add(jaw);
-const stubble = new THREE.Mesh(new THREE.SphereGeometry(.183, 30, 20, 0, Math.PI * 2, Math.PI * .45, Math.PI * .4), M('#d2a878', { r: 1, extra: { transparent: true, opacity: .28 } })); stubble.position.copy(jaw.position); stubble.scale.copy(jaw.scale); head.add(stubble);
+const jaw = new THREE.Mesh(new THREE.SphereGeometry(.18, 30, 20), mat.skin); jaw.position.set(0, -.09, .012); jaw.scale.set(.97, .82, .93); head.add(jaw);
+const stubble = new THREE.Mesh(new THREE.SphereGeometry(.183, 30, 20, 0, Math.PI * 2, Math.PI * .45, Math.PI * .4), M('#c9a07a', { r: 1, extra: { transparent: true, opacity: .1, depthWrite: false } })); stubble.position.copy(jaw.position); stubble.scale.copy(jaw.scale); head.add(stubble);
 for (const s of [-1, 1]) { const ear = new THREE.Mesh(new THREE.SphereGeometry(.05, 16, 12), mat.skin); ear.scale.set(.6, 1, .8); ear.position.set(s * .215, -.01, -.01); head.add(ear); }
 const nose = new THREE.Mesh(new THREE.SphereGeometry(.045, 20, 14), M('#e3a07e', { r: .6 })); nose.scale.set(.9, 1, 1.1); nose.position.set(0, -.02, .215); head.add(nose);
 const eyes = [];
@@ -333,13 +333,17 @@ const tongue = new THREE.Mesh(new THREE.SphereGeometry(.03, 14, 10), mat.tongue)
 const teeth = new THREE.Mesh(new RoundedBoxGeometry(.06, .012, .02, 2, .005), mat.white); teeth.position.set(0, .01, .012); mouthG.add(teeth);
 // hair (owner likeness): faded short sides + longer ash-blond top swept to his right and forward
 const hairG = new THREE.Group(); head.add(hairG);
-const fadeCap = new THREE.Mesh(new THREE.SphereGeometry(.228, 36, 24, 0, Math.PI * 2, 0, Math.PI * .5), mat.fade); fadeCap.scale.set(1.0, 1.12, 1.0); fadeCap.position.set(0, .015, -.012); fadeCap.rotation.x = -.35; hairG.add(fadeCap);
-for (let i = 0; i < 9; i++) {
-  const u = i / 8, hb = new THREE.Mesh(new THREE.SphereGeometry(.075, 18, 12), i % 2 ? mat.hair : mat.hairTop);
-  hb.position.set(lerp(-.1, .13, u), .22 + Math.sin(u * Math.PI) * .03 - u * .03, lerp(-.06, .12, hash(i * 3)) * (.6 + u * .5));
-  hb.scale.set(1.5, .55, 1.2); hb.rotation.z = -.35 - u * .2; hb.rotation.y = .3; hb.castShadow = true; hairG.add(hb);
+const fadeCap = new THREE.Mesh(new THREE.SphereGeometry(.216, 36, 24, 0, Math.PI * 2, 0, Math.PI * .5), mat.fade); fadeCap.scale.set(1.0, 1.22, 1.03); fadeCap.position.set(0, .03, -.01); fadeCap.rotation.x = -.22; hairG.add(fadeCap);
+// top: strands swept to his right and slightly forward (side part on his left)
+for (let i = 0; i < 16; i++) {
+  const u = (i % 8) / 7, row = Math.floor(i / 8);
+  const st = new THREE.Mesh(new THREE.CapsuleGeometry(.032, .16, 6, 10), i % 3 ? mat.hair : mat.hairTop);
+  const z = lerp(-.1, .1, u) - row * .02, x = -.08 + row * .05;
+  st.position.set(x + .06, .225 - Math.abs(z) * .25 - row * .02, z);
+  st.rotation.set(0, 0, -1.15 - row * .15 + (hash(i) - .5) * .15);
+  st.scale.set(1.15, 1, 1); st.castShadow = true; hairG.add(st);
 }
-const fringe = new THREE.Mesh(new THREE.SphereGeometry(.07, 16, 12), mat.hairTop); fringe.position.set(.11, .19, .13); fringe.scale.set(1.3, .5, .9); fringe.rotation.z = -.7; hairG.add(fringe);
+const fringe = new THREE.Mesh(new THREE.CapsuleGeometry(.03, .11, 6, 10), mat.hairTop); fringe.position.set(.1, .2, .14); fringe.rotation.set(.3, 0, -1.25); hairG.add(fringe);
 const cowlick = fringe;
 for (const s of [-1, 1]) { const ck = new THREE.Mesh(new THREE.SphereGeometry(.045, 14, 10), M('#f2a493', { r: .7, extra: { transparent: true, opacity: .5 } })); ck.position.set(s * .12, -.06, .155); ck.scale.set(1, .6, .4); head.add(ck); }
 // arms
