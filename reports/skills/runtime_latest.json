@@ -1,0 +1,10 @@
+{
+  "run_id": 41975630002,
+  "head_sha": "13a5d1d642e3c8d87d3142b660d7e2ed81a9ddb1",
+  "run_url": "https://github.com/osminoog09-star/Shorts/actions/runs/41975630002",
+  "scope": "disposable_runner_only; not installed on user's computer",
+  "python_skills": "failure",
+  "colibri": "success",
+  "opuscar_runtime": "failure",
+  "openclaw": "success"
+}
