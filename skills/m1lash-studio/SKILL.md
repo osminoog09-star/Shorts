@@ -171,6 +171,9 @@ Workflow `.github/workflows/denis-voice-tts.yml` сам скачивает *тр
 
 ## 7. Уроки
 
+- **06.11 · Film-Mult S10-D25 «Атлас тёмных солнц» (GPT):** после code-only JPEG→FFmpeg encoder `pix_fmt=yuv420p` НЕ гарантирует ограниченный диапазон: фактическая V2 была `yuvj420p/pc`. Перед просмотром проверять ffprobe primaries/transfer/matrix/range; V4 прошла `yuv420p/tv/bt709` и полный decode, SHA `8aacbf7…`. Всякий H264 TECH PASS отдельный от ART GO: хотя сцены и физические механизмы движутся, повторяющиеся затворы, упрощённые руки/лица и отсутствие разрешённого голоса Дениса/outro делают 42с V4 только **PRIVATE DRAFT / ART NO-GO**. Источник `longform/dark_suns_promo_20261106/QA_PRIVATE_PREVIEW_V4.md`; private source+MP4 — Library `/Youtube/M1lash_DarkSuns_Promo_Private/`.
+
+
 - **06.11 · kino_007 / частотный QA аудио + Studio gate (GPT):** общий −16.8 LUFS на полном MP4 может маскировать **2.475с почти тишины** в пост-концовке (reveal −41.1 LUFS). Проверять отдельные сегменты film/CTA/reveal с `ebur128` и `silencedetect=-35dB:d=.4`; без реального авторского голоса, binary V8, финальных official check.py/look.py — **NO-GO**, даже если кадры/стыки V7 осмотрены и full decode PASS. Сначала private review без даты; только «ок» владельца даёт слот кино в 10:00 Europe/Tallinn через Studio. `reports/research/2026-11-06_KINO_007_FULL_SECOND_PASS.md`.
 
 
