@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-05",
+  "project": "M1lash Film-Mult S10-D25",
+  "references": [
+    "https://youtu.be/bq1gOXifqe8",
+    "https://youtu.be/O-oQEDKCsUk"
+  ],
+  "status": "MACROSTRUCTURE_VERIFIED_AND_KEYFRAME_SAMPLES_ONLY",
+  "author": "GPT",
+  "no_publication": true,
+  "lesson_count": 7,
+  "lessons": [
+    {
+      "technique": "Paradox-first biography",
+      "observed_at": "R1 00:00–05:02 author chapters; provider opening descriptions 00:00–00:49",
+      "source_method": "YT-META+PROVIDER-TEXT",
+      "confidence": "medium_for_story_structure_low_for_visual_timing",
+      "expected_benefit": "Viewer follows one motivating question until final return",
+      "application_scene": "First 15 seconds foreshadow consequence; last act resolves paradox",
+      "verification_method": "Storyboard vs script and viewers can restate opening question after final"
+    },
+    {
+      "technique": "Chapter-sized turning points",
+      "observed_at": "R1 6 chapters 30:49; R2 8 levels 34:54",
+      "source_method": "YT-META",
+      "confidence": "high_for_chapter_boundaries",
+      "expected_benefit": "Clear macro rhythm instead of 21+ minutes of filler",
+      "application_scene": "For original >=21m film, 5–6 acts each introducing a changed goal/stakes",
+      "verification_method": "Timecoded shotlist and script beat transitions, no repeated filler"
+    },
+    {
+      "technique": "Visual function changes per scene",
+      "observed_at": "R1 hq1 ancient argument, hq2 two-planet infographic, hq3 gothic conflict illustration",
+      "source_method": "YT-KEYFRAMES",
+      "confidence": "high_for_3_static_samples_only",
+      "expected_benefit": "Prevents repetitive cards and helps visual comprehension",
+      "application_scene": "Alternate expressive character shots, working prop sequences, schematic explanations and wide environments",
+      "verification_method": "4–6 storyboards and final contact sheet compared against narration per plan"
+    },
+    {
+      "technique": "Consistent evolving character model",
+      "observed_at": "R2 thumbnail 3 levels; hq1 hq2 hq3 simple child, white/red armor, gothic hall",
+      "source_method": "YT-KEYFRAMES+YT-META",
+      "confidence": "high_for_images_low_for_animation_method",
+      "expected_benefit": "Recognizable protagonist and visible transformation over long duration",
+      "application_scene": "Versioned rigs and model sheets changing status/outfit/props while preserving face identity",
+      "verification_method": "Compare model sheet and 3 angles/6 expressions across acts"
+    },
+    {
+      "technique": "Engagement through irreversible choice",
+      "observed_at": "R2 16:16 wound, 20:37 betrayal, 29:00 ending; author description CTA",
+      "source_method": "YT-META",
+      "confidence": "high_for_chapters",
+      "expected_benefit": "Earned audience question and emotional stakes",
+      "application_scene": "Midpoint hero setback and final question about moral alternative",
+      "verification_method": "Viewer identifies moment when protagonist could have chosen otherwise"
+    },
+    {
+      "technique": "Reliable source provenance in narrative",
+      "observed_at": "R1 long author description distinguishes older and newer canon versions and references books",
+      "source_method": "YT-META",
+      "confidence": "high_for_description_only",
+      "expected_benefit": "Credible treatment of contested facts, avoiding made-up certainty",
+      "application_scene": "When factual storytelling, label factual reconstruction vs legend vs original fiction",
+      "verification_method": "Script fact sheet with source and uncertainty labels"
+    },
+    {
+      "technique": "Avoid claiming video motion from stills",
+      "observed_at": "Both YouTube hq1–hq3, 3 sample images per video; chromium playback blocked; provider summary mismatch R2",
+      "source_method": "YT-KEYFRAMES+DIRECT_PLAYBACK_FAILURE",
+      "confidence": "high",
+      "expected_benefit": "Prevents fake ART GO and misguided S10-D25 redesign",
+      "application_scene": "Keep animation assumptions unknown until real timecoded MP4 and audio exist",
+      "verification_method": "Explicit VIDEO_VERIFIED and AUDIO_VERIFIED gates based on actual frames and sound"
+    }
+  ]
+}
