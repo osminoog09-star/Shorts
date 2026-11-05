@@ -73,7 +73,7 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg
+          sudo apt-get install -y -qq ffmpeg sox libsox-fmt-all
           python -m pip install --upgrade -q pip
           python -m pip install -q --index-url https://download.pytorch.org/whl/cpu 'torch==2.9.1' 'torchaudio==2.9.1'
           python -m pip install -q 'qwen-tts==0.1.1' 'transformers==4.57.3' 'accelerate==1.12.0' 'soundfile==0.14.0' 'huggingface-hub==0.36.2' 'faster-whisper==1.2.1'
