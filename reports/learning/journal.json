@@ -537,6 +537,45 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "MULTNEWS-LAB-V1-CONTACT",
+      "project": "multnews_20261104",
+      "issue": "Третий мир (робот-ученик) должен доказуемо брать чашку и не изображать телеуправление как самостоятельность",
+      "cause": "До сцены не было проверенной координации human demonstration → grip → carry → release и отдельного label fiction",
+      "fix": "Лаборатория из 4 зон, программа cup grip с общим anchor: до/после t10.20 source (1915,755), до/после t13.10 cup (2050,691), после t13.75 на столе; HUD помечает демонстрацию и вымышленный повтор",
+      "status": "verified",
+      "evidence": "longform/multnews_20261104/lab_v1/QA_v1_2026-11-06.md",
+      "acceptance": "MP4 20.000s H264 1280x720 600 frames, zero audio, ffmpeg full -xerror decode PASS, 16 реальных кадров MP4 + playwright cup anchorGap=0 at t10.2–13.0999, no jump at t13.1",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "MULTNEWS-LAB-V1-ART",
+      "project": "multnews_20261104",
+      "issue": "Корея data-factory v1 остаётся плоской процедурной декорацией: сотрудники-манекены, ограниченная актёрская игра, нет синхронного split-screen оператора и робота",
+      "cause": "Шесть stills и один 20-сек пилот иллюстрируют concept, но не содержат достаточных pose sheets/вариативного реквизита/анатомической анимации для большого выпуска",
+      "fix": "Открытый ART TODO: добавить разные model sheets/эмоции, физический контакт наставник-ткань со split-screen и связь обоих таймлайнов; не замыкать ART gate по успешному декоду",
+      "status": "observed",
+      "evidence": "longform/multnews_20261104/lab_v1/QA_v1_2026-11-06.md",
+      "acceptance": "6 переработанных уникальных 1080p stills + 15–30с real pilot с synced teleoperation, контрастной мимикой и mobile 360px readability, смотреть по кадрам в MP4, ART GO отдельно от TECH PASS",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "MULTNEWS-LAB-V1-HUD",
+      "project": "multnews_20261104",
+      "issue": "Сигнальный кабель/точки записи пересекали вывеску учебного класса при операторском крупном плане; на краю кухонного плана торчал обрезок соседней вывески",
+      "cause": "Сигнальная графика шла поверх названий зон в world SVG и не учитывала camera crop",
+      "fix": "Перенести data bezier path на уровень пола и точки точно по той же кривой; скрывать заголовок соседней комнаты в kitchen camera t8–15 при отдельном стабильном HUD",
+      "status": "verified",
+      "evidence": "longform/multnews_20261104/lab_v1/QA_v1_2026-11-06.md",
+      "acceptance": "Фактические stills и MP4 t5.4/8.5/10.2, data labels world не перекрывают ведущие надписи; FFmpeg видеопоток без JS errors",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }
