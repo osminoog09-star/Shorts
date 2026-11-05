@@ -62,6 +62,31 @@ jobs:
           test -x /tmp/colibri/c/colibri
           timeout 30 /tmp/colibri/c/colibri --help | head -35
 
+  opuscar-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Clone official Opuscar engine (outside M1lash checkout)
+        run: git clone --depth 1 https://github.com/lemomo-ai/lemo-opuscar.git /tmp/lemo-runtime
+      - name: Install Opuscar core dependencies (no voices, models or music)
+        run: |
+          cd /tmp/lemo-runtime
+          sh scripts/setup.sh deps
+      - name: Import Playwright and check renderer directories
+        run: |
+          cd /tmp/lemo-runtime
+          node -e "require('playwright-core'); console.log('PLAYWRIGHT_CORE_PASS')"
+          test -d core/render
+          test -x .venv/bin/python
+          .venv/bin/python --version
+          echo "OPUSCAR CORE DEPENDENCIES PASS — sample render still not tested"
+
   openclaw:
     runs-on: ubuntu-latest
     timeout-minutes: 18
@@ -78,3 +103,51 @@ jobs:
         run: |
           node -v
           timeout 35 /tmp/m1lash-openclaw/node_modules/.bin/openclaw --help | head -60
+
+  publish-summary:
+    if: always()
+    needs: [python-skills, colibri, opuscar-runtime, openclaw]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHON_RESULT: ${{ needs['python-skills'].result }}
+      COLIBRI_RESULT: ${{ needs.colibri.result }}
+      OPUSCAR_RESULT: ${{ needs['opuscar-runtime'].result }}
+      OPENCLAW_RESULT: ${{ needs.openclaw.result }}
+    steps:
+      - name: Create machine-readable result with exact workflow run ID
+        run: |
+          python3 - <<'PY'
+          import json, os
+          d = dict(
+              run_id=int(os.environ["GITHUB_RUN_ID"]),
+              head_sha=os.environ["GITHUB_SHA"],
+              run_url=f'https://github.com/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{os.environ["GITHUB_RUN_ID"]}',
+              scope="disposable_runner_only; not installed on user's computer",
+              python_skills=os.environ["PYTHON_RESULT"],
+              colibri=os.environ["COLIBRI_RESULT"],
+              opuscar_runtime=os.environ["OPUSCAR_RESULT"],
+              openclaw=os.environ["OPENCLAW_RESULT"],
+          )
+          open('/tmp/m1lash-runtime-summary.json','w').write(json.dumps(d, ensure_ascii=False, indent=2) + '\n')
+          print(json.dumps(d, ensure_ascii=False, indent=2))
+          PY
+      - name: Publish summary into separate results branch (no edits to main)
+        run: |
+          set -euo pipefail
+          REPO="$GITHUB_REPOSITORY"
+          BRANCH="skill-smoke-results"
+          if ! gh api "repos/$REPO/git/ref/heads/$BRANCH" >/dev/null 2>&1; then
+            gh api -X POST "repos/$REPO/git/refs" -f ref="refs/heads/$BRANCH" -f sha="$GITHUB_SHA" >/dev/null
+          fi
+          content="$(base64 -w0 /tmp/m1lash-runtime-summary.json)"
+          file="reports/skills/runtime_latest.json"
+          existing="$(gh api "repos/$REPO/contents/$file?ref=$BRANCH" --jq '.sha' 2>/dev/null || true)"
+          if [[ -n "$existing" ]]; then
+            gh api -X PUT "repos/$REPO/contents/$file" -f message="ci: record isolated skills runtime results" -f branch="$BRANCH" -f content="$content" -f sha="$existing" >/dev/null
+          else
+            gh api -X PUT "repos/$REPO/contents/$file" -f message="ci: record isolated skills runtime results" -f branch="$BRANCH" -f content="$content" >/dev/null
+          fi
