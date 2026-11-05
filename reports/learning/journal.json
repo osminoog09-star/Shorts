@@ -277,6 +277,58 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "MULTNEWS-V7-CAUSE-WELD",
+      "project": "multnews_20261104",
+      "issue": "В v6 сварочные искры возникали независимо от положения наконечника и кузова",
+      "cause": "Синусоидальный spark center не был связан с инструментом и точкой контакта",
+      "fix": "v7: один welding event t9.05–10.65, toolTip и spot один world anchor (502,912), programmatic delta=0 в t9.2/t10; реальный MP4 декодирован и просмотрен",
+      "status": "verified",
+      "evidence": "longform/multnews_20261104/factory_v2/QA_v7_2026-11-05.md",
+      "acceptance": "Full H264 24s decode PASS; actual MP4 frames 8.9/9.2/10.1/11 seconds; source window.__weldQA contact true and delta=0, мигания вне контакта нет",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "MULTNEWS-V7-CRANE-FORKLIFT-CONTINUITY",
+      "project": "multnews_20261104",
+      "issue": "Ранее кран не выполнял понятной операции, а коробка погрузчика появлялась на стеллаже со скачком",
+      "cause": "Крюк, кузов, перенос и паллета не подчинялись одному этапному event; груз после release получал новые нестыкующиеся координаты",
+      "fix": "v7: кузов до/после hook t5.46 на world (780,623); forklifts box до/после release t14.91 на world ~ (1769,879), плавный откат машины",
+      "status": "verified",
+      "evidence": "longform/multnews_20261104/factory_v2/QA_v7_2026-11-05.md",
+      "acceptance": "MP4 t4.7/5.4/5.8/6.3/7.7/12.8/13.7/14.7/15.25; исходные события и контакты без скачка; owner art review остаётся pending",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "MULTNEWS-WAREHOUSE-V1-MOTION",
+      "project": "multnews_20261104",
+      "issue": "Новость про Stretch не имела ни одного своего действующего большого окружения",
+      "cause": "Один заводской фон не может доказать другую рабочую задачу разгрузки фур и сортировки",
+      "fix": "Отдельный HTML/SVG мир warehouse_stage.html: 8 реальных 1080p stills, 16s 720p 30fps 480 H264 video-only frames, grip t5.3/lift/carry/release t11.1/scanner t13.75",
+      "status": "verified",
+      "evidence": "longform/multnews_20261104/warehouse_v1/QA_v1_2026-11-05.md",
+      "acceptance": "FFmpeg -xerror full decode PASS; ffprobe 1 video/0 audio streams; actual MP4 t1/3.8/4.9/5.2/5.5/6.7/8.9/10.5/11/11.2/12.8/13.8/14.5/15.4 reviewed; unique warehouse not reused factory",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "MULTNEWS-WAREHOUSE-V1-ART",
+      "project": "multnews_20261104",
+      "issue": "Хотя warehouse v1 технически работает, много коробок/стеллажей повторяются, рабочие на мостике почти не играют и захват мелкий на телефоне",
+      "cause": "Процедурная геометрия и одна активная машина недостаточны для высокого художественного качества и трёхминутного рассказа",
+      "fix": "Открыто для v2: сделать крупный контактный план, разные категории и повреждённые коробки, операторскую реакцию и обслуживаемый захват; не растягивать 16с на весь выпуск",
+      "status": "observed",
+      "evidence": "longform/multnews_20261104/warehouse_v1/QA_v1_2026-11-05.md",
+      "acceptance": "Сначала шесть новых разных real stills+mobile 360px; потом 16–20s MP4 с новыми причинными beat и реальным крупным лицом/контактом; до этого ART NO-GO",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }
