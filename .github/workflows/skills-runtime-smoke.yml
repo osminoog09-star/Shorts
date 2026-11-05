@@ -45,7 +45,7 @@ jobs:
         continue-on-error: true
         run: |
           python -m venv /tmp/m1lash-skills-venv
-          /tmp/m1lash-skills-venv/bin/python -m pip install --no-cache-dir graphifyy scrapling yt-dlp
+          /tmp/m1lash-skills-venv/bin/python -m pip install --no-cache-dir graphifyy==0.9.102 scrapling==0.5.1 yt-dlp==2026.10.26
           /tmp/m1lash-skills-venv/bin/python -m pip show graphifyy scrapling yt-dlp | grep -E '^(Name|Version):'
           echo "/tmp/m1lash-skills-venv/bin" >> "$GITHUB_PATH"
       - name: Graphify structural graph — local test only, no Cloud or hooks
@@ -168,7 +168,7 @@ jobs:
       - name: Install OpenClaw to disposable prefix (no launch, no secrets)
         run: |
           mkdir -p /tmp/m1lash-openclaw
-          npm install --prefix /tmp/m1lash-openclaw --no-audit --no-fund --ignore-scripts openclaw@latest
+          npm install --prefix /tmp/m1lash-openclaw --no-audit --no-fund --ignore-scripts openclaw@2026.10.10
           npm ls --prefix /tmp/m1lash-openclaw openclaw --depth=0
       - name: CLI preflight without daemon onboarding
         run: |
