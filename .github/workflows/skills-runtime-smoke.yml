@@ -123,7 +123,40 @@ jobs:
           test -d core/render
           test -x .venv/bin/python
           .venv/bin/python --version
-          echo "OPUSCAR CORE DEPENDENCIES PASS — sample render still not tested"
+          echo "OPUSCAR CORE DEPENDENCIES PASS"
+
+      - name: Browser-based smoke renders two distinct physical PNG frames
+        run: |
+          cd /tmp/lemo-runtime
+          node --input-type=module <<'JS'
+          import { chromium } from 'playwright-core';
+          import { readFileSync, statSync } from 'node:fs';
+          const browser = await chromium.launch({headless:true,args:['--no-sandbox']});
+          try {
+            const page = await browser.newPage({viewport:{width:640,height:360}});
+            await page.setContent(`<!doctype html><html><body style="margin:0">
+              <canvas width="640" height="360" id="c"></canvas>
+              <script>
+                window.paint = function(x) {
+                  const ctx=document.querySelector('#c').getContext('2d');
+                  ctx.fillStyle='#102339'; ctx.fillRect(0,0,640,360);
+                  ctx.fillStyle='#3dcbcc'; ctx.fillRect(x,120,130,90);
+                  ctx.fillStyle='#e9b568'; ctx.fillRect(x+30,150,30,30);
+                };
+                window.paint(55);
+              </script></body></html>`);
+            await page.screenshot({path:'/tmp/opuscar_frame_a.png'});
+            await page.evaluate(() => window.paint(240));
+            await page.screenshot({path:'/tmp/opuscar_frame_b.png'});
+            const a=readFileSync('/tmp/opuscar_frame_a.png');
+            const b=readFileSync('/tmp/opuscar_frame_b.png');
+            if (a.length < 1000 || b.length < 1000 || a.equals(b)) throw Error('browser failed to render distinct frames');
+            console.log('OPUSCAR_BROWSER_RENDER_PASS',statSync('/tmp/opuscar_frame_a.png').size,
+                        statSync('/tmp/opuscar_frame_b.png').size);
+          } finally {
+            await browser.close();
+          }
+          JS
 
   openclaw:
     runs-on: ubuntu-latest
