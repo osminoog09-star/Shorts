@@ -182,7 +182,7 @@ def main():
         g.append(f"[1:v]{vf}[v1];[1:a]{af},atrim=duration={odur:.4f}[a1]")
         if n == 3:
             tdur = title_dur + 0.35
-            g.append(f"[2:v]{vf},trim=duration={tdur:.4f}[v2];[3:a]loudnorm=I={TARGET_I}:TP={TARGET_TP},{af},apad,atrim=duration={tdur:.4f}[a2]")
+            g.append(f"[2:v]{vf},trim=duration={tdur:.4f}[v2];[3:a]aresample={SR},aformat=sample_fmts=fltp:channel_layouts=stereo,loudnorm=I={TARGET_I}:TP={TARGET_TP},{af},apad,atrim=duration={tdur:.4f}[a2]")
             g.append("[v0][a0][v1][a1][v2][a2]concat=n=3:v=1:a=1[v][a]")
         else:
             g.append("[v0][a0][v1][a1]concat=n=2:v=1:a=1[v][a]")
