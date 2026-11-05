@@ -695,7 +695,7 @@
   "schema_version": 1,
   "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
   "snapshot_date": "2026-11-05",
-  "fetched_at": "2026-11-05T13:50:29.329167+00:00",
+  "fetched_at": "2026-11-05T15:38:00.871122+00:00",
   "inventory": [
     {
       "video_id": "sCThiwmigy0",
@@ -704,7 +704,7 @@
       "duration": "PT54S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "139",
+        "viewCount": "170",
         "likeCount": "1",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -746,8 +746,8 @@
       "duration": "PT56S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1205",
-        "likeCount": "18",
+        "viewCount": "1219",
+        "likeCount": "19",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -844,8 +844,8 @@
       "duration": "PT52S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1037",
-        "likeCount": "28",
+        "viewCount": "1038",
+        "likeCount": "29",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -1456,7 +1456,7 @@
   ],
   "channel_statistics": {
     "viewCount": "37934",
-    "subscriberCount": "38",
+    "subscriberCount": "39",
     "hiddenSubscriberCount": false,
     "videoCount": "47"
   },
