@@ -34,3 +34,18 @@
 - Облачная сессия Claude не может скачивать Actions artifacts и Drive: всё с приватным голосом идёт внутри Actions.
 - GitHub `ubuntu-latest` = 26.04: Playwright 1.56 там не ставит браузер → для рендера `ubuntu-24.04`.
 - Установка pip-пакетов в этой сессии не постоянная; на ПК Дениса — по `LOCAL_PC_PLAN.md`.
+
+## Запуск новых навыков (Claude, 06.11 ночь)
+| Навык | Результат | Заметка |
+|---|---|---|
+| anim-graph | PASS — 4 с 1080×1920, 20 с рендер | русские подписи работают |
+| anim-minimalistic-graphics | PASS | |
+| anim-map-route | PASS | интерфейс карты на английском («9 min», «Arrived») |
+| anim-breakdown | PASS | модель всегда телефон, меняются только подписи |
+| anim-stick-figure | PASS — 35.7 с, озвучка+выравнивание слов+музыка+SFX+картинка | для наших роликов голос подавать файлом Дениса (`make.sh <папка> <wav>`), Kokoro только тест |
+| anim-zach-d-films | не запускался отдельно | тот же движок, что stick-figure |
+| earshot | CLI ставится и запускается | в `mini-strike.yml` |
+| watch (`reference-watch.yml`) | YouTube из Actions: «Sign in to confirm you're not a bot» → SOURCE_BLOCKED | референсы — файлом от Дениса или на ПК |
+| awa-video-reel, gstack | submodules, не запускались | нужны модели/браузер, скачивание блокирует облачная сеть → ПК или Actions |
+
+Настройка в облаке: браузер Playwright не скачивается (прокси) → `anim-kit/node_modules/playwright*` ссылками на установленный, `HYPERFRAMES_BROWSER_PATH=<chromium>`; модели Kokoro/Parakeet с GitHub releases качаются (969 МБ, в `.gitignore`).
