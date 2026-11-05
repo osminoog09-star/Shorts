@@ -167,11 +167,25 @@ def generate(job: Path, assets: Path, model_dir: Path, output: Path) -> dict:
     # Do not load Whisper while 1.7B Qwen weights occupy runner RAM.
     try:
         from faster_whisper import WhisperModel
-        whisper = WhisperModel("small", device="cpu", compute_type="int8", cpu_threads=2,
-                               num_workers=1, download_root=os.path.join(
-                                   os.environ.get("HF_HOME", "/tmp"), "whisper"))
+        # GitHub Actions pre-downloads the PUBLIC CTranslate2 model before Qwen
+        # inference. Loading that exact local snapshot avoids network/timeouts
+        # after a lengthy CPU synthesis run. This is ASR verification, NOT a
+        # voice engine fallback or a private sample download.
+        whisper_local = os.environ.get("WHISPER_LOCAL_PATH", "").strip()
+        if whisper_local:
+            if not (Path(whisper_local) / "model.bin").is_file():
+                raise VoiceError("BLOCKED: cached faster-whisper model.bin is missing")
+            whisper = WhisperModel(whisper_local, device="cpu", compute_type="int8",
+                                   cpu_threads=2, num_workers=1, local_files_only=True)
+        else:
+            whisper = WhisperModel("small", device="cpu", compute_type="int8",
+                                   cpu_threads=2, num_workers=1, download_root=os.path.join(
+                                       os.environ.get("HF_HOME", "/tmp"), "whisper"))
+    except VoiceError:
+        raise
     except Exception as exc:
-        raise VoiceError("BLOCKED: faster-whisper small model unavailable") from exc
+        raise VoiceError("BLOCKED: faster-whisper small model unavailable (" +
+                         type(exc).__name__ + "); pre-download the PUBLIC CTranslate2 snapshot") from exc
     for item in utterances:
         wav = output / item["source_file"]
         p = subprocess.run(["ffmpeg", "-v", "error", "-i", str(wav), "-ac", "1",
