@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 110
     env:
-      HF_HOME: ${{ runner.temp }}/m1lash-hf-public-weights
+      HF_HOME: ${{ github.workspace }}/.hf-public-models
       HF_HUB_DISABLE_TELEMETRY: '1'
       DO_NOT_TRACK: '1'
       GRADIO_ANALYTICS_ENABLED: 'False'
@@ -85,7 +85,7 @@ jobs:
       - name: Cache PUBLIC Qwen/Whisper model weights only (not reference/embedding)
         uses: actions/cache@v4
         with:
-          path: ${{ runner.temp }}/m1lash-hf-public-weights
+          path: ${{ github.workspace }}/.hf-public-models
           key: denis-voice-qwen3-1p7b-base-and-whisper-small-20261105-v1
       - name: Download PUBLIC Qwen3-TTS 1.7B Base to cached HF_HOME
         run: |
