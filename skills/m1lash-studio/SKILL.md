@@ -64,6 +64,25 @@ description: Карта и пошаговый конвейер студии ка
 9. **«Заливаем»** от Дениса — сам с сайта: «⚡ Авто» (лучший слот по `publishing/best_times.json`) или «✋ Своё время» → сайт пишет `publish_at` в манифест и запускает `mode=schedule`. Агенту делать ничего не нужно; если Денис сказал «заливаем» в чате — тот же расчёт слотов.
 10. **После выхода** — строка в `reports/videos.csv` (делает аналитика), эксперимент — в `reports/experiments.md`, итоги 48 ч / 7 д.
 
+### Голос Дениса для Claude · приватный Qwen3-TTS 1.7B Base ICL (05.11)
+
+Claude может запускать производство личного голоса без GPT, не открывая и не коммитя образец. Правила `AGENTS.md` §3–4 главнее: **никакого Димы/Edge-TTS fallback, без публикации и изменения утверждённой Denis v7 концовки**.
+
+**Исходные private данные:** `M1lash/_studio/voice/` на Google Drive: WAV (10.72с, 24kHz mono), exact ref_text.txt и params.json из последнего рабочего Qwen ICL. В публичном репозитории хранится **только** `tools/voice/approved.json` с SHA256/Drive ID, voice_id `denis-qwen3tts-reference-v1`. Embedding строится в оперативной памяти GitHub runner и не сохраняется ни в публичный Git, ни в артефакт. После синтеза runner удаляет private reference; GitHub `media/voice/` игнорируется.
+
+**Как запустить Claude:** создать `jobs/voice/<id>.json` с `job_id` (совпадает с именем файла), `speaker: denis`, `voice_id: denis-qwen3tts-reference-v1`, `utterances: [{id,text,rate}]`. До **8 реплик по 5–220 символов**, id латиницей, `rate` от 0.85 до 1.15 (1.0 = без ускорения). Затем выполнить:
+```bash
+gh workflow run denis-voice-tts.yml --ref main -f job_path=jobs/voice/<id>.json
+gh run list --workflow denis-voice-tts.yml --limit 5
+gh run watch <run-id>
+gh run download <run-id> -n denis-voice-<id>
+```
+Workflow `.github/workflows/denis-voice-tts.yml` сам скачивает *три* частных файла через `GDRIVE_REFRESH_TOKEN` с SHA256 gate, ставит Qwen3-TTS 1.7B Base ICL (последний рабочий `qwen-tts==0.1.1`, `transformers==4.57.3`) на CPU, кэширует **только общедоступные веса** Qwen/Whisper через `actions/cache`, генерирует WAV, применяет `rate`, проверяет русский текст `faster-whisper small` (similarity ≥0.80). При нехватке RAM/модели/ASR — **NO-GO**, других голосов не подставлять. В случае SUCCESS каждый файл идёт в Drive `M1lash/_studio/voice_out/<id>/`, плюс `manifest.json` с `speaker=denis,voice_id,engine=qwen3-tts-local,rate,source_file,sha256,ASR`, `drive_receipt.json`. Artifact `denis-voice-<id>` живёт **1 день**, **без reference/embedding**; сохранять нужные WAV именно в личном Drive. Наличие artifact не означает одобрение тембра: **слушает и утверждает владелец**.
+
+**Сборка кино-Shorts Claude:** после генерации взять **Drive file ID** конкретной личной реплики и её SHA256 из `drive_receipt.json`. `movie-short.yml` принимает `title_voice_drive_id` и `title_voice_sha256`; `scripts/fetch_voice_clip.py` проверяет, что WAV внутри owner-only `voice_out/<id>/`, соответствует manifest ASR/Denis и SHA. Отдельный `scripts/fetch_outro.py` получает **обе** v7 вертикальную/горизонтальную концовки, сверяет `tools/outro/approved.json`, затем только `tools/assemble_with_outro.py`. `upload=false` по умолчанию; только owner «ок» разрешает YouTube. Ни публичных HTTPS для TTS sample, ни маскировки чужого голоса.
+
+**Ресурсы/лимиты:** Qwen weights около **4.3 GiB**, GitHub CPU runner без CUDA может синтезировать медленно; workflow ограничен **110 минутами** и требует достаточной RAM и свободного cache quota. Первый запуск скачивает веса, следующие используют actions/cache. При CPU OOM/тайм-ауте логировать конкретную ошибку, переводить в NO-GO; не обещать воспроизводимость до фактического CI SUCCESS. Префлайт перед новым «BLOCKED» — `references/voice-runtime-preflight.md` (сначала старый interpreter/веса/reference/ICL, потом вывод).
+
 ## 2а. Проверка через ffmpeg-skill (решение Дениса 01.11)
 
 Скил `skills/ext/ffmpeg-skill` (MIT, офлайн, только Python + ffmpeg). Запуск `python3 skills/ext/ffmpeg-skill/scripts/<tool>.py` — **без `-I`** (иначе не найдёт свои модули). Перед монтажом прочитать его `references/gotchas.md` — там наши грабли: concat/DTS, сдвиг субтитров, letterbox, VFR.
