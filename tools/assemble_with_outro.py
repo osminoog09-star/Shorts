@@ -154,7 +154,7 @@ def main():
                        f"measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:"
                        f"offset={m['target_offset']}:linear=true,"
                        # запас под кодек AAC (+0,5…0,8 дБ к пику): лимитер на 4× частоте, с компенсацией задержки
-                       f"aresample=192000,alimiter=limit=0.58:attack=1:release=50:level=false:latency=1,aresample={SR},"
+                       f"aresample=192000,aformat=sample_fmts=fltp:channel_layouts=stereo,alimiter=limit=0.58:attack=1:release=50:level=false:latency=1,aresample={SR},"
                        f"volume={a.body_gain_db}dB"
                        + (f",afade=t=in:st=0:d={a.body_fade_in_ms/1000:.4f}" if a.body_fade_in_ms else ""))
             ain0 = "[0:a]"
