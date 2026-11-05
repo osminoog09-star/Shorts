@@ -29,18 +29,6 @@
 
 ## GPT/Codex
 
-### 05.11 — Реальная установка и smoke всех инструментов из скриншотов · GPT
-Цель: получить воспроизводимые реальные тесты в GitHub Actions без захвата секретов, платных API, изменения пауз и без ложного утверждения о глобальной установке.
-Шаги:
-- [x] 1. Добавлен ограниченный `.github/workflows/skills-runtime-smoke.yml` (отдельные ephemeral Ubuntu runners, read-only установки, отчёт в `skill-smoke-results`; write token доступен только job публикации отчёта). `tools/skills_runtime_smoke.py` — функциональные тесты.
-- [x] 2. Реальный run `41975630002`: Colibri CPU engine собран и CLI отвечает, OpenClaw npm 2026.10.10 установился и CLI отвечает; Graphify 0.9.102 AST и Scrapling 0.5.1 HTML parsing PASS. Failure: на новом Ubuntu26 отсутствуют ffmpeg/ffprobe, путь upstream Opuscar `plugin/skills/lemo-opuscar/scripts/setup.sh`, а в STYLE.md есть дополнительный шаблон.
-- [x] 3. Уточнили CI: install ffmpeg apt, PATH из venv для yt-dlp, актуальный путь setup Opuscar; AutoHarness не только syntax, но guard/delta; ровно 66 позиций по README index вместо физического числа STYLE.md. Pushed код с последним SHA `f990cb50ee8f66c4dd287cba3127a062b96c8601`.
-- [ ] 4. Забрать `reports/skills/runtime_latest.json` c `ref=skill-smoke-results`, дождаться HEAD `f990cb5` и разобрать jobs/logs run id; при FAIL исправить только конкретную причину, не обнулять историю ошибок.
-- [ ] 5. Записать финальную таблицу фактических версий/функциональных тестов в `reports/skills/` и `HANDOFF.md`; Glassy V5/JavaRush пометить NON_INSTALLABLE (нет проверенного пакета/это курс). Никаких демонов OpenClaw, hooks AutoHarness, тяжёлых моделей Colibri или публикаций.
-Следующий шаг: `mcp__GitHub__fetch_file({repository_full_name:"osminoog09-star/Shorts",path:"reports/skills/runtime_latest.json",ref:"skill-smoke-results"})`; проверить head_sha, затем `fetch_workflow_run_jobs`/`fetch_workflow_job_logs`. Считать PASS только то, что выполнилось в **одноразовом runner**; runtime на ПК/в ChatGPT этим не устанавливается.
-Где промежуточное: `.github/workflows/skills-runtime-smoke.yml`; `tools/skills_runtime_smoke.py`; ветка `skill-smoke-results`, `reports/skills/runtime_latest.json`.
-Ждёт Дениса: нет; постоянный запуск сервисов и новый UI только отдельным решением.
-
 ### 04.11 — M1lash МультНовости #01, отдельный S3-D25 21–23 мин · GPT
 **ВЛАДЕЛЕЦ УТВЕРДИЛ 04.11:** отдельная новостная рубрика, S3-D25, 21–23 мин, только его voice Denis как основной. Уточнение владельца 04.11: **ВСЕ окружения масштабные, огромный живой мир**, завод с разными линиями и предметными сценами, не маленькая сцена и один робот; **сначала демо-видео**, не image_gen-картинка. Это НЕ возобновление PAUSED_BY_OWNER M1lash Мульт EP01/3D Coffee.
 **Отзыв владельца 04.11 (демо v5): удалить ВСЕ заводские SFX, провести детальный разбор с правками, записать в журнал/скил.** В демо v6 строго без audio tracks, будущий собственный голос Дениса по §3 сохраняется.
