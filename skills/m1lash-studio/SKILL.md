@@ -119,6 +119,8 @@ description: Карта и пошаговый конвейер студии ка
 
 Проектный навык `skills/ext/graphify/SKILL.md`, зеркала для Claude/Codex в `.claude/skills/graphify/` и `.agents/skills/graphify/`. Источник `Graphify-Labs/graphify`, пакет `graphifyy`. Для сложных архитектурных задач допускается локальный AST-граф исходного кода, **только после** обязательного `tasks/NOW.md` + `AGENTS.md`. Без автозапуска upstream `graphify install` (может менять root AGENTS и hooks), Cloud/MCP, внешних API, индексации приватных материалов и автоматической публикации графов. В GitHub пока **зарегистрированы инструкции**, Python runtime не установлен и не прошёл smoke-test.
 
+**Runtime smoke 05.11:** результаты реальных изолированных тестов всех 10 скриншотов в `skills/ext/RUNTIME_SMOKE_2026-11-05.md`: Graphify AST 5 nodes/7 edges, Scrapling локальный HTTP 200, Watch 12 кадров из 12s MP4, AutoHarness 15 unit PASS без hooks, Colibri CLI 2.1.0 без весов, Opuscar upstream 3s 36 кадров/full decode PASS, OpenClaw CLI 2026.10.10/Node24 без Gateway. Официальный тяжёлый Teardown demo **НЕ PASS**: screenshot timeout на software WebGL после получения HDRI/CAD/fonts. Всё тестировалось в **временной удалённой sandbox**, не глобально на машине Дениса/ChatGPT/GitHub Actions. Не запускать сторонние hooks, Cloud, Gateway, дорогие модельные загрузки, пока нет отдельного решения владельца. Тест не заменяет Studio §2а и AGENTS §12 QA реальных финальных MP4.
+
 ## 3. Где брать исходники (проверено 30.10.2026)
 
 - **YouTube с серверов GitHub не качается** (бот-проверка «Sign in to confirm you're not a bot»; оба запуска `movie-edit-source` 30.10 упали). Не обходить: никаких cookies, прокси, капч.
