@@ -44,21 +44,6 @@
 Ждёт Дениса: только прослушать реальный test_claude WAV/MP3 когда появится.
 
 
-### 05.11 — P0 · approved Denis v7 outro in CI · GPT · ACTIVE
-Цель: финальные два бинарника только по утверждённому SHA → приватная Drive папка M1lash/_studio/outro/ → общий безопасный GitHub Actions fetch/verify → реальный тест без YouTube.
-Шаги:
-- [x] 0. Подхвачена P0 `tasks/gpt_outro_in_ci.md`; прочитаны AGENTS §3–4, NOW, Studio, `tools/outro/approved.json`. `git pull` CLI в локальной машине недоступен из-за DNS, readback main via GitHub connector перед изменениями; не перезаписывать чужие изменения.
-- [x] 1. Оба точных library_file_id материализованы в приватный локальный `/mnt/data/m1lash_outro_ci/`. SHA256 ДО отправки совпал: vertical `2e514186940d130e6aea6aa5171b59ba7691d5cfe14fb329d65a8d12184a6b60`; horizontal `70b066b067cec45dbaaae91ef39ee79543ac9c396d0d1bd896885b1511867dae`. Любая будущая загрузка — только этих байтов.
-- [x] 2. Drive `M1lash/_studio/outro/` создан отдельно от кино (folder ID `1_oGUuXdE3hTbDzx6IBRZxnjSbzyWGY5M`). Загружены два байтовых verified MP4; metadata/readback подтвердил приватный owner-only доступ, размеры 1,808,924B и 2,396,794B, точные file IDs записаны в `approved.json` (commit `37b062a`). GitHub Actions Drive OAuth ещё не проверен в раннере; делать на шаге 5.
-- [x] 3. `scripts/fetch_outro.py` (commit `03f6827`) OAuth refresh Google Drive API → обе pinned file ID в approved.json → stage обеих файлов → SHA256 → atomic install в ignored media/outro/, явный nonzero NO-GO при mismatch/403/no-secret. Никакого fallback Димы. `scripts/qa/test_fetch_outro.py` (commit `b7dfc8c`) — 6 unit PASS в изолированном Python 3.11+, без реальных секретов. CI-integration/real remote OAuth на следующем шаге.
-- [x] 4. `.gitignore` обобщён до `media/outro/m1lash_outro_denis_*`; `movie-short.yml` и `drive-folder-intake.yml` получают обе SHA-pinned концовки; `scripts/movie_short.py` больше не смотрит на устаревший v3. Реальные unit tests: 6/6 PASS (GitHub Actions). Отсутствующий личный title_voice не подменяется старым диктором.
-- [x] 5. Реальный Actions `movie-short.yml` push-only `outro_ci_smoke`: run `42090558386` **SUCCESS** (commit `336c016`); оба файла Drive OAuth downloaded/verif SHA, `assemble_with_outro.py` 9.8s без BLOCKED, исходный Denis v7 outro 6.6s, lag 0ms, diff -29.9dB, `check.py` 12 checks/0 FAIL (loudness -15.3 LUFS), `look.py` создан, **контакт-лист открыт глазами** (2 тестовых кадра + 4 v7), full decode. Artifact `13445011690`. Первую попытку run `42089064375` отклонил громкий предел на -16.0 LUFS, исправил только синтетическое тело -13.5 LUFS (outro не менялся). YouTube, очередь и публикации не трогали. Это CI smoke соединителя и концовки, **не e2e фильмового workflow с личным названием**.
-- [x] 6. HANDOFF + Studio урок + learning journal: после сохранения сделать readback. Текущий P0 CI-механизм проверен, но регулярный Drive intake e2e отдельно.
-Следующий шаг: записать HANDOFF/Studio/journal P0, затем переход к самостоятельному voice workflow для Claude с приватным reference; не выполнять YouTube upload.
-Где промежуточное: `/mnt/data/m1lash_outro_ci/` (PRIVATE) и main GitHub.
-Ждёт Дениса: ничего, если Drive write работает; при отказе прав сообщить явно.
-
-
 ### 05.11 — kino_007 · кино-Shorts из настоящего фильма · GPT · DRAFT / NO-GO
 Цель: 9:16 cinema Shorts, русский подлинный дубляж, субтитры, одобренная заставка Дениса и финальное устное название голосом Дениса. Пока только private preview.
 Шаги:
