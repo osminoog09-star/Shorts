@@ -280,7 +280,7 @@ def main():
     if hashlib.sha256(std.read_bytes()).hexdigest() != approved["assets"]["vertical"]["sha256"]:
         sys.exit("NO-GO: Denis v7 outro SHA256 mismatch with approved.json; no fallback")
     std_d = dur(std)
-    vo = work / "name.mp3"
+    vo = work / ("name" + Path(a.title_voice).suffix.lower())
     if not Path(a.title_voice).is_file():
         sys.exit("BLOCKED: нет --title-voice с голосом Дениса")
     shutil.copy2(a.title_voice, vo)
