@@ -1,3 +1,13 @@
+# 05.11 · GPT · кино-Shorts 007 V4
+
+По просьбе владельца пересобран реальный вертикальный кино-Shorts V4: `/mnt/data/m1lash_kino_007_PRIVATE_PREVIEW_v4_IMPROVED_NO_REVEAL.mp4` (40.58с, 1080×1920, H264/AAC, 30fps; SHA256 `0b3bfea28fa08f3afb53da404b6330a9a516f8297a3c46df927eb3ec8ae7f49d`). Улучшены начало сцены, крупные синхронные титры, несколько неверно скадрированных планов и движение камеры. Подлинная русская дорожка сохранена. Утверждённая концовка не изменена.
+
+Реально проверено: полный FFmpeg decode PASS, 17 кадров итогового MP4 просмотрены, автоматические blackdetect/freezedetect не нашли длинных событий; звук −16.7 LUFS / −1.6 dBTP. Код монтажа и технический отчёт приватно сохранены в ChatGPT Library: `/Youtube/M1lash_Kino_007_PRIVATE_PREVIEW_V4_NO_REVEAL.mp4` и `/Youtube/M1lash_Kino_007_V4_PRIVATE_SOURCE_QA.zip`.
+
+**DRAFT / NO-GO:** финальная голосовая разгадка ещё не склеена с V4; официальный check.py/look.py и непрерывное прослушивание финала не выполнены. Без отдельного согласия владельца видео не загружать и не публиковать. Чекпоинт и дальнейший шаг: `tasks/NOW.md` (kino_007). Отчёт: `reports/research/2026-11-05_KINO_007_V4_PRIVATE_TECH_AUDIT.md`, уроки в Studio SKILL и journal.json.
+
+---
+
 # 05.11 · GPT · kino_007 — настоящий кино-Shorts V3 для приватного просмотра, финальное название ещё не склеено
 
 **Результат:** реальный пользовательский русский кинофрагмент из Drive (source file ID `1psena0V9ybb02MgJ2aUdUGUG-l2nMmJh`; исходник из пользовательской папки, без запроса переслать фильм) нарезан 717.35–749.00, полностью вертикальный 1080×1920/30 H264/AAC. Kinetic S6-D25 subtitles по faster-whisper small RU word timestamps, speaker-based crop, 14 реальных MP4 кадров просмотрены. Approved Denis-v7 vertical CTA 6.6s физически материализован из Library и SHA совпал с `tools/outro/approved.json`. **Private draft V3**, локально `/mnt/data/m1lash_kino_007_PRIVATE_PREVIEW_v3_NO_REVEAL.mp4`: 38.280s, 13,919,610 B, SHA256 `b385f383fb8972922d98d1d350d10f0cac07cb9bd771c198da3d213c30550df6`. Полный ffmpeg -xerror decode PASS, black/freezedetect no events. EBU integrated −16.4 LUFS, true peak −2.2 dBFS. Contact + QA + монтажный код и draft metadata в `/mnt/data/m1lash_kino_007_PRIVATE_SOURCE_QA.zip` (без исходного фильма и private voice). Публичной заливки **нет**.
