@@ -1,0 +1,80 @@
+name: Third-party skill runtime smoke (isolated)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/skills-runtime-smoke.yml
+      - tools/skills_runtime_smoke.py
+
+permissions:
+  contents: read
+
+concurrency:
+  group: skills-runtime-smoke-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python-skills:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      PYTHONNOUSERSITE: "1"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      WATCH_ALLOW_API: "0"
+      GRAPHIFY_BACKEND: "none"
+      GRAPHIFY_QUERY_LOG_DISABLE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Setup isolated Python dependencies
+        run: |
+          python -m venv /tmp/m1lash-skills-venv
+          /tmp/m1lash-skills-venv/bin/python -m pip install --no-cache-dir graphifyy scrapling yt-dlp
+          /tmp/m1lash-skills-venv/bin/python -m pip show graphifyy scrapling yt-dlp | grep -E '^(Name|Version):'
+      - name: Graphify structural graph — local test only, no Cloud or hooks
+        run: /tmp/m1lash-skills-venv/bin/python tools/skills_runtime_smoke.py graphify
+      - name: Scrapling HTML parse — local test only, no anti-bot
+        run: /tmp/m1lash-skills-venv/bin/python tools/skills_runtime_smoke.py scrapling
+      - name: Claude Watch /watch — synthetic offline MP4
+        run: |
+          /tmp/m1lash-skills-venv/bin/python skills/ext/watch/scripts/setup.py --json
+          /tmp/m1lash-skills-venv/bin/python tools/skills_runtime_smoke.py watch
+      - name: AutoHarness — syntax and isolated tests, no Claude hooks
+        run: /tmp/m1lash-skills-venv/bin/python tools/skills_runtime_smoke.py autoharness
+      - name: Opuscar + Teardown — style manifest and runtime preflight
+        run: /tmp/m1lash-skills-venv/bin/python tools/skills_runtime_smoke.py opuscar
+
+  colibri:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Clone official Colibri sources (no model downloads)
+        run: git clone --depth 1 https://github.com/JustVugg/colibri.git /tmp/colibri
+      - name: CPU-only compile
+        run: make -C /tmp/colibri/c -j2 colibri
+      - name: Binary inspection and --help
+        run: |
+          file /tmp/colibri/c/colibri
+          test -x /tmp/colibri/c/colibri
+          timeout 30 /tmp/colibri/c/colibri --help | head -35
+
+  openclaw:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Install OpenClaw to disposable prefix (no launch, no secrets)
+        run: |
+          mkdir -p /tmp/m1lash-openclaw
+          npm install --prefix /tmp/m1lash-openclaw --no-audit --no-fund --ignore-scripts openclaw@latest
+          npm ls --prefix /tmp/m1lash-openclaw openclaw --depth=0
+      - name: CLI preflight without daemon onboarding
+        run: |
+          node -v
+          timeout 35 /tmp/m1lash-openclaw/node_modules/.bin/openclaw --help | head -60
