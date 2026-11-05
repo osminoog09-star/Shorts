@@ -17,3 +17,6 @@ media/outro/m1lash_outro_denis_*
 media/voice/
 media/voice_out/
 voice_private/
+
+# Cached public HuggingFace weights for voice CI (never push huge model binaries)
+.hf-public-models/
