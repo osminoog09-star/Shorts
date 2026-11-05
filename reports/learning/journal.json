@@ -381,6 +381,32 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "KINO-007-V5-SHORT-BLACK-FLASH",
+      "project": "kino_007",
+      "issue": "До 0.2с почти чёрной вспышки после утверждённой концовки и почти чёрный последний кадр V5",
+      "cause": "HTML reveal fade-in с opacity 0 и финальный fade-out; blackdetect d=0.45 пропускал короткий провал, contact не включал точку конца",
+      "fix": "V6 начинается уже видимым кадром reveal после исходных 0.27с, исключено тёмное окончание; brighter film-credit и настоящий zoompan",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-05_KINO_007_V6_REAUDIT.md",
+      "acceptance": "V6 physical 28-frame contact + luma t41.767 Y33.5 instead Y0, t43.95 Y28.8; blackdetect d=.06 and freezedetect d=.55 both 0, full decode PASS",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": true
+    },
+    {
+      "id": "KINO-007-V5-QUIET-TITLE-CARDS",
+      "project": "kino_007",
+      "issue": "V5 1.4с почти тишины перед CTA и 2.97с после CTA вместо произнесённого названия; V6 тихие акценты не исправили воспринимаемую тишину",
+      "cause": "Склейка без личного финального voice title и измерение только overall LUFS; quiet cards ниже -35dBFS",
+      "fix": "V6 визуальные переходы исправлены, добавлены тихие оригинальные акценты; окончательный аудио-гейт остаётся только после безопасного объединения уже синтезированного Денисом голоса",
+      "status": "observed",
+      "evidence": "reports/research/2026-11-05_KINO_007_V6_REAUDIT.md",
+      "acceptance": "Denis final spoken title physically present and ASR+owner hearing verified; stricter tail silence analysis of final MP4 + official check/look",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": true
     }
   ]
 }
