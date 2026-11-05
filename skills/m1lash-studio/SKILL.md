@@ -115,6 +115,10 @@ description: Карта и пошаговый конвейер студии ка
 
 По запросу владельца подключён `skills/ext/lemo-opuscar/SKILL.md` с **66 оригинальными STYLE.md** (MIT, источник lemomo-ai/lemo-opuscar @ `bebbbe1aa92a3cb4bb6f83500e61b23a17d1aa00`). Для примеров применять `styles/README.md` и `DIRECTOR.md`/`TECHNIQUE.md`, а не копировать сюжеты демо. Это **не новый утверждённый формат** и не разрешение менять S10-D25/озвучку Дениса/видео/очередь. До реального рендера необходим отдельный runtime: исходный `scripts/setup.sh` клонирует upstream в отдельный `~/lemo-opuscar`, а `deps` загружает пакеты/Chromium. В этой установке скрипт и зависимости **не запускались**, полного MP4/QA по Opuscar нет; никаких платных API и сторонних голосов автоматически.
 
+## 2ж. Graphify — граф связей кода и документации (05.11)
+
+Проектный навык `skills/ext/graphify/SKILL.md`, зеркала для Claude/Codex в `.claude/skills/graphify/` и `.agents/skills/graphify/`. Источник `Graphify-Labs/graphify`, пакет `graphifyy`. Для сложных архитектурных задач допускается локальный AST-граф исходного кода, **только после** обязательного `tasks/NOW.md` + `AGENTS.md`. Без автозапуска upstream `graphify install` (может менять root AGENTS и hooks), Cloud/MCP, внешних API, индексации приватных материалов и автоматической публикации графов. В GitHub пока **зарегистрированы инструкции**, Python runtime не установлен и не прошёл smoke-test.
+
 ## 3. Где брать исходники (проверено 30.10.2026)
 
 - **YouTube с серверов GitHub не качается** (бот-проверка «Sign in to confirm you're not a bot»; оба запуска `movie-edit-source` 30.10 упали). Не обходить: никаких cookies, прокси, капч.
