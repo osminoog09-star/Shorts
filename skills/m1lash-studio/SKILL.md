@@ -66,6 +66,8 @@ description: Карта и пошаговый конвейер студии ка
 
 ### Голос Дениса для Claude · приватный Qwen3-TTS 1.7B Base ICL (05.11)
 
+**Полная инструкция передачи Claude, Drive OAuth и точные команды:** [`docs/CLAUDE_AUTONOMOUS_STUDIO_2026-11-05.md`](../../docs/CLAUDE_AUTONOMOUS_STUDIO_2026-11-05.md). Читать её вместе с `AGENTS.md` и `tools/voice/approved.json`. В публичный Git передавать **только код/правила/хеши/ID**, а не биометрический voice reference, embedding и OAuth-секреты. Прошедший тест outro CI 42090558386 — только проверка склейки, **не** proof успешного Qwen+ASR.
+
 Claude может запускать производство личного голоса без GPT, не открывая и не коммитя образец. Правила `AGENTS.md` §3–4 главнее: **никакого Димы/Edge-TTS fallback, без публикации и изменения утверждённой Denis v7 концовки**.
 
 **Исходные private данные:** `M1lash/_studio/voice/` на Google Drive: WAV (10.72с, 24kHz mono), exact ref_text.txt и params.json из последнего рабочего Qwen ICL. В публичном репозитории хранится **только** `tools/voice/approved.json` с SHA256/Drive ID, voice_id `denis-qwen3tts-reference-v1`. Embedding строится в оперативной памяти GitHub runner и не сохраняется ни в публичный Git, ни в артефакт. После синтеза runner удаляет private reference; GitHub `media/voice/` игнорируется.
@@ -166,6 +168,8 @@ Workflow `.github/workflows/denis-voice-tts.yml` сам скачивает *тр
 Пороги и даты — в docstring `scripts/ypp_progress.py`. Считаем по `engagedViews` (засчитанные). С 01.02.2027 полный порог для новых заявок 20 млн Shorts / 8000 ч. Официально — Studio → «Заработок».
 
 ## 7. Уроки
+
+**05.11 · GPT · Claude voice ASR-cache gate:** GitHub Actions run `42092477812` действительно скачал owner-private reference и создал 3 WAV через Qwen3-TTS 1.7B Base на CPU, но **FAIL** сразу при загрузке Whisper small после 30+ мин генерации. Раньше неверно утверждать «всё готово», когда нет ASR/Drive receipt. Исправление в `denis-voice-tts.yml`: **сначала** скачать public `Systran/faster-whisper-small` (CTranslate2 model.bin) в cache, потом Qwen; `denis_voice_tts.py` принимает `WHISPER_LOCAL_PATH` и fail-closed при отсутствии модели. Пока новый GitHub run не SUCCESS и реальный владелец не прослушал тембр — **NO-GO**, других TTS не подставлять. Полный handoff в `docs/CLAUDE_AUTONOMOUS_STUDIO_2026-11-05.md`.
 
 - **05.11 · kino_007 V7 / НИКОГДА не раскрывать фильм до outro:** повторная редакционная ошибка V5/V6 — в собственных титрах перед утверждённым 6.6с финалом был показан фильм/год, а затем то же после. **Последнее решение владельца имеет приоритет:** для `kino_007` только три блока без промежуточных title cards: настоящий фильм → неизменённый Денис CTA → один единственный титр с названием и годом (впервые после CTA). Перед отправкой обязательно проверить **кадры t=body_end−0.1 / body_end+0.1 / outro_end−0.1 / outro_end+0.1 / last−0.1**, содержимое ASS на запрещённые слова и timeline code без credit до outro. `ffmpeg -xerror` и случайный контакт не доказывают правильного редакционного порядка. В V7 реальный 42.813с MP4 + 19 кадров + текстовое совпадение проверены, отчет `reports/research/2026-11-05_KINO_007_V7_CORRECTED_REVEAL_ORDER.md`. **Незакрытый voice title/тишина = DRAFT, не публиковать**. Это узкое исключение для kino_007, не распространять на остальные «угадай фильм» без решения владельца.
 
