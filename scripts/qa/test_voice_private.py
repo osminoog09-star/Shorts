@@ -96,7 +96,7 @@ class VoiceTests(unittest.TestCase):
     def test_approved_wrong_voice_is_rejected(self):
         self.data["voice_id"]="other-male"
         self.manifest.write_text(json.dumps(self.data))
-        with self.assertRaisesRegex(VoicePrivateError,"другой голос"):
+        with self.assertRaisesRegex(VoicePrivateError,"чужой голос"):
             approved(self.manifest)
 
     def test_job_schema_rate_and_duplicate(self):
