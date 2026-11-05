@@ -420,6 +420,45 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": true
+    },
+    {
+      "id": "DENIS-V7-OUTRO-DRIVE-CI-20261105",
+      "project": "m1lash_studio_ci",
+      "issue": "GitHub Actions lacked owner-approved Denis v7 vertical/horizontal MP4 because files lived only in private ChatGPT Library",
+      "cause": "CI runner ephemeral, none of workflows fetched private binary; older movie-short.py still referred to v3 legacy outro",
+      "fix": "Pinned exact SHA+Drive IDs in approved.json, owner-only M1lash/_studio/outro, fail-closed fetch_outro.py shared by movie-short.yml and drive-folder-intake.yml, removed v3 dependency",
+      "status": "verified",
+      "evidence": "GitHub Actions run 42090558386 job 127467140997, artifact 13445011690; 12 check.py checks zero FAIL; look.jpg six frames manually viewed",
+      "acceptance": "Both real private Drive files hashed 2/2; assemble_with_outro.py 9.8s output, lag 0ms, 0 problems, full decode, check.py 0 FAIL; no YouTube upload",
+      "owner_review": "not_needed_for_CI_smoke",
+      "audience_effect": "unknown",
+      "regression": true
+    },
+    {
+      "id": "DENIS-TTS-WORKFLOW-JOB-ENV-20261105",
+      "project": "m1lash_private_voice_ci",
+      "issue": "First Denis voice GitHub Actions job did not start, invalid workflow expression runner.temp in job-level env",
+      "cause": "GitHub Actions runner context not allowed at jobs.<job>.env; validation failed before any steps ran",
+      "fix": "Use github.workspace to cache public HF weights; private voice refs remain solely in runner.temp. Trigger only explicitly chosen test job; retain workflow_dispatch for production.",
+      "status": "verified",
+      "evidence": "GitHub Actions invalid runs 42092129436 and 42092223759; corrected workflow commit 40d1fa6, run 42092477812 accepted and entered synthesize job",
+      "acceptance": "Corrected workflow parsed and executed steps, private reference fetch and CPU install completed; TTS/ASR result still pending",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": true
+    },
+    {
+      "id": "DENIS-PRIVATE-VOICE-SHA-GUARD-20261105",
+      "project": "m1lash_private_voice_ci",
+      "issue": "Voice reference and embedding must never appear in public Git; Claude previously required GPT to materialize owner's private ref",
+      "cause": "No approved Drive-only reference manifest, no secure runner fetch and fail-closed synth pipeline",
+      "fix": "Owner-only voice folder stores WAV/text/params; public approved.json has only SHA+Drive IDs; voice_private_io/denis_voice_tts/fetch_voice_clip + private voice_out/ASR manifest; movie-short consumes owner-private generated WAV by ID + sha",
+      "status": "in_progress",
+      "evidence": "Unit tests scripts/qa/test_voice_private.py 6/6 and test_fetch_voice_clip.py 4/4; GitHub Actions run 42092477812 in_progress",
+      "acceptance": "Owner listens to three clips, ASR 3/3 passes; output artifact retention 1 day and owner-only Drive receipts verified; no public Git leakage",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }
