@@ -341,6 +341,9 @@ FinalMP4 `deliverables/M1lash_Coffee_V8_Rewrite_PRIVATE.mp4` 41.1с/1080×1920/3
 
 # 04.11 · GPT · Чигур V22 — два настоящих six-still прогона, улучшено кадрирование, ART NO-GO
 
+## 05.11.2026 20:20 · Claude — аудит репо 02–05.11
+- Отчёт `reports/research/2026-11-05_CLAUDE_REPO_AUDIT.md`. Красное: HDRezka-конвейер (пиратский источник — против §8, Claude его не поддерживает; рекомендация удалить) и пустые утренние кино-слоты 06–08.11. Исправлено: лимит Shorts в день в `youtube_direct.py` 4 → 2 (§5 от 04.11).
+
 ## 04.11 — Концовка v7 voice10: владелец отверг30% как громкие
 
 Тихая новая проба: music10% RMSголоса, втрое тишеv6 (−9.54dB), голос/FX сохранены. Owner review pending, не утверждать что10% лично одобрены. Обе v7 assets и assemblerpaths обновлены; private whole CoffeeV6 `libfile_fb8b7e52e5608191a8176f91e89107f5` версия3, ZIP `libfile_e078c346c3748191bbe479c5b2d68cf6` версия6. Check whole0FAIL, standalone−16.4LUFS genericloudnessFAIL; look глазами/decode3MP4 реально сделаны. Report `reports/research/2026-11-04_OUTRO_V7_VOICE10.md`. Публикации нет.
