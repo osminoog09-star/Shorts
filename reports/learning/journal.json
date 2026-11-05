@@ -459,6 +459,19 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "DENIS-VOICE-ASR-WEIGHTS-PREFLIGHT-20261105",
+      "project": "denis-voice-tts",
+      "issue": "GitHub Actions 42092477812 synthesizes 3/3 owner's Qwen3-TTS WAVs on CPU, but final ASR verification fails because faster-whisper small weights are not available",
+      "cause": "Public ASR CTranslate2 weights were being requested only after expensive ~30-minute 1.7B Qwen inference; missing/failed Whisper download makes the whole workflow NO-GO, without owner's listening artifact",
+      "fix": "Pre-download public Systran/faster-whisper-small snapshot including model.bin to public-only HF cache before synthesis; pass WHISPER_LOCAL_PATH to denis_voice_tts.py and load local_files_only; fail closed, never fallback to a different speaker",
+      "status": "pending",
+      "evidence": "https://github.com/osminoog09-star/Shorts/actions/runs/42092477812",
+      "acceptance": "New GitHub run SUCCESS with 3/3 Russian ASR similarity >=0.80, manifest+WAV+private Drive voice_out receipt, plus owner hearing review; only then completed",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": true
     }
   ]
 }
