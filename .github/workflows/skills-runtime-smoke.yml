@@ -36,12 +36,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install FFmpeg from Ubuntu repositories
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -1
       - name: Setup isolated Python dependencies
         continue-on-error: true
         run: |
           python -m venv /tmp/m1lash-skills-venv
           /tmp/m1lash-skills-venv/bin/python -m pip install --no-cache-dir graphifyy scrapling yt-dlp
           /tmp/m1lash-skills-venv/bin/python -m pip show graphifyy scrapling yt-dlp | grep -E '^(Name|Version):'
+          echo "/tmp/m1lash-skills-venv/bin" >> "$GITHUB_PATH"
       - name: Graphify structural graph — local test only, no Cloud or hooks
         id: graphify
         continue-on-error: true
@@ -109,7 +115,7 @@ jobs:
       - name: Install Opuscar core dependencies (no voices, models or music)
         run: |
           cd /tmp/lemo-runtime
-          sh scripts/setup.sh deps
+          sh plugin/skills/lemo-opuscar/scripts/setup.sh deps
       - name: Import Playwright and check renderer directories
         run: |
           cd /tmp/lemo-runtime
