@@ -1,3 +1,15 @@
+# 05.11 · GPT · kino_007 V8 · голос извлечён, приватный монтаж Descript (DRAFT)
+
+Вместо прежнего ошибочного `BLOCKED: impossible voice transfer` **нашли реальный ранее загруженный аудиофайл** среди пользовательских Higgsfield audio media. Descript импортировал его по HTTPS в личный проект и фактически транскрибировал: **2.688с, «Это был фильм „Бэтмен“.»** Это тот же ранее созданный клип, не другой мужской TTS. Голосовой файл в публичный Git не выкладывался.
+
+Чтобы объединить исходный **V7 42.813s** и title voice без затрат AI credits, использовали отдельный приватный Descript project `3ff1ba2b-1183-4af6-88f2-58928634ff9c` с импортированной V7-копией и multitrack sequence (video offset 0, audio offset **40.567s**). Импорт job `project-media-import-a6c7c700-7ba2-4ce7-868a-b42bfb18e160` SUCCESS. Export private publish job `project-media-publish-3ff1ba2b-1183-4af6-88f2-58928634ff9c-cc0a81d5-0ddd-4fca-8f9a-1071a8fbe072` SUCCESS, share URL `https://share.descript.com/view/aZDBDMQkSQO`, приватный доступ (в Descript не YouTube). `export_transcript(format=srt)` фактически указывает title voice **41.321–43.121s**, после полного утверждённого Denis V7 CTA (33.967–40.567); название по AGENTS разрешено **только после** него. Новой музыки нет.
+
+**ВНИМАНИЕ: конечный Descript MP4 длится 46.567s, т.е. ещё ~3.45s лишнего пустого хвоста после последней фразы.** Полный файл в текущий offline контейнер скачать не удалось: доступная только извне signed media URL отвергнута контейнерным download-policy, sandbox_exec стороннего render environment заблокирован, а AI Descript editor отклонил вызов `Insufficient AI credits`. Это не PASS по художественному/официальному QA и не release-ready. Не платить/не просить апгрейд, не публиковать.
+
+**Следующий шаг:** с доступным бинарным загрузчиком забрать private Descript MP4, обрезать ненужный хвост после ~43.25s (проверить настоящую границу слова по слуху), сохранить 1080x1920/30, выполнить `check.py`, `look.py`, full decode, оригинальную CTA PCM matching и финальное прослушивание. Перед выдачей FINAL — owner's «ок». `tasks/NOW.md` обновлён commit `6dda562`. Исходный V7 и архивные файлы сохранены, очередь YouTube не трогали.
+
+---
+
 # 05.11 · GPT · kino_007 V7 — owner correction: reveal strictly after the entire outro
 
 Владелец указал повторную регрессию V5/V6: название/2022 появляется ДО фирменной концовки. Это исправлено **реальным физическим V7 MP4**: `/mnt/data/M1lash_Kino007_V7_TITLE_ONLY_AFTER_OUTRO_PRIVATE.mp4`, 42.813с, H264/AAC 1080×1920/30fps/1284 frames, 19,562,905B, SHA256 `e0636629b66458193e906f2bca6381c39c41e547b2a939f173b2b1afee316e56`. Финальный verified таймлайн: **0–33.967с кино без названия/года → 33.967–40.567с целиком утверждённый Denis-v7 voice10 outro → 40.567–42.800с единственный экранный «БЭТМЕН (2022)»**. Pre-outro credit c видео и звуком УДАЛЁН из pipeline, а не скрыт. Исправлен приоритет правил AGENTS §8 commit a3bb097.
