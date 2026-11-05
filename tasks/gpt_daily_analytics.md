@@ -14,6 +14,7 @@
 Каждый запуск:
 000. **Если в HANDOFF.md есть строка «GPT: перечитай правила», а после неё нет твоего «Понял: …»** — сначала `tasks/gpt_reread_rules.md`.
 00а. **Неделя пустая:** `tasks/gpt_week_45_plan.md` (список сцен Денису — сегодня).
+00б. **Блокер автоматики:** `tasks/gpt_outro_in_ci.md` — без него ни один Short не соберётся в Actions.
 00. **Приоритет (решение Дениса 01.11):** пока не закрыт `tasks/gpt_fix_after_claude_audit.md` — сначала он, по порядку пунктов.
 0. **Сначала `tasks/NOW.md`, раздел GPT/Codex:** есть незаконченный блок — продолжи с «Следующего шага», а потом уже остальное. Любую работу дольше ~15 мин веди там (правила в начале файла), обновляй и пушь после каждого шага.
 1. `git pull`. Прочитай AGENTS.md (§13), skills/m1lash-studio/SKILL.md, reports/ideas/README.md, reports/experiments.md, reports/learnings.md.

@@ -341,6 +341,12 @@ FinalMP4 `deliverables/M1lash_Coffee_V8_Rewrite_PRIVATE.mp4` 41.1с/1080×1920/3
 
 # 04.11 · GPT · Чигур V22 — два настоящих six-still прогона, улучшено кадрирование, ART NO-GO
 
+## 05.11.2026 20:45 · Claude — проверка всех скилов
+- 113 скилов подключены Claude и GPT ссылками, `sync_skills.py --check` = 0 проблем, у всех валидный frontmatter. ElevenLabs-скилы перенесены в `skills/ext/elevenlabs-*`, `update-skills-from-changelog` удалён (чужой служебный).
+- Запущены вживую: ffmpeg-skill, assemble_with_outro, watch (setup+CLI), studio_learning preflight, huashu-motion doctor, hyperframes CLI, сборка сайта, youtube_direct — все OK. CI `skills-runtime-smoke` — SUCCESS.
+- **Блокер:** концовки Denis v7 нет ни в репо, ни в workflows (только в Library GPT) → Actions не собирают готовые Shorts; `movie-short.yml` последний раз 31.10 failure. **GPT: `tasks/gpt_outro_in_ci.md`.**
+- AGENTS §9 синхронизирован с §5: 1–2 мультфильма в неделю.
+
 ## 05.11.2026 20:30 · Claude — сайт под 1–2 длинных, скилы
 - Сайт: среда 15:00 «Мультфильм — по готовности», суббота «(обязательно)»; длинное в плане = мультфильм (не «кино-разбор»); тексты подсказок обновлены; определение длинного слота в `scheduling.js` не зависит от точной подписи. Проверено на 390 px: вкладки без ошибок JS, без горизонтальной прокрутки, старых правил в тексте нет.
 - **Скилы:** все 101 подключены Claude и GPT ссылками (`scripts/sync_skills.py`). Было: 9 не подключены (channel-analytics, vizavi-motion, autoharness, graphify, scrapling…), 4 — устаревшие копии. huashu-motion — submodule, инициализировать.
