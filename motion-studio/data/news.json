@@ -1,12 +1,129 @@
 {
   "status": "success",
-  "updated_at": "2026-11-04T23:40:33.276469Z",
-  "last_attempt_at": "2026-11-04T23:40:33.276469Z",
+  "updated_at": "2026-11-05T14:40:01.427608Z",
+  "last_attempt_at": "2026-11-05T14:40:01.427608Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "f5a829f9a8eba31c4c",
+      "title": "Box taps Nvidia’s Nemotron for new agent-first content retrieval system",
+      "url": "https://techcrunch.com/2026/11/05/box-taps-nvidias-nemotron-for-new-agent-first-content-retrieval-system/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-05T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "2fd237ae4bf33b8f5a",
+      "title": "Motorola's new Signature 27 has it all if you can stomach the $1,600 price tag",
+      "url": "https://arstechnica.com/gadgets/2026/11/motorolas-new-signature-27-has-it-all-if-you-can-stomach-the-1600-price-tag/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-05T13:00:56Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "44f488c59aa9e3a6dd",
+      "title": "A YC startup is putting $1M behind five unsolved materials science problems for AI",
+      "url": "https://techcrunch.com/2026/11/05/a-yc-startup-is-putting-1m-behind-five-unsolved-materials-science-problems-for-ai/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-05T13:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "9db55803402ec47c3e",
+      "title": "Agility Robotics' Nasdaq debut invites scrutiny of humanoid robot market",
+      "url": "https://arstechnica.com/ai/2026/11/agility-robotics-nasdaq-debut-invites-scrutiny-of-humanoid-robot-market/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-05T12:00:41Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "07e0ef8d48b748b308",
+      "title": "2026 iPad mini review: Maximizing the mini",
+      "url": "https://arstechnica.com/gadgets/2026/11/ipad-mini-2026-review-maximizing-the-mini/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-05T12:00:01Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "86c146bd7f606cc4b7",
+      "title": "Agility is the first pure humanoid robot company on the stock market. Are you buying?",
+      "url": "https://techcrunch.com/2026/11/05/agility-is-the-first-pure-humanoid-robot-company-on-the-stock-market-are-you-buying/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-05T12:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "788aca0b86fe44b26f",
+      "title": "Big Tech’s big AI buildout will not end until someone stops it",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1027344/amazon-microsoft-alphabet-google-meta-data-centers-earnings-q3",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-05T10:45:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "71935939aaf2bd4f1d",
+      "title": "Mercedes-AMG GT 4-Door Coupe first drive: Where tech and fun collide",
+      "url": "https://arstechnica.com/cars/2026/11/mercedes-amg-gt-4-door-coupe-first-drive-where-tech-and-fun-collide/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-05T09:00:13Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "87631feae5b67cf18c",
+      "title": "Clearing up a robot’s fuzzy memory",
+      "url": "https://news.mit.edu/2026/clearing-up-robot-fuzzy-memory-1105",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-05T05:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1522f10d7fdf55bdd9",
+      "title": "NASA Announces X-70 Experimental Aircraft to Advance Flight Research",
+      "url": "https://www.nasa.gov/news-release/nasa-announces-x-70-experimental-aircraft-to-advance-flight-research/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-05T01:43:21Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ad1030df5ce46710e2",
+      "title": "Apple is reportedly cutting budgets for its internal AI usage",
+      "url": "https://techcrunch.com/2026/11/04/apple-is-reportedly-cutting-budgets-for-its-internal-ai-usage/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-05T01:26:22Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "0ee5115bb8658d796c",
+      "title": "After the midterms, a bigger clash over data centers could be coming",
+      "url": "https://techcrunch.com/2026/11/04/after-the-midterms-a-bigger-clash-over-data-centers-could-be-coming/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-05T01:02:14Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7d01c5c4ee294cff99",
+      "title": "Nintendo's biggest ROM chip supplier is bowing out of the business",
+      "url": "https://arstechnica.com/gaming/2026/11/the-tech-memory-shortage-comes-for-nintendos-cartridge-supply-chain/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-04T22:47:51Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "7aa63af445bdd3ac98",
       "title": "AI PACs spent millions trying to shape Congress — here’s how they fared",
@@ -26,12 +143,30 @@
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
+      "id": "cea25fc8180f8064db",
+      "title": "Hackers exploited iOS and Android flaws to infect phones",
+      "url": "https://arstechnica.com/security/2026/11/hackers-exploited-ios-and-android-flaws-to-infect-phones/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-04T22:26:49Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
       "id": "c1e93e47438d89a079",
       "title": "Nothing CEO says company’s mysterious AI-first device is dropping next month",
       "url": "https://techcrunch.com/2026/11/04/nothing-ceo-says-companys-mysterious-ai-first-device-is-dropping-next-month/",
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-11-04T22:13:16Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4797f2b4d7a4ccf59b",
+      "title": "Uranium cubes reveal why the German nuclear project failed",
+      "url": "https://arstechnica.com/science/2026/11/uranium-cubes-reveal-why-the-german-nuclear-project-failed/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-04T21:56:29Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -590,141 +725,6 @@
       "category": "ai",
       "source": "The Verge AI",
       "published_at": "2026-11-03T15:58:39Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e8be46f0703f405999",
-      "title": "Trump wanted to give No Kings no air. Then, Meta suspended its Instagram.",
-      "url": "https://arstechnica.com/tech-policy/2026/11/trump-wanted-to-give-no-kings-no-air-then-meta-suspended-its-instagram/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-03T15:39:30Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5eba943719a0061f99",
-      "title": "Apple restricts dating apps and AI companions to users 18 and up",
-      "url": "https://techcrunch.com/2026/11/03/apple-restricts-dating-apps-and-ai-companions-to-users-18-and-up/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-03T15:38:27Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "61bb1ccb077a93600c",
-      "title": "TB 26-10 Printed Circuit Board Assembly Chip Resistor Body Cracking",
-      "url": "https://www.nasa.gov/centers-and-facilities/nesc/tb-26-10-printed-circuit-board-assembly-chip-resistor-body-cracking/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-03T15:35:14Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "03ad66ba1fba612587",
-      "title": "Apple is all in on AI — its own and everyone else’s",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1025245/apple-earnings-q4-ai",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-03T15:24:51Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b37cbeabc38bcc2e04",
-      "title": "NASA Astronaut, STEM Creator Connect with Students for STEM Day",
-      "url": "https://www.nasa.gov/learning-resources/nasa-astronaut-stem-creator-connect-with-students-for-stem-day/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-03T15:15:50Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e2d2bf508ced1caa08",
-      "title": "OpenAI is quietly renaming data centers ‘compute campuses’",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1025242/openai-quietly-renames-data-centers-as-compute-campuses",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-03T15:00:44Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "1247045d390642519a",
-      "title": "EPA throws in the towel on policing air pollution from factory farms",
-      "url": "https://arstechnica.com/tech-policy/2026/11/epa-throws-in-the-towel-on-policing-air-pollution-from-factory-farms/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-03T14:49:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d683890ef6589f420e",
-      "title": "The TechCrunch Founder Summit agenda is only half the reason to be in Boston on November 4",
-      "url": "https://techcrunch.com/2026/11/03/the-techcrunch-founder-summit-agenda-is-only-half-the-reason-to-be-in-boston-on-nov-4/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-03T14:30:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7d31948a7aaf22bcdf",
-      "title": "Beyond screens: Mercedes-Benz's new holographic heads-up display",
-      "url": "https://arstechnica.com/cars/2026/11/beyond-screens-mercedes-benzs-new-holographic-heads-up-display/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-03T14:00:07Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "9963b02b6cee4dcd78",
-      "title": "Tomorrow: TechCrunch Founder Summit takes over Boston and when pass rates increase",
-      "url": "https://techcrunch.com/2026/11/03/tomorrow-techcrunch-founder-summit-takes-over-boston-and-when-pass-rates-increase/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-03T14:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "aafb2d2c8fa2107938",
-      "title": "Apple Watch’s AI features for rewinding and recapping conversations begin beta testing",
-      "url": "https://techcrunch.com/2026/11/02/apple-watchs-ai-features-for-rewinding-and-recapping-conversations-begin-beta-testing/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-03T07:20:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "23abe1f1b0a2b246b6",
-      "title": "Google takes Dreambeans to India in bid to bring AI-generated personal stories to the masses",
-      "url": "https://techcrunch.com/2026/11/02/google-takes-dreambeans-to-india-in-bid-to-bring-ai-generated-personal-stories-to-the-masses/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-03T03:30:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "804d2e2f62a5210f78",
-      "title": "Apple may try to increase revenue by doing…something with third-party AI apps",
-      "url": "https://techcrunch.com/2026/11/02/apple-may-try-to-increase-revenue-by-doing-something-with-third-party-ai-apps/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-03T01:49:52Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "dfb1d49114f0805e78",
-      "title": "Y Combinator’s Garry Tan uses AI agents so much, he spends up to $200K a year on tokens",
-      "url": "https://techcrunch.com/2026/11/02/y-combinators-garry-tan-uses-ai-agents-so-much-he-spends-up-to-200k-a-year-on-tokens/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-03T00:35:52Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d602924f3d5976b210",
-      "title": "\"At Home in Space\" opens, caps Air and Space Museum renovation",
-      "url": "https://arstechnica.com/space/2026/11/at-home-in-space-opens-caps-air-and-space-museum-renovation/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-02T23:30:16Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
