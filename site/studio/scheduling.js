@@ -16,7 +16,7 @@
   function occupied(data,exclude){
     const slots=new Map();
     for(const x of data.taken||[]){const t=Date.parse(x.at);if(x.id===exclude||x.id===exclude+"/previous"||!Number.isFinite(t))continue;slots.set((x.id||'slot')+'|'+t,{...x,t,kind:x.kind||'short'});}
-    for(const x of data.plan||[]){if(!x.title||x.id===exclude)continue;const t=localTime(x.date+'T'+x.time.slice(0,5));if([...slots.values()].some(s=>s.t===t))continue;slots.set((x.id||'slot')+'|'+t,{...x,t,kind:x.kind||(x.what==='Рисованный мультфильм'||x.what==='кино-разбор'?'long':'short')});}
+    for(const x of data.plan||[]){if(!x.title||x.id===exclude)continue;const t=localTime(x.date+'T'+x.time.slice(0,5));if([...slots.values()].some(s=>s.t===t))continue;slots.set((x.id||'slot')+'|'+t,{...x,t,kind:x.kind||(/ультфильм/.test(x.what||'')||x.what==='кино-разбор'?'long':'short')});}
     return [...slots.values()];
   }
   function assertFree(data,id,t,kind='short',leadMinutes=45,role=null){
