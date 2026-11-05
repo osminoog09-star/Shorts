@@ -3,9 +3,11 @@
 
 ## Что реально запущено
 
+Использованные воспроизводимые версии: `graphifyy==0.9.102`, `scrapling==0.5.1`, `yt-dlp==2026.10.26`, `openclaw@2026.10.10`. Зафиксированы в workflow, повторный полный run SUCCESS.
+
 Повторяемый GitHub Actions: `.github/workflows/skills-runtime-smoke.yml`; тесты `tools/skills_runtime_smoke.py`. Запуск в **одноразовых изолированных Ubuntu Linux GitHub-hosted runners** с пустыми моделями/каналами, без передачи личного образца голоса, секретов или доступа к YouTube. Флаг `permissions: contents: read` для установочных jobs, отдельный конечный `publish-summary` c `contents: write` только для сохранения результатов в `skill-smoke-results`. Никакой установки на телефон, домашний ПК или постоянно в ChatGPT **не было**. Внешние исходники/npm/PyPI скачиваются во время CI и исчезают после завершения runner.
 
-Подтверждённый полный run: https://github.com/osminoog09-star/Shorts/actions/runs/41976454337, HEAD `19ac426ea5cdbb59d0f472f0e517168d49c48f91`. Вычитаны результаты ветки `skill-smoke-results` и **реальные логи каждого job**: 4/4 jobs SUCCESS и `publish-summary` SUCCESS.
+Подтверждённый полный run: https://github.com/osminoog09-star/Shorts/actions/runs/41976818950, HEAD `40419aa84bca6a0494c1c2d3131e11c2ce51ff67`. Вычитаны результаты ветки `skill-smoke-results` и **реальные логи каждого job**: 4/4 jobs SUCCESS и `publish-summary` SUCCESS.
 
 | Screenshot | Install/test | Фактическое заключение и ограничения |
 |---|---|---|
