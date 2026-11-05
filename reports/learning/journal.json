@@ -329,6 +329,45 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "KINO-007-HOOK-CONTEXT",
+      "project": "kino_007",
+      "issue": "V3 начинался ответом без причины конфликта; первые 2с были слабее как самостоятельный сюжет",
+      "cause": "Монтажный T0 был выбран после первоначального обвинения/конфликта",
+      "fix": "Сдвиг начала V4 на 2.4с раньше без нарушения реальной русской сцены; теперь сразу слышна причина конфликта",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-05_KINO_007_V4_PRIVATE_TECH_AUDIT.md",
+      "acceptance": "Первые 2.3с физического V4 MP4 + 17 кадров final contact проверены; эффект на удержание unknown",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "KINO-007-REFRAME-HEAD-CROP",
+      "project": "kino_007",
+      "issue": "Первый V4 reframe смещал двух актёров за границы 9:16 кадра на 18–25с",
+      "cause": "x-crop менялся по временной метке говорящего, но внутри одного плана актёр смещался и over-shoulder shot требовал другого центра",
+      "fix": "Сверены точные исходные fullframes и границы планов, выбран поздний crop отдельно для каждого ракурса",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-05_KINO_007_V4_PRIVATE_TECH_AUDIT.md",
+      "acceptance": "15 body + 17 final physical frames с исправленными t18.8/t20.9/t23.0/t25.5, без срезанных лиц; full FFmpeg -xerror PASS",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": true
+    },
+    {
+      "id": "KINO-007-FINAL-VOICE-BINARY-BRIDGE",
+      "project": "kino_007",
+      "issue": "Последняя устная реплика авторским голосом физически отсутствует в picture+approved outro V4",
+      "cause": "Сгенерированный private WAV и утверждённый outro находятся в разных изолированных средах без проверенного безопасного бинарного моста",
+      "fix": "Зарегистрирован NO-GO и точный следующий шаг: объединить в одной разрешённой среде, запустить штатный assemble_with_outro.py --title и официальный check/look",
+      "status": "pending",
+      "evidence": "reports/research/2026-11-05_KINO_007_V4_PRIVATE_TECH_AUDIT.md",
+      "acceptance": "SHA финального MOV/MP4, последнее слово по ASR+слуху, кадры и check.py/look.py PASS, без title в публичных полях",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }
