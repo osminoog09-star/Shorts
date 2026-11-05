@@ -1,0 +1,18 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Забастовка умного дома — mini</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+html,body{margin:0;background:#000;overflow:hidden;width:1080px;height:1920px}
+canvas{display:block}
+#sub{position:absolute;left:70px;right:150px;top:1250px;text-align:center;font:800 64px/1.12 Rubik,sans-serif;color:#fff;
+ -webkit-text-stroke:0;text-shadow:0 0 2px #1a1020,0 4px 0 #1a1020,3px 3px 0 #1a1020,-3px 3px 0 #1a1020,3px -3px 0 #1a1020,-3px -3px 0 #1a1020,0 8px 18px rgba(0,0,0,.45)}
+#sub .who{display:inline-block;font:800 34px Rubik,sans-serif;padding:6px 16px;border-radius:22px;margin-bottom:10px;text-shadow:none;color:#fff}
+#sub .who.h{background:#d9922b}#sub .who.f{background:#2fa3b5}
+#vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 70% at 50% 45%,rgba(0,0,0,0) 55%,rgba(20,8,0,.38) 100%)}
+#flash{position:absolute;inset:0;pointer-events:none;background:#fff;opacity:0}
+#title{position:absolute;left:0;right:0;top:150px;text-align:center;font:400 104px/1.02 'Russo One',sans-serif;color:#fff4d6;opacity:0;
+ text-shadow:0 6px 0 #c4502a,0 12px 30px rgba(0,0,0,.5)}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head><body><canvas id="c" width="1080" height="1920"></canvas><div id="vig"></div><div id="flash"></div><div id="title"></div><div id="sub"></div>
+<script type="module" src="scene.js"></script></body></html>

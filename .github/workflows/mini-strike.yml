@@ -1,0 +1,119 @@
+name: Mini-мульт · «Забастовка умного дома» (render + mix + outro + QA, PRIVATE)
+# Voices (Denis Qwen ICL + female VoiceDesign) come from 1-day artifacts of earlier runs and never enter Git.
+# Only silent QA images (contact sheets) are pushed to branch qa/mini-strike. Optional private YouTube upload
+# without a date (AGENTS §6) only when upload=true AND all checks pass.
+on:
+  workflow_dispatch:
+    inputs:
+      denis_run: { description: 'run id of denis-voice-tts (mini_strike_denis)', required: true, default: '42105048407' }
+      female_run: { description: 'run id of female-voice-design (mini_strike_domashnya)', required: true, default: '42105028306' }
+      upload: { description: 'after QA: upload PRIVATE to YouTube without date', type: boolean, default: false }
+permissions:
+  contents: write
+  actions: read
+concurrency: { group: mini-strike, cancel-in-progress: false }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      GH_TOKEN: ${{ github.token }}
+      P: longform/smart-strike
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Tools
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          python -m pip install -q numpy requests
+          cd "$P" && npm install --no-audit --no-fund && npx playwright-core install --with-deps chromium-headless-shell
+      - name: Private voices from artifacts (not committed)
+        run: |
+          set -euo pipefail
+          V="$RUNNER_TEMP/voices"; mkdir -p "$V/d" "$V/f"
+          gh run download "${{ inputs.denis_run }}" -R "$GITHUB_REPOSITORY" -D "$V/d"
+          gh run download "${{ inputs.female_run }}" -R "$GITHUB_REPOSITORY" -D "$V/f"
+          find "$V" -name 'm_*.wav' -exec cp {} "$V/" \;
+          ls -la "$V"/*.wav
+          for i in m_h1 m_h2 m_h3 m_h4 m_f1 m_f2 m_f3 m_f4; do test -s "$V/$i.wav" || { echo "::error::missing $i"; exit 1; }; done
+      - name: Mix (voices + SFX + CC-BY music) and lip-sync data
+        run: python "$P/mini/mix.py" "$RUNNER_TEMP/voices" "media/music/Thatched Villagers.mp3" "$RUNNER_TEMP/mix"
+      - name: Render 1080x1920 30fps (Three.js, deterministic frames)
+        run: |
+          set -euo pipefail
+          cd "$P"
+          node core/render/video.mjs mini --fps 30 --workers 4 --size 1080x1920 --out "$RUNNER_TEMP/render/video.mp4"
+      - name: Body = picture + mix
+        run: |
+          set -euo pipefail
+          ffmpeg -v error -y -i "$RUNNER_TEMP/render/video.mp4" -i "$RUNNER_TEMP/mix/mix.wav" -map 0:v -map 1:a \
+            -c:v copy -c:a aac -b:a 256k -ar 48000 -shortest "$RUNNER_TEMP/body.mp4"
+      - name: Approved Denis v7 outro (private Drive, SHA-checked)
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: |
+          set -euo pipefail
+          python scripts/fetch_outro.py
+          python scripts/fetch_outro.py --verify-only
+      - name: Assemble with outro (assemble_with_outro.py, vertical)
+        run: |
+          set -euo pipefail
+          mkdir -p longform/smart-strike/out
+          python tools/assemble_with_outro.py "$RUNNER_TEMP/body.mp4" -o longform/smart-strike/out/mini_strike_ru.mp4 --max-seconds 59
+          sha256sum longform/smart-strike/out/mini_strike_ru.mp4 | tee "$RUNNER_TEMP/sha.txt"
+      - name: QA — check.py, look.py, full decode, 1 fps sheet
+        run: |
+          set -euo pipefail
+          F=longform/smart-strike/out/mini_strike_ru.mp4; Q="$RUNNER_TEMP/qa"; mkdir -p "$Q"
+          ffmpeg -v error -xerror -i "$F" -f null - && echo "DECODE PASS"
+          python skills/ext/ffmpeg-skill/scripts/check.py "$F" --platform youtube-shorts --json > "$Q/check.json" || true
+          cat "$Q/check.json"
+          python skills/ext/ffmpeg-skill/scripts/look.py "$F" --tiles 4x3 --width 1600 --safe youtube-shorts -o "$Q/look_sheet.png"
+          ffmpeg -v error -y -i "$F" -vf "fps=2,scale=216:384,tile=12x8" -frames:v 1 "$Q/sheet_2fps.jpg"
+          for t in 1.6 5 9.5 12 14.1 19.25 24 28.5 32 36.5 39.4 42; do ffmpeg -v error -y -ss $t -i "$F" -frames:v 1 -vf scale=540:960 "$Q/f_$t.jpg"; done
+          cp "$RUNNER_TEMP/mix/mix_report.json" "$Q/"; cp longform/smart-strike/out/mini_strike_ru.mp4.qa.json "$Q/assemble_qa.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/sha.txt" "$Q/"
+          ffmpeg -hide_banner -i "$F" -af ebur128=peak=true -f null - 2>&1 | tail -12 > "$Q/loudness.txt"
+      - name: Push silent QA images to branch qa/mini-strike
+        run: |
+          set -euo pipefail
+          Q="$RUNNER_TEMP/qa"; cd "$RUNNER_TEMP"; rm -rf qab && mkdir qab && cd qab
+          git init -q && git checkout -q -b qa/mini-strike
+          cp "$Q"/* . && git add .
+          git -c user.name=qa-bot -c user.email=qa-bot@users.noreply.github.com commit -qm "QA mini-strike run ${{ github.run_id }}"
+          git push -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" qa/mini-strike
+      - name: Private YouTube upload WITHOUT date (owner reviews in Studio)
+        if: inputs.upload == true
+        env:
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          set -euo pipefail
+          M=publishing/queue/mini_strike_ru.json
+          python - "$M" <<'PY'
+          import json, sys, hashlib
+          m = json.load(open(sys.argv[1], encoding='utf-8'))
+          assert not m.get('publish_at'), 'NO-GO: manifest must have no date'
+          f = m['source']['path']; h = hashlib.sha256(open(f, 'rb').read()).hexdigest()
+          m['source']['sha256'] = h; json.dump(m, open(sys.argv[1], 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+          print('sha', h)
+          PY
+          python scripts/youtube_direct.py check --manifest "$M"
+          python scripts/youtube_direct.py preflight --manifest "$M" --video-file longform/smart-strike/out/mini_strike_ru.mp4
+          python scripts/youtube_direct.py reserve --manifest "$M"
+          python scripts/youtube_direct.py send --manifest "$M" --video-file longform/smart-strike/out/mini_strike_ru.mp4
+          git config user.name youtube-direct-bot; git config user.email youtube-direct-bot@users.noreply.github.com
+          git add publishing/receipts/ "$M"; git commit -m "youtube: private upload mini_strike_ru (no date)" || true
+          git pull --rebase origin main && git push origin HEAD:main

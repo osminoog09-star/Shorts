@@ -1,0 +1,11 @@
+node_modules/
+node_modules_pc/
+demo-ref/
+styles/
+film/
+core/assets/
+out/
+**/stills/
+*.wav
+*.mp4
+mini/voices/lips.json
