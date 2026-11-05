@@ -110,7 +110,7 @@ const mat = {
   chrome: M('#d8dde2', { r: .18, m: .9 }), steel: M('#9aa3ab', { r: .3, m: .8 }), dark: M('#23262b', { r: .4 }),
   red: M('#d4473b', { r: .35 }), cream: M('#f2e6cf', { r: .4 }), orange: M('#e8892f', { r: .4 }), teal: M('#2a8f9a', { r: .35 }),
   white: M('#f4f1ea', { r: .35 }), black: M('#111', { r: .3 }), glass: new THREE.MeshPhysicalMaterial({ color: '#cfe8ff', roughness: .05, transmission: 0, transparent: true, opacity: .35 }),
-  skin: M('#f2c2a6', { r: .6 }), hoodie: M('#2b2d33', { r: .9 }), pants: M('#a99f82', { r: .9 }), sock: M('#e04a4a', { r: .9 }), slipper: M('#3b4a6b', { r: .9 }),
+  skin: M('#f2c2a6', { r: .6 }), hoodie: M('#2b2d33', { r: .9 }), pants: M('#3d4f6e', { r: .85 }), sock: M('#e04a4a', { r: .9 }), slipper: M('#3b4a6b', { r: .9 }),
   eyeW: M('#fbfbf8', { r: .2 }), pupil: M('#1d1a19', { r: .15 }), brow: M('#2b1d16', { r: .9 }), mouth: M('#5a1d1f', { r: .6 }), tongue: M('#e0676d', { r: .5 }),
   hair: M('#bb915c', { r: .7 }), hairTop: M('#d2ad74', { r: .6 }), fade: M('#a88760', { r: .95 }), coffee: M('#4a2a17', { r: .25 }), toast: M('#c98a45', { r: .9 }), toastBurnt: M('#5a3218', { r: .95 }),
 };
@@ -295,6 +295,7 @@ function capsule(r, len, m) { const o = new THREE.Mesh(new THREE.CapsuleGeometry
 const hero = new THREE.Group(); room.add(hero);
 const hips = new THREE.Group(); hips.position.y = .86; hero.add(hips);
 const legs = [];
+{ const pelvis = capsule(.11, .16, mat.pants); pelvis.rotation.z = Math.PI / 2; pelvis.scale.set(1, 1, .8); pelvis.position.y = -.03; hips.add(pelvis); } // shorts/hip block: no mannequin gap under the hoodie
 for (const s of [-1, 1]) {
   const hip = new THREE.Group(); hip.position.set(s * .11, 0, 0); hips.add(hip);
   const thigh = capsule(.088, .3, mat.pants); thigh.position.y = -.2; hip.add(thigh);
@@ -425,8 +426,8 @@ const SHOTS = [
   { a: 3.1, b: 7.9, cam: t => { const u = ss(seg(t, 3.1, 7.9)); return [V(lerp(.7, .45, u), .75, lerp(2.4, 2.1, u)), V(.15, 1.75, -1.4), 56]; } },
   { a: 7.9, b: 10.8, cam: t => { const v = vac.position; const u = ss(seg(t, 7.9, 10.8)); return [V(lerp(1.4, 1.05, u), .3, 1.25), V(v.x, .25, v.z), 52]; } },
   { a: 10.8, b: 13.2, cam: t => { const h = headPos(); const u = ss(seg(t, 10.8, 13.2)); return [V(h.x + .35, h.y + .05, h.z + lerp(2.0, 1.75, u)), V(h.x, h.y - .2, h.z), 34]; } },
-  { a: 13.2, b: 17.0, cam: t => { const u = ss(seg(t, 13.2, 17)); return [V(lerp(1.75, 1.6, u), 1.5, lerp(0.35, 0.2, u)), V(.25, 1.22, -1.95), 44]; } },
-  { a: 17.0, b: 22.4, cam: t => { const u = ss(seg(t, 17, 22.4)); return [V(lerp(2.35, 2.2, u), 1.5, lerp(0.55, 0.4, u)), V(.95, 1.25, -1.85), 46]; } },
+  { a: 13.2, b: 17.0, cam: t => { const u = ss(seg(t, 13.2, 17)); return [V(lerp(1.6, 1.45, u), 1.5, lerp(0.75, 0.6, u)), V(.08, 1.22, -1.85), 46]; } },
+  { a: 17.0, b: 22.4, cam: t => { const u = ss(seg(t, 17, 22.4)); return [V(lerp(2.2, 2.05, u), 1.5, lerp(0.85, 0.7, u)), V(.78, 1.25, -1.7), 48]; } },
   { a: 22.4, b: 27.4, cam: t => { const u = ss(seg(t, 22.4, 27.4)); return [V(.45, lerp(.95, 1.05, u), lerp(2.3, 2.0, u)), V(.35, 1.85, -1.4), 60]; } },
   { a: 27.4, b: 30.6, cam: t => { const h = headPos(); const u = ss(seg(t, 27.4, 30.6)); return [V(h.x - .3, h.y + .05, h.z + lerp(1.95, 1.7, u)), V(h.x, h.y - .2, h.z), 34]; } },
   { a: 30.6, b: 34.8, cam: t => { const u = ss(seg(t, 32.2, 34.8)); return [mix(V(-.35, 1.25, -1.1), V(-.75, 1.5, 1.0), u), mix(V(-.85, 1.1, -2.2), V(-.2, 1.25, -1.6), u), lerp(48, 46, u)]; } },
