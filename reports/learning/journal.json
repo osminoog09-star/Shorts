@@ -472,6 +472,19 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": true
+    },
+    {
+      "id": "DENIS-QWEN-ASR-CACHE-20261105",
+      "project": "denis-voice-tts-for-claude",
+      "issue": "Первый реальный GitHub Actions 3-phrase Qwen3-TTS 1.7B CPU run 42092477812 создал 3 WAV, но упал на faster-whisper small model unavailable до artifact и private Drive upload",
+      "cause": "Whisper CTranslate2 public model не был скачан заранее; попытка инициализации WhisperModel('small') из CPU runner после 30 минут синтеза не смогла обеспечить модель",
+      "fix": "В workflow перед synthesis добавлен snapshot_download('Systran/faster-whisper-small') и WHISPER_LOCAL_PATH; SoX установлен. Запущен retest 42101115487, пока IN_PROGRESS; никаких voice samples/tokens в public git",
+      "status": "in_progress",
+      "evidence": "https://github.com/osminoog09-star/Shorts/actions/runs/42092477812",
+      "acceptance": "Run 42101115487 SUCCESS, ASR similarity >=0.80 all 3, private Drive voice_out receipt+artifact 1d, owner hearing",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": true
     }
   ]
 }
