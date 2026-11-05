@@ -2,6 +2,13 @@ name: Movie Short · от записи до приватной заливки
 # Денис (сайт студии → «Новый кино-Shorts») или агент даёт ссылку на запись экрана сцены.
 # Исходник живёт только во временной папке раннера; в репо — только готовый Short + паспорт.
 on:
+  # Only an isolated non-publishing smoke job runs on push.
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/movie-short.yml'
+      - 'scripts/fetch_outro.py'
+      - 'scripts/qa/test_fetch_outro.py'
   workflow_dispatch:
     inputs:
       url: { description: "Ссылка на запись (Google Drive / Dropbox / прямая https)", required: true }
@@ -10,6 +17,8 @@ on:
       end: { description: "Конец сцены (сек или мм:сс), пусто = до конца", required: false, default: "" }
       title: { description: "Название ролика (без названия фильма!)", required: true }
       film: { description: "Название фильма — только голосом в конце", required: true }
+      title_voice_url: { description: "Приватная HTTPS-ссылка на уже проверенную реплику голосом Дениса", required: false, default: "" }
+      title_voice_sha256: { description: "SHA256 личной реплики Дениса (обязателен при обычной сборке)", required: false, default: "" }
       lang: { description: "Язык речи в сцене: ru (дубляж) или en (только для заявок)", required: false, default: "ru" }
       request: { description: "@ник зрителя, если это заявка", required: false, default: "" }
       question: { description: "Вопрос зрителям в конце", required: false, default: "А ты бы как поступил?" }
@@ -21,17 +30,106 @@ concurrency:
   group: movie-short-${{ inputs.id }}
   cancel-in-progress: false
 jobs:
+  # Separate offline-style CI smoke: never reads a movie, never writes video to
+  # the repository, never triggers youtube-direct.yml and never needs title TTS.
+  outro_ci_smoke:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: FFmpeg and SHA gate unit tests
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          python -m unittest discover -s scripts/qa -p 'test_fetch_outro.py'
+          python -m pip install -q numpy
+      - name: Pull PRIVATE owner-approved Denis v7 from Drive and check both SHA256
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: |
+          set -euo pipefail
+          python scripts/fetch_outro.py
+          python scripts/fetch_outro.py --verify-only
+      - name: Generate a synthetic 3-second source; assemble with original approved outro
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/outro-smoke"
+          ffmpeg -hide_banner -loglevel error -y \
+            -f lavfi -i 'testsrc2=size=1080x1920:rate=30:duration=3.2' \
+            -f lavfi -i 'sine=frequency=440:sample_rate=48000:duration=3.2' \
+            -c:v libx264 -preset ultrafast -crf 22 -pix_fmt yuv420p \
+            -c:a aac -b:a 160k -shortest "$RUNNER_TEMP/outro-smoke/body.mp4"
+          python tools/assemble_with_outro.py \
+            "$RUNNER_TEMP/outro-smoke/body.mp4" \
+            -o "$RUNNER_TEMP/outro-smoke/private_test.mp4" --preset ultrafast --crf 22
+          python skills/ext/ffmpeg-skill/scripts/check.py \
+            "$RUNNER_TEMP/outro-smoke/private_test.mp4" --platform shorts \
+            | tee "$RUNNER_TEMP/outro-smoke/check.log"
+          python skills/ext/ffmpeg-skill/scripts/look.py \
+            "$RUNNER_TEMP/outro-smoke/private_test.mp4" --tiles 3x2 \
+            -o "$RUNNER_TEMP/outro-smoke/look.jpg"
+          ffmpeg -hide_banner -v error -xerror \
+            -i "$RUNNER_TEMP/outro-smoke/private_test.mp4" -f null -
+          test -s "$RUNNER_TEMP/outro-smoke/look.jpg"
+          test -s "$RUNNER_TEMP/outro-smoke/private_test.mp4.qa.json"
+      - name: Save ONLY contact image and QA evidence (never private MP4/audio)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: denis-v7-outro-smoke-evidence
+          path: |
+            ${{ runner.temp }}/outro-smoke/look.jpg
+            ${{ runner.temp }}/outro-smoke/check.log
+            ${{ runner.temp }}/outro-smoke/private_test.mp4.qa.json
+          retention-days: 2
+          if-no-files-found: ignore
+
   build:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
+      - name: Получить оба исходных Denis v7 outro из PRIVATE Google Drive (SHA256 gate)
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: |
+          set -euo pipefail
+          python scripts/fetch_outro.py
       - name: Инструменты
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
           pip install -q "faster-whisper==1.0.3" "opencv-python-headless>=4.9,<5" "edge-tts>=7,<8" "Pillow>=10" "gdown>=5,<6"
+      - name: Скачать голосовое название (Denis ONLY, SHA256 required)
+        env:
+          VOICE_URL: ${{ inputs.title_voice_url }}
+          VOICE_SHA256: ${{ inputs.title_voice_sha256 }}
+        run: |
+          set -euo pipefail
+          if [[ ! "$VOICE_URL" =~ ^https:// ]] || [[ ! "$VOICE_SHA256" =~ ^[0-9a-f]{64}$ ]]; then
+            echo '::error::BLOCKED: нужен PRIVATE title_voice_url (HTTPS) + SHA256 личного голоса Дениса; чужой TTS запрещён'
+            exit 1
+          fi
+          mkdir -p "$RUNNER_TEMP/denis-title"
+          curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' \
+            --max-time 120 --max-filesize 20000000 -o "$RUNNER_TEMP/denis-title/title.mp3" "$VOICE_URL"
+          printf '%s  %s\n' "$VOICE_SHA256" "$RUNNER_TEMP/denis-title/title.mp3" | sha256sum --check -s || {
+            echo '::error::NO-GO: SHA256 личного голоса не совпал'; exit 1;
+          }
+          ffprobe -v error -show_entries format=duration -of csv=p=0 "$RUNNER_TEMP/denis-title/title.mp3"
       - name: Скачать запись во временную папку (в репо не попадает)
         env: { URL: "${{ inputs.url }}" }
         run: |
@@ -44,7 +142,7 @@ jobs:
             *) echo "::error::Нужна https-ссылка"; exit 1 ;;
           esac
           ffprobe -v error -show_entries format=duration:stream=codec_type,width,height -of compact src.bin
-      - name: Собрать Short (вертикаль по лицам, субтитры, финал Димы, проверка §12)
+      - name: Собрать Short (вертикаль по лицам, субтитры, только Denis v7, проверка §12)
         env:
           I_ID: ${{ inputs.id }}
           I_START: ${{ inputs.start }}
@@ -54,10 +152,12 @@ jobs:
           I_LANG: ${{ inputs.lang }}
           I_REQ: ${{ inputs.request }}
           I_Q: ${{ inputs.question }}
+          I_VOICE_FILE: ${{ runner.temp }}/denis-title/title.mp3
         run: |
           set -o pipefail
           python scripts/movie_short.py --src "$RUNNER_TEMP/src/src.bin" --id "$I_ID" --start "$I_START" --end "$I_END" \
-            --title "$I_TITLE" --film "$I_FILM" --lang "$I_LANG" --request "$I_REQ" --question "$I_Q" 2>&1 | tee "$RUNNER_TEMP/build.log"
+            --title "$I_TITLE" --film "$I_FILM" --title-voice "$I_VOICE_FILE" \
+            --lang "$I_LANG" --request "$I_REQ" --question "$I_Q" 2>&1 | tee "$RUNNER_TEMP/build.log"
           rm -rf "$RUNNER_TEMP/src"
       - name: Лог для агентов (ветка ci-logs, только текст)
         if: always()
