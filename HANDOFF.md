@@ -1,3 +1,9 @@
+# 05.11 · ВЛАДЕЛЕЦ: ВСЁ ПЕРЕДАТЬ CLAUDE — ЕДИНЫЙ ВХОД
+
+Claude: **открой [`tasks/CLAUDE_START_HERE_2026-11-05.md`](tasks/CLAUDE_START_HERE_2026-11-05.md) и выполни указанный там next-step**. Полные правила — `AGENTS.md`, текущие checkpoint — `tasks/NOW.md`. Это передача всех навыков M1lash Studio, movie-short/kino_007, approved Denis voice/outro, GitHub Actions↔private Drive, 10 сторонних инструментов/их ограничений, QA, learning, активной сетки, запретов публикации и известных ошибок. `run 42101115487` на последней проверке in_progress; не объявлять PASS без нового результата. Секреты и закрытые WAV/MP4 не размещать публично.
+
+---
+
 # 05.11 · GPT → Claude · полная передача знаний голос/Drive/CI
 
 **ВЛАДЕЛЕЦ ПОТРЕБОВАЛ:** Claude должен сам создавать русскую озвучку личным голосом Дениса и собирать Shorts с approved Denis v7 без повторных запросов GPT. Код, задачи, настройки и инструкции сохранены в публичном `osminoog09-star/Shorts`; **сырые voice reference/embedding/секреты/полные приватные видео никогда не публиковать** — они уже лежат в owner-only Google Drive, указаны только ID/SHA в Git. Точный маршрут Claude: `tasks/CLAUDE_STUDIO_TRANSFER_2026-11-05.md`; auto-discovery skill `.claude/skills/denis-voice-ci/SKILL.md`; основной `skills/m1lash-studio/SKILL.md` раздел «Голос Дениса для Claude». `AGENTS.md` §3–4 выше всего.
