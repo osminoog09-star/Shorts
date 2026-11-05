@@ -407,6 +407,19 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": true
+    },
+    {
+      "id": "KINO-007-DUPLICATE-TITLE-BEFORE-OUTRO",
+      "project": "kino_007",
+      "issue": "V5 и V6 повторно раскрывали название фильма/год до утверждённой фирменной концовки, вопреки последней прямой команде владельца",
+      "cause": "Неверно прочитано разрешение показывать титры в самом фильме как разрешение на предварительное раскрытие; проверялся технический decode, а не порядок трёх редакционных блоков",
+      "fix": "В V7 полностью исключён pre-outro credit video+audio; заново смонтированы только body 33.967s → approved Denis outro 6.6s → единственный post-outro title 2.233s. В AGENTS §8 предыдущая формулировка заменена строгим правилом.",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-05_KINO_007_V7_CORRECTED_REVEAL_ORDER.md",
+      "acceptance": "19 реальных final MP4 кадров у стыков и tail; body ASS не содержит title/year, V7 3-source timeline+full decode PASS; владелец ещё не одобрял художественно",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": true
     }
   ]
 }
