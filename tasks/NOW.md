@@ -29,6 +29,18 @@
 
 ## GPT/Codex
 
+### 05.11 — Download tools from screenshots + standalone Opuscar smoke · GPT
+Цель: установить проверенные и относящиеся к M1lash источники, затем создать реальный отдельный тестовый MP4 без публикации и без изменения PAUSED проектов.
+Шаги:
+- [x] 1. Прочитать правила, установить происхождение Colibri / AutoHarness / Scrapling / Teardown / Glassy UI; проверить, что Opuscar уже есть в GitHub. Источники: JustVugg/colibri (LLM runtime, не self-learning skills), tigerless-labs/autoharness, D4Vinci/Scrapling, Opuscar teardown style. Glassy V5 только скрин, оригинальный код не подтверждён.
+- [ ] 2. Сохранить официальный агентский skill Scrapling и документацию AutoHarness **без запуска автохуков**, записать источники, лицензии и safe-mode. Не скачивать модели Colibri без проекта и бюджета.
+- [ ] 3. Сделать отдельно от PAUSED оригинальный 4–6-still proof и небольшой silent MP4 в Opuscar-технике через HTML/Canvas+Chromium/Playwright; строго отметить, если оригинальный engine не запускался.
+- [ ] 4. Фактические ffprobe/check/look/decode, глаза QA, доступная ссылка, HANDOFF, закрытие блока.
+Следующий шаг: скачать official source snippets и лицензии Scrapling/AutoHarness в skills/ext/ (без live hooks), commit; затем автономный Opuscar-style smoke 8–10s на отдельном проекте, без голоса, не публиковать.
+Где промежуточное: skills/ext/lemo-opuscar/, skills/ext/watch/; локальный тест только /mnt/data и GitHub исходник после проверки.
+Ждёт Дениса: только решение о публикации (этот smoke без заливки).
+
+
 ### 04.11 — M1lash МультНовости #01, отдельный S3-D25 21–23 мин · GPT
 **ВЛАДЕЛЕЦ УТВЕРДИЛ 04.11:** отдельная новостная рубрика, S3-D25, 21–23 мин, только его voice Denis как основной. Уточнение владельца 04.11: **ВСЕ окружения масштабные, огромный живой мир**, завод с разными линиями и предметными сценами, не маленькая сцена и один робот; **сначала демо-видео**, не image_gen-картинка. Это НЕ возобновление PAUSED_BY_OWNER M1lash Мульт EP01/3D Coffee.
 **Отзыв владельца 04.11 (демо v5): удалить ВСЕ заводские SFX, провести детальный разбор с правками, записать в журнал/скил.** В демо v6 строго без audio tracks, будущий собственный голос Дениса по §3 сохраняется.
