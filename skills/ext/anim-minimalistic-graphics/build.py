@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parents[1] / 'kit'))
+sys.path.insert(0, str(HERE.parent / 'anim-kit'))
 import anim  # noqa: E402
 
 DEFAULTS = {'lines': ['every step feels small.', 'until you look back.'], 'steps': 5, 'light': False}

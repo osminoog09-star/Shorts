@@ -425,12 +425,12 @@ const SHOTS = [
   { a: 3.1, b: 7.9, cam: t => { const u = ss(seg(t, 3.1, 7.9)); return [V(lerp(.7, .45, u), .75, lerp(2.4, 2.1, u)), V(.15, 1.75, -1.4), 56]; } },
   { a: 7.9, b: 10.8, cam: t => { const v = vac.position; const u = ss(seg(t, 7.9, 10.8)); return [V(lerp(1.4, 1.05, u), .3, 1.25), V(v.x, .25, v.z), 52]; } },
   { a: 10.8, b: 13.2, cam: t => { const h = headPos(); const u = ss(seg(t, 10.8, 13.2)); return [V(h.x + .35, h.y + .05, h.z + lerp(2.0, 1.75, u)), V(h.x, h.y - .2, h.z), 34]; } },
-  { a: 13.2, b: 17.0, cam: t => { const u = ss(seg(t, 13.2, 17)); return [V(lerp(2.0, 1.85, u), 1.5, lerp(-0.05, -0.2, u)), V(.35, 1.25, -1.8), 44]; } },
-  { a: 17.0, b: 22.4, cam: t => { const u = ss(seg(t, 17, 22.4)); return [V(lerp(.05, .15, u), 1.45, lerp(.55, .4, u)), V(1.1, 1.3, -1.85), 42]; } },
+  { a: 13.2, b: 17.0, cam: t => { const u = ss(seg(t, 13.2, 17)); return [V(lerp(1.75, 1.6, u), 1.5, lerp(0.35, 0.2, u)), V(.25, 1.22, -1.95), 44]; } },
+  { a: 17.0, b: 22.4, cam: t => { const u = ss(seg(t, 17, 22.4)); return [V(lerp(2.35, 2.2, u), 1.5, lerp(0.55, 0.4, u)), V(.95, 1.25, -1.85), 46]; } },
   { a: 22.4, b: 27.4, cam: t => { const u = ss(seg(t, 22.4, 27.4)); return [V(.45, lerp(.95, 1.05, u), lerp(2.3, 2.0, u)), V(.35, 1.85, -1.4), 60]; } },
   { a: 27.4, b: 30.6, cam: t => { const h = headPos(); const u = ss(seg(t, 27.4, 30.6)); return [V(h.x - .3, h.y + .05, h.z + lerp(1.95, 1.7, u)), V(h.x, h.y - .2, h.z), 34]; } },
   { a: 30.6, b: 34.8, cam: t => { const u = ss(seg(t, 32.2, 34.8)); return [mix(V(-.35, 1.25, -1.1), V(-.75, 1.5, 1.0), u), mix(V(-.85, 1.1, -2.2), V(-.2, 1.25, -1.6), u), lerp(48, 46, u)]; } },
-  { a: 34.8, b: 40.0, cam: t => { const h = headPos(); const u = ss(seg(t, 37.7, 38.9)); return [mix(V(.85, .5, 1.6), V(.5, 1.2, 1.4), u), mix(V(.3, .55, -.1), V(h.x, h.y - .35, h.z), u), 46]; } },
+  { a: 34.8, b: 40.0, cam: t => { const h = headPos(); const u = ss(seg(t, 37.7, 38.9)); return [mix(V(.95, .8, 1.75), V(.55, 1.2, 1.55), u), mix(V(.25, .5, -.35), V(h.x, h.y - .45, h.z), u), 50]; } },
 ];
 const shotAt = t => SHOTS.find(s => t >= s.a && t < s.b) || SHOTS[SHOTS.length - 1];
 
@@ -478,16 +478,16 @@ window.render = function (t) {
       face: { open: .8, blink: bl, mouth: hv, brow: -.15, browA: .35, smile: .2 } };
   } else if (t < 17.0) { // walks to kettle, reaches, steam in face → recoil
     const walk = ss(seg(t, 13.2, 13.7)); const reach = ss(seg(t, 13.5, 13.85)); const rec = ss(seg(t, 13.85, 14.15));
-    const x = lerp(-0.25, 0.25, walk), z = lerp(-1.25, -1.6, walk) + rec * .25;
-    p = { x, z, ry: -0.5 + rec * .2, lean: reach * .12 - rec * .25, nod: rec * -.2, turn: -.2,
+    const x = lerp(-0.25, 0.0, walk) - rec * .12, z = lerp(-1.25, -1.75, walk) + rec * .15;
+    p = { x, z, ry: lerp(-0.2, 0.95, walk) - rec * .25, lean: reach * .12 - rec * .25, nod: rec * -.2, turn: -.2,
       arms: [[-.2 - rec * 1.6, .1 + rec * .6, -1.5 * (1 - rec) - rec * 1.4], [-1.3 * reach * (1 - rec) - rec * 1.6, .1 + rec * .5, -.4 - rec * 1.2]],
       legs: [[Math.sin(t * 12) * .3 * walk * (1 - seg(t, 13.6, 13.7)), 0], [-Math.sin(t * 12) * .3 * walk * (1 - seg(t, 13.6, 13.7)), 0]],
       face: { open: lerp(1, .15, rec) + seg(t, 15, 16) * .6, squint: rec * (1 - seg(t, 15, 16)), blink: bl, mouth: rec * .5 * (1 - seg(t, 15.2, 16)), brow: -rec * .5, browA: rec * .4, wide: rec * .6 } };
   } else if (t < 22.4) { // toaster: press lever 17.6, toaster aims 18.2, toast hits 19.18, staggers; «Ай! Да чего вы хотите?!»
     const step = ss(seg(t, 17.0, 17.4)), press = ss(seg(t, 17.4, 17.6)) * (1 - ss(seg(t, 17.7, 18.0)));
     const notice = ss(seg(t, 18.3, 18.6)); const hit = t > 19.18 ? 1 : 0; const st = ss(seg(t, 19.18, 19.6)), rec2 = ss(seg(t, 20.2, 21.0));
-    const x = lerp(0.25, 0.95, step), z = lerp(-1.35, -1.5, step) + st * .2;
-    p = { grip: [.4, lerp(.15, .5, rec2)], x, z, ry: -0.75 + notice * .2, lean: press * .18 - st * .3 * (1 - rec2 * .6), nod: press * .2 - st * .35 + rec2 * .2, turn: -.25, htilt: st * .15 * (1 - rec2),
+    const x = lerp(0.0, 0.7, step), z = lerp(-1.75, -1.5, step) + st * .2;
+    p = { grip: [.4, lerp(.15, .5, rec2)], x, z, ry: 0.95 - notice * .35, lean: press * .18 - st * .3 * (1 - rec2 * .6), nod: press * .2 - st * .35 + rec2 * .2, turn: -.25, htilt: st * .15 * (1 - rec2),
       headZ: -st * .03,
       arms: [[-.2 - st * 1.5 + rec2 * .6, .2 + st * .5, -.6 - st * 1.6 + rec2 * 1.0], [-1.0 * press - rec2 * 1.2 - (1 - rec2) * st * .3, .2 + rec2 * .5, -.4 - rec2 * .9]],
       legs: [[Math.sin(t * 12) * .28 * (step < 1 ? step : 0), 0], [-Math.sin(t * 12) * .28 * (step < 1 ? step : 0), 0]],
@@ -504,8 +504,8 @@ window.render = function (t) {
       face: { open: .85, blink: bl, mouth: hv * .85, brow: .3, browA: -.45, lx: .3, ly: -.25, smile: -.1 } };
   } else if (t < 34.8) { // lights up: hero relief, smiles, takes mug at 34
     const sm = ss(seg(t, 31.0, 31.8));
-    p = { x: 0.6 - ss(seg(t, 32.6, 33.6)) * .6, z: -1.25, ry: -0.35 - ss(seg(t, 32.6, 33.6)) * .3, nod: -.05, turn: -.2,
-      arms: [[-.1 - sm * .3, .05 + sm * .7, -.3 - sm * .6], [-.1 - sm * .3, .05 + sm * .7, -.3 - sm * .6]],
+    p = { x: 0.6, z: -1.25, ry: -0.35, nod: -.05, turn: -.2,
+      arms: [[-.1 - sm * .25, .05 + sm * .2, -.3 - sm * .5], [-.1 - sm * .25, .05 + sm * .2, -.3 - sm * .5]],
       face: { open: 1, blink: bl, mouth: sm * .25, smile: sm, brow: .4 * sm, ly: .2 } };
   } else { // finale: robovac with shades, hero face falls; looks to camera
     const look = ss(seg(t, 35.4, 36.0)), cam = ss(seg(t, 37.8, 38.3));
@@ -545,7 +545,8 @@ window.render = function (t) {
     const sp = kBody.localToWorld(new THREE.Vector3(.2, .28, 0));
     p.visible = true;
     if (jet) {
-      p.position.set(sp.x + age * .9 + (hash(i) - .5) * .1 * age, sp.y + age * .18 + (hash(i + 2) - .5) * .12 * age, sp.z + age * 1.1);
+      const hw = head.getWorldPosition(new THREE.Vector3());
+      p.position.set(lerp(sp.x, hw.x, age) + (hash(i) - .5) * .12 * age, lerp(sp.y, hw.y, age) + (hash(i + 2) - .5) * .12 * age, lerp(sp.z, hw.z + .15, age));
       p.scale.setScalar(.02 + age * .09);
     } else {
       p.position.set(sp.x + Math.sin(age * 4 + i) * .03, sp.y + age * .45, sp.z + Math.cos(age * 3 + i) * .03);

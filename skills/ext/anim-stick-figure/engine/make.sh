@@ -9,7 +9,7 @@
 #   AUDIO_ONLY=1 make.sh ~/reels/pirate    # remix the sound only (reuses the last picture)
 set -euo pipefail
 ENGINE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-KIT="$(cd "$ENGINE/../../../kit" && pwd)"
+KIT="$(cd "$ENGINE/../../anim-kit" && pwd)"
 DIR="$(cd "${1:?usage: make.sh <reel-folder> [kokoro|elevenlabs|file]}" && pwd)"
 VOICE="${2:-keep}"
 WORKERS="${WORKERS:-4}"

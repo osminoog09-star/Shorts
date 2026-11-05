@@ -2,7 +2,7 @@
 #   tts_kokoro.py [voice] [speed]     defaults: am_michael 1.12 (other voices: af_heart, am_adam, bf_emma, bm_george ...)
 import json, sys, os, shutil, tempfile, numpy as np, soundfile as sf
 ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-KIT = os.path.realpath(os.path.join(ROOT, "..", "..", "..", "kit"))  # the voice models live in kit/models
+KIT = os.path.realpath(os.path.join(ROOT, "..", "..", "anim-kit"))  # the voice models live in kit/models
 from kokoro_onnx import Kokoro, EspeakConfig
 import espeakng_loader
 

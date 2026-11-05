@@ -2,7 +2,7 @@
 # Writes audio/words_new.json and audio/warp.json (old-time -> new-time anchors).
 import json, re, difflib, os, shutil, numpy as np, soundfile as sf, sherpa_onnx, glob, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-KIT = os.path.realpath(os.path.join(ROOT, "..", "..", "..", "kit"))  # the voice models live in kit/models
+KIT = os.path.realpath(os.path.join(ROOT, "..", "..", "anim-kit"))  # the voice models live in kit/models
 src = sys.argv[1] if len(sys.argv) > 1 else 'audio/vo.wav'
 d = glob.glob(os.path.join(KIT, "models", "sherpa-onnx-nemo-parakeet*"))
 if not d: sys.exit(f"the word-timing model is missing: run  bash {KIT}/setup.sh --voice")
