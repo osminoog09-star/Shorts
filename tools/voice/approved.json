@@ -1,0 +1,29 @@
+{
+  "version": "denis-qwen3tts-reference-v1",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "engine": "qwen3-tts-local",
+  "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+  "mode": "icl",
+  "no_fallback": true,
+  "storage": "owner-private Google Drive; never commit reference WAV/text/embeddings",
+  "voice_folder_id": "1dHg7yRbXkL6xooW2kb-FqV8FInKUUhC5",
+  "voice_out_folder_id": "1TqKuZOZoPczLHChe_lFv89OKkhuSLZyP",
+  "assets": {
+    "reference_wav": {
+      "name": "reference_clean.wav",
+      "drive_file_id": "1kV0i1IKEtL0wXlGfhZM-8c-pJ5HD-nnF",
+      "sha256": "ab6ceaeaa1035234ac22833d6b2f88a0fc81d69d1508e8b4ec474f059901ff67"
+    },
+    "reference_text": {
+      "name": "ref_text.txt",
+      "drive_file_id": "1bMYhAHiKw305EJyChPjKfRNI6SoNNr15",
+      "sha256": "a65e7aacf142870bf811990ea61e92d21f4af7646d4d4ba74bafc0ff92af4e7b"
+    },
+    "params": {
+      "name": "params.json",
+      "drive_file_id": "18SgTZdvG0xAZEgA5VVtG0gbCMIWM-zwp",
+      "sha256": "f8786ea460e6ea84bd327ef40aebd1a200baaaa10bc51cc50b125fd9752e7986"
+    }
+  }
+}
