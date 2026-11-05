@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Сборщик кино-Shorts M1lash «от записи до приватной заливки» (решение Дениса 31.10).
 
-Запускается в GitHub Actions (`movie-short.yml`), потому что нужен интернет (Whisper, edge-tts).
+Запускается в GitHub Actions (`movie-short.yml`), потому что нужен интернет (Whisper и приватные источники Drive).
 Исходник (запись экрана Дениса) скачивается во временную папку и НИКУДА не сохраняется — в репо
 попадает только готовый Short `videos/<id>.mp4` + паспорт. AGENTS §8, §12.
 
 Шаги: обрезка черных полей → вырезка [start, end] → вертикаль 1080×1920 с ведением кадра по лицам
-(OpenCV) → распознавание речи (faster-whisper) → кинетические субтитры (2–3 слова) → финал Димы
-(edge-tts + живая подача; последние слова — название фильма голосом) + фирменная карточка M1lash →
+(OpenCV) → распознавание речи (faster-whisper) → кинетические субтитры (2–3 слова) → финал Дениса v7
+(только проверенный личный title_voice голосом Дениса; без TTS fallback) + фирменная карточка M1lash →
 только body до −16 LUFS; концовка без обработки → проверка (полный decode, контрольные кадры, длительность, название фильма не
 светится в публичных полях) → паспорт без даты.
 """
@@ -269,8 +269,16 @@ def main():
     start = tsec(a.start)
     end = tsec(a.end) if a.end else total
     # Финал (AGENTS §4, решение Дениса 31.10): готовая фирменная концовка media/outro/… + для кино
-    # одна фраза Димы с названием фильма — последние слова ролика (§8). Вопрос зрителям — в описании/закрепе.
-    std = ROOT / "media/outro/m1lash_outro_denis_v3_vertical.mp4"
+    # одна проверенная личная фраза Дениса с названием фильма — последние слова ролика (§8).
+    # Fail-closed: this is the only owner's approved Denis-v7 outro.
+    # Never substitute earlier v3/v6 or an old Dima card.
+    import hashlib
+    approved = json.loads((ROOT / "tools/outro/approved.json").read_text(encoding="utf-8"))
+    std = ROOT / approved["assets"]["vertical"]["path"]
+    if approved.get("version") != "denis-v7-voice10" or not std.is_file():
+        sys.exit("BLOCKED: Denis v7 approved outro unavailable; run scripts/fetch_outro.py in CI")
+    if hashlib.sha256(std.read_bytes()).hexdigest() != approved["assets"]["vertical"]["sha256"]:
+        sys.exit("NO-GO: Denis v7 outro SHA256 mismatch with approved.json; no fallback")
     std_d = dur(std)
     vo = work / "name.mp3"
     if not Path(a.title_voice).is_file():
