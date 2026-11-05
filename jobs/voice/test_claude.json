@@ -19,5 +19,6 @@
       "rate": 1.05
     }
   ],
-  "test_scope": "private_owner_hearing_only"
+  "test_scope": "private_owner_hearing_only",
+  "integration_test_revision": "whisper-predownload-sox-r2"
 }
