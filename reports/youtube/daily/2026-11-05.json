@@ -695,7 +695,7 @@
   "schema_version": 1,
   "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
   "snapshot_date": "2026-11-05",
-  "fetched_at": "2026-11-05T09:41:21.586372+00:00",
+  "fetched_at": "2026-11-05T13:50:29.329167+00:00",
   "inventory": [
     {
       "video_id": "sCThiwmigy0",
@@ -704,8 +704,8 @@
       "duration": "PT54S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "8",
-        "likeCount": "0",
+        "viewCount": "139",
+        "likeCount": "1",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -718,8 +718,8 @@
       "duration": "PT43S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "627",
-        "likeCount": "6",
+        "viewCount": "712",
+        "likeCount": "7",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -746,7 +746,7 @@
       "duration": "PT56S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1190",
+        "viewCount": "1205",
         "likeCount": "18",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -774,7 +774,7 @@
       "duration": "PT41S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "996",
+        "viewCount": "1011",
         "likeCount": "5",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -844,8 +844,8 @@
       "duration": "PT52S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1017",
-        "likeCount": "27",
+        "viewCount": "1037",
+        "likeCount": "28",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -886,7 +886,7 @@
       "duration": "PT41S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "103",
+        "viewCount": "104",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1096,7 +1096,7 @@
       "duration": "PT36S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "995",
+        "viewCount": "996",
         "likeCount": "2",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1264,7 +1264,7 @@
       "duration": "PT59S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "6252",
+        "viewCount": "6255",
         "likeCount": "160",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1603,7 +1603,7 @@
       "CmOu0xXc0UI": [
         {
           "insightTrafficSourceType": "EXT_URL",
-          "views": 3
+          "views": 2
         },
         {
           "insightTrafficSourceType": "NO_LINK_OTHER",
@@ -1669,7 +1669,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 251
+          "views": 249
         },
         {
           "insightTrafficSourceType": "SUBSCRIBER",
@@ -1691,7 +1691,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 912
+          "views": 911
         },
         {
           "insightTrafficSourceType": "SUBSCRIBER",
@@ -1707,7 +1707,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 7
+          "views": 8
         }
       ],
       "4PYRNmbopwo": [
@@ -1721,7 +1721,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 275
+          "views": 271
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -1752,8 +1752,16 @@
           "views": 0
         },
         {
+          "insightTrafficSourceType": "NOTIFICATION",
+          "views": 1
+        },
+        {
           "insightTrafficSourceType": "SHORTS",
-          "views": 1311
+          "views": 1307
+        },
+        {
+          "insightTrafficSourceType": "SOUND_PAGE",
+          "views": 1
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -1765,7 +1773,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 19
+          "views": 20
         }
       ],
       "KhaAsIVKwCM": [
@@ -1775,7 +1783,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 1433
+          "views": 1429
         },
         {
           "insightTrafficSourceType": "SUBSCRIBER",
@@ -1787,7 +1795,7 @@
         },
         {
           "insightTrafficSourceType": "YT_OTHER_PAGE",
-          "views": 6
+          "views": 7
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
@@ -1889,7 +1897,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 967
+          "views": 966
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -1959,7 +1967,7 @@
         },
         {
           "insightTrafficSourceType": "NOTIFICATION",
-          "views": 3
+          "views": 4
         },
         {
           "insightTrafficSourceType": "PLAYLIST",
@@ -1979,11 +1987,11 @@
         },
         {
           "insightTrafficSourceType": "YT_OTHER_PAGE",
-          "views": 15
+          "views": 12
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 55
+          "views": 56
         }
       ],
       "bZkIDNIRoxo": [
@@ -2193,7 +2201,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 5946
+          "views": 5939
         },
         {
           "insightTrafficSourceType": "SUBSCRIBER",
@@ -2205,7 +2213,7 @@
         },
         {
           "insightTrafficSourceType": "YT_OTHER_PAGE",
-          "views": 59
+          "views": 58
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
