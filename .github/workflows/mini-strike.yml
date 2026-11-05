@@ -92,6 +92,16 @@ jobs:
           cp "$RUNNER_TEMP/mix/mix_report.json" "$Q/"; cp longform/smart-strike/out/mini_strike_ru.mp4.qa.json "$Q/assemble_qa.json" 2>/dev/null || true
           cp "$RUNNER_TEMP/sha.txt" "$Q/"
           ffmpeg -hide_banner -i "$F" -af ebur128=peak=true -f null - 2>&1 | tail -12 > "$Q/loudness.txt"
+      - name: Audio QA by ear-for-agents (earshot critique, CPU)
+        continue-on-error: true
+        timeout-minutes: 20
+        run: |
+          set -euo pipefail
+          python -m pip install -q --index-url https://download.pytorch.org/whl/cpu 'torch>=2.6'
+          python -m pip install -q 'git+https://github.com/Leonxlnx/earshot@591fa3e028032e6dce56620a20e932e35667e8d8'
+          earshot critique longform/smart-strike/out/mini_strike_ru.mp4 > "$RUNNER_TEMP/qa/earshot_critique.txt" 2>&1 || true
+          earshot describe "$RUNNER_TEMP/mix/mix.wav" > "$RUNNER_TEMP/qa/earshot_mix_describe.txt" 2>&1 || true
+          tail -40 "$RUNNER_TEMP/qa/earshot_critique.txt"
       - name: Owner review copy → private Google Drive voice_out (not Git, not YouTube)
         env:
           GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}

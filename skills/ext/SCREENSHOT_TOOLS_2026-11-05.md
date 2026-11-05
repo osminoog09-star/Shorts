@@ -30,3 +30,19 @@
 - AutoHarness/OpenClaw: отдельное архитектурное решение, потому что захватывают сессии и/или получают расширенные права.
 
 **Правило:** не путать «навык лежит в GitHub», «пакет установлен» и «возможность проверена в рабочем тесте».
+
+## Claude · 05.11 вечер · вторая пачка скринов (Денис: «А плагины и тд»)
+| Инструмент | Что это | Решение | Где |
+|---|---|---|---|
+| **Earshot** (Leonxlnx/earshot, MIT, `591fa3e`) | «Уши» для агента: словесное описание звука, `critique film.mp4`, банк SFX кодом, CPU | **ВНЕДРЁН**: навыки `earshot`, `earshot-real-sound`; шаг аудио-QA в `mini-strike.yml` (агент не слышит — теперь есть отчёт по звуку) | `skills/ext/earshot*` |
+| **Claude Code Setup** (anthropics/claude-plugins-official, Apache-2.0) | официальный рекомендатор автоматизаций | **ВНЕДРЁН** навык `claude-automation-recommender` | `skills/ext/` |
+| Из того же официального репо | `claude-md-improver`, `session-report`, `writing-hookify-rules`, `playground`; команды `/code-review`, `/revise-claude-md` | **ВНЕДРЕНЫ** (навыки + `.claude/commands/`) | `skills/ext/`, `.claude/commands/` |
+| **Claude-mem** | память между сессиями (хуки + локальная БД) | уже в `LOCAL_PC_PLAN.md`; в облаке не нужен — у нас NOW.md/HANDOFF + память Claude | ПК |
+| **Agent Reach** (Panniantong) | чтение Twitter/Reddit/YouTube/XHS через куки и обход API | **НЕ ВНЕДРЯЕМ**: противоречит AGENTS §2/§8 (не обходить антибот/капчу/логины); для поиска хватает WebSearch/Scrapling | — |
+| **FreeLLMAPI** | прокси на бесплатные лимиты 34 LLM-провайдеров | **НЕ ВНЕДРЯЕМ**: риск нарушения условий провайдеров и утечки ключей; бюджет и так нулевой | — |
+| **Strix** | автотест безопасности своих приложений | не для студии; можно для сайта студии на ПК позже | ПК, по запросу |
+| **OpenClaw** | агент для ПК и мессенджеров | уже проверен GPT (PASS в песочнице), ставить на ПК | `LOCAL_PC_PLAN.md` |
+| **Agency Agents** | набор ролей-промптов | не нужен: свои роли уже в навыках (director, animation, quality) | — |
+| **n8n**, **Open WebUI** | серверы автоматизации/чата | нужен постоянный ПК/VPS; VPS платный → только на ПК | `LOCAL_PC_PLAN.md` |
+| **Upscayl** | апскейл картинок/кадров, без облака | десктоп-приложение → ПК | `LOCAL_PC_PLAN.md` |
+| Colibri, AutoHarness, Teardown, Scrapling, Opuscar, Graphify, Glassy Dashboard, JavaRush | первая пачка | разобраны GPT выше; Opuscar реально используется в `longform/smart-strike` | — |
