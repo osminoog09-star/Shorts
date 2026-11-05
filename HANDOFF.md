@@ -1,3 +1,15 @@
+# 05.11 · GPT · МультНовости: 2 рабочих анимированных мира (factory v7 и warehouse v1), честный ART PARTIAL
+
+**Два реальных разных MP4 (НЕ 21–23-мин мастер):**
+- **Завод v7:** `M1lash_MultNews_FACTORY_v7_SILENT_24s_1080p.mp4`, H264 1920×1080/30, 720 кадров/24.000с, 15,940,050 байт, SHA256 `e8399bb09f58ef9bdb2b89ae5a3da75b88b9fa6b8c03430814f5815394618042`, 0 audio, full FFmpeg -xerror decode PASS. 18 actual MP4 frames просмотрено. Новая реальная логика крана (body attach t5.46), сварки наконечником (t9.2/10 delta=0) и погрузчика с непрерывной передачей коробки. Исходники `longform/multnews_20261104/factory_v2/factory_stage_v7.html`, `render_v7_silent.py`; QA `factory_v2/QA_v7_2026-11-05.md`. Приватная Library `PRIVATE_FACTORY_v7_SILENT_24s_1080p.mp4`. **ART PARTIAL**, производственная массовка и планы ещё слишком повторяющиеся.
+- **Склад v1:** `M1lash_MultNews_WAREHOUSE_v1_SILENT_16s_PILOT.mp4`, H264 1280×720/30, 480 кадров/16.000с, 3,654,033 байта, SHA256 `0762754805897f01623500ff2d11a6888bd2de005c7b22bfdc84a68fc4791def`, video-only 0 audio, full FFmpeg decode PASS. **8 реальных 1080p stills**, 14 реальных MP4 кадров t1–15.4 открыты. Оригинальный мультяшный не-копия Stretch прототип, документальный факт — только утверждения производителя в `FACTS.md`; предметное действие коробки: source t5.3→lift→carry→release t11.1→scan t~13.75. Источники `warehouse_v1/warehouse_stage.html`, `render.py`, `warehouse_v1/QA_v1_2026-11-05.md`. Приватная Library `PRIVATE_WAREHOUSE_v1_SILENT_16s_PILOT.mp4`, libfile_a77ced3b6fac819190674d7bada35721. **ART PARTIAL**, слишком одинаковые стеллажи и почти не играющие сотрудники.
+
+Общая библия 7 масштабных разных миров: `longform/multnews_20261104/WORLD_BIBLE.md`; 5 оставшихся ещё **не созданы**. Ошибки записаны в `reports/learning/journal.json` (4 новых), актуальный цикл `skills/m1lash-studio/references/large-animated-world-qa.md` и уроки `skills/m1lash-studio/SKILL.md` обновлены. **Никаких синтетических SFX**, private Denis Qwen3 voice до сих пор не запущен; нет final duration-gate/check/look/ouтro. **Не писать READY и не публиковать**. Старые `M1lash Мульт EP01` / 3D Coffee остаются PAUSED_BY_OWNER.
+
+**Следующий шаг:** строго `tasks/NOW.md` блок «M1lash МультНовости #01», пункт **3в-2**: новый большой `lab_v1/` по KIMM/ETRI — operator-controlled demo и запись данных, 4–6 реальных stills → 12–20с silent MP4 → полный ART/TECH QA; не притворяться, что телеоперация = автономный робот. После пяти миров реальный голос Дениса, shotlist 190+, 21–23-мин full и owner review. Расписания/YouTube uploads пока **не было**.
+
+---
+
 # 05.11 · GPT · Новая редакционная сетка M1lash, 7 живых переносов YouTube и сайт
 
 **Решение владельца 04.11:** 14 Shorts/неделя — КИНО 10:00 и ОРИГИНАЛЬНЫЙ ЮМОР 20:00 ежедневно; два рисованных оригинальных S10-D25 мультфильма ≥21 мин — среда/суббота 15:00 (минимум 5ч между слотами). Длинные киноразборы/Chigur A без новых дат из-за Content ID; старый Chigur RJEZKHegzUY PRIVATE, PAUSED_BY_OWNER EP01/3D Coffee не возобновлены. AGENTS.md §0/5/6/9, Studio SKILL, GRID, best_times, UI/JS rules обновлены.
