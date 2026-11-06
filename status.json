@@ -1,0 +1,13 @@
+{
+ "t": "2026-11-06T15:47:57Z",
+ "host": "MSI",
+ "ollama": true,
+ "local_model": "gemma4:12b",
+ "claude_left": 4,
+ "claude_cap": 4,
+ "paused": false,
+ "mode": "on",
+ "autonomy": "full",
+ "last_cycle": null,
+ "last_reply": null
+}
