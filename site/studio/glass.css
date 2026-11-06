@@ -174,3 +174,4 @@ button,.btn,.card[data-go],.todo button,.ag{transition:transform .18s cubic-bezi
 .ctl .pc{display:flex;align-items:center;gap:8px;font-size:13px;opacity:.9;margin-top:8px;flex-wrap:wrap}
 .ctl .bufg{grid-template-columns:repeat(7,1fr)!important;gap:4px}
 @media (max-width:600px){.ctl .sets{grid-template-columns:1fr 1fr}.ctl .bufg small{font-size:10px}}
+.ag-grid .dep{grid-column:1/-1;margin:18px 2px 0;font:700 15px var(--f-d,inherit);letter-spacing:.02em;opacity:.8}

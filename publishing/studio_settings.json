@@ -10,10 +10,22 @@
     "cartoon_sat": "15:00",
     "cartoon_wed": "15:00"
   },
-  "director_cycles": ["08:30", "13:30", "19:30"],
+  "director_cycles": [
+    "08:30",
+    "13:30",
+    "19:30"
+  ],
   "claude_daily_cap": 4,
   "local_model": "auto",
   "auto_replies": true,
   "updated": "2026-11-06T05:05:00+02:00",
-  "updated_by": "Claude по решению Дениса"
+  "updated_by": "Claude по решению Дениса",
+  "gaming": {
+    "enabled": true,
+    "folder": "C:\\M1lash\\Игры",
+    "series_slot": "вс 15:00",
+    "shorts_from_games": true,
+    "streams": true,
+    "guides": true
+  }
 }

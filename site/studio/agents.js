@@ -10,6 +10,10 @@
     'm1lash-writer': { t: 'Сценарист скетчей', c: '#c6ff6b', wf: [] },
     'm1lash-packaging': { t: 'Обложки и SEO', c: '#ffd36b', wf: [] },
     'm1lash-community': { t: 'Подписчики и комментарии', c: '#6bffe1', wf: ['youtube-pulse.yml'] },
+    'm1lash-gaming-lead': { t: 'Игры · руководитель', c: '#7cff6b', wf: [], dep: 'Игровой отдел' },
+    'm1lash-game-editor': { t: 'Игры · монтаж серий', c: '#5fd36b', wf: [], dep: 'Игровой отдел' },
+    'm1lash-game-clipper': { t: 'Игры · Shorts', c: '#b6ff6b', wf: [], dep: 'Игровой отдел' },
+    'm1lash-stream-producer': { t: 'Игры · стримы', c: '#6bffb0', wf: [], dep: 'Игровой отдел' },
     'm1lash-director': { t: 'Режиссёр', c: '#b195ff', wf: [] },
     'm1lash-animator': { t: 'Аниматор', c: '#6aa0ff', wf: ['mini-strike.yml', 'motion-render.yml'] },
     'm1lash-voice': { t: 'Голос и звук', c: '#ff6bb0', wf: ['denis-voice-tts.yml', 'female-voice-design.yml'] },
@@ -43,13 +47,19 @@
   function view() {
     loadRuns(); loadPC();
     const S = D.studio_agents || { agents: [], chat: [] };
+    const DEP = { 'm1lash-studio-director': 'Руководство', 'm1lash-scout': 'Кино-Shorts', 'm1lash-editor': 'Кино-Shorts',
+      'm1lash-cartoon-shorts': 'Мультфильмы и скетчи', 'm1lash-film-mult': 'Мультфильмы и скетчи', 'm1lash-writer': 'Мультфильмы и скетчи', 'm1lash-director': 'Мультфильмы и скетчи', 'm1lash-animator': 'Мультфильмы и скетчи' };
+    const depOf = id => (AG[id] || {}).dep || DEP[id] || 'Общие службы';
+    const DORDER = ['Руководство', 'Кино-Shorts', 'Мультфильмы и скетчи', 'Игровой отдел', 'Общие службы'];
     const ORDER = Object.keys(AG);
-    const list = S.agents.slice().sort((x, y) => (ORDER.indexOf(x.id) + 1 || 99) - (ORDER.indexOf(y.id) + 1 || 99));
+    const list = S.agents.slice().sort((x, y) => (DORDER.indexOf(depOf(x.id)) - DORDER.indexOf(depOf(y.id))) || ((ORDER.indexOf(x.id) + 1 || 99) - (ORDER.indexOf(y.id) + 1 || 99)));
+    let lastDep = '';
     const cards = list.map(a => {
+      const dp = depOf(a.id), head = dp !== lastDep && dp !== 'Руководство' ? `<h3 class="dep">${e(dp)}</h3>` : ''; lastDep = dp;
       const m = AG[a.id] || { t: a.id, c: '#b195ff', wf: [] };
       const busy = m.wf.some(w => { const r = lastRun(w); return r && r.st !== 'completed'; });
       const last = m.wf.map(lastRun).filter(Boolean).sort((x, y) => y.at.localeCompare(x.at))[0];
-      return `<div class="card ag${m.boss ? ' boss' : ''}" style="--c:${m.c}">${m.boss ? '<span class="lead">главный · сам раздаёт задачи · 08:30 · 13:30 · 19:30</span>' : ''}<span class="st ${busy ? 'on' : ''}">${busy ? '● работает' : 'ждёт'}</span>
+      return head + `<div class="card ag${m.boss ? ' boss' : ''}" style="--c:${m.c}">${m.boss ? '<span class="lead">главный · сам раздаёт задачи · 08:30 · 13:30 · 19:30</span>' : ''}<span class="st ${busy ? 'on' : ''}">${busy ? '● работает' : 'ждёт'}</span>
         <div class="orb ${busy ? 'busy' : ''}"></div><h4>${e(m.t)}</h4><p>${e(((a.description.split('—')[1] || a.description).split('. ')[0]).trim())}</p>
         <div class="row2"><span class="chip">${last ? 'последний запуск ' + since(last.at) + ' назад' : 'запусков нет'}</span>
         <button class="btn" data-agchat="${e(a.id)}">Написать</button></div></div>`;
@@ -75,10 +85,12 @@
         <label>Циклы директора<input id="s_cyc" value="${e((ST.director_cycles || []).join(', '))}"></label>
         <label>Claude в сутки (макс.)<input id="s_cap" type="number" min="0" max="20" value="${e(ST.claude_daily_cap ?? 4)}"></label>
         <label>Локальная модель<input id="s_llm" value="${e(ST.local_model || 'auto')}"></label>
+        <label>Серии игр<input id="s_game" value="${e((ST.gaming || {}).series_slot || 'вс 15:00')}"></label>
+        <label class="tg"><input id="s_gon" type="checkbox" ${(ST.gaming || {}).enabled !== false ? 'checked' : ''}> Игровой отдел включён</label>
         <label class="tg"><input id="s_rep" type="checkbox" ${ST.auto_replies ? 'checked' : ''}> Сам отвечает подписчикам</label>
       </div>
       <div class="row2"><button class="btn pri" id="s_save">Сохранить</button><button class="btn" id="s_pause">${ST.paused ? '▶ Запустить' : '⏸ Пауза'}</button><button class="btn" id="s_cycle">Цикл директора сейчас</button></div></div>`;
-    return `${ctl}<section class="sec-row"><h2 style="margin:0;font:800 22px var(--f-d)">Агенты студии</h2><span class="chip">${S.agents.length} агентов · директор + команда</span></section>
+    return `${ctl}<section class="sec-row"><h2 style="margin:0;font:800 22px var(--f-d)">Агенты студии</h2><span class="chip">${S.agents.length} агентов · директор + отделы</span></section>
       <div class="ag-grid">${cards}</div>
       <div class="card" style="padding:16px"><div class="sec-row"><b>Техническая панель · GitHub Actions</b><span class="chip">${RUNS ? 'обновлено ' + since(new Date(runsAt).toISOString()) + ' назад' : '…'}</span></div>${wf}</div>
       <div class="card" style="padding:16px"><div class="sec-row"><b>Чат с агентами</b><span class="chip">ответы приходят с ПК</span></div>
@@ -96,6 +108,7 @@
           slots: Object.assign(s.slots || {}, { kino: $('#s_kino').value.trim(), sketch: $('#s_sk').value.trim() }),
           director_cycles: cyc.length ? cyc : s.director_cycles, claude_daily_cap: Math.max(0, Math.min(20, +$('#s_cap').value || 0)),
           local_model: $('#s_llm').value.trim() || 'auto', auto_replies: $('#s_rep').checked,
+          gaming: Object.assign(s.gaming || {}, { series_slot: $('#s_game').value.trim(), enabled: $('#s_gon').checked }),
         });
         s.updated = new Date().toISOString(); s.updated_by = 'Денис (сайт)';
       }, 'studio: настройки автономии (Денис, с сайта)');

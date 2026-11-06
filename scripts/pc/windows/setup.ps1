@@ -16,7 +16,7 @@ foreach ($p in $pkgs) { winget list --id $p -e *> $null; if ($LASTEXITCODE -ne 0
 $env:Path = [Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [Environment]::GetEnvironmentVariable("Path","User")
 
 Step "Папки"
-foreach ($d in "Входящие","Работа","Готово","Архив") { New-Item -ItemType Directory -Force -Path "$Root\$d" | Out-Null }
+foreach ($d in "Входящие","Работа","Готово","Архив","Игры") { New-Item -ItemType Directory -Force -Path "$Root\$d" | Out-Null }
 
 Step "Репозиторий"
 if (-not (Test-Path "$Root\Shorts\.git")) { gh auth status *> $null; if ($LASTEXITCODE -ne 0) { gh auth login -w }; gh repo clone osminoog09-star/Shorts "$Root\Shorts" } else { git -C "$Root\Shorts" pull --rebase }
@@ -49,6 +49,10 @@ $trg2 = New-ScheduledTaskTrigger -AtLogOn
 $set2 = New-ScheduledTaskSettingsSet -RestartCount 999 -RestartInterval (New-TimeSpan -Minutes 1) -ExecutionTimeLimit ([TimeSpan]::Zero) -AllowStartIfOnBatteries
 Register-ScheduledTask -TaskName "M1lash Studio Agents" -Action $act2 -Trigger $trg2 -Settings $set2 -Description "M1lash: директор студии + чат сайта (agent_bridge.py)" -Force | Out-Null
 Start-ScheduledTask -TaskName "M1lash Studio Agents"
+$act3 = New-ScheduledTaskAction -Execute $py -Argument "`"$Root\Shorts\scripts\pc\game_watch.py`"" -WorkingDirectory "$Root\Shorts"
+Register-ScheduledTask -TaskName "M1lash Games" -Action $act3 -Trigger $trg2 -Settings $set2 -Description "M1lash: записи OBS из $Root\Игры → игровой отдел" -Force | Out-Null
+Start-ScheduledTask -TaskName "M1lash Games"
+Write-Host "OBS: Настройки → Вывод → Путь записи = $Root\Игры (формат mkv). Дальше игровой отдел всё делает сам." -ForegroundColor Yellow
 
 Step "Самопроверка"
 py -3.11 "$Root\Shorts\scripts\pc\selfcheck.py"
