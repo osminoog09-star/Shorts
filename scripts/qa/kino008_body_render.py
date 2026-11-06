@@ -17,23 +17,23 @@ from drive_oauth_config import resolve_existing_client
 
 SOURCE_URL="https://drive.google.com/file/d/15jweAqG-x4UgFyCU8jkuZXhAuRJcGIaD/view"
 SOURCE_SHA="a784b456047834339c4cc908d638f03d3b032917ca6b51aa948cf59312e656e1"
-REPORT=ROOT/"reports/research/2026-11-06_KINO_008_BODY_V1_PRIVATE_QA.json"
+REPORT=ROOT/"reports/research/2026-11-06_KINO_008_BODY_V2_PRIVATE_QA.json"
 
 # t in owner's private 40min screen recording; 12 shots in 32.8s body.
 # Source frame 1258x1080, actual movie area letterboxed y≈300..840;
 # manual focus center x in source coords, verified against owner-private 60f contact.
 SHOTS=[
  ("cold_flash",1019.70,1.15,620),
- ("ru_countdown",905.12,2.85,610),
+ ("ru_countdown",1006.10,2.85,610,905.12),
  ("arm_controls",945.00,2.35,635),
  ("timer",970.90,2.75,660),
- ("tower",986.00,2.65,625),
+ ("tower",987.10,2.65,625),
  ("faces_preflash",1000.20,2.35,610),
  ("blinding_flash",1021.05,2.90,620),
  ("fire_rises",1034.00,3.45,640),
  ("inferno",1055.70,3.00,620),
  ("silent_reaction",1069.00,2.70,700),
- ("delayed_rumble",1092.80,2.90,610),
+ ("delayed_rumble",1100.20,2.90,605),
  ("aftermath",1110.25,3.55,610),
 ]
 TOTAL=sum(s[2] for s in SHOTS)
@@ -137,7 +137,7 @@ def main():
  REPORT.parent.mkdir(parents=True,exist_ok=True)
  result={"status":"error","created_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),
          "source_sha256":SOURCE_SHA,"youtube_id":None,"youtube_upload":False,
-         "segment_plan":[{"name":n,"source_start_s":st,"duration_s":dur,"focus_x":cx} for n,st,dur,cx in SHOTS],
+         "segment_plan":[{"name":row[0],"source_start_s":row[1],"duration_s":row[2],"focus_x":row[3],"audio_source_s":row[4] if len(row)>4 else row[1]} for row in SHOTS],
          "expected_body_duration_s":round(TOTAL,3)}
  try:
   with tempfile.TemporaryDirectory(prefix="kino008-edit-",dir=os.environ.get("RUNNER_TEMP") or None) as tmp:
@@ -146,13 +146,19 @@ def main():
    got=fetch_private_film(SOURCE_URL,source)
    if got!=836471622 or digest(source)!=SOURCE_SHA:raise RuntimeError("Owner source changed")
    clips=[]
-   for i,(name,start,dur,cx) in enumerate(SHOTS):
+   for i,row in enumerate(SHOTS):
+    name,start,dur,cx = row[:4]
+    voice_src = row[4] if len(row)>4 else None
     clip=d/f"clip{i:02d}.mp4"
     x=max(0,min(1258-304,int(cx-304/2)))
     vf=f"crop=304:540:{x}:290,scale=1080:1920:flags=lanczos,fps=30,setsar=1,format=yuv420p"
     af=f"aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,afade=t=in:st=0:d=0.035,afade=t=out:st={max(0,dur-.075):.3f}:d=0.075"
-    shell("ffmpeg","-hide_banner","-v","error","-y","-ss",start,"-i",source,
-          "-t",dur,"-vf",vf,"-af",af,"-c:v","libx264","-preset","veryfast",
+    input_args=["-ss",start,"-i",source]
+    if voice_src is not None:
+     input_args+=["-ss",voice_src,"-i",source]
+    shell("ffmpeg","-hide_banner","-v","error","-y",*input_args,
+          "-t",dur,"-map","0:v:0","-map","1:a:0" if voice_src is not None else "0:a:0",
+          "-vf",vf,"-af",af,"-c:v","libx264","-preset","veryfast",
           "-crf","18","-pix_fmt","yuv420p","-r","30","-c:a","aac",
           "-ar","48000","-ac","2","-b:a","192k",clip,timeout=300)
     clips.append(clip)
@@ -164,7 +170,7 @@ def main():
          "-safe","0","-i",concat,"-c","copy",joint,timeout=150)
    captions=d/"captions.ass"
    make_subs(captions)
-   body=d/"M1lash_KINO008_TRINITY_PRIVATE_BODY_V1.mp4"
+   body=d/"M1lash_KINO008_TRINITY_PRIVATE_BODY_V2.mp4"
    shell("ffmpeg","-hide_banner","-v","error","-y","-i",joint,
          "-vf",f"ass={captions.as_posix()}:shaping=complex","-c:v","libx264",
          "-preset","veryfast","-crf","18","-pix_fmt","yuv420p",
@@ -179,7 +185,7 @@ def main():
     raise RuntimeError("KINO008 body duration mismatch")
    shell("ffmpeg","-hide_banner","-v","error","-xerror",
          "-i",body,"-f","null","-",timeout=360)
-   contact=d/"M1lash_KINO008_PRIVATE_BODY_V1_CONTACT_16.jpg"
+   contact=d/"M1lash_KINO008_PRIVATE_BODY_V2_CONTACT_16.jpg"
    make_contact(body,contact,d)
    env,_=resolve_existing_client(dict(os.environ))
    token=env["_GDRIVE_ACCESS_TOKEN"]
