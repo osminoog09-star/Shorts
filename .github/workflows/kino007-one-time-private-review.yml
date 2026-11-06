@@ -1,0 +1,46 @@
+name: M1lash kino_007 V9c · encrypted PRIVATE YouTube review once
+run-name: "KINO007 Batman V9c SHA-checked PRIVATE only; no publication"
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/kino007-one-time-private-review.yml"
+permissions:
+  contents: write
+concurrency:
+  group: kino007-v9c-private-one-time
+  cancel-in-progress: false
+jobs:
+  upload_private_once:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependencies
+        run: python -m pip install 'requests>=2.32,<3' 'cryptography>=43,<47'
+      - name: Run exact-SHA V9c PRIVATE upload (wait for encrypted URL)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python scripts/qa/kino007_private_bridge_once.py
+      - name: Preserve no-retry receipt in failure/success
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kino007-v9c-private-receipt-${{ github.run_id }}
+          path: publishing/receipts/kino_007.json
+          retention-days: 30
+          if-no-files-found: ignore
