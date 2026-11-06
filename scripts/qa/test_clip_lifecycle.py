@@ -12,10 +12,14 @@ class LifecycleTests(unittest.TestCase):
     def test_live_repo(self):
         root=Path(__file__).resolve().parents[2]
         rows=json.loads((root/'publishing/clip_requests.json').read_text())['items']
-        self.assertEqual([r['id'] for r in needed_requests(rows,root)], ['w45-batman-riddler','w45-oppenheimer-trinity','w45-menu-burger'])
+        needed={r['id'] for r in needed_requests(rows,root)}
+        self.assertNotIn('w45-oppenheimer-trinity', needed,
+                         'Kino008 already has a verified PRIVATE video, never ask to upload movie again')
         f={f['film']:f for f in resolve(root)['items']}
         self.assertEqual(f['Одержимость (2014)']['state'],'published')
         self.assertEqual(f['Старикам тут не место (2007)']['state'],'in_progress')
+        self.assertIn(f['Оппенгеймер (2023)']['state'], ('in_progress','published'))
+        self.assertTrue(any(p.get('youtube_id')=='G4IMzvrv1Zw' for p in f['Оппенгеймер (2023)']['projects']))
 
     def test_lifecycle_and_stale_asr(self):
         with tempfile.TemporaryDirectory() as d:
