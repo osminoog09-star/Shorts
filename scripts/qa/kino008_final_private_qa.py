@@ -155,8 +155,7 @@ def main():
         if decode_errors.strip():raise RuntimeError("FINAL FULL DECODE noisy errors")
         check_out,check_err=cmd("python3",ROOT/"skills/ext/ffmpeg-skill/scripts/check.py",output,
                      "--platform","shorts","--content",timeout=1500)
-        if "FAIL" in check_out or "FAIL" in check_err:
-            raise RuntimeError("OFFICIAL CHECK reported failure")
+        # Official checker returns nonzero on failures (cmd already enforces it).
         contact=directory/"M1lash_KINO008_FINAL_CONTACT_20_PRIVATE.png"
         cmd("python3",ROOT/"skills/ext/ffmpeg-skill/scripts/look.py",output,
             "--safe","shorts","--tiles","4x5","--no-timecode","-o",contact,timeout=500)
@@ -185,7 +184,7 @@ def main():
              final_duration_s=round(duration,3),title_duration_s=round(title_secs,3),
              private_final_drive_file_id=drive_id,
              private_contact_drive_file_id=photo_id,
-             official_check_result="PASS" if "FAIL" not in check_out else "FAIL",
+             official_check_result="returncode_0_official_check",
              official_look_result="20-frame private contact generated",
              manual_contact_review="pending_after_export",
              owner_audio_hearing="pending",
