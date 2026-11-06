@@ -17,8 +17,12 @@
   "private_contact_drive_file_id": "1mbocEWi9uWZYSz7tbBY4KW3Asvcnb7nk",
   "official_check_result": "returncode_0_official_check",
   "official_look_result": "20-frame private contact generated",
-  "manual_contact_review": "pending_after_export",
+  "manual_contact_review": "GPT_VISUAL_PASS_FINAL_CONTACT",
   "owner_audio_hearing": "pending",
   "video_source_rights": "not_granted_by_studio",
-  "music_license": "outro NCS approved credit; film soundtrack remains owner risk"
+  "music_license": "outro NCS approved credit; film soundtrack remains owner risk",
+  "manual_audit_note": "20-frame actual final MP4 contact inspected: dialogue, Trinity, controlled flash, fire, actors and original approved Denis v7 outro; no black screen gaps, title text absent before/after outro. Safe overlay shading red is deliberately applied by look.py only, not encoded video. Original owner subjective hearing and YouTube Content ID remain pending.",
+  "independent_final_sha_verified": true,
+  "independent_decode_verified": true,
+  "private_upload_permission": "PRIVATE preview only, user demanded owner choose release time through Studio"
 }
