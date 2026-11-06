@@ -100,7 +100,7 @@
         </div>
         <div class="srcs">${(C.sources || []).map((x, i) => `<label class="tg src"><input type="checkbox" data-src="${i}" ${x.enabled !== false ? 'checked' : ''}> <span><b>${e(x.name || x.domain)}</b> · ${e(x.domain)} ${x.legal ? '' : '<em class="wait">выключен</em>'}</span><button class="btn del" data-srcdel="${e(x.domain)}" title="Удалить сайт">✕</button></label>`).join('') || '<small>Сайтов нет — предложи ниже</small>'}</div>
         <div class="chatin"><input id="c_new" placeholder="Добавить сайт: адрес (например, kino.example.ru)"><button class="btn" id="c_add">Добавить</button></div>
-        <label class="tg"><input id="c_ok" type="checkbox"> Фильмы на этом сайте выложены правообладателем (не пиратский сайт)</label></div>`; })()}
+        <label class="tg"><input id="c_ok" type="checkbox"> Подтверждаю, что запись и использование выбранных материалов разрешены правообладателем либо другими имеющимися правами</label></div>`; })()}
       <div class="row2"><button class="btn pri" id="s_save">Сохранить</button><button class="btn" id="s_pause">${ST.paused ? '▶ Вернуть публикацию' : '⏸ Не публиковать'}</button><button class="btn" id="s_cycle">Цикл директора сейчас</button></div></div>`;
     return `${ctl}<section class="sec-row"><h2 style="margin:0;font:800 22px var(--f-d)">Агенты студии</h2><span class="chip">${S.agents.length} агентов · директор + отделы</span></section>
       <div class="ag-grid">${cards}</div>
@@ -140,11 +140,11 @@
 
   async function proposeSite(btn) {
     const raw = ($('#c_new').value || '').trim(); if (!raw || !needTok()) return;
-    if (!$('#c_ok').checked) return toast('Отметь, что на сайте фильмы выложил правообладатель');
+    if (!$('#c_ok').checked) return toast('Подтверди право на запись и использование материалов');
     let host = ''; try { host = new URL(/^https?:/.test(raw) ? raw : 'https://' + raw).hostname.replace(/^www\./, ''); } catch (err) { return toast('Не похоже на адрес сайта'); }
     await act(btn, async () => {
       const c = await editJSON('publishing/clip_sources.json', c => {
-        if (!c.sources.some(s => s.domain === host)) c.sources.push({ domain: host, name: host, legal: true, enabled: true, added: new Date().toISOString().slice(0, 10), added_by: 'Денис (сайт): подтвердил, что фильмы выложены правообладателем' });
+        if (!c.sources.some(s => s.domain === host)) c.sources.push({ domain: host, name: host, legal: true, enabled: true, added: new Date().toISOString().slice(0, 10), added_by: 'Денис (сайт): подтвердил права на запись и использование выбранных материалов' });
       }, 'studio: добавлен сайт записи фрагментов ' + host + ' (Денис, с сайта)');
       D.clip_sources = Object.fromEntries(Object.entries(c).filter(([k]) => !k.startsWith('_')));
       render(); toast('Сайт добавлен ✓ агент может брать с него'); btn.disabled = false;
