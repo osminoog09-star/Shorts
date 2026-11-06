@@ -1,0 +1,18 @@
+{
+  "job_id": "kino_008_title_v2",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "utterances": [
+    {
+      "id": "prefix",
+      "text": "Это был фильм.",
+      "rate": 1
+    },
+    {
+      "id": "name",
+      "text": "Оппенгеймер.",
+      "rate": 1
+    }
+  ],
+  "source_note": "No fallback; concatenate two independently verified same-speaker ICL audio clips with short breath gap."
+}
