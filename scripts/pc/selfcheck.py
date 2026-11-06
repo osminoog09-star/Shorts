@@ -34,8 +34,15 @@ def ollama():
     want = (f.read_text(encoding="utf-8").strip() if f.exists() else "") or "gemma4"
     if not any(n.startswith(want) for n in names): raise RuntimeError(f"нет {want}, есть: {names}")
     return ", ".join(names)
-check("Ollama + локальная модель", ollama)
+if shutil.which("ollama"):  # с 06.11 18:28 Ollama не ставится (агенты отменены)
+    check("Ollama + локальная модель", ollama)
 root = Path(os.environ.get("M1LASH_ROOT", r"C:\M1lash"))
-check("папки", lambda: all((root / d).is_dir() for d in ["Входящие", "Работа", "Готово", "Архив", "Игры"]) and str(root) or (_ for _ in ()).throw(RuntimeError("нет папок")))
+def voice():
+    import torch, qwen_tts  # noqa: F401
+    if not torch.cuda.is_available(): raise RuntimeError("torch без CUDA")
+    ref = root / "private" / "voice_ref"
+    return f"torch {torch.__version__}, {torch.cuda.get_device_name(0)}; образец голоса: {'есть' if ref.is_dir() and any(ref.iterdir()) else 'НЕТ — положи в ' + str(ref)}"
+check("голос Qwen3-TTS на видеокарте", voice)
+check("папки", lambda: all((root / d).is_dir() for d in ["Работа", "Готово"]) and str(root) or (_ for _ in ()).throw(RuntimeError("нет папок")))
 print("\nИТОГ:", "ВСЁ ГОТОВО" if ok else "есть проблемы — см. FAIL выше")
 sys.exit(0 if ok else 1)

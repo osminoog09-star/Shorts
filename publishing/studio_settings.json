@@ -29,5 +29,5 @@
     "guides": true
   },
   "mode": "off",
-  "compute": "auto"
+  "compute": "pc"
 }
