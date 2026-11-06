@@ -1,0 +1,53 @@
+name: KINO008 · private body draft from verified RU Oppenheimer
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/kino008-body-draft.yml']
+permissions:
+  contents: write
+concurrency:
+  group: kino008-body-draft-v1
+  cancel-in-progress: false
+jobs:
+  render_private_body:
+    runs-on: ubuntu-latest
+    timeout-minutes: 58
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Tools and build code compile
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core >/dev/null
+          python -m pip install -q 'requests>=2.32,<3' 'Pillow>=10,<12'
+          python -m py_compile scripts/qa/kino008_body_render.py
+      - name: Render real movie RU source, audio + captions; upload only owner-private Drive body
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: python scripts/qa/kino008_body_render.py
+      - name: Record meta-only QA and private Drive IDs
+        if: always()
+        run: |
+          set -euo pipefail
+          f=reports/research/2026-11-06_KINO_008_BODY_V1_PRIVATE_QA.json
+          if test -s "$f"; then
+            cp "$f" "$RUNNER_TEMP/kino008_body.json"
+            git config user.name 'kino008-body-qa[bot]'
+            git config user.email 'kino008-body-qa@users.noreply.github.com'
+            for n in 1 2 3; do
+              git fetch -q origin main
+              git reset -q --hard origin/main
+              cp "$RUNNER_TEMP/kino008_body.json" "$f"
+              git add "$f"
+              git diff --cached --quiet && exit 0
+              git commit -qm 'movie(kino008): report private body QA and restricted Drive IDs'
+              if git push -q origin HEAD:main; then exit 0; fi
+              sleep 5
+            done
+            exit 1
+          fi
