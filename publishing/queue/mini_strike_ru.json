@@ -2,13 +2,25 @@
   "channel": "ru",
   "source": {
     "type": "repo",
-    "path": "longform/smart-strike/out/mini_strike_ru.mp4"
+    "path": "longform/smart-strike/out/mini_strike_ru.mp4",
+    "sha256": "9c60fda9643f1180c12fe87efcd469e50243fa28388e68ed552f33491e794f8a"
   },
   "metadata": {
     "type": "short",
     "title": "Мой умный дом объявил забастовку 💀 #shorts",
     "description": "Попросил кофе — получил забастовку всей техники 😅\nА твоя техника бы бастовала?\n\nMusic: \"Thatched Villagers\" Kevin MacLeod (incompetech.com)\nLicensed under Creative Commons: By Attribution 4.0 License\nhttp://creativecommons.org/licenses/by/4.0/\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #мультик #умныйдом #ии #юмор #анимация #m1lash",
-    "tags": ["мультик", "умный дом", "ИИ", "юмор", "анимация", "3D мультфильм", "забастовка", "робот пылесос", "M1lash", "shorts"],
+    "tags": [
+      "мультик",
+      "умный дом",
+      "ИИ",
+      "юмор",
+      "анимация",
+      "3D мультфильм",
+      "забастовка",
+      "робот пылесос",
+      "M1lash",
+      "shorts"
+    ],
     "category_id": "23",
     "made_for_kids": false,
     "contains_synthetic_media": true

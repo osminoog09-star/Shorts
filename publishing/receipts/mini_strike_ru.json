@@ -1,0 +1,13 @@
+{
+  "status": "uploaded_private",
+  "manifest": "publishing/queue/mini_strike_ru.json",
+  "channel": "ru",
+  "video_id": "bp0jSmKuudA",
+  "video_url": "https://youtu.be/bp0jSmKuudA",
+  "publish_at_utc": null,
+  "source_sha256": "9c60fda9643f1180c12fe87efcd469e50243fa28388e68ed552f33491e794f8a",
+  "privacy_status": "private",
+  "upload_method": "youtube_direct_api (mini-strike.yml run 42136850429)",
+  "verification": "Actions log YOUTUBE_UPLOAD_OK https://youtu.be/bp0jSmKuudA; QA of same run: assemble 0 problems, check.py 0 FAIL; contact sheet in branch qa/mini-strike.",
+  "note": "Recovery receipt: the workflow's own receipt commit failed on git pull (unstaged changes) AFTER a successful upload. NEVER upload again; date only after owner OK."
+}
