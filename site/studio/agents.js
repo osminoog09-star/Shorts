@@ -3,6 +3,7 @@
 (() => {
   const AG = {
     'm1lash-studio-director': { t: 'Директор студии', c: '#ffffff', wf: [], boss: 1 },
+    'm1lash-scout': { t: 'Скаут материала', c: '#9be15d', wf: ['material-scout.yml'] },
     'm1lash-editor': { t: 'Монтажёр кино-Shorts', c: '#ff5f7a', wf: ['movie-short.yml'] },
     'm1lash-writer': { t: 'Сценарист скетчей', c: '#c6ff6b', wf: [] },
     'm1lash-packaging': { t: 'Обложки и SEO', c: '#ffd36b', wf: [] },
