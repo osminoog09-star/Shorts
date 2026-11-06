@@ -45,23 +45,6 @@
 ## GPT/Codex
 
 
-### 06.11 — kino_008 «Оппенгеймер» Trinity, эпичный кино-Shorts · GPT · ACTIVE
-
-**Поручение владельца:** самостоятельно выбрать фильм и найти исходники где можно, сделать эпичный полноценный кино-Shorts без повторных вопросов, **после FINAL check.py/look.py загрузить только PRIVATELY на YouTube без даты**, затем владелец выбирает дату на сайте Studio. Никаких публичных MP4 или WAV, auto-schedule запрещён.
-**Фильм:** «Оппенгеймер» (2023), сцена испытания Тринити — reverse countdown, flash + silence + blast; Universal official YouTube `5ZYD-H4V2M0` как режиссёрский референс. Owner-original screen recording already in Drive `15jweAqG-x4UgFyCU8jkuZXhAuRJcGIaD`, `Screen_Recording_20261103_124519_Opera.mp4`, 836471622 B, excerpt 2418.4s (из прошлого private six-frame audit); не полная кинокопия, реальное содержание/русский звук ещё проверить. Запрещено обходить DRM, капчи или YouTube bot-check, нельзя утверждать исходник подходящим до ASR/frame QA.
-Шаги:
-- [x] 1. Прочитаны AGENTS §4/5/6/8/12, Studio, NOW; сверена film_projects — kino_008/«Оппенгеймер» не существовал, отдельный clip_request `w45-oppenheimer-trinity` есть; Universal официальный тизер/сцена и сценарий подтверждены из публичных источников; выбран "Trinity", а не повтор Batman/Interstellar.
-- [x] 2. Получить owner MP4 временно через авторизованный Drive OAuth GitHub Actions (существующая `drive_scene_probe.fetch_private_film`), без экспорта raw media в Git; проверить ffprobe, ASR именно русского кино, локализовать countdown/explosion во временной 40m записи, сохранить приватный contact и тайминги.
-- [x] 3. Сделать QA-проверенный кино body 1080×1920/30, RU дубляж, безопасные сабы, сильный hook+payoff; финальную речь «Это был фильм Оппенгеймер» только личным Qwen voice Дениса (новая voice job, no fallback) и утверждённый нетронутый Denis v7 6.6s.
-- [x] 4. check.py + look.py на фактическом финальном MP4 + осмотр кадра/звука + validate_mystery + Music NCS credits; сохранить отчёт Git без чужого фильма/WAV.
-- [x] 5. Только после QA — разовая защищённая YouTube PRIVATE upload/no date, канал readback GET, уникальный receipt/manifest/queue+Studio built; **никакой schedule/publication**, ждём ручного решения через сайт.
-Фактически завершено: финальный кино-Shorts V2 body+approved outro+Denis Qwen 2/2 ASR, итог 43.133s 1080x1920/30 SHA256 `7a00d601d62a578007ec7d98103cedcfd22e801c7c047d4fd225029abd19ed95`; official check.py + look.py full QA run `42151899972 SUCCESS`, 20 настоящих финальных кадров просмотрено GPT, full decode PASS; source body V1 чёрные кадры исправлены V2. YouTube **PRIVATE** id `G4IMzvrv1Zw` залит once run `42152379901 SUCCESS`, OAuth readback `privacyStatus=private`, `publishAt` отсутствует. Дата НЕ назначена. Receipt `publishing/receipts/kino_008.json`, manifest `publishing/queue/kino_008.json`, queue row status=review/slot=null. Google Drive приватный MP4 исходник/голос нигде в публичном Git не сохранены. Content ID/owner hearing НЕ проверены; публичная публикация НЕ одобрена.
-Следующий шаг: проверить GitHub Pages M1lash Studio live mobile: kino_008 должен быть в `D.review`, ссылка `https://studio.youtube.com/video/G4IMzvrv1Zw/edit`, кнопка выбора времени. Владелец смотрит ограничения и САМ назначает слот в Студии. Агент не должен повторно заливать либо назначать дату.
-Где промежуточное: `publishing/drive_scan.json`, `publishing/verified_clip_sources.json`, `jobs/voice/` и `shorts/kino_008/` по мере создания; публичный Git хранит только код/метаданные, а не фильм/voice.
-Ждёт владельца: только выбор даты на сайте Studio после **реального** PRIVATE YouTube review.
-
-
-
 ### 06.11 — «Атлас тёмных солнц»: оригинальный S10-D25 промо-тизер · GPT
 **Поручение владельца:** самостоятельно придумать новую НЕ-Warhammer фантастическую вселенную по принципам 2 уже исследованных POV-референсов и сделать фактический MP4 проморолик, пригодный для решения о будущем 21+ мин фильме. Стиль S10-D25 уже утверждён. NO YouTube upload/публикация, NO новый оплачиваемый API, старые PAUSED проекты не трогать.
 Цель: оригинальный world-bible/treatment, кинематографические 4–6 стопов, физический animated teaser 16:9, QA, честный статус голоса Дениса и утверждённой концовки, PRIVATE review link.
