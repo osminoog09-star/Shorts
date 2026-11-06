@@ -1,0 +1,35 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "uploaded",
+    "video_id": "3YjkmOrxDLA",
+    "sha256": "0b5fd6b576797877c0a8fcb729304eb9b6830cbf45c6c51a646fa04502b12bb6"
+  },
+  "metadata": {
+    "type": "short",
+    "title": "Он думал, что они КОМАНДА… Но услышал ЭТО 😳 #shorts",
+    "description": "Он считал их командой. Но последний ответ перевернул весь разговор.\nТы угадал фильм до развязки? Напиши секунду!\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #кино #угадайфильм #фильмы #кинокадры #сценаизфильма #m1lash",
+    "tags": [
+      "кино",
+      "угадай фильм",
+      "сцена из фильма",
+      "напряженный диалог",
+      "киношортс",
+      "сильная сцена",
+      "movie short",
+      "russian dub",
+      "shorts",
+      "m1lash"
+    ],
+    "category_id": "1",
+    "made_for_kids": false,
+    "contains_synthetic_media": true,
+    "default_language": "ru",
+    "default_audio_language": "ru"
+  },
+  "publish_at": null,
+  "provenance": {
+    "upload_method": "encrypted_ephemeral_handoff_sha256_once",
+    "owner_review": "PRIVATE_ONLY_NOT_APPROVED_FOR_RELEASE"
+  }
+}

@@ -335,17 +335,17 @@
       "id": "kino_007",
       "kind": "short",
       "author": "GPT",
-      "status": "draft",
+      "status": "review",
       "slot": null,
       "style": "S6-D25",
       "mp4": null,
       "publish_md": "shorts/kino_007/PUBLISH.md",
       "title": "Он думал, что они КОМАНДА… Но услышал ЭТО 😳 #shorts",
-      "review_version": "V9c_PRIVATE_QA_PASS_OWNER_EYES_PENDING",
-      "private_review_url": null,
-      "youtube_id": null,
+      "review_version": "V9c_PRIVATE_YOUTUBE_REVIEW",
+      "private_review_url": "https://studio.youtube.com/video/3YjkmOrxDLA/edit",
+      "youtube_id": "3YjkmOrxDLA",
       "owner_audio_approved": false,
-      "note": "06.11 V9c: 1080×1920, 43.300s, original Russian film dialogue + approved Denis-v7 CTA + Denis spoken reveal, SHA verified. Official check.py 0 FAIL/1 optional WARN; look.py contact produced but not viewed by GPT; owner hearing/visual and Content ID still pending. PRIVATE review only in user's Higgsfield; YouTube upload NOT DONE. No publish_at or date; need secure private transfer to YouTube Actions. Category 1 Film & Animation per AGENTS §8.",
+      "note": "06.11 V9c exact-SHA upload to YouTube PRIVATE without date; owner must watch/listen and approve separate publishing decision.",
       "review_sha256": "0b5fd6b576797877c0a8fcb729304eb9b6830cbf45c6c51a646fa04502b12bb6"
     }
   ]
