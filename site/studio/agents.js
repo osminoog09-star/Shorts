@@ -92,14 +92,15 @@
         <label class="tg"><input id="s_gon" type="checkbox" ${(ST.gaming || {}).enabled !== false ? 'checked' : ''}> Игровой отдел включён</label>
         <label class="tg"><input id="s_rep" type="checkbox" ${ST.auto_replies ? 'checked' : ''}> Сам отвечает подписчикам</label>
       </div>
-      ${(() => { const C = D.clip_sources || { sources: [] }; return `<div class="clips"><b>Запись фрагментов фильмов</b> <small>агент записывает кусок фильма в браузере ПК только с проверенных легальных сайтов</small>
+      ${(() => { const C = D.clip_sources || { sources: [] }; return `<div class="clips"><b>Запись фрагментов фильмов</b> <small>агент записывает кусок фильма в браузере ПК только с сайтов из этого списка</small>
         <div class="sets">
           <label class="tg"><input id="c_on" type="checkbox" ${C.enabled !== false ? 'checked' : ''}> Запись включена</label>
           <label>Длина фрагмента, с<input id="c_len" type="number" min="10" max="${e(C.max_fragment_sec || 60)}" value="${e(C.default_fragment_sec || 45)}"></label>
           <label>Фрагментов с фильма<input id="c_per" type="number" min="1" max="10" value="${e(C.max_per_film || 3)}"></label>
         </div>
-        <div class="srcs">${(C.sources || []).map((x, i) => `<label class="tg src"><input type="checkbox" data-src="${i}" ${x.enabled !== false ? 'checked' : ''} ${x.legal ? '' : 'disabled'}> <span><b>${e(x.name || x.domain)}</b> · ${e(x.domain)} ${x.legal ? '<em class="ok">проверен</em>' : '<em class="wait">на проверке у Claude</em>'}</span><button class="btn del" data-srcdel="${e(x.domain)}" title="Удалить сайт">✕</button></label>`).join('') || '<small>Сайтов нет — предложи ниже</small>'}</div>
-        <div class="chatin"><input id="c_new" placeholder="Предложить сайт: адрес (например, kino.example.ru)"><button class="btn" id="c_add">Предложить</button></div></div>`; })()}
+        <div class="srcs">${(C.sources || []).map((x, i) => `<label class="tg src"><input type="checkbox" data-src="${i}" ${x.enabled !== false ? 'checked' : ''}> <span><b>${e(x.name || x.domain)}</b> · ${e(x.domain)} ${x.legal ? '' : '<em class="wait">выключен</em>'}</span><button class="btn del" data-srcdel="${e(x.domain)}" title="Удалить сайт">✕</button></label>`).join('') || '<small>Сайтов нет — предложи ниже</small>'}</div>
+        <div class="chatin"><input id="c_new" placeholder="Добавить сайт: адрес (например, kino.example.ru)"><button class="btn" id="c_add">Добавить</button></div>
+        <label class="tg"><input id="c_ok" type="checkbox"> Фильмы на этом сайте выложены правообладателем (не пиратский сайт)</label></div>`; })()}
       <div class="row2"><button class="btn pri" id="s_save">Сохранить</button><button class="btn" id="s_pause">${ST.paused ? '▶ Вернуть публикацию' : '⏸ Не публиковать'}</button><button class="btn" id="s_cycle">Цикл директора сейчас</button></div></div>`;
     return `${ctl}<section class="sec-row"><h2 style="margin:0;font:800 22px var(--f-d)">Агенты студии</h2><span class="chip">${S.agents.length} агентов · директор + отделы</span></section>
       <div class="ag-grid">${cards}</div>
@@ -129,7 +130,7 @@
           c.enabled = $('#c_on').checked;
           c.default_fragment_sec = Math.max(10, Math.min(c.max_fragment_sec || 60, +$('#c_len').value || 45));
           c.max_per_film = Math.max(1, Math.min(10, +$('#c_per').value || 3));
-          document.querySelectorAll('[data-src]').forEach(el => { const s = c.sources[+el.dataset.src]; if (s && s.legal) s.enabled = el.checked; });
+          document.querySelectorAll('[data-src]').forEach(el => { const s = c.sources[+el.dataset.src]; if (s) s.enabled = el.checked; });
         }, 'studio: настройки записи фрагментов (Денис, с сайта)');
         D.clip_sources = Object.fromEntries(Object.entries(c).filter(([k]) => !k.startsWith('_')));
       }
@@ -139,13 +140,14 @@
 
   async function proposeSite(btn) {
     const raw = ($('#c_new').value || '').trim(); if (!raw || !needTok()) return;
+    if (!$('#c_ok').checked) return toast('Отметь, что на сайте фильмы выложил правообладатель');
     let host = ''; try { host = new URL(/^https?:/.test(raw) ? raw : 'https://' + raw).hostname.replace(/^www\./, ''); } catch (err) { return toast('Не похоже на адрес сайта'); }
     await act(btn, async () => {
       const c = await editJSON('publishing/clip_sources.json', c => {
-        if (!c.sources.some(s => s.domain === host)) c.sources.push({ domain: host, name: host, legal: false, enabled: false, status: 'на проверке', added: new Date().toISOString().slice(0, 10), proposed_by: 'Денис (сайт)' });
-      }, 'studio: предложен сайт для записи фрагментов ' + host + ' (на проверку)');
+        if (!c.sources.some(s => s.domain === host)) c.sources.push({ domain: host, name: host, legal: true, enabled: true, added: new Date().toISOString().slice(0, 10), added_by: 'Денис (сайт): подтвердил, что фильмы выложены правообладателем' });
+      }, 'studio: добавлен сайт записи фрагментов ' + host + ' (Денис, с сайта)');
       D.clip_sources = Object.fromEntries(Object.entries(c).filter(([k]) => !k.startsWith('_')));
-      render(); toast('Отправлено на проверку — агент начнёт брать, когда Claude подтвердит, что сайт легальный'); btn.disabled = false;
+      render(); toast('Сайт добавлен ✓ агент может брать с него'); btn.disabled = false;
     });
   }
 

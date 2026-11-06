@@ -21,9 +21,15 @@ REPO = Path(__file__).resolve().parents[2]
 OUT = Path(os.environ.get("M1LASH_ROOT", r"C:\M1lash")) / "Входящие" / "clips"
 
 
+# Известные пиратские сайты — запись с них отключена всегда, даже если добавлены в список (граница Claude, 06.11.2026)
+PIRATE = re.compile(r"rezka|hdrezka|lordfilm|lord-film|kinogo|filmix|kinokrad|baskino|zetflix|hdkino|gidonline|kinovod|torrent|rutor|rutracker|nnmclub|kinozal|seasonvar|fmovies|123movies|soap2day|putlocker", re.I)
+
+
 def allowed(url):
     cfg = json.loads((REPO / "publishing" / "clip_sources.json").read_text(encoding="utf-8"))
     host = (urlparse(url).hostname or "").lower()
+    if PIRATE.search(host):
+        sys.exit("NO-GO: пиратский сайт — запись фрагментов с него не делается")
     if not cfg.get("enabled", True):
         sys.exit("NO-GO: запись фрагментов выключена на сайте студии")
     for s in cfg["sources"]:
