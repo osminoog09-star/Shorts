@@ -3,6 +3,8 @@
 import os, shutil, subprocess, sys, json, urllib.request
 from pathlib import Path
 
+sys.stdout.reconfigure(encoding="utf-8")  # кириллица в файле отчёта/консоли Windows
+
 ok = True
 def check(name, fn):
     global ok
@@ -13,7 +15,8 @@ def check(name, fn):
 
 def need(cmd):
     if not shutil.which(cmd): raise RuntimeError(f"{cmd} не найден в PATH")
-    return subprocess.run([cmd, "--version"], capture_output=True, text=True).stdout.splitlines()[0][:60]
+    out = subprocess.run([cmd, "-version" if cmd == "ffmpeg" else "--version"], capture_output=True, text=True).stdout.splitlines()
+    return (out or ["?"])[0][:60]
 
 check("ffmpeg", lambda: need("ffmpeg"))
 check("git", lambda: need("git"))

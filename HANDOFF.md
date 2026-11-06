@@ -1,3 +1,11 @@
+# 06.11 · Claude · ПК Дениса: автономная студия установлена
+
+- **Работает:** RTX 4080 Laptop 12 ГБ (драйвер 617.42); Ollama + `gemma4:12b` выбрана бенчем (1.00 по всем тестам, 90 ток/с; qwen3.5:9b 1.00/61 ток/с, qwen3:8b тоже скачана) → `agents/local_model.txt` на ПК; Claude Code 2.1.318 вошёл в подписку Дениса; Планировщик: «M1lash Studio Agents» и «M1lash Games» Running, «M1lash Inbox» Ready (старт при входе); ярлык «Панель M1lash» на рабочем столе; папки `C:\M1lash\{Входящие,Работа,Готово,Архив,Игры}`; `local_jobs.py where` → `pc`; heartbeat ПК пишет `status.json` в ветку `pc-status` (сайт → «Агенты»), host MSI, mode on.
+- **OBS** (профиль «YouTube Recording»): WebSocket-сервер включён (порт 4455, пароль прежний из OBS), путь записи `C:/M1lash/Игры`, mkv. `clip_recorder.py` берёт пароль из конфига OBS, если нет `OBS_WS_PASSWORD`.
+- **Починено в репо:** setup.ps1 с BOM (PS 5.1 ломал кириллицу), `$ErrorActionPreference=Continue` (падал на stderr gh), `gh auth setup-git`; bench `--pull` качает только модели ≤9B (было ~60 ГБ); `git pull --rebase --autostash` в agent_bridge/game_watch/inbox_watch; selfcheck по `local_model.txt`, ffmpeg `-version`, UTF-8 вывод. Ветку `pc-status` создал вручную (bridge сам не смог: POST refs не прошёл).
+- **Было:** первый `gh repo clone` в setup оборвался на 29% → репозиторий пересклонирован вручную 17:47; обрывок лежит в `C:\M1lash\Shorts_old` (можно удалить).
+- **Осталось:** образец голоса Дениса в `C:\M1lash\private\voice_ref` (или из приватного Drive) — живой прогон голоса на ПК не делался; ярлык «Панель M1lash» создан, но открытие руками не проверено.
+
 # 06.11 · Claude · Денис одобрил тест голоса
 
 - Тест Qwen3 1.7B ICL (run `42101115487`, private Drive voice_out/test_claude) — ответ владельца «Да ок»: тембр утверждён, можно использовать в новых роликах по §3.
