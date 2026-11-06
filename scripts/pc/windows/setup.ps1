@@ -39,6 +39,17 @@ $act = New-ScheduledTaskAction -Execute $py -Argument "`"$Root\Shorts\scripts\pc
 $trg = New-ScheduledTaskTrigger -AtLogOn
 Register-ScheduledTask -TaskName "M1lash Inbox" -Action $act -Trigger $trg -Description "M1lash: фильмы из Входящие → кино-Shorts" -Force | Out-Null
 
+Step "Агенты студии (решение Дениса 06.11: автономная студия на ПК)"
+npm install -g @anthropic-ai/claude-code
+Write-Host "Войди в Claude Code своей подпиской (откроется браузер), потом закрой окно: claude"
+claude --version
+py -3.11 "$Root\Shorts\scripts\pc\local_llm_bench.py" --pull
+$act2 = New-ScheduledTaskAction -Execute $py -Argument "`"$Root\Shorts\scripts\pc\agent_bridge.py`"" -WorkingDirectory "$Root\Shorts"
+$trg2 = New-ScheduledTaskTrigger -AtLogOn
+$set2 = New-ScheduledTaskSettingsSet -RestartCount 999 -RestartInterval (New-TimeSpan -Minutes 1) -ExecutionTimeLimit ([TimeSpan]::Zero) -AllowStartIfOnBatteries
+Register-ScheduledTask -TaskName "M1lash Studio Agents" -Action $act2 -Trigger $trg2 -Settings $set2 -Description "M1lash: директор студии + чат сайта (agent_bridge.py)" -Force | Out-Null
+Start-ScheduledTask -TaskName "M1lash Studio Agents"
+
 Step "Самопроверка"
 py -3.11 "$Root\Shorts\scripts\pc\selfcheck.py"
 Write-Host "`nГотово. Кидай файлы фильмов в $Root\Входящие — дальше всё само." -ForegroundColor Green

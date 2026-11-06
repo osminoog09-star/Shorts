@@ -19,6 +19,12 @@
     'm1lash-researcher': { t: 'Ресёрчер', c: '#ff9f6b', wf: ['m1lash-news-radar.yml', 'motion-trends.yml'] },
   };
   const KEY_WF = ['youtube-pulse.yml', 'youtube-analytics.yml', 'm1lash-news-radar.yml', 'playlists.yml', 'denis-voice-tts.yml', 'female-voice-design.yml', 'mini-strike.yml', 'movie-short.yml', 'motion-pages.yml', 'youtube-direct.yml'];
+  let PC = null, pcAt = 0;
+  async function loadPC() {
+    if (Date.now() - pcAt < 120000) return; pcAt = Date.now();
+    try { const r = await fetch('https://raw.githubusercontent.com/' + REPO + '/pc-status/status.json?t=' + Date.now(), { cache: 'no-store' }); PC = r.ok ? await r.json() : { none: 1 }; } catch (err) { PC = { none: 1 }; }
+    if (tab === 'agents') render();
+  }
   let RUNS = null, runsAt = 0, chatTo = 'm1lash-studio-director';
   const e = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const since = iso => { if (!iso) return '—'; const m = Math.round((Date.now() - new Date(iso)) / 60000); return m < 60 ? m + ' мин' : m < 1440 ? Math.round(m / 60) + ' ч' : Math.round(m / 1440) + ' д'; };
@@ -35,7 +41,7 @@
   const dotCls = r => !r ? '' : r.st !== 'completed' ? 'run' : r.c === 'success' ? '' : 'fail';
 
   function view() {
-    loadRuns();
+    loadRuns(); loadPC();
     const S = D.studio_agents || { agents: [], chat: [] };
     const ORDER = Object.keys(AG);
     const list = S.agents.slice().sort((x, y) => (ORDER.indexOf(x.id) + 1 || 99) - (ORDER.indexOf(y.id) + 1 || 99));
@@ -57,6 +63,7 @@
     const wd = d => ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'][new Date(d + 'T12:00:00').getDay()];
     const ctl = `<div class="card ctl" style="padding:16px">
       <div class="sec-row"><b>Управление студией</b><span class="chip ${ST.paused ? 'warn' : 'on'}">${ST.paused ? '⏸ пауза' : (ST.autonomy === 'full' ? '● полный автопилот' : '● до приватной заливки')}</span></div>
+      <div class="pc">${!PC ? 'ПК: проверяю…' : PC.none ? '<i class="bd"></i> ПК ещё не подключён — после установки <code>setup.ps1</code> здесь будет его статус' : (() => { const age = (Date.now() - new Date(PC.t)) / 60000; const on = age < 25; return `<i class="bd ${on ? 'ok' : ''}"></i> ПК ${on ? 'онлайн' : 'офлайн ' + since(PC.t) + ' назад'} · модель ${e(PC.local_model)} ${PC.ollama ? '' : '(Ollama выкл.)'} · Claude осталось ${e(PC.claude_left)}/${e(PC.claude_cap)} · цикл ${PC.last_cycle ? since(PC.last_cycle) + ' назад' : '—'}`; })()}</div>
       <div class="buf"><div class="bufh">Запас на ${BF.days} дн.: <b>${BF.covered_days}</b> дн. закрыто подряд · готово без даты: ${BF.ready_unscheduled}</div>
         <div class="bufg">${BF.grid.map(g => `<div><small>${wd(g.day)} ${g.day.slice(8)}</small>${dot(g.kino)}${dot(g.sketch)}</div>`).join('')}</div>
         <div class="bufl"><span>${dot(1)} кино ${e((ST.slots || {}).kino || '10:00')}</span><span>${dot(1)} скетч ${e((ST.slots || {}).sketch || '20:00')}</span></div></div>

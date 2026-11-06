@@ -171,3 +171,6 @@ button,.btn,.card[data-go],.todo button,.ag{transition:transform .18s cubic-bezi
 .ctl select,.ctl input:not([type=checkbox]){background:rgba(0,0,0,.28);color:inherit;border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:9px 10px;font:inherit;font-size:14px}
 .ctl .chip.on{color:#5ee6a0}.ctl .chip.warn{color:#ffc65c}
 .ctl .row2{display:flex;gap:8px;flex-wrap:wrap}
+.ctl .pc{display:flex;align-items:center;gap:8px;font-size:13px;opacity:.9;margin-top:8px;flex-wrap:wrap}
+.ctl .bufg{grid-template-columns:repeat(7,1fr)!important;gap:4px}
+@media (max-width:600px){.ctl .sets{grid-template-columns:1fr 1fr}.ctl .bufg small{font-size:10px}}

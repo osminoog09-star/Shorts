@@ -178,6 +178,7 @@ def handle(f, m, timeout, dry):
     m["status"] = "done" if reply else "error"; m["done_at"] = now()
     f.write_text(json.dumps(m, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     log(f"← {agent}: {'ответ' if reply else err}")
+    STATE["last_reply"] = now()
     return True
 
 
@@ -205,7 +206,40 @@ def director_cycle(timeout, dry):
         (OUTBOX / f"{rid}.json").write_text(json.dumps({"id": rid, "t": now(), "from": DIRECTOR, "to": "denis",
             "text": f"⚠ цикл не выполнен: {err}", "status": "error"}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         sync_push(1)
+    STATE["last_cycle"] = now(); heartbeat(force=True)
     log("⏱ цикл директора завершён" + (f": {err}" if err else ""))
+
+
+LAST_BEAT = [0.0]
+STATE = {"last_cycle": None, "last_reply": None}
+
+
+def heartbeat(force=False):
+    """Статус ПК для сайта (Агенты → «ПК»): ветка pc-status, файл status.json. Раз в 10 мин, через gh (без коммитов в main)."""
+    if not force and time.time() - LAST_BEAT[0] < 600:
+        return
+    LAST_BEAT[0] = time.time()
+    gh = shutil.which("gh")
+    if not gh:
+        return
+    st = settings()
+    body = {"t": now(), "host": __import__("platform").node() or "pc",
+            "ollama": ollama_up(), "local_model": local_model(), "claude_left": claude_budget_left(),
+            "claude_cap": CLAUDE_DAILY_CAP, "paused": bool(st.get("paused")), "autonomy": st.get("autonomy"),
+            **STATE}
+    import base64
+    content = base64.b64encode((json.dumps(body, ensure_ascii=False, indent=1) + "\n").encode()).decode()
+    repo = "osminoog09-star/Shorts"
+    sha = subprocess.run([gh, "api", f"repos/{repo}/contents/status.json?ref=pc-status", "--jq", ".sha"],
+                         capture_output=True, text=True).stdout.strip()
+    if not sha:  # первая отправка: создать ветку pc-status от main
+        base = subprocess.run([gh, "api", f"repos/{repo}/git/ref/heads/main", "--jq", ".object.sha"], capture_output=True, text=True).stdout.strip()
+        subprocess.run([gh, "api", "-X", "POST", f"repos/{repo}/git/refs", "-f", "ref=refs/heads/pc-status", "-f", f"sha={base}"], capture_output=True)
+    args = [gh, "api", "-X", "PUT", f"repos/{repo}/contents/status.json", "-f", "message=pc: heartbeat",
+            "-f", f"content={content}", "-f", "branch=pc-status"] + (["-f", f"sha={sha}"] if sha else [])
+    r = subprocess.run(args, capture_output=True, text=True)
+    if r.returncode:
+        log("heartbeat не отправлен: " + (r.stderr or "")[-200:])
 
 
 def run_once(timeout, dry):
@@ -244,6 +278,8 @@ def main():
                     director_cycle(a.timeout * 2, a.dry_run)  # только если ПК был включён в своё время (±30 мин)
         try:
             run_once(a.timeout, a.dry_run)
+            if not a.dry_run:
+                heartbeat()
         except Exception as e:  # мост не должен падать из-за одного сообщения
             log(f"ошибка цикла: {e}")
         if a.once:
