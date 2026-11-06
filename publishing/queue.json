@@ -344,10 +344,14 @@
       "review_version": "V9c_YOUTUBE_SCHEDULED",
       "private_review_url": "https://studio.youtube.com/video/3YjkmOrxDLA/edit",
       "youtube_id": "3YjkmOrxDLA",
-      "owner_audio_approved": false,
+      "owner_audio_approved": true,
       "note": "OWNER OK 06.11; YouTube GET verified PRIVATE scheduled for 2026-11-06 10:00 Tallinn. Exact V9c binary, no reupload. Content ID not independently cleared; rights risk acknowledged.",
       "review_sha256": "0b5fd6b576797877c0a8fcb729304eb9b6830cbf45c6c51a646fa04502b12bb6",
-      "youtube_url": "https://youtu.be/3YjkmOrxDLA"
+      "youtube_url": "https://youtu.be/3YjkmOrxDLA",
+      "owner_audio_approval_date": "2026-11-06",
+      "owner_audio_approval_note": "Владелец ответил «Ок все» после предложения просмотра приватного V9c и перед запросом назначить кино-слот; принято как общее решение на выпуск, а не как независимое подтверждение Content ID.",
+      "owner_release_approved": true,
+      "owner_release_approval_date": "2026-11-06"
     }
   ]
 }
