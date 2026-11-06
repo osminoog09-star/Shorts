@@ -107,7 +107,7 @@ def main():
     expected_utc=target.isoformat().replace("+00:00","Z")
     actual=verified.get("publishAt")
     if (verified.get("privacyStatus")!="private" or not actual or
-        event_time(actual)!=target):
+        dt.datetime.fromisoformat(actual.replace('Z','+00:00')).astimezone(dt.timezone.utc)!=target):
         raise RuntimeError("NO-GO: YouTube GET after schedule mismatches approved date")
     print("KINO007_YOUTUBE_SCHEDULE_GET_PASS",VIDEO_ID,actual,flush=True)
     receipt=read(RECEIPT)
