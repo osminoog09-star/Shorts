@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Панель M1lash</title>
+<!-- Панель ПК студии M1lash (Claude, 06.11.2026). Открывается окном scripts/pc/studio_panel.pyw (pywebview),
+     данные и кнопки — через локальный API http://127.0.0.1:<порт>/api/*. На GitHub Pages кнопки не работают. -->
+<link rel="stylesheet" href="fonts.css?v=20261106">
+<style>
+:root{--ink:#f4f2ff;--muted:#b9b4d6;--faint:#837ea3;--line:rgba(255,255,255,.13);--blue:#6aa0ff;--pink:#ff6bb0;--violet:#b195ff;
+  --ok:#5ee6a0;--warn:#ffc65c;--bad:#ff8585;--c:var(--ok);--glass:blur(22px) saturate(1.6);
+  --shadow:0 1px 0 rgba(255,255,255,.18) inset,0 0 0 1px rgba(255,255,255,.06) inset,0 20px 50px -24px rgba(0,0,0,.8);color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:#05040d;color:var(--ink);font:14px/1.35 'Golos Text',system-ui,sans-serif;overflow:hidden;user-select:none}
+body{background:radial-gradient(120% 80% at 80% 0%,rgba(177,149,255,.22),transparent 60%),radial-gradient(90% 70% at 0% 100%,rgba(255,107,176,.16),transparent 60%),#05040d}
+#space{position:fixed;inset:0;z-index:0;display:block;pointer-events:none;opacity:.9}
+.app{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;padding:10px 14px 14px;gap:12px}
+.glass{background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.04)),rgba(10,7,26,.5);border:1px solid var(--line);border-radius:20px;
+  -webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass);box-shadow:var(--shadow)}
+/* шапка-перетаскивалка */
+.bar{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:999px;cursor:grab}
+.logo{font:800 13px/1 'Unbounded',sans-serif;letter-spacing:.06em;background:linear-gradient(90deg,var(--blue),var(--violet),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.bar .sp{flex:1}
+.bar .host{font-size:12px;color:var(--faint)}
+.wb{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--muted);display:grid;place-items:center;cursor:pointer;transition:.2s}
+.wb:hover{background:rgba(255,255,255,.16);color:#fff}.wb.x:hover{background:rgba(255,133,133,.35)}
+/* герой со светящимся шаром */
+.hero{display:flex;align-items:center;gap:22px;padding:18px 22px}
+.orbw{position:relative;width:96px;height:96px;flex:none;animation:float 6s ease-in-out infinite}
+.orb{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 34% 28%,#fff 0,var(--c) 38%,#120a2a 100%);
+  box-shadow:0 0 40px var(--c),0 0 90px -10px var(--c),0 0 0 1px rgba(255,255,255,.3) inset,-12px -14px 30px rgba(0,0,0,.45) inset;transition:background .6s,box-shadow .6s}
+.ring{position:absolute;inset:-14px;border-radius:50%;border:1.5px solid var(--c);opacity:.45;transform:rotateX(72deg);animation:spin 9s linear infinite;box-shadow:0 0 18px var(--c)}
+.ring.r2{inset:-24px;opacity:.2;animation-duration:15s;animation-direction:reverse}
+@keyframes spin{to{transform:rotateX(72deg) rotateZ(360deg)}}
+@keyframes float{50%{transform:translateY(-5px)}}
+.st h1{font:800 21px/1.1 'Unbounded',sans-serif;color:var(--c);text-shadow:0 0 22px var(--c);transition:color .6s}
+.st p{margin-top:7px;color:var(--muted);font-size:13px}
+/* кнопки режимов — объёмные плитки с наклоном */
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;perspective:800px}
+.mb{--k:var(--ok);position:relative;padding:14px 8px 12px;border-radius:18px;border:1px solid var(--line);cursor:pointer;color:var(--ink);text-align:center;
+  background:linear-gradient(160deg,rgba(255,255,255,.13),rgba(255,255,255,.03)),rgba(10,7,26,.45);-webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass);
+  box-shadow:var(--shadow);transform-style:preserve-3d;transition:transform .25s,box-shadow .25s,border-color .25s;font:600 13px 'Golos Text',sans-serif}
+.mb .ic{display:block;font-size:22px;margin-bottom:6px;filter:drop-shadow(0 0 10px var(--k))}
+.mb:hover{box-shadow:var(--shadow),0 0 30px -6px var(--k);border-color:color-mix(in srgb,var(--k) 60%,transparent)}
+.mb.on{background:linear-gradient(160deg,color-mix(in srgb,var(--k) 38%,transparent),rgba(255,255,255,.04));border-color:var(--k);box-shadow:var(--shadow),0 0 34px -4px var(--k)}
+.mb.on::after{content:"";position:absolute;left:30%;right:30%;bottom:-1px;height:2px;border-radius:2px;background:var(--k);box-shadow:0 0 12px var(--k)}
+.mb:active{transform:scale(.97)}
+.mb[disabled]{opacity:.5;pointer-events:none}
+/* живые показатели */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sc{padding:12px 14px;border-radius:16px}
+.sc .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.sc .v{margin-top:4px;font:600 15px 'Golos Text',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sc .s{margin-top:2px;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meter{height:6px;margin-top:8px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}
+.meter i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--blue),var(--violet),var(--pink));box-shadow:0 0 12px var(--violet);transition:width .8s}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px;background:var(--faint)}
+.dot.g{background:var(--ok);box-shadow:0 0 10px var(--ok)}.dot.r{background:var(--bad);box-shadow:0 0 10px var(--bad)}
+.links{display:flex;gap:10px}
+.lb{flex:1;padding:11px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.07);color:var(--ink);cursor:pointer;
+  font:600 13px 'Golos Text',sans-serif;-webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass);transition:.2s}
+.lb:hover{background:rgba(255,255,255,.15);box-shadow:0 0 24px -8px var(--blue)}
+.toast{min-height:18px;text-align:center;font-size:12px;color:var(--warn)}
+.toast.ok{color:var(--ok)}
+.fade{animation:in .5s both}.fade:nth-child(2){animation-delay:.05s}.fade:nth-child(3){animation-delay:.1s}.fade:nth-child(4){animation-delay:.15s}.fade:nth-child(5){animation-delay:.2s}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="bar glass pywebview-drag-region fade">
+    <span class="logo pywebview-drag-region">M1LASH STUDIO</span><span class="sp pywebview-drag-region"></span>
+    <span class="host pywebview-drag-region" id="host">ПК</span>
+    <button class="wb" title="Свернуть" onclick="api('win',{act:'min'})">–</button>
+    <button class="wb x" title="Закрыть" onclick="api('win',{act:'close'})">✕</button>
+  </div>
+  <div class="hero glass fade">
+    <div class="orbw"><div class="ring r2"></div><div class="ring"></div><div class="orb"></div></div>
+    <div class="st"><h1 id="title">…</h1><p id="sub">Загружаю состояние…</p></div>
+  </div>
+  <div class="modes fade">
+    <button class="mb" data-m="on" style="--k:var(--ok)"><span class="ic">▶</span>Включить</button>
+    <button class="mb" data-m="game" style="--k:var(--warn)"><span class="ic">🎮</span>Игровой режим</button>
+    <button class="mb" data-m="off" style="--k:var(--bad)"><span class="ic">■</span>Выключить</button>
+  </div>
+  <div class="stats fade">
+    <div class="sc glass"><div class="k">Видеокарта</div><div class="v" id="gpu">—</div><div class="s" id="gpus">—</div><div class="meter"><i id="vram"></i></div></div>
+    <div class="sc glass"><div class="k">Локальная модель</div><div class="v" id="model">—</div><div class="s" id="models">—</div></div>
+    <div class="sc glass"><div class="k">Агенты</div><div class="v" id="agents">—</div><div class="s" id="agentss">—</div></div>
+    <div class="sc glass"><div class="k">OBS</div><div class="v" id="obs">—</div><div class="s" id="obss">—</div></div>
+  </div>
+  <div class="links fade">
+    <button class="lb" onclick="api('open',{what:'site'})">🌐 Сайт студии</button>
+    <button class="lb" onclick="api('open',{what:'games'})">📂 Папка игр</button>
+  </div>
+  <div class="toast" id="toast"></div>
+</div>
+<script>
+const MODES={on:['СТУДИЯ РАБОТАЕТ','var(--ok)'],off:['СТУДИЯ ВЫКЛЮЧЕНА','var(--bad)'],game:['ИГРОВОЙ РЕЖИМ','var(--warn)']};
+const $=id=>document.getElementById(id);
+let bgLoaded=false;
+async function api(path,body){
+  try{const r=await fetch('/api/'+path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});return await r.json()}
+  catch(e){toast('Нет связи с панелью ПК',false);return null}
+}
+function toast(t,ok){const el=$('toast');el.textContent=t||'';el.className='toast'+(ok?' ok':'')}
+function bg(mode){ // 3D-космос как на сайте; в игровом режиме не грузим — видеокарта для игры
+  if(bgLoaded||mode==='game')return;bgLoaded=true;
+  const s=document.createElement('script');s.type='module';s.src='space3d.js?v=20261106';document.body.appendChild(s);
+}
+function render(d){
+  const [t,c]=MODES[d.mode]||[d.mode,'var(--ink)'];
+  document.documentElement.style.setProperty('--c',c);
+  $('title').textContent=t;
+  $('sub').textContent=(d.autonomy==='full'?'Сам ставит даты':'Дату ставит Денис')+' · запас '+(d.buffer_days??7)+' дн. · Claude в сутки: '+(d.claude_cap??4);
+  $('host').textContent=d.host||'ПК';
+  document.querySelectorAll('.mb').forEach(b=>b.classList.toggle('on',b.dataset.m===d.mode));
+  const g=d.gpu;
+  if(g){$('gpu').textContent=g.util+'% · '+g.temp+'°C';$('gpus').textContent='VRAM '+(g.used/1024).toFixed(1)+' / '+(g.total/1024).toFixed(1)+' ГБ';$('vram').style.width=Math.round(100*g.used/g.total)+'%'}
+  else{$('gpu').textContent='нет данных';$('gpus').textContent='nvidia-smi не ответил'}
+  $('model').innerHTML='<span class="dot '+(d.ollama?'g':'r')+'"></span>'+(d.model||'—');
+  $('models').textContent=d.ollama?(d.loaded?'в видеопамяти':'Ollama запущена, модель выгружена'):'Ollama не отвечает';
+  $('agents').innerHTML='<span class="dot '+(d.agents?'g':'r')+'"></span>'+(d.agents?'работают':'не запущены');
+  $('agentss').textContent=d.last||'—';
+  $('obs').innerHTML='<span class="dot '+(d.obs?'g':'r')+'"></span>'+(d.obs?'подключён':'выключен');
+  $('obss').textContent=d.obs?'WebSocket :4455':'запусти OBS для записи игр';
+  bg(d.mode);
+}
+async function tick(){const d=await api('state');if(d)render(d)}
+document.querySelectorAll('.mb').forEach(b=>b.onclick=async()=>{
+  document.querySelectorAll('.mb').forEach(x=>x.disabled=true);toast('Переключаю…');
+  const r=await api('mode',{mode:b.dataset.m});
+  document.querySelectorAll('.mb').forEach(x=>x.disabled=false);
+  if(r)toast(r.msg||'Готово ✓ сайт обновится за 1–2 мин',!r.msg);
+  if(b.dataset.m==='game'&&bgLoaded){const c=document.getElementById('space');if(c)c.remove()}
+  tick();
+});
+// лёгкий 3D-наклон плиток за курсором
+document.querySelectorAll('.mb').forEach(b=>{
+  b.onpointermove=e=>{const r=b.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;b.style.transform=`rotateY(${x*14}deg) rotateX(${-y*14}deg) translateZ(6px)`};
+  b.onpointerleave=()=>b.style.transform='';
+});
+if(location.protocol.startsWith('http')&&location.hostname==='127.0.0.1'){tick();setInterval(tick,4000)}
+else{render({mode:'on',host:'демо',autonomy:'full'});toast('Это панель для ПК — кнопки работают только в окне на компьютере')}
+</script>
+</body>
+</html>

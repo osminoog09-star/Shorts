@@ -26,7 +26,7 @@ if (-not (Test-Path "$Root\Shorts\.git")) { gh repo clone osminoog09-star/Shorts
 
 Step "Python-библиотеки (CUDA)"
 py -3.11 -m pip install --upgrade pip
-py -3.11 -m pip install playwright obsws-python faster-whisper edge-tts opencv-python numpy gdown nvidia-cublas-cu12 nvidia-cudnn-cu12
+py -3.11 -m pip install pywebview playwright obsws-python faster-whisper edge-tts opencv-python numpy gdown nvidia-cublas-cu12 nvidia-cudnn-cu12
 
 Step "Рендер и голос на видеокарте ПК (решение Дениса 06.11)"
 py -3.11 -m pip install --index-url https://download.pytorch.org/whl/cu128 torch torchaudio
