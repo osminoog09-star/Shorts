@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from build_studio_site import build_review_queue
+from build_studio_site import build_review_queue, add_pending_uploads
 
 
 class StudioReviewStateTests(unittest.TestCase):
@@ -46,6 +46,39 @@ class StudioReviewStateTests(unittest.TestCase):
         receipts = {"a": {"status": "uploaded", "video_id": "abcdefghijk", "publish_at_utc": "2026-11-04T08:00:00Z"}}
         self.assertEqual(build_review_queue(q, receipts, {}), [])
 
+
+    def test_scheduled_video_missing_from_daily_analytics_is_visible(self):
+        receipts = {"kino_007": {
+            "status": "scheduled", "video_id": "3YjkmOrxDLA",
+            "publish_at_utc": "2026-11-06T08:00:00Z",
+            "uploaded_at": "2026-11-06T00:24:11Z",
+        }}
+        manifest = {"kino_007": {"metadata": {
+            "type": "short", "category_id": "1",
+            "title": "Он думал, что они КОМАНДА… #shorts",
+        }}}
+        result = add_pending_uploads([], receipts, manifest)
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["id"], "3YjkmOrxDLA")
+        self.assertEqual(result[0]["format"], "Кино-Shorts")
+        self.assertEqual(result[0]["scheduled_at"], "2026-11-06T08:00:00Z")
+        self.assertEqual(result[0]["privacy"], "private")
+        self.assertIsNone(result[0]["views"], "no fabricated YouTube analytics")
+        self.assertTrue(result[0]["analytics_pending"])
+
+    def test_scheduled_video_already_in_inventory_is_not_duplicated(self):
+        existing = [{"id": "3YjkmOrxDLA", "privacy": "public", "views": 50}]
+        receipt = {"kino_007": {"status": "scheduled", "video_id": "3YjkmOrxDLA"}}
+        manifest = {"kino_007": {"metadata": {"type": "short",
+                                              "category_id": "1", "title": "Kino"}}}
+        result = add_pending_uploads(existing, receipt, manifest)
+        self.assertEqual(result, existing)
+        self.assertEqual(result[0]["privacy"], "public")
+
+    def test_no_ghost_placeholder_without_proven_receipt(self):
+        manifest = {"ghost": {"metadata": {"type": "short", "title": "Ghost"}}}
+        for state, vid in [("draft", "abcdefghijk"), ("scheduled", "bad_id")]:
+            self.assertEqual(add_pending_uploads([], {"ghost": {"status": state, "video_id": vid}}, manifest), [])
 
     def test_all_confirmed_schedules_match_queue(self):
         queue = {q["id"]: q for q in json.loads(
