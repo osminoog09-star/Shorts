@@ -1,6 +1,6 @@
 {
-  "t": "2026-11-06 03:06 UTC",
-  "count": 25,
+  "t": "2026-11-06 03:09 UTC",
+  "count": 20,
   "rule": "только PD/CC по метаданным источника; ru-аудио помечено; занятые фильмы исключены",
   "items": [
     {
@@ -19,34 +19,6 @@
     },
     {
       "source": "internet_archive",
-      "id": "DiaryofaNudist",
-      "title": "Diary of a Nudist",
-      "year": 1961,
-      "language": "",
-      "russian_audio": false,
-      "downloads": 784143,
-      "license": "http://creativecommons.org/publicdomain/mark/1.0/",
-      "proof": "https://archive.org/details/DiaryofaNudist",
-      "name": "DiaryofaNudist.mp4",
-      "bytes": 446745759,
-      "url": "https://archive.org/download/DiaryofaNudist/DiaryofaNudist.mp4"
-    },
-    {
-      "source": "internet_archive",
-      "id": "TheNakedWitch",
-      "title": "The Naked Witch",
-      "year": null,
-      "language": "",
-      "russian_audio": false,
-      "downloads": 667646,
-      "license": "http://creativecommons.org/publicdomain/mark/1.0/",
-      "proof": "https://archive.org/details/TheNakedWitch",
-      "name": "TheNakedWitch1964FullMovieFilmHorror.mp4",
-      "bytes": 190418272,
-      "url": "https://archive.org/download/TheNakedWitch/TheNakedWitch1964FullMovieFilmHorror.mp4"
-    },
-    {
-      "source": "internet_archive",
       "id": "AsYouLikeIt1936",
       "title": "As You Like It",
       "year": 1936,
@@ -58,34 +30,6 @@
       "name": "AsYouLikeIt.mp4",
       "bytes": 602117925,
       "url": "https://archive.org/download/AsYouLikeIt1936/AsYouLikeIt.mp4"
-    },
-    {
-      "source": "internet_archive",
-      "id": "publicmovies212",
-      "title": "Public Domain Movies",
-      "year": null,
-      "language": "",
-      "russian_audio": false,
-      "downloads": 507368,
-      "license": "http://creativecommons.org/publicdomain/mark/1.0/",
-      "proof": "https://archive.org/details/publicmovies212",
-      "name": "Till_The_Clouds_Roll_By.mp4",
-      "bytes": 850418876,
-      "url": "https://archive.org/download/publicmovies212/Till_The_Clouds_Roll_By.mp4"
-    },
-    {
-      "source": "internet_archive",
-      "id": "DoubleFeatureHell2theGrindhouseExperience",
-      "title": "DOUBLE FEATURE HELL 2 (the grindhouse experience).",
-      "year": null,
-      "language": "",
-      "russian_audio": false,
-      "downloads": 455545,
-      "license": "http://creativecommons.org/publicdomain/mark/1.0/",
-      "proof": "https://archive.org/details/DoubleFeatureHell2theGrindhouseExperience",
-      "name": "DoubleFeatureHell2theGrindhouseExperience.mp4",
-      "bytes": 1445132684,
-      "url": "https://archive.org/download/DoubleFeatureHell2theGrindhouseExperience/DoubleFeatureHell2theGrindhouseExperience.mp4"
     },
     {
       "source": "internet_archive",
@@ -184,20 +128,6 @@
       "name": "Please_Murder_Me.mp4",
       "bytes": 467347375,
       "url": "https://archive.org/download/Please_Murder_Me_movie/Please_Murder_Me.mp4"
-    },
-    {
-      "source": "internet_archive",
-      "id": "DoubleFeatureHell6grindhouse2",
-      "title": "DOUBLE FEATURE HELL 6 (Grindhouse 2)",
-      "year": null,
-      "language": "",
-      "russian_audio": false,
-      "downloads": 320220,
-      "license": "http://creativecommons.org/publicdomain/mark/1.0/",
-      "proof": "https://archive.org/details/DoubleFeatureHell6grindhouse2",
-      "name": "DoubleFeatureHell6grindhouse2.mp4",
-      "bytes": 1499345163,
-      "url": "https://archive.org/download/DoubleFeatureHell6grindhouse2/DoubleFeatureHell6grindhouse2.mp4"
     },
     {
       "source": "internet_archive",
