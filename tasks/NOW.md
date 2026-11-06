@@ -29,7 +29,7 @@
 
 Пусто (блок «Получить ВСЮ передачу от GPT» закрыт 06.11, итог — HANDOFF.md).
 
-**Ждёт Дениса:** прослушать тест голоса Qwen3 1.7B ICL (3 WAV) — private Drive https://drive.google.com/drive/folders/1-CmXZD3pgi2XWiW0MmgPfNaFkAn0cij9 ; до его «ок» тембр не считать утверждённым.
+**06.11 Денис прослушал тест голоса Qwen3 1.7B ICL (run 42101115487, 3 WAV) — «Да ок»: тембр утверждён для production-синтеза.**
 
 ## GPT/Codex
 
