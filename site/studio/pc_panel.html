@@ -9,18 +9,18 @@
 <link rel="stylesheet" href="fonts.css?v=20261106">
 <style>
 :root{--ink:#f4f2ff;--muted:#b9b4d6;--faint:#837ea3;--line:rgba(255,255,255,.13);--blue:#6aa0ff;--pink:#ff6bb0;--violet:#b195ff;
-  --ok:#5ee6a0;--warn:#ffc65c;--bad:#ff8585;--c:var(--ok);--glass:blur(22px) saturate(1.6);
+  --ok:#5ee6a0;--warn:#ffc65c;--bad:#ff8585;--c:var(--ok);--glass:blur(10px) saturate(1.8) brightness(1.08);
   --shadow:0 1px 0 rgba(255,255,255,.18) inset,0 0 0 1px rgba(255,255,255,.06) inset,0 20px 50px -24px rgba(0,0,0,.8);color-scheme:dark}
 *{box-sizing:border-box;margin:0}
-html,body{height:100%;background:#05040d;color:var(--ink);font:14px/1.35 'Golos Text',system-ui,sans-serif;overflow:hidden;user-select:none}
+html,body{height:100%;text-shadow:0 1px 8px rgba(5,4,13,.85);background:#05040d;color:var(--ink);font:14px/1.35 'Golos Text',system-ui,sans-serif;overflow:hidden;user-select:none}
 body{background:radial-gradient(120% 80% at 80% 0%,rgba(177,149,255,.22),transparent 60%),radial-gradient(90% 70% at 0% 100%,rgba(255,107,176,.16),transparent 60%),#05040d}
-#space{position:fixed;inset:0;z-index:0;display:block;pointer-events:none;opacity:.9}
+#space{position:fixed;inset:0;z-index:0;display:block;pointer-events:none}
 .app{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;padding:10px 14px 14px;gap:12px}
-.glass{background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.04)),rgba(10,7,26,.5);border:1px solid var(--line);border-radius:20px;
+.glass{background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.015) 60%,rgba(177,149,255,.05));border:1px solid var(--line);border-radius:20px;
   -webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass);box-shadow:var(--shadow)}
 /* шапка-перетаскивалка */
 .bar{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:999px;cursor:grab}
-.logo{font:800 13px/1 'Unbounded',sans-serif;letter-spacing:.06em;background:linear-gradient(90deg,var(--blue),var(--violet),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo{font:800 13px/1 'Unbounded',sans-serif;letter-spacing:.06em;background:linear-gradient(90deg,var(--blue),var(--violet),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 0 10px rgba(177,149,255,.5))}
 .bar .sp{flex:1}
 .bar .host{font-size:12px;color:var(--faint)}
 .wb{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--muted);display:grid;place-items:center;cursor:pointer;transition:.2s}
@@ -39,7 +39,7 @@ body{background:radial-gradient(120% 80% at 80% 0%,rgba(177,149,255,.22),transpa
 /* кнопки режимов — объёмные плитки с наклоном */
 .modes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;perspective:800px}
 .mb{--k:var(--ok);position:relative;padding:14px 8px 12px;border-radius:18px;border:1px solid var(--line);cursor:pointer;color:var(--ink);text-align:center;
-  background:linear-gradient(160deg,rgba(255,255,255,.13),rgba(255,255,255,.03)),rgba(10,7,26,.45);-webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass);
+  background:linear-gradient(160deg,rgba(255,255,255,.11),rgba(255,255,255,.02));-webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass);
   box-shadow:var(--shadow);transform-style:preserve-3d;transition:transform .25s,box-shadow .25s,border-color .25s;font:600 13px 'Golos Text',sans-serif}
 .mb .ic{display:block;font-size:22px;margin-bottom:6px;filter:drop-shadow(0 0 10px var(--k))}
 .mb:hover{box-shadow:var(--shadow),0 0 30px -6px var(--k);border-color:color-mix(in srgb,var(--k) 60%,transparent)}
@@ -58,7 +58,7 @@ body{background:radial-gradient(120% 80% at 80% 0%,rgba(177,149,255,.22),transpa
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px;background:var(--faint)}
 .dot.g{background:var(--ok);box-shadow:0 0 10px var(--ok)}.dot.r{background:var(--bad);box-shadow:0 0 10px var(--bad)}
 .links{display:flex;gap:10px}
-.lb{flex:1;padding:11px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.07);color:var(--ink);cursor:pointer;
+.lb{flex:1;padding:11px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--ink);cursor:pointer;
   font:600 13px 'Golos Text',sans-serif;-webkit-backdrop-filter:var(--glass);backdrop-filter:var(--glass);transition:.2s}
 .lb:hover{background:rgba(255,255,255,.15);box-shadow:0 0 24px -8px var(--blue)}
 .toast{min-height:18px;text-align:center;font-size:12px;color:var(--warn)}
