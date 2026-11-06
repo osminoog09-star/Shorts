@@ -1,0 +1,19 @@
+{
+  "_doc": "Настройки автономной студии (решение Дениса 06.11.2026). Меняются на сайте: Агенты → Управление студией. Читают: директор, agent_bridge.py на ПК, build_studio_site.py.",
+  "paused": false,
+  "autonomy": "full",
+  "auto_schedule": true,
+  "buffer_days": 7,
+  "slots": {
+    "kino": "10:00",
+    "sketch": "20:00",
+    "cartoon_sat": "15:00",
+    "cartoon_wed": "15:00"
+  },
+  "director_cycles": ["08:30", "13:30", "19:30"],
+  "claude_daily_cap": 4,
+  "local_model": "auto",
+  "auto_replies": true,
+  "updated": "2026-11-06T05:05:00+02:00",
+  "updated_by": "Claude по решению Дениса"
+}

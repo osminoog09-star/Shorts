@@ -142,7 +142,35 @@ def studio_agents(root):
     return {"agents": agents, "chat": chat[-80:]}
 
 
+def studio_buffer(schedule_state, queue, settings):
+    """Запас на N дней вперёд: занят ли каждый слот 10:00 (кино) и 20:00 (скетч), + готовые без даты."""
+    days = int(settings.get("buffer_days", 7) or 7)
+    slots = settings.get("slots") or {}
+    kino_h, sk_h = slots.get("kino", "10:00"), slots.get("sketch", "20:00")
+    taken = set()
+    for v in schedule_state.values():
+        try:
+            t = dt.datetime.fromisoformat(str(v["at"]).replace("Z", "+00:00")).astimezone(TZ)
+            taken.add(t.strftime("%Y-%m-%d %H:%M"))
+        except Exception:
+            pass
+    today = dt.datetime.now(TZ).date()
+    grid = []
+    for i in range(days):
+        d = (today + dt.timedelta(days=i)).isoformat()
+        grid.append({"day": d, "kino": f"{d} {kino_h}" in taken, "sketch": f"{d} {sk_h}" in taken})
+    ready = sum(1 for q in queue if q.get("status") in ("ready", "review") and not q.get("slot"))
+    covered = 0
+    for g in grid:
+        if g["kino"] and g["sketch"]:
+            covered += 1
+        else:
+            break
+    return {"days": days, "grid": grid, "ready_unscheduled": ready, "covered_days": covered}
+
+
 def main():
+    settings = load("publishing/studio_settings.json", {}) or {}
     latest = load("reports/youtube/latest.json", {}) or {}
     queue = (load("publishing/queue.json", {}) or {}).get("items", [])
     playlists = load("publishing/playlists.json", {}) or {}
@@ -429,6 +457,8 @@ def main():
         "drive_auth": load("publishing/drive_auth_status.json", {"status": "not_connected", "connected": False}),
         "scene_candidates": load("publishing/scene_candidates.json", {"items": {}}),
         "studio_agents": studio_agents(ROOT),
+        "studio_settings": {k: v for k, v in settings.items() if not k.startswith("_")},
+        "studio_buffer": studio_buffer(schedule_state, queue, settings),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")

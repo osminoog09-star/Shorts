@@ -75,11 +75,27 @@ def pending():
 # CLAUDE_DAILY_CAP запусков в сутки. Модель выбирает scripts/pc/local_llm_bench.py → agents/local_model.txt.
 OLLAMA = os.environ.get("M1_OLLAMA_URL", "http://localhost:11434")
 CLAUDE_DAILY_CAP = int(os.environ.get("M1_CLAUDE_DAILY_CAP", "4"))
+SETTINGS = REPO / "publishing" / "studio_settings.json"
+
+
+def settings():
+    """Настройки с сайта (Агенты → Управление студией); подхватываются после каждого git pull."""
+    global CLAUDE_DAILY_CAP
+    try:
+        st = json.loads(SETTINGS.read_text(encoding="utf-8"))
+    except Exception:
+        st = {}
+    if "claude_daily_cap" in st and "M1_CLAUDE_DAILY_CAP" not in os.environ:
+        CLAUDE_DAILY_CAP = int(st["claude_daily_cap"])
+    return st
 HEAVY = {"m1lash-animator", "m1lash-editor", "m1lash-qa"}
 BUDGET = REPO / "agents" / ".budget.json"
 
 
 def local_model():
+    m = settings().get("local_model", "auto")
+    if m and m != "auto":
+        return m
     f = REPO / "agents" / "local_model.txt"
     return (f.read_text(encoding="utf-8").strip() if f.exists() else "") or os.environ.get("M1_LOCAL_MODEL", "gemma4:12b")
 
@@ -207,19 +223,21 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--interval", type=int, default=60)
     ap.add_argument("--timeout", type=int, default=1800, help="сек на один ответ агента")
-    ap.add_argument("--cycles", default="08:30,13:30,19:30",
-                    help="время автономных циклов директора (локальное), пусто = выкл")
+    ap.add_argument("--cycles", default="",
+                    help="время циклов директора; пусто = из publishing/studio_settings.json (сайт)")
     ap.add_argument("--cycle-now", action="store_true", help="запустить цикл директора сразу")
     a = ap.parse_args()
     INBOX.mkdir(parents=True, exist_ok=True)
     log(f"мост запущен ({'один проход' if a.once else f'каждые {a.interval} с'})")
-    slots = [x.strip() for x in a.cycles.split(",") if x.strip()]
+    fixed = [x.strip() for x in a.cycles.split(",") if x.strip()]
     done = set()
     if a.cycle_now:
         director_cycle(a.timeout * 2, a.dry_run)
     while True:
+        st = settings()
+        slots = fixed or st.get("director_cycles") or ["08:30", "13:30", "19:30"]
         hm, day = datetime.now().strftime("%H:%M"), datetime.now().date()
-        for slot in slots:
+        for slot in ([] if st.get("paused") else slots):
             if hm >= slot and (day, slot) not in done:
                 done.add((day, slot))
                 if hm < (datetime.strptime(slot, "%H:%M") + __import__("datetime").timedelta(minutes=30)).strftime("%H:%M"):

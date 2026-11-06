@@ -156,3 +156,18 @@ button,.btn,.card[data-go],.todo button,.ag{transition:transform .18s cubic-bezi
 .ag.boss h4{font-size:22px}
 .ag .lead{display:block;padding-right:76px;font:600 12px var(--f-b,inherit);color:#ffd36b;letter-spacing:.02em;margin-bottom:6px}
 .top{background:linear-gradient(180deg,rgba(8,6,20,.82),rgba(8,6,20,.55) 70%,rgba(8,6,20,0))!important;-webkit-backdrop-filter:blur(10px)!important;backdrop-filter:blur(10px)!important}
+
+/* управление студией */
+.ctl .buf{margin:10px 0 14px}.ctl .bufh{font-size:13px;opacity:.85;margin-bottom:8px}
+.ctl .bufg{display:grid;grid-template-columns:repeat(auto-fit,minmax(44px,1fr));gap:6px}
+.ctl .bufg>div{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;border-radius:10px;background:rgba(255,255,255,.04)}
+.ctl .bufg small{font-size:11px;opacity:.7}
+.ctl .bd{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)}
+.ctl .bd.ok{background:#5ee6a0;box-shadow:0 0 8px #5ee6a0}
+.ctl .bufl{display:flex;gap:16px;font-size:12px;opacity:.75;margin-top:8px}.ctl .bufl span{display:flex;align-items:center;gap:6px}
+.ctl .sets{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-bottom:12px}
+.ctl label{display:flex;flex-direction:column;gap:4px;font-size:12px;opacity:.9}
+.ctl label.tg{flex-direction:row;align-items:center;gap:8px;font-size:13px}
+.ctl select,.ctl input:not([type=checkbox]){background:rgba(0,0,0,.28);color:inherit;border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:9px 10px;font:inherit;font-size:14px}
+.ctl .chip.on{color:#5ee6a0}.ctl .chip.warn{color:#ffc65c}
+.ctl .row2{display:flex;gap:8px;flex-wrap:wrap}

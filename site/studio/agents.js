@@ -50,12 +50,49 @@
       ${r ? `<a class="btn" href="${e(r.url)}" target="_blank" rel="noopener">Лог</a>` : '<span></span>'}<button class="btn" data-run="${e(w)}">Запуск</button></div>`; }).join('');
     const msgs = (S.chat || []).map(m => `<div class="msg ${m.box === 'inbox' ? 'me' : ''}"><small>${m.box === 'inbox' ? 'Ты → ' + e((AG[m.to] || {}).t || m.to) : e((AG[m.from] || {}).t || m.from || 'агент')} · ${e((m.t || '').replace('T', ' ').slice(5, 16))}</small>${e(m.text)}</div>`).join('') || '<p class="muted">Здесь будет переписка с агентами. Напиши задачу — агент на ПК возьмёт её в работу и ответит сюда.</p>';
     const opts = list.map(a => `<option value="${e(a.id)}" ${a.id === chatTo ? 'selected' : ''}>${e((AG[a.id] || {}).t || a.id)}</option>`).join('');
-    return `<section class="sec-row"><h2 style="margin:0;font:800 22px var(--f-d)">Агенты студии</h2><span class="chip">${S.agents.length} агентов · директор + команда</span></section>
+    const ST = D.studio_settings || {}, BF = D.studio_buffer || { grid: [], covered_days: 0, days: 7, ready_unscheduled: 0 };
+    const dot = ok => `<i class="bd ${ok ? 'ok' : ''}"></i>`;
+    const wd = d => ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'][new Date(d + 'T12:00:00').getDay()];
+    const ctl = `<div class="card ctl" style="padding:16px">
+      <div class="sec-row"><b>Управление студией</b><span class="chip ${ST.paused ? 'warn' : 'on'}">${ST.paused ? '⏸ пауза' : (ST.autonomy === 'full' ? '● полный автопилот' : '● до приватной заливки')}</span></div>
+      <div class="buf"><div class="bufh">Запас на ${BF.days} дн.: <b>${BF.covered_days}</b> дн. закрыто подряд · готово без даты: ${BF.ready_unscheduled}</div>
+        <div class="bufg">${BF.grid.map(g => `<div><small>${wd(g.day)} ${g.day.slice(8)}</small>${dot(g.kino)}${dot(g.sketch)}</div>`).join('')}</div>
+        <div class="bufl"><span>${dot(1)} кино ${e((ST.slots || {}).kino || '10:00')}</span><span>${dot(1)} скетч ${e((ST.slots || {}).sketch || '20:00')}</span></div></div>
+      <div class="sets">
+        <label>Режим<select id="s_aut"><option value="full" ${ST.autonomy === 'full' ? 'selected' : ''}>Полностью сам (и дату ставит)</option><option value="review" ${ST.autonomy !== 'full' ? 'selected' : ''}>До приватной заливки, дату ставлю я</option></select></label>
+        <label>Запас вперёд<select id="s_buf">${[3, 5, 7, 10, 14].map(n => `<option ${+ST.buffer_days === n ? 'selected' : ''}>${n}</option>`).join('')}</select></label>
+        <label>Кино-Shorts<input id="s_kino" value="${e((ST.slots || {}).kino || '10:00')}"></label>
+        <label>Скетч<input id="s_sk" value="${e((ST.slots || {}).sketch || '20:00')}"></label>
+        <label>Циклы директора<input id="s_cyc" value="${e((ST.director_cycles || []).join(', '))}"></label>
+        <label>Claude в сутки (макс.)<input id="s_cap" type="number" min="0" max="20" value="${e(ST.claude_daily_cap ?? 4)}"></label>
+        <label>Локальная модель<input id="s_llm" value="${e(ST.local_model || 'auto')}"></label>
+        <label class="tg"><input id="s_rep" type="checkbox" ${ST.auto_replies ? 'checked' : ''}> Сам отвечает подписчикам</label>
+      </div>
+      <div class="row2"><button class="btn pri" id="s_save">Сохранить</button><button class="btn" id="s_pause">${ST.paused ? '▶ Запустить' : '⏸ Пауза'}</button><button class="btn" id="s_cycle">Цикл директора сейчас</button></div></div>`;
+    return `${ctl}<section class="sec-row"><h2 style="margin:0;font:800 22px var(--f-d)">Агенты студии</h2><span class="chip">${S.agents.length} агентов · директор + команда</span></section>
       <div class="ag-grid">${cards}</div>
       <div class="card" style="padding:16px"><div class="sec-row"><b>Техническая панель · GitHub Actions</b><span class="chip">${RUNS ? 'обновлено ' + since(new Date(runsAt).toISOString()) + ' назад' : '…'}</span></div>${wf}</div>
       <div class="card" style="padding:16px"><div class="sec-row"><b>Чат с агентами</b><span class="chip">ответы приходят с ПК</span></div>
         <div class="chat" id="chatbox">${msgs}</div>
         <div class="chatin"><select id="chatTo">${opts}</select><input id="chatIn" placeholder="Например: сделай скетч про робота-курьера" autocomplete="off"><button class="btn pri" id="chatSend">Отправить</button></div></div>`;
+  }
+
+  async function saveSettings(btn, patch) {
+    if (!needTok()) return;
+    const cyc = ($('#s_cyc')?.value || '').split(/[ ,;]+/).filter(x => /^\d{1,2}:\d{2}$/.test(x));
+    await act(btn, async () => {
+      const d = await editJSON('publishing/studio_settings.json', s => {
+        Object.assign(s, patch || {
+          autonomy: $('#s_aut').value, buffer_days: +$('#s_buf').value,
+          slots: Object.assign(s.slots || {}, { kino: $('#s_kino').value.trim(), sketch: $('#s_sk').value.trim() }),
+          director_cycles: cyc.length ? cyc : s.director_cycles, claude_daily_cap: Math.max(0, Math.min(20, +$('#s_cap').value || 0)),
+          local_model: $('#s_llm').value.trim() || 'auto', auto_replies: $('#s_rep').checked,
+        });
+        s.updated = new Date().toISOString(); s.updated_by = 'Денис (сайт)';
+      }, 'studio: настройки автономии (Денис, с сайта)');
+      D.studio_settings = Object.fromEntries(Object.entries(d).filter(([k]) => !k.startsWith('_')));
+      render(); toast('Сохранено — агенты возьмут при следующем цикле ✓'); btn.disabled = false;
+    });
   }
 
   async function send(btn) {
@@ -76,6 +113,9 @@
   if (store.get('m1-tab2', '') === 'agents') tab = 'agents';
   document.addEventListener('click', ev => {
     const b = ev.target.closest('#chatSend'); if (b) return send(b);
+    const sv = ev.target.closest('#s_save'); if (sv) return saveSettings(sv);
+    const ps = ev.target.closest('#s_pause'); if (ps) return saveSettings(ps, { paused: !(D.studio_settings || {}).paused });
+    const cy = ev.target.closest('#s_cycle'); if (cy) { $('#chatTo').value = 'm1lash-studio-director'; $('#chatIn').value = 'Выполни цикл студии сейчас'; return send($('#chatSend')); }
     const a = ev.target.closest('[data-agchat]'); if (a) { chatTo = a.dataset.agchat; render(); setTimeout(() => $('#chatIn')?.focus(), 50); }
   });
   document.addEventListener('keydown', ev => { if (ev.key === 'Enter' && ev.target.id === 'chatIn') send($('#chatSend')); });
