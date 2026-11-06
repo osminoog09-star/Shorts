@@ -1,11 +1,12 @@
 ﻿# M1lash Studio — установка конвейера на ПК Дениса (Windows 10/11, NVIDIA 12 ГБ, 32 ГБ RAM).
 # Запуск: PowerShell от администратора →  Set-ExecutionPolicy -Scope Process Bypass; .\setup.ps1
 # Повторный запуск безопасен: уже установленное пропускается.
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Continue"  # Stop в PS 5.1 роняет скрипт на любом stderr от gh/git/ollama
 $Root = "C:\M1lash"
 function Step($t) { Write-Host "`n== $t" -ForegroundColor Cyan }
 
 Step "Проверка железа"
+if (-not (Get-Command nvidia-smi -ea 0)) { Write-Warning "nvidia-smi не найден — поставь свежий драйвер NVIDIA (Studio) и запусти снова"; exit 1 }
 try { nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv } catch { Write-Warning "nvidia-smi не найден — поставь свежий драйвер NVIDIA (Studio) и запусти снова"; exit 1 }
 $free = [math]::Round((Get-PSDrive C).Free / 1GB)
 Write-Host "Свободно на C: $free ГБ"; if ($free -lt 150) { Write-Warning "Нужно ~150–200 ГБ (модели + фильмы). Освободи место или поменяй `$Root на другой диск." }
