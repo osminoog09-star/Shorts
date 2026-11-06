@@ -20,11 +20,11 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           import json
-          p='jobs/voice/kino_008_title.json'
+          p='jobs/voice/kino_008_title_v2.json'
           j=json.load(open(p,encoding='utf-8'))
-          assert j['job_id']=='kino_008_title' and j['voice_id']=='denis-qwen3tts-reference-v1'
-          assert len(j['utterances'])==1
-          assert j['utterances'][0]['text']=='Это был фильм Оппенгеймер.'
+          assert j['job_id']=='kino_008_title_v2' and j['voice_id']=='denis-qwen3tts-reference-v1'
+          assert len(j['utterances'])==2
+          assert [x['id'] for x in j['utterances']]==['prefix','name']
           PY
-          gh workflow run denis-voice-tts.yml --ref main -f job_path=jobs/voice/kino_008_title.json
+          gh workflow run denis-voice-tts.yml --ref main -f job_path=jobs/voice/kino_008_title_v2.json
           echo 'KINO008_VOICE_PRIVATE_TTS_DISPATCHED_NO_PUBLIC_UPLOAD'
