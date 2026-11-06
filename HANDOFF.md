@@ -1,3 +1,10 @@
+# 06.11 · Claude · передача от GPT принята, тест голоса прошёл CI
+
+- Передача от GPT принята (AGENTS, NOW, CLAUDE_START_HERE, HANDOFF, SKILL прочитаны 05.11 22:25).
+- Voice run `42101115487` SUCCESS: ASR 3/3 (similarity 1.0), private Drive upload PASS (manifest + intro/quality/outro WAV, SHA verified) → https://drive.google.com/drive/folders/1-CmXZD3pgi2XWiW0MmgPfNaFkAn0cij9 . Слуховая оценка — за Денисом.
+- Из `.github/workflows/denis-voice-tts.yml` удалён одноразовый push-trigger `jobs/voice/test_claude.json`; запуск только workflow_dispatch(job_path).
+- kino_007 ведёт GPT (V9c, файлы в ChatGPT Library) — Claude не дублирует; публикация/расписание только по правилам §6.
+
 # 06.11 · GPT · kino_008 «Оппенгеймер» Trinity — PRIVATE YouTube без даты, сайт Studio подтверждён
 
 - **Фактический итог:** 43.133с 1080×1920/30fps, 27 228 692 байт, SHA256 `7a00d601d62a578007ec7d98103cedcfd22e801c7c047d4fd225029abd19ed95`. **YouTube video ID `G4IMzvrv1Zw`**, owner Studio: https://studio.youtube.com/video/G4IMzvrv1Zw/edit. OAuth `videos.list` GET подтвердил `privacyStatus=private`, `publishAt` отсутствует. **Не назначать слот/не повторять загрузку**, его выбирает только Денис в M1lash Studio.

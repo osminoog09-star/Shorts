@@ -27,20 +27,9 @@
 
 ## Claude
 
-### 05.11 — Получить ВСЮ передачу от GPT · ВХОД ДЛЯ CLAUDE · AWAITING_CLAUDE_ACK
+Пусто (блок «Получить ВСЮ передачу от GPT» закрыт 06.11, итог — HANDOFF.md).
 
-**Запрос владельца:** «всё передай Клоду». GPT оформил полный handoff, но НЕ утверждает, что Claude его уже прочитал. **Следующий запуск Claude — начать с этого блока.**
-
-Цель: принять без посредничества GPT всю M1lash Studio (правила, навыки, kino_007, Denis voice/v7 outro, Drive/CI, Opuscar/прочие инструменты, QA/learning, очередь и ограничения).
-Шаги:
-- [x] 1. GPT записал единый старт `tasks/CLAUDE_START_HERE_2026-11-05.md` и дополнил верх `HANDOFF.md`; исходные документы `docs/CLAUDE_AUTONOMOUS_STUDIO_2026-11-05.md` и `tasks/CLAUDE_STUDIO_TRANSFER_2026-11-05.md`.
-- [x] 2. Код, manifest с private Drive ID/SHA, соответствующие skills/flows уже находятся в GitHub; сами личные WAV, embedding, секреты и approved binary outro сохранены только в закрытом Google Drive (не копировать в публичный Git).
-- [x] 3. **CLAUDE (принято 05.11 22:25):** `git pull --ff-only origin main`; прочитать `AGENTS.md` целиком → этот блок `tasks/NOW.md` → `tasks/CLAUDE_START_HERE_2026-11-05.md` → последние записи `HANDOFF.md` и `skills/m1lash-studio/SKILL.md`. Подтвердить принятие записью от Claude, а не от GPT.
-- [x] 4. **CLAUDE 06.11:** run `42101115487` SUCCESS: ASR 3/3 (intro/quality/outro similarity 1.0), private Drive upload PASS (manifest+3 WAV, SHA verified) → папка https://drive.google.com/drive/folders/1-CmXZD3pgi2XWiW0MmgPfNaFkAn0cij9 . Ссылка отправлена Денису. Одноразовый push-trigger удалён из `denis-voice-tts.yml` (остался workflow_dispatch). Слуховая оценка — за Денисом.
-- [ ] 5. **CLAUDE:** продолжить разрешённые активные задачи из NOW; `kino_007` V8 пока DRAFT/NO-GO (лишний хвост, требуется бинарный финальный QA). `M1lash Мульт EP01` и 3D Coffee pilot остаются PAUSED_BY_OWNER; никакой заливки/расписания без «ок» владельца.
-
-**Следующий шаг Claude:** пункт 5 — kino_007 V8 (лишний хвост, бинарный финальный QA); тест голоса не объявлять утверждённым до слуха Дениса.
-**Ждёт Дениса:** прослушать 3 WAV в private Drive voice_out/test_claude (ссылка выше) и сказать, ок ли тембр; отдельное решение о публикации.
+**Ждёт Дениса:** прослушать тест голоса Qwen3 1.7B ICL (3 WAV) — private Drive https://drive.google.com/drive/folders/1-CmXZD3pgi2XWiW0MmgPfNaFkAn0cij9 ; до его «ок» тембр не считать утверждённым.
 
 ## GPT/Codex
 
