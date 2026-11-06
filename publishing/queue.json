@@ -319,7 +319,7 @@
       "id": "chigur_long_denis_v7",
       "kind": "long",
       "author": "GPT",
-      "status": "editorial_hold",
+      "status": "deleted",
       "slot": null,
       "style": "S6-D25 FILM ONLY",
       "mp4": null,
@@ -329,7 +329,7 @@
       "youtube_id": "RJEZKHegzUY",
       "duration_seconds": 658.645,
       "voice": "Denis Qwen3 1.7B; approved Denis v7 outro",
-      "note": "04.11.2026 uploaded PRIVATE via exact-SHA Drive workflow run 41894499729, readback verified private; official QA 0 FAIL/1 WARN optional subtitles; no publish_at, no public/scheduled status. Film Content ID restrictions require YouTube Studio review. Do not re-upload. 06.11.2026: Денис «Это удали» — убрано из «Ждёт ок» на сайте; длинные киноразборы остановлены (AGENTS §5). Видео остаётся PRIVATE на YouTube, не удалено (§1)."
+      "note": "04.11.2026 uploaded PRIVATE via exact-SHA Drive workflow run 41894499729, readback verified private; official QA 0 FAIL/1 WARN optional subtitles; no publish_at, no public/scheduled status. Film Content ID restrictions require YouTube Studio review. Do not re-upload. 06.11.2026: Денис «Это удали» — убрано из «Ждёт ок» на сайте; длинные киноразборы остановлены (AGENTS §5). Видео остаётся PRIVATE на YouTube, не удалено (§1). 06.11.2026: на YouTube видео отсутствует (проверено videos.list + 56 загрузок канала, run youtube-direct delete); квитанция status=deleted."
     },
     {
       "id": "kino_007",
