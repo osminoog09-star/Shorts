@@ -53,7 +53,7 @@ def save(st):
 
 
 def plan():
-    subprocess.run(["git", "pull", "-q", "--rebase"], cwd=REPO)
+    subprocess.run(["git", "pull", "-q", "--rebase", "--autostash"], cwd=REPO)
     p = REPO / "plans" / "week.json"
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {"films": []}
 
@@ -71,7 +71,7 @@ def cut(film, src, st):
                  "publishing/queue.json", f"reports/qa/{sc['id']}"])
             run(["git", "commit", "-qm", f"pc movie-short: {sc['id']} собран и проверен на ПК (без даты)"])
             for _ in range(3):
-                if subprocess.run(["git", "pull", "-q", "--rebase"], cwd=REPO).returncode == 0 and \
+                if subprocess.run(["git", "pull", "-q", "--rebase", "--autostash"], cwd=REPO).returncode == 0 and \
                    subprocess.run(["git", "push", "-q"], cwd=REPO).returncode == 0:
                     break
                 time.sleep(5)

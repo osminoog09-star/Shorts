@@ -22,7 +22,7 @@ HYPE = re.compile(r"\b(а{3,}|вау|ого|офиг|бля|хаха|ахах|д
 
 
 def settings():
-    subprocess.run(["git", "-C", str(REPO), "pull", "-q", "--rebase"], capture_output=True)  # режим с сайта
+    subprocess.run(["git", "-C", str(REPO), "pull", "-q", "--rebase", "--autostash"], capture_output=True)  # режим с сайта
     try:
         return json.loads((REPO / "publishing" / "studio_settings.json").read_text(encoding="utf-8"))
     except Exception:

@@ -22,3 +22,4 @@ voice_private/
 .hf-public-models/
 agents/bridge.log
 agents/.budget.json
+agents/local_model.txt

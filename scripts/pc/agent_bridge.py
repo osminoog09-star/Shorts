@@ -188,7 +188,7 @@ def sync_push(n):
         return
     git("commit", "-m", f"agents: ответы агентов в чат студии ({n})")
     for _ in range(3):
-        if git("pull", "--rebase", "-q", check=False).returncode == 0 and git("push", "-q", check=False).returncode == 0:
+        if git("pull", "--rebase", "--autostash", "-q", check=False).returncode == 0 and git("push", "-q", check=False).returncode == 0:
             log("push ok"); return
         time.sleep(5)
     log("push не удался — повторю в следующем цикле")
@@ -271,7 +271,7 @@ def studio_mode():
 
 
 def run_once(timeout, dry):
-    if git("pull", "--rebase", "-q", check=False).returncode != 0:
+    if git("pull", "--rebase", "--autostash", "-q", check=False).returncode != 0:
         log("git pull не прошёл (локальные правки?) — пропускаю цикл")
         return
     if studio_mode() != "on":

@@ -22,6 +22,8 @@ REPO = Path(__file__).resolve().parents[2]
 OLLAMA = "http://localhost:11434"
 # Кандидаты под 12 ГБ VRAM / 32 ГБ RAM. Теги проверь в библиотеке Ollama (раздел tools) — несуществующие пропускаются.
 CANDIDATES = ["gemma4:12b", "qwen3.5:9b", "qwen3:14b", "qwen3:8b", "gpt-oss:20b", "mistral-small3.2:24b"]
+# --pull качает только эти (влезают в 12 ГБ; 20B/24B — только если уже скачаны вручную)
+PULL = {"gemma4:12b", "qwen3.5:9b", "qwen3:8b"}
 CTX = 32768  # агенту Claude Code нужен длинный контекст; меньше 32k — частые обрывы
 
 
@@ -105,7 +107,7 @@ def main():
         sys.exit("Ollama не запущена: установи https://ollama.com и запусти `ollama serve`")
     models, rows = a.models or CANDIDATES, []
     for m in models:
-        if m not in have and not (a.pull and call("/api/pull", {"model": m, "stream": True}, timeout=7200).get("ok")):
+        if m not in have and not (a.pull and m in PULL and call("/api/pull", {"model": m, "stream": True}, timeout=7200).get("ok")):
             print(f"— {m}: нет локально (добавь --pull или проверь тег)"); continue
         try:
             tl, js = t_tools(m), t_json(m)
