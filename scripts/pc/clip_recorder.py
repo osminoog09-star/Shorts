@@ -24,9 +24,11 @@ OUT = Path(os.environ.get("M1LASH_ROOT", r"C:\M1lash")) / "Входящие" / "
 def allowed(url):
     cfg = json.loads((REPO / "publishing" / "clip_sources.json").read_text(encoding="utf-8"))
     host = (urlparse(url).hostname or "").lower()
+    if not cfg.get("enabled", True):
+        sys.exit("NO-GO: запись фрагментов выключена на сайте студии")
     for s in cfg["sources"]:
         d = s["domain"].lower()
-        if s.get("legal") and (host == d or host.endswith("." + d)):
+        if s.get("legal") and s.get("enabled", True) and (host == d or host.endswith("." + d)):
             return s, int(cfg.get("max_fragment_sec", 60))
     return None, int(cfg.get("max_fragment_sec", 60))
 
@@ -76,14 +78,18 @@ def record(url, start, dur, vid):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--url", required=True); ap.add_argument("--start", required=True)
-    ap.add_argument("--dur", type=float, default=45); ap.add_argument("--id", required=True)
+    ap.add_argument("--dur", type=float, default=0); ap.add_argument("--id", required=True)
     a = ap.parse_args()
     src, cap = allowed(a.url)
     if not src:
         sys.exit("NO-GO: сайта нет в publishing/clip_sources.json (только легальные источники; новый добавляет Claude после проверки)")
     if not re.fullmatch(r"[a-z0-9_]{3,40}", a.id):
         sys.exit("NO-GO: id латиницей")
-    dur = min(a.dur, cap)
+    cfg = json.loads((REPO / "publishing" / "clip_sources.json").read_text(encoding="utf-8"))
+    dur = min(a.dur or cfg.get("default_fragment_sec", 45), cap)
+    done = [x for x in OUT.glob("*.json") if json.loads(x.read_text(encoding="utf-8")).get("url", "").split("?")[0] == a.url.split("?")[0]] if OUT.exists() else []
+    if len(done) >= int(cfg.get("max_per_film", 3)):
+        sys.exit(f"NO-GO: с этого фильма уже {len(done)} фрагм. (лимит max_per_film на сайте студии)")
     f = record(a.url, secs(a.start), dur, a.id)
     br = black_ratio(f)
     info = {"id": a.id, "file": str(f), "source": src["domain"], "url": a.url, "start": a.start, "dur": dur, "black_ratio": round(br, 2)}

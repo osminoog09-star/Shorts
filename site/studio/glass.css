@@ -175,3 +175,9 @@ button,.btn,.card[data-go],.todo button,.ag{transition:transform .18s cubic-bezi
 .ctl .bufg{grid-template-columns:repeat(7,1fr)!important;gap:4px}
 @media (max-width:600px){.ctl .sets{grid-template-columns:1fr 1fr}.ctl .bufg small{font-size:10px}}
 .ag-grid .dep{grid-column:1/-1;margin:18px 2px 0;font:700 15px var(--f-d,inherit);letter-spacing:.02em;opacity:.8}
+.ctl .clips{margin:6px 0 14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)}
+.ctl .clips small{display:block;opacity:.7;margin:2px 0 10px;font-size:12px}
+.ctl .srcs{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.ctl .src em{font-style:normal;font-size:11px;padding:2px 8px;border-radius:99px;margin-left:6px}
+.ctl .src em.ok{color:#5ee6a0;background:rgba(94,230,160,.12)}.ctl .src em.wait{color:#ffc65c;background:rgba(255,198,92,.12)}
+.ctl .src{justify-content:space-between}.ctl .src span{flex:1}.ctl .btn.del{padding:4px 10px;font-size:12px;opacity:.7}.ctl .btn.del:hover{opacity:1}

@@ -89,6 +89,14 @@
         <label class="tg"><input id="s_gon" type="checkbox" ${(ST.gaming || {}).enabled !== false ? 'checked' : ''}> Игровой отдел включён</label>
         <label class="tg"><input id="s_rep" type="checkbox" ${ST.auto_replies ? 'checked' : ''}> Сам отвечает подписчикам</label>
       </div>
+      ${(() => { const C = D.clip_sources || { sources: [] }; return `<div class="clips"><b>Запись фрагментов фильмов</b> <small>агент записывает кусок фильма в браузере ПК только с проверенных легальных сайтов</small>
+        <div class="sets">
+          <label class="tg"><input id="c_on" type="checkbox" ${C.enabled !== false ? 'checked' : ''}> Запись включена</label>
+          <label>Длина фрагмента, с<input id="c_len" type="number" min="10" max="${e(C.max_fragment_sec || 60)}" value="${e(C.default_fragment_sec || 45)}"></label>
+          <label>Фрагментов с фильма<input id="c_per" type="number" min="1" max="10" value="${e(C.max_per_film || 3)}"></label>
+        </div>
+        <div class="srcs">${(C.sources || []).map((x, i) => `<label class="tg src"><input type="checkbox" data-src="${i}" ${x.enabled !== false ? 'checked' : ''} ${x.legal ? '' : 'disabled'}> <span><b>${e(x.name || x.domain)}</b> · ${e(x.domain)} ${x.legal ? '<em class="ok">проверен</em>' : '<em class="wait">на проверке у Claude</em>'}</span><button class="btn del" data-srcdel="${e(x.domain)}" title="Удалить сайт">✕</button></label>`).join('') || '<small>Сайтов нет — предложи ниже</small>'}</div>
+        <div class="chatin"><input id="c_new" placeholder="Предложить сайт: адрес (например, kino.example.ru)"><button class="btn" id="c_add">Предложить</button></div></div>`; })()}
       <div class="row2"><button class="btn pri" id="s_save">Сохранить</button><button class="btn" id="s_pause">${ST.paused ? '▶ Запустить' : '⏸ Пауза'}</button><button class="btn" id="s_cycle">Цикл директора сейчас</button></div></div>`;
     return `${ctl}<section class="sec-row"><h2 style="margin:0;font:800 22px var(--f-d)">Агенты студии</h2><span class="chip">${S.agents.length} агентов · директор + отделы</span></section>
       <div class="ag-grid">${cards}</div>
@@ -113,7 +121,37 @@
         s.updated = new Date().toISOString(); s.updated_by = 'Денис (сайт)';
       }, 'studio: настройки автономии (Денис, с сайта)');
       D.studio_settings = Object.fromEntries(Object.entries(d).filter(([k]) => !k.startsWith('_')));
+      if (!patch && $('#c_on')) {
+        const c = await editJSON('publishing/clip_sources.json', c => {
+          c.enabled = $('#c_on').checked;
+          c.default_fragment_sec = Math.max(10, Math.min(c.max_fragment_sec || 60, +$('#c_len').value || 45));
+          c.max_per_film = Math.max(1, Math.min(10, +$('#c_per').value || 3));
+          document.querySelectorAll('[data-src]').forEach(el => { const s = c.sources[+el.dataset.src]; if (s && s.legal) s.enabled = el.checked; });
+        }, 'studio: настройки записи фрагментов (Денис, с сайта)');
+        D.clip_sources = Object.fromEntries(Object.entries(c).filter(([k]) => !k.startsWith('_')));
+      }
       render(); toast('Сохранено — агенты возьмут при следующем цикле ✓'); btn.disabled = false;
+    });
+  }
+
+  async function proposeSite(btn) {
+    const raw = ($('#c_new').value || '').trim(); if (!raw || !needTok()) return;
+    let host = ''; try { host = new URL(/^https?:/.test(raw) ? raw : 'https://' + raw).hostname.replace(/^www\./, ''); } catch (err) { return toast('Не похоже на адрес сайта'); }
+    await act(btn, async () => {
+      const c = await editJSON('publishing/clip_sources.json', c => {
+        if (!c.sources.some(s => s.domain === host)) c.sources.push({ domain: host, name: host, legal: false, enabled: false, status: 'на проверке', added: new Date().toISOString().slice(0, 10), proposed_by: 'Денис (сайт)' });
+      }, 'studio: предложен сайт для записи фрагментов ' + host + ' (на проверку)');
+      D.clip_sources = Object.fromEntries(Object.entries(c).filter(([k]) => !k.startsWith('_')));
+      render(); toast('Отправлено на проверку — агент начнёт брать, когда Claude подтвердит, что сайт легальный'); btn.disabled = false;
+    });
+  }
+
+  async function delSite(btn) {
+    const host = btn.dataset.srcdel; if (!needTok()) return;
+    await act(btn, async () => {
+      const c = await editJSON('publishing/clip_sources.json', c => { c.sources = c.sources.filter(s => s.domain !== host); }, 'studio: удалён сайт записи фрагментов ' + host + ' (Денис, с сайта)');
+      D.clip_sources = Object.fromEntries(Object.entries(c).filter(([k]) => !k.startsWith('_')));
+      render(); toast('Сайт удалён ✓');
     });
   }
 
@@ -136,6 +174,8 @@
   document.addEventListener('click', ev => {
     const b = ev.target.closest('#chatSend'); if (b) return send(b);
     const sv = ev.target.closest('#s_save'); if (sv) return saveSettings(sv);
+    const ca = ev.target.closest('#c_add'); if (ca) return proposeSite(ca);
+    const cd = ev.target.closest('[data-srcdel]'); if (cd) { ev.preventDefault(); return delSite(cd); }
     const ps = ev.target.closest('#s_pause'); if (ps) return saveSettings(ps, { paused: !(D.studio_settings || {}).paused });
     const cy = ev.target.closest('#s_cycle'); if (cy) { $('#chatTo').value = 'm1lash-studio-director'; $('#chatIn').value = 'Выполни цикл студии сейчас'; return send($('#chatSend')); }
     const a = ev.target.closest('[data-agchat]'); if (a) { chatTo = a.dataset.agchat; render(); setTimeout(() => $('#chatIn')?.focus(), 50); }

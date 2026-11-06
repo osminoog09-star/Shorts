@@ -459,6 +459,7 @@ def main():
         "studio_agents": studio_agents(ROOT),
         "studio_settings": {k: v for k, v in settings.items() if not k.startswith("_")},
         "studio_buffer": studio_buffer(schedule_state, queue, settings),
+        "clip_sources": {k: v for k, v in (load("publishing/clip_sources.json", {}) or {}).items() if not k.startswith("_")},
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
