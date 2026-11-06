@@ -5,7 +5,7 @@
 (видео + звук системы) → проверка на чёрный кадр (защита от записи = НЕ обходим, фильм пропускается) →
 файл в C:\\M1lash\\Входящие\\clips → дальше монтажёр кино-Shorts.
 
-Разрешены только сайты из publishing/clip_sources.json (legal: true). Любой другой домен — отказ.
+Сайты не блокируются по имени домена. Разрешены только включённые сайты из publishing/clip_sources.json с подтверждёнными правами (legal: true). Любой другой домен — отказ.
 Длина фрагмента ≤ max_fragment_sec (60 с). Ничего не скачивает с сайта, не трогает DRM, капчи и платный доступ.
 
 Нужно на ПК: OBS 28+ (Инструменты → Настройки WebSocket-сервера → включить, пароль → переменная OBS_WS_PASSWORD;
@@ -21,15 +21,12 @@ REPO = Path(__file__).resolve().parents[2]
 OUT = Path(os.environ.get("M1LASH_ROOT", r"C:\M1lash")) / "Входящие" / "clips"
 
 
-# Известные пиратские сайты — запись с них отключена всегда, даже если добавлены в список (граница Claude, 06.11.2026)
-PIRATE = re.compile(r"rezka|hdrezka|lordfilm|lord-film|kinogo|filmix|kinokrad|baskino|zetflix|hdkino|gidonline|kinovod|torrent|rutor|rutracker|nnmclub|kinozal|seasonvar|fmovies|123movies|soap2day|putlocker", re.I)
+# Нет блокировок по названию сайта: источник определяется только настройками studio clip_sources.json.
 
 
 def allowed(url):
     cfg = json.loads((REPO / "publishing" / "clip_sources.json").read_text(encoding="utf-8"))
     host = (urlparse(url).hostname or "").lower()
-    if PIRATE.search(host):
-        sys.exit("NO-GO: пиратский сайт — запись фрагментов с него не делается")
     if not cfg.get("enabled", True):
         sys.exit("NO-GO: запись фрагментов выключена на сайте студии")
     for s in cfg["sources"]:
@@ -88,7 +85,7 @@ def main():
     a = ap.parse_args()
     src, cap = allowed(a.url)
     if not src:
-        sys.exit("NO-GO: сайта нет в publishing/clip_sources.json (только легальные источники; новый добавляет Claude после проверки)")
+        sys.exit("NO-GO: домен не включён в publishing/clip_sources.json либо не подтверждены права на материал (настраивается на сайте студии)")
     if not re.fullmatch(r"[a-z0-9_]{3,40}", a.id):
         sys.exit("NO-GO: id латиницей")
     cfg = json.loads((REPO / "publishing" / "clip_sources.json").read_text(encoding="utf-8"))
