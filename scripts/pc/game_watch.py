@@ -22,6 +22,7 @@ HYPE = re.compile(r"\b(а{3,}|вау|ого|офиг|бля|хаха|ахах|д
 
 
 def settings():
+    subprocess.run(["git", "-C", str(REPO), "pull", "-q", "--rebase"], capture_output=True)  # режим с сайта
     try:
         return json.loads((REPO / "publishing" / "studio_settings.json").read_text(encoding="utf-8"))
     except Exception:
@@ -131,7 +132,8 @@ def main():
     a = ap.parse_args()
     while True:
         d = folder()
-        if d.exists() and (settings().get("gaming") or {}).get("enabled", True):
+        st = settings()
+        if d.exists() and (st.get("gaming") or {}).get("enabled", True) and st.get("mode", "on") == "on":  # off/game — копим, не грузим видеокарту
             for p in sorted(d.iterdir()):
                 if p.suffix.lower() in EXT and p.is_file() and not (p.parent / "_m1lash" / p.stem / "done.json").exists():
                     if stable(p, a.wait):

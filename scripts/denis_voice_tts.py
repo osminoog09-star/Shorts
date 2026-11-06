@@ -108,12 +108,14 @@ def generate(job: Path, assets: Path, model_dir: Path, output: Path) -> dict:
     import soundfile as sf
     from qwen_tts import Qwen3TTSModel
 
-    torch.set_num_threads(2)
-    torch.set_num_interop_threads(1)
+    device = os.environ.get("M1LASH_TTS_DEVICE", "cpu")  # ПК Дениса: cuda (scripts/pc/local_jobs.py), CI: cpu
+    if device == "cpu":
+        torch.set_num_threads(2)
+        torch.set_num_interop_threads(1)
     started = time.monotonic()
     try:
         model = Qwen3TTSModel.from_pretrained(
-            str(model_dir), device_map="cpu", dtype=torch.bfloat16,
+            str(model_dir), device_map=device, dtype=torch.bfloat16,
             attn_implementation="eager", local_files_only=True
         )
     except Exception as exc:
@@ -175,7 +177,8 @@ def generate(job: Path, assets: Path, model_dir: Path, output: Path) -> dict:
         if whisper_local:
             if not (Path(whisper_local) / "model.bin").is_file():
                 raise VoiceError("BLOCKED: cached faster-whisper model.bin is missing")
-            whisper = WhisperModel(whisper_local, device="cpu", compute_type="int8",
+            whisper = WhisperModel(whisper_local, device="cuda" if os.environ.get("M1LASH_TTS_DEVICE") == "cuda" else "cpu",
+                                   compute_type="float16" if os.environ.get("M1LASH_TTS_DEVICE") == "cuda" else "int8",
                                    cpu_threads=2, num_workers=1, local_files_only=True)
         else:
             whisper = WhisperModel("small", device="cpu", compute_type="int8",

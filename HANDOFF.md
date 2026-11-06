@@ -472,6 +472,12 @@ FinalMP4 `deliverables/M1lash_Coffee_V8_Rewrite_PRIVATE.mp4` 41.1с/1080×1920/3
 
 # 04.11 · GPT · Чигур V22 — два настоящих six-still прогона, улучшено кадрирование, ART NO-GO
 
+## 06.11.2026 05:50 — Claude: пульт студии, запись фрагментов, рендер на ПК
+- Режим студии on/off/game: сайт (Агенты → Управление студией) + ярлык «Панель M1lash» (`scripts/pc/studio_panel.pyw`, ставит setup.ps1). Мост и game_watch стоят вне `on`; игровой режим выгружает Ollama из видеокарты.
+- Запись фрагментов фильмов: `scripts/pc/clip_recorder.py` (OBS WebSocket + Playwright, только сайты из `publishing/clip_sources.json`, сейчас «Мосфильм»; чёрный кадр = защита → пропуск). Настройки, удаление и предложение сайтов (на проверку Claude) — на сайте.
+- Рендер/голос/сборка на ПК: `scripts/pc/local_jobs.py where|voice|render|finish`; `denis_voice_tts.py` берёт устройство из `M1LASH_TTS_DEVICE` (CI по умолчанию cpu). Настройка `compute` на сайте.
+- Не проверено вживую (нужен ПК): запись OBS, CUDA-голос, локальный рендер, ярлык.
+
 ## 06.11.2026 05:20 — Claude: игровой отдел + ПК-панель
 - Игровой отдел: агенты m1lash-gaming-lead / game-editor / game-clipper / stream-producer; `scripts/pc/game_watch.py` (OBS → C:\M1lash\Игры → remux, паузы, пики, транскрипт → задача руководителю), проверен на синтетической записи (пики 20 с и 60 с найдены, паузы верно).
 - `setup.ps1`: Claude Code, bench модели, автозапуск «M1lash Studio Agents» и «M1lash Games». Статус ПК → ветка pc-status → сайт (Агенты → Управление студией).

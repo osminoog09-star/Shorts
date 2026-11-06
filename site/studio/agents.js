@@ -72,8 +72,10 @@
     const dot = ok => `<i class="bd ${ok ? 'ok' : ''}"></i>`;
     const wd = d => ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'][new Date(d + 'T12:00:00').getDay()];
     const ctl = `<div class="card ctl" style="padding:16px">
-      <div class="sec-row"><b>Управление студией</b><span class="chip ${ST.paused ? 'warn' : 'on'}">${ST.paused ? '⏸ пауза' : (ST.autonomy === 'full' ? '● полный автопилот' : '● до приватной заливки')}</span></div>
-      <div class="pc">${!PC ? 'ПК: проверяю…' : PC.none ? '<i class="bd"></i> ПК ещё не подключён — после установки <code>setup.ps1</code> здесь будет его статус' : (() => { const age = (Date.now() - new Date(PC.t)) / 60000; const on = age < 25; return `<i class="bd ${on ? 'ok' : ''}"></i> ПК ${on ? 'онлайн' : 'офлайн ' + since(PC.t) + ' назад'} · модель ${e(PC.local_model)} ${PC.ollama ? '' : '(Ollama выкл.)'} · Claude осталось ${e(PC.claude_left)}/${e(PC.claude_cap)} · цикл ${PC.last_cycle ? since(PC.last_cycle) + ' назад' : '—'}`; })()}</div>
+      <div class="sec-row"><b>Управление студией</b><span class="chip ${ST.paused ? 'warn' : 'on'}">${ST.paused ? '⏸ публикация на паузе' : (ST.autonomy === 'full' ? '● полный автопилот' : '● до приватной заливки')}</span></div>
+      <div class="mode">${[['on', '▶ Студия работает'], ['game', '🎮 Игровой режим'], ['off', '■ Выключена']].map(([k, t]) => `<button class="btn ${(ST.mode || 'on') === k ? 'cur m-' + k : ''}" data-mode="${k}">${t}</button>`).join('')}</div>
+      <small class="mhint">${(ST.mode || 'on') === 'game' ? 'Агенты стоят, видеокарта свободна для игры. Записи из папки игр обработаются после включения.' : (ST.mode || 'on') === 'off' ? 'Всё стоит: агенты, циклы директора, подготовка записей. Опубликованное по расписанию выйдет само.' : 'Агенты работают по циклам. Перед игрой включи игровой режим — тут или ярлыком «Панель M1lash» на ПК.'}</small>
+      <div class="pc">${!PC ? 'ПК: проверяю…' : PC.none ? '<i class="bd"></i> ПК ещё не подключён — после установки <code>setup.ps1</code> здесь будет его статус' : (() => { const age = (Date.now() - new Date(PC.t)) / 60000; const on = age < 25; return `<i class="bd ${on ? 'ok' : ''}"></i> ПК ${on ? 'онлайн' + (PC.mode && PC.mode !== 'on' ? (PC.mode === 'game' ? ' · 🎮 игровой режим' : ' · студия выключена') : '') : 'офлайн ' + since(PC.t) + ' назад'} · модель ${e(PC.local_model)} ${PC.ollama ? '' : '(Ollama выкл.)'} · Claude осталось ${e(PC.claude_left)}/${e(PC.claude_cap)} · цикл ${PC.last_cycle ? since(PC.last_cycle) + ' назад' : '—'}`; })()}</div>
       <div class="buf"><div class="bufh">Запас на ${BF.days} дн.: <b>${BF.covered_days}</b> дн. закрыто подряд · готово без даты: ${BF.ready_unscheduled}</div>
         <div class="bufg">${BF.grid.map(g => `<div><small>${wd(g.day)} ${g.day.slice(8)}</small>${dot(g.kino)}${dot(g.sketch)}</div>`).join('')}</div>
         <div class="bufl"><span>${dot(1)} кино ${e((ST.slots || {}).kino || '10:00')}</span><span>${dot(1)} скетч ${e((ST.slots || {}).sketch || '20:00')}</span></div></div>
@@ -84,6 +86,7 @@
         <label>Скетч<input id="s_sk" value="${e((ST.slots || {}).sketch || '20:00')}"></label>
         <label>Циклы директора<input id="s_cyc" value="${e((ST.director_cycles || []).join(', '))}"></label>
         <label>Claude в сутки (макс.)<input id="s_cap" type="number" min="0" max="20" value="${e(ST.claude_daily_cap ?? 4)}"></label>
+        <label>Где рендер и голос<select id="s_cmp"><option value="auto" ${(ST.compute || 'auto') === 'auto' ? 'selected' : ''}>Авто: ПК, в игре — GitHub</option><option value="pc" ${ST.compute === 'pc' ? 'selected' : ''}>Только ПК</option><option value="actions" ${ST.compute === 'actions' ? 'selected' : ''}>Только GitHub Actions</option></select></label>
         <label>Локальная модель<input id="s_llm" value="${e(ST.local_model || 'auto')}"></label>
         <label>Серии игр<input id="s_game" value="${e((ST.gaming || {}).series_slot || 'вс 15:00')}"></label>
         <label class="tg"><input id="s_gon" type="checkbox" ${(ST.gaming || {}).enabled !== false ? 'checked' : ''}> Игровой отдел включён</label>
@@ -97,7 +100,7 @@
         </div>
         <div class="srcs">${(C.sources || []).map((x, i) => `<label class="tg src"><input type="checkbox" data-src="${i}" ${x.enabled !== false ? 'checked' : ''} ${x.legal ? '' : 'disabled'}> <span><b>${e(x.name || x.domain)}</b> · ${e(x.domain)} ${x.legal ? '<em class="ok">проверен</em>' : '<em class="wait">на проверке у Claude</em>'}</span><button class="btn del" data-srcdel="${e(x.domain)}" title="Удалить сайт">✕</button></label>`).join('') || '<small>Сайтов нет — предложи ниже</small>'}</div>
         <div class="chatin"><input id="c_new" placeholder="Предложить сайт: адрес (например, kino.example.ru)"><button class="btn" id="c_add">Предложить</button></div></div>`; })()}
-      <div class="row2"><button class="btn pri" id="s_save">Сохранить</button><button class="btn" id="s_pause">${ST.paused ? '▶ Запустить' : '⏸ Пауза'}</button><button class="btn" id="s_cycle">Цикл директора сейчас</button></div></div>`;
+      <div class="row2"><button class="btn pri" id="s_save">Сохранить</button><button class="btn" id="s_pause">${ST.paused ? '▶ Вернуть публикацию' : '⏸ Не публиковать'}</button><button class="btn" id="s_cycle">Цикл директора сейчас</button></div></div>`;
     return `${ctl}<section class="sec-row"><h2 style="margin:0;font:800 22px var(--f-d)">Агенты студии</h2><span class="chip">${S.agents.length} агентов · директор + отделы</span></section>
       <div class="ag-grid">${cards}</div>
       <div class="card" style="padding:16px"><div class="sec-row"><b>Техническая панель · GitHub Actions</b><span class="chip">${RUNS ? 'обновлено ' + since(new Date(runsAt).toISOString()) + ' назад' : '…'}</span></div>${wf}</div>
@@ -115,7 +118,7 @@
           autonomy: $('#s_aut').value, buffer_days: +$('#s_buf').value,
           slots: Object.assign(s.slots || {}, { kino: $('#s_kino').value.trim(), sketch: $('#s_sk').value.trim() }),
           director_cycles: cyc.length ? cyc : s.director_cycles, claude_daily_cap: Math.max(0, Math.min(20, +$('#s_cap').value || 0)),
-          local_model: $('#s_llm').value.trim() || 'auto', auto_replies: $('#s_rep').checked,
+          local_model: $('#s_llm').value.trim() || 'auto', auto_replies: $('#s_rep').checked, compute: $('#s_cmp').value,
           gaming: Object.assign(s.gaming || {}, { series_slot: $('#s_game').value.trim(), enabled: $('#s_gon').checked }),
         });
         s.updated = new Date().toISOString(); s.updated_by = 'Денис (сайт)';
@@ -177,6 +180,7 @@
     const ca = ev.target.closest('#c_add'); if (ca) return proposeSite(ca);
     const cd = ev.target.closest('[data-srcdel]'); if (cd) { ev.preventDefault(); return delSite(cd); }
     const ps = ev.target.closest('#s_pause'); if (ps) return saveSettings(ps, { paused: !(D.studio_settings || {}).paused });
+    const md = ev.target.closest('[data-mode]'); if (md) return saveSettings(md, { mode: md.dataset.mode });
     const cy = ev.target.closest('#s_cycle'); if (cy) { $('#chatTo').value = 'm1lash-studio-director'; $('#chatIn').value = 'Выполни цикл студии сейчас'; return send($('#chatSend')); }
     const a = ev.target.closest('[data-agchat]'); if (a) { chatTo = a.dataset.agchat; render(); setTimeout(() => $('#chatIn')?.focus(), 50); }
   });

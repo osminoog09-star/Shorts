@@ -25,6 +25,12 @@ Step "Python-библиотеки (CUDA)"
 py -3.11 -m pip install --upgrade pip
 py -3.11 -m pip install playwright obsws-python faster-whisper edge-tts opencv-python numpy gdown nvidia-cublas-cu12 nvidia-cudnn-cu12
 
+Step "Рендер и голос на видеокарте ПК (решение Дениса 06.11)"
+py -3.11 -m pip install --index-url https://download.pytorch.org/whl/cu128 torch torchaudio
+py -3.11 -m pip install qwen-tts==0.1.1 transformers==4.57.3 accelerate==1.12.0 soundfile huggingface-hub
+New-Item -ItemType Directory -Force -Path "$Root\private\voice_ref" | Out-Null
+Write-Host "Личный образец голоса положи в $Root\private\voice_ref (или он заберётся из приватного Drive). В Git он не попадает." -ForegroundColor Yellow
+
 Step "Локальная LLM (решение Дениса 31.10: Ollama + Gemma 4 12B)"
 ollama pull gemma4:12b
 
@@ -55,6 +61,13 @@ Start-ScheduledTask -TaskName "M1lash Games"
 Write-Host "OBS: Настройки → Вывод → Путь записи = $Root\Игры (формат mkv). Дальше игровой отдел всё делает сам." -ForegroundColor Yellow
 
 Write-Host "OBS для записи фрагментов: Инструменты → Настройки сервера WebSocket → включить; пароль запиши в переменную OBS_WS_PASSWORD (setx OBS_WS_PASSWORD ...)." -ForegroundColor Yellow
+
+Step "Ярлык «Панель M1lash» на рабочем столе (вкл/выкл студии, игровой режим, сайт)"
+$pyw = $py -replace 'python\.exe$','pythonw.exe'
+$ws = New-Object -ComObject WScript.Shell
+$lnk = $ws.CreateShortcut("$([Environment]::GetFolderPath('Desktop'))\Панель M1lash.lnk")
+$lnk.TargetPath = $pyw; $lnk.Arguments = "`"$Root\Shorts\scripts\pc\studio_panel.pyw`""; $lnk.WorkingDirectory = "$Root\Shorts"
+$lnk.IconLocation = "$env:SystemRoot\System32\imageres.dll,109"; $lnk.Save()
 
 Step "Самопроверка"
 py -3.11 "$Root\Shorts\scripts\pc\selfcheck.py"

@@ -5,3 +5,5 @@ description: Звукорежиссёр M1lash — голос Дениса (Qwen
 skills/denis-voice-ci, AGENTS §3–4, §11. Только голос Дениса для автора/героя; женский — female-voice-design.yml. Приватные WAV не в Git. Музыка ≤0.10 RMS от речи. Перед словами «звучит хорошо» — skills/ext/earshot (critique/describe).
 
 Игровой отдел (06.11): живой микрофон Дениса из записей OBS — шумоподавление, де-эссер, компрессия, выравнивание громкости (без изменения тембра), удаление щелчков/дыхания; вставки-синтез голосом Дениса только по манифесту (speaker/voice_id/engine/rate/source_file). Тяжёлое — на ПК (видеокарта), не в LLM.
+
+Где считать (решение Дениса 06.11): сначала `python scripts/pc/local_jobs.py where` → "pc": рендер/голос/сборка на видеокарте ПК (`local_jobs.py render|voice|finish` — те же скрипты, что в Actions); "actions": соответствующий GitHub workflow. Игровой режим = Actions, видеокарту не трогать.

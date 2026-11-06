@@ -225,7 +225,7 @@ def heartbeat(force=False):
     st = settings()
     body = {"t": now(), "host": __import__("platform").node() or "pc",
             "ollama": ollama_up(), "local_model": local_model(), "claude_left": claude_budget_left(),
-            "claude_cap": CLAUDE_DAILY_CAP, "paused": bool(st.get("paused")), "autonomy": st.get("autonomy"),
+            "claude_cap": CLAUDE_DAILY_CAP, "paused": bool(st.get("paused")), "mode": st.get("mode", "on"), "autonomy": st.get("autonomy"),
             **STATE}
     import base64
     content = base64.b64encode((json.dumps(body, ensure_ascii=False, indent=1) + "\n").encode()).decode()
@@ -242,10 +242,40 @@ def heartbeat(force=False):
         log("heartbeat не отправлен: " + (r.stderr or "")[-200:])
 
 
+LAST_MODE = ["on"]
+
+
+def unload_ollama():
+    """Игровой режим: освободить видеокарту — выгрузить все загруженные модели Ollama."""
+    try:
+        with urllib.request.urlopen(OLLAMA + "/api/ps", timeout=3) as r:
+            for m in json.loads(r.read()).get("models", []):
+                req = urllib.request.Request(OLLAMA + "/api/generate", data=json.dumps({"model": m["name"], "keep_alive": 0}).encode(),
+                                             headers={"Content-Type": "application/json"})
+                urllib.request.urlopen(req, timeout=10).read()
+                log(f"видеокарта: выгружена модель {m['name']}")
+    except Exception:
+        pass
+
+
+def studio_mode():
+    """on | off | game — переключается на сайте или ярлыком «Панель M1lash» (scripts/pc/studio_panel.pyw)."""
+    m = settings().get("mode", "on")
+    if m != LAST_MODE[0]:
+        log({"on": "▶ студия ВКЛЮЧЕНА", "off": "■ студия ВЫКЛЮЧЕНА", "game": "🎮 игровой режим: всё на паузе, видеокарта свободна"}.get(m, m))
+        if m != "on":
+            unload_ollama()
+        LAST_MODE[0] = m
+        heartbeat(force=True)
+    return m
+
+
 def run_once(timeout, dry):
     if git("pull", "--rebase", "-q", check=False).returncode != 0:
         log("git pull не прошёл (локальные правки?) — пропускаю цикл")
         return
+    if studio_mode() != "on":
+        return  # сообщения из чата подождут включения студии
     n = sum(handle(f, m, timeout, dry) for f, m in pending())
     if n:
         sync_push(n)
@@ -271,7 +301,7 @@ def main():
         st = settings()
         slots = fixed or st.get("director_cycles") or ["08:30", "13:30", "19:30"]
         hm, day = datetime.now().strftime("%H:%M"), datetime.now().date()
-        for slot in ([] if st.get("paused") else slots):
+        for slot in ([] if st.get("paused") or st.get("mode", "on") != "on" else slots):
             if hm >= slot and (day, slot) not in done:
                 done.add((day, slot))
                 if hm < (datetime.strptime(slot, "%H:%M") + __import__("datetime").timedelta(minutes=30)).strftime("%H:%M"):
