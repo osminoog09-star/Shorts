@@ -1,5 +1,5 @@
 {
-  "status": "uploaded",
+  "status": "deleted",
   "action": "upload_private_once",
   "source": "owner_google_drive_private",
   "drive_file_id": "1ysQ5mnSmtxv8xnjAq4uMt3DV6FZnVvVs",
@@ -10,5 +10,7 @@
   "never_retry_automatically": true,
   "video_id": "RJEZKHegzUY",
   "youtube_url": "https://www.youtube.com/watch?v=RJEZKHegzUY",
-  "uploaded_at": "2026-11-04T19:12:14.221637+00:00"
+  "uploaded_at": "2026-11-04T19:12:14.221637+00:00",
+  "deleted_at": "2026-11-06T01:37:19.190618+00:00",
+  "deleted_reason": "owner decision"
 }
