@@ -9,5 +9,13 @@
   "never_retry_automatically": true,
   "video_id": "3YjkmOrxDLA",
   "youtube_url": "https://www.youtube.com/watch?v=3YjkmOrxDLA",
-  "uploaded_at": "2026-11-06T00:24:11.637157+00:00"
+  "uploaded_at": "2026-11-06T00:24:11.637157+00:00",
+  "channel": "ru",
+  "source_sha256": "0b5fd6b576797877c0a8fcb729304eb9b6830cbf45c6c51a646fa04502b12bb6",
+  "owner_approval": {
+    "message": "Ок все",
+    "approved_at": "2026-11-06T00:51:56Z",
+    "approval_scope": "schedule_only_existing_private_youtube_video",
+    "studio_slot": "2026-11-06T10:00:00+02:00"
+  }
 }
