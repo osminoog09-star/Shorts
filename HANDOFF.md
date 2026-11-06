@@ -472,6 +472,13 @@ FinalMP4 `deliverables/M1lash_Coffee_V8_Rewrite_PRIVATE.mp4` 41.1с/1080×1920/3
 
 # 04.11 · GPT · Чигур V22 — два настоящих six-still прогона, улучшено кадрирование, ART NO-GO
 
+## 06.11.2026 05:10 — Claude: автономная студия (решения Дениса 06.11)
+- 15 агентов в `.claude/agents/`: Директор студии (главный, конвейеры кино/мульт-Shorts/длинные), скаут материала, монтажёр кино-Shorts, мульт-Shorts, длинные мультфильмы, сценарист, режиссёр, аниматор, голос, QA, SEO/обложки, публикация, подписчики, ресёрчер, аналитик.
+- Полная автономия: `publishing/studio_settings.json` (autonomy full/review, пауза, запас 7 дней, слоты, циклы, лимит Claude, локальная модель, автоответы) — правится на сайте «Агенты → Управление студией»; сетка запаса на 7 дней там же (data.json → studio_buffer). Директор сам ставит даты после QA PASS. AGENTS §2/§5/§6 обновлены.
+- Экономия: `scripts/pc/agent_bridge.py` — локальная LLM через Ollama по умолчанию, Claude ≤ cap/сутки; `scripts/pc/local_llm_bench.py` выбирает модель.
+- Материал: `material-scout.yml` + `scripts/scout/pd_scout.py` → `reports/scout/library.json` (только PD/CC по метаданным; Internet Archive). Пиратские источники/HDRezka агентам запрещены.
+- Осталось: на ПК — Ollama, bench, запуск моста; отправка автоответов подписчикам через Actions не сделана (сейчас черновики); Blender-ссылки в скауте не найдены (кроме Sintel).
+
 ## 06.11.2026 02:55 — Claude: сайт студии «всё в 3D» выложен (ок Дениса)
 - Сделано: WebGL-космос (`site/studio/space3d.js`, Three.js r170 в `vendor/`, фолбэк `space_bg.js`), стекло (`glass.css`), объём панелей/орбы агентов (`depth3d.js`), вкладка «Агенты» (`agents.js`: карточки, GitHub Actions, чат → `agents/inbox`), шрифты локально (`fonts.css`). `motion-pages.yml` копирует новые файлы и проверяет синтаксис; деплой 42139765644 SUCCESS, все QA-тесты студии PASS.
 - Урок: backdrop-filter на 3D-матрице (rotateX/Y) при DPR≥2 в Chromium ломается (размыт только кусок). Стекло наклоняем аффинно (skew), настоящий 3D — только WebGL, орбы, логотип.

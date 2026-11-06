@@ -17,6 +17,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 UA = {"User-Agent": "M1lash-Studio-scout/1.0 (+https://github.com/osminoog09-star/Shorts)"}
+# не для канала: взрослое, сборники-«грайндхаус», нарезки — скаут их не предлагает
+SKIP = re.compile(r"nudist|naked|nude|sex|erotic|grindhouse|double feature|public domain movies|compilation|trailer", re.I)
 OK_LICENSE = re.compile(r"creativecommons\.org/(publicdomain/(mark|zero)/|licenses/by(-sa)?/)", re.I)
 MAX_BYTES = 1_800_000_000
 
@@ -96,7 +98,7 @@ def main():
         for d in docs:
             ident = d["identifier"]
             key = re.sub(r"\W+", "", str(d.get("title", "")).lower())
-            if ident in seen or key in used:
+            if ident in seen or key in used or SKIP.search(str(d.get('title', ''))):
                 continue
             seen.add(ident)
             try:

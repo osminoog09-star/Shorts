@@ -5,6 +5,8 @@
     'm1lash-studio-director': { t: 'Директор студии', c: '#ffffff', wf: [], boss: 1 },
     'm1lash-scout': { t: 'Скаут материала', c: '#9be15d', wf: ['material-scout.yml'] },
     'm1lash-editor': { t: 'Монтажёр кино-Shorts', c: '#ff5f7a', wf: ['movie-short.yml'] },
+    'm1lash-cartoon-shorts': { t: 'Мульт-Shorts', c: '#ff9de2', wf: ['mini-strike.yml'] },
+    'm1lash-film-mult': { t: 'Длинные мультфильмы', c: '#8fd3ff', wf: ['render-long.yml', 'join-long.yml'] },
     'm1lash-writer': { t: 'Сценарист скетчей', c: '#c6ff6b', wf: [] },
     'm1lash-packaging': { t: 'Обложки и SEO', c: '#ffd36b', wf: [] },
     'm1lash-community': { t: 'Подписчики и комментарии', c: '#6bffe1', wf: ['youtube-pulse.yml'] },
