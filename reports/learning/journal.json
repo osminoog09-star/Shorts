@@ -603,6 +603,19 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "MULTNEWS-20261106-SEVEN-WORLDS",
+      "project": "multnews_20261104",
+      "issue": "Четыре новостные локации отсутствовали, а семь разных нарисованных миров не были собраны в проверяемый просмотр",
+      "cause": "Зацикливание производства на отдельных 16-24сек пробах одного технического окружения",
+      "fix": "Созданы 4 отдельные анимированные среды HTML/SVG, 4 немых MP4 по 16 сек и один 122сек просмотр из семи разных локаций, 204 разных запланированных шота без вымышленных таймингов голоса",
+      "status": "verified",
+      "evidence": "longform/multnews_20261104/worlds_gpt_20261106/QA_SEVEN_WORLDS_2026-11-06.md",
+      "acceptance": "4x480 кадров, общий файл 3660 кадров, H264 30fps, 0 audio, полное декодирование и 21 кадр физического MP4 просмотрены; эстетически ART PARTIAL",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }
