@@ -11,12 +11,12 @@ concurrency: { group: material-scout, cancel-in-progress: false }
 jobs:
   scout:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
-      - run: python scripts/scout/pd_scout.py --rows 80
+      - run: python scripts/scout/pd_scout.py --rows 150
       - name: Commit library
         run: |
           git config user.name material-scout-bot

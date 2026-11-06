@@ -23,7 +23,7 @@ MAX_BYTES = 1_800_000_000
 # Открытые фильмы Blender Studio — CC BY (https://studio.blender.org/films/), прямые MP4 с download.blender.org
 BLENDER = [
     {"title": "Sintel (2010)", "url": "https://download.blender.org/durian/movies/Sintel.2010.1080p.mkv", "page": "https://durian.blender.org/"},
-    {"title": "Tears of Steel (2012)", "url": "https://download.blender.org/mango/download.blender.org/demo/movies/ToS/tears_of_steel_1080p.mov", "page": "https://mango.blender.org/"},
+    {"title": "Tears of Steel (2012)", "url": "https://download.blender.org/demo/movies/ToS/tears_of_steel_1080p.mov", "page": "https://mango.blender.org/"},
     {"title": "Big Buck Bunny (2008)", "url": "https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_1080p_h264.mov", "page": "https://peach.blender.org/"},
 ]
 
@@ -59,7 +59,10 @@ def used_films():
 def search(query, rows):
     q = urllib.parse.urlencode({"q": query, "fl[]": ["identifier", "title", "year", "downloads", "licenseurl", "language", "runtime"],
                                 "sort[]": "downloads desc", "rows": rows, "output": "json"}, doseq=True)
-    return get("https://archive.org/advancedsearch.php?" + q)["response"]["docs"]
+    d = get("https://archive.org/advancedsearch.php?" + q)
+    if "response" not in d:
+        raise RuntimeError(str(d)[:300])
+    return d["response"]["docs"]
 
 
 def best_mp4(ident):
@@ -81,8 +84,9 @@ def main():
     a = ap.parse_args()
     used, out, seen = used_films(), [], set()
     queries = [
-        ('collection:(feature_films) AND mediatype:(movies) AND licenseurl:(*publicdomain* OR *licenses/by*)', "any"),
-        ('mediatype:(movies) AND (language:(rus) OR language:(Russian)) AND licenseurl:(*publicdomain* OR *licenses/by*)', "ru"),
+        # лицензию фильтруем по метаданным каждого фильма (ведущие * в поиске archive.org не работают)
+        ('collection:(feature_films) AND mediatype:(movies)', "any"),
+        ('mediatype:(movies) AND (language:(Russian) OR language:(rus)) AND (collection:(feature_films) OR collection:(moviesandfilms))', "ru"),
     ]
     for q, tag in queries:
         try:
