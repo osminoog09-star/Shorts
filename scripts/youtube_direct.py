@@ -289,8 +289,6 @@ def youtube_delete(file, data, confirm_id):
     vid = str(prior.get("video_id", ""))
     if not re.fullmatch(r"[A-Za-z0-9_-]{11}", vid) or vid != confirm_id:
         raise ValueError("Confirm ID must equal the receipt video_id exactly; nothing deleted")
-    if prior.get("status") == "deleted":
-        print("Already deleted:", vid); return
     channels = load_json(CHANNELS)
     channel = data.get("channel", "ru")
     token = token_for(channel)
@@ -309,7 +307,22 @@ def youtube_delete(file, data, confirm_id):
         if d.status_code != 204:
             raise RuntimeError("YouTube delete failed (HTTP %s)" % d.status_code)
     else:
-        print("Video not found on YouTube (already gone):", vid)
+        # videos.list пуст — перепроверяем по плейлисту загрузок канала (там видны и приватные)
+        ch = requests.get(API + "/channels", params={"part": "contentDetails", "mine": "true"},
+                          headers={"Authorization": "Bearer " + token}, timeout=40).json()
+        uploads = ch["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
+        page, seen = "", 0
+        for _ in range(10):
+            pl = requests.get(API + "/playlistItems", params={"part": "contentDetails", "playlistId": uploads, "maxResults": 50, "pageToken": page},
+                              headers={"Authorization": "Bearer " + token}, timeout=40).json()
+            ids = [x["contentDetails"]["videoId"] for x in pl.get("items", [])]
+            seen += len(ids)
+            if vid in ids:
+                raise RuntimeError("Video still listed in uploads but videos.list is empty (scope?) — NOT deleted")
+            page = pl.get("nextPageToken") or ""
+            if not page:
+                break
+        print("Video not found on YouTube (checked videos.list + %d uploads):" % seen, vid)
     atomic_json(receipt, {**prior, "status": "deleted", "deleted_at": dt.datetime.now(dt.timezone.utc).isoformat(),
                           "deleted_reason": "owner decision"})
     print("YOUTUBE_DELETE_OK", vid)
