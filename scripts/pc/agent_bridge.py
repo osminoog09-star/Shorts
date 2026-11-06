@@ -49,8 +49,15 @@ def log(msg):
         f.write(line + "\n")
 
 
+GIT_ENV = {**os.environ, "GIT_TERMINAL_PROMPT": "0", "GCM_INTERACTIVE": "never"}  # фоновый git не ждёт ввода пароля
+
+
 def git(*args, check=True):
-    return subprocess.run(["git", *args], cwd=REPO, capture_output=True, text=True, check=check)
+    try:
+        return subprocess.run(["git", *args], cwd=REPO, capture_output=True, text=True, check=check, env=GIT_ENV, timeout=180)
+    except subprocess.TimeoutExpired:
+        log(f"git {args[0]}: завис дольше 3 мин — прерван")
+        return subprocess.CompletedProcess(args, 1, "", "timeout")
 
 
 def now():
@@ -272,7 +279,8 @@ def studio_mode():
 
 def run_once(timeout, dry):
     if git("pull", "--rebase", "--autostash", "-q", check=False).returncode != 0:
-        log("git pull не прошёл (локальные правки?) — пропускаю цикл")
+        r = git("status", "--porcelain", "-uno", check=False).stdout.strip()
+        log("git pull не прошёл — пропускаю цикл" + (f" (правки: {r[:120]})" if r else ""))
         return
     if studio_mode() != "on":
         return  # сообщения из чата подождут включения студии

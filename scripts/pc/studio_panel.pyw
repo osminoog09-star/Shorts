@@ -21,7 +21,11 @@ MODES = {"on": ("СТУДИЯ РАБОТАЕТ", "#5ee6a0"), "off": ("СТУДИ
 
 
 def git(*a):
-    return subprocess.run(["git", "-C", str(REPO), *a], capture_output=True, text=True, creationflags=NO_WIN)
+    try:
+        return subprocess.run(["git", "-C", str(REPO), *a], capture_output=True, text=True, creationflags=NO_WIN, timeout=120,
+                              env={**os.environ, "GIT_TERMINAL_PROMPT": "0", "GCM_INTERACTIVE": "never"})
+    except subprocess.TimeoutExpired:
+        return subprocess.CompletedProcess(a, 1, "", "timeout")
 
 
 def read():
@@ -43,20 +47,24 @@ def unload_ollama():
 
 
 def set_mode(mode, done):
+    st0 = read(); st0["mode"] = mode  # сначала локально — мост на ПК видит режим сразу, без ожидания сети
+    SETTINGS.write_text(json.dumps(st0, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if mode != "on":
+        threading.Thread(target=unload_ollama, daemon=True).start()
+
     def work():
         msg = ""
-        git("pull", "-q", "--rebase")
+        git("checkout", "--", str(SETTINGS))
+        git("pull", "-q", "--rebase", "--autostash")
         st = read()
         st["mode"] = mode
         st["updated"] = datetime.now().astimezone().isoformat(timespec="seconds")
         st["updated_by"] = "Денис (панель ПК)"
         SETTINGS.write_text(json.dumps(st, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        if mode != "on":
-            unload_ollama()
         git("add", str(SETTINGS))
         git("commit", "-q", "-m", f"studio: режим {mode} (Денис, панель ПК)")
         for _ in range(3):
-            if git("pull", "-q", "--rebase").returncode == 0 and git("push", "-q").returncode == 0:
+            if git("pull", "-q", "--rebase", "--autostash").returncode == 0 and git("push", "-q").returncode == 0:
                 break
         else:
             msg = "Режим включён на ПК, но не отправлен на сайт (нет сети?) — отправится позже"
@@ -189,10 +197,9 @@ def serve():
         def do_POST(self):
             body = json.loads(self.rfile.read(int(self.headers.get("Content-Length") or 0)) or b"{}")
             if self.path == "/api/mode" and body.get("mode") in MODES:
-                ev, res = threading.Event(), {}
-                set_mode(body["mode"], lambda m: (res.update(msg=m), ev.set()))
-                ev.wait(90)
-                return self.send_json({"msg": res.get("msg", "")})
+                set_mode(body["mode"], lambda m: None)  # git pull/push в фоне — окно не ждёт сеть
+                time.sleep(0.3)
+                return self.send_json({"msg": ""})
             if self.path == "/api/open":
                 if body.get("what") == "site":
                     webbrowser.open(SITE + "#agents")
