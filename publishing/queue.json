@@ -352,6 +352,21 @@
       "owner_audio_approval_note": "Владелец ответил «Ок все» после предложения просмотра приватного V9c и перед запросом назначить кино-слот; принято как общее решение на выпуск, а не как независимое подтверждение Content ID.",
       "owner_release_approved": true,
       "owner_release_approval_date": "2026-11-06"
+    },
+    {
+      "id": "kino_008",
+      "kind": "short",
+      "author": "GPT",
+      "status": "draft",
+      "slot": null,
+      "style": "S6-D25",
+      "mp4": null,
+      "publish_md": "shorts/kino_008/PUBLISH.md",
+      "title": "Они нажали кнопку — и даже ЗВУК исчез… 😨 #shorts",
+      "youtube_id": null,
+      "review_version": "OWNER_SOURCE_RU_DUB_VERIFIED_SCENE_QA_PENDING",
+      "owner_audio_approved": false,
+      "note": "Owner Oppenheimer source 2418s/836MB exact SHA verified, RU audio 4/5. Trinity explosion at source 16:30–18:40; detailed segment/voice/QA pending. NO YouTube upload, NO date, NO public film MP4."
     }
   ]
 }
