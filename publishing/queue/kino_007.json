@@ -30,10 +30,11 @@
   "publish_at": "2026-11-06T10:00:00+02:00",
   "provenance": {
     "upload_method": "encrypted_ephemeral_handoff_sha256_once",
-    "owner_review": "PRIVATE_ONLY_NOT_APPROVED_FOR_RELEASE",
+    "owner_review": "APPROVED_FOR_SCHEDULE_BY_OWNER_20261106",
     "owner_release_approval": "Ок все",
     "owner_release_approval_date": "2026-11-06",
-    "schedule_mode": "next_free_movie_slot_10am_Europe_Tallinn"
+    "schedule_mode": "next_free_movie_slot_10am_Europe_Tallinn",
+    "youtube_get_confirmed": "2026-11-06T08:00:00Z"
   },
   "schedule_request": {
     "id": "owner-ok-20261106-kino_007-1000",
