@@ -33,6 +33,8 @@ jobs:
           node scripts/qa/test_studio_chart.cjs
           node --check site/studio/auto_refresh.js
           node --check site/studio/scheduling.js
+          for f in agents.js depth3d.js icons.js space_bg.js; do node --check site/studio/$f; done
+          node --input-type=module --check < site/studio/space3d.js
           node scripts/qa/test_studio_scheduling.cjs
           node --check site/studio/drive_connect.js
           node scripts/qa/test_drive_connect.cjs
@@ -52,6 +54,7 @@ jobs:
           python3 scripts/build_studio_site.py
           mkdir -p _site/studio && cp site/studio/index.html site/studio/clips_ui.js site/studio/auto_refresh.js site/studio/drive_connect.js site/studio/data.json site/studio/widget.html site/studio/manifest.webmanifest site/studio/icon-192.png site/studio/icon-512.png _site/studio/ && cp -r site/studio/i _site/studio/i
           cp site/studio/scheduling.js _site/studio/
+          cp site/studio/glass.css site/studio/fonts.css site/studio/space3d.js site/studio/space_bg.js site/studio/icons.js site/studio/agents.js site/studio/depth3d.js _site/studio/ && cp -r site/studio/fonts site/studio/vendor _site/studio/
           python3 - <<'PY'
           import json,os,re
           from pathlib import Path

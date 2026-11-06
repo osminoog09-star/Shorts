@@ -10,9 +10,7 @@
 <link rel="icon" type="image/png" href="i/favicon.png">
 <meta name="theme-color" content="#0d0c14">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="fonts.css?v=20261106">
 <style>
 /* Студия M1lash v2 (30.10.2026): приложение из 5 разделов — Обзор · Ролики · Идеи · Зрители · Деньги.
    Данные: data.json (собирает scripts/build_studio_site.py). Действия — GitHub API с токеном, который хранится только в этом браузере. */
@@ -217,6 +215,7 @@ ol.steps{margin:0;padding-left:20px;display:grid;gap:6px;font-size:13.5px;color:
 @keyframes sk{to{background-position:-200% 0}}
 @media (prefers-reduced-motion:reduce){*,.reveal{animation:none!important;transition:none!important}}
 </style>
+<link rel="stylesheet" href="glass.css?v=20261106">
 </head>
 <body>
 <div class="shell">
@@ -242,6 +241,8 @@ ol.steps{margin:0;padding-left:20px;display:grid;gap:6px;font-size:13.5px;color:
 <div class="scrim" id="scrim"></div>
 <section class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div id="sheetBody"></div></section>
 <div class="toast" id="toast" role="status"></div>
+<script type="module" src="space3d.js?v=20261106"></script>
+<script src="icons.js?v=20261106"></script>
 <script src="clips_ui.js?v=20261103-film-lifecycle"></script>
 <script src="scheduling.js"></script>
 <script>
@@ -256,7 +257,7 @@ const dshort=s=>{if(!s)return"—";const d=new Date(s.length<=10?s+"T12:00:00":s
 const ago=s=>{if(!s)return"";const m=(Date.now()-new Date(s))/6e4;return m<60?Math.max(1,Math.round(m))+" мин":m<1440?Math.round(m/60)+" ч":Math.round(m/1440)+" дн"};
 const dur=s=>{if(!s)return"";const m=Math.floor(s/60),x=s%60;return m+":"+String(x).padStart(2,"0")};
 const pct=(a,b)=>!b||a==null?null:(a-b)/b*100;
-const delta=(p,base)=>base!=null&&base<500?'<span class="up">канал взлетел 🚀</span>':p==null?'<span class="flat">—</span>':p>300?`<span class="up">×${(1+p/100).toFixed(0)}</span>`:`<span class="${p>=0?"up":"down"}">${p>=0?"▲":"▼"} ${Math.abs(p).toFixed(0)}%</span>`;
+const delta=(p,base)=>base!=null&&base<500?'<span class="up">канал взлетел</span>':p==null?'<span class="flat">—</span>':p>300?`<span class="up">×${(1+p/100).toFixed(0)}</span>`:`<span class="${p>=0?"up":"down"}">${p>=0?"▲":"▼"} ${Math.abs(p).toFixed(0)}%</span>`;
 const store={get(k,d){try{return localStorage.getItem(k)??d}catch(e){return d}},set(k,v){try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}}};
 const ICON={
  home:'<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
@@ -304,14 +305,14 @@ function cflags(f){return (D.comments||[]).filter(c=>f==="all"||(c.flags||[]).in
 const clean=t=>String(t||"").replace(/\s*#\S+/g,"").trim();
 function todoItems(){
   const it=[],L=D.live;
-  if(D.review.length) it.push(["⏳","c-warn",`Ждёт твоего «ок»: ${D.review.length}`,"посмотри и нажми «Заливаем»",()=>{vSeg="queue";go("videos")}]);
-  const rq=cflags("request").filter(c=>!seen.has(c.id)); if(rq.length) it.push(["🙋","c-pink",`Новые заявки зрителей: ${rq.length}`,"сделать ролик по просьбе",()=>{fSeg="request";go("fans")}]);
-  const tm=cflags("to_me").filter(c=>!seen.has(c.id)); if(tm.length) it.push(["💬","c-info",`Тебе написали: ${tm.length}`,esc(clean(tm[0].text)).slice(0,70),()=>{fSeg="to_me";go("fans")}]);
-  const ideas=((D.ideas||{}).ideas||[]).filter(i=>(i.status||"proposed")==="proposed"); if(ideas.length) it.push(["💡","c-info",`Идеи на одобрение: ${ideas.length}`,esc(ideas[0].title).slice(0,70),()=>{iSeg="ideas";go("ideas")}]);
+  if(D.review.length) it.push(["clock","c-warn",`Ждёт твоего «ок»: ${D.review.length}`,"посмотри и нажми «Заливаем»",()=>{vSeg="queue";go("videos")}]);
+  const rq=cflags("request").filter(c=>!seen.has(c.id)); if(rq.length) it.push(["hand","c-pink",`Новые заявки зрителей: ${rq.length}`,"сделать ролик по просьбе",()=>{fSeg="request";go("fans")}]);
+  const tm=cflags("to_me").filter(c=>!seen.has(c.id)); if(tm.length) it.push(["chat","c-info",`Тебе написали: ${tm.length}`,esc(clean(tm[0].text)).slice(0,70),()=>{fSeg="to_me";go("fans")}]);
+  const ideas=((D.ideas||{}).ideas||[]).filter(i=>(i.status||"proposed")==="proposed"); if(ideas.length) it.push(["bulb","c-info",`Идеи на одобрение: ${ideas.length}`,esc(ideas[0].title).slice(0,70),()=>{iSeg="ideas";go("ideas")}]);
   const filled=D.plan.filter(p=>p.title).length+D.review.length, bufDays=filled/1.8;
-  if(bufDays<2) it.push(["📦","c-warn",`Запас роликов: ${bufDays.toFixed(1).replace(".",",")} дн.`,`нужно ≥ 3 дней по сетке — ${D.plan.filter(p=>!p.title).length} пустых слотов на неделю`,()=>{vSeg="queue";go("videos")}]);
-  const age=D.analytics_as_of?(Date.now()-new Date(D.analytics_as_of+"T12:00:00"))/864e5:9; if(age>3.5) it.push(["⚠️","c-bad","Аналитика устарела",`данные по ${dshort(D.analytics_as_of)} — запусти обновление`,()=>openSettings()]);
-  if(L&&L.fresh_short) it.push(["🆕","c-ok",`Свежий Shorts: ${num(L.fresh_short.views)} просм.`,`${L.fresh_short.views_1h>0?"+"+num(L.fresh_short.views_1h)+" за час · ":"вышел "+ago(L.fresh_short.published)+" назад · "}${esc(L.fresh_short.title).slice(0,60)}`,()=>openVideo(L.fresh_short.id)]);
+  if(bufDays<2) it.push(["box","c-warn",`Запас роликов: ${bufDays.toFixed(1).replace(".",",")} дн.`,`нужно ≥ 3 дней по сетке — ${D.plan.filter(p=>!p.title).length} пустых слотов на неделю`,()=>{vSeg="queue";go("videos")}]);
+  const age=D.analytics_as_of?(Date.now()-new Date(D.analytics_as_of+"T12:00:00"))/864e5:9; if(age>3.5) it.push(["alert","c-bad","Аналитика устарела",`данные по ${dshort(D.analytics_as_of)} — запусти обновление`,()=>openSettings()]);
+  if(L&&L.fresh_short) it.push(["spark","c-ok",`Свежий Shorts: ${num(L.fresh_short.views)} просм.`,`${L.fresh_short.views_1h>0?"+"+num(L.fresh_short.views_1h)+" за час · ":"вышел "+ago(L.fresh_short.published)+" назад · "}${esc(L.fresh_short.title).slice(0,60)}`,()=>openVideo(L.fresh_short.id)]);
   return it;
 }
 
@@ -322,10 +323,10 @@ function home(){
   const h=new Date().getHours(), hi=h<5?"Доброй ночи":h<12?"Доброе утро":h<18?"Добрый день":"Добрый вечер";
   const daily=chartSeries(D.daily),lastDaily=(D.daily||[]).filter(d=>Number.isFinite(d.views)).sort((a,b)=>a.day.localeCompare(b.day)).at(-1)||{};
   const sg=(L.span_h||0)>=20&&L.subs_24h!=null?` · <span class="${L.subs_24h>0?"up":"flat"}">${L.subs_24h>0?"+":""}${L.subs_24h} за 24 ч</span>`:"";
-  let s=`<section class="card hero reveal"><canvas id="c3d" aria-label="3D-логотип M1lash Studio"></canvas><div class="hi"><small>${dshort(new Date().toISOString())} · studio</small><h1>${hi}, Денис</h1></div>
+  let s=`<section class="card hero reveal"><canvas id="c3d" aria-label="3D-логотип M1lash Studio"></canvas><div class="hi"><h1>${hi}, Денис</h1></div>
     <div class="big"><span class="n num">${num(ch.subs)}</span><span>подписчиков${sg}</span></div></section>`;
   const td=todoItems();
-  s+=`<section class="card reveal"><h2>Сегодня <span class="cnt">${td.length}</span></h2>${td.length?`<div class="todo">${td.map((t,i)=>`<button data-todo="${i}"><span class="ti ${t[1]}">${t[0]}</span><span><b>${t[2]}</b><small>${t[3]}</small></span><span class="go">›</span></button>`).join("")}</div>`:`<div class="empty">Всё спокойно — новых дел нет ✨</div>`}</section>`;
+  s+=`<section class="card reveal"><h2>Сегодня <span class="cnt">${td.length}</span></h2>${td.length?`<div class="todo">${td.map((t,i)=>`<button data-todo="${i}"><span class="ti ${t[1]}">${(window.M1ICON||{})[t[0]]||t[0]}</span><span><b>${t[2]}</b><small>${t[3]}</small></span><span class="go">›</span></button>`).join("")}</div>`:`<div class="empty">Всё спокойно — новых дел нет ✨</div>`}</section>`;
   s+=`<div class="kpis reveal">
     ${(L.span_h||0)>=20?`<div class="card kpi"><div class="l">Просмотры за 24 ч</div><div class="n num">+${num(L.views_24h)}</div><div class="d muted">${L.views_12h!=null?"+"+num(L.views_12h)+" за 12 ч · ":""}+${num(L.views_1h||0)} за час</div></div>`:`<div class="card kpi"><div class="l">Просмотры за ${dshort(lastDaily.day)}</div><div class="n num">${num(lastDaily.views)}</div><div class="d muted">${L.views_1h>0?"+"+num(L.views_1h)+" за последний час":"по аналитике YouTube"}</div></div>`}
     <div class="card kpi"><div class="l">Shorts за 7 дней</div><div class="n num">${short(wc.w)}</div><div class="d">${delta(pct(wc.w,wc.p),wc.p)}${wc.p!=null&&wc.p>=500?' к прошлой неделе':''}</div></div>
@@ -407,12 +408,12 @@ function ideas(){
 }
 function ideaCard(i){
   const st=i.status||"proposed", hasVerifiedUpload=!!i.youtube_id, next={proposed:[["approved","Одобрить","pri"],["dropped","Отклонить",""]],approved:[["in_work","В работу","pri"]],in_work:hasVerifiedUpload?[["done","Готово","pri"]]:[],done:[]}[st]||[];
-  return `<div class="idea"><div class="row">${i.kind==="experiment"?'<span class="chip c-info">🧪 эксперимент</span>':i.kind==="request"?'<span class="chip c-pink">🙋 заявка</span>':'<span class="chip c-ok">✓ проверено</span>'}${i.format?`<span class="chip">${esc(i.format)}</span>`:""}</div><b>${esc(i.title)}</b><p>${esc(i.why||"")}${i.hypothesis?"Гипотеза: "+esc(i.hypothesis):""}${i.metric?` · метрика: ${esc(i.metric)}`:""}</p>${next.length?`<div class="row">${next.map(([to,t,c])=>`<button class="btn sm ${c}" data-idea="${esc(i.id)}" data-to="${to}">${t}</button>`).join("")}</div>`:""}</div>`;
+  return `<div class="idea"><div class="row">${i.kind==="experiment"?'<span class="chip c-info">эксперимент</span>':i.kind==="request"?'<span class="chip c-pink">заявка</span>':'<span class="chip c-ok">✓ проверено</span>'}${i.format?`<span class="chip">${esc(i.format)}</span>`:""}</div><b>${esc(i.title)}</b><p>${esc(i.why||"")}${i.hypothesis?"Гипотеза: "+esc(i.hypothesis):""}${i.metric?` · метрика: ${esc(i.metric)}`:""}</p>${next.length?`<div class="row">${next.map(([to,t,c])=>`<button class="btn sm ${c}" data-idea="${esc(i.id)}" data-to="${to}">${t}</button>`).join("")}</div>`:""}</div>`;
 }
 function fans(){
   const C=D.comments||[];
   let s=head("Сообщество","Зрители","Комментарии канала: заявки на ролики, обращения к тебе, самые залайканные и интересные. Обновляется каждый час.");
-  const segs=[["all","Все"],["request","🙋 Заявки"],["to_me","💬 Тебе"],["top","🔥 Топ"],["interesting","✨ Интересные"]];
+  const segs=[["all","Все"],["request","Заявки"],["to_me","Тебе"],["top","Топ"],["interesting","Интересные"]];
   s+=`<div class="seg reveal">${segs.map(([k,t])=>`<button data-fseg="${k}" aria-pressed="${fSeg===k}">${t}<span class="c">${cflags(k).length}</span></button>`).join("")}</div>`;
   if(!C.length) return s+`<div class="empty reveal">${(D.comments_status||"").includes("403")?"YouTube пока не даёт читать комментарии: нужно один раз переавторизовать ключ (задача для GPT: tasks/gpt_reauth_comments.md). После этого заявки появятся здесь сами.":"Комментарии появятся после ближайшего ежечасного сбора."}</div>`;
   const byId=Object.fromEntries(D.videos.map(v=>[v.id,v]));
@@ -799,6 +800,8 @@ async function load(quiet){
 }
 load();
 </script>
+<script src="agents.js?v=20261106"></script>
+<script src="depth3d.js?v=20261106"></script>
 <script src="auto_refresh.js"></script>
 <script src="drive_connect.js"></script>
 </body>

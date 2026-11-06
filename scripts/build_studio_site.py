@@ -82,6 +82,29 @@ def build_review_queue(queue, receipts, manifests):
     return result
 
 
+
+def studio_agents(root):
+    """Agents of the studio (.claude/agents/m1lash-*.md) + chat messages agents/inbox|outbox/*.json for the site."""
+    import re as _re
+    agents = []
+    for f in sorted((root / ".claude" / "agents").glob("m1lash-*.md")):
+        t = f.read_text(encoding="utf-8")
+        m = _re.search(r"^---\n(.*?)\n---", t, _re.S)
+        meta = dict(_re.findall(r"^(\w+):\s*(.+)$", m.group(1), _re.M)) if m else {}
+        agents.append({"id": meta.get("name", f.stem), "description": meta.get("description", "")})
+    chat = []
+    for box in ("inbox", "outbox"):
+        for f in sorted((root / "agents" / box).glob("*.json"))[-80:]:
+            try:
+                m = json.loads(f.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            m["box"] = box
+            chat.append(m)
+    chat.sort(key=lambda m: m.get("t", ""))
+    return {"agents": agents, "chat": chat[-80:]}
+
+
 def main():
     latest = load("reports/youtube/latest.json", {}) or {}
     queue = (load("publishing/queue.json", {}) or {}).get("items", [])
@@ -367,6 +390,7 @@ def main():
         "direct_movie_status": load("publishing/direct_movie_status.json", {"status": "not_started"}),
         "drive_auth": load("publishing/drive_auth_status.json", {"status": "not_connected", "connected": False}),
         "scene_candidates": load("publishing/scene_candidates.json", {"items": {}}),
+        "studio_agents": studio_agents(ROOT),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
