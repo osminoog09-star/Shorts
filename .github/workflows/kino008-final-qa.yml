@@ -1,0 +1,64 @@
+name: KINO008 · FINAL owner-private QA without YouTube upload
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/kino008-final-qa.yml']
+permissions:
+  contents: write
+concurrency:
+  group: kino008-final-qa-once
+  cancel-in-progress: false
+jobs:
+  exact_V2_plus_Denis_voice_outro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Install ffmpeg + Pillow + numpy for owner-approved outro sound verify
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core >/dev/null
+          python -m pip install -q "requests>=2.32,<3" "Pillow>=10,<12" "numpy>=1.26,<3"
+          python -m py_compile scripts/qa/kino008_final_private_qa.py
+      - name: Fetch original owner-approved Denis v7 from Drive and validate SHA256
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: |
+          set -euo pipefail
+          python scripts/fetch_outro.py
+          python scripts/fetch_outro.py --verify-only
+      - name: Exact SHA V2 plus Qwen Denis 2 WAVs, FINAL video assemble, official check.py and look.py
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: python scripts/qa/kino008_final_private_qa.py
+      - name: Commit only private Drive IDs and exact SHA, NEVER original MP4 or voice
+        if: always()
+        run: |
+          set -euo pipefail
+          f=reports/research/2026-11-06_KINO_008_FINAL_V1_PRIVATE_QA.json
+          if test -s "$f"; then
+            cp "$f" "$RUNNER_TEMP/kino008_final_qa.json"
+            git config user.name 'kino008-final-qa[bot]'
+            git config user.email 'kino008-final-qa@users.noreply.github.com'
+            for n in 1 2 3; do
+              git fetch -q origin main
+              git reset --hard -q origin/main
+              cp "$RUNNER_TEMP/kino008_final_qa.json" "$f"
+              git add "$f"
+              git diff --cached --quiet && exit 0
+              git commit -qm 'qa(kino008): record actual final check and private Drive media IDs'
+              if git push -q origin HEAD:main; then exit 0; fi
+              sleep 6
+            done
+            exit 1
+          fi
