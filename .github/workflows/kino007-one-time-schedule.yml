@@ -1,0 +1,45 @@
+name: M1lash Batman kino_007 · owner-approved schedule once
+run-name: "KINO007 V9c schedule 2026-11-06 10:00 Europe/Tallinn; NEVER reupload"
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/kino007-one-time-schedule.yml"
+permissions:
+  contents: write
+concurrency:
+  group: kino007-v9c-release-schedule-once
+  cancel-in-progress: false
+jobs:
+  schedule_verified_private_video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install approved YouTube HTTP dependency
+        run: python -m pip install 'requests>=2.32,<3'
+      - name: Guard V9c, owner OK, existing private ID; schedule and verify via YouTube GET
+        env:
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python scripts/qa/kino007_schedule_once.py
+      - name: Preserve receipt for manual no-retry recovery
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kino007-v9c-schedule-receipt-${{ github.run_id }}
+          path: publishing/receipts/kino_007.json
+          retention-days: 30
+          if-no-files-found: ignore
