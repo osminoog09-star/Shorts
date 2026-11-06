@@ -52,12 +52,30 @@ def log(msg):
 GIT_ENV = {**os.environ, "GIT_TERMINAL_PROMPT": "0", "GCM_INTERACTIVE": "never"}  # фоновый git не ждёт ввода пароля
 
 
+def run_tree(cmd, timeout, **kw):
+    """subprocess с таймаутом, который на Windows убивает и дочерние процессы (git-remote-https, node) — иначе зависает навсегда."""
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8", errors="replace", **kw)
+    try:
+        out, err = p.communicate(timeout=timeout)
+        return subprocess.CompletedProcess(cmd, p.returncode, out, err)
+    except subprocess.TimeoutExpired:
+        if os.name == "nt":
+            subprocess.run(["taskkill", "/F", "/T", "/PID", str(p.pid)], capture_output=True)
+        else:
+            p.kill()
+        p.communicate()
+        raise
+
+
 def git(*args, check=True):
     try:
-        return subprocess.run(["git", *args], cwd=REPO, capture_output=True, text=True, check=check, env=GIT_ENV, timeout=180)
+        r = run_tree(["git", "-c", "credential.interactive=never", *args], 180, cwd=REPO, env=GIT_ENV)
     except subprocess.TimeoutExpired:
         log(f"git {args[0]}: завис дольше 3 мин — прерван")
         return subprocess.CompletedProcess(args, 1, "", "timeout")
+    if check and r.returncode:
+        raise subprocess.CalledProcessError(r.returncode, r.args, r.stdout, r.stderr)
+    return r
 
 
 def now():
@@ -95,7 +113,7 @@ def settings():
     if "claude_daily_cap" in st and "M1_CLAUDE_DAILY_CAP" not in os.environ:
         CLAUDE_DAILY_CAP = int(st["claude_daily_cap"])
     return st
-HEAVY = {"m1lash-animator", "m1lash-editor", "m1lash-qa"}
+HEAVY = {"m1lash-studio-director", "m1lash-animator", "m1lash-editor", "m1lash-qa"}  # директор = Claude: локальная модель не ведёт оркестрацию (06.11: Gemma отвечала «готов» и ничего не делала)
 BUDGET = REPO / "agents" / ".budget.json"
 
 
@@ -158,8 +176,7 @@ def ask_agent(agent, text, timeout, want=""):
         spend_claude()
     log(f"   {agent} → {'локальная ' + local_model() if tier == 'local' else 'Claude (осталось ' + str(claude_budget_left()) + ' на сегодня)'}")
     try:
-        r = subprocess.run(cmd + ["--", GUARD + text], cwd=REPO, env=env,
-                           capture_output=True, text=True, timeout=timeout, encoding="utf-8")
+        r = run_tree(cmd + ["--", GUARD + text], timeout, cwd=REPO, env=env)
     except subprocess.TimeoutExpired:
         return None, f"агент не уложился в {timeout // 60} мин — задача продолжится в следующем запуске"
     out = (r.stdout or "").strip()
@@ -238,13 +255,13 @@ def heartbeat(force=False):
     content = base64.b64encode((json.dumps(body, ensure_ascii=False, indent=1) + "\n").encode()).decode()
     repo = "osminoog09-star/Shorts"
     sha = subprocess.run([gh, "api", f"repos/{repo}/contents/status.json?ref=pc-status", "--jq", ".sha"],
-                         capture_output=True, text=True).stdout.strip()
+                         capture_output=True, text=True, timeout=30).stdout.strip()
     if not sha:  # первая отправка: создать ветку pc-status от main
-        base = subprocess.run([gh, "api", f"repos/{repo}/git/ref/heads/main", "--jq", ".object.sha"], capture_output=True, text=True).stdout.strip()
-        subprocess.run([gh, "api", "-X", "POST", f"repos/{repo}/git/refs", "-f", "ref=refs/heads/pc-status", "-f", f"sha={base}"], capture_output=True)
+        base = subprocess.run([gh, "api", f"repos/{repo}/git/ref/heads/main", "--jq", ".object.sha"], capture_output=True, text=True, timeout=30).stdout.strip()
+        subprocess.run([gh, "api", "-X", "POST", f"repos/{repo}/git/refs", "-f", "ref=refs/heads/pc-status", "-f", f"sha={base}"], capture_output=True, timeout=30)
     args = [gh, "api", "-X", "PUT", f"repos/{repo}/contents/status.json", "-f", "message=pc: heartbeat",
             "-f", f"content={content}", "-f", "branch=pc-status"] + (["-f", f"sha={sha}"] if sha else [])
-    r = subprocess.run(args, capture_output=True, text=True)
+    r = subprocess.run(args, capture_output=True, text=True, timeout=30)
     if r.returncode:
         log("heartbeat не отправлен: " + (r.stderr or "")[-200:])
 
