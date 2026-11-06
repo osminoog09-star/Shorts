@@ -1,0 +1,15 @@
+{
+  "status": "private_body_rendered_qa_pending",
+  "created_at": "2026-11-06T02:36:10Z",
+  "owner_source_sha256": "a784b456047834339c4cc908d638f03d3b032917ca6b51aa948cf59312e656e1",
+  "duration_s": 32.766341,
+  "sha256": "1b57063ee69df5f57662478b73a494b7a0cef6b2f86b885fe0d512066b6d0def",
+  "size_bytes": 23932719,
+  "private_body_drive_id": "1uhX70_jxQkj-3L7IxKWkd9YaG30AfR8n",
+  "private_contact_drive_id": "1FtIc4xrEbWFGbSgOCrWjEIdKIGsFdep7",
+  "full_decode_ok": true,
+  "manual_contact_review": "GPT eyes 16/16 inspected, two black source shots replaced, scene faces/tower/fire/aftermath visible, dark night frames natural",
+  "status_detail": "GitHub runner 42151158335 rendered MP4 successfully, post-commit failed due to workflow variable rename. Report restored from log + independent connector ffprobe/SHA/full decode.",
+  "youtube_id": null,
+  "youtube_upload": false
+}
