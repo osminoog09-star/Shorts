@@ -20,7 +20,8 @@ if (!renderer || !renderer.getContext()) {
 }
 
 function start() {
-  const DPR = Math.min(devicePixelRatio || 1, innerWidth < 700 ? 1.5 : 1.25);
+  let DPR = Math.min(devicePixelRatio || 1, innerWidth < 700 ? 1.25 : 1.25);
+  const LOW = innerWidth < 700 || (navigator.hardwareConcurrency || 8) <= 4;
   renderer.setPixelRatio(DPR);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.1;
@@ -130,15 +131,15 @@ function start() {
         float i=edge*(.25+s*1.4)*(.4+heat*1.4)*(.45+dopp);
         gl_FragColor=vec4(hot*i*1.6,i);}`
   }));
-  disk.rotation.x = -1.32; disk.rotation.y = .18; hole.add(disk);
+  disk.rotation.x = -1.18; disk.rotation.y = .18; hole.add(disk);
   // линзированная «задняя» часть диска: тонкая дуга над горизонтом, а не толстое кольцо-«глаз»
   const haloMat = disk.material.clone(); haloMat.uniforms = { uT: U.uT };
-  haloMat.fragmentShader = haloMat.fragmentShader.replace('gl_FragColor=vec4(hot*i*1.6,i);', 'float arc=smoothstep(-.2,.9,vQ.y/length(vQ));gl_FragColor=vec4(hot*i*.9*arc,i*.5*arc);');
+  haloMat.fragmentShader = haloMat.fragmentShader.replace('gl_FragColor=vec4(hot*i*1.6,i);', 'float arc=smoothstep(.15,.95,vQ.y/length(vQ));gl_FragColor=vec4(hot*i*.9*arc,i*.5*arc);');
   const halo = new THREE.Mesh(new THREE.RingGeometry(R0 * 1.25, R0 * 2.0, 160, 1), haloMat);
   halo.rotation.x = .12; hole.add(halo);
   const horizon = new THREE.Mesh(new THREE.SphereGeometry(R0, 64, 48), new THREE.MeshBasicMaterial({ color: 0x000000 }));
   hole.add(horizon);
-  const photon = new THREE.Mesh(new THREE.RingGeometry(R0 * 1.02, R0 * 1.12, 128), new THREE.MeshBasicMaterial({ color: 0xffd9b0, transparent: true, opacity: .28, blending: THREE.AdditiveBlending, depthWrite: false }));
+  const photon = new THREE.Mesh(new THREE.RingGeometry(R0 * 1.02, R0 * 1.12, 128), new THREE.MeshBasicMaterial({ color: 0xffd9b0, transparent: true, opacity: .1, blending: THREE.AdditiveBlending, depthWrite: false }));
   hole.add(photon);
 
   // ---------- кометы ----------
@@ -168,12 +169,12 @@ function start() {
     vertexShader: `varying vec2 vU;void main(){vU=uv;gl_Position=vec4(position.xy,0.,1.);}`,
     fragmentShader: `uniform sampler2D tD;uniform vec2 uH;uniform float uR;uniform float uRh;uniform float uAsp;uniform vec2 uRes;varying vec2 vU;
       void main(){vec2 d=vU-uH;d.x*=uAsp;float r=length(d);
-        float k=min(uR*uR/max(r*r,1e-4)*.9,uR*.8);vec2 off=normalize(d+1e-6)*k;off.x/=uAsp;
+        float k=min(uR*uR/max(r*r,1e-4)*.35,uR*.4);vec2 off=normalize(d+1e-6)*k;off.x/=uAsp;
         vec2 uv=vU-off*step(uR*.98,r);
         vec3 c=texture2D(tD,uv).rgb;
         vec3 g=vec3(0.);vec2 px=1./uRes;
-        for(int i=-2;i<=2;i++)for(int j=-2;j<=2;j++){vec3 s=texture2D(tD,uv+vec2(i,j)*px*6.).rgb;g+=max(s-.7,0.);}
-        c+=g/25.*1.3;
+        for(int i=-1;i<=1;i++)for(int j=-1;j<=1;j++){vec3 s=texture2D(tD,uv+vec2(i,j)*px*9.).rgb;g+=max(s-.7,0.);}
+        c+=g/9.*1.2;
         c*=smoothstep(uRh*.92,uRh*1.08,r);
         float vig=smoothstep(1.25,.35,length((vU-.5)*vec2(uAsp,1.)));c*=mix(.55,1.,vig);
         gl_FragColor=vec4(c,1.);}`
@@ -187,7 +188,7 @@ function start() {
     camera.aspect = w / h; camera.fov = w < h ? 70 : 55; camera.updateProjectionMatrix();
     rt.setSize(w * DPR, h * DPR); post.material.uniforms.uAsp.value = w / h; post.material.uniforms.uRes.value.set(w * DPR, h * DPR);
     const mob = w < 700;
-    hole.position.set(mob ? 14 : -34, mob ? 38 : 16, -60); gas.position.set(mob ? 10 : 30, mob ? -22 : 2, -30); ice.position.set(mob ? -10 : -27, mob ? -30 : -15, -12);
+    hole.position.set(mob ? 14 : -40, mob ? 38 : 30, -60); gas.position.set(mob ? 10 : 30, mob ? -22 : 2, -30); ice.position.set(mob ? -10 : -27, mob ? -30 : -15, -12);
   }
   addEventListener('resize', size); size();
   let tx = 0, ty = 0, px = 0, py = 0;
@@ -196,9 +197,13 @@ function start() {
   let scrollY0 = 0; addEventListener('scroll', () => { scrollY0 = scrollY; }, { passive: true });
 
   // ---------- цикл ----------
-  const clock = new THREE.Clock(); let raf = 0, nextComet = 1.5;
+  const clock = new THREE.Clock(); let raf = 0, nextComet = 1.5, slow = 0, last = performance.now();
   const hv = new THREE.Vector3();
-  function frame() {
+  function frame(now) {
+    raf = requestAnimationFrame(frame);
+    // 30 кадров/с на слабых устройствах: космос медленный, разницы не видно, батарея целее
+    const el = now - last; if (LOW && el < 30) return; last = now;
+    if (el > (LOW ? 45 : 26) && el < 200) { if (++slow > 40 && DPR > .7) { DPR = Math.max(.7, DPR - .2); renderer.setPixelRatio(DPR); size(); slow = 0; } } else { slow = Math.max(0, slow - 1); }
     const dt = Math.min(clock.getDelta(), .05), t = clock.elapsedTime * (RM ? .05 : 1);
     U.uT.value = t;
     px += (tx - px) * .035; py += (ty - py) * .035;
@@ -222,9 +227,8 @@ function start() {
     post.material.uniforms.uRh.value = Math.abs(he.x - hv.x) * .5 * (innerWidth / innerHeight);
     renderer.setRenderTarget(rt); renderer.render(scene, camera);
     renderer.setRenderTarget(null); renderer.render(postScene, postCam);
-    raf = requestAnimationFrame(frame);
   }
-  document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(raf); else { clock.getDelta(); raf = requestAnimationFrame(frame); } });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(raf); else { clock.getDelta(); last = performance.now(); raf = requestAnimationFrame(frame); } });
   window.__space3d = { renderer, scene, camera };
   raf = requestAnimationFrame(frame);
 }

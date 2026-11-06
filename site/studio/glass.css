@@ -93,7 +93,7 @@ button,.btn,.card[data-go],.todo button,.ag{transition:transform .18s cubic-bezi
 @media (hover:hover){.todo button:hover,.ag:hover{transform:translateY(-2px)}.ag:hover{box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 30px 60px -28px var(--c),0 10px 22px -12px rgba(0,0,0,.7)!important}}
 #view>*{animation:materialize .55s cubic-bezier(.16,1,.3,1) backwards}
 #view>*:nth-child(2){animation-delay:.04s}#view>*:nth-child(3){animation-delay:.08s}#view>*:nth-child(4){animation-delay:.12s}#view>*:nth-child(n+5){animation-delay:.16s}
-@keyframes materialize{from{opacity:0;transform:translateY(10px) scale(.985);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes materialize{from{opacity:0;transform:translateY(10px)}}
 .top{-webkit-mask-image:none}
 .top::after{content:"";position:absolute;left:0;right:0;top:100%;height:24px;pointer-events:none;background:linear-gradient(rgba(5,4,13,.35),rgba(5,4,13,0))}
 .chip.on,.ag .st.on{background:rgba(94,230,160,.12)}
@@ -129,3 +129,21 @@ button,.btn,.card[data-go],.todo button,.ag{transition:transform .18s cubic-bezi
 .btn{box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 -1px 0 rgba(0,0,0,.35) inset,0 6px 14px -8px rgba(0,0,0,.8)}
 .btn:active{box-shadow:0 1px 3px rgba(0,0,0,.6) inset}
 @media (prefers-reduced-motion:reduce){.d3,.logo3,#toptabs,.bnav{transform:none!important}.d3.d3-in{animation:fade .2s both}.ag .orb .ring{animation:none}}
+
+/* ===== v5 прозрачное стекло + оптимизация (06.11, по просьбе Дениса: «туман убери») =====
+   Размытие только у верхних панелей и слабое (4px), у вложенных элементов — никакого
+   (вложенный backdrop-filter = самый дорогой эффект и даёт «молоко»). Читаемость — тенью текста. */
+:root,:root[data-x]{--glass:blur(4px) saturate(1.15);--panel:rgba(255,255,255,.035);--panel2:rgba(255,255,255,.03)}
+.card,.idea{background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.012) 55%,rgba(8,6,20,.10))!important}
+:is(.card,.idea,.vrow,.cm) :is(.card,.idea,.vrow,.cm,.chip,.btn,.ib,.av,.th,.track),.chip,.btn,.ib,.av,.th,.track{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.card .idea,.card .vrow,.card .cm,.todo button{background:rgba(255,255,255,.035)!important}
+.chip{background:rgba(255,255,255,.07)!important}.btn{background:rgba(255,255,255,.08)}
+.d3::before{opacity:calc(var(--lit) * .7);mix-blend-mode:normal;background:radial-gradient(380px circle at var(--mx,30%) var(--my,0%),rgba(255,255,255,.09),transparent 55%)}
+.d3::after,.card::after,.idea::after{mix-blend-mode:normal!important;background:linear-gradient(calc(115deg + var(--gx) * 40deg),rgba(255,255,255,.07),transparent 30%)!important}
+.d3 :is(h2,h4,.big,.n,.num){text-shadow:0 2px 12px rgba(0,0,0,.65)}
+.card,.idea,.ag,.vrow,.cm{text-shadow:0 1px 2px rgba(0,0,0,.55)}
+.side,.bnav,.top .t,#toptabs{-webkit-backdrop-filter:blur(8px) saturate(1.2)!important;backdrop-filter:blur(8px) saturate(1.2)!important}
+.side{background:rgba(10,8,24,.28)!important}.bnav{background:rgba(10,8,24,.42)!important}
+/* вне экрана не считать раскладку и отрисовку длинных списков */
+.vrow,.cm,.wf{content-visibility:auto;contain-intrinsic-size:auto 96px}
+@media (prefers-reduced-transparency:reduce){.card,.idea{background:rgba(14,11,30,.92)!important}}
