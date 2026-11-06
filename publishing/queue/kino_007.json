@@ -27,9 +27,18 @@
     "default_language": "ru",
     "default_audio_language": "ru"
   },
-  "publish_at": null,
+  "publish_at": "2026-11-06T10:00:00+02:00",
   "provenance": {
     "upload_method": "encrypted_ephemeral_handoff_sha256_once",
-    "owner_review": "PRIVATE_ONLY_NOT_APPROVED_FOR_RELEASE"
+    "owner_review": "PRIVATE_ONLY_NOT_APPROVED_FOR_RELEASE",
+    "owner_release_approval": "Ок все",
+    "owner_release_approval_date": "2026-11-06",
+    "schedule_mode": "next_free_movie_slot_10am_Europe_Tallinn"
+  },
+  "schedule_request": {
+    "id": "owner-ok-20261106-kino_007-1000",
+    "requested_at": "2026-11-06T00:51:56Z",
+    "publish_at": "2026-11-06T10:00:00+02:00",
+    "origin": "owner_approval_chat_20261106"
   }
 }
