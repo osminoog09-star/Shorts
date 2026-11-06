@@ -27,10 +27,12 @@ check("CUDA для whisper", cuda)
 def ollama():
     tags = json.load(urllib.request.urlopen("http://127.0.0.1:11434/api/tags", timeout=5))
     names = [m["name"] for m in tags.get("models", [])]
-    if not any(n.startswith("gemma4") for n in names): raise RuntimeError(f"нет gemma4, есть: {names}")
+    f = Path(__file__).resolve().parents[2] / "agents" / "local_model.txt"
+    want = (f.read_text(encoding="utf-8").strip() if f.exists() else "") or "gemma4"
+    if not any(n.startswith(want) for n in names): raise RuntimeError(f"нет {want}, есть: {names}")
     return ", ".join(names)
-check("Ollama + Gemma 4", ollama)
+check("Ollama + локальная модель", ollama)
 root = Path(os.environ.get("M1LASH_ROOT", r"C:\M1lash"))
-check("папки", lambda: all((root / d).is_dir() for d in ["Входящие", "Работа", "Готово"]) and str(root) or (_ for _ in ()).throw(RuntimeError("нет папок")))
+check("папки", lambda: all((root / d).is_dir() for d in ["Входящие", "Работа", "Готово", "Архив", "Игры"]) and str(root) or (_ for _ in ()).throw(RuntimeError("нет папок")))
 print("\nИТОГ:", "ВСЁ ГОТОВО" if ok else "есть проблемы — см. FAIL выше")
 sys.exit(0 if ok else 1)

@@ -1,4 +1,4 @@
-# M1lash Studio — установка конвейера на ПК Дениса (Windows 10/11, NVIDIA 12 ГБ, 32 ГБ RAM).
+﻿# M1lash Studio — установка конвейера на ПК Дениса (Windows 10/11, NVIDIA 12 ГБ, 32 ГБ RAM).
 # Запуск: PowerShell от администратора →  Set-ExecutionPolicy -Scope Process Bypass; .\setup.ps1
 # Повторный запуск безопасен: уже установленное пропускается.
 $ErrorActionPreference = "Stop"
@@ -19,7 +19,9 @@ Step "Папки"
 foreach ($d in "Входящие","Работа","Готово","Архив","Игры") { New-Item -ItemType Directory -Force -Path "$Root\$d" | Out-Null }
 
 Step "Репозиторий"
-if (-not (Test-Path "$Root\Shorts\.git")) { gh auth status *> $null; if ($LASTEXITCODE -ne 0) { gh auth login -w }; gh repo clone osminoog09-star/Shorts "$Root\Shorts" } else { git -C "$Root\Shorts" pull --rebase }
+gh auth status *> $null; if ($LASTEXITCODE -ne 0) { gh auth login -w -p https }
+gh auth setup-git
+if (-not (Test-Path "$Root\Shorts\.git")) { gh repo clone osminoog09-star/Shorts "$Root\Shorts" } else { git -C "$Root\Shorts" pull --rebase }
 
 Step "Python-библиотеки (CUDA)"
 py -3.11 -m pip install --upgrade pip
