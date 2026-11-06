@@ -1,0 +1,53 @@
+name: KINO008 · owner Oppenheimer source audit (PRIVATE no upload)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/kino008-source-probe.yml']
+permissions:
+  contents: write
+concurrency:
+  group: kino008-source-one-time-private-audit
+  cancel-in-progress: false
+jobs:
+  probe_exact_owner_source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: FFmpeg, Whisper tiny and QA contact dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+          python -m pip install -q 'faster-whisper>=1.0,<2' 'Pillow>=10,<12'
+          python -m py_compile scripts/qa/kino008_source_probe.py
+      - name: Owner-private exact-size Oppenheimer excerpt scan
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: python scripts/qa/kino008_source_probe.py
+      - name: Save only text metadata and restricted root Drive image ID
+        if: always()
+        run: |
+          set -euo pipefail
+          f=reports/research/2026-11-06_KINO_008_OWNER_SOURCE_PROBE.json
+          if test -s "$f"; then
+            cp "$f" "$RUNNER_TEMP/source_probe.json"
+            git config user.name kino008-qa-bot
+            git config user.email kino008-qa-bot@users.noreply.github.com
+            for n in 1 2 3; do
+              git fetch -q origin main
+              git reset --hard -q origin/main
+              cp "$RUNNER_TEMP/source_probe.json" "$f"
+              git add "$f"
+              git diff --cached --quiet && exit 0
+              git commit -qm 'qa(kino008): report exact private source and restricted contact evidence'
+              if git push -q origin HEAD:main; then exit 0; fi
+              sleep 6
+            done
+            exit 1
+          fi
