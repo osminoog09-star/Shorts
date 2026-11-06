@@ -1,7 +1,7 @@
 {
   "status": "partial",
-  "updated_at": "2026-11-06T14:16:14.657357Z",
-  "last_attempt_at": "2026-11-06T14:16:14.657357Z",
+  "updated_at": "2026-11-06T23:08:16.669306Z",
+  "last_attempt_at": "2026-11-06T23:08:16.669306Z",
   "feeds_ok": 6,
   "feeds_failed": 1,
   "errors": [
@@ -12,6 +12,276 @@
   ],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "b19a52adc818672926",
+      "title": "OpenAI reportedly raises an additional $11 billion at a $1.25 trillion valuation",
+      "url": "https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-06T22:53:46Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "0d0fe76a488381231f",
+      "title": "Chainalysis says hackers stole credentials and tokens for all of its customers",
+      "url": "https://arstechnica.com/security/2026/11/chainalysis-says-hackers-stole-credentials-and-tokens-for-all-of-its-customers/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T20:56:41Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d96fde15d60ceefd6f",
+      "title": "Earth's churning mantle may have created the Great Unconformity",
+      "url": "https://arstechnica.com/science/2026/11/earths-churning-mantle-may-have-created-the-great-unconformity/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T20:24:20Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "43ea3ada9c080dbf3c",
+      "title": "Nvidia hardware worth $11.4M vanished between Oakland and Texas",
+      "url": "https://arstechnica.com/gadgets/2026/11/nvidia-hardware-worth-11-4m-vanished-between-oakland-and-texas/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T20:05:30Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "f8fe21ba7f368ed10c",
+      "title": "All the latest updates on AI data centers",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/902546/data-centers-ai-energy-power-grids-controversy",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-06T20:02:22Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "35b3d6631ca50318b3",
+      "title": "Developer ends lucrative screensaver deal with Roku because Fox bought it",
+      "url": "https://arstechnica.com/gadgets/2026/11/artist-pulls-popular-screensaver-from-roku-os-because-of-fox-acquisition/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T19:50:18Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1de05e7ba82bef3b0b",
+      "title": "FAA to finally ditch floppy disks in what it calls \"historic\" tech upgrade",
+      "url": "https://arstechnica.com/tech-policy/2026/11/faa-to-finally-ditch-floppy-disks-in-what-it-calls-historic-tech-upgrade/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T19:12:28Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "0bb49f96544d94ecd8",
+      "title": "How to predict the behavior of molecules from scant data",
+      "url": "https://news.mit.edu/2026/how-to-predict-molecule-behavior-with-scant-data-1106",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-06T19:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c262b9961ff71dc31a",
+      "title": "Hundreds of Artex AI hacking tools found publicly exposed to the web",
+      "url": "https://techcrunch.com/2026/11/06/hundreds-of-artex-ai-hacking-tools-found-publicly-exposed-to-the-web/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-06T18:44:38Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "2d23850120e57d6c5e",
+      "title": "Meta introduces Spaces, a new way to collaborate with your Muse agent",
+      "url": "https://techcrunch.com/2026/11/06/meta-introduces-spaces-a-new-way-to-collaborate-with-your-muse-agent/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-06T18:44:20Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7e8114761040ce5e40",
+      "title": "The folks behind John Wick are back with Karōshi trailer",
+      "url": "https://arstechnica.com/culture/2026/11/the-folks-behind-john-wick-are-back-with-karoshi-trailer/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T18:30:19Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "84a88c7c4fe909538b",
+      "title": "You know the launch market is tough when satellite companies start building rockets",
+      "url": "https://arstechnica.com/space/2026/11/ast-spacemobile-is-so-desperate-for-launch-theyre-building-their-own-rocket/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T18:20:47Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "9aeac73058ac351bd9",
+      "title": "Meta’s Muse AI can create custom ‘spaces’ for the version of the app you need right now",
+      "url": "https://www.theverge.com/tech/1028871/meta-muse-ai-spaces",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-06T18:10:10Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "98f2cdcbd9596f7ba5",
+      "title": "How a Blue Wave midterm might reshape the AI industry",
+      "url": "https://techcrunch.com/podcast/how-a-blue-wave-midterm-might-reshape-the-ai-industry/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-06T18:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "562d9908327b6d6fb5",
+      "title": "“Does Meta think we can’t read?” Meta abandons sketchy commercial terms update.",
+      "url": "https://arstechnica.com/tech-policy/2026/11/does-meta-think-we-cant-read-meta-abandons-sketchy-commercial-terms-update/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T17:43:02Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b7e06d2c4d9dada940",
+      "title": "After the midterms, is the AI industry in for a rough two years?",
+      "url": "https://techcrunch.com/video/after-the-midterms-is-the-ai-industry-in-for-a-rough-two-years/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-06T17:23:52Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ac91f8bd6c4b4df861",
+      "title": "Wisconsin reports measles death of a baby, first death in over 35 years",
+      "url": "https://arstechnica.com/health/2026/11/wisconsin-reports-measles-death-of-a-baby-first-death-in-over-35-years/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T17:06:32Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1b19bb4089beb1d524",
+      "title": "Video Friday: Room-Scale Cable-Driven Home Robot Tidies Up",
+      "url": "https://spectrum.ieee.org/video-friday-home-cable-robot",
+      "category": "robotics",
+      "source": "IEEE Spectrum Robotics",
+      "published_at": "2026-11-06T17:00:03Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "84e924c4ab2b73c17e",
+      "title": "AI is the new dating dealbreaker",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1028609/ai-dating-feelings-doomers-singularity",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-06T17:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "f659f2b84ee7c4315b",
+      "title": "Big Tech lost big in the 2026 election",
+      "url": "https://www.theverge.com/podcast/1028731/2026-midterms-tech-ai-vergecast",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-06T16:38:02Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "51872e89890c6332b9",
+      "title": "How Akai and Moog are embracing vibe-coded mods",
+      "url": "https://www.theverge.com/tech/1028720/vibe-coding-open-source-inmusic-akai",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-06T16:34:39Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "83b8b7ae95d54e1d19",
+      "title": "M30’s Sparkling Stars",
+      "url": "https://www.nasa.gov/image-article/m30s-sparkling-stars/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-06T16:23:41Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "9e40c95d4da9e2b44e",
+      "title": "Could potential AI clones of GTA VI force a quicker official port?",
+      "url": "https://arstechnica.com/gaming/2026/11/could-potential-ai-clones-of-gta-vi-force-a-quicker-official-port/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T16:19:12Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "291e476bb8671d5a13",
+      "title": "Ramp data shows AI spending stalling just as Anthropic nears its IPO",
+      "url": "https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-06T15:54:47Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e52dda216870c0abcb",
+      "title": "It's a weird time to buy a laptop, but the new MacBook Pro doesn't skimp on quality",
+      "url": "https://arstechnica.com/apple/2026/11/its-a-weird-time-to-buy-a-laptop-but-the-new-macbook-pro-doesnt-skimp-on-quality/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T15:28:07Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "400f973a2207ac851a",
+      "title": "Nvidia CEO Jensen Huang summoned by Congress over Chinese espionage concerns",
+      "url": "https://arstechnica.com/tech-policy/2026/11/nvidia-ceo-jensen-huang-summoned-by-congress-over-chinese-espionage-concerns/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T14:13:32Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d40f9466337f4802b1",
+      "title": "After blocking Muse, Amazon now lets users text Alexa to help them shop",
+      "url": "https://techcrunch.com/2026/11/06/after-blocking-muse-amazon-now-lets-users-text-alexa-to-help-them-shop/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-06T14:10:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "58fc9a0b8ae1b3286a",
+      "title": "Amazon will let you text Alexa your shopping list",
+      "url": "https://www.theverge.com/tech/1028587/amazon-alexa-shopping-ai-text-orders",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-06T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "09ea3fb92203e6a854",
+      "title": "No more Cybertrucks; Musk moves on from the angular metallic flop",
+      "url": "https://arstechnica.com/cars/2026/11/the-cybertruck-is-dead-makes-way-for-cybercab-says-elon-musk/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T13:50:20Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "3717024ac63681fd36",
+      "title": "Rocket Report: Artemis II literally tore through the atmosphere; New Glenn delay",
+      "url": "https://arstechnica.com/space/2026/11/rocket-report-new-glenn-wont-fly-this-year-china-launches-mini-falcon-heavy/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T13:33:20Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "76d77f901fa0710485",
       "title": "Underdog shows off a 32MB speech model in new demo",
@@ -28,6 +298,15 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-11-06T13:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "980a934d66b53cbb48",
+      "title": "Protesters break into Microsoft data center site in Amsterdam",
+      "url": "https://www.theverge.com/news/1028549/protesters-microsoft-data-center-site-amsterdam",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-06T11:55:19Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -451,285 +730,6 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-04T22:47:51Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7aa63af445bdd3ac98",
-      "title": "AI PACs spent millions trying to shape Congress — here’s how they fared",
-      "url": "https://techcrunch.com/2026/11/04/ai-pacs-spent-millions-trying-to-shape-congress-heres-how-they-fared/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-04T22:45:09Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b531b56f4ce7687d64",
-      "title": "Qualcomm is betting big on data centers as smartphone sales sink",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1026867/qualcomm-earnings-data-centers",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-04T22:42:15Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "cea25fc8180f8064db",
-      "title": "Hackers exploited iOS and Android flaws to infect phones",
-      "url": "https://arstechnica.com/security/2026/11/hackers-exploited-ios-and-android-flaws-to-infect-phones/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-04T22:26:49Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c1e93e47438d89a079",
-      "title": "Nothing CEO says company’s mysterious AI-first device is dropping next month",
-      "url": "https://techcrunch.com/2026/11/04/nothing-ceo-says-companys-mysterious-ai-first-device-is-dropping-next-month/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-04T22:13:16Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4797f2b4d7a4ccf59b",
-      "title": "Uranium cubes reveal why the German nuclear project failed",
-      "url": "https://arstechnica.com/science/2026/11/uranium-cubes-reveal-why-the-german-nuclear-project-failed/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-04T21:56:29Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b314cbc6665b0c27cf",
-      "title": "Almost no one uses AI agents to book their Uber, company says",
-      "url": "https://techcrunch.com/2026/11/04/almost-no-one-uses-ai-agents-to-book-their-uber-company-says/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-04T21:56:01Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "576b3975e72bb4e8a5",
-      "title": "17 better ways Elon Musk could have wasted $446 million",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1026878/not-even-good-at-being-rich",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-04T21:45:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3a44cd769451fbe44a",
-      "title": "VMware releases vSphere Express for virtualization on up to 128 cores",
-      "url": "https://arstechnica.com/information-technology/2026/11/vmware-releases-vsphere-express-for-virtualization-on-up-to-128-cores/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-04T21:38:49Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "a8da02734f0a78ddd2",
-      "title": "AMD's record quarter: Data center business doubles, while gaming craters",
-      "url": "https://arstechnica.com/gadgets/2026/11/amds-record-quarter-data-center-business-doubles-while-gaming-craters/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-04T21:29:46Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "bd044bc53c19f14dcb",
-      "title": "OpenAI is already trying to shape the 2028 election",
-      "url": "https://techcrunch.com/2026/11/04/openai-is-already-trying-to-shape-the-2028-election/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-04T21:25:44Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "8d6f6c8bc49c9de3c6",
-      "title": "Meta acquires AI coding startup Conductor",
-      "url": "https://techcrunch.com/2026/11/04/meta-acquires-ai-coding-startup-conductor/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-04T21:10:56Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b3955db4dcd9334123",
-      "title": "NASA Shares Plans to Accelerate Artemis, Return to Moon",
-      "url": "https://www.nasa.gov/missions/artemis/nasa-shares-plans-to-accelerate-artemis-return-to-moon/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-04T21:04:10Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f3b52b53bfb0f560bf",
-      "title": "Big Tech claims voters’ AI backlash is “anti-Trump” not “anti-tech”",
-      "url": "https://arstechnica.com/tech-policy/2026/11/big-tech-claims-voters-ai-backlash-is-anti-trump-not-anti-tech/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-04T20:55:50Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "326a856a9314040a74",
-      "title": "After Texas' blue wave, what happens to Elon Musk and SpaceX?",
-      "url": "https://arstechnica.com/space/2026/11/elon-musk-moved-spacex-to-red-texas-now-its-blue-what-happens-next/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-04T20:36:05Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "97689e4470033f7c3c",
-      "title": "Gemini for Home now plugs into AT&T’s smart security system",
-      "url": "https://www.theverge.com/tech/1026787/att-gemini-for-home-connected-life-security-system",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-04T20:23:24Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5112f3d519822a572a",
-      "title": "Open source AI is booming. Hugging Face explains who profits.",
-      "url": "https://techcrunch.com/video/open-source-ai-is-booming-hugging-face-explains-who-profits/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-04T19:30:04Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e582a56b9edebbe87a",
-      "title": "DuckDuckGo pitches itself to schools amid backlash over Google’s AI policy",
-      "url": "https://techcrunch.com/2026/11/04/duckduckgo-pitches-itself-to-schools-amid-backlash-over-googles-ai-policy/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-04T19:29:52Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "86a508081fb52ca5c5",
-      "title": "Ted Cruz aims to stack FCC with Republicans before Democrats take Senate control",
-      "url": "https://arstechnica.com/tech-policy/2026/11/ted-cruz-aims-to-put-another-republican-on-fcc-in-senates-lame-duck-session/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-04T19:08:23Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "de50df3169c988270b",
-      "title": "Are Drone Ports the Next Annoying Tech Neighbor?",
-      "url": "https://spectrum.ieee.org/drone-delivery-noise",
-      "category": "robotics",
-      "source": "IEEE Spectrum Robotics",
-      "published_at": "2026-11-04T18:47:21Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "efff75d2c4af86e8ee",
-      "title": "Building on open source AI? Hugging Face’s policy chief on the costs, risks, and trade-offs",
-      "url": "https://techcrunch.com/podcast/building-on-open-source-ai-hugging-faces-policy-chief-on-the-costs-risks-and-trade-offs/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-04T18:44:57Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "56101ee27feec7039f",
-      "title": "Nothing teases a screen-free AI device ahead of launch next month",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1026586/nothing-screen-free-ai-device-carl-pei",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-04T18:26:07Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "068f6f4a220e4fa7cc",
-      "title": "People say they want small smartphones—the Enough Phone will put that to the test",
-      "url": "https://arstechnica.com/gadgets/2026/11/people-say-they-want-small-smartphones-the-enough-phone-will-put-that-to-the-test/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-04T18:00:40Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ab404887a11508dc6c",
-      "title": "NASA Announces Ka-Band Satellite Relay Awards for Space Communications",
-      "url": "https://www.nasa.gov/news-release/nasa-announces-ka-band-satellite-relay-awards-for-space-communications/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-04T18:00:02Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f762962d4e70678a67",
-      "title": "My therapist thinks I should chuck the Amazon Bee Frontier out a window",
-      "url": "https://www.theverge.com/column/1026464/optimizer-amazon-bee-frontier-ambient-listening-wearables",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-04T18:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7e4f7adddfbaac34bb",
-      "title": "ChatGPT will now make you animated GIFs",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1026474/openai-chatgpt-animated-gifs-images-2-6",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-04T18:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ab7f6159295de7e7d1",
-      "title": "NASA Navigation Experiment Shows Promise for Planetary Landings",
-      "url": "https://www.nasa.gov/centers-and-facilities/armstrong/nasa-navigation-experiment-shows-promise-for-planetary-landings/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-04T16:52:43Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ef0e90236814fadb34",
-      "title": "I tried Apple’s Siri Recaps. They’re surprisingly useful — and a little unsettling",
-      "url": "https://techcrunch.com/2026/11/04/i-tried-apples-siri-recaps-theyre-surprisingly-useful-and-a-little-unsettling/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-04T16:51:35Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "dca8692856b1500998",
-      "title": "Google faces backlash for plan that would turn off Search for schools that restrict AI",
-      "url": "https://techcrunch.com/2026/11/04/google-faces-backlash-for-plan-that-would-turn-off-search-for-schools-that-restrict-ai/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-04T16:17:22Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c8e96499cc64f9630b",
-      "title": "NASA Space Grant Students Fuel Agency’s Inspiration Tour",
-      "url": "https://www.nasa.gov/learning-resources/nasa-space-grant-students-fuel-agencys-inspiration-tour/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-04T16:16:41Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ef01caaeb6037033e4",
-      "title": "Binance says hackers who stole billions in crypto spent months planning heist",
-      "url": "https://arstechnica.com/information-technology/2026/11/binance-says-hackers-who-stole-billions-in-crypto-spent-months-planning-heist/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-04T16:06:03Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0beed25ab06a25ff60",
-      "title": "Data centers lost the midterms",
-      "url": "https://www.theverge.com/policy/1026365/data-centers-midterms-results",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-04T16:05:39Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
