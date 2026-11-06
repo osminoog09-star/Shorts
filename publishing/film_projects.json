@@ -63,6 +63,17 @@
           "source": "reports/youtube/latest.json"
         }
       ]
+    },
+    {
+      "film": "Оппенгеймер (2023)",
+      "projects": [
+        {
+          "id": "kino_008",
+          "title": "Угадай фильм: испытание Тринити (рабочее, не публичный title)",
+          "blocker": "Private precise scene+Denis title voice+final check/look, then YouTube private upload without date",
+          "source": "tasks/NOW.md GPT/Codex kino_008"
+        }
+      ]
     }
   ]
 }
