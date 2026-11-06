@@ -449,6 +449,11 @@ FinalMP4 `deliverables/M1lash_Coffee_V8_Rewrite_PRIVATE.mp4` 41.1с/1080×1920/3
 
 # 04.11 · GPT · Чигур V22 — два настоящих six-still прогона, улучшено кадрирование, ART NO-GO
 
+## 06.11.2026 02:55 — Claude: сайт студии «всё в 3D» выложен (ок Дениса)
+- Сделано: WebGL-космос (`site/studio/space3d.js`, Three.js r170 в `vendor/`, фолбэк `space_bg.js`), стекло (`glass.css`), объём панелей/орбы агентов (`depth3d.js`), вкладка «Агенты» (`agents.js`: карточки, GitHub Actions, чат → `agents/inbox`), шрифты локально (`fonts.css`). `motion-pages.yml` копирует новые файлы и проверяет синтаксис; деплой 42139765644 SUCCESS, все QA-тесты студии PASS.
+- Урок: backdrop-filter на 3D-матрице (rotateX/Y) при DPR≥2 в Chromium ломается (размыт только кусок). Стекло наклоняем аффинно (skew), настоящий 3D — только WebGL, орбы, логотип.
+- Осталось (на ПК): запустить `python scripts/pc/agent_bridge.py` — отвечает в чат сайта через `claude -p --agent m1lash-*`. Живой сайт из песочницы не открывается (allowlist) — Денис проверяет сам.
+
 ## 05.11.2026 20:45 · Claude — проверка всех скилов
 - 113 скилов подключены Claude и GPT ссылками, `sync_skills.py --check` = 0 проблем, у всех валидный frontmatter. ElevenLabs-скилы перенесены в `skills/ext/elevenlabs-*`, `update-skills-from-changelog` удалён (чужой служебный).
 - Запущены вживую: ffmpeg-skill, assemble_with_outro, watch (setup+CLI), studio_learning preflight, huashu-motion doctor, hyperframes CLI, сборка сайта, youtube_direct — все OK. CI `skills-runtime-smoke` — SUCCESS.
