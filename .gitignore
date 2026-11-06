@@ -21,3 +21,4 @@ voice_private/
 # Cached public HuggingFace weights for voice CI (never push huge model binaries)
 .hf-public-models/
 agents/bridge.log
+agents/.budget.json

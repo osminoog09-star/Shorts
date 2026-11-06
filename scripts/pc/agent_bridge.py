@@ -13,19 +13,27 @@
 не трогать), PAUSED проекты не возобновлять, приватные WAV/фильмы не пушить.
 Мост сам НИЧЕГО не публикует — только передаёт текст.
 
-Запуск:  python scripts/pc/agent_bridge.py            (цикл, опрос раз в 60 с)
+Запуск:  python scripts/pc/agent_bridge.py            (чат раз в 60 с + циклы директора 08:30/13:30/19:30)
+         python scripts/pc/agent_bridge.py --cycle-now  (цикл директора сразу)
          python scripts/pc/agent_bridge.py --once     (один проход)
          python scripts/pc/agent_bridge.py --dry-run  (показать, что взял бы)
 Лог: agents/bridge.log (не коммитится).
 """
-import argparse, json, re, shutil, subprocess, sys, time
+import argparse, json, os, re, shutil, subprocess, sys, time, urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 INBOX, OUTBOX = REPO / "agents" / "inbox", REPO / "agents" / "outbox"
 LOG = REPO / "agents" / "bridge.log"
-AGENT_RE = re.compile(r"^m1lash-[a-z]+$")
+AGENT_RE = re.compile(r"^m1lash-[a-z-]+$")
+DIRECTOR = "m1lash-studio-director"
+# headless-запуск без вопросов о разрешениях, но только нужные инструменты (не --dangerously-skip-permissions)
+TOOLS = ["Read", "Write", "Edit", "Glob", "Grep", "Agent", "WebSearch", "WebFetch", "TodoWrite",
+         "Bash(git:*)", "Bash(gh:*)", "Bash(python:*)", "Bash(python3:*)", "Bash(node:*)", "Bash(npx:*)",
+         "Bash(ffmpeg:*)", "Bash(ffprobe:*)", "Bash(ls:*)", "Bash(mkdir:*)"]
+CYCLE_PROMPT = ("Плановый цикл директора студии. Выполни свой цикл целиком по инструкции агента: состояние → план → "
+                "делегирование субагентам → приёмка → отчёт Денису в agents/outbox → NOW/HANDOFF → push.")
 MAX_REPLY = 4000
 
 GUARD = ("Сообщение пришло от Дениса из чата сайта студии. Сначала AGENTS.md (приоритет) и tasks/NOW.md. "
@@ -56,24 +64,84 @@ def pending():
         except Exception as e:
             log(f"пропуск {f.name}: {e}")
             continue
-        if m.get("status") == "new" and m.get("from") == "denis":
+        if m.get("status") == "new" and m.get("from") in ("denis", DIRECTOR):
             yield f, m
 
 
-def ask_agent(agent, text, timeout):
+# ── Экономия подписки (Денис 06.11: Claude и Codex по 20 €/мес) ──────────────────────────────
+# По умолчанию ВСЁ идёт в локальную LLM на ПК через Ollama (Claude Code умеет работать с ней по
+# Anthropic-совместимому API Ollama: ANTHROPIC_BASE_URL=http://localhost:11434). Настоящий Claude —
+# только для тяжёлых агентов (код/графика/монтаж) или по эскалации "tier":"claude", и не больше
+# CLAUDE_DAILY_CAP запусков в сутки. Модель выбирает scripts/pc/local_llm_bench.py → agents/local_model.txt.
+OLLAMA = os.environ.get("M1_OLLAMA_URL", "http://localhost:11434")
+CLAUDE_DAILY_CAP = int(os.environ.get("M1_CLAUDE_DAILY_CAP", "4"))
+HEAVY = {"m1lash-animator", "m1lash-editor", "m1lash-qa"}
+BUDGET = REPO / "agents" / ".budget.json"
+
+
+def local_model():
+    f = REPO / "agents" / "local_model.txt"
+    return (f.read_text(encoding="utf-8").strip() if f.exists() else "") or os.environ.get("M1_LOCAL_MODEL", "gemma4:12b")
+
+
+def ollama_up():
+    try:
+        with urllib.request.urlopen(OLLAMA + "/api/tags", timeout=3) as r:
+            return r.status == 200
+    except Exception:
+        return False
+
+
+def claude_budget_left():
+    day = datetime.now().strftime("%Y-%m-%d")
+    try:
+        b = json.loads(BUDGET.read_text(encoding="utf-8"))
+    except Exception:
+        b = {}
+    return CLAUDE_DAILY_CAP - (b.get("used", 0) if b.get("day") == day else 0)
+
+
+def spend_claude():
+    day = datetime.now().strftime("%Y-%m-%d")
+    left = claude_budget_left()
+    BUDGET.write_text(json.dumps({"day": day, "used": CLAUDE_DAILY_CAP - left + 1}), encoding="utf-8")
+
+
+def pick_tier(agent, want=""):
+    """local | claude | None (нельзя: Ollama выключена и лимит Claude исчерпан)."""
+    heavy = want == "claude" or agent in HEAVY
+    if not heavy and ollama_up():
+        return "local"
+    if claude_budget_left() > 0:
+        return "claude"
+    return "local" if ollama_up() else None
+
+
+def ask_agent(agent, text, timeout, want=""):
     claude = shutil.which("claude")
     if not claude:
         return None, "claude CLI не найден в PATH (установи Claude Code на ПК)"
     if not AGENT_RE.match(agent) or not (REPO / ".claude" / "agents" / f"{agent}.md").exists():
         return None, f"неизвестный агент {agent}"
+    tier = pick_tier(agent, want)
+    if tier is None:
+        return None, f"Ollama не запущена, а дневной лимит Claude ({CLAUDE_DAILY_CAP}) исчерпан — задача ждёт"
+    env = dict(os.environ)
+    cmd = [claude, "-p", "--agent", agent, "--permission-mode", "acceptEdits", "--allowedTools", *TOOLS]
+    if tier == "local":
+        env.update(ANTHROPIC_BASE_URL=OLLAMA, ANTHROPIC_AUTH_TOKEN="ollama", ANTHROPIC_API_KEY="")
+        cmd += ["--model", local_model()]
+    else:
+        spend_claude()
+    log(f"   {agent} → {'локальная ' + local_model() if tier == 'local' else 'Claude (осталось ' + str(claude_budget_left()) + ' на сегодня)'}")
     try:
-        r = subprocess.run([claude, "-p", "--agent", agent, GUARD + text], cwd=REPO,
+        r = subprocess.run(cmd + ["--", GUARD + text], cwd=REPO, env=env,
                            capture_output=True, text=True, timeout=timeout, encoding="utf-8")
     except subprocess.TimeoutExpired:
         return None, f"агент не уложился в {timeout // 60} мин — задача продолжится в следующем запуске"
     out = (r.stdout or "").strip()
     if r.returncode != 0 or not out:
-        return None, f"агент завершился с кодом {r.returncode}: {(r.stderr or '').strip()[-300:]}"
+        return None, f"агент ({tier}) завершился с кодом {r.returncode}: {(r.stderr or '').strip()[-300:]}"
     return out[:MAX_REPLY], None
 
 
@@ -84,7 +152,7 @@ def handle(f, m, timeout, dry):
         return False
     m["status"] = "taken"; m["taken_at"] = now()
     f.write_text(json.dumps(m, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    reply, err = ask_agent(agent, m.get("text", ""), timeout)
+    reply, err = ask_agent(agent, m.get("text", ""), timeout, m.get("tier", ""))
     OUTBOX.mkdir(parents=True, exist_ok=True)
     rid = m["id"] + "-re"
     (OUTBOX / f"{rid}.json").write_text(json.dumps({
@@ -109,6 +177,21 @@ def sync_push(n):
     log("push не удался — повторю в следующем цикле")
 
 
+def director_cycle(timeout, dry):
+    """Плановый автономный цикл: директор сам решает, что делать, и пишет отчёт в outbox."""
+    log("⏱ цикл директора")
+    if dry:
+        return
+    reply, err = ask_agent(DIRECTOR, CYCLE_PROMPT, timeout)
+    if err:
+        OUTBOX.mkdir(parents=True, exist_ok=True)
+        rid = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S") + "-director-error"
+        (OUTBOX / f"{rid}.json").write_text(json.dumps({"id": rid, "t": now(), "from": DIRECTOR, "to": "denis",
+            "text": f"⚠ цикл не выполнен: {err}", "status": "error"}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        sync_push(1)
+    log("⏱ цикл директора завершён" + (f": {err}" if err else ""))
+
+
 def run_once(timeout, dry):
     if git("pull", "--rebase", "-q", check=False).returncode != 0:
         log("git pull не прошёл (локальные правки?) — пропускаю цикл")
@@ -124,10 +207,23 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--interval", type=int, default=60)
     ap.add_argument("--timeout", type=int, default=1800, help="сек на один ответ агента")
+    ap.add_argument("--cycles", default="08:30,13:30,19:30",
+                    help="время автономных циклов директора (локальное), пусто = выкл")
+    ap.add_argument("--cycle-now", action="store_true", help="запустить цикл директора сразу")
     a = ap.parse_args()
     INBOX.mkdir(parents=True, exist_ok=True)
     log(f"мост запущен ({'один проход' if a.once else f'каждые {a.interval} с'})")
+    slots = [x.strip() for x in a.cycles.split(",") if x.strip()]
+    done = set()
+    if a.cycle_now:
+        director_cycle(a.timeout * 2, a.dry_run)
     while True:
+        hm, day = datetime.now().strftime("%H:%M"), datetime.now().date()
+        for slot in slots:
+            if hm >= slot and (day, slot) not in done:
+                done.add((day, slot))
+                if hm < (datetime.strptime(slot, "%H:%M") + __import__("datetime").timedelta(minutes=30)).strftime("%H:%M"):
+                    director_cycle(a.timeout * 2, a.dry_run)  # только если ПК был включён в своё время (±30 мин)
         try:
             run_once(a.timeout, a.dry_run)
         except Exception as e:  # мост не должен падать из-за одного сообщения

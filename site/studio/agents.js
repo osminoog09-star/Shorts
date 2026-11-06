@@ -2,6 +2,11 @@
    и чат (сообщение агенту → agents/inbox/*.json в репо; ответы агенты кладут в agents/outbox/*.json — на ПК их пишет scripts/pc/agent_bridge.py). */
 (() => {
   const AG = {
+    'm1lash-studio-director': { t: 'Директор студии', c: '#ffffff', wf: [], boss: 1 },
+    'm1lash-editor': { t: 'Монтажёр кино-Shorts', c: '#ff5f7a', wf: ['movie-short.yml'] },
+    'm1lash-writer': { t: 'Сценарист скетчей', c: '#c6ff6b', wf: [] },
+    'm1lash-packaging': { t: 'Обложки и SEO', c: '#ffd36b', wf: [] },
+    'm1lash-community': { t: 'Подписчики и комментарии', c: '#6bffe1', wf: ['youtube-pulse.yml'] },
     'm1lash-director': { t: 'Режиссёр', c: '#b195ff', wf: [] },
     'm1lash-animator': { t: 'Аниматор', c: '#6aa0ff', wf: ['mini-strike.yml', 'motion-render.yml'] },
     'm1lash-voice': { t: 'Голос и звук', c: '#ff6bb0', wf: ['denis-voice-tts.yml', 'female-voice-design.yml'] },
@@ -11,7 +16,7 @@
     'm1lash-researcher': { t: 'Ресёрчер', c: '#ff9f6b', wf: ['m1lash-news-radar.yml', 'motion-trends.yml'] },
   };
   const KEY_WF = ['youtube-pulse.yml', 'youtube-analytics.yml', 'm1lash-news-radar.yml', 'playlists.yml', 'denis-voice-tts.yml', 'female-voice-design.yml', 'mini-strike.yml', 'movie-short.yml', 'motion-pages.yml', 'youtube-direct.yml'];
-  let RUNS = null, runsAt = 0, chatTo = 'm1lash-director';
+  let RUNS = null, runsAt = 0, chatTo = 'm1lash-studio-director';
   const e = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const since = iso => { if (!iso) return '—'; const m = Math.round((Date.now() - new Date(iso)) / 60000); return m < 60 ? m + ' мин' : m < 1440 ? Math.round(m / 60) + ' ч' : Math.round(m / 1440) + ' д'; };
 
@@ -29,11 +34,13 @@
   function view() {
     loadRuns();
     const S = D.studio_agents || { agents: [], chat: [] };
-    const cards = S.agents.map(a => {
+    const ORDER = Object.keys(AG);
+    const list = S.agents.slice().sort((x, y) => (ORDER.indexOf(x.id) + 1 || 99) - (ORDER.indexOf(y.id) + 1 || 99));
+    const cards = list.map(a => {
       const m = AG[a.id] || { t: a.id, c: '#b195ff', wf: [] };
       const busy = m.wf.some(w => { const r = lastRun(w); return r && r.st !== 'completed'; });
       const last = m.wf.map(lastRun).filter(Boolean).sort((x, y) => y.at.localeCompare(x.at))[0];
-      return `<div class="card ag" style="--c:${m.c}"><span class="st ${busy ? 'on' : ''}">${busy ? '● работает' : 'ждёт'}</span>
+      return `<div class="card ag${m.boss ? ' boss' : ''}" style="--c:${m.c}">${m.boss ? '<span class="lead">главный · сам раздаёт задачи · 08:30 · 13:30 · 19:30</span>' : ''}<span class="st ${busy ? 'on' : ''}">${busy ? '● работает' : 'ждёт'}</span>
         <div class="orb ${busy ? 'busy' : ''}"></div><h4>${e(m.t)}</h4><p>${e(((a.description.split('—')[1] || a.description).split('. ')[0]).trim())}</p>
         <div class="row2"><span class="chip">${last ? 'последний запуск ' + since(last.at) + ' назад' : 'запусков нет'}</span>
         <button class="btn" data-agchat="${e(a.id)}">Написать</button></div></div>`;
@@ -41,8 +48,8 @@
     const wf = KEY_WF.map(w => { const r = lastRun(w); return `<div class="wf"><i class="${dotCls(r)}"></i><span>${e(w.replace('.yml', ''))}<br><code>${r ? (r.st !== 'completed' ? 'идёт' : r.c) + ' · ' + since(r.at) + ' назад · ' + r.ev : RUNS ? 'нет свежих запусков' : 'загрузка…'}</code></span>
       ${r ? `<a class="btn" href="${e(r.url)}" target="_blank" rel="noopener">Лог</a>` : '<span></span>'}<button class="btn" data-run="${e(w)}">Запуск</button></div>`; }).join('');
     const msgs = (S.chat || []).map(m => `<div class="msg ${m.box === 'inbox' ? 'me' : ''}"><small>${m.box === 'inbox' ? 'Ты → ' + e((AG[m.to] || {}).t || m.to) : e((AG[m.from] || {}).t || m.from || 'агент')} · ${e((m.t || '').replace('T', ' ').slice(5, 16))}</small>${e(m.text)}</div>`).join('') || '<p class="muted">Здесь будет переписка с агентами. Напиши задачу — агент на ПК возьмёт её в работу и ответит сюда.</p>';
-    const opts = S.agents.map(a => `<option value="${e(a.id)}" ${a.id === chatTo ? 'selected' : ''}>${e((AG[a.id] || {}).t || a.id)}</option>`).join('');
-    return `<section class="sec-row"><h2 style="margin:0;font:800 22px var(--f-d)">Агенты студии</h2><span class="chip">${S.agents.length} агентов · Claude + GPT</span></section>
+    const opts = list.map(a => `<option value="${e(a.id)}" ${a.id === chatTo ? 'selected' : ''}>${e((AG[a.id] || {}).t || a.id)}</option>`).join('');
+    return `<section class="sec-row"><h2 style="margin:0;font:800 22px var(--f-d)">Агенты студии</h2><span class="chip">${S.agents.length} агентов · директор + команда</span></section>
       <div class="ag-grid">${cards}</div>
       <div class="card" style="padding:16px"><div class="sec-row"><b>Техническая панель · GitHub Actions</b><span class="chip">${RUNS ? 'обновлено ' + since(new Date(runsAt).toISOString()) + ' назад' : '…'}</span></div>${wf}</div>
       <div class="card" style="padding:16px"><div class="sec-row"><b>Чат с агентами</b><span class="chip">ответы приходят с ПК</span></div>

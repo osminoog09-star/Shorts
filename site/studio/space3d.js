@@ -188,7 +188,7 @@ function start() {
     camera.aspect = w / h; camera.fov = w < h ? 70 : 55; camera.updateProjectionMatrix();
     rt.setSize(w * DPR, h * DPR); post.material.uniforms.uAsp.value = w / h; post.material.uniforms.uRes.value.set(w * DPR, h * DPR);
     const mob = w < 700;
-    hole.position.set(mob ? 14 : -40, mob ? 38 : 30, -60); gas.position.set(mob ? 10 : 30, mob ? -22 : 2, -30); ice.position.set(mob ? -10 : -27, mob ? -30 : -15, -12);
+    hole.position.set(mob ? 22 : -40, mob ? 48 : 30, -60); gas.position.set(mob ? 10 : 30, mob ? -22 : 2, -30); ice.position.set(mob ? -10 : -27, mob ? -30 : -15, -12);
   }
   addEventListener('resize', size); size();
   let tx = 0, ty = 0, px = 0, py = 0;

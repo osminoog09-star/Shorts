@@ -147,3 +147,12 @@ button,.btn,.card[data-go],.todo button,.ag{transition:transform .18s cubic-bezi
 /* вне экрана не считать раскладку и отрисовку длинных списков */
 .vrow,.cm,.wf{content-visibility:auto;contain-intrinsic-size:auto 96px}
 @media (prefers-reduced-transparency:reduce){.card,.idea{background:rgba(14,11,30,.92)!important}}
+
+/* директор студии — крупная карточка во всю ширину; шапка при прокрутке непрозрачнее (без наложения текста) */
+.ag.boss{grid-column:1/-1;--c:#e9e2ff}
+.ag.boss .orb{background:radial-gradient(circle at 32% 30%,#fff,#d6c8ff 30%,#7b5cff 62%,#2a1a6b)!important}
+.ag.boss .orb .ring{border-color:#ffd36b;box-shadow:0 0 14px #ffb84d}
+.ag.boss .orb .ring b{background:#ffd36b;box-shadow:0 0 12px #ffd36b}
+.ag.boss h4{font-size:22px}
+.ag .lead{display:block;padding-right:76px;font:600 12px var(--f-b,inherit);color:#ffd36b;letter-spacing:.02em;margin-bottom:6px}
+.top{background:linear-gradient(180deg,rgba(8,6,20,.82),rgba(8,6,20,.55) 70%,rgba(8,6,20,0))!important;-webkit-backdrop-filter:blur(10px)!important;backdrop-filter:blur(10px)!important}
