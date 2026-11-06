@@ -1,0 +1,10 @@
+{
+  "status": "reserved",
+  "action": "upload_private_once",
+  "id": "kino_007",
+  "sha256": "0b5fd6b576797877c0a8fcb729304eb9b6830cbf45c6c51a646fa04502b12bb6",
+  "size_bytes": 21455659,
+  "reserved_at": "2026-11-06T00:24:07.880675+00:00",
+  "publish_at": null,
+  "never_retry_automatically": true
+}
