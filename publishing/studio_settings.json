@@ -18,7 +18,7 @@
   "claude_daily_cap": 4,
   "local_model": "auto",
   "auto_replies": true,
-  "updated": "2026-11-06T17:50:45+02:00",
+  "updated": "2026-11-06T17:55:16+02:00",
   "updated_by": "Денис (панель ПК)",
   "gaming": {
     "enabled": true,
@@ -28,6 +28,6 @@
     "streams": true,
     "guides": true
   },
-  "mode": "off",
+  "mode": "on",
   "compute": "auto"
 }
