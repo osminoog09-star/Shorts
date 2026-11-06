@@ -357,16 +357,17 @@
       "id": "kino_008",
       "kind": "short",
       "author": "GPT",
-      "status": "draft",
+      "status": "review",
       "slot": null,
       "style": "S6-D25",
       "mp4": null,
       "publish_md": "shorts/kino_008/PUBLISH.md",
       "title": "Они нажали кнопку — и даже ЗВУК исчез… 😨 #shorts",
-      "youtube_id": null,
-      "review_version": "OWNER_SOURCE_RU_DUB_VERIFIED_SCENE_QA_PENDING",
+      "youtube_id": "G4IMzvrv1Zw",
+      "review_version": "KINO008_V2_BODY_DENIS_V7_QA_PASS",
       "owner_audio_approved": false,
-      "note": "Owner Oppenheimer source 2418s/836MB exact SHA verified, RU audio 4/5. Trinity explosion at source 16:30–18:40; detailed segment/voice/QA pending. NO YouTube upload, NO date, NO public film MP4."
+      "note": "Owner chooses date via M1lash Studio. Private verified YouTube ID. NO automated publication.",
+      "private_review_url": "https://studio.youtube.com/video/G4IMzvrv1Zw/edit"
     }
   ]
 }

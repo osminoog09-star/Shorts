@@ -1,0 +1,35 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "uploaded",
+    "video_id": "G4IMzvrv1Zw",
+    "sha256": "7a00d601d62a578007ec7d98103cedcfd22e801c7c047d4fd225029abd19ed95"
+  },
+  "metadata": {
+    "type": "short",
+    "title": "Они нажали кнопку — и даже ЗВУК исчез… 😨 #shorts",
+    "description": "Обратный отсчёт закончился. Но самая страшная часть началась потом.\nТы угадал фильм до последней секунды? Напиши, когда понял!\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #кино #угадайфильм #фильмы #эпичнаясцена #сценаизфильма #m1lash",
+    "tags": [
+      "кино",
+      "угадай фильм",
+      "эпичная сцена",
+      "обратный отсчёт",
+      "сильная сцена",
+      "кинозагадка",
+      "movie short",
+      "russian dub",
+      "shorts",
+      "m1lash"
+    ],
+    "category_id": "1",
+    "made_for_kids": false,
+    "contains_synthetic_media": true,
+    "default_language": "ru",
+    "default_audio_language": "ru"
+  },
+  "publish_at": null,
+  "provenance": {
+    "qa_report": "reports/research/2026-11-06_KINO_008_FINAL_V1_PRIVATE_QA.json",
+    "owner_review": "PRIVATE_ONLY_PUBLISH_DATE_NOT_APPROVED"
+  }
+}
