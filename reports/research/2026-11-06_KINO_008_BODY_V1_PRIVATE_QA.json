@@ -1,0 +1,106 @@
+{
+  "status": "private_body_rendered_qa_pending",
+  "created_at": "2026-11-06T01:54:31.766571+00:00",
+  "source_sha256": "a784b456047834339c4cc908d638f03d3b032917ca6b51aa948cf59312e656e1",
+  "youtube_id": null,
+  "youtube_upload": false,
+  "segment_plan": [
+    {
+      "name": "cold_flash",
+      "source_start_s": 1019.7,
+      "duration_s": 1.15,
+      "focus_x": 620
+    },
+    {
+      "name": "ru_countdown",
+      "source_start_s": 905.12,
+      "duration_s": 2.85,
+      "focus_x": 610
+    },
+    {
+      "name": "arm_controls",
+      "source_start_s": 945.0,
+      "duration_s": 2.35,
+      "focus_x": 635
+    },
+    {
+      "name": "timer",
+      "source_start_s": 970.9,
+      "duration_s": 2.75,
+      "focus_x": 660
+    },
+    {
+      "name": "tower",
+      "source_start_s": 986.0,
+      "duration_s": 2.65,
+      "focus_x": 625
+    },
+    {
+      "name": "faces_preflash",
+      "source_start_s": 1000.2,
+      "duration_s": 2.35,
+      "focus_x": 610
+    },
+    {
+      "name": "blinding_flash",
+      "source_start_s": 1021.05,
+      "duration_s": 2.9,
+      "focus_x": 620
+    },
+    {
+      "name": "fire_rises",
+      "source_start_s": 1034.0,
+      "duration_s": 3.45,
+      "focus_x": 640
+    },
+    {
+      "name": "inferno",
+      "source_start_s": 1055.7,
+      "duration_s": 3.0,
+      "focus_x": 620
+    },
+    {
+      "name": "silent_reaction",
+      "source_start_s": 1069.0,
+      "duration_s": 2.7,
+      "focus_x": 700
+    },
+    {
+      "name": "delayed_rumble",
+      "source_start_s": 1092.8,
+      "duration_s": 2.9,
+      "focus_x": 610
+    },
+    {
+      "name": "aftermath",
+      "source_start_s": 1110.25,
+      "duration_s": 3.55,
+      "focus_x": 610
+    }
+  ],
+  "expected_body_duration_s": 32.6,
+  "duration_s": 32.766,
+  "sha256": "ed3e622cdc25ccc43baa5a2a9cc1d270b730d31ea7ea39c0860c77383aecc0a0",
+  "size_bytes": 21482659,
+  "private_body_drive_id": "1dlGrbTw1Kzl6bNmty9yqizqwe78OvQ9_",
+  "private_contact_drive_id": "1Y1oZ-6xm8bZzY92cUSLGQFLK4zwcs0o0",
+  "full_decode_ok": true,
+  "subtitle_cues": 8,
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1080,
+        "height": 1920
+      },
+      {
+        "codec_type": "audio"
+      }
+    ],
+    "format": {
+      "duration": "32.766341"
+    }
+  }
+}
