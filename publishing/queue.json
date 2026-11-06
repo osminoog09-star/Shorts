@@ -341,11 +341,12 @@
       "mp4": null,
       "publish_md": "shorts/kino_007/PUBLISH.md",
       "title": "Он думал, что они КОМАНДА… Но услышал ЭТО 😳 #shorts",
-      "review_version": "V8_PENDING_BINARY_FINAL_QA",
+      "review_version": "V9c_PRIVATE_QA_PASS_OWNER_EYES_PENDING",
       "private_review_url": null,
       "youtube_id": null,
       "owner_audio_approved": false,
-      "note": "06.11 независимый аудит: V7 физический MP4 42.813с визуально и FFmpeg проверен, НО 2.475с почти тишины на reveal. V8 с авторским голосом есть в Descript, бинарный экспорт для проверки и обрезки хвоста не получен. NO-GO: не назначать дату/не загружать; после V8 check.py/look.py + одобрения Дениса перейти в review. Формат kino-Shorts 10:00 Europe/Tallinn."
+      "note": "06.11 V9c: 1080×1920, 43.300s, original Russian film dialogue + approved Denis-v7 CTA + Denis spoken reveal, SHA verified. Official check.py 0 FAIL/1 optional WARN; look.py contact produced but not viewed by GPT; owner hearing/visual and Content ID still pending. PRIVATE review only in user's Higgsfield; YouTube upload NOT DONE. No publish_at or date; need secure private transfer to YouTube Actions. Category 1 Film & Animation per AGENTS §8.",
+      "review_sha256": "0b5fd6b576797877c0a8fcb729304eb9b6830cbf45c6c51a646fa04502b12bb6"
     }
   ]
 }
