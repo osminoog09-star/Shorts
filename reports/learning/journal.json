@@ -616,6 +616,45 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "MULTNEWS-WORLDS-ART-20261106",
+      "project": "multnews_20261104",
+      "issue": "Неодинаковый дизайн Болтика, схематичная массовка и мелкие детали на части новых миров",
+      "cause": "SVG-постановка строилась отдельно по локациям без общего model-sheet и актёрской анимации",
+      "fix": "Ввести единый model-sheet: 3 ракурса, 6 эмоций, 4 действующие позы; на каждый мир отдельный предметный и крупный план",
+      "status": "observed",
+      "evidence": "longform/multnews_20261104/worlds_gpt_20261106/QA_SEVEN_WORLDS_2026-11-06.md",
+      "acceptance": "6 реальных стопов и 15-30с MP4 с физическими действиями на каждую локацию, проверка на 360px, ART GO отдельно",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "MULTNEWS-HOME-PROP-20261106",
+      "project": "multnews_20261104",
+      "issue": "Ваза двигалась без физического захвата в ранней версии домашней сцены",
+      "cause": "Отдельная траектория предмета и руки без общего event/grip",
+      "fix": "Убрано недостоверное движение вазы; робот объезжает мяч, вазу не трогает",
+      "status": "verified",
+      "evidence": "longform/multnews_20261104/worlds_gpt_20261106/QA_SEVEN_WORLDS_2026-11-06.md",
+      "acceptance": "Реальные кадры из нового 16с MP4 t0.5/2.8/4.3/6.2/8.3/10.6/12.7/15.1: ваза на прежнем месте; не выдавать это за успешный хват",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "MULTNEWS-VOICE-RUNTIME-20261106",
+      "project": "multnews_20261104",
+      "issue": "Нет реальной озвучки владельца и 21-23мин мастер-видео",
+      "cause": "В текущем runtime отсутствуют qwen_tts и веса Qwen3; сеть для загрузки весов недоступна",
+      "fix": "Не использовать чужой TTS и не растягивать немые клипы; дождаться доступного приватного Qwen runtime, проверить фактический WAV и ASR",
+      "status": "observed",
+      "evidence": "longform/multnews_20261104/worlds_gpt_20261106/QA_SEVEN_WORLDS_2026-11-06.md",
+      "acceptance": "Собственный авторский Qwen voice WAV и word timings для всех глав, final 21-23m duration gate/check/look, owner art review",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }
