@@ -83,6 +83,43 @@ def build_review_queue(queue, receipts, manifests):
 
 
 
+def add_pending_uploads(videos, receipts, manifests):
+    """Expose confirmed YouTube uploads immediately, even if daily inventory lags.
+
+    Receipt status is only evidence of PRIVATE upload or scheduling. It is NOT
+    evidence that YouTube has published the video: only actual inventory/GET
+    may set privacy=public. Keep pending analytics unknown, never fake views.
+    """
+    seen = {v.get("id") for v in videos}
+    for key, receipt in sorted(receipts.items()):
+        if receipt.get("status") not in ("uploaded", "scheduled"):
+            continue
+        vid = receipt.get("video_id")
+        if not isinstance(vid, str) or not re.fullmatch(r"[A-Za-z0-9_-]{11}", vid) or vid in seen:
+            continue
+        meta = (manifests.get(key) or {}).get("metadata") or {}
+        if not isinstance(meta.get("title"), str) or not meta["title"].strip():
+            continue
+        category = str(meta.get("category_id", ""))
+        format_name = ("Кино-Shorts" if category == "1" and meta.get("type") == "short"
+                       else "Длинное" if meta.get("type") == "long"
+                       else "Юмор/прочее")
+        published_at = None
+        scheduled_at = receipt.get("publish_at_utc") if receipt.get("status") == "scheduled" else None
+        videos.append({
+            "id": vid, "title": meta["title"], "published": published_at,
+            "uploaded_at": receipt.get("uploaded_at"), "scheduled_at": scheduled_at,
+            "privacy": "private", "duration": None, "format": format_name,
+            "views": None, "engaged": None, "avp": None, "avd": None,
+            "subs": None, "likes": None, "comments": None, "shares": None,
+            "thumb": f"https://i.ytimg.com/vi/{vid}/mqdefault.jpg",
+            "traffic": {}, "v48": None, "v7d": None, "engaged_views": None,
+            "analytics_pending": True,
+        })
+        seen.add(vid)
+    return videos
+
+
 def studio_agents(root):
     """Agents of the studio (.claude/agents/m1lash-*.md) + chat messages agents/inbox|outbox/*.json for the site."""
     import re as _re
@@ -177,6 +214,7 @@ def main():
             "engaged_views": a.get("engagedViews"),
         })
     videos = [v for v in videos if (v["duration"] or 0) > 0]
+    videos = add_pending_uploads(videos, receipts, manifests)
 
     # Сводка по форматам
     by_fmt = {}
