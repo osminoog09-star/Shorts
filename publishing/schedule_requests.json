@@ -77,6 +77,16 @@
       "request_id": "migration-20261104-coffee_v8_20261104",
       "requested_at": "2026-11-04T21:59:00Z",
       "origin": "owner_approved_editorial_migration_20261104"
+    },
+    "kino_007": {
+      "at": "2026-11-06T10:00:00+02:00",
+      "kind": "short",
+      "title": "Он думал, что они КОМАНДА… Но услышал ЭТО 😳 #shorts",
+      "video_id": "3YjkmOrxDLA",
+      "request_id": "owner-ok-20261106-kino_007-1000",
+      "requested_at": "2026-11-06T00:51:56Z",
+      "origin": "owner_chat_ok_20261106",
+      "confirmed_by": "youtube_videos_list_GET"
     }
   }
 }

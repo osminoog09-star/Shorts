@@ -335,18 +335,19 @@
       "id": "kino_007",
       "kind": "short",
       "author": "GPT",
-      "status": "review",
-      "slot": null,
+      "status": "scheduled",
+      "slot": "2026-11-06T10:00:00+02:00",
       "style": "S6-D25",
       "mp4": null,
       "publish_md": "shorts/kino_007/PUBLISH.md",
       "title": "Он думал, что они КОМАНДА… Но услышал ЭТО 😳 #shorts",
-      "review_version": "V9c_PRIVATE_YOUTUBE_REVIEW",
+      "review_version": "V9c_YOUTUBE_SCHEDULED",
       "private_review_url": "https://studio.youtube.com/video/3YjkmOrxDLA/edit",
       "youtube_id": "3YjkmOrxDLA",
       "owner_audio_approved": false,
-      "note": "06.11 V9c exact-SHA upload to YouTube PRIVATE without date; owner must watch/listen and approve separate publishing decision.",
-      "review_sha256": "0b5fd6b576797877c0a8fcb729304eb9b6830cbf45c6c51a646fa04502b12bb6"
+      "note": "OWNER OK 06.11; YouTube GET verified PRIVATE scheduled for 2026-11-06 10:00 Tallinn. Exact V9c binary, no reupload. Content ID not independently cleared; rights risk acknowledged.",
+      "review_sha256": "0b5fd6b576797877c0a8fcb729304eb9b6830cbf45c6c51a646fa04502b12bb6",
+      "youtube_url": "https://youtu.be/3YjkmOrxDLA"
     }
   ]
 }
