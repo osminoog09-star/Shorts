@@ -4,8 +4,8 @@
   "videos": {
     "XANzL3z9wqY": {
       "video": "XANzL3z9wqY",
-      "views": 5589,
-      "engagedViews": 3520,
+      "views": 5579,
+      "engagedViews": 3521,
       "averageViewPercentage": 58.26,
       "averageViewDuration": 34,
       "subscribersGained": 7,
@@ -17,8 +17,8 @@
     },
     "bpaR4hHC6YU": {
       "video": "bpaR4hHC6YU",
-      "views": 3218,
-      "engagedViews": 2242,
+      "views": 3216,
+      "engagedViews": 2240,
       "averageViewPercentage": 65.21,
       "averageViewDuration": 48,
       "subscribersGained": 6,
@@ -26,11 +26,11 @@
       "likes": 192,
       "comments": 0,
       "shares": 0,
-      "estimatedMinutesWatched": 1829
+      "estimatedMinutesWatched": 1828
     },
     "KhaAsIVKwCM": {
       "video": "KhaAsIVKwCM",
-      "views": 1427,
+      "views": 1426,
       "engagedViews": 975,
       "averageViewPercentage": 63.580000000000005,
       "averageViewDuration": 28,
@@ -56,7 +56,7 @@
     },
     "F5-BqfTnA_w": {
       "video": "F5-BqfTnA_w",
-      "views": 1302,
+      "views": 1300,
       "engagedViews": 746,
       "averageViewPercentage": 41.76,
       "averageViewDuration": 21,
@@ -199,7 +199,7 @@
     },
     "dwPNCXCcu24": {
       "video": "dwPNCXCcu24",
-      "views": 992,
+      "views": 990,
       "engagedViews": 535,
       "averageViewPercentage": 39.25,
       "averageViewDuration": 14,
@@ -316,8 +316,8 @@
     },
     "tGpma37GZ0w": {
       "video": "tGpma37GZ0w",
-      "views": 239,
-      "engagedViews": 115,
+      "views": 237,
+      "engagedViews": 114,
       "averageViewPercentage": 58.35,
       "averageViewDuration": 28,
       "subscribersGained": 1,
@@ -325,7 +325,7 @@
       "likes": 6,
       "comments": 0,
       "shares": 0,
-      "estimatedMinutesWatched": 57
+      "estimatedMinutesWatched": 56
     },
     "UTvk61Gos1M": {
       "video": "UTvk61Gos1M",
@@ -446,8 +446,8 @@
     },
     "CmOu0xXc0UI": {
       "video": "CmOu0xXc0UI",
-      "views": 2,
-      "engagedViews": 2,
+      "views": 1,
+      "engagedViews": 1,
       "averageViewPercentage": 38.5,
       "averageViewDuration": 19,
       "subscribersGained": 0,
@@ -499,6 +499,6 @@
   },
   "unsupported_metrics": [],
   "requested_end": "2026-10-31",
-  "fetched_at": "2026-11-05T15:38:00.871122+00:00",
+  "fetched_at": "2026-11-06T15:12:21.555289+00:00",
   "provisional": true
 }
