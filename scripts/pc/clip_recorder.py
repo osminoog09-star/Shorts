@@ -24,6 +24,18 @@ OUT = Path(os.environ.get("M1LASH_ROOT", r"C:\M1lash")) / "Входящие" / "
 # Нет блокировок по названию сайта: источник определяется только настройками studio clip_sources.json.
 
 
+
+def obs_password():
+    """OBS_WS_PASSWORD или пароль прямо из настроек OBS (%APPDATA%/obs-studio/.../obs-websocket/config.json)."""
+    if os.environ.get("OBS_WS_PASSWORD"):
+        return os.environ["OBS_WS_PASSWORD"]
+    import json
+    f = Path(os.environ.get("APPDATA", "")) / "obs-studio" / "plugin_config" / "obs-websocket" / "config.json"
+    try:
+        return json.loads(f.read_text(encoding="utf-8")).get("server_password", "")
+    except Exception:
+        return ""
+
 def allowed(url):
     cfg = json.loads((REPO / "publishing" / "clip_sources.json").read_text(encoding="utf-8"))
     host = (urlparse(url).hostname or "").lower()
@@ -54,7 +66,7 @@ def black_ratio(mp4):
 def record(url, start, dur, vid):
     from playwright.sync_api import sync_playwright
     import obsws_python as obs
-    cl = obs.ReqClient(host="localhost", port=4455, password=os.environ.get("OBS_WS_PASSWORD", ""), timeout=10)
+    cl = obs.ReqClient(host="localhost", port=4455, password=obs_password(), timeout=10)
     OUT.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as p:
         # отдельный профиль студии (вход в аккаунт сайта, если нужен, Денис делает один раз вручную)
