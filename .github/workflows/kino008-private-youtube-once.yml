@@ -1,0 +1,42 @@
+name: KINO008 · exact-SHA PRIVATE YouTube review once, NEVER schedule
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/kino008-private-youtube-once.yml']
+permissions:
+  contents: write
+concurrency:
+  group: kino008-one-time-private-youtube
+  cancel-in-progress: false
+jobs:
+  upload_vetted_final_private:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main, persist-credentials: true}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: HTTP dependency and source gate
+        run: |
+          set -euo pipefail
+          python -m pip install -q 'requests>=2.32,<3'
+          python -m py_compile scripts/qa/kino008_private_youtube_once.py
+      - name: One-time exact-SHA verified PRIVATE YouTube review upload without date
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python scripts/qa/kino008_private_youtube_once.py
+      - name: Save no-retry receipt evidence on any outcome
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kino008-private-receipt-${{ github.run_id }}
+          path: publishing/receipts/kino_008.json
+          retention-days: 30
+          if-no-files-found: ignore
