@@ -1,0 +1,12 @@
+{
+  "job_id": "kino_008_title",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "utterances": [
+    {
+      "id": "title",
+      "text": "Это был фильм Оппенгеймер.",
+      "rate": 1
+    }
+  ]
+}
