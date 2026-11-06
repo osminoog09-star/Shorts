@@ -1,4 +1,4 @@
-name: KINO008 · private body draft from verified RU Oppenheimer
+name: KINO008 · corrected private body V2 from verified RU Oppenheimer
 on:
   push:
     branches: [main]
@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: kino008-body-draft-v1
+  group: kino008-body-draft-v2
   cancel-in-progress: false
 jobs:
   render_private_body:
@@ -36,7 +36,7 @@ jobs:
           set -euo pipefail
           f=reports/research/2026-11-06_KINO_008_BODY_V1_PRIVATE_QA.json
           if test -s "$f"; then
-            cp "$f" "$RUNNER_TEMP/kino008_body.json"
+            cp "$f" "$RUNNER_TEMP/kino008_body_v2.json"
             git config user.name 'kino008-body-qa[bot]'
             git config user.email 'kino008-body-qa@users.noreply.github.com'
             for n in 1 2 3; do
