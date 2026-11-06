@@ -1,0 +1,17 @@
+{
+  "t": "2026-11-06 03:03 UTC",
+  "count": 1,
+  "rule": "только PD/CC по метаданным источника; ru-аудио помечено; занятые фильмы исключены",
+  "items": [
+    {
+      "source": "blender_studio",
+      "id": "sintel_2010",
+      "title": "Sintel (2010)",
+      "language": "English",
+      "russian_audio": false,
+      "license": "https://creativecommons.org/licenses/by/3.0/",
+      "proof": "https://durian.blender.org/",
+      "url": "https://download.blender.org/durian/movies/Sintel.2010.1080p.mkv"
+    }
+  ]
+}
