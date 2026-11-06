@@ -23,7 +23,7 @@ if (-not (Test-Path "$Root\Shorts\.git")) { gh auth status *> $null; if ($LASTEX
 
 Step "Python-библиотеки (CUDA)"
 py -3.11 -m pip install --upgrade pip
-py -3.11 -m pip install faster-whisper edge-tts opencv-python numpy gdown nvidia-cublas-cu12 nvidia-cudnn-cu12
+py -3.11 -m pip install playwright obsws-python faster-whisper edge-tts opencv-python numpy gdown nvidia-cublas-cu12 nvidia-cudnn-cu12
 
 Step "Локальная LLM (решение Дениса 31.10: Ollama + Gemma 4 12B)"
 ollama pull gemma4:12b
@@ -53,6 +53,8 @@ $act3 = New-ScheduledTaskAction -Execute $py -Argument "`"$Root\Shorts\scripts\p
 Register-ScheduledTask -TaskName "M1lash Games" -Action $act3 -Trigger $trg2 -Settings $set2 -Description "M1lash: записи OBS из $Root\Игры → игровой отдел" -Force | Out-Null
 Start-ScheduledTask -TaskName "M1lash Games"
 Write-Host "OBS: Настройки → Вывод → Путь записи = $Root\Игры (формат mkv). Дальше игровой отдел всё делает сам." -ForegroundColor Yellow
+
+Write-Host "OBS для записи фрагментов: Инструменты → Настройки сервера WebSocket → включить; пароль запиши в переменную OBS_WS_PASSWORD (setx OBS_WS_PASSWORD ...)." -ForegroundColor Yellow
 
 Step "Самопроверка"
 py -3.11 "$Root\Shorts\scripts\pc\selfcheck.py"
