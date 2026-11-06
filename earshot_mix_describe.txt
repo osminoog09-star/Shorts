@@ -1,0 +1,15 @@
+40.00 s busy, 3.5 onsets/s, loudness range 7 LU. Music (AudioSet Music 0.73). Unvalidated hints - genre: cheerful ukulele music (z +1.7), inspirational corporate background music (z +1.7); mood (wrong for ~1 in 5 tracks in a test): . Sounds most like: a mouth pop (z +2.5), a cork pop (z +2.4), a digital glitch (z +2.4) [plausible reading]. Other readings: a kalimba note (chimes, z +1.9), a waterfall (water, z +1.9). AudioSet: Speech 0.79, Music 0.73, Pink noise 0.57. peak -2.5 dBFS, -18.8 LUFS, brightness 2.3 kHz, bandwidth 20.5 kHz, mono. Windows that read differently: 0:10.00-0:20.00 a mouth pop (z +3.1; AudioSet Speech 0.62); 0:20.00-0:30.00 a music box melody (z +1.8; AudioSet Speech 0.79); 0:30.00-0:40.00 a waterfall (z +2.9; AudioSet Music 0.61).
+
+top tags (z calibrated: >= 3 clear, 2.5-3 plausible, 2-2.5 weak, < 2 tentative):
+   +2.5  a mouth pop  [foley]  cos 0.139
+   +2.4  a cork pop  [foley]  cos 0.150
+   +2.4  a digital glitch  [ui]  cos 0.134
+   +2.0  a phone vibration buzz  [ui]  cos 0.046
+   +1.9  a kalimba note  [chimes]  cos 0.081
+   +1.9  a waterfall  [water]  cos 0.093
+   +1.7  a suction cup pop  [foley]  cos 0.105
+   +1.7  a can opening  [foley]  cos 0.094
+unvalidated hints (music genre / mood, instruments, voice): a ukulele (+2.1), cheerful ukulele music (+1.7), a voice-over narration (+1.7), inspirational corporate background music (+1.7), a woman speaking (+1.5)
+best per category: transitions: a fast whoosh (+1.3); impacts: a snare hit (+0.1); ui: a digital glitch (+2.4); keyboard: an enter key press (+1.2); foley: a mouth pop (+2.5); water: a waterfall (+1.9); nature: walking through dry leaves (+1.0); chimes: a kalimba note (+1.9); ambience: an office ambience (+1.2); everyday: a spray can hissing (+1.6); music_genre: cheerful ukulele music (+1.7); music_mood: celebratory and joyful music (+1.1); instruments: a ukulele (+2.1); voice: a voice-over narration (+1.7); quality: an airy sound (+0.7); production: a cheap synthesized beep (+2.7)
+audioset: Speech 0.79, Music 0.73, Pink noise 0.57, White noise 0.20, Music for children 0.20
+measurements: duration 40.0, peak_dbfs -2.5, true_peak_dbtp -2.5, rms_dbfs -23.5, lufs -18.8, lra_lu 7.2, attack_ms 100.0, decay_ms 189.0, brightness_hz 2318, bandwidth_hz 20480, noise_floor_dbfs -49.7, flatness 0.0213, harmonic_ratio 0.496, onset_count 138, onsets_per_s 3.45, width mono, digital_silence_frac 0.0014

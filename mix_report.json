@@ -1,0 +1,32 @@
+{
+ "music_to_voice_rms": 0.08,
+ "peak_before_norm": 0.75065016746521,
+ "durations": {
+  "m_h1": 2.16,
+  "m_f1": 3.196,
+  "m_f2": 1.349,
+  "m_h2": 1.907,
+  "m_h3": 1.768,
+  "m_f3": 4.216,
+  "m_h4": 1.778,
+  "m_f4": 2.729
+ },
+ "music": "Thatched Villagers.mp3",
+ "sfx": [
+  "pop",
+  "boing",
+  "buzz",
+  "motor",
+  "whistle",
+  "click",
+  "click",
+  "thwip",
+  "bonk",
+  "whoosh",
+  "sparkle",
+  "pour",
+  "sing",
+  "ching",
+  "whoosh"
+ ]
+}
