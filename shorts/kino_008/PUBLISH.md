@@ -1,4 +1,4 @@
-# kino_008 — кино-Shorts · DRAFT / NO YOUTUBE UPLOAD UNTIL QA
+# kino_008 — кино-Shorts · PRIVATE YOUTUBE REVIEW / NO DATE (06.11.2026)
 
 ## Название
 Они нажали кнопку — и даже ЗВУК исчез… 😨 #shorts
@@ -29,3 +29,10 @@ Watch: https://ncs.lnk.to/dontwannaknowAT/youtube
 - Исходный звук: русский в 4/5 samples по FFmpeg+faster-whisper; точные субтитры и нужный countdown/explosion ещё в QA. Рабочая сцена по первому приватному контакту ~15:30–18:40 **записи**, точнее пока не проверено.
 - Голос: личный Qwen3-TTS 1.7B Base ICL, job `jobs/voice/kino_008_title.json`, no fallback; master-approved 6.6s voice10 outro SHA `2e514186940d130e6aea6aa5171b59ba7691d5cfe14fb329d65a8d12184a6b60`.
 - Кино — правообладатель Universal Pictures; Content ID/монетизация и риск претензии не очищены. Владелец принял риск для кино-Shorts, но не для обхода DRM. Одинаковый исходник не заливать повторно при claim.
+
+## Фактический результат 06.11.2026
+- **YouTube PRIVATE video_id `G4IMzvrv1Zw`**: https://studio.youtube.com/video/G4IMzvrv1Zw/edit. YouTube API `videos.list` GET подтвердил `privacyStatus=private` и отсутствие `publishAt`, workflow run **42152379901 SUCCESS**. Дата назначения = **не установлена**, публикация = **не одобрена**.
+- Финальный реальный MP4 1080×1920 / 30fps / **43.133333 с**, **27,228,692 байт**, SHA256 `7a00d601d62a578007ec7d98103cedcfd22e801c7c047d4fd225029abd19ed95`. Тело V2 32.766341с / verified RU recording, approved unmodified Denis v7 6.6с, финальный собственный voice Denis title ~3.405с. Голос Qwen V2 был проверен ASR 2/2 на GitHub Actions `42147263572`; отдельное субъективное прослушивание владельцем остаётся открытым.
+- **QA финального MP4 подтверждён:** `tools/assemble_with_outro.py` + official `skills/ext/ffmpeg-skill/scripts/check.py --platform shorts --content` / `look.py --safe shorts --tiles 4x5` GitHub Actions `42151899972 SUCCESS`; 20 фактических кадров контакт-листа осмотрены GPT, 2 провала V1 исправлены. Финальный binary заново скачан из owner-private Drive и независимо проверен SHA256/full `ffmpeg -xerror` decode. Доказательства: `reports/research/2026-11-06_KINO_008_FINAL_V1_PRIVATE_QA.json`.
+- Source MP4, owner voice WAV and approved outro остались в owner-private Drive; публичный GitHub хранит лишь метаданные. Не загружать повторно, не планировать без решения владельца. `publishing/queue/kino_008.json` и `publishing/receipts/kino_008.json` — единственные источники для сайта. **В M1lash Studio владелец сам назначает время**.
+- Ограничения Content ID/права на кадры и саундтрек правообладателя остаются неизвестными до проверки владельцем в YouTube Studio. Получение `PRIVATE` не подтверждает отсутствия claim.
