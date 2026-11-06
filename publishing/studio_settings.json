@@ -18,8 +18,8 @@
   "claude_daily_cap": 4,
   "local_model": "auto",
   "auto_replies": true,
-  "updated": "2026-11-06T18:12:55+02:00",
-  "updated_by": "Денис (панель ПК)",
+  "updated": "2026-11-06T18:25:00+02:00",
+  "updated_by": "Claude по решению Дениса (агенты ПК отменены)",
   "gaming": {
     "enabled": true,
     "folder": "C:\\M1lash\\Игры",
@@ -28,6 +28,6 @@
     "streams": true,
     "guides": true
   },
-  "mode": "on",
+  "mode": "off",
   "compute": "auto"
 }

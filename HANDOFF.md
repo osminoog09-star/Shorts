@@ -1,3 +1,10 @@
+# 06.11 · Claude · Агенты на ПК отменены Денисом — удаляем установленное
+
+- Решение Дениса 18:23: «через тебя будем делать мультики и шортсы» — автономная студия на ПК отменена, удалить **только то, что установил Claude**. Записано в AGENTS.md (§ «Агенты студии»), `studio_settings.json` mode=off, ветка `pc-status` удалена.
+- OBS возвращён: WebSocket выключен, путь записи снова `C:/Users/osmin/Videos/Gameplay/Recordings`.
+- Удаление на ПК (команда Денису): задания «M1lash Studio Agents/Games/Inbox», ярлык «Панель M1lash», `C:\M1lash` (пользовательских файлов там не было), Ollama + модели gemma4:12b/qwen3.5:9b/qwen3:8b, FFmpeg (winget), Claude Code CLI (npm), pip-пакеты студии (torch, qwen-tts, faster-whisper, pywebview…), переменные M1LASH_*. Git, GitHub CLI, Python 3.11, Node.js не трогали.
+- Код `scripts/pc/` в репо оставлен как история; не запускать без новой команды Дениса.
+
 # 06.11 · Claude · ПК Дениса: автономная студия установлена
 
 - **Работает:** RTX 4080 Laptop 12 ГБ (драйвер 617.42); Ollama + `gemma4:12b` выбрана бенчем (1.00 по всем тестам, 90 ток/с; qwen3.5:9b 1.00/61 ток/с, qwen3:8b тоже скачана) → `agents/local_model.txt` на ПК; Claude Code 2.1.318 вошёл в подписку Дениса; Планировщик: «M1lash Studio Agents» и «M1lash Games» Running, «M1lash Inbox» Ready (старт при входе); ярлык «Панель M1lash» на рабочем столе; папки `C:\M1lash\{Входящие,Работа,Готово,Архив,Игры}`; `local_jobs.py where` → `pc`; heartbeat ПК пишет `status.json` в ветку `pc-status` (сайт → «Агенты»), host MSI, mode on.
