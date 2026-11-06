@@ -26,7 +26,11 @@ on:
         required: true
         default: upload
         type: choice
-        options: [upload, schedule]
+        options: [upload, schedule, delete]
+      confirm_video_id:
+        description: "delete: точный YouTube ID из квитанции (только PRIVATE, только по решению Дениса)"
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -162,8 +166,21 @@ jobs:
         run: |
           test -n "$EXPECTED_PUBLISH_AT" || { echo 'Exact owner-selected time required; no change made'; exit 1; }
           python scripts/youtube_direct.py schedule --manifest "$MANIFEST" --expected-publish-at "$EXPECTED_PUBLISH_AT" --expected-request-id "$EXPECTED_REQUEST_ID"
+      - name: Delete PRIVATE video (owner decision only)
+        if: inputs.execute == true && inputs.mode == 'delete'
+        id: delete
+        env:
+          MANIFEST: ${{ env.EFFECTIVE_MANIFEST }}
+          CONFIRM_ID: ${{ inputs.confirm_video_id }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python scripts/youtube_direct.py delete --manifest "$MANIFEST" --confirm-video-id "$CONFIRM_ID"
       - name: Persist YouTube ID and URL
-        if: steps.upload.outcome == 'success' || steps.schedule.outcome == 'success'
+        if: steps.upload.outcome == 'success' || steps.schedule.outcome == 'success' || steps.delete.outcome == 'success'
         env:
           MANIFEST: ${{ env.EFFECTIVE_MANIFEST }}
         shell: bash

@@ -279,9 +279,46 @@ def youtube_schedule(video_id, data, publish_at, token):
                        (confirmed, status.get("privacyStatus")))
 
 
+def youtube_delete(file, data, confirm_id):
+    """Удаление ролика с канала — ТОЛЬКО по прямому решению Дениса (AGENTS §1, исключение с датой).
+    Защита: ID в квитанции = подтверждённый ID, ролик принадлежит нашему каналу и он НЕ публичный."""
+    receipt = receipt_path(file)
+    if not receipt.exists():
+        raise ValueError("No receipt: delete only videos uploaded through this tool")
+    prior = load_json(receipt)
+    vid = str(prior.get("video_id", ""))
+    if not re.fullmatch(r"[A-Za-z0-9_-]{11}", vid) or vid != confirm_id:
+        raise ValueError("Confirm ID must equal the receipt video_id exactly; nothing deleted")
+    if prior.get("status") == "deleted":
+        print("Already deleted:", vid); return
+    channels = load_json(CHANNELS)
+    channel = data.get("channel", "ru")
+    token = token_for(channel)
+    verify_channel(token, channels[channel])
+    r = requests.get(API + "/videos", params={"part": "status,snippet", "id": vid},
+                     headers={"Authorization": "Bearer " + token}, timeout=40)
+    r.raise_for_status()
+    items = r.json().get("items", [])
+    if items:
+        it = items[0]
+        if it["snippet"].get("channelId") != channels[channel]:
+            raise ValueError("Video belongs to another channel; nothing deleted")
+        if it["status"].get("privacyStatus") != "private":
+            raise ValueError("Video is not PRIVATE (%s); public videos are never deleted by tool" % it["status"].get("privacyStatus"))
+        d = requests.delete(API + "/videos", params={"id": vid}, headers={"Authorization": "Bearer " + token}, timeout=60)
+        if d.status_code != 204:
+            raise RuntimeError("YouTube delete failed (HTTP %s)" % d.status_code)
+    else:
+        print("Video not found on YouTube (already gone):", vid)
+    atomic_json(receipt, {**prior, "status": "deleted", "deleted_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+                          "deleted_reason": "owner decision"})
+    print("YOUTUBE_DELETE_OK", vid)
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("operation", choices=["check", "preflight", "reserve", "send", "schedule"])
+    parser.add_argument("operation", choices=["check", "preflight", "reserve", "send", "schedule", "delete"])
+    parser.add_argument("--confirm-video-id", default="")
     parser.add_argument("--manifest", required=True)
     parser.add_argument("--video-file", default="")
     parser.add_argument("--expected-publish-at", default="")
@@ -289,6 +326,8 @@ def main():
     args = parser.parse_args()
     file = manifest_path(args.manifest)
     data = load_json(file)
+    if args.operation == "delete":
+        return youtube_delete(file, data, args.confirm_video_id)
     if args.operation == "schedule" and args.expected_publish_at:
         if event_time(data.get("publish_at", "")) != event_time(args.expected_publish_at):
             raise ValueError("Stale schedule request: manifest date changed; no YouTube update")
