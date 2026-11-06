@@ -8,11 +8,7 @@ on:
         description: 'jobs/voice/<id>.json in this repository'
         type: string
         required: true
-  # One explicit integration test; delete this push trigger after owner test.
-  push:
-    branches: [main]
-    paths:
-      - 'jobs/voice/test_claude.json'
+  # push-trigger test_claude removed 06.11 after run 42101115487 SUCCESS (ASR 3/3, Drive PASS)
 
 permissions:
   contents: read
