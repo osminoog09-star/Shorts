@@ -1,0 +1,90 @@
+{
+  "film": "Оппенгеймер (2023)",
+  "source_kind": "owner_screen_recording_excerpt",
+  "source_id": "15jweAqG-x4UgFyCU8jkuZXhAuRJcGIaD",
+  "source_filename": "Screen_Recording_20261103_124519_Opera.mp4",
+  "status": "source_verified_ru",
+  "created_at": "2026-11-06T01:41:55.167908+00:00",
+  "contents_private": true,
+  "youtube_status": "not_uploaded",
+  "note": "Review source audio and visual content before film selection. No movie frames/voice in repo.",
+  "size_bytes": 836471622,
+  "sha256": "a784b456047834339c4cc908d638f03d3b032917ca6b51aa948cf59312e656e1",
+  "duration_s": 2418.38,
+  "video_width": 1258,
+  "video_height": 1080,
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "contact_drive_file_id": "17et_l7Q4BcEXNLV4RcUGB-wws504sqIe",
+  "contact_image_times": [
+    30.2,
+    90.7,
+    151.1,
+    211.6,
+    272.1,
+    332.5,
+    393.0,
+    453.4,
+    513.9,
+    574.4,
+    634.8,
+    695.3,
+    755.7,
+    816.2,
+    876.7,
+    937.1,
+    997.6,
+    1058.0,
+    1118.5,
+    1179.0,
+    1239.4,
+    1299.9,
+    1360.3,
+    1420.8,
+    1481.3,
+    1541.7,
+    1602.2,
+    1662.6,
+    1723.1,
+    1783.6,
+    1844.0,
+    1904.5,
+    1964.9,
+    2025.4,
+    2085.9,
+    2146.3,
+    2206.8,
+    2267.2,
+    2327.7,
+    2388.2
+  ],
+  "languages": [
+    {
+      "sample_t": 169.3,
+      "lang": "ru",
+      "probability": 0.99
+    },
+    {
+      "sample_t": 701.3,
+      "lang": "ru",
+      "probability": 0.99
+    },
+    {
+      "sample_t": 1209.2,
+      "lang": "ru",
+      "probability": 0.83
+    },
+    {
+      "sample_t": 1717.1,
+      "lang": "en",
+      "probability": 0.4
+    },
+    {
+      "sample_t": 2249.1,
+      "lang": "ru",
+      "probability": 0.99
+    }
+  ],
+  "ru_audio_verified": true,
+  "scene_verified": false
+}
