@@ -471,6 +471,22 @@
       "title": "POV: ты работаешь в городе, где продают погоду",
       "youtube_id": "uxS6DACvQGY",
       "note": "По прямой команде Дениса загружено PRIVATE без даты. Не публиковать и не назначать расписание. | 07.11 Денис: «ставь время всем роликам» → 2026-11-18 15:00 (Claude)"
+    },
+    {
+      "id": "oumuamua_ru",
+      "kind": "long",
+      "author": "Claude",
+      "status": "scheduled",
+      "slot": "2026-11-14T15:00:00+02:00",
+      "style": "S11-D25",
+      "mp4": null,
+      "publish_md": "longform/oumuamua/PUBLISH.md",
+      "title": "Оумуамуа: гость, который не должен был ускоряться",
+      "youtube_id": "iYmh6Fd3LMY",
+      "review_version": "OUMUAMUA_V3",
+      "owner_audio_approved": true,
+      "note": "07.11 Денис: «как готово — заливай и ставь время». 24:07, хук+крючки+опрос, произношение «Оу-муа-муа». Обложку oumuamua_thumb.png поставить в Studio вручную.",
+      "private_review_url": "https://studio.youtube.com/video/iYmh6Fd3LMY/edit"
     }
   ]
 }
