@@ -77,7 +77,10 @@
     "privacy": "local private review",
     "scheduled_at": null,
     "reason": "local MP4 complete; owner hearing and source reuse rights unverified; no upload or schedule",
-    "status": "ready_for_owner_review"
+    "status": "private_upload_prepared",
+    "owner_authorized_private_upload": true,
+    "owner_authorized_at": "2026-11-07",
+    "authorization": "согласно правилам заливаем 3 этих шортса"
   },
   "qa_report": "reports/research/2026-11-07_KINO_009_011_LOCAL.md"
 }
