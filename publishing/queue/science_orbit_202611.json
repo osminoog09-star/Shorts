@@ -36,5 +36,6 @@
     "final_check_report": "reports/research/2026-11-03_science_orbit_202611_full_QA.json",
     "asr": "reports/research/qa/next_four_20261103/final_asr_summary.json",
     "no_schedule_authorized": true
-  }
+  },
+  "publish_at": "2026-11-13T10:00:00+02:00"
 }
