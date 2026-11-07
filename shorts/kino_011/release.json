@@ -65,13 +65,19 @@
     "music_ducking": true,
     "music_ducking_scope": "approved outro music balance; no added body music, original film mix retained",
     "music_license_verified": false,
-    "visual_qa_done": false,
-    "audio_qa_done": false
+    "visual_qa_done": true,
+    "audio_qa_done": false,
+    "visual_qa_scope": "16 sampled frames from actual final MP4, plus targeted source/hold frames; owner aesthetic review pending",
+    "technical_audio_qa_done": true,
+    "duration_seconds": 50.403292,
+    "sha256": "ca00dc88eb2d022bb7cf614d9b7df5151c4b27b441108ce152904f350fcf6500"
   },
   "publication": {
     "publish_ready": false,
     "privacy": "local private review",
     "scheduled_at": null,
-    "reason": "owner hearing and source rights unverified; final QA recorded separately"
-  }
+    "reason": "local MP4 complete; owner hearing and source reuse rights unverified; no upload or schedule",
+    "status": "ready_for_owner_review"
+  },
+  "qa_report": "reports/research/2026-11-07_KINO_009_011_LOCAL.md"
 }

@@ -1,14 +1,13 @@
-# Три новых кино-Shorts · 07.11.2026 · Codex
+# Три новых кино-Shorts · LOCAL MP4 COMPLETE · 07.11.2026
 
-Прямая команда: три новых фильма, не Бэтмен; короткие сцены через Chrome/HDRezka, максимальное качество; завершить на ПК. Существующий S6-D25.
+Три физических финала в C:\M1lash\Готово.
 
-- [x] AGENTS/Studio/lessons/template прочитаны; journal preflight/check: 50 записей валидны после восстановления 8 tracked evidence MD из sparse checkout.
-- [x] Реальные WGC записи конкретного Chrome HWND, WASAPI speaker, без микрофона. Источник Menu 3840×1632 4K; Upgrade 1920×804 1080p Ultra; Prestige 1920×818 1080p Ultra. Окно2560×1528, итог1080×1920 — не нативное вертикальное4K.
-- [x] Три body.mp4 реально отрендерены на ПК, исправлены первоначальные обрезанные лица, reframe привязан к source cuts, русский звук сохранён.
-- [x] kino011 финал50.403с, approved Denis v7 outro6.6с целиком, ASR титула exact, decode/assembler PASS. После последней правки текста повторить official check/look.
-- [ ] Публичные Qwen1.7B weights докачиваются на ПК с SHA256; затем local_jobs.py voice по jobs/voice/kino009_title_local_v3.json и kino010_title_local_v3.json. Зависшие CPU runs42345489865/42345492216 отменены.
-- [ ] Финалы009/010 через assemble_with_outro, actual final official check.py/look.py/ASR/decode; отчёт, journal/HANDOFF.
+| ID | Секунды | Bytes | SHA256 |
+|---|---:|---:|---|
+|009|39.167|28795969|`eb0095030dfe559248f2798c5a029c5e9bd6ff842c7de1a7f2cc6c53ac52aa43`|
+|010|39.500|27139275|`d9dea2b6bda96a9ec5627b28154abbe03e2fb9e3b92e575f40711c0e909829ff`|
+|011|50.403|32192041|`ca00dc88eb2d022bb7cf614d9b7df5151c4b27b441108ce152904f350fcf6500`|
 
-Работа: C:\M1lash\Работа\kino_new_20261107. Выход: C:\M1lash\Готово\m1lash_kino_009_ru.mp4 (010/011 аналогично). Скрипты tools/movie_edit/render_new_batch_20261107.py, qa_new_batch_20261107.py; пакеты shorts/kino_009–011.
+[x] Chrome max-quality short sources; [x] local crop/captions; [x] Denis titles; [x] approved6.6s outro; [x] actual final decode/check/look/ASR; [x] metadata anti-spoiler; [x] code/report in Git.
 
-Rejected desktop takes не использовать: захватывали другую программу; только приватная рабочая папка, в Git не попадали. Правильные исходники имеют _window в имени. Права на источник не подтверждены; слуховая оценка владельца pending. Только LOCAL PRIVATE REVIEW, без даты и публикации.
+PRIVATE OWNER REVIEW: слух и права не подтверждены; YouTube upload/schedule не выполнялись. Подробности reports/research/2026-11-07_KINO_009_011_LOCAL.md. Следующий производственный шаг отсутствует; после owner review — только явно заказанные исправления/публикация.

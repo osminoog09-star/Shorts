@@ -675,12 +675,25 @@
       "issue": "В первом вертикальном монтаже лица оказывались на краю/вне кадра.",
       "cause": "Центры и границы смены плана предполагались по редкому contact вместо точных source cuts.",
       "fix": "ROI и центры поправлены по source frames; переключения009/010 привязаны к scene cuts, повторно осмотреть final MP4.",
-      "status": "fixed",
+      "status": "verified",
       "evidence": "reports/research/2026-11-07_KINO_009_011_LOCAL.md",
-      "acceptance": "Физический final01116-frame contact просмотрен; для009/010 final review ещё pending. Тест относится к исправлению метода, не общему ART GO.",
+      "acceptance": "Все три actual final MP4: official16-frame contacts просмотрены;009 дополнительно food/caption edge,010 speaking face и final hold. Это sampled visual QA, owner hearing/ART review pending.",
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": true
+    },
+    {
+      "id": "DENIS-ASR-LATIN-TITLE-20261107",
+      "project": "kino010",
+      "issue": "ASR записал локализованное название латиницей: Upgrade вместо Апгрейд; буквальный score0.6667 остановил корректно прозвучавшую по текстовой транскрипции реплику.",
+      "cause": "ASR similarity сравнивал алфавиты, не учитывая заранее известное альтернативное написание названия.",
+      "fix": "Только явно заданные job asr_text_aliases; сохранить actual ASR/matched spelling, не менять voice/text/rate/threshold.",
+      "status": "verified",
+      "evidence": "reports/research/2026-11-07_KINO_009_011_LOCAL.md",
+      "acceptance": "8 tests PASS: пустой/посторонний ASR не принят, невалидная alias-схема отклонена. Локальный повтор010 ASR1.0; actual final ASR содержит Upgrade. Слуховая оценка pending.",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
     }
   ]
 }
