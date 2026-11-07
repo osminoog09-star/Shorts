@@ -1,10 +1,13 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/vacuum_wild_ru.json",
   "manifest_sha256": "7678ab570b2e231cea44f6308a40299355fa783a07a4c6a745f72f533b2f3759",
   "channel": "ru",
-  "publish_at_utc": null,
+  "publish_at_utc": "2026-11-08T18:00:00Z",
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "h-fz_lx7bn8",
-  "video_url": "https://youtu.be/h-fz_lx7bn8"
+  "video_url": "https://youtu.be/h-fz_lx7bn8",
+  "privacy_status": "private",
+  "schedule_confirmed_at": "2026-11-07T06:38:44.921385+00:00",
+  "schedule_request_id": null
 }
