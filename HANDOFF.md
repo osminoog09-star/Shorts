@@ -1,4 +1,11 @@
-# 07.11 · Claude · Shorts «Дикая природа: пылесос» (S9-D3) — готов, ждёт просмотра Дениса, на YouTube НЕ залит
+# 07.11 · Claude · «Робот-пылесос вышел на охоту» v2 — PRIVATE на YouTube без даты, на сайте «Ждёт твоего ок»
+
+- **YouTube:** https://youtu.be/h-fz_lx7bn8 (PRIVATE, publish_at=null), квитанция `publishing/receipts/vacuum_wild_ru.json`, паспорт `longform/vacuum_wild/PUBLISH.md`. **Не перезаливать.** Дату (вечерний скетч 20:00) ставит Денис на сайте.
+- **v2 по просьбе Дениса:** в теле только его голос (без SFX/музыки), мёртвые паузы убраны (WARP в scene.js: перетягивание 2×, вырез 26,9→27,3, тело 34,9 с), графика переделана по `longform/vacuum_wild/AUDIT_2026-11-07.md` (SSAA×2, GTAO, DOF, bloom/грейд, IBL, рельеф; кот с shell-fur, 2-звенные лапы, новая морда; пылесос/чайник/колонка с фасками и глянцем). 41,5 с, SHA `cacc8f38…`, check.py: только loudness −16,2 (тело = концовке), decode PASS.
+- **Конвейер теперь на ПК Дениса** (`scripts/pc/local_jobs.py`): рендер на RTX 4080 (v2 ~7 мин, простая сцена ~30 с), концовки v7 локально в `C:\M1lash\private\outro` (SHA, скачаны через Chrome), `publish` = MP4 → черновик релиза (не публичный) → `youtube-direct` PRIVATE без даты → черновик удаляется (проверено на этом ролике). Веса Qwen/whisper для голоса на ПК — `pc-model-weights.yml` (артефакт, докачивается; локальный голос ещё не проверен). Голос пока — `denis-voice-tts.yml` в Actions.
+- **Попутно:** `kino_008` в `publishing/queue.json` переведён в scheduled 08.11 10:00 по квитанции (Денис запланировал 07.11 06:19 UTC) — без этого падал тест сайта.
+
+# 07.11 · Claude · Shorts «Дикая природа: пылесос» (S9-D3) — v1 (история)
 
 - **Что:** 3D-Shorts кодом (three.js), документалка о природе: робот-пылесос охотится на носок → кот из-под дивана → пылесос зовёт колонку и чайник → кот одним ударом раскидывает всех и уезжает на пылесосе с носком. Сюжет Б из grill-me, стиль S9-D3 — выбор Дениса 06.11. Сценарий `longform/vacuum_wild/SCRIPT.md`, сцена `scene.js`, микс `mix.py`.
 - **Финал:** 45,1 с = 38,5 тело + утверждённая концовка Denis v7 vertical; 1080×1920/30, H.264 yuv420p tv/bt709, AAC 48k; SHA256 `a96c6981338083b9508cbaffb0d29d7a69f6066ed10d39f2b54dbaa5fdb1ff24`. Сборка `scene-short.yml` run 42337546777. Копия для просмотра — **приватный Drive** https://drive.google.com/drive/folders/1npaI8nmwsU5SaHgZBSG2Ex4L6Shd7FVO ; кадры QA (без звука) — ветка `qa/vacuum_wild`.
