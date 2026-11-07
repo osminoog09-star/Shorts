@@ -10,9 +10,10 @@ import json, subprocess, sys
 from pathlib import Path
 import numpy as np
 
-SR, DUR = 48000, 38.5
+SR, DUR = 48000, 34.9
 HERE = Path(__file__).resolve().parent
-LINES = {'v1': .2, 'v2': 3.55, 'v3': 9.85, 'v4': 13.3, 'v5': 18.2, 'v6': 23.9, 'v7': 29.3, 'v8': 32.7}  # must match scene.js
+# OUTPUT times (after the scene.js WARP edit): scene 18.2→16.7, 23.9→22.4, 28.2→26.3, 31.9→30.0
+LINES = {'v1': .2, 'v2': 3.55, 'v3': 9.85, 'v4': 13.3, 'v5': 16.7, 'v6': 22.4, 'v7': 26.3, 'v8': 30.0}
 # lines re-synthesized as short pieces (ASR fix 07.11): played back to back with a pause, one subtitle id
 VOICE_ONLY = True  # owner 07.11: «фоновые звуки — кринж, оставь только голос» → no SFX, no music in the body (outro untouched)
 CHAINS = {'v5': (['v5a', 'v5c'], .3), 'v7': (['v7a', 'v7b'], .35)}

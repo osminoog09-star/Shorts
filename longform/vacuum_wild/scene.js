@@ -4,8 +4,12 @@ import * as THREE from 'three';
 import { RoundedBoxGeometry } from './vendor/RoundedBoxGeometry.js';
 
 const W = 1080, H = 1920;
-export const DUR = 38.5;
-window.DUR = DUR;
+export const DUR = 38.5;            // scene (choreography) time
+// Edit 07.11 (voice-only, no dead air): output time → scene time. Tug 15→18 at 2×, skip 26.9→27.3 (lands on the cut), end at scene 36.8.
+const WARP = [[0, 0, 1], [15.0, 15.0, 2], [16.5, 18.0, 1], [25.4, 27.3, 1]];  // [out_start, scene_start, rate]
+const OUT_DUR = 34.9;
+const warp = t => { let w = WARP[0]; for (const s of WARP) if (t >= s[0]) w = s; return w[1] + (t - w[0]) * w[2]; };
+window.DUR = OUT_DUR;
 
 // ───────── helpers ─────────
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
@@ -38,8 +42,8 @@ const LINES = [
   { id: 'v4', t: 13.3, text: 'Но у носка есть <b>хозяин</b>.' },
   { id: 'v5', t: 18.2, text: 'Охотник зовёт стаю. <b>Колонка. Чайник.</b>' },
   { id: 'v6', t: 23.9, text: '<b>Хищник</b> выходит из тени.' },
-  { id: 'v7', t: 29.3, text: 'Ну всё. П**дец <b>экосистеме</b>.' },
-  { id: 'v8', t: 32.7, text: 'Природа жестока. Особенно за <b>сорок тысяч рублей</b>.' },
+  { id: 'v7', t: 28.2, text: 'Ну всё. П**дец <b>экосистеме</b>.' },
+  { id: 'v8', t: 31.9, text: 'Природа жестока. Особенно за <b>сорок тысяч рублей</b>.' },
 ];
 const ldur = L => DURS[L.id] ?? Math.max(1.2, L.text.replace(/<[^>]+>/g, '').length * 0.07);
 window.EV = LINES.map(L => ({ t: L.t, type: 'voice', id: L.id }));
@@ -438,7 +442,8 @@ const shotAt = t => SHOTS.find(s => t >= s.a && t < s.b) || SHOTS[SHOTS.length -
 // ───────── render(t) ─────────
 const subEl = document.getElementById('sub'), flashEl = document.getElementById('flash'), docEl = document.getElementById('doc'), recEl = document.getElementById('rec');
 let lastSub = '';
-window.render = function (t) {
+window.render = tOut => renderScene(warp(tOut));
+function renderScene(t) {
   const sh = shotAt(t);
   // ── robovac
   const v = vacState(t);
