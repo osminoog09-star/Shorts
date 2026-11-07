@@ -707,6 +707,32 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": "Перед использованием watch shot/cut metrics проверять max_frames и полноту прохода."
+    },
+    {
+      "id": "20261107_asr_cyrillic_autojunk",
+      "project": "weather_bureau_20261107",
+      "issue": "Почти правильная длинная русская ASR-транскрипция получала.37вместо.96, вызывая ненужные дубли.",
+      "cause": "difflib.SequenceMatcher по умолчанию исключает популярные символы настроках>=200; малый кириллический алфавит делает эту эвристику непригодной.",
+      "fix": "autojunk=False: сравнивать все символы. Порог.80, проверка длины, текст, голос и rate неизменны; unrelated long Russian по-прежнему REJECT.",
+      "status": "verified",
+      "evidence": "scripts/qa/test_voice_private.py",
+      "acceptance": "10testsPASS, включая200+символов реальной фразы и длинный посторонний текст. Восстановленный WAV принят только при совпадении SHA и пересчёте реальной сохранённой ASR-транскрипции.",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": "Не снижать ASR-порог для обхода false-negative; сначала проверить алгоритм и длинные строки."
+    },
+    {
+      "id": "20261107_owner_deleted_receipt_ghost",
+      "project": "kino_010",
+      "issue": "Историческая успешная upload-квитанция может заново создавать карточку уже удалённого видео.",
+      "cause": "build_review_queue/add_pending_uploads считали прошлую загрузку достаточным доказательством текущей доступности.",
+      "fix": "Явное решение owner_decision leave_deleted исключается из review и pending inventory; receipt остаётся неизменной историей. Запрос даты снят в cancelled_requests, старые данные архивированы.",
+      "status": "verified",
+      "evidence": "tests/test_studio_review_queue.py",
+      "acceptance": "12testsPASS; live data.json: deleted_in_review=False,deleted_in_videos=False,excluded содержитkino_010. Владелец явно ответил «Оставить удалённым».",
+      "owner_review": "accepted",
+      "audience_effect": "unknown",
+      "regression": "Не перезаливать удалённый uploader ролик без отдельного решения; receipt об upload не равна live state."
     }
   ]
 }

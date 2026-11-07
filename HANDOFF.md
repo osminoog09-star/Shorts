@@ -2033,3 +2033,9 @@ QA: полный decode обоих MP4; после финального сжат
 - Музыка: своя процедурная чиптюн-петля (генерируется в `shorts/pixel_alarm/render.py`), лицензия не нужна.
 - MP4: `videos/pixel_alarm_ru.mp4`, 48.2 с, 1080×1920 H.264/AAC, −14 LUFS, decode PASS, контрольные кадры просмотрены.
 - **Не запланирован** — ждёт просмотра Дениса и слота.
+
+## 07.11.2026 · Codex · Три кино-Shorts и план следующей недели
+
+Три local upload были SUCCESS:009 izqrEKmU38g,010 _dXT3MYOmow,011 gLdXWqOj8hw. После этого010 удалён uploader; Денис явно ответил «Оставить удалённым». Повторно не заливать. Failed reservation09.11 снята, история publishing/owner_decisions/kino_010_20261107.json, локальный MP4 сохранён.009/011 последний GET:PRIVATE бездат.
+
+План12–15.11 на https://osminoog09-star.github.io/Shorts/studio/: «Телефоннаябудка»,«Исходныйкод»,«Иллюзияобмана»,«Граньбудущего», только список с задачами записи/кадра/готовности. Новые записи по этому списку не запускались. Live HTML/data.json подтвердили4карточки, excluded010 и отсутствие удалённого видео вreview/inventory.12review tests, recording-plan и scheduling fixturesPASS. Отчёт reports/research/2026-11-07_KINO_UPLOAD_AND_RECORDING_PLAN.md. Все материалыC:\M1lash, готовые3MP4C:\M1lash\Готово; правила максимального качества источника и запрета записи во время любого рендера внесены вAGENTS/Studio.
