@@ -1,10 +1,13 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/weather_bureau.json",
   "manifest_sha256": "dbe4331aee4dcbf891ad243fd056801f0de2404c22b883d5d0a594f17b8183a0",
   "channel": "ru",
-  "publish_at_utc": null,
+  "publish_at_utc": "2026-11-18T13:00:00Z",
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "uxS6DACvQGY",
-  "video_url": "https://youtu.be/uxS6DACvQGY"
+  "video_url": "https://youtu.be/uxS6DACvQGY",
+  "privacy_status": "private",
+  "schedule_confirmed_at": "2026-11-07T17:16:43.776076+00:00",
+  "schedule_request_id": null
 }
