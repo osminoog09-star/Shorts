@@ -31,15 +31,20 @@ function pathTable(c){A.path(c,'M160 100 L1100 100 L1270 690 L10 690 Z','#ad875a
 function pathDrop(c,x,y){A.path(c,`M${x} ${y} q-18 25 0 33 q18-8 0-33`,P.water)}
 function hook(c,t){c.drawImage(bg('desk'),0,0,W,H);rect(c,0,0,W,H,'rgba(30,49,53,.16)',null);actor(c,'hero',1040,1210,2.1,'read','worried',t,{look:-1});c.save();c.translate(585,390+5*Math.sin(t));c.rotate(-.10);paper(c,0,0,2.75,'РАБОЧИЙ ДОГОВОР');rect(c,-145,5,290,70,P.cream,null);text(c,'ДОЖДЯ НЕТ',0,30,28,INK,'Georgia','center');text(c,'* в помещении',0,60,15,INK,'Arial','center');c.restore();drizzle(c,t,35)}
 function shot(c,scene,t=0,dur=6){const loc=scene.location||'desk',mode=scene.mode||'wide',pose=scene.action||'read',emotion=scene.emotion||'neutral';c.save();
- const z=1.01+.018*ease(t/Math.max(.1,dur));c.translate(640,360);c.scale(z,z);c.translate(-640-5*ease(t/dur),-360);c.drawImage(bg(loc,scene.variant||0),0,0,W,H);
+ const z=1.01+.018*ease(t/Math.max(.1,dur));c.translate(640,360);c.scale(z,z);c.translate(-640-5*ease(t/dur),-360);c.drawImage(bg(loc,scene.variant||0),0,0,W,H);if(scene.rainOnGlass){c.save();c.beginPath();c.rect(0,50,W,460);c.clip();drizzle(c,t,55);c.restore()}
  if(mode==='hook'){hook(c,t)}
  else if(mode==='insert'){require('./props.cjs').narrativeInsert(c,scene.prop||'paper',t,scene.propVariant??scene.variant??0)}
  else if(mode==='environment'){actor(c,scene.person||'hero',760+70*ease(t/dur),679,.65,'walk',emotion,t,{look:-1});if(loc==='vault')gauge(c,1060,200,1.2,.4,'РЕЗЕРВ')}
  else if(mode==='reverse'){actor(c,scene.other||'nora',505,1050,1.85,scene.otherAction||'explain',scene.otherEmotion||(scene.other==='child'?'smile':'focused'),t,{look:1});actorBack(c,'hero',1120,1200,2.1)}
  else if(mode==='reaction'){actor(c,scene.person||'hero',700,1415,2.55,pose,emotion,t,{look:scene.look||0,angle:scene.angle||'three'});}
  else if(mode==='medium'){actor(c,scene.person||'hero',710,1000,1.65,pose,emotion,t,{phase:t/dur,look:-.7});actor(c,scene.other||'nora',210,835,scene.other==='child'?.75:1.15,scene.otherAction||'explain',scene.otherEmotion||'neutral',t,{phase:t/dur,look:1,angle:scene.otherAngle||'three'});}
- else {actor(c,scene.other||'nora',325,675,scene.other==='child'?.62:.94,scene.otherAction||'read',scene.otherEmotion||(scene.other==='child'?'smile':'focused'),t,{look:1});actor(c,scene.person||'hero',pose==='walk'?760+120*ease(t/dur):820,684,1,pose,emotion,t,{phase:t/dur,look:-.5});if(loc==='street'||loc==='bureau_front'){actor(c,'woman',1130,660,.72,'walk','worried',t,{look:-1})}}
- if(['street','bureau_front','canal','roof','city'].includes(loc))drizzle(c,t,55);if(['pump','vault','laundry'].includes(loc))steam(c,t,1150,570);
+ else {const family=loc==='roof'&&scene.other==='child';
+  if(!family)actor(c,scene.other||'nora',325,675,scene.other==='child'?.62:.94,scene.otherAction||'read',scene.otherEmotion||(scene.other==='child'?'smile':'focused'),t,{phase:t/dur,look:1});
+  actor(c,scene.person||'hero',pose==='walk'?760+120*ease(t/dur):820,684,1,pose,emotion,t,{phase:t/dur,look:-.5,umbrellaWide:family});
+  if(family)actor(c,'child',700,690,.62,scene.otherAction||'telescope','smile',t,{look:1});
+  if(loc==='street'||loc==='bureau_front')actor(c,'woman',1130,660,.72,'walk','worried',t,{look:-1})}
+
+ if(['street','bureau_front','canal','roof','city'].includes(loc))drizzle(c,t,scene.rainCount??55);if(['pump','vault','laundry'].includes(loc))steam(c,t,1150,570);
  c.restore();
  if(scene.chapterTitle&&t<1.8){c.globalAlpha=clamp((1.8-t)/.3);rect(c,45,42,Math.min(1100,scene.chapterTitle.length*16+55),55,'#2b4148',P.paper,1.5);text(c,scene.chapterTitle,66,79,29,P.cream,'Georgia');c.globalAlpha=1}
 }

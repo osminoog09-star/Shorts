@@ -53,10 +53,13 @@ def main():
                     if start<=tm<end:words.append(w)
             other_action='telescope' if ch==8 and par>=6 and other=='child' else 'inspect' if other=='nora' else 'box' if other=='woman' and prop=='flowers' else 'read' if other in ['chief','manager'] else 'explain' if other=='client' else 'idle'
             sc=dict(id=f'c{ch:02d}p{par:02d}s{j:02d}',chapter=ch,paragraph=par,start=round(start,6),end=round(end,6),location=loc,mode=mode,other=other,otherAction=other_action,action=action if mode!='reaction' else 'idle',emotion=emotion,prop=prop_shot,variant=2 if ch==8 else 1 if ch==7 else 3 if (ch,par)==(4,1) and j>0 else 0,spoken_words=' '.join(words),transition='cut',reason='Событие и реакция в исходном абзаце',source_utterances=[u['id'] for u in g['utterances']])
+            sc['rainCount']=5 if (ch,par)==(8,8) else 15 if (ch,par)==(8,7) else 55
+            sc['rainOnGlass']=(ch,par)==(7,8) and loc=='orangery'
             sc['propVariant']=2 if (ch,par)==(3,3) and prop=='jar' else 2 if (ch,par)==(3,4) and prop=='ledger' else 3 if (ch,par) in [(3,5),(5,6),(5,7)] and prop=='ledger' else 4 if (ch,par)==(6,7) and prop=='ledger' else 2 if prop=='contract' and ch==1 and par<=2 else 1 if prop=='contract' and ch==4 else 3 if prop=='contract' and ch==6 else 2 if prop=='map' and (ch,par)==(5,3) else 1 if prop=='ledger' and ch>=6 else int(ch>=7)
             if (ch,par,j)==(1,1,0):sc['mode']='hook'
             if (ch,par,j)==(2,4,0):sc['mode']='environment';sc['location']='city'
             if (ch,par)==(7,7) and j==0:sc['mode']='pilot'
+            if (ch,par,j)==(8,7,2):sc['mode']='reverse'
             if (ch,par)==(8,8) and j==count-1:sc['action']='closedUmbrella';sc['mode']='wide'
             if par==1 and j==0:sc['chapterTitle']=blueprint[ch-1]['title']
             if ch==1 and par==1 and j==0:sc['chapterTitle']=''

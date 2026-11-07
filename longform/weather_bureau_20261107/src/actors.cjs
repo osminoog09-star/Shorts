@@ -85,7 +85,7 @@ function actor(c,person,x,y,s=1,pose='idle',emotion='neutral',t=0,opt={}){const 
  if(pose==='closedUmbrella'){L=[-70,-210];R=[35,-220];rk='grip'}
  if(pose==='offer'){L=[-70,-210];R=[145,-265];rk='open'}
  if(pose==='inspect'){L=[-48,-269];R=[110,-335];lk='grip';rk='point'}
- if(pose==='umbrella'){L=[-70,-210];R=[35,-280];rk='grip'}
+ if(pose==='umbrella'){L=[-70,-210];R=[60,-280];rk='grip'}
  if(pose==='box'){L=[-85,-250];R=[85,-250];lk=rk='grip'}
  if(pose==='stop'){L=[-60,-225];R=[130,-380];rk='open'}
  if(pose==='tool'){L=[-50,-260];R=[104,-325+12*Math.sin(t*2)];rk='grip'}
@@ -97,7 +97,7 @@ function actor(c,person,x,y,s=1,pose='idle',emotion='neutral',t=0,opt={}){const 
  if(['point','explain','stop','offer','inspect'].includes(pose)){const e=A.ease(((opt.phase??Math.min(1,t/5))-.04)/.23);R=[72+(R[0]-72)*e,-205+(R[1]+205)*e]}
  if(pose==='telescope'){c.save();c.translate(34,-303);c.rotate(-.55);rect(c,-60,-15,160,30,'#ba9567');rect(c,83,-20,22,40,'#755d46');rect(c,-65,-12,20,24,'#765e47');oval(c,106,0,4,19,'#59747a');c.restore()}
  if(pose==='closedUmbrella'){path(c,'M35 -422 Q13 -375 12 -278 L55 -278 Q58 -375 35 -422 Z',P.gold);line(c,35,-414,35,-207,INK,3);path(c,'M35 -208 q0 20 19 10',null,INK,4);rect(c,11,-305,45,10,'#9e7c3f')}
- if(pose==='umbrella')A.umbrella(c,35,-408,1,.01*Math.sin(t));
+ if(pose==='umbrella')A.umbrella(c,48,-520,opt.umbrellaWide?1.9:1,.01*Math.sin(t),opt.umbrellaWide?240/1.9:240);
  if(pose==='box')require('./props.cjs').flowers(c,0,-250,.65);
  if(pose==='tool'){line(c,107,-354+12*Math.sin(t*2),107,-410+12*Math.sin(t*2),'#758a86',7);rect(c,99,-354+12*Math.sin(t*2),16,40,'#a66b4c')}
  if(pose==='write'){paper(c,0,-262,.78,'ЖУРНАЛ');line(c,50,-278,16,-316,'#465e64',5)}
@@ -116,5 +116,5 @@ function actor(c,person,x,y,s=1,pose='idle',emotion='neutral',t=0,opt={}){const 
  c.restore();c.restore();
  return {left:{x:x+L[0]*s,y:y+L[1]*s},right:{x:x+R[0]*s,y:y+R[1]*s}};
 }
-function actorBack(c,person,x,y,s=1){const p=PEOPLE[person]||PEOPLE.hero;c.save();c.translate(x,y);c.scale(s,s);path(c,'M-70 -362 Q-95 -340 -90 -270 L-86 -120 Q0 -95 86 -120 L90 -270 Q95 -340 70 -362 Q30 -382 0 -376 Q-30 -382 -70 -362 Z',p.coat);path(c,'M-32 -390 L32 -390 L30 -358 Q0 -344 -30 -358 Z',p.skin);path(c,'M-59 -457 Q-62 -505 -20 -518 Q15 -538 48 -505 Q70 -483 57 -445 L42 -405 Q0 -382 -40 -411 Z',p.hair);path(c,'M-49 -467 Q-16 -485 35 -468 M-42 -438 Q-10 -450 39 -438',null,'#87664e',3);path(c,'M-65 -361 Q0 -330 65 -361 M0 -335 L0 -119 M-70 -293 Q-62 -250 -72 -192',null,INK,2.2);bone(c,-74,-343,-112,-145,28,24,p.coat);bone(c,74,-343,113,-144,28,24,p.coat);c.restore()}
+function actorBack(c,person,x,y,s=1){const p=PEOPLE[person]||PEOPLE.hero;c.save();c.translate(x,y);c.scale(s,s);path(c,'M-70 -362 Q-95 -340 -90 -270 L-86 -120 Q0 -95 86 -120 L90 -270 Q95 -340 70 -362 Q30 -382 0 -376 Q-30 -382 -70 -362 Z',p.coat);path(c,'M-32 -390 L32 -390 L30 -358 Q0 -344 -30 -358 Z',p.skin);path(c,'M-59 -457 Q-63 -480 -49 -488 Q-56 -505 -35 -508 Q-32 -524 -15 -518 Q-1 -534 17 -519 Q36 -527 43 -510 Q68 -509 61 -486 Q72 -470 57 -445 L42 -405 Q0 -382 -40 -411 Z',p.hair);path(c,'M-47 -481 Q-30 -497 -16 -486 M-5 -501 Q10 -516 24 -498 M28 -480 Q42 -493 49 -474 M-30 -440 Q-15 -454 2 -444',null,'#87664e',3);path(c,'M-65 -361 Q0 -330 65 -361 M0 -335 L0 -119 M-70 -293 Q-62 -250 -72 -192',null,INK,2.2);bone(c,-74,-343,-112,-145,28,24,p.coat);bone(c,74,-343,113,-144,28,24,p.coat);c.restore()}
 module.exports={PEOPLE,bone,hand,head,actor,actorBack};
