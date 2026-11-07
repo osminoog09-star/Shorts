@@ -1,0 +1,11 @@
+{
+  "job_id": "vacuum_wild_fix2",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "utterances": [
+    { "id": "v5c", "text": "Колонка. Чайник.", "rate": 1.0 },
+    { "id": "v5d", "text": "Вся мощь умного дома.", "rate": 0.95 },
+    { "id": "v5e", "text": "Вся мощь умного дома!", "rate": 1.0 }
+  ],
+  "test_scope": "private_owner_hearing_only"
+}
