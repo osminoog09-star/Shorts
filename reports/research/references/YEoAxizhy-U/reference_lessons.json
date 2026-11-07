@@ -1,0 +1,57 @@
+[
+  {
+    "technique": "POV + конкретный ограниченный ресурс",
+    "observed_at": "00:00–00:32",
+    "expected_benefit": "Зритель сразу понимает роль и конфликт",
+    "application_scene": "Открытие: дождь идёт вопреки сухому договору",
+    "verification_method": "Первый озвученный20сфрагмент: роль/проблема понятны без отдельного объяснения",
+    "confidence": "high for observed source; adaptation effect unknown",
+    "verified_pixels": true,
+    "verified_audio": false,
+    "source_method": "local Watch decoded frames + native transcript"
+  },
+  {
+    "technique": "Предмет как доказательство",
+    "observed_at": "02:14–03:24;25:40–26:40",
+    "expected_benefit": "Наглядная причинность",
+    "application_scene": "Мокрая квитанция, счётчик и одна лишняя строка",
+    "verification_method": "Крупный предметный план совпадает с ключевой репликой; текст читается",
+    "confidence": "high for observed source; adaptation effect unknown",
+    "verified_pixels": true,
+    "verified_audio": false,
+    "source_method": "local Watch decoded frames + native transcript"
+  },
+  {
+    "technique": "Менять масштаб и ракурс",
+    "observed_at": "Глобальная и480кадровая выборка00:00–44:12",
+    "expected_benefit": "Избежать длинной одинаковой говорящей позы",
+    "application_scene": "Улица/контора/хранилище/насосная/пульт: общий→действие→руки→лицо",
+    "verification_method": "Shotlistиactualframecontact, не цифровой zoomодного рисунка",
+    "confidence": "high for observed source; adaptation effect unknown",
+    "verified_pixels": true,
+    "verified_audio": false,
+    "source_method": "local Watch decoded frames + native transcript"
+  },
+  {
+    "technique": "Компетентность через ошибку",
+    "observed_at": "27:56–33:15",
+    "expected_benefit": "Герой не безошибочная схема",
+    "application_scene": "Герой сам подписывает неправильный отказ, затем возвращает заявку",
+    "verification_method": "Сценарная причинность: ошибка имеет видимое последствие",
+    "confidence": "high for observed source; adaptation effect unknown",
+    "verified_pixels": true,
+    "verified_audio": false,
+    "source_method": "local Watch decoded frames + native transcript"
+  },
+  {
+    "technique": "Кульминация проверяет созданные правила",
+    "observed_at": "38:04–43:40",
+    "expected_benefit": "Заработанная развязка",
+    "application_scene": "Команда сверяет публичные показания и безопасно распределяет дождь",
+    "verification_method": "Действие не вводит внезапный новый прибор/способность",
+    "confidence": "high for observed source; adaptation effect unknown",
+    "verified_pixels": true,
+    "verified_audio": false,
+    "source_method": "local Watch decoded frames + native transcript"
+  }
+]
