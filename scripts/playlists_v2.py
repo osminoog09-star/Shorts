@@ -98,6 +98,7 @@ def main():
     for v in videos:
         if v["id"] in excluded: continue  # live/undetermined: preserve on channel, do not put in themed playlists
         k = category(v, seeds)
+        print("MAP", v["id"], k, v["snippet"].get("title", "")[:70])  # audit: where each public video goes
         if k in wanted: wanted[k].append(v)
     for key, items in wanted.items():
         playlist_id = cfg[key]["id"]

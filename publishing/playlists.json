@@ -77,7 +77,9 @@
       "F5-BqfTnA_w",
       "rTpeumT8wlg",
       "FHkGd1cA1gc",
-      "s7YVEyinxDE"
+      "s7YVEyinxDE",
+      "6KgLv_omqao",
+      "9XeZBiX7Pr8"
     ]
   },
   "humor": {
@@ -103,5 +105,15 @@
   "_exclude": [
     "mLlB8eL1FUE",
     "XqoHjcsdPtQ"
-  ]
+  ],
+  "films": {
+    "title": "Фильмы M1lash",
+    "description": "Большие рисованные фильмы M1lash: история искусственного интеллекта, загадки космоса и другие истории — с голосом автора.",
+    "id": null,
+    "seed": [
+      "iYmh6Fd3LMY",
+      "2suySU6uCGk",
+      "uxS6DACvQGY"
+    ]
+  }
 }
