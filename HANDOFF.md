@@ -1,10 +1,11 @@
-# 07.11 · Claude · «Ты прошёл 8 уровней искусственного интеллекта» — длинный ролик 22:56 готов локально, ждёт «ок» Дениса
+# 07.11 · Claude · «Ты прошёл 8 уровней искусственного интеллекта» — PRIVATE 2suySU6uCGk без даты; стиль записан как рецепт «Живая картина» S11-D25
 
 - **Файл:** `C:\M1lash\Готовоi_levels_8_urovney.mp4` (1920×1080, 22:56, body −16 LUFS, концовка v7 горизонтальная, check.py ok, duration gate ≥21 мин PASS, QA `..._qa/`). На YouTube НЕ залит.
 - **Проект:** `longform/ai_levels/` — референс vVZK_o13Qk4 (`reports/research/references/vVZK_o13Qk4/reference_audit.md`), тексты `levels/l1..l8.json`, сборщик `build.py` (voice/frames/timeline/mix), рисованные кадры SDXL + глубина Depth-Anything + параллакс three.js. Рабочие файлы `C:\M1lash\Работаi_levels`.
 - **Голос:** только Денис, локально Qwen3-TTS, 175 строк, все прошли ASR (мягкий режим `M1LASH_ASR_SOFT=1` + алиасы для чисел). Музыка: Kevin MacLeod «Lightless Dawn» (CC BY 4.0) — кредит в описание.
 - **Фикс:** `local_jobs.py finish` без `--vertical` теперь передаёт `--horizontal` (раньше лепил вертикальную концовку).
-- **Дальше:** обложка + описание с таймкодами уровней, заливка PRIVATE без даты после «ок».
+- **Залит:** https://youtu.be/2suySU6uCGk (PRIVATE, publish_at=null), квитанция `publishing/receipts/ai_levels_ru.json`. Обложку `C:\M1lash\Готовоi_levels_thumb.png` Денис ставит в Studio вручную (API-загрузки обложек нет). Время выбирает Денис.
+- **Рецепт:** `skills/zhivaya-kartina/` (SKILL.md, recipe.json, все промпты), S11 в `skills/vizavi-motion/references/style-library.md`; на сайте: Идеи → «Рецепты» (читает `skills/*/recipe.json`).
 
 # 07.11 · Claude · «Притворись ботом» · серия 4 (S2E1) — PRIVATE keMWV5guOLw без даты, на сайте «Ждёт твоего ок»
 

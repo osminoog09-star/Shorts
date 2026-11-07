@@ -458,7 +458,7 @@ def main():
         "learn": {"works": section(learn_md, "Работает"), "fails": section(learn_md, "Не работает"),
                   "hyp": section(learn_md, "Гипотезы на проверку")},
         "weekly": {"name": weekly[-1].stem if weekly else None, "text": weekly_txt},
-        "ideas": ideas, "events": events, "app": app, "ypp": ypp, "best_times": load("publishing/best_times.json"), "taken": taken, "live": live, "comments": comments, "comments_status": (pulse.get("status") or {}).get("comments"), "experiments": exp,
+        "ideas": ideas, "events": events, "app": app, "ypp": ypp, "best_times": load("publishing/best_times.json"), "taken": taken, "live": live, "comments": comments, "comments_status": (pulse.get("status") or {}).get("comments"), "experiments": exp, "recipes": [r for r in (load(str(f.relative_to(ROOT))) for f in sorted((ROOT / "skills").glob("*/recipe.json"))) if r],
         "playlists": {k: v.get("id") for k, v in playlists.items() if isinstance(v, dict)},
         "clip_requests": {"items": classify_requests(load("publishing/clip_requests.json", {"items": []}).get("items", []), film_lifecycle(ROOT))},
         "film_lifecycle": film_lifecycle(ROOT),

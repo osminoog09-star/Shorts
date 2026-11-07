@@ -422,12 +422,25 @@ function queue(){
 function ideas(){
   const I=D.ideas||{}, list=I.ideas||[];
   let s=head("Рост канала","Идеи и эксперименты",I.summary?esc(I.summary).replace(/\(\+(\d{3,})\s?%/,(m,p)=>`(×${Math.round(1+p/100)}`):"Каждый день по аналитике: ~70% проверенного и ~30% экспериментов.");
-  s+=`<div class="seg reveal">${[["ideas","Идеи дня",list.filter(i=>i.status!=="dropped").length],["exp","Эксперименты",D.experiments.length]].map(([k,t,c])=>`<button data-iseg="${k}" aria-pressed="${iSeg===k}">${t}<span class="c">${c}</span></button>`).join("")}</div>`;
+  s+=`<div class="seg reveal">${[["ideas","Идеи дня",list.filter(i=>i.status!=="dropped").length],["exp","Эксперименты",D.experiments.length],["recipes","Рецепты",(D.recipes||[]).length]].map(([k,t,c])=>`<button data-iseg="${k}" aria-pressed="${iSeg===k}">${t}<span class="c">${c}</span></button>`).join("")}</div>`;
+  if(iSeg==="recipes") return s+recipesHtml();
   if(iSeg==="exp") return s+`<div class="grid">${D.experiments.map(e=>`<div class="idea reveal"><div class="row"><span class="chip c-info">старт ${esc(e.start)}</span>${e.verdict?`<span class="chip c-ok">${esc(e.verdict)}</span>`:'<span class="chip c-warn">идёт</span>'}</div><b>${esc(e.hypothesis)}</b><p>Ролики: ${esc(e.videos)} · контроль: ${esc(e.control)} · метрика: ${esc(e.metric)}</p><div class="row"><span class="chip">48 ч: ${esc(e.h48||"—")}</span><span class="chip">7 д: ${esc(e.d7||"—")}</span></div></div>`).join("")||'<div class="empty">Экспериментов пока нет</div>'}</div>`;
   const cols=[["proposed","Предложено"],["approved","Одобрено"],["in_work","В работе"],["done","Готово"]];
   s+=`<div class="kanban">${cols.map(([k,t])=>{const a=list.filter(i=>(i.status||"proposed")===k);return `<div class="col reveal"><h3>${t} <span>${a.length}</span></h3><div class="grid">${a.map(ideaCard).join("")||'<div class="empty" style="padding:14px">пусто</div>'}</div></div>`}).join("")}</div>`;
   const dr=list.filter(i=>i.status==="dropped").length;
   return s+`<p class="muted reveal" style="font-size:12px">${I.date?`Идеи от ${dshort(I.date)} · ${I.author==="gpt"?"GPT":"собраны автоматически"}`:""}${dr?` · отклонено: ${dr}`:""}</p>`;
+}
+function recipesHtml(){
+  const R=D.recipes||[];
+  if(!R.length) return '<div class="empty">Пока нет записанных рецептов</div>';
+  return `<div class="grid">${R.map(r=>`<section class="card reveal"><div class="row"><span class="chip c-ok">${esc(r.code)}</span><span class="chip">${esc(r.format||"")}</span>${r.approved?`<span class="muted">утверждено ${dshort(r.approved)}</span>`:""}</div>
+    <h2 style="margin:10px 0 6px">${esc(r.name)}</h2><p>${esc(r.summary||"")}</p>
+    ${r.image?`<a href="${esc(r.image)}" target="_blank" rel="noopener"><img src="${esc(r.image)}" alt="Кадры: ${esc(r.name)}" loading="lazy" style="width:100%;border-radius:12px;margin:8px 0"></a>`:""}
+    ${r.example?`<p><b>Эталон:</b> <a target="_blank" rel="noopener" href="https://youtu.be/${esc(r.example.youtube_id)}">${esc(r.example.title)}</a> · ${esc(r.example.duration||"")}</p>`:""}
+    <details><summary>Стиль-промпт и негатив</summary><p><b>STYLE:</b> <code style="white-space:normal">${esc(r.style_prompt||"")}</code></p><p><b>NEGATIVE:</b> <code style="white-space:normal">${esc(r.negative_prompt||"")}</code></p></details>
+    ${r.tools?`<p class="muted" style="font-size:12px">${r.tools.map(esc).join(" · ")}</p>`:""}
+    <div class="row" style="margin-top:8px">${Object.entries({skill:"Рецепт",prompts:"Все промпты",project:"Проект"}).filter(([k])=>(r.links||{})[k]).map(([k,t])=>`<a class="btn sm${k==="skill"?" pri":""}" target="_blank" rel="noopener" href="${esc(r.links[k])}">${t}</a>`).join("")}</div>
+    ${r.how_to_order?`<p class="muted" style="font-size:12px;margin-top:8px">${esc(r.how_to_order)}</p>`:""}</section>`).join("")}</div>`;
 }
 function ideaCard(i){
   const st=i.status||"proposed", hasVerifiedUpload=!!i.youtube_id, next={proposed:[["approved","Одобрить","pri"],["dropped","Отклонить",""]],approved:[["in_work","В работу","pri"]],in_work:hasVerifiedUpload?[["done","Готово","pri"]]:[],done:[]}[st]||[];

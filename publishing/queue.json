@@ -442,6 +442,22 @@
       "duration_seconds": 50.403292,
       "note": "Залит приватно по прямой команде07.11, без даты. TECH/ASR/visual sample QA PASS; owner hearing/source rights не подтверждены.",
       "manifest": "publishing/queue/kino_011.json"
+    },
+    {
+      "id": "ai_levels_ru",
+      "kind": "long",
+      "author": "Claude",
+      "status": "uploaded_private",
+      "slot": null,
+      "style": "S11-D25",
+      "mp4": null,
+      "publish_md": "longform/ai_levels/SCRIPT.md",
+      "title": "Ты прошёл 8 уровней искусственного интеллекта",
+      "youtube_id": "2suySU6uCGk",
+      "review_version": "AI_LEVELS_V1",
+      "owner_audio_approved": true,
+      "note": "PRIVATE YouTube 2suySU6uCGk, NO DATE. 22:56, длинный ролик «Живая картина». Обложку (C:\\M1lash\\Готово\u0007i_levels_thumb.png) поставить вручную в Studio. Время выбирает Денис.",
+      "private_review_url": "https://studio.youtube.com/video/2suySU6uCGk/edit"
     }
   ]
 }
