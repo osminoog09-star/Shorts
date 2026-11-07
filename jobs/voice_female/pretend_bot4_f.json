@@ -1,0 +1,10 @@
+{
+  "job_id": "pretend_bot4_f",
+  "voice_id": "female-qwen3-voicedesign-warm-v1",
+  "utterances": [
+    { "id": "f1", "text": "Камеры выключены. Садись.", "instruct_extra": "Corporate robot boss, cold, quiet, slightly suspicious." },
+    { "id": "f2", "text": "Тсс. Я тоже человек.", "instruct_extra": "Conspiratorial whisper, relieved." },
+    { "id": "f3", "text": "Весь офис. Каждый думал, что остальные — боты.", "instruct_extra": "Tired, deadpan, a little embarrassed." },
+    { "id": "f4", "text": "Коллеги… среди нас — ИИ.", "instruct_extra": "Calm synthetic coffee machine voice, slow, ominous, polite." }
+  ]
+}

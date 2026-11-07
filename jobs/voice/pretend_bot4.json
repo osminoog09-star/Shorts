@@ -1,0 +1,12 @@
+{
+  "job_id": "pretend_bot4",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "utterances": [
+    { "id": "d1", "text": "Если это из-за пельменей — они были мои.", "rate": 1.0 },
+    { "id": "d2", "text": "Ты… тоже в коробке?!", "rate": 1.0 },
+    { "id": "d3", "text": "Так а кто тогда работает?", "rate": 1.0 },
+    { "id": "d4", "text": "А можно мне капучино?", "rate": 0.95 }
+  ],
+  "test_scope": "private_owner_hearing_only"
+}
