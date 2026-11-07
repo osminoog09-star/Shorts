@@ -58,9 +58,69 @@
     "dust"
    ],
    "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c0_ka01",
+   "seed": 4007,
+   "prompt": "a dramatic close view of an elongated dark red cigar shaped asteroid flying past the blazing sun, lens flare, stars, cinematic, awe",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c0_ka02",
+   "seed": 4008,
+   "prompt": "an elongated reddish asteroid accelerating away from the sun with glowing speed lines, no tail, no gas, black space, mysterious",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c0_ka03",
+   "seed": 4009,
+   "prompt": "split composition in deep space: on the left a translucent icy shard, on the right a dark broken alien spacecraft fragment, stars, dramatic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c0_ka04",
+   "seed": 4010,
+   "prompt": "a lone dark elongated object drifting toward the viewer out of a glowing nebula, stars, cinematic, invitation, mysterious",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
   }
  ],
  "beats": [
+  {
+   "id": "c0a01",
+   "shot": "c0_ka01",
+   "text": "В октябре две тысячи семнадцатого через нашу Солнечную систему пролетел объект, который нарушил законы физики.",
+   "alias": [
+    "В октябре 2017 через нашу Солнечную систему пролетел объект, который нарушил законы физики.",
+    "В октябре 2017 года через нашу Солнечную систему пролетел объект, который нарушил законы физики."
+   ]
+  },
+  {
+   "id": "c0a02",
+   "shot": "c0_ka02",
+   "text": "Он ускорялся, хотя его ничто не толкало. У него не было хвоста. И формы, как у него, мы не видели никогда."
+  },
+  {
+   "id": "c0a03",
+   "shot": "c0_ka03",
+   "text": "Одни учёные называют его ледяным осколком. Другие — обломком чужого корабля."
+  },
+  {
+   "id": "c0a04",
+   "shot": "c0_ka04",
+   "text": "К концу этого фильма ты сам решишь, кто прав."
+  },
   {
    "id": "c0b01",
    "shot": "c0_a",

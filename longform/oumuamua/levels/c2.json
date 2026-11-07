@@ -188,6 +188,15 @@
    "layers": [
     "dust"
    ]
+  },
+  {
+   "id": "c2_k19k",
+   "seed": 4221,
+   "prompt": "a dark elongated asteroid silhouette against a bright star field, its strange shape outlined by thin light, black space, intrigue",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
   }
  ],
  "beats": [
@@ -316,6 +325,11 @@
    "id": "c2b19",
    "shot": "c2_j",
    "text": "И больше никогда не вернётся. Ни к нам, ни к одному из своих прежних солнц. У него нет дома. Только дорога."
+  },
+  {
+   "id": "c2b19k",
+   "shot": "c2_k19k",
+   "text": "Но пока он уходил, астрономы успели заметить в нём кое-что ещё более странное. Его форму."
   }
  ]
 }

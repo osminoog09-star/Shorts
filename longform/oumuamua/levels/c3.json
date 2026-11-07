@@ -161,6 +161,14 @@
    "layers": [
     "dust"
    ]
+  },
+  {
+   "id": "c3_k05k",
+   "seed": 4318,
+   "prompt": "a child at a desk at night holding a pencil in front of a flashlight, a long shadow on the wall, playful, cozy, warm lamp",
+   "layers": [
+    "dust"
+   ]
   }
  ],
  "beats": [
@@ -198,6 +206,11 @@
    "id": "c3b05e",
    "shot": "c3_e05",
    "text": "Возьми карандаш и покрути его перед фонариком. Тень становится то длинной, то короткой. Так и гость то вспыхивал, то тускнел."
+  },
+  {
+   "id": "c3b05k",
+   "shot": "c3_k05k",
+   "text": "Можешь поставить видео на паузу и попробовать сам. Это работает."
   },
   {
    "id": "c3b06",

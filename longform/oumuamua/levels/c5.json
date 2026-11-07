@@ -158,6 +158,14 @@
    "layers": [
     "dust"
    ]
+  },
+  {
+   "id": "c5_k17k",
+   "seed": 4518,
+   "prompt": "a cozy observatory dome at night with its slit open to a sky full of stars, warm light inside, inviting, painting",
+   "layers": [
+    "dust"
+   ]
   }
  ],
  "beats": [
@@ -262,6 +270,11 @@
    "id": "c5b17",
    "shot": "c5_x17",
    "text": "А пока у учёных был выбор. Поверить в парус. Или найти природное тело, которое могло бы вести себя так же."
+  },
+  {
+   "id": "c5b17k",
+   "shot": "c5_k17k",
+   "text": "Если тебе тоже интересно, кто прилетит к нам следующим, — подпишись. Мы будем следить за межзвёздными гостями вместе."
   }
  ]
 }

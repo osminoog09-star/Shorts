@@ -123,6 +123,14 @@
     "dust"
    ],
    "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c8_k12k",
+   "seed": 4814,
+   "prompt": "three objects on a dark table under a lamp: a small rock, a piece of ice and a tiny toy spaceship, playful still life, warm light",
+   "layers": [
+    "dust"
+   ]
   }
  ],
  "beats": [
@@ -196,6 +204,11 @@
    "id": "c8b12",
    "shot": "c8_x12",
    "text": "Первым — значит, не последним."
+  },
+  {
+   "id": "c8b12k",
+   "shot": "c8_k12k",
+   "text": "А ты как думаешь, чем он был? Камень, лёд или корабль? Напиши в комментариях. Мне правда интересно."
   },
   {
    "id": "c8b13",

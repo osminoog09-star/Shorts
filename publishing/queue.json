@@ -447,8 +447,8 @@
       "id": "ai_levels_ru",
       "kind": "long",
       "author": "Claude",
-      "status": "scheduled",
-      "slot": "2026-11-11T15:00:00+02:00",
+      "status": "published",
+      "slot": null,
       "style": "S11-D25",
       "mp4": null,
       "publish_md": "longform/ai_levels/SCRIPT.md",
@@ -456,7 +456,7 @@
       "youtube_id": "2suySU6uCGk",
       "review_version": "AI_LEVELS_V1",
       "owner_audio_approved": true,
-      "note": "PRIVATE YouTube 2suySU6uCGk, NO DATE. 22:56, длинный ролик «Живая картина». Обложку (C:\\M1lash\\Готово\u0007i_levels_thumb.png) поставить вручную в Studio. Время выбирает Денис. | 07.11 Денис: «ставь время всем роликам» → 2026-11-11 15:00 (Claude)",
+      "note": "PRIVATE YouTube 2suySU6uCGk, NO DATE. 22:56, длинный ролик «Живая картина». Обложку (C:\\M1lash\\Готово\u0007i_levels_thumb.png) поставить вручную в Studio. Время выбирает Денис. | 07.11 Денис: «ставь время всем роликам» → 2026-11-11 15:00 (Claude) | 07.11 вечер: аудит API — видео уже PUBLIC (опубликовано вручную в Studio), дату поставить нельзя; ничего не скрываем.",
       "private_review_url": "https://studio.youtube.com/video/2suySU6uCGk/edit"
     },
     {

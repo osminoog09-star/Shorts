@@ -151,6 +151,15 @@
    "layers": [
     "dust"
    ]
+  },
+  {
+   "id": "c7_k16k",
+   "seed": 4717,
+   "prompt": "the earth seen from far away as a small blue dot with a faint stream of tiny visitors passing by, deep space, contemplative",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
   }
  ],
  "beats": [
@@ -265,6 +274,11 @@
    "id": "c7b16",
    "shot": "c7_x16",
    "text": "И тогда, может быть, мы впервые подлетим к осколку чужой звёздной системы и посмотрим на него вблизи."
+  },
+  {
+   "id": "c7b16k",
+   "shot": "c7_k16k",
+   "text": "А теперь самое главное. Что всё это значит для нас?"
   }
  ]
 }
