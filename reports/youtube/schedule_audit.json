@@ -1,7 +1,21 @@
 {
-  "checked_at": "2026-11-07T15:24:34.927146+00:00",
+  "checked_at": "2026-11-07T17:45:01.556882+00:00",
   "count": 26,
   "problems": [
+    {
+      "slug": "ai_levels_ru",
+      "video_id": "2suySU6uCGk",
+      "receipt": "uploaded",
+      "receipt_publish_at": null,
+      "queue": "scheduled",
+      "queue_slot": "2026-11-11T15:00:00+02:00",
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Ты прошёл 8 уровней искусственного интеллекта",
+      "upload_status": "processed",
+      "rejection": null,
+      "problem": "в очереди scheduled, а в квитанции нет даты"
+    },
     {
       "slug": "kino_010",
       "video_id": "_dXT3MYOmow",
@@ -12,6 +26,8 @@
       "live_privacy": null,
       "live_publishAt": null,
       "title": null,
+      "upload_status": null,
+      "rejection": null,
       "problem": "видео не найдено на канале (удалено или нет доступа)"
     }
   ],
@@ -25,7 +41,9 @@
       "queue_slot": "2026-11-03T16:00:00+02:00",
       "live_privacy": "public",
       "live_publishAt": null,
-      "title": "Нанял ИИ, чтобы меньше работать. Получил 40 подчинённых 🤖 #shorts"
+      "title": "Нанял ИИ, чтобы меньше работать. Получил 40 подчинённых 🤖 #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "ai_fridge_202611",
@@ -36,18 +54,23 @@
       "queue_slot": "2026-11-05T20:00:00+02:00",
       "live_privacy": "public",
       "live_publishAt": null,
-      "title": "Холодильник с ИИ взял мою диету под контроль #shorts"
+      "title": "Холодильник с ИИ взял мою диету под контроль #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "ai_levels_ru",
       "video_id": "2suySU6uCGk",
       "receipt": "uploaded",
       "receipt_publish_at": null,
-      "queue": "uploaded_private",
-      "queue_slot": null,
+      "queue": "scheduled",
+      "queue_slot": "2026-11-11T15:00:00+02:00",
       "live_privacy": "public",
       "live_publishAt": null,
-      "title": "Ты прошёл 8 уровней искусственного интеллекта"
+      "title": "Ты прошёл 8 уровней искусственного интеллекта",
+      "upload_status": "processed",
+      "rejection": null,
+      "problem": "в очереди scheduled, а в квитанции нет даты"
     },
     {
       "slug": "ai_news_2026_11_03",
@@ -58,7 +81,9 @@
       "queue_slot": null,
       "live_privacy": "private",
       "live_publishAt": null,
-      "title": "Экзамен по бытовухе: 3 новости ИИ за 2 ноября #shorts"
+      "title": "Экзамен по бытовухе: 3 новости ИИ за 2 ноября #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "ai_vacation_202611",
@@ -69,7 +94,9 @@
       "queue_slot": "2026-11-09T20:00:00+02:00",
       "live_privacy": "private",
       "live_publishAt": "2026-11-09T18:00:00Z",
-      "title": "ИИ согласовал отпуск. Отдыхать будет он #shorts"
+      "title": "ИИ согласовал отпуск. Отдыхать будет он #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "chigur_long_denis_v7",
@@ -80,7 +107,9 @@
       "queue_slot": null,
       "live_privacy": null,
       "live_publishAt": null,
-      "title": null
+      "title": null,
+      "upload_status": null,
+      "rejection": null
     },
     {
       "slug": "coffee_v8_20261104",
@@ -91,7 +120,9 @@
       "queue_slot": "2026-11-07T20:00:00+02:00",
       "live_privacy": "private",
       "live_publishAt": "2026-11-07T18:00:00Z",
-      "title": "Моя кофемашина требует доказать, что я проснулся #shorts"
+      "title": "Моя кофемашина требует доказать, что я проснулся #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "kino_001",
@@ -102,7 +133,9 @@
       "queue_slot": "2026-11-04T10:00:00+02:00",
       "live_privacy": "public",
       "live_publishAt": null,
-      "title": "Он предложил деньги. Ответ оказался страшнее угрозы #shorts"
+      "title": "Он предложил деньги. Ответ оказался страшнее угрозы #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "kino_002",
@@ -113,7 +146,9 @@
       "queue_slot": "2026-11-04T15:00:00+02:00",
       "live_privacy": "public",
       "live_publishAt": null,
-      "title": "Она отказалась играть по его правилам #shorts"
+      "title": "Она отказалась играть по его правилам #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "kino_003",
@@ -124,7 +159,9 @@
       "queue_slot": "2026-11-03T10:00:00+02:00",
       "live_privacy": "public",
       "live_publishAt": null,
-      "title": "Урок музыки вышел из-под контроля #shorts"
+      "title": "Урок музыки вышел из-под контроля #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "kino_004",
@@ -135,7 +172,9 @@
       "queue_slot": "2026-11-03T20:00:00+02:00",
       "live_privacy": "public",
       "live_publishAt": null,
-      "title": "Она знает, кому нельзя верить #shorts"
+      "title": "Она знает, кому нельзя верить #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "kino_005",
@@ -146,7 +185,9 @@
       "queue_slot": "2026-11-04T20:00:00+02:00",
       "live_privacy": "public",
       "live_publishAt": null,
-      "title": "Он попросил работу. Ответ оказался унизительным #shorts"
+      "title": "Он попросил работу. Ответ оказался унизительным #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "kino_006",
@@ -157,7 +198,9 @@
       "queue_slot": "2026-11-05T10:00:00+02:00",
       "live_privacy": "public",
       "live_publishAt": null,
-      "title": "Они заметили волну слишком поздно #shorts"
+      "title": "Они заметили волну слишком поздно #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "kino_007",
@@ -168,7 +211,9 @@
       "queue_slot": "2026-11-06T10:00:00+02:00",
       "live_privacy": "public",
       "live_publishAt": null,
-      "title": "Он думал, что они КОМАНДА… Но услышал ЭТО 😳 #shorts"
+      "title": "Он думал, что они КОМАНДА… Но услышал ЭТО 😳 #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "kino_008",
@@ -179,18 +224,22 @@
       "queue_slot": "2026-11-08T10:00:00+02:00",
       "live_privacy": "private",
       "live_publishAt": "2026-11-08T08:00:00Z",
-      "title": "Они нажали кнопку — и даже ЗВУК исчез… 😨 #shorts"
+      "title": "Они нажали кнопку — и даже ЗВУК исчез… 😨 #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "kino_009",
       "video_id": "izqrEKmU38g",
-      "receipt": "uploaded",
-      "receipt_publish_at": null,
-      "queue": "review",
-      "queue_slot": null,
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-09T08:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-09T10:00:00+02:00",
       "live_privacy": "private",
-      "live_publishAt": null,
-      "title": "Она попросила обычный бургер — и всё изменилось 🍔 #shorts"
+      "live_publishAt": "2026-11-09T08:00:00Z",
+      "title": "Она попросила обычный бургер — и всё изменилось 🍔 #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "kino_010",
@@ -202,18 +251,22 @@
       "live_privacy": null,
       "live_publishAt": null,
       "title": null,
+      "upload_status": null,
+      "rejection": null,
       "problem": "видео не найдено на канале (удалено или нет доступа)"
     },
     {
       "slug": "kino_011",
       "video_id": "gLdXWqOj8hw",
-      "receipt": "uploaded",
-      "receipt_publish_at": null,
-      "queue": "review",
-      "queue_slot": null,
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-10T08:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-10T10:00:00+02:00",
       "live_privacy": "private",
-      "live_publishAt": null,
-      "title": "Все смотрели на фокус. Ребёнок заметил другое 🎩 #shorts"
+      "live_publishAt": "2026-11-10T08:00:00Z",
+      "title": "Все смотрели на фокус. Ребёнок заметил другое 🎩 #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "mini_strike_ru",
@@ -224,7 +277,9 @@
       "queue_slot": null,
       "live_privacy": "public",
       "live_publishAt": null,
-      "title": "Мой умный дом объявил забастовку 💀 #shorts"
+      "title": "Мой умный дом объявил забастовку 💀 #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "moto_dogs_remake_ru",
@@ -235,7 +290,9 @@
       "queue_slot": null,
       "live_privacy": "public",
       "live_publishAt": null,
-      "title": "Пёс-байкер уходит от погони 💀 #shorts"
+      "title": "Пёс-байкер уходит от погони 💀 #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "pretend_bot3_gpt",
@@ -246,7 +303,9 @@
       "queue_slot": "2026-11-01T16:00:00+02:00",
       "live_privacy": "public",
       "live_publishAt": null,
-      "title": "ИИ доказал, что я робот 💀 | Притворись ботом 3 #shorts"
+      "title": "ИИ доказал, что я робот 💀 | Притворись ботом 3 #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "pretend_bot4_ru",
@@ -257,29 +316,35 @@
       "queue_slot": "2026-11-10T20:00:00+02:00",
       "live_privacy": "private",
       "live_publishAt": "2026-11-10T18:00:00Z",
-      "title": "Притворись ботом · серия 4: среди нас нейросеть ☕🤖 #shorts"
+      "title": "Притворись ботом · серия 4: среди нас нейросеть ☕🤖 #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "science_mirror_202611",
       "video_id": "6KgLv_omqao",
-      "receipt": "uploaded",
-      "receipt_publish_at": null,
-      "queue": "editorial_hold",
-      "queue_slot": null,
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-12T08:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-12T10:00:00+02:00",
       "live_privacy": "private",
-      "live_publishAt": null,
-      "title": "Зеркало не меняет лево и право. Проверь рукой #shorts"
+      "live_publishAt": "2026-11-12T08:00:00Z",
+      "title": "Зеркало не меняет лево и право. Проверь рукой #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "science_orbit_202611",
       "video_id": "9XeZBiX7Pr8",
-      "receipt": "uploaded",
-      "receipt_publish_at": null,
-      "queue": "editorial_hold",
-      "queue_slot": null,
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-13T08:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-13T10:00:00+02:00",
       "live_privacy": "private",
-      "live_publishAt": null,
-      "title": "На МКС почти земная гравитация. Почему все летают? #shorts"
+      "live_publishAt": "2026-11-13T08:00:00Z",
+      "title": "На МКС почти земная гравитация. Почему все летают? #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "vacuum_wild_ru",
@@ -290,18 +355,22 @@
       "queue_slot": "2026-11-08T20:00:00+02:00",
       "live_privacy": "private",
       "live_publishAt": "2026-11-08T18:00:00Z",
-      "title": "Робот-пылесос вышел на охоту 💀 #shorts"
+      "title": "Робот-пылесос вышел на охоту 💀 #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "weather_bureau",
       "video_id": "uxS6DACvQGY",
-      "receipt": "uploaded",
-      "receipt_publish_at": null,
-      "queue": "review",
-      "queue_slot": null,
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-18T13:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-18T15:00:00+02:00",
       "live_privacy": "private",
-      "live_publishAt": null,
-      "title": "POV: ты работаешь в городе, где продают погоду"
+      "live_publishAt": "2026-11-18T13:00:00Z",
+      "title": "POV: ты работаешь в городе, где продают погоду",
+      "upload_status": "processed",
+      "rejection": null
     }
   ]
 }
