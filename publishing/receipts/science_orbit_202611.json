@@ -1,9 +1,9 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/science_orbit_202611.json",
   "manifest_sha256": "ace70b063c2e81173597ade7cec8e74cd71a66a72d5900e59c9265c44617a7d2",
   "channel": "ru",
-  "publish_at_utc": null,
+  "publish_at_utc": "2026-11-13T08:00:00Z",
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "9XeZBiX7Pr8",
   "video_url": "https://youtu.be/9XeZBiX7Pr8",
@@ -13,5 +13,7 @@
   "source_sha256": "80f5f4044885a4e139f8c32049dc7494f362e85bbe37b84e5d32a0454f5656ee",
   "upload_method": "youtube-direct",
   "owner_audio_approved": true,
-  "owner_migration_20261104": "Confirmed via live YouTube API GET, Actions run 41922020447; no upload or deletion"
+  "owner_migration_20261104": "Confirmed via live YouTube API GET, Actions run 41922020447; no upload or deletion",
+  "schedule_confirmed_at": "2026-11-07T17:16:41.989121+00:00",
+  "schedule_request_id": null
 }
