@@ -1,0 +1,29 @@
+{
+  "format": "location / partner / object / actor action / emotion; one row per original paragraph",
+  "chapters": [
+    {"title":"Утро, которое уже продали","rows":[
+      "desk/chief/contract/read/worried", "bureau_front/chief/umbrella/umbrella/neutral", "street/woman/flow/walk/worried", "bureau_front/nora/jar/inspect/surprise", "desk/chief/map/read/focused", "desk/chief/stamp/stamp/smile", "desk/woman/flowers/box/worried", "desk/chief/contract/stamp/focused", "street/woman/flowers/umbrella/worried", "desk/nora/petal/inspect/surprise"
+    ]},
+    {"title":"Отдел прекрасных объяснений","rows":[
+      "desk/nora/wire/inspect/surprise", "desk/nora/tube/inspect/focused", "desk/nora/ledger/read/worried", "office/chief/flow/explain/neutral", "office/chief/contract/read/focused", "maproom/chief/flow/point/worried", "office/chief/contract/stop/worried", "desk/nora/ledger/write/focused", "bureau_front/nora/petal/offer/focused"
+    ]},
+    {"title":"Склад завтрашнего дождя","rows":[
+      "vault/worker/jar/walk/surprise", "vault/nora/flow/point/focused", "vault/worker/jar/inspect/worried", "vault/nora/ledger/read/worried", "control/nora/capacity/read/focused", "control/nora/map/point/focused", "pump/worker/gauge/stop/surprise", "pump/nora/gauge/read/worried", "vault/chief/contract/call/worried"
+    ]},
+    {"title":"Клиент, у которого всегда ясно","rows":[
+      "tram/nora/flow/read/focused", "orangery/client/contract/explain/neutral", "orangery/client/contract/read/worried", "orangery/client/ledger/point/focused", "roof/nora/flow/worried/worried", "roof/client/contract/offer/surprise", "roof/woman/flow/read/worried", "tram/nora/petal/read/focused", "street/woman/tube/walk/worried"
+    ]},
+    {"title":"Квартал, который принимает остаток","rows":[
+      "street/worker/capacity/walk/worried", "laundry/woman/ledger/read/worried", "canal/nora/map/inspect/surprise", "street/nora/wire/point/worried", "pump/nora/wire/inspect/focused", "pump/nora/ledger/write/focused", "control/nora/capacity/read/worried", "pump/chief/ledger/call/focused", "street/worker/ledger/box/focused"
+    ]},
+    {"title":"Самый удобный сотрудник","rows":[
+      "office/chief/ledger/read/focused", "office/chief/contract/read/worried", "maproom/nora/flow/point/focused", "office/chief/board/stop/worried", "office/chief/contract/offer/surprise", "desk/chief/petal/offer/focused", "desk/chief/ledger/write/focused", "office/chief/contract/read/focused", "desk/chief/sign/call/focused"
+    ]},
+    {"title":"Смена, которую никто не обещал","rows":[
+      "desk/chief/ledger/call/worried", "orangery/child/flowers/point/smile", "maproom/nora/map/point/focused", "bureau_front/worker/wire/tool/focused", "bureau_front/woman/board/point/focused", "control/nora/ledger/read/focused", "pump/nora/gauge/lever/focused", "orangery/child/flow/inspect/surprise", "control/nora/board/write/focused", "pump/nora/gauge/lever/relieved"
+    ]},
+    {"title":"Завтра обещают дождь","rows":[
+      "desk/woman/board/read/neutral", "desk/woman/flowers/offer/smile", "office/chief/tube/explain/focused", "desk/nora/stamp/write/smile", "bureau_front/chief/umbrella/umbrella/smile", "canal/child/flow/walk/relieved", "roof/child/umbrella/umbrella/relieved", "roof/child/board/inspect/relieved"
+    ]}
+  ]
+}

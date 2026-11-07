@@ -1,0 +1,12 @@
+{
+  "job_id": "weather_bureau_pilot",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "utterances": [
+    {
+      "id": "pilot",
+      "text": "Рукоять сначала не поддаётся. Ты переставляешь ноги, берёшься обеими руками и плавно тянешь её к отметке. В соседней трубе начинает двигаться вода.",
+      "rate": 1.0
+    }
+  ]
+}
