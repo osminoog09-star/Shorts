@@ -74,6 +74,39 @@
           "source": "tasks/NOW.md GPT/Codex kino_008"
         }
       ]
+    },
+    {
+      "film": "Меню",
+      "projects": [
+        {
+          "id": "kino_009",
+          "youtube_id": "izqrEKmU38g",
+          "status": "review",
+          "source": "shorts/kino_009/release.json"
+        }
+      ]
+    },
+    {
+      "film": "Апгрейд",
+      "projects": [
+        {
+          "id": "kino_010",
+          "youtube_id": "_dXT3MYOmow",
+          "status": "review",
+          "source": "shorts/kino_010/release.json"
+        }
+      ]
+    },
+    {
+      "film": "Престиж",
+      "projects": [
+        {
+          "id": "kino_011",
+          "youtube_id": "gLdXWqOj8hw",
+          "status": "review",
+          "source": "shorts/kino_011/release.json"
+        }
+      ]
     }
   ]
 }

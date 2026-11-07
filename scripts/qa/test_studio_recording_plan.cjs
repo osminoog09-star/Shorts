@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const html=fs.readFileSync('site/studio/index.html','utf8');
+const fn=html.slice(html.indexOf('function recordingPlanCard(){'),html.indexOf('\nfunction queue(){'));
+const plan=JSON.parse(fs.readFileSync('publishing/recording_plan.json','utf8'));
+assert.equal(plan.items.length,4);assert.equal(plan.execution_authorized,false);
+assert.deepEqual(plan.items.map(x=>x.date),['2026-11-12','2026-11-13','2026-11-14','2026-11-15']);
+assert.ok(plan.items.every(x=>x.started===false&&!x.timestamps_verified&&!x.rights_verified));
+const ctx={D:{recording_plan:plan},esc:x=>String(x).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'),dshort:x=>x};
+vm.createContext(ctx);vm.runInContext(fn,ctx);let out=ctx.recordingPlanCard();
+assert.ok(out.includes('Только список'));assert.ok(out.includes('Запись не начата'));assert.ok(!out.includes('подтверждено YouTube'));
+ctx.D.recording_plan=JSON.parse(JSON.stringify(plan));ctx.D.recording_plan.items[0].concept='<img src=x onerror=alert(1)>';
+out=ctx.recordingPlanCard();assert.ok(out.includes('&lt;img'));assert.ok(!out.includes('<img src=x'));
+ctx.D.recording_plan={};assert.equal(ctx.recordingPlanCard(),'');
+console.log('Recording plan PASS: dates, no execution/schedule claims, escaped content, empty fallback');

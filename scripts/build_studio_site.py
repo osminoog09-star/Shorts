@@ -443,6 +443,7 @@ def main():
         "daily": daily, "formats": formats,
         "videos": sorted(videos, key=lambda v: v["published"] or "", reverse=True),
         "plan": plan, "review": review, "work": work, "schedule_state": schedule_state,
+        "recording_plan": load("publishing/recording_plan.json", {}),
         "learn": {"works": section(learn_md, "Работает"), "fails": section(learn_md, "Не работает"),
                   "hyp": section(learn_md, "Гипотезы на проверку")},
         "weekly": {"name": weekly[-1].stem if weekly else None, "text": weekly_txt},

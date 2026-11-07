@@ -410,6 +410,54 @@
       "owner_audio_approved": true,
       "note": "PRIVATE YouTube keMWV5guOLw, NO DATE. Вечерний скетч 20:00 — дату выбирает Денис. SHA 221070ccc62e135ff9504237ce02e15847cf8c8110f695e2e8b9dad1bc4f2731. Идея 2026-11-07-claude-1. | 07.11 Денис выбрал 10.11 20:00 в чате; YouTube schedule SUCCESS (run 42363229827).",
       "private_review_url": "https://studio.youtube.com/video/keMWV5guOLw/edit"
+    },
+    {
+      "id": "kino_009",
+      "kind": "short",
+      "author": "Codex",
+      "status": "review",
+      "slot": null,
+      "style": "S6-D25",
+      "mp4": "C:/M1lash/Готово/m1lash_kino_009_ru.mp4",
+      "publish_md": "shorts/kino_009/PUBLISH.md",
+      "title": "Она попросила обычный бургер — и всё изменилось 🍔 #shorts",
+      "youtube_id": "izqrEKmU38g",
+      "private_review_url": "https://studio.youtube.com/video/izqrEKmU38g/edit",
+      "duration_seconds": 39.166667,
+      "note": "Залит приватно по прямой команде07.11, без даты. TECH/ASR/visual sample QA PASS; owner hearing/source rights не подтверждены.",
+      "manifest": "publishing/queue/kino_009.json"
+    },
+    {
+      "id": "kino_010",
+      "kind": "short",
+      "author": "Codex",
+      "status": "review",
+      "slot": null,
+      "style": "S6-D25",
+      "mp4": "C:/M1lash/Готово/m1lash_kino_010_ru.mp4",
+      "publish_md": "shorts/kino_010/PUBLISH.md",
+      "title": "Тело дерётся само. А он просит не вставать 🤖 #shorts",
+      "youtube_id": "_dXT3MYOmow",
+      "private_review_url": "https://studio.youtube.com/video/_dXT3MYOmow/edit",
+      "duration_seconds": 39.5,
+      "note": "Залит приватно по прямой команде07.11, без даты. TECH/ASR/visual sample QA PASS; owner hearing/source rights не подтверждены.",
+      "manifest": "publishing/queue/kino_010.json"
+    },
+    {
+      "id": "kino_011",
+      "kind": "short",
+      "author": "Codex",
+      "status": "review",
+      "slot": null,
+      "style": "S6-D25",
+      "mp4": "C:/M1lash/Готово/m1lash_kino_011_ru.mp4",
+      "publish_md": "shorts/kino_011/PUBLISH.md",
+      "title": "Все смотрели на фокус. Ребёнок заметил другое 🎩 #shorts",
+      "youtube_id": "gLdXWqOj8hw",
+      "private_review_url": "https://studio.youtube.com/video/gLdXWqOj8hw/edit",
+      "duration_seconds": 50.403292,
+      "note": "Залит приватно по прямой команде07.11, без даты. TECH/ASR/visual sample QA PASS; owner hearing/source rights не подтверждены.",
+      "manifest": "publishing/queue/kino_011.json"
     }
   ]
 }
