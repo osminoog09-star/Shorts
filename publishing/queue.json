@@ -399,8 +399,8 @@
       "id": "pretend_bot4_ru",
       "kind": "short",
       "author": "Claude",
-      "status": "review",
-      "slot": null,
+      "status": "scheduled",
+      "slot": "2026-11-10T20:00:00+02:00",
       "style": "S9-D3",
       "mp4": null,
       "publish_md": "longform/pretend_bot4/SCRIPT.md",
@@ -408,7 +408,7 @@
       "youtube_id": "keMWV5guOLw",
       "review_version": "PRETEND_BOT4_S2E1_V1",
       "owner_audio_approved": true,
-      "note": "PRIVATE YouTube keMWV5guOLw, NO DATE. Вечерний скетч 20:00 — дату выбирает Денис. SHA 221070ccc62e135ff9504237ce02e15847cf8c8110f695e2e8b9dad1bc4f2731. Идея 2026-11-07-claude-1.",
+      "note": "PRIVATE YouTube keMWV5guOLw, NO DATE. Вечерний скетч 20:00 — дату выбирает Денис. SHA 221070ccc62e135ff9504237ce02e15847cf8c8110f695e2e8b9dad1bc4f2731. Идея 2026-11-07-claude-1. | 07.11 Денис выбрал 10.11 20:00 в чате; YouTube schedule SUCCESS (run 42363229827).",
       "private_review_url": "https://studio.youtube.com/video/keMWV5guOLw/edit"
     }
   ]
