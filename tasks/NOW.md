@@ -351,13 +351,15 @@
 - [x] Владелец явно разрешил заливку3файлов; metadata/actual SHA проверены, upload manifests без publish_at.
 - [x] ТриuploadSUCCESS/receipts. Позднее010 удалён пользователем по прямомуYouTubeUI;009/011PRIVATE. Повторная заливка010 ждёт асинхронного ответа Дениса, не запускать самовольно.
 - [x] План12–15.11 опубликован на сайте,4карточки/desktop/mobile проверены; новые записи/рендеры не запускались.
-Следующий шаг: publish kino_009,010,011; private draft C:\M1lash\Работа\kino_new_20261107.
-Ждёт Дениса: нет.
+Следующий шаг: кино009/011 уже PRIVATE;010 удалён uploader, повторно не заливать до ответа владельца на уже отправленный async-вопрос. План на сайте опубликован.
+Ждёт Дениса: восстановить010 или оставить удалённым; остальные задачи выполняются независимо.
 
 ### 07.11 — Watch YEoAxizhy-U → оригинальный рисованный фильм21+мин · Codex
 Прямая команда владельца: полный Watch-разбор https://www.youtube.com/watch?v=YEoAxizhy-U и своё21+мин видео с рисованной графикой по общим приёмам. Публикация нового длинного не заказана.
 - [x] Watch/Film-Mult/reference-analysis прочитаны. Реальный MP4 скачан на ПК обычным yt-dlp без обхода;2652с, русские native captions,80global+20hook frames просмотрены как contact.
-- [ ] Полный хронологический разбор:8Watch-окон по6мин запущены локально, native transcript6242слова очищен в private; прочитать все главы и просмотреть dense frame contacts. Слуховой вход модели недоступен — не заявлять AUDIO VERIFIED.
-- [ ] Оригинальная история/визуальный blueprint,4–6стопов, motion pilot с Denis voice, затем21+мин local full production/QA. Не копировать Warhammer/автора/кадры.
+- [x] Полный разбор10глав:8Watch-окон/580фактических кадров +6242слова native transcript. Аудит reports/research/references/YEoAxizhy-U/reference_audit.md. FRAMES_ONLY + FULL_NATIVE_TRANSCRIPT; слух недоступен.
+- [x] Оригинальный сценарий «Город, где продают погоду»:8глав/3652слова,73абзаца; blueprint14локаций, Canvas-рисунки/герои/предметы,6стопов, model sheet,12с физический motion pilot. Denis pilot ASR.993 PASS, owner hearing pending.
+- [ ] Полная озвучка156фраз локальным Qwen ICL (без time-stretch), затем actual-timed animatic → visual QA → full1920×1080/30 → mix → approved horizontal outro → final gate≥1260с.
+Следующий шаг: следить за exec87459 / private voice_full_v4.log и voice_full/manifest.json. Генератор longform/weather_bureau_20261107/voice_full.py возобновляемый, принимает только ASR≥.80; чужой ai_levels GPU не останавливать. После156PASS: python -X utf8 longform/weather_bureau_20261107/build_timeline.py; node .../src/film.cjs animatic. Пока готового21+MP4 нет.
 Материалы: C:\M1lash\Работа\reference_YEoAxizhy-U; активный код C:\M1lash\Shorts. Запись и рендер не совмещать ни с одним другим проектом на ПК.
 Ждёт Дениса: нет, работа прямо поручена.
