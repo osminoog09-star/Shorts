@@ -21,7 +21,8 @@ description: Карта и пошаговый конвейер студии ка
 | Заливка / расписание | `youtube-direct.yml` (`mode=upload` приватно без даты → `mode=schedule` после «заливаем») | вручную агентом |
 | Плейлисты | `publishing/playlists.json` + `playlists.yml` | ежедневно |
 | Оригинальные «Фильм-мульт» | `skills/film-mult/SKILL.md` + `references/REFERENCE_AUDIT.md`; стиль `S10-D25` в style-library | по отдельно утверждённой оригинальной истории; не возобновляет PAUSED мультпроекты |
-| Озвучка | локальная Qwen3-TTS0.6B, только голос Дениса | по запросу |
+| Озвучка | Qwen3-TTS 1.7B ICL, только голос Дениса: `denis-voice-tts.yml` (Actions) → на ПК после проверки весов `C:\M1lash\models` | по запросу |
+| **Производство (с 07.11.2026)** | **ПК Дениса**: `scripts/pc/local_jobs.py` render/finish/publish, готовое в `C:\M1lash\Готово\`, концовки v7 в `C:\M1lash\private\outro` (AGENTS §2) | каждый ролик: кино-Shorts, скетчи, 3D |
 | Исходники кино | `tools/movie_edit/source_jobs/*.json` → `movie-edit-source.yml`; `fetch.yml` для прямых ссылок | по запросу |
 
 Сайт: `https://osminoog09-star.github.io/Shorts/studio/` (вкладки План · Что делать · Сводка · Ролики · Монетизация).
