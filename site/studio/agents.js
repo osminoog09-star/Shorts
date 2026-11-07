@@ -184,9 +184,11 @@
     });
   }
 
-  TABS.push(['agents', 'Агенты', 'idea']);
-  VIEWS.agents = view;
-  if (store.get('m1-tab2', '') === 'agents') tab = 'agents';
+  // 07.11.2026: агенты студии отменены (AGENTS §2, решение Дениса) — вкладку «Агенты» больше не показываем.
+  // Код раздела оставлен как история; чтобы вернуть, раскомментировать две строки ниже.
+  // TABS.push(['agents', 'Агенты', 'idea']);
+  // VIEWS.agents = view;
+  if (tab === 'agents' || store.get('m1-tab2', '') === 'agents') { tab = TABS[0][0]; try { store.set('m1-tab2', tab); } catch (e) {} }
   document.addEventListener('click', ev => {
     const b = ev.target.closest('#chatSend'); if (b) return send(b);
     const sv = ev.target.closest('#s_save'); if (sv) return saveSettings(sv);
