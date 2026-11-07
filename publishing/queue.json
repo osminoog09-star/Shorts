@@ -458,6 +458,19 @@
       "owner_audio_approved": true,
       "note": "PRIVATE YouTube 2suySU6uCGk, NO DATE. 22:56, длинный ролик «Живая картина». Обложку (C:\\M1lash\\Готово\u0007i_levels_thumb.png) поставить вручную в Studio. Время выбирает Денис.",
       "private_review_url": "https://studio.youtube.com/video/2suySU6uCGk/edit"
+    },
+    {
+      "id": "weather_bureau",
+      "kind": "long",
+      "author": "Codex",
+      "status": "review",
+      "slot": null,
+      "studio_format": "film_mult",
+      "mp4": "C:\\M1lash\\Готово\\m1lash_weather_bureau_ru.mp4",
+      "publish_md": "longform/weather_bureau_20261107/PUBLISH.md",
+      "title": "POV: ты работаешь в городе, где продают погоду",
+      "youtube_id": "uxS6DACvQGY",
+      "note": "По прямой команде Дениса загружено PRIVATE без даты. Не публиковать и не назначать расписание."
     }
   ]
 }

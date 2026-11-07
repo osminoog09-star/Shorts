@@ -41,7 +41,7 @@ Watch: https://ncs.lnk.to/dontwannaknowAT/youtube
 
 - Канал: M1lash (@m1lash93), русский.
 - Длинное, Film & Animation; madeForKids=false; contains_synthetic_media=true.
-- На YouTube не загружено, дата не назначена.
+- Загружено PRIVATE по прямой команде Дениса: https://youtu.be/uxS6DACvQGY. Дата не назначена; публикация не разрешена.
 - Текущий этап: локальный фильм завершён; технические и визуальные проверки пройдены. Слуховая оценка владельцем pending.
 - Файл: C:\M1lash\Готово\m1lash_weather_bureau_ru.mp4.
 - Голос: Denis Qwen ICL, rate1.0; ASR/техническая проверка, слуховая оценка владельцем pending.

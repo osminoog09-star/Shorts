@@ -29,8 +29,12 @@
     "heard_by_agent": false
   },
   "publication": {
-    "status": "LOCAL_REVIEW",
-    "upload_authorized": false,
-    "uploaded": false
+    "status": "PRIVATE_UPLOADED",
+    "upload_authorized": true,
+    "uploaded": true,
+    "youtube_id": "uxS6DACvQGY",
+    "publish_at": null,
+    "workflow_run": 42386030868,
+    "publication_authorized": false
   }
 }
