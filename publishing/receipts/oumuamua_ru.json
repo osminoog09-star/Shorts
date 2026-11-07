@@ -1,10 +1,13 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/oumuamua_ru.json",
   "manifest_sha256": "624bb7710241deaed622b5e1e23e3bdbc57521788a642adfafacd5f56be963fe",
   "channel": "ru",
-  "publish_at_utc": null,
+  "publish_at_utc": "2026-11-14T13:00:00Z",
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "iYmh6Fd3LMY",
-  "video_url": "https://youtu.be/iYmh6Fd3LMY"
+  "video_url": "https://youtu.be/iYmh6Fd3LMY",
+  "privacy_status": "private",
+  "schedule_confirmed_at": "2026-11-07T17:52:36.083910+00:00",
+  "schedule_request_id": null
 }
