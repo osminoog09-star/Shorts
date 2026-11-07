@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/ai_levels_ru.json",
+  "manifest_sha256": "7dbb13757b6494cf9d5f02de2370393d1e382edbaa87a2acc8c86f874eee74c1",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
