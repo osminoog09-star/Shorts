@@ -10,6 +10,8 @@ description: Карта и пошаговый конвейер студии ка
 
 ## 1. Карта системы
 
+**Корень всех YouTube-материалов — `C:\M1lash` (Денис, 07.11.2026).** Код: `Shorts`; проекты/исходники/монтажи: `Работа`; результаты: `Готово`; веса: `models`; личные образцы/концовки: `private`. Рабочие команды выполнять из `C:\M1lash\Shorts`.
+
 | Что | Где | Когда работает |
 |---|---|---|
 | Аналитика (Analytics API, задержка 1–2 дня) | `youtube-analytics.yml` → `scripts/youtube_analytics.py` → `reports/youtube/latest.json`, `daily/`, `weekly/`, `monthly/`, `reports/videos.csv` | ежедневно 07:20 UTC |
