@@ -54,7 +54,7 @@ def main():
         for d in Path(base).glob('nvidia/*/bin'):os.environ['PATH']=str(d)+os.pathsep+os.environ['PATH']
     while True:
         free=int(subprocess.check_output(['nvidia-smi','--query-gpu=memory.free','--format=csv,noheader,nounits'],text=True).splitlines()[0])
-        if free>=7500:break
+        if free>=(5000 if int(os.environ.get('WEATHER_VOICE_BATCH','6'))<=2 else 7500):break
         print('WAITING_FOR_GPU_OTHER_PROJECT free_MiB',free,flush=True);time.sleep(20)
     import torch, numpy as np, soundfile as sf
     from qwen_tts import Qwen3TTSModel

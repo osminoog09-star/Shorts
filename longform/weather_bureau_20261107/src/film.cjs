@@ -3,7 +3,7 @@ const fs=require('node:fs'),path=require('node:path'),{spawn}=require('node:chil
 const {shot,pilot,makeCanvas,OUT}=require('./render.cjs');
 const A=require('./art.cjs');
 const HERE=path.dirname(__dirname);
-function draw(c,sc,t,duration){if(sc.mode==='pilot')pilot(c,t,duration);else shot(c,sc,t,duration)}
+function draw(c,sc,t,duration){if(sc.mode==='pilot')pilot(c,t,duration);else if(sc.mode==='pilot_hold')pilot(c,t,duration,true);else shot(c,sc,t,duration)}
 async function render(op='animatic'){
  const tl=JSON.parse(fs.readFileSync(process.argv[3]||path.join(HERE,'timeline.json'),'utf8'));
  const draft=op==='animatic',fps=draft?2:30,scale=draft?.75:1.5,chapter=op.startsWith('chapter-')?Number(op.split('-')[1]):null;

@@ -10,7 +10,7 @@ function gripWrist(side,knob){let v=[...knob];for(let i=0;i<5;i++){const sx=side
 function leverState(t,dur){const p=clamp(t/dur),reach=ease((p-.14)/.16),pull=ease((p-.36)/.34),theta=-1.9+pull*.8,knob=[990+Math.cos(theta)*105,550+Math.sin(theta)*105],x=880+60*ease(p/.18),y=680;
  const local=[knob[0]-x,knob[1]-y],L=gripWrist(-1,[local[0]-6,local[1]]),R=gripWrist(1,[local[0]+6,local[1]]);return {p,reach,pull,theta,knob,x,y,L,R}}
 function drawLever(c,S){panel(c,955,550,95,115,'#6c7d70');line(c,990,550,S.knob[0],S.knob[1],INK,17);line(c,990,550,S.knob[0],S.knob[1],P.gold,11);oval(c,S.knob[0],S.knob[1],15,15,P.rust,INK,3);oval(c,990,550,20,20,'#8a9b87',INK,3);oval(c,990,550,6,6,INK);for(let i=0;i<8;i++)line(c,1030+i*11,615,1030+i*11,630,INK,2);text(c,'ПОДАЧА',1001,653,15,INK,'Arial','center')}
-function pilot(c,t,dur=15){const S=leverState(t,dur);c.drawImage(bg('pump'),0,0,W,H);gauge(c,620,205,1.35,.83-S.pull*.37,'ДАВЛЕНИЕ');
+function pilot(c,t,dur=15,hold=false){const S=leverState(hold?dur*.88:t,dur);c.drawImage(bg('pump'),0,0,W,H);gauge(c,620,205,1.35,.83-S.pull*.37,'ДАВЛЕНИЕ');
  oval(c,800,190,20,20,S.pull>.8?'#9ebd7a':((t*2)%1<.5?'#c5724a':'#8c493b'));rect(c,880,575,330,30,'#52777b',INK,3);rect(c,887,581,317*S.pull,16,'#9cc3c3',null);for(let i=0;i<8;i++){let xx=892+(t*110+i*44)%304;line(c,xx,584,xx+12,592,'#cee0d1',1.5)}
  actor(c,'nora',400,670,.95,S.pull>.65?'point':'read',S.pull>.85?'relieved':'focused',t,{look:1});
  drawLever(c,S);
@@ -37,12 +37,12 @@ function shot(c,scene,t=0,dur=6){const loc=scene.location||'desk',mode=scene.mod
  else if(mode==='environment'){actor(c,scene.person||'hero',760+70*ease(t/dur),679,.65,'walk',emotion,t,{look:-1});if(loc==='vault')gauge(c,1060,200,1.2,.4,'РЕЗЕРВ')}
  else if(mode==='reverse'){actor(c,scene.other||'nora',505,1050,1.85,scene.otherAction||'explain',scene.otherEmotion||(scene.other==='child'?'smile':'focused'),t,{look:1});actorBack(c,'hero',1120,1200,2.1)}
  else if(mode==='reaction'){actor(c,scene.person||'hero',700,1415,2.55,pose,emotion,t,{look:scene.look||0,angle:scene.angle||'three'});}
- else if(mode==='medium'){actor(c,scene.person||'hero',710,1000,1.65,pose,emotion,t,{phase:t/dur,look:-.7});actor(c,scene.other||'nora',210,835,scene.other==='child'?.75:1.15,scene.otherAction||'explain',scene.otherEmotion||'neutral',t,{phase:t/dur,look:1,angle:scene.otherAngle||'three'});}
+ else if(mode==='medium'){actor(c,scene.person||'hero',710,1000,1.65,pose,emotion,t,{phase:t/dur,look:-.7});actor(c,scene.other||'nora',210,835,scene.other==='guest'?.90:scene.other==='child'?.75:1.15,scene.otherAction||'explain',scene.otherEmotion||'neutral',t,{phase:t/dur,look:1,angle:scene.otherAngle||'three'});}
  else {const family=loc==='roof'&&scene.other==='child';
-  if(!family)actor(c,scene.other||'nora',325,675,scene.other==='child'?.62:.94,scene.otherAction||'read',scene.otherEmotion||(scene.other==='child'?'smile':'focused'),t,{phase:t/dur,look:1});
+  if(!family)actor(c,scene.other||'nora',325,675,scene.other==='guest'?.76:scene.other==='child'?.62:.94,scene.otherAction||'read',scene.otherEmotion||(scene.other==='child'?'smile':'focused'),t,{phase:t/dur,look:1});
   actor(c,scene.person||'hero',pose==='walk'?760+120*ease(t/dur):820,684,1,pose,emotion,t,{phase:t/dur,look:-.5,umbrellaWide:family});
   if(family)actor(c,'child',700,690,.62,scene.otherAction||'telescope','smile',t,{look:1});
-  if(loc==='street'||loc==='bureau_front')actor(c,'woman',1130,660,.72,'walk','worried',t,{look:-1})}
+  if((loc==='street'||loc==='bureau_front')&&scene.other!=='woman')actor(c,'woman',1130,660,.72,'walk','worried',t,{look:-1})}
 
  if(['street','bureau_front','canal','roof','city'].includes(loc))drizzle(c,t,scene.rainCount??55);if(['pump','vault','laundry'].includes(loc))steam(c,t,1150,570);
  c.restore();
