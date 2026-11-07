@@ -694,6 +694,19 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "20261107_watch_sample_cap_not_cut_rate",
+      "project": "reference_YEoAxizhy-U",
+      "issue": "Watch ограничил выборку80кадрами, но автоматический отчёт назвал их Shots и вывел ложный темп1.81cuts/min.",
+      "cause": "Количество отобранных кадров принято за число склеек полного44:12видео.",
+      "fix": "Полный декодированный scene-score проход дал816кандидатов при threshold.14; это тоже кандидаты, не вручную подтверждённые монтажные склейки. Выборку580кадров и анализ10глав описывать отдельно.",
+      "status": "verified",
+      "evidence": "reports/research/references/YEoAxizhy-U/reference_audit.md",
+      "acceptance": "Аудит явно различает80sample-cap,580просмотренных кадров и816scene-score candidates; не выдаёт FRAMES_ONLY за AUDIO VERIFIED.",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": "Перед использованием watch shot/cut metrics проверять max_frames и полноту прохода."
     }
   ]
 }

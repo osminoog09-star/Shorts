@@ -360,6 +360,6 @@
 - [x] Полный разбор10глав:8Watch-окон/580фактических кадров +6242слова native transcript. Аудит reports/research/references/YEoAxizhy-U/reference_audit.md. FRAMES_ONLY + FULL_NATIVE_TRANSCRIPT; слух недоступен.
 - [x] Оригинальный сценарий «Город, где продают погоду»:8глав/3652слова,73абзаца; blueprint14локаций, Canvas-рисунки/герои/предметы,6стопов, model sheet,12с физический motion pilot. Denis pilot ASR.993 PASS, owner hearing pending.
 - [ ] Полная озвучка156фраз локальным Qwen ICL (без time-stretch), затем actual-timed animatic → visual QA → full1920×1080/30 → mix → approved horizontal outro → final gate≥1260с.
-Следующий шаг: следить за exec87459 / private voice_full_v4.log и voice_full/manifest.json. Генератор longform/weather_bureau_20261107/voice_full.py возобновляемый, принимает только ASR≥.80; чужой ai_levels GPU не останавливать. После156PASS: python -X utf8 longform/weather_bureau_20261107/build_timeline.py; node .../src/film.cjs animatic. Пока готового21+MP4 нет.
+Следующий шаг: следить за exec5060 / private voice_full_v5.log и voice_full/manifest.json. Генератор longform/weather_bureau_20261107/voice_full.py возобновляемый, принимает только ASR≥.80; чужой ai_levels GPU не останавливать. После156PASS: python -X utf8 longform/weather_bureau_20261107/build_timeline.py; node .../src/film.cjs animatic. Пока готового21+MP4 нет.
 Материалы: C:\M1lash\Работа\reference_YEoAxizhy-U; активный код C:\M1lash\Shorts. Запись и рендер не совмещать ни с одним другим проектом на ПК.
 Ждёт Дениса: нет, работа прямо поручена.
