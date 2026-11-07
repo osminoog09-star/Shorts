@@ -1,3 +1,10 @@
+# 07.11 · Claude · «Притворись ботом» · серия 4 (S2E1) — PRIVATE keMWV5guOLw без даты, на сайте «Ждёт твоего ок»
+
+- **Ролик:** https://youtu.be/keMWV5guOLw (PRIVATE, publish_at=null), квитанция `publishing/receipts/pretend_bot4_ru.json`, проект `longform/pretend_bot4/` (SCRIPT.md, scene.js, mix.py). 39,3 с, SHA `221070cc…`, body −15,3 LUFS, assemble problems 0, decode PASS. Идея `2026-11-07-claude-1` (in_work). Время (вечер 20:00) ставит Денис.
+- **Голоса:** Денис `denis-voice-tts` run 42348757487 (ASR 0,96–1,0); женский второй голос (VoiceDesign «Домашня») runs 42348757170 + 42349172752 — f3/f4 перегенерированы («буты»→«роботы», «ИИ» не выговаривается → «нейросеть»).
+- **Также сегодня:** пылесос h-fz_lx7bn8 → 08.11 20:00, «ИИ согласовал отпуск» R0y8D9MZanc → 09.11 20:00 (YouTube подтвердил); вкладка «Агенты» убрана с сайта; сводка `reports/2026-11-07_claude_stats.md`; правило AGENTS: кино-Shorts — Codex/GPT.
+- **Осталось:** веса Qwen для локального голоса не скачались на ПК (артефакт 4 ГБ, `gh run download` дважды упал) — голос пока в Actions.
+
 # 07.11 · Claude · «Робот-пылесос вышел на охоту» v2 — PRIVATE на YouTube без даты, на сайте «Ждёт твоего ок»
 
 

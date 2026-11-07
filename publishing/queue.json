@@ -394,6 +394,22 @@
       "publish_md": null,
       "note": "07.11 аудит: вышел 06.11 17:00 Tallinn (вне сетки; дата ставилась не через youtube-direct).",
       "youtube_id": "bp0jSmKuudA"
+    },
+    {
+      "id": "pretend_bot4_ru",
+      "kind": "short",
+      "author": "Claude",
+      "status": "review",
+      "slot": null,
+      "style": "S9-D3",
+      "mp4": null,
+      "publish_md": "longform/pretend_bot4/SCRIPT.md",
+      "title": "Притворись ботом · серия 4: среди нас нейросеть ☕🤖 #shorts",
+      "youtube_id": "keMWV5guOLw",
+      "review_version": "PRETEND_BOT4_S2E1_V1",
+      "owner_audio_approved": true,
+      "note": "PRIVATE YouTube keMWV5guOLw, NO DATE. Вечерний скетч 20:00 — дату выбирает Денис. SHA 221070ccc62e135ff9504237ce02e15847cf8c8110f695e2e8b9dad1bc4f2731. Идея 2026-11-07-claude-1.",
+      "private_review_url": "https://studio.youtube.com/video/keMWV5guOLw/edit"
     }
   ]
 }
