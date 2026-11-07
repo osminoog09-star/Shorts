@@ -1,10 +1,13 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/pretend_bot4_ru.json",
   "manifest_sha256": "8595a61e2340bf9f63f38f15087bb84f4957164ae976cd297bbe60dcb428342a",
   "channel": "ru",
-  "publish_at_utc": null,
+  "publish_at_utc": "2026-11-10T18:00:00Z",
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "keMWV5guOLw",
-  "video_url": "https://youtu.be/keMWV5guOLw"
+  "video_url": "https://youtu.be/keMWV5guOLw",
+  "privacy_status": "private",
+  "schedule_confirmed_at": "2026-11-07T10:16:49.501263+00:00",
+  "schedule_request_id": null
 }
