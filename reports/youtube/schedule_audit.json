@@ -1,20 +1,7 @@
 {
-  "checked_at": "2026-11-07T10:19:30.896373+00:00",
-  "count": 21,
-  "problems": [
-    {
-      "slug": "chigur_long_denis_v7",
-      "video_id": "RJEZKHegzUY",
-      "receipt": "deleted",
-      "receipt_publish_at": null,
-      "queue": "deleted",
-      "queue_slot": null,
-      "live_privacy": null,
-      "live_publishAt": null,
-      "title": null,
-      "problem": "видео не найдено на канале (удалено или нет доступа)"
-    }
-  ],
+  "checked_at": "2026-11-07T11:40:09.203904+00:00",
+  "count": 24,
+  "problems": [],
   "rows": [
     {
       "slug": "ai_bureaucracy_claude",
@@ -69,8 +56,7 @@
       "queue_slot": null,
       "live_privacy": null,
       "live_publishAt": null,
-      "title": null,
-      "problem": "видео не найдено на канале (удалено или нет доступа)"
+      "title": null
     },
     {
       "slug": "coffee_v8_20261104",
@@ -170,6 +156,39 @@
       "live_privacy": "private",
       "live_publishAt": "2026-11-08T08:00:00Z",
       "title": "Они нажали кнопку — и даже ЗВУК исчез… 😨 #shorts"
+    },
+    {
+      "slug": "kino_009",
+      "video_id": "izqrEKmU38g",
+      "receipt": "uploaded",
+      "receipt_publish_at": null,
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": null,
+      "title": "Она попросила обычный бургер — и всё изменилось 🍔 #shorts"
+    },
+    {
+      "slug": "kino_010",
+      "video_id": "_dXT3MYOmow",
+      "receipt": "uploaded",
+      "receipt_publish_at": null,
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": null,
+      "title": "Тело дерётся само. А он просит не вставать 🤖 #shorts"
+    },
+    {
+      "slug": "kino_011",
+      "video_id": "gLdXWqOj8hw",
+      "receipt": "uploaded",
+      "receipt_publish_at": null,
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": null,
+      "title": "Все смотрели на фокус. Ребёнок заметил другое 🎩 #shorts"
     },
     {
       "slug": "mini_strike_ru",
