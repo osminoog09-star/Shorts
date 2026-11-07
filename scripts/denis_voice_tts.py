@@ -73,7 +73,11 @@ def asr_match(expected: str, recognized: str, aliases=()) -> tuple[float, str]:
     This changes ASR spelling comparison only, never generated text or voice.
     No implicit transliteration and no lowering of the 0.80 threshold.
     """
-    return max(((SequenceMatcher(None, norm(candidate), norm(recognized)).ratio(), candidate)
+    # Russian character transcripts have a small alphabet. At >=200 chars the
+    # default autojunk heuristic discards common letters and can score a 96%
+    # match as 37% after one initial spelling difference. Compare all characters;
+    # keep the same 0.80 acceptance threshold and explicit aliases.
+    return max(((SequenceMatcher(None, norm(candidate), norm(recognized), autojunk=False).ratio(), candidate)
                 for candidate in [expected, *aliases]), key=lambda x: x[0])
 
 

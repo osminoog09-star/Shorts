@@ -120,6 +120,21 @@ class VoiceTests(unittest.TestCase):
         self.assertLess(asr_match(text, "Совсем другая реплика", [heard])[0], 0.8)
         self.assertEqual(asr_match(text, "", [heard])[0], 0.0)
 
+    def test_long_russian_transcript_survives_initial_spelling_difference(self):
+        expected = ("Заказчик из оранжереи соглашается перенести столы под стеклянную крышу. "
+                    "Управляющий ещё спорит про пригласительные, но дочь заказчика уже таскает стулья сама. "
+                    "Ей нравится, как дождь будет стучать над гостями.")
+        heard = ("Заказчика за ранджерей соглашаются перенести столы под стеклянную крышу. "
+                 "Управляющие еще спорят про пригласительные, но дочь заказчика уже таскает столь я сама. "
+                 "Ей нравится, как дождь будет стучать над гостями.")
+        self.assertGreater(asr_match(expected, heard)[0], 0.95)
+        self.assertLess(asr_match(expected, "Гости отменили праздник и уехали домой.")[0], 0.80)
+
+    def test_long_different_russian_content_is_still_rejected(self):
+        expected = "Нора проверяет давление в трубе и записывает фактические показания. " * 5
+        wrong = "Покупатель уехал на вокзал и приобрёл билеты на последний поезд. " * 5
+        self.assertLess(asr_match(expected, wrong)[0], 0.80)
+
     def test_job_rejects_invalid_asr_spelling_aliases(self):
         path = self.root / "job.json"
         obj = {"job_id":"test_claude", "speaker":"denis", "voice_id":"denis-qwen3tts-reference-v1",
