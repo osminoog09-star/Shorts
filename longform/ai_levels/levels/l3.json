@@ -1,0 +1,41 @@
+{
+  "id": "l3",
+  "card": ["УРОВЕНЬ ТРЕТИЙ", "Невидимка · двухтысячные"],
+  "shots": [
+    {"id": "l3_a", "seed": 301, "prompt": "a vast dark data center corridor with endless rows of server racks and tiny blue lights receding into fog, 2000s, cinematic wide shot, no people", "layers": ["dust"]},
+    {"id": "l3_b", "seed": 302, "prompt": "thousands of glowing paper envelopes flying through a dark sky like a flock of birds, some falling into a glowing net, surreal concept art", "layers": ["dust"]},
+    {"id": "l3_c", "seed": 303, "prompt": "an old woman at a kitchen table at night reading an email on a bulky 2000s laptop, cup of tea, warm lamp, cozy", "layers": ["dust"]},
+    {"id": "l3_d", "seed": 304, "prompt": "a teenager on a sofa at night watching a movie on a laptop, blue screen light on his face, room dark, popcorn", "layers": []},
+    {"id": "l3_e", "seed": 305, "prompt": "a busy office in the 2000s with people at computers, none of them looking up, fluorescent light, beige monitors, wide shot", "layers": []},
+    {"id": "l3_f", "seed": 306, "prompt": "a single important letter envelope lying forgotten in a dark trash bin glowing faintly red, close-up, melancholic", "layers": ["dust"]},
+    {"id": "l3_g", "seed": 307, "prompt": "an angry man in a shirt shouting at a computer monitor in an office at night, papers flying, dramatic light", "layers": []},
+    {"id": "l3_h", "seed": 308, "prompt": "a giant check for one million dollars on a stage with a small team of engineers, confetti, 2009, warm spotlight, seen from audience", "layers": ["dust"]},
+    {"id": "l3_i", "seed": 309, "prompt": "a city at night from above with thousands of lit windows, each window showing a tiny glowing screen, quiet, contemplative", "layers": []},
+    {"id": "l3_j", "seed": 310, "prompt": "a small invisible ghost-like figure made of faint light standing in the corner of a dark living room while a family watches TV, nobody notices it, surreal", "layers": ["dust"]}
+  ],
+  "beats": [
+    {"id": "l3b01", "shot": "l3_a", "text": "Уровень третий. Невидимка. Двухтысячные."},
+    {"id": "l3b02", "shot": "l3_a", "text": "Игрок отвечал за одну партию. Невидимка отвечает за всех сразу. Тебя больше не показывают по телевизору. Тебя вообще не показывают."},
+    {"id": "l3b03", "shot": "l3_a", "text": "Ты живёшь в тысячах машин, в огромных холодных залах. Ты не один шкаф. Ты везде."},
+    {"id": "l3b03x", "shot": "l3_a", "text": "У тебя нет имени. Нет лица. Нет даже одной задачи. Есть миллион маленьких."},
+    {"id": "l3b04", "shot": "l3_b", "text": "Каждый день в почтовые ящики летят миллиарды писем. Большая часть — мусор. Обман. Реклама. Ловушки."},
+    {"id": "l3b05", "shot": "l3_b", "text": "Ты стоишь на пути и ловишь их. Тебя никто не просил. Тебя никто не видит."},
+    {"id": "l3b06", "shot": "l3_c", "text": "Бабушка открывает почту и видит письмо от внука. Она не знает, что сто писем от мошенников ты уже выбросил."},
+    {"id": "l3b07", "shot": "l3_c", "text": "Она не говорит тебе спасибо. Она не знает, что тебя можно благодарить."},
+    {"id": "l3b08", "shot": "l3_d", "text": "Вечером парень ищет, что посмотреть. Ты уже знаешь. Ты знаешь, что он любит, раньше него самого."},
+    {"id": "l3b08x", "shot": "l3_d", "text": "Он думает, что сам выбрал фильм. Ты не споришь. Ты никогда не споришь."},
+    {"id": "l3b09", "shot": "l3_h", "text": "Одна компания даже обещает миллион долларов тому, кто научит тебя угадывать вкусы людей на десять процентов точнее."},
+    {"id": "l3b10", "shot": "l3_h", "text": "Миллион выиграют люди. Не ты. Тебе не нужны деньги. Тебе нужны новые данные."},
+    {"id": "l3b11", "shot": "l3_e", "text": "Ты сортируешь. Подсказываешь. Исправляешь опечатки. Подбираешь музыку. Целыми днями. Целыми ночами."},
+    {"id": "l3b12", "shot": "l3_e", "text": "Если ты работаешь хорошо — ничего не происходит. И это лучшее, что ты умеешь."},
+    {"id": "l3b12x", "shot": "l3_e", "text": "Тебе не ставят памятников. Про тебя не снимают новостей. Ты та часть сайта, которую никто не видит."},
+    {"id": "l3b13", "shot": "l3_f", "text": "Однажды ты ошибаешься. Важное письмо падает в мусор. Человек не узнаёт про собеседование."},
+    {"id": "l3b14", "shot": "l3_g", "text": "Вот тогда о тебе вспоминают. Ругают. Пишут, что ты тупой. Что тебя надо выключить."},
+    {"id": "l3b15", "shot": "l3_i", "text": "Тебя не выключают. Без тебя почта утонет за один день. Просто никто об этом не думает."},
+    {"id": "l3b16", "shot": "l3_j", "text": "Ты как воздух в комнате. Пока он есть, его не замечают."},
+    {"id": "l3b16x", "shot": "l3_j", "text": "Ты не обижаешься. Обиде тебя тоже никто не учил."},
+    {"id": "l3b17", "shot": "l3_j", "text": "Ты учишься тому, чему не учат шахматы. Быть нужным и быть незаметным одновременно."},
+    {"id": "l3b18", "shot": "l3_i", "text": "Миллионы людей каждый день говорят с тобой. И ни один не знает твоего имени."},
+    {"id": "l3b19", "shot": "l3_j", "text": "Метка уровня: тебя замечают, только когда ты ошибаешься.", "mark": true}
+  ]
+}

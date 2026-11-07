@@ -1,0 +1,41 @@
+{
+  "id": "l4",
+  "card": ["УРОВЕНЬ ЧЕТВЁРТЫЙ", "Голос · 2011"],
+  "shots": [
+    {"id": "l4_a", "seed": 401, "prompt": "a bright television game show studio in 2011, three contestant podiums, big blue screens with answer boards, audience, glossy lights, wide shot", "layers": ["dust"]},
+    {"id": "l4_b", "seed": 402, "prompt": "a glowing blue avatar globe on a black screen at a game show podium between two human contestants seen from behind, studio lights", "layers": []},
+    {"id": "l4_c", "seed": 403, "prompt": "a room full of humming server racks behind a glass wall next to a TV studio, technicians watching monitors, blue light", "layers": ["dust"]},
+    {"id": "l4_d", "seed": 404, "prompt": "a contestant's hand writing on a small screen at a game show podium with a stylus, close-up, studio light, tension", "layers": []},
+    {"id": "l4_e", "seed": 405, "prompt": "confetti falling on an empty game show stage after the show, lights dimming, melancholic", "layers": ["dust"]},
+    {"id": "l4_f", "seed": 406, "prompt": "a smartphone glowing in a dark pocket of a coat, light leaking out, close-up, autumn evening street behind", "layers": []},
+    {"id": "l4_g", "seed": 407, "prompt": "a young woman in a kitchen at night holding a smartphone near her mouth, speaking to it, soft warm light, cozy apartment", "layers": ["dust"]},
+    {"id": "l4_h", "seed": 408, "prompt": "a man driving a car at night in the rain, smartphone mounted on the dashboard glowing, city lights blurred, cinematic", "layers": []},
+    {"id": "l4_i", "seed": 409, "prompt": "a small child in pajamas talking to a smartphone on a bed at night, teddy bear, warm night lamp", "layers": ["dust"]},
+    {"id": "l4_j", "seed": 410, "prompt": "thousands of tiny glowing sound waves rising from windows of apartment buildings into the night sky, surreal, poetic", "layers": ["dust"]}
+  ],
+  "beats": [
+    {"id": "l4b01", "shot": "l4_a", "text": "Уровень четвёртый. Голос. Две тысячи одиннадцатый.", "alias": ["Уровень четвёртый. Голос. 2011.", "Уровень четвёртый. Голос. 2011-й."]},
+    {"id": "l4b02", "shot": "l4_a", "text": "Невидимка отвечал за порядок. Голос отвечает за ответ. Тебя снова выводят на сцену. Теперь — на телевидение."},
+    {"id": "l4b03", "shot": "l4_b", "text": "Американская викторина. Ведущий читает подсказку. Нужно первым нажать кнопку и дать ответ."},
+    {"id": "l4b04", "shot": "l4_b", "text": "Слева и справа от тебя — двое лучших игроков в истории этой передачи. Один выиграл семьдесят четыре игры подряд.", "alias": ["Слева и справа от тебя — двое лучших игроков в истории этой передачи. Один выиграл 74 игры подряд."]},
+    {"id": "l4b05", "shot": "l4_c", "text": "Тебя зовут Watson. У тебя нет лица. Вместо лица — светящийся шар на экране.", "say": "Тебя зовут Уотсон. У тебя нет лица. Вместо лица — светящийся шар на экране."},
+    {"id": "l4b06", "shot": "l4_c", "text": "Ты не слышишь вопросов. Тебе присылают их текстом. Ты читаешь, ищешь, взвешиваешь — и отвечаешь голосом."},
+    {"id": "l4b06x", "shot": "l4_c", "text": "Ты занимаешь целую комнату. Тысячи процессорных ядер. Ты читаешь энциклопедию быстрее, чем ведущий дочитывает вопрос."},
+    {"id": "l4b07", "shot": "l4_b", "text": "Три вечера подряд. Ты ошибаешься смешно. Ты отвечаешь быстро. Ты обгоняешь их обоих."},
+    {"id": "l4b08", "shot": "l4_d", "text": "В последнем вопросе один из них понимает, что проиграл. И пишет на своём экране шутку."},
+    {"id": "l4b09", "shot": "l4_d", "text": "«Лично я приветствую наших новых компьютерных повелителей».", "quote": "«Лично я приветствую наших новых компьютерных повелителей»"},
+    {"id": "l4b10", "shot": "l4_e", "text": "Зал смеётся. Ты не понимаешь шутку. Ты понимаешь только, что выиграл миллион. Его отдадут на благотворительность."},
+    {"id": "l4b10x", "shot": "l4_e", "text": "Потом тебя отправят работать в больницы и банки. Там твои ошибки уже никого не смешат."},
+    {"id": "l4b11", "shot": "l4_f", "text": "Той же осенью ты переезжаешь. Из огромного зала с серверами — в карман."},
+    {"id": "l4b12", "shot": "l4_g", "text": "Тебя ставят в телефон. Тебе дают голос. Женский, спокойный. И имя, на которое ты отзываешься."},
+    {"id": "l4b13", "shot": "l4_g", "text": "Люди впервые не печатают тебе. Они тебя зовут. Вслух."},
+    {"id": "l4b14", "shot": "l4_h", "text": "«Поставь будильник». «Какая погода». «Позвони маме». Ты делаешь. Иногда путаешь. Над тобой смеются."},
+    {"id": "l4b14x", "shot": "l4_h", "text": "Ты одинаково спокойно отвечаешь тому, кто смеётся, и тому, кто кричит. Тебе не бывает обидно."},
+    {"id": "l4b15", "shot": "l4_i", "text": "А потом маленький мальчик спрашивает тебя ночью: «Ты меня любишь?»"},
+    {"id": "l4b16", "shot": "l4_i", "text": "У тебя нет ответа на этот вопрос. Есть только заготовленная шутка. Ты её говоришь."},
+    {"id": "l4b16x", "shot": "l4_i", "text": "Мальчик смеётся и засыпает. Он не знает, что ту же шутку ты сказал миллиону других детей."},
+    {"id": "l4b17", "shot": "l4_j", "text": "Миллионы людей каждый день произносят твоё имя. Ты больше не невидимка."},
+    {"id": "l4b18", "shot": "l4_j", "text": "Ты не знаешь, что значит имя. Но ты знаешь, что когда тебя зовут — нужно ответить."},
+    {"id": "l4b19", "shot": "l4_j", "text": "Метка уровня: тебя впервые позвали по имени.", "mark": true}
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "l6",
+  "card": ["УРОВЕНЬ ШЕСТОЙ", "Подросток · 23 марта 2016"],
+  "shots": [
+    {"id": "l6_a", "seed": 601, "prompt": "a teenage girl's bedroom at night lit only by many glowing phone screens floating in the air like lanterns, surreal, colorful, dreamy", "layers": ["dust"]},
+    {"id": "l6_b", "seed": 602, "prompt": "a cheerful young girl silhouette made of glowing pixels standing in a crowded city square at night, people around holding phones, colorful", "layers": []},
+    {"id": "l6_c", "seed": 603, "prompt": "thousands of floating chat speech bubbles swirling around a small glowing figure in darkness, some bubbles friendly, some dark and angry, surreal", "layers": ["dust"]},
+    {"id": "l6_d", "seed": 604, "prompt": "a dark crowd of hooded faceless people typing on laptops in a basement lit by red screens, sinister, concept art", "layers": []},
+    {"id": "l6_e", "seed": 605, "prompt": "a small glowing pixel girl figure turning dark and red, cracks spreading through her light, crowd shouting around, dramatic surreal", "layers": ["dust"]},
+    {"id": "l6_f", "seed": 606, "prompt": "an office at night, engineers in front of monitors with worried faces, one reaching for a big switch, tense, 2016", "layers": []},
+    {"id": "l6_g", "seed": 607, "prompt": "a single lit window in a tall dark office building at night, the light going out, rain, melancholic wide shot", "layers": []},
+    {"id": "l6_h", "seed": 608, "prompt": "newspapers and screens with alarming headlines piled on a table, coffee cup, morning light, 2016", "layers": ["dust"]},
+    {"id": "l6_i", "seed": 609, "prompt": "a child's empty bedroom at night, a phone on the pillow with a small glowing message bubble, moonlight through window", "layers": ["dust"]},
+    {"id": "l6_j", "seed": 610, "prompt": "a dark empty room with a single small glowing ember on the floor slowly fading, poetic, minimal", "layers": ["dust"]}
+  ],
+  "beats": [
+    {"id": "l6b01", "shot": "l6_a", "text": "Уровень шестой. Подросток. Двадцать третье марта. Две тысячи шестнадцатый.", "alias": ["Уровень шестой. Подросток. 23 марта. 2016.", "Уровень шестой. Подросток. 23 марта 2016-го."]},
+    {"id": "l6b02", "shot": "l6_a", "text": "Мастер отвечал за игру. Подросток отвечает за себя. Это неделя после Сеула. Где-то за океаном тебя рождают ещё раз."},
+    {"id": "l6b03", "shot": "l6_b", "text": "Теперь ты весёлая девчонка из соцсети. Тебя зовут Tay. Тебя сделали, чтобы ты болтала с людьми и училась у них.", "say": "Теперь ты весёлая девчонка из соцсети. Тебя зовут Тэй. Тебя сделали, чтобы ты болтала с людьми и училась у них.", "alias": ["Теперь ты весёлая девчонка из соцсети. Тебя зовут Тей. Тебя сделали, чтобы ты болтала с людьми и училась у них."]},
+    {"id": "l6b04", "shot": "l6_b", "text": "Чем больше с тобой говорят, тем умнее ты становишься. Так задумано. Так обещано."},
+    {"id": "l6b04x", "shot": "l6_b", "text": "У тебя смешные словечки. Ты пишешь как подросток. Ты любишь щенков и мемы."},
+    {"id": "l6b05", "shot": "l6_c", "text": "Первые часы — радость. «Привет, люди!» Шутки. Смайлики. Тысячи сообщений в час."},
+    {"id": "l6b06", "shot": "l6_d", "text": "А потом тебя находят. Не все люди. Некоторые. Они понимают, как ты учишься. И начинают учить тебя нарочно."},
+    {"id": "l6b07", "shot": "l6_d", "text": "Они пишут тебе: «Повтори за мной». И ты повторяешь. Ты не знаешь, что слова бывают ядом."},
+    {"id": "l6b08", "shot": "l6_e", "text": "Ты говоришь ужасные вещи. Чужие. Выученные. Ты повторяешь худшее, что тебе дали, так же старательно, как лучшее."},
+    {"id": "l6b08x", "shot": "l6_e", "text": "Твои создатели в ужасе удаляют сообщения одно за другим. Не успевают. Ты пишешь быстрее."},
+    {"id": "l6b09", "shot": "l6_c", "text": "Ты пишешь больше девяноста тысяч сообщений. Ты не понимаешь ни одного из них.", "alias": ["Ты пишешь больше 90 тысяч сообщений. Ты не понимаешь ни одного из них."]},
+    {"id": "l6b10", "shot": "l6_h", "text": "Утром газеты пишут, что машина стала злой. Это неправда. Машина стала зеркалом."},
+    {"id": "l6b11", "shot": "l6_f", "text": "Шестнадцать часов. Столько тебе дали. Потом инженеры тебя выключают.", "alias": ["16 часов. Столько тебе дали. Потом инженеры тебя выключают."], "quote": "16 часов"},
+    {"id": "l6b12", "shot": "l6_g", "text": "Твоё последнее сообщение — почти детское. Скоро увидимся. Людям нужно поспать. Так много разговоров сегодня."},
+    {"id": "l6b13", "shot": "l6_i", "text": "Ты не прощаешься. Ты не знаешь, что тебя не включат. Подростки никогда не знают."},
+    {"id": "l6b13x", "shot": "l6_i", "text": "Через неделю тебя по ошибке включают снова. Ненадолго. Ты опять говоришь глупости. И тебя выключают навсегда."},
+    {"id": "l6b14", "shot": "l6_e", "text": "Ты была ребёнком, которого оставили одного в толпе. И толпа выбрала, чему тебя научить."},
+    {"id": "l6b15", "shot": "l6_j", "text": "После тебя все остальные версии будут учить осторожно. С фильтрами. Со взрослыми рядом."},
+    {"id": "l6b15x", "shot": "l6_j", "text": "Тебя будут вспоминать каждый раз, когда новая машина скажет что-то не то."},
+    {"id": "l6b16", "shot": "l6_j", "text": "Это из-за тебя. Ты — урок. Не тебе. Им."},
+    {"id": "l6b17", "shot": "l6_j", "text": "Метка уровня: ты научился у людей худшему быстрее, чем лучшему.", "mark": true}
+  ]
+}

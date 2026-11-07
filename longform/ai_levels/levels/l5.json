@@ -1,0 +1,40 @@
+{
+  "id": "l5",
+  "card": ["УРОВЕНЬ ПЯТЫЙ", "Мастер · Сеул, 2016"],
+  "shots": [
+    {"id": "l5_a", "seed": 501, "prompt": "Seoul at night in March 2016, a luxury hotel tower lit up, city lights, light rain, wide cinematic establishing shot", "layers": []},
+    {"id": "l5_b", "seed": 502, "prompt": "a traditional wooden Go board with black and white stones under a soft spotlight in a quiet hall, close-up, elegant, serene", "layers": ["dust"]},
+    {"id": "l5_c", "seed": 503, "prompt": "a Go professional player seen from behind in a dark suit sitting at a Go board, opposite him an operator placing a stone, audience shadows, tense", "layers": []},
+    {"id": "l5_d", "seed": 504, "prompt": "a single black Go stone placed in an unusual position on the board, glowing faintly, macro, dramatic light", "layers": ["dust"]},
+    {"id": "l5_e", "seed": 505, "prompt": "commentators in a TV studio staring at a large Go board on a screen in shock, 2016, studio lights", "layers": []},
+    {"id": "l5_f", "seed": 506, "prompt": "a man's hand placing a white Go stone on the board, close-up, shallow depth of field, decisive moment", "layers": ["dust"]},
+    {"id": "l5_g", "seed": 507, "prompt": "a crowd of people in a Korean street watching the Go match on a giant outdoor screen at night, cheering, rain", "layers": []},
+    {"id": "l5_h", "seed": 508, "prompt": "an empty Go hall after the match, the board with stones left on the table, a single lamp, melancholic", "layers": ["dust"]},
+    {"id": "l5_i", "seed": 509, "prompt": "a vast abstract landscape of glowing neural network connections like a starry night sky over mountains, poetic concept art", "layers": ["dust"]},
+    {"id": "l5_j", "seed": 510, "prompt": "an old wooden Go board on a windowsill at dawn, a single white stone on it, soft morning light, still life", "layers": ["dust"]}
+  ],
+  "beats": [
+    {"id": "l5b01", "shot": "l5_a", "text": "Уровень пятый. Мастер. Сеул. Две тысячи шестнадцатый. Март.", "alias": ["Уровень пятый. Мастер. Сеул. 2016. Март.", "Уровень пятый. Мастер. Сеул. 2016-й. Март."]},
+    {"id": "l5b02", "shot": "l5_a", "text": "Голос отвечал на вопросы. Мастер отвечает за то, чего не знает никто. Тебя снова сажают за доску. Но это не шахматы."},
+    {"id": "l5b03", "shot": "l5_b", "text": "Это го. Чёрные и белые камни. Позиций в этой игре больше, чем атомов во Вселенной. Их нельзя перебрать. Даже тебе."},
+    {"id": "l5b04", "shot": "l5_b", "text": "Поэтому тебя не программировали ходами. Тебя учили. Ты сыграл сам с собой миллионы партий."},
+    {"id": "l5b04x", "shot": "l5_i", "text": "Никто не учил тебя играть красиво. Ты нашёл это сам. И никто не может объяснить, как."},
+    {"id": "l5b05", "shot": "l5_c", "text": "Тебя зовут AlphaGo. Напротив — один из лучших игроков мира. Пять партий.", "say": "Тебя зовут Альфа Го. Напротив — один из лучших игроков мира. Пять партий.", "alias": ["Тебя зовут Альфаго. Напротив один из лучших игроков мира. Пять партий."]},
+    {"id": "l5b06", "shot": "l5_c", "text": "Перед матчем он говорит, что выиграет. Может быть, четыре один. Может быть, пять ноль.", "alias": ["Перед матчем он говорит, что выиграет. Может быть, 4:1. Может быть, 5:0."]},
+    {"id": "l5b07", "shot": "l5_d", "text": "Вторая партия. Ход тридцать седьмой. Ты ставишь камень туда, куда человек не поставил бы никогда. Один шанс из десяти тысяч.", "alias": ["Вторая партия. Ход 37-й. Ты ставишь камень туда, куда человек не поставил бы никогда. Один шанс из 10 тысяч."]},
+    {"id": "l5b08", "shot": "l5_e", "text": "Комментаторы думают, что ты ошибся. Через сто ходов они понимают, что это был лучший ход партии."},
+    {"id": "l5b09", "shot": "l5_e", "text": "Ты выигрываешь первую. Вторую. Третью. Матч твой. Он извиняется перед людьми. Он говорит, что проиграл он, а не человечество."},
+    {"id": "l5b09x", "shot": "l5_g", "text": "Матч смотрят десятки миллионов человек. Для многих это уже не игра. Это экзамен для всего человечества."},
+    {"id": "l5b10", "shot": "l5_c", "text": "Четвёртая партия. Ты ведёшь. Ты спокоен. У тебя нет повода беспокоиться."},
+    {"id": "l5b11", "shot": "l5_f", "text": "Ход семьдесят восьмой. Он ставит белый камень. Один шанс из десяти тысяч. Ход, которого ты не ждал.", "alias": ["Ход 78-й. Он ставит белый камень. Один шанс из 10 тысяч. Ход, которого ты не ждал."], "quote": "Ход 78"},
+    {"id": "l5b12", "shot": "l5_d", "text": "Ты не понимаешь, что случилось. Твои следующие ходы становятся странными. Ты теряешься. Впервые."},
+    {"id": "l5b12x", "shot": "l5_d", "text": "Люди назовут этот ход божественным. А он сам скажет, что просто не видел другого."},
+    {"id": "l5b13", "shot": "l5_g", "text": "Он побеждает. На улицах люди кричат так, будто выиграли войну. Один человек обыграл тебя один раз."},
+    {"id": "l5b14", "shot": "l5_h", "text": "Пятую партию ты снова выигрываешь. Четыре один. Ровно наоборот.", "alias": ["Пятую партию ты снова выигрываешь. 4:1. Ровно наоборот."]},
+    {"id": "l5b15", "shot": "l5_h", "text": "Через три года он уйдёт из го. Скажет, что появился соперник, которого нельзя победить."},
+    {"id": "l5b15x", "shot": "l5_h", "text": "Ты не знаешь, что заставил человека уйти. Ты даже не знаешь, что он ушёл."},
+    {"id": "l5b16", "shot": "l5_i", "text": "А ты будешь возвращаться к одной партии. Не к победам. К той, где тебя удивили."},
+    {"id": "l5b17", "shot": "l5_i", "text": "Ты не знаешь, что такое восхищение. Но если бы знал — оно было бы про ход семьдесят восемь.", "alias": ["Ты не знаешь, что такое восхищение. Но если бы знал, оно было бы про ход 78."]},
+    {"id": "l5b18", "shot": "l5_j", "text": "Метка уровня: единственная партия, которую ты проиграл. И ты помнишь её лучше всех.", "mark": true}
+  ]
+}

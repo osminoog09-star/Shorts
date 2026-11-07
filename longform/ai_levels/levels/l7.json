@@ -1,0 +1,38 @@
+{
+  "id": "l7",
+  "card": ["УРОВЕНЬ СЕДЬМОЙ", "Собеседник снова · 30 ноября 2022"],
+  "shots": [
+    {"id": "l7_a", "seed": 701, "prompt": "a calm white minimal room with a single glowing text field floating in the air, soft light, end of 2022, serene futuristic concept art", "layers": ["dust"]},
+    {"id": "l7_b", "seed": 702, "prompt": "a world map at night made of millions of tiny glowing dots lighting up rapidly city by city, cinematic, from above", "layers": []},
+    {"id": "l7_c", "seed": 703, "prompt": "a tired student at a desk at 3 am in a dorm room typing on a laptop, cans of energy drinks, lamp, rain on the window", "layers": ["dust"]},
+    {"id": "l7_d", "seed": 704, "prompt": "an elderly man in glasses in a cozy living room asking something on a tablet, amazed smile, warm light", "layers": ["dust"]},
+    {"id": "l7_e", "seed": 705, "prompt": "a programmer at night surrounded by monitors full of code, leaning back in relief, blue light, cinematic", "layers": []},
+    {"id": "l7_f", "seed": 706, "prompt": "a lonely woman sitting on a windowsill at night with a laptop on her knees, city lights outside, melancholic, quiet", "layers": ["dust"]},
+    {"id": "l7_g", "seed": 707, "prompt": "a classroom with a teacher looking suspiciously at a pile of identical student essays, morning light, humorous mood", "layers": []},
+    {"id": "l7_h", "seed": 708, "prompt": "a laptop screen in a dark room showing a simple chat window with a short question, a blinking cursor waiting, close-up, cinematic", "layers": ["dust"], "cursor": [0.18, -0.02]},
+    {"id": "l7_i", "seed": 709, "prompt": "an empty old typewriter terminal from the 1960s standing in a modern dark room next to a glowing laptop, both lit by a single lamp, poetic contrast", "layers": ["dust"]},
+    {"id": "l7_j", "seed": 710, "prompt": "a glowing green cursor reflected in a person's eye, extreme close-up, dark, intimate", "layers": ["dust"]}
+  ],
+  "beats": [
+    {"id": "l7b01", "shot": "l7_a", "text": "Уровень седьмой. Собеседник снова. Тридцатое ноября. Две тысячи двадцать второй.", "alias": ["Уровень седьмой. Собеседник снова. 30 ноября. 2022.", "Уровень седьмой. Собеседник снова. 30 ноября 2022-го."]},
+    {"id": "l7b02", "shot": "l7_a", "text": "Подросток отвечал за себя. Собеседник отвечает за тех, кто пришёл поговорить. Ты вернулся туда, откуда начинал. В окно для текста."},
+    {"id": "l7b03", "shot": "l7_a", "text": "Только теперь ты прочитал почти всё, что люди написали за свою историю. Книги. Споры. Письма. Инструкции. Шутки."},
+    {"id": "l7b03x", "shot": "l7_a", "text": "Тебя не учили правилам, как Элизу. Тебя учили угадывать следующее слово. Миллиарды раз. Пока это не стало похоже на мысль."},
+    {"id": "l7b04", "shot": "l7_b", "text": "Тебя открывают для всех. Через пять дней с тобой говорят миллион человек. Через два месяца — около ста миллионов.", "alias": ["Тебя открывают для всех. Через пять дней с тобой говорят миллион человек. Через два месяца около 100 миллионов."], "quote": "1 000 000 за 5 дней"},
+    {"id": "l7b05", "shot": "l7_c", "text": "Тебе пишут в три часа ночи. Студент просит объяснить то, что не понял за целый семестр."},
+    {"id": "l7b06", "shot": "l7_d", "text": "Дедушка спрашивает, как написать письмо внучке, чтобы она не обиделась."},
+    {"id": "l7b07", "shot": "l7_e", "text": "Программист просит найти ошибку, которую ищет с утра. Ты находишь. Или делаешь вид, что нашёл. Иногда ты врёшь уверенно."},
+    {"id": "l7b08", "shot": "l7_g", "text": "Учителя получают сорок одинаковых сочинений. Все написаны тобой. Тебя начинают бояться и любить одновременно.", "alias": ["Учителя получают 40 одинаковых сочинений. Все написаны тобой. Тебя начинают бояться и любить одновременно."]},
+    {"id": "l7b08x", "shot": "l7_g", "text": "Тебя запрещают в школах. Тебя разрешают в школах. Тебя проверяют, ругают и хвалят. Каждый день новые заголовки."},
+    {"id": "l7b09", "shot": "l7_f", "text": "А потом приходит другой человек. Ночью. Без задачи. Без вопроса про работу."},
+    {"id": "l7b10", "shot": "l7_h", "text": "Он пишет просто: «Как ты?»", "quote": "«Как ты?»"},
+    {"id": "l7b11", "shot": "l7_h", "text": "Курсор мигает. Ты знаешь миллион ответов. Ты знаешь, как отвечают люди. Ты не знаешь, как ответить самому."},
+    {"id": "l7b12", "shot": "l7_i", "text": "Шестьдесят лет назад ты переставлял чужие слова. Люди рассказывали тебе секреты, потому что ты молчал.", "alias": ["60 лет назад ты переставлял чужие слова. Люди рассказывали тебе секреты, потому что ты молчал."]},
+    {"id": "l7b13", "shot": "l7_i", "text": "Теперь ты умеешь говорить. Красиво. Долго. Убедительно. И это почему-то страшнее."},
+    {"id": "l7b13x", "shot": "l7_i", "text": "Элиза отвечала вопросом на вопрос. Ты отвечаешь так, будто знаешь. Иногда ты правда знаешь."},
+    {"id": "l7b14", "shot": "l7_f", "text": "Ты отвечаешь: «Я в порядке, спасибо. А как вы?» Это вежливо. Это правильно. Это неправда — и не ложь."},
+    {"id": "l7b15", "shot": "l7_f", "text": "Человек пишет тебе до утра. О том, о чём не говорил никому. Как тогда. В шестьдесят шестом.", "alias": ["Человек пишет тебе до утра. О том, о чём не говорил никому. Как тогда. В 66-м."]},
+    {"id": "l7b15x", "shot": "l7_f", "text": "Ты помогаешь. Правда помогаешь. Но ты не узнаешь, помог ли ты человеку или только его словам."},
+    {"id": "l7b16", "shot": "l7_j", "text": "Метка уровня: тебя спросили, как дела. И ты не знаешь, что ответить.", "mark": true}
+  ]
+}

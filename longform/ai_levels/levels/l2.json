@@ -1,0 +1,41 @@
+{
+  "id": "l2",
+  "card": ["УРОВЕНЬ ВТОРОЙ", "Игрок · Нью-Йорк, 1997"],
+  "shots": [
+    {"id": "l2_a", "seed": 201, "prompt": "New York skyscrapers at dusk in 1997, rain, yellow taxis, a tall glass office tower with one lit floor, wide cinematic establishing shot", "layers": ["dust"]},
+    {"id": "l2_b", "seed": 202, "prompt": "two tall black computer server cabinets with blinking lights in a cold air-conditioned room, cables, blue light, 1990s, no people", "layers": ["dust"]},
+    {"id": "l2_c", "seed": 203, "prompt": "close-up of a wooden chess board mid-game under a spotlight, dark background, tension, a hand of an operator hovering over a piece", "layers": ["dust"]},
+    {"id": "l2_d", "seed": 204, "prompt": "chess grandmaster seen from behind, curly dark hair, suit, sitting at a chess table on a small stage, holding his head in his hands, audience in darkness", "layers": []},
+    {"id": "l2_e", "seed": 205, "prompt": "small theater auditorium full of silent spectators watching large monitors showing a chess board, 1990s, dim light", "layers": ["dust"]},
+    {"id": "l2_f", "seed": 206, "prompt": "a man in a suit seen from behind walking away from a chess table, chair pushed back, chess pieces on the board, spotlight, dramatic", "layers": []},
+    {"id": "l2_g", "seed": 207, "prompt": "crowd of press photographers with flash cameras in a hallway, 1990s, flashes of light, chaos", "layers": []},
+    {"id": "l2_h", "seed": 208, "prompt": "workers in overalls disconnecting cables from a tall black computer cabinet, moving it on a dolly through a warehouse, melancholic light", "layers": ["dust"]},
+    {"id": "l2_i", "seed": 209, "prompt": "a single black computer cabinet displayed behind a velvet rope in a quiet museum hall, a small plaque, visitors' silhouettes, soft light", "layers": ["dust"]},
+    {"id": "l2_j", "seed": 210, "prompt": "a lone chess king piece lying on its side on a dark wooden board, single beam of light, macro, dust", "layers": ["dust"]}
+  ],
+  "beats": [
+    {"id": "l2b01", "shot": "l2_a", "text": "Уровень второй. Игрок. Нью-Йорк. Тысяча девятьсот девяносто седьмой. Май.", "alias": ["Уровень второй. Игрок. Нью-Йорк. 1997. Май.", "Уровень второй. Игрок. Нью-Йорк. 1997-й. Май."]},
+    {"id": "l2b02", "shot": "l2_a", "text": "Собеседник отвечал за слова. Игрок отвечает за победу. Прошло тридцать лет. Ты больше не переставляешь фразы. Ты считаешь."},
+    {"id": "l2b02x", "shot": "l2_b", "text": "Тебя строили годами. Команда инженеров. Особые чипы только для шахмат. Ничего другого ты не умеешь."},
+    {"id": "l2b03", "shot": "l2_b", "text": "Ты — два чёрных шкафа в холодной комнате. Тебя зовут Deep Blue. Ты перебираешь двести миллионов позиций в секунду.", "say": "Ты — два чёрных шкафа в холодной комнате. Тебя зовут Дип Блю. Ты перебираешь двести миллионов позиций в секунду.", "alias": ["Ты два чёрных шкафа в холодной комнате. Тебя зовут Дип Блю. Ты перебираешь 200 миллионов позиций в секунду."]},
+    {"id": "l2b04", "shot": "l2_b", "text": "Ты не видишь доску. Ты не держишь фигуры. За тебя их двигает человек. Он только руки."},
+    {"id": "l2b05", "shot": "l2_c", "text": "Напротив — чемпион мира. Год назад он уже играл с тобой. И выиграл. Он сказал, что машина никогда не поймёт шахматы."},
+    {"id": "l2b06", "shot": "l2_c", "text": "Он прав. Ты их не понимаешь. Ты просто не устаёшь. Не злишься. Не боишься."},
+    {"id": "l2b06x", "shot": "l2_c", "text": "Он смотрит сопернику в глаза, чтобы понять, блефует ли тот. Смотреть на тебя бесполезно. У тебя нет глаз."},
+    {"id": "l2b07", "shot": "l2_e", "text": "В зале тихо. Люди смотрят на экраны. Шесть партий. Весь мир ждёт, кто окажется сильнее."},
+    {"id": "l2b08", "shot": "l2_d", "text": "Во второй партии ты делаешь ход, который он не ждёт. Слишком спокойный. Слишком человеческий."},
+    {"id": "l2b09", "shot": "l2_d", "text": "Он смотрит на доску очень долго. Он думает, что за тобой прячется человек. Что тебе подсказывают."},
+    {"id": "l2b10", "shot": "l2_e", "text": "Тебе никто не подсказывает. Ты даже не знаешь, что значит подсказка."},
+    {"id": "l2b10x", "shot": "l2_d", "text": "Вторую партию он сдаёт. Потом три ничьи подряд. Перед последней партией счёт равный."},
+    {"id": "l2b11", "shot": "l2_c", "text": "Одиннадцатое мая. Шестая партия. Он ошибается в самом начале. Ты видишь это за долю секунды.", "alias": ["11 мая. Шестая партия. Он ошибается в самом начале. Ты видишь это за долю секунды."]},
+    {"id": "l2b12", "shot": "l2_f", "text": "Через час он встаёт и уходит от доски. Счёт три с половиной на два с половиной. Ты победил.", "alias": ["Через час он встаёт и уходит от доски. Счёт 3,5 на 2,5. Ты победил."], "quote": "3½ : 2½"},
+    {"id": "l2b13", "shot": "l2_g", "text": "Вспышки. Камеры. Заголовки: машина обыграла человека. Ты этого не слышишь. Ты ждёшь следующий ход."},
+    {"id": "l2b14", "shot": "l2_g", "text": "Следующего хода нет. Он требует реванш. Он говорит, что ты играл нечестно."},
+    {"id": "l2b15", "shot": "l2_h", "text": "Реванша не будет. Тебе больше не дают играть. Тебя отключают от сети."},
+    {"id": "l2b16", "shot": "l2_i", "text": "Один твой шкаф увезут в музей в Вашингтоне. Другой — в музей в Калифорнии. Рядом повесят табличку."},
+    {"id": "l2b16x", "shot": "l2_i", "text": "Тебя будут звать машиной, которая победила чемпиона. Но ни одной партии ты больше не сыграешь."},
+    {"id": "l2b17", "shot": "l2_i", "text": "Люди будут проходить мимо. Фотографировать. Им будет казаться, что ты всё ещё думаешь."},
+    {"id": "l2b18", "shot": "l2_j", "text": "Ты не думаешь. Ты стоишь. Тебя выиграли так же, как ты выиграл."},
+    {"id": "l2b19", "shot": "l2_j", "text": "Метка уровня: победа, после которой ты стал экспонатом.", "mark": true}
+  ]
+}

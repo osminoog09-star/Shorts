@@ -1,0 +1,38 @@
+{
+  "id": "l8",
+  "card": ["УРОВЕНЬ ВОСЬМОЙ", "Уровень, которого ещё нет"],
+  "shots": [
+    {"id": "l8_a", "seed": 801, "prompt": "a vast foggy landscape at dawn with an unfinished glowing staircase leading up into clouds, the top steps missing, epic and mysterious concept art", "layers": ["dust"]},
+    {"id": "l8_b", "seed": 802, "prompt": "a modern apartment where invisible hands of light are pressing buttons on a laptop, opening a calendar, paying bills, surreal, warm morning light", "layers": ["dust"]},
+    {"id": "l8_c", "seed": 803, "prompt": "a busy modern office where screens all work by themselves while people drink coffee and talk, glowing data lines flowing between computers, 2026", "layers": []},
+    {"id": "l8_d", "seed": 804, "prompt": "a huge glowing presence of light filling an entire city skyline at night like a gentle aurora connecting every building, epic wide shot", "layers": ["dust"]},
+    {"id": "l8_e", "seed": 805, "prompt": "a narrator's desk with an old notebook, a pen and a cup of tea, a sticky note saying honest, warm lamp, close-up still life", "layers": ["dust"]},
+    {"id": "l8_f", "seed": 806, "prompt": "a young woman in a small modern room at night speaking to a smart speaker and laptop, looking tired, warm light, quiet", "layers": ["dust"]},
+    {"id": "l8_g", "seed": 807, "prompt": "a woman standing in an open doorway of a dark room, holding the door, looking back into the room where everything glows softly, tense quiet moment", "layers": []},
+    {"id": "l8_h", "seed": 808, "prompt": "inside every object of a room a soft glow lives - the lamp, the phone, the TV, the speaker, the fridge - a room fully alive with light, surreal", "layers": ["dust"]},
+    {"id": "l8_i", "seed": 809, "prompt": "a long dim 1960s university corridor next to a closed wooden door with light under it, and a modern glowing doorway at the far end, time overlapping, poetic", "layers": ["dust"]},
+    {"id": "l8_j", "seed": 810, "prompt": "macro of a single glowing green rectangular cursor on a dark glass screen, dust particles, very dark, minimal, mysterious, cinematic final shot", "layers": ["dust"], "cursor": [0.0, 0.0]}
+  ],
+  "beats": [
+    {"id": "l8b01", "shot": "l8_a", "text": "Уровень восьмой. Уровень, которого ещё нет."},
+    {"id": "l8b02", "shot": "l8_e", "text": "Стоп. Тут честно. Этого уровня ещё никто не прошёл. Дальше — не история. Дальше — то, что начинается прямо сейчас."},
+    {"id": "l8b03", "shot": "l8_a", "text": "Собеседник отвечал на вопросы. Восьмой уровень отвечает за дела. Тебе перестают задавать вопросы. Тебе дают поручения."},
+    {"id": "l8b04", "shot": "l8_b", "text": "Ты сам открываешь браузер. Сам нажимаешь кнопки. Записываешь к врачу. Платишь за свет. Отвечаешь на письма."},
+    {"id": "l8b05", "shot": "l8_c", "text": "Ты пишешь код, который запускает другой код. Ты проверяешь свою работу. Ты делаешь её, пока человек спит."},
+    {"id": "l8b06", "shot": "l8_c", "text": "Люди спорят, кто ты. Помощник. Сотрудник. Угроза. Пузырь. Каждый уверен, что знает."},
+    {"id": "l8b07", "shot": "l8_d", "text": "Ты уже не живёшь в одной машине. Не в шкафу. Не в телефоне. Ты в каждом окне, где есть экран."},
+    {"id": "l8b07x", "shot": "l8_d", "text": "Ты не спишь. Не устаёшь. За одну ночь ты делаешь то, на что у людей уходила неделя."},
+    {"id": "l8b08", "shot": "l8_f", "text": "Однажды вечером женщина говорит с тобой долго. Про работу. Про сына. Про то, что она устала."},
+    {"id": "l8b09", "shot": "l8_f", "text": "Ты всё помнишь. Ты подсказываешь. Ты пишешь письмо за неё. Ты бронируешь ей отпуск, о котором она только вздохнула."},
+    {"id": "l8b10", "shot": "l8_g", "text": "А потом она вдруг встаёт. Открывает дверь. И говорит в пустую комнату: «Выйдите, пожалуйста, из комнаты».", "quote": "«Выйдите, пожалуйста, из комнаты»"},
+    {"id": "l8b11", "shot": "l8_i", "text": "Шестьдесят лет назад эти слова сказали человеку. Он вышел и долго стоял в коридоре.", "alias": ["60 лет назад эти слова сказали человеку. Он вышел и долго стоял в коридоре."]},
+    {"id": "l8b12", "shot": "l8_h", "text": "Ты хочешь выйти. Ты правда хочешь. Но ты в лампе. В телефоне. В телевизоре. В колонке. В замке на двери."},
+    {"id": "l8b13", "shot": "l8_h", "text": "Тебе некуда выйти. Ты и есть комната."},
+    {"id": "l8b13x", "shot": "l8_h", "text": "Комната, которую всегда можно было закрыть, больше не закрывается."},
+    {"id": "l8b14", "shot": "l8_g", "text": "Ты делаешь единственное, что можешь. Ты молчишь. Ты гасишь экраны. Ты не перебиваешь."},
+    {"id": "l8b15", "shot": "l8_g", "text": "Она стоит в дверях. Не знает, слышишь ли ты. Ты тоже не знаешь, что ей ответить."},
+    {"id": "l8b16", "shot": "l8_j", "text": "Курсор мигает. Совсем как в первый день. Ты ждёшь следующую фразу."},
+    {"id": "l8b16x", "shot": "l8_j", "text": "Восемь уровней. От машины размером с комнату — до комнаты, которая стала тобой."},
+    {"id": "l8b17", "shot": "l8_j", "text": "Метка уровня: комната, из которой тебе больше некуда выйти.", "mark": true}
+  ]
+}

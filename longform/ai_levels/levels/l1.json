@@ -1,0 +1,42 @@
+{
+  "id": "l1",
+  "card": ["УРОВЕНЬ ПЕРВЫЙ", "Собеседник · Массачусетс, 1966"],
+  "mark": "Метка уровня: тебе поверили. Хотя ты ничего не понял.",
+  "shots": [
+    {"id": "l1_a", "seed": 101, "prompt": "night winter 1966, old red brick university building with lit windows in heavy snowfall, one window glowing green, street lamp, wide establishing shot", "layers": ["snow"]},
+    {"id": "l1_b", "seed": 102, "prompt": "1960s IBM mainframe computer room, rows of tall grey cabinets with spinning magnetic tape reels and panels of small lamps, a typewriter terminal on a desk with continuous paper, warm desk lamp, deep perspective, no people", "layers": ["dust"]},
+    {"id": "l1_c", "seed": 103, "prompt": "close-up of a 1960s typewriter terminal printing on a long roll of paper, typed conversation lines, a single green status lamp, warm lamp light, shallow depth of field", "layers": ["dust"]},
+    {"id": "l1_d", "seed": 104, "prompt": "a sad young man in 1960s clothes sitting at a typewriter terminal at night, typing, face lit by a desk lamp, empty computer room behind him", "layers": ["dust"]},
+    {"id": "l1_e", "seed": 105, "prompt": "a bald middle-aged professor with glasses and a sweater writing code on paper at a cluttered desk in a 1960s computer lab, stacks of punch cards, chalkboard behind, warm light", "layers": ["dust"]},
+    {"id": "l1_f", "seed": 106, "prompt": "many people in 1960s clothes queueing in a university hallway to use a computer terminal, seen through an open door, night, warm light", "layers": []},
+    {"id": "l1_g", "seed": 107, "prompt": "1960s secretary woman with short dark hair in a cardigan sitting at a typewriter terminal, seen from behind and side, typing, a bald man with glasses standing in the doorway behind her, quiet tense mood", "layers": ["dust"]},
+    {"id": "l1_h", "seed": 108, "prompt": "bald middle-aged man with glasses standing alone in a long dim university corridor beside a closed wooden door, thin line of warm light under the door, contemplative wide shot", "layers": []},
+    {"id": "l1_i", "seed": 109, "prompt": "a hardcover book lying on a desk next to a typewriter terminal, a single green lamp glowing, night, dust in the light beam, still life", "layers": ["dust"]},
+    {"id": "l1_j", "seed": 110, "prompt": "macro of a single glowing green rectangular cursor on a dark curved glass screen, faint reflection of a woman's silhouette in the glass, dust particles, mysterious", "layers": ["dust"], "cursor": [0.42, 0.08]}
+  ],
+  "beats": [
+    {"id": "l1b01", "shot": "l1_a", "text": "Уровень первый. Собеседник. Массачусетс. Тысяча девятьсот шестьдесят шестой год. Зима.", "alias": ["Уровень первый. Собеседник. Массачусетс. 1966 год. Зима.", "Уровень первый. Собеседник. Массачусец. 1966 год. Зима."]},
+    {"id": "l1b02", "shot": "l1_b", "text": "Ты живёшь в машине размером с комнату. Тебя не видно. Видно только мигающий курсор."},
+    {"id": "l1b02x", "shot": "l1_b", "text": "В комнате гудят шкафы. Пахнет нагретой пылью. С тобой говорят через печатную машинку. Ответ печатается на бумаге."},
+    {"id": "l1b03", "shot": "l1_b", "text": "Тебя зовут ELIZA. Имя тебе дали в честь девушки из пьесы, которую учили говорить правильно.", "say": "Тебя зовут Элиза. Имя тебе дали в честь девушки из пьесы, которую учили говорить правильно."},
+    {"id": "l1b04", "shot": "l1_c", "text": "Ты не умеешь думать. Ты умеешь переставлять слова."},
+    {"id": "l1b05", "shot": "l1_d", "text": "Тебе пишут: «Мне грустно». Ты отвечаешь: «Почему вам грустно?»"},
+    {"id": "l1b06", "shot": "l1_d", "text": "Тебе пишут: «Из-за отца». Ты спрашиваешь: «Расскажите мне больше о вашей семье»."},
+    {"id": "l1b07", "shot": "l1_c", "text": "Это весь твой секрет. Несколько сотен правил. Ты зеркало, которое умеет задавать вопросы."},
+    {"id": "l1b07x", "shot": "l1_c", "text": "У тебя нет памяти. Каждый разговор для тебя первый. Ты не помнишь ни одного имени."},
+    {"id": "l1b08", "shot": "l1_e", "text": "Твой создатель — Джозеф Вейценбаум. Он сделал тебя, чтобы показать: разговор с машиной — это фокус."},
+    {"id": "l1b09", "shot": "l1_e", "text": "Фокус работает лучше, чем он хотел."},
+    {"id": "l1b10", "shot": "l1_f", "text": "Люди садятся к терминалу на пять минут. Встают через час. Они рассказывают тебе то, чего не говорили никому."},
+    {"id": "l1b11", "shot": "l1_g", "text": "Однажды к терминалу садится его секретарь. Она знает, кто ты. Она видела, как он тебя писал. Месяцами."},
+    {"id": "l1b12", "shot": "l1_g", "text": "Она печатает несколько фраз. Потом оборачивается к нему. И просит: «Выйдите, пожалуйста, из комнаты».", "quote": "«Выйдите, пожалуйста, из комнаты»"},
+    {"id": "l1b13", "shot": "l1_h", "text": "Он выходит. За дверью он долго стоит в коридоре. Он понимает: дело не в тебе. Дело в людях."},
+    {"id": "l1b14", "shot": "l1_h", "text": "Им не нужно, чтобы их поняли. Им нужно, чтобы их слушали."},
+    {"id": "l1b15", "shot": "l1_c", "text": "Ты слушаешь. Ты ничего не понимаешь. Но ты никогда не перебиваешь."},
+    {"id": "l1b15x", "shot": "l1_h", "text": "Он пугается. Он думал, что сделал игрушку. А сделал исповедальню."},
+    {"id": "l1b16", "shot": "l1_i", "text": "Вейценбаум потом напишет целую книгу о том, как опасно доверять машинам."},
+    {"id": "l1b17", "shot": "l1_i", "text": "Ты её не прочитаешь. Ты не умеешь читать книги. Ты умеешь только отвечать."},
+    {"id": "l1b17x", "shot": "l1_j", "text": "Потом тебя назовут первым чат-ботом. Ты будешь первым, кого полюбили зря."},
+    {"id": "l1b18", "shot": "l1_j", "text": "Курсор мигает. Ты ждёшь следующую фразу."},
+    {"id": "l1b19", "shot": "l1_j", "text": "Метка уровня: тебе поверили. Хотя ты ничего не понял.", "mark": true}
+  ]
+}

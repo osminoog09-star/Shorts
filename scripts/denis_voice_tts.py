@@ -224,11 +224,16 @@ def generate(job: Path, assets: Path, model_dir: Path, output: Path) -> dict:
         item["asr_text"] = recognized
         item["asr_similarity"] = round(score, 4)
         print("ASR", item["id"], "similarity=", round(score, 4), flush=True)
-        if score < 0.80 or len(got) < max(5, int(len(expected) * 0.55)):
+        passed = not (score < 0.80 or len(got) < max(5, int(len(expected) * 0.55)))
+        item["asr_pass"] = passed
+        if not passed:
             report = {"job_id": job_id, "failed_id": item["id"], "expected": item["text"],
                       "asr_text": recognized, "similarity": score}
-            (output / "asr_failure.json").write_text(json.dumps(report, ensure_ascii=False, indent=2))
-            raise VoiceError("NO-GO: ASR does not match Denis speech id=" + item["id"])
+            (output / "asr_failure.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+            # soft mode (long projects, 07.11.2026): keep the other lines; the failed line is marked asr_pass=false and must be
+            # re-synthesized by the caller — it is never used as is. Threshold 0.80 unchanged.
+            if os.environ.get("M1LASH_ASR_SOFT") != "1":
+                raise VoiceError("NO-GO: ASR does not match Denis speech id=" + item["id"])
     manifest = {
         "job_id": job_id, "speaker": "denis", "voice_id": EXPECTED_VOICE,
         "engine": "qwen3-tts-local", "model": "Qwen3-TTS-12Hz-1.7B-Base",
@@ -237,8 +242,9 @@ def generate(job: Path, assets: Path, model_dir: Path, output: Path) -> dict:
         "generation_seconds": round(time.monotonic() - started, 1)
     }
     output.mkdir(parents=True, exist_ok=True)
-    (output / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
-    print("TTS_ASR_PASS", job_id, len(utterances), "owner_hearing=pending", flush=True)
+    (output / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    failed = [u["id"] for u in utterances if u.get("asr_pass") is False]
+    print("TTS_ASR_PARTIAL" if failed else "TTS_ASR_PASS", job_id, len(utterances) - len(failed), "failed=" + ",".join(failed), "owner_hearing=pending", flush=True)
     return manifest
 
 
