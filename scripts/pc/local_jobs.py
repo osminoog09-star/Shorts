@@ -111,7 +111,7 @@ def finish(a):
     plat = "youtube-shorts" if a.vertical else "youtube"
     r = subprocess.run([sys.executable, "skills/ext/ffmpeg-skill/scripts/check.py", a.out, "--platform", plat, "--json"], cwd=REPO, capture_output=True, text=True)
     (qa / "check.json").write_text(r.stdout, encoding="utf-8")
-    run([sys.executable, "skills/ext/ffmpeg-skill/scripts/look.py", a.out, "--tiles", "4x3", "--width", "1600", "-o", qa / "look_sheet.png"])
+    run([sys.executable, "skills/ext/ffmpeg-skill/scripts/look.py", a.out, "--tiles", "4x3", "--width", "1600", "--overwrite", "-o", qa / "look_sheet.png"])
     print("FINISH_OK", a.out, "QA:", qa)
 
 
