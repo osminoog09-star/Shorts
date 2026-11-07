@@ -41,6 +41,7 @@ jobs:
           node scripts/qa/test_studio_auto_refresh.cjs
           node scripts/qa/test_studio_settings.cjs
           node scripts/qa/test_studio_mobile_settings.cjs
+          node scripts/qa/test_studio_overlay_fixed.cjs
           python3 motion-studio/automation/site_smoke.py
       - uses: actions/configure-pages@v5
       - name: Prepare only browser assets

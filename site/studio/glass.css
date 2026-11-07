@@ -60,7 +60,11 @@ body{background-image:none!important}
 .bnav{grid-template-columns:repeat(7,1fr)!important}
 #space{z-index:0!important}
 html,body{background:#05040d!important}
-.shell,.bnav,#toast,#scrim,.sheet{position:relative;z-index:1}
+.shell{position:relative;z-index:1}
+/* окно, затемнение и сообщения всегда поверх экрана (иначе окно «Выбрать время» уезжало вниз страницы) */
+#scrim{position:fixed!important;z-index:40!important}
+.sheet{position:fixed!important;z-index:41!important}
+#toast{position:fixed!important;z-index:60!important}
 .bnav{position:fixed!important;z-index:30!important}
 .side .brand img,.side .brand .logo3{max-width:58px!important;height:auto!important}
 .side .brand>*:not(img):not(.logo3):not(.logo){display:none!important}
