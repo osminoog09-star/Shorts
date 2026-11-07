@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/pretend_bot4_ru.json",
+  "manifest_sha256": "8595a61e2340bf9f63f38f15087bb84f4957164ae976cd297bbe60dcb428342a",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
