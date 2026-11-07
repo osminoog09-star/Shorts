@@ -1,21 +1,7 @@
 {
-  "checked_at": "2026-11-07T17:45:01.556882+00:00",
-  "count": 26,
+  "checked_at": "2026-11-07T17:55:21.659282+00:00",
+  "count": 27,
   "problems": [
-    {
-      "slug": "ai_levels_ru",
-      "video_id": "2suySU6uCGk",
-      "receipt": "uploaded",
-      "receipt_publish_at": null,
-      "queue": "scheduled",
-      "queue_slot": "2026-11-11T15:00:00+02:00",
-      "live_privacy": "public",
-      "live_publishAt": null,
-      "title": "Ты прошёл 8 уровней искусственного интеллекта",
-      "upload_status": "processed",
-      "rejection": null,
-      "problem": "в очереди scheduled, а в квитанции нет даты"
-    },
     {
       "slug": "kino_010",
       "video_id": "_dXT3MYOmow",
@@ -63,14 +49,13 @@
       "video_id": "2suySU6uCGk",
       "receipt": "uploaded",
       "receipt_publish_at": null,
-      "queue": "scheduled",
-      "queue_slot": "2026-11-11T15:00:00+02:00",
+      "queue": "published",
+      "queue_slot": null,
       "live_privacy": "public",
       "live_publishAt": null,
       "title": "Ты прошёл 8 уровней искусственного интеллекта",
       "upload_status": "processed",
-      "rejection": null,
-      "problem": "в очереди scheduled, а в квитанции нет даты"
+      "rejection": null
     },
     {
       "slug": "ai_news_2026_11_03",
@@ -291,6 +276,19 @@
       "live_privacy": "public",
       "live_publishAt": null,
       "title": "Пёс-байкер уходит от погони 💀 #shorts",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "oumuamua_ru",
+      "video_id": "iYmh6Fd3LMY",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-14T13:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-14T15:00:00+02:00",
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-14T13:00:00Z",
+      "title": "Оумуамуа: гость, который не должен был ускоряться",
       "upload_status": "processed",
       "rejection": null
     },
