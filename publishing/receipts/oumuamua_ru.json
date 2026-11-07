@@ -1,8 +1,10 @@
 {
-  "status": "reserved",
+  "status": "uploaded",
   "manifest": "publishing/queue/oumuamua_ru.json",
   "manifest_sha256": "624bb7710241deaed622b5e1e23e3bdbc57521788a642adfafacd5f56be963fe",
   "channel": "ru",
   "publish_at_utc": null,
-  "note": "A reserved attempt must NEVER be automatically retried."
+  "note": "A reserved attempt must NEVER be automatically retried.",
+  "video_id": "iYmh6Fd3LMY",
+  "video_url": "https://youtu.be/iYmh6Fd3LMY"
 }
