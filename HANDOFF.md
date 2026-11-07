@@ -1,3 +1,15 @@
+# 07.11 вечер · Claude · «Оумуамуа» v3 залит и стоит на 14.11 15:00; всем ролькам поставлено время; плейлист «Фильмы M1lash»
+
+- **Оумуамуа**: https://youtu.be/iYmh6Fd3LMY — 24:07, хук + крючки глав + счётчик версий + опрос, свой кадр на фразу (156 сцен), объяснения для детей, произношение «Оу-муа-муа» (`pron.py`), микс 5 треков MacLeod. Порядок скриптов: `chapters.py → extra_shots.py → edu.py → hooks.py → pron.py`. Обложка `C:\M1lash\Готово\oumuamua_thumb.png` — вручную в Studio. Отчёт: `reports/research/2026-11-07_oumuamua_audit.md`.
+- **Расписание (YouTube подтвердил, аудит 07.11)**: 09.11 10:00 kino_009 · 10.11 10:00 kino_011 · 12.11 10:00 science_mirror · 13.11 10:00 science_orbit · 14.11 15:00 oumuamua · 18.11 15:00 weather_bureau (Денис: «ставь время всем»). ai_levels (2suySU6uCGk) уже PUBLIC — открыт вручную, дата невозможна. ai_news 2 ноября — устарел, оставлен PRIVATE.
+- **Плейлисты**: новый «Фильмы M1lash» PLIjIaTAj2CdA (ai_levels, oumuamua, weather_bureau); научные Shorts → «Наука и история». `playlists_v2.py` печатает MAP (куда лёг каждый ролик).
+- **ПК**: живая панель `scripts/pc/panel/panel.bat` (localhost:8790), прогресс `scripts/pc/progress.ps1`, тепловая защита GPU ≤75 °C (`scripts/pc/thermal.py`) в SDXL и TTS. Рендер упирается в скриншоты Chromium, не в GPU (NVENC ускорения не дал).
+- **Гонка в youtube-direct**: параллельные schedule-запуски падают на push квитанции — запускать по одному.
+
+## 07.11 — Бюро ясного неба: приватная загрузка по команде Дениса
+
+Видео https://youtu.be/uxS6DACvQGY, upload run42386030868 SUCCESS. PRIVATE без даты; schedule/delete skipped. publishing/receipts/weather_bureau.json сохранён, закрытый временный GitHub Release удалён штатным publish. Очередь review/slot=null. Не публиковать/не назначать расписание без новой команды. Read-only API audit42386193187 запущен для подтверждения.
+
 # 07.11 · Claude · «Ты прошёл 8 уровней искусственного интеллекта» — PRIVATE 2suySU6uCGk без даты; стиль записан как рецепт «Живая картина» S11-D25
 
 - **Файл:** `C:\M1lash\Готовоi_levels_8_urovney.mp4` (1920×1080, 22:56, body −16 LUFS, концовка v7 горизонтальная, check.py ok, duration gate ≥21 мин PASS, QA `..._qa/`). На YouTube НЕ залит.
