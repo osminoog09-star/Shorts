@@ -12,7 +12,9 @@ import numpy as np
 
 SR, DUR = 48000, 38.5
 HERE = Path(__file__).resolve().parent
-LINES = {'v1': .35, 'v2': 3.7, 'v3': 9.5, 'v4': 13.3, 'v5': 18.2, 'v6': 23.7, 'v7': 29.3, 'v8': 32.7}  # must match scene.js
+LINES = {'v1': .2, 'v2': 3.55, 'v3': 9.85, 'v4': 13.3, 'v5': 18.2, 'v6': 23.9, 'v7': 29.3, 'v8': 32.7}  # must match scene.js
+# lines re-synthesized as short pieces (ASR fix 07.11): played back to back with a pause, one subtitle id
+CHAINS = {'v5': (['v5a', 'v5b'], .2), 'v7': (['v7a', 'v7b'], .35)}
 rng = np.random.default_rng(11)
 
 
@@ -102,11 +104,17 @@ SFX_AT = [('twitch', .4), ('scan', .7), ('scan', 2.2), ('motor', 3.6), ('scan', 
 def main():
     vdir, music, out = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3]); out.mkdir(parents=True, exist_ok=True)
     N = int(DUR * SR); voice = np.zeros(N, np.float32); fx = np.zeros(N, np.float32); active = np.zeros(N, bool); durs = {}
-    for vid, t0 in LINES.items():
-        x = load(vdir / f'{vid}.wav')
+    def piece(name):
+        x = load(vdir / f'{name}.wav')
         nz = np.where(np.abs(x) > .01)[0]
         if len(nz): x = x[max(0, nz[0] - int(.03 * SR)): nz[-1] + int(.08 * SR)]
-        x = x / (np.sqrt(np.mean(x[np.abs(x) > .01] ** 2)) + 1e-9) * .12
+        return x / (np.sqrt(np.mean(x[np.abs(x) > .01] ** 2)) + 1e-9) * .12
+    used = {}
+    for vid, t0 in LINES.items():
+        parts, gap = CHAINS.get(vid, ([vid], 0))
+        if not all((vdir / f'{p}.wav').exists() for p in parts): parts = [vid]
+        x = np.concatenate([np.concatenate([piece(p), np.zeros(int(gap * SR), np.float32)]) if i < len(parts) - 1 else piece(p) for i, p in enumerate(parts)])
+        used[vid] = parts
         o = int(t0 * SR); e = min(N, o + len(x)); voice[o:e] += x[:e - o]; active[o:e] |= np.abs(x[:e - o]) > .01
         durs[vid] = round(len(x) / SR, 3)
     order = sorted(LINES, key=LINES.get)
@@ -128,7 +136,7 @@ def main():
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'f32le', '-ar', str(SR), '-ac', '2', '-i', str(out / 'mix.f32'), '-c:a', 'pcm_s16le', str(out / 'mix.wav')], check=True)
     (out / 'mix.f32').unlink()
     (HERE / 'voices').mkdir(exist_ok=True); (HERE / 'voices' / 'dur.json').write_text(json.dumps(durs, indent=1))
-    rep = {'music_to_voice_rms': round(ratio, 3), 'peak_before_norm': float(pk), 'durations': durs, 'music': music.name, 'sfx': [n for n, _ in SFX_AT]}
+    rep = {'voice_pieces': used, 'music_to_voice_rms': round(ratio, 3), 'peak_before_norm': float(pk), 'durations': durs, 'music': music.name, 'sfx': [n for n, _ in SFX_AT]}
     (out / 'mix_report.json').write_text(json.dumps(rep, ensure_ascii=False, indent=1)); print(rep)
 
 
