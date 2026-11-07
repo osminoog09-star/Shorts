@@ -1,0 +1,964 @@
+{
+ "channel": "M1lash",
+ "uploads": 64,
+ "playlists": [
+  {
+   "id": "PLIjIaTAj2CdA",
+   "title": "Фильмы M1lash",
+   "privacy": "public",
+   "count": 2
+  },
+  {
+   "id": "PLFsog_YzXnAc",
+   "title": "M1lash Мульт",
+   "privacy": "public",
+   "count": 0
+  },
+  {
+   "id": "PLJOa8ZvDafFQ",
+   "title": "Юмор",
+   "privacy": "public",
+   "count": 6
+  },
+  {
+   "id": "PLDTQ0uYTdNdk",
+   "title": "Наука и история",
+   "privacy": "public",
+   "count": 6
+  },
+  {
+   "id": "PLW88AiB_GiWg",
+   "title": "ИИ-скетчи",
+   "privacy": "public",
+   "count": 15
+  },
+  {
+   "id": "PLflqNydnG5vQ",
+   "title": "Новости ИИ",
+   "privacy": "public",
+   "count": 5
+  },
+  {
+   "id": "PLYfbX7s-CsKw",
+   "title": "Притворись ботом",
+   "privacy": "public",
+   "count": 4
+  },
+  {
+   "id": "PLdFzvptW-NVI",
+   "title": "Кино-разборы",
+   "privacy": "public",
+   "count": 0
+  },
+  {
+   "id": "PLIVjPUG-C-Xc",
+   "title": "Кино-Shorts",
+   "privacy": "public",
+   "count": 14
+  },
+  {
+   "id": "PLfmef1R-EinQ",
+   "title": "Новости",
+   "privacy": "public",
+   "count": 8
+  },
+  {
+   "id": "PLQTlKCepQASo",
+   "title": "Фильмы",
+   "privacy": "public",
+   "count": 5
+  },
+  {
+   "id": "PLdw0oYeWmhPQ",
+   "title": "Фейлы и лучшие моменты",
+   "privacy": "public",
+   "count": 0
+  },
+  {
+   "id": "PLCm8pdmeRbV0",
+   "title": "Прохождения",
+   "privacy": "public",
+   "count": 0
+  },
+  {
+   "id": "PLLncmzxjs43Q",
+   "title": "Мои игровые проекты",
+   "privacy": "public",
+   "count": 2
+  },
+  {
+   "id": "PLWjpodWUsTEE",
+   "title": "ИИ и авторские ролики",
+   "privacy": "public",
+   "count": 6
+  },
+  {
+   "id": "PLXlskkOWeUz8",
+   "title": "ИИ",
+   "privacy": "private",
+   "count": 1
+  },
+  {
+   "id": "PLd0qTfm8nJlc",
+   "title": "Shorts Ru",
+   "privacy": "public",
+   "count": 15
+  },
+  {
+   "id": "PLiIchfmJBt9tVuihe8_RdqYd0z0Hgnesp",
+   "title": "Music : may",
+   "privacy": "public",
+   "count": 0
+  },
+  {
+   "id": "PLiIchfmJBt9vpzfhGuLBBCIh3SPOpfyA5",
+   "title": "Музон",
+   "privacy": "private",
+   "count": 4
+  }
+ ],
+ "videos": {
+  "bEdC0uFDvl4": {
+   "title": "Моя кофемашина требует доказать, что я проснулся #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 42,
+   "cat": "23",
+   "published": "2026-11-07T18:00:37Z",
+   "playlists": []
+  },
+  "iYmh6Fd3LMY": {
+   "title": "Оумуамуа: гость, который не должен был ускоряться",
+   "privacy": "private",
+   "publishAt": "2026-11-14T13:00:00Z",
+   "sec": 1448,
+   "cat": "27",
+   "published": "2026-11-07T17:51:03Z",
+   "playlists": [
+    "Фильмы M1lash"
+   ]
+  },
+  "uxS6DACvQGY": {
+   "title": "POV: ты работаешь в городе, где продают погоду",
+   "privacy": "private",
+   "publishAt": "2026-11-18T13:00:00Z",
+   "sec": 1911,
+   "cat": "1",
+   "published": "2026-11-07T15:22:42Z",
+   "playlists": []
+  },
+  "2suySU6uCGk": {
+   "title": "Ты прошёл 8 уровней искусственного интеллекта",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 1377,
+   "cat": "27",
+   "published": "2026-11-07T14:00:09Z",
+   "playlists": [
+    "Фильмы M1lash"
+   ]
+  },
+  "gLdXWqOj8hw": {
+   "title": "Все смотрели на фокус. Ребёнок заметил другое 🎩 #shorts",
+   "privacy": "private",
+   "publishAt": "2026-11-10T08:00:00Z",
+   "sec": 51,
+   "cat": "1",
+   "published": "2026-11-07T11:38:37Z",
+   "playlists": []
+  },
+  "izqrEKmU38g": {
+   "title": "Она попросила обычный бургер — и всё изменилось 🍔 #shorts",
+   "privacy": "private",
+   "publishAt": "2026-11-09T08:00:00Z",
+   "sec": 40,
+   "cat": "1",
+   "published": "2026-11-07T11:35:57Z",
+   "playlists": []
+  },
+  "keMWV5guOLw": {
+   "title": "Притворись ботом · серия 4: среди нас нейросеть ☕🤖 #shorts",
+   "privacy": "private",
+   "publishAt": "2026-11-10T18:00:00Z",
+   "sec": 40,
+   "cat": "23",
+   "published": "2026-11-07T10:13:12Z",
+   "playlists": []
+  },
+  "h-fz_lx7bn8": {
+   "title": "Робот-пылесос вышел на охоту 💀 #shorts",
+   "privacy": "private",
+   "publishAt": "2026-11-08T18:00:00Z",
+   "sec": 42,
+   "cat": "23",
+   "published": "2026-11-07T06:19:22Z",
+   "playlists": []
+  },
+  "bp0jSmKuudA": {
+   "title": "Мой умный дом объявил забастовку 💀 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 47,
+   "cat": "23",
+   "published": "2026-11-06T15:00:18Z",
+   "playlists": [
+    "ИИ-скетчи"
+   ]
+  },
+  "3YjkmOrxDLA": {
+   "title": "Он думал, что они КОМАНДА… Но услышал ЭТО 😳 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 44,
+   "cat": "1",
+   "published": "2026-11-06T08:00:18Z",
+   "playlists": [
+    "Кино-Shorts"
+   ]
+  },
+  "G4IMzvrv1Zw": {
+   "title": "Они нажали кнопку — и даже ЗВУК исчез… 😨 #shorts",
+   "privacy": "private",
+   "publishAt": "2026-11-08T08:00:00Z",
+   "sec": 44,
+   "cat": "1",
+   "published": "2026-11-06T02:46:54Z",
+   "playlists": []
+  },
+  "QS66i62EgJk": {
+   "title": "Холодильник с ИИ взял мою диету под контроль #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 43,
+   "cat": "23",
+   "published": "2026-11-05T18:00:27Z",
+   "playlists": [
+    "ИИ-скетчи"
+   ]
+  },
+  "sCThiwmigy0": {
+   "title": "Они заметили волну слишком поздно #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 54,
+   "cat": "1",
+   "published": "2026-11-05T08:00:34Z",
+   "playlists": [
+    "Кино-Shorts"
+   ]
+  },
+  "ACy21tT97a4": {
+   "title": "Он попросил работу. Ответ оказался унизительным #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 43,
+   "cat": "1",
+   "published": "2026-11-04T18:00:09Z",
+   "playlists": [
+    "Кино-Shorts"
+   ]
+  },
+  "qYSbQisqEpc": {
+   "title": "Она отказалась играть по его правилам #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 41,
+   "cat": "1",
+   "published": "2026-11-04T13:00:35Z",
+   "playlists": [
+    "Кино-Shorts"
+   ]
+  },
+  "xRwwXYXVxSc": {
+   "title": "Он предложил деньги. Ответ оказался страшнее угрозы #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 56,
+   "cat": "1",
+   "published": "2026-11-04T08:00:33Z",
+   "playlists": [
+    "Кино-Shorts"
+   ]
+  },
+  "wweAPl3P29w": {
+   "title": "Она знает, кому нельзя верить #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 41,
+   "cat": "1",
+   "published": "2026-11-03T18:00:38Z",
+   "playlists": [
+    "Кино-Shorts"
+   ]
+  },
+  "6KgLv_omqao": {
+   "title": "Зеркало не меняет лево и право. Проверь рукой #shorts",
+   "privacy": "private",
+   "publishAt": "2026-11-12T08:00:00Z",
+   "sec": 43,
+   "cat": "27",
+   "published": "2026-11-03T14:55:54Z",
+   "playlists": []
+  },
+  "9XeZBiX7Pr8": {
+   "title": "На МКС почти земная гравитация. Почему все летают? #shorts",
+   "privacy": "private",
+   "publishAt": "2026-11-13T08:00:00Z",
+   "sec": 42,
+   "cat": "27",
+   "published": "2026-11-03T14:55:44Z",
+   "playlists": []
+  },
+  "R0y8D9MZanc": {
+   "title": "ИИ согласовал отпуск. Отдыхать будет он #shorts",
+   "privacy": "private",
+   "publishAt": "2026-11-09T18:00:00Z",
+   "sec": 42,
+   "cat": "23",
+   "published": "2026-11-03T14:55:29Z",
+   "playlists": []
+  },
+  "9Bhnbw5bFeE": {
+   "title": "Нанял ИИ, чтобы меньше работать. Получил 40 подчинённых 🤖 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 52,
+   "cat": "23",
+   "published": "2026-11-03T14:00:28Z",
+   "playlists": [
+    "ИИ-скетчи"
+   ]
+  },
+  "oMhef8NQg1s": {
+   "title": "Экзамен по бытовухе: 3 новости ИИ за 2 ноября #shorts",
+   "privacy": "private",
+   "publishAt": null,
+   "sec": 41,
+   "cat": "23",
+   "published": "2026-11-03T08:23:08Z",
+   "playlists": []
+  },
+  "FxIlxGWVCuw": {
+   "title": "Урок музыки вышел из-под контроля #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 53,
+   "cat": "1",
+   "published": "2026-11-03T08:00:44Z",
+   "playlists": [
+    "Кино-Shorts"
+   ]
+  },
+  "uCqhnwWH6Uc": {
+   "title": "Машина с ИИ слила меня тёще 🚗 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 41,
+   "cat": "23",
+   "published": "2026-11-02T08:02:31Z",
+   "playlists": [
+    "ИИ-скетчи"
+   ]
+  },
+  "KIGLaVhTlhw": {
+   "title": "Пёс-байкер уходит от погони 💀 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 23,
+   "cat": "23",
+   "published": "2026-11-01T18:00:34Z",
+   "playlists": [
+    "Юмор"
+   ]
+  },
+  "CmOu0xXc0UI": {
+   "title": "ИИ доказал, что я робот 💀 | Притворись ботом 3 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 50,
+   "cat": "23",
+   "published": "2026-11-01T14:00:34Z",
+   "playlists": [
+    "Притворись ботом"
+   ]
+  },
+  "oTe1dEelJPs": {
+   "title": "Серверы для ИИ грабят на трассе, ИИ против гипотезы 1999 года и ещё 6 новостей недели",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 1443,
+   "cat": "23",
+   "published": "2026-10-30T10:14:52Z",
+   "playlists": [
+    "Новости ИИ",
+    "Новости"
+   ]
+  },
+  "UTvk61Gos1M": {
+   "title": "ИИ шантажировал инженера, чтобы его не отключили 😳 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 64,
+   "cat": "23",
+   "published": "2026-10-30T10:07:05Z",
+   "playlists": [
+    "ИИ-скетчи",
+    "Shorts Ru"
+   ]
+  },
+  "tGpma37GZ0w": {
+   "title": "ИИ-будильник решил, что мне лучше поспать #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 49,
+   "cat": "23",
+   "published": "2026-10-30T10:06:37Z",
+   "playlists": [
+    "ИИ-скетчи",
+    "Shorts Ru"
+   ]
+  },
+  "2Ych7OkX1vc": {
+   "title": "Он бросил её. Через 40 лет за это расплачивается весь мир #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 48,
+   "cat": "23",
+   "published": "2026-10-29T15:00:34Z",
+   "playlists": [
+    "Кино-Shorts",
+    "Фильмы"
+   ]
+  },
+  "4PYRNmbopwo": {
+   "title": "Сутки длиннее года? С Венерой есть подвох #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 51,
+   "cat": "23",
+   "published": "2026-10-29T13:00:26Z",
+   "playlists": [
+    "Наука и история",
+    "Новости"
+   ]
+  },
+  "OpMT1DWymCA": {
+   "title": "Куда исчезает заряд телефона? Разбираем батарею на рисунке",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 1624,
+   "cat": "23",
+   "published": "2026-10-29T10:00:10Z",
+   "playlists": [
+    "Наука и история",
+    "Новости",
+    "ИИ и авторские ролики"
+   ]
+  },
+  "F5-BqfTnA_w": {
+   "title": "Двигатели замолчали. Почему самолёт не падает камнем? #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 51,
+   "cat": "23",
+   "published": "2026-10-29T09:13:58Z",
+   "playlists": [
+    "Наука и история",
+    "Новости"
+   ]
+  },
+  "KhaAsIVKwCM": {
+   "title": "ОН ПОТРЕБОВАЛ НАЗВАТЬ СВОЁ ИМЯ… И ПОЖАЛЕЛ 🔥 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 45,
+   "cat": "23",
+   "published": "2026-10-29T04:00:00Z",
+   "playlists": [
+    "Кино-Shorts"
+   ]
+  },
+  "-xjlegO4ZzQ": {
+   "title": "Нейросеть выдала чужие данные. Это не галлюцинация? #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 51,
+   "cat": "23",
+   "published": "2026-10-28T20:10:39Z",
+   "playlists": [
+    "ИИ-скетчи",
+    "Новости"
+   ]
+  },
+  "3XxxiR2Zxb8": {
+   "title": "ИИ ответил чужими данными. Кто отвечает за ошибки? | Новости ИИ 28.10",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 1635,
+   "cat": "23",
+   "published": "2026-10-28T20:06:37Z",
+   "playlists": [
+    "Новости ИИ",
+    "Новости",
+    "ИИ и авторские ролики"
+   ]
+  },
+  "dsp3ZOrwTkc": {
+   "title": "ИИ СОВЕРШИЛ ПРОРЫВ?! 🤯 NVIDIA вложила $3 МЛРД, а Claude вышел из-под контроля?",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 54,
+   "cat": "23",
+   "published": "2026-10-28T06:00:37Z",
+   "playlists": [
+    "Новости ИИ",
+    "Новости"
+   ]
+  },
+  "XtSnXx4nVq8": {
+   "title": "ЭТО НЕВОЗМОЖНО! 🚀 Легендарная стыковка |  #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 50,
+   "cat": "23",
+   "published": "2026-10-28T04:00:21Z",
+   "playlists": [
+    "Кино-Shorts"
+   ]
+  },
+  "dwPNCXCcu24": {
+   "title": "Я НИКУДА НЕ УЙДУ! 🔥 Легендарная сцена | Волк с Уолл-стрит #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 36,
+   "cat": "23",
+   "published": "2026-10-27T21:03:12Z",
+   "playlists": [
+    "Кино-Shorts",
+    "Фильмы"
+   ]
+  },
+  "6wh9nvwtWT0": {
+   "title": "Выключил обучение ИИ — а переписка осталась? 😳 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 41,
+   "cat": "23",
+   "published": "2026-10-27T10:00:33Z",
+   "playlists": [
+    "ИИ-скетчи",
+    "Shorts Ru"
+   ]
+  },
+  "uDbIq2IzlzM": {
+   "title": "Два телефона — две цены?! Разница $110 😳 #Shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 58,
+   "cat": "23",
+   "published": "2026-10-27T10:00:03Z",
+   "playlists": [
+    "ИИ-скетчи",
+    "ИИ и авторские ролики"
+   ]
+  },
+  "bpaR4hHC6YU": {
+   "title": "Орёл или решка — на кону ЖИЗНЬ 💀 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 74,
+   "cat": "23",
+   "published": "2026-10-27T06:00:04Z",
+   "playlists": [
+    "Кино-Shorts",
+    "Фильмы"
+   ]
+  },
+  "bZkIDNIRoxo": {
+   "title": "ИИ сказал «ГОТОВО»… но код всё ещё сломан 💀 | Ralph Loop",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 63,
+   "cat": "23",
+   "published": "2026-10-27T04:00:07Z",
+   "playlists": [
+    "ИИ-скетчи",
+    "ИИ и авторские ролики"
+   ]
+  },
+  "7l4EOB02DSg": {
+   "title": "Когда вышел гулять один, но почувствовал себя главным героем 😂🐶 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 32,
+   "cat": "23",
+   "published": "2026-10-26T22:30:23Z",
+   "playlists": [
+    "Юмор",
+    "Shorts Ru"
+   ]
+  },
+  "1As0yonBV9Q": {
+   "title": "Хотели лёгкий квест. Попали на босса 💀 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 77,
+   "cat": "1",
+   "published": "2026-10-26T17:41:46Z",
+   "playlists": [
+    "Юмор",
+    "Кино-Shorts",
+    "Фильмы"
+   ]
+  },
+  "rTpeumT8wlg": {
+   "title": "Как древние греки посчитали Луну шестерёнками ⚙️ #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 40,
+   "cat": "27",
+   "published": "2026-10-26T14:05:10Z",
+   "playlists": [
+    "Наука и история"
+   ]
+  },
+  "FOOO2vAwUqk": {
+   "title": "ИИ нанял директора по батонам. А лимит кто вернёт? #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 49,
+   "cat": "28",
+   "published": "2026-10-26T11:25:11Z",
+   "playlists": [
+    "ИИ-скетчи",
+    "ИИ и авторские ролики",
+    "Shorts Ru"
+   ]
+  },
+  "UPEDaeR0O_c": {
+   "title": "ИИ снова вляпался: лимиты, запреты и иск | Новости 26 октября",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 697,
+   "cat": "28",
+   "published": "2026-10-26T11:24:36Z",
+   "playlists": [
+    "Новости ИИ",
+    "Новости"
+   ]
+  },
+  "Wn5dNQsrpxk": {
+   "title": "Притворись ботом · серия 3: среди нас человек ☕ #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 27,
+   "cat": "23",
+   "published": "2026-10-26T08:03:00Z",
+   "playlists": [
+    "Притворись ботом",
+    "Shorts Ru"
+   ]
+  },
+  "FHkGd1cA1gc": {
+   "title": "Компьютеру 2000 лет — и нашли его ловцы губок 🐚 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 52,
+   "cat": "27",
+   "published": "2026-10-25T14:04:30Z",
+   "playlists": [
+    "Наука и история",
+    "Shorts Ru"
+   ]
+  },
+  "XANzL3z9wqY": {
+   "title": "Скажи моё имя 💀 | Во все тяжкие | Хайзенберг #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 59,
+   "cat": "1",
+   "published": "2026-10-25T11:05:59Z",
+   "playlists": [
+    "Кино-Shorts",
+    "Фильмы"
+   ]
+  },
+  "wmnrIivD1HE": {
+   "title": "Притворись ботом · серия 2: тест на бота 📦 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 37,
+   "cat": "23",
+   "published": "2026-10-25T08:02:45Z",
+   "playlists": [
+    "Притворись ботом",
+    "Shorts Ru"
+   ]
+  },
+  "s7YVEyinxDE": {
+   "title": "Компьютер, которому 2000 лет: как разгадали Антикитерский механизм",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 596,
+   "cat": "27",
+   "published": "2026-10-24T16:08:19Z",
+   "playlists": [
+    "Наука и история",
+    "ИИ и авторские ролики"
+   ]
+  },
+  "DfhrXx_10FM": {
+   "title": "Как отличить ИИ от человека? 3 признака 🤖 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 45,
+   "cat": "23",
+   "published": "2026-10-24T07:03:15Z",
+   "playlists": [
+    "ИИ-скетчи",
+    "Shorts Ru"
+   ]
+  },
+  "6g-0gS9lSkI": {
+   "title": "Притворись ботом · серия 1 🤖 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 27,
+   "cat": "23",
+   "published": "2026-10-24T07:03:14Z",
+   "playlists": [
+    "Притворись ботом",
+    "Shorts Ru"
+   ]
+  },
+  "pOqCGUpn9lU": {
+   "title": "Новости ИИ: агент удалил рекламу с телевизора 📺 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 49,
+   "cat": "23",
+   "published": "2026-10-23T17:06:09Z",
+   "playlists": [
+    "Новости ИИ",
+    "Shorts Ru"
+   ]
+  },
+  "bUNtjpCanl4": {
+   "title": "ИИ удалил базу за 9 секунд 💀 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 31,
+   "cat": "23",
+   "published": "2026-10-23T16:08:44Z",
+   "playlists": [
+    "ИИ-скетчи",
+    "Shorts Ru"
+   ]
+  },
+  "KAhupG0LgRo": {
+   "title": "Робот уволился в первый же рабочий день 🤖 #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 34,
+   "cat": "23",
+   "published": "2026-10-23T13:45:57Z",
+   "playlists": [
+    "ИИ-скетчи",
+    "Shorts Ru"
+   ]
+  },
+  "E5MsBkrW94s": {
+   "title": "Попросил ИИ исправить кнопку. Он сломал сайт 😂#Shorts #ChatGPT #Codex #Нейросети #Программист #Юмор",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 53,
+   "cat": "20",
+   "published": "2026-10-23T10:00:39Z",
+   "playlists": [
+    "ИИ-скетчи",
+    "Shorts Ru"
+   ]
+  },
+  "nxFUh8vQiSM": {
+   "title": "Вот зачем он подтягивался 😂🐶 #собака #юмор #приколы #shorts",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 11,
+   "cat": "20",
+   "published": "2026-10-22T19:52:55Z",
+   "playlists": [
+    "Юмор",
+    "Shorts Ru"
+   ]
+  },
+  "xyGpIVUBWd8": {
+   "title": "Пока ты обещаешь начать с понедельника, пёс уже делает подход 🐶💪😂#shorts #юмор  #приколы #Vasjadog",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 7,
+   "cat": "20",
+   "published": "2026-10-22T11:23:41Z",
+   "playlists": [
+    "Юмор"
+   ]
+  },
+  "FTq9Ohgh0VU": {
+   "title": "Нажал кнопку — теперь пол ЛАВА 🔴 Roblox CHAOS ROOM",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 19,
+   "cat": "20",
+   "published": "2026-10-05T16:12:50Z",
+   "playlists": [
+    "Юмор",
+    "Мои игровые проекты"
+   ]
+  },
+  "XqoHjcsdPtQ": {
+   "title": "29 мая 2026 г.",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 181,
+   "cat": "28",
+   "published": "2026-05-29T20:08:50Z",
+   "playlists": []
+  },
+  "mLlB8eL1FUE": {
+   "title": "Прямая трансляция пользователя osminoog",
+   "privacy": "public",
+   "publishAt": null,
+   "sec": 0,
+   "cat": "20",
+   "published": "2019-02-12T11:46:57Z",
+   "playlists": []
+  }
+ },
+ "playlist_items": {
+  "PLIjIaTAj2CdA": [
+   "2suySU6uCGk",
+   "iYmh6Fd3LMY"
+  ],
+  "PLFsog_YzXnAc": [],
+  "PLJOa8ZvDafFQ": [
+   "KIGLaVhTlhw",
+   "7l4EOB02DSg",
+   "1As0yonBV9Q",
+   "nxFUh8vQiSM",
+   "xyGpIVUBWd8",
+   "FTq9Ohgh0VU"
+  ],
+  "PLDTQ0uYTdNdk": [
+   "4PYRNmbopwo",
+   "OpMT1DWymCA",
+   "F5-BqfTnA_w",
+   "rTpeumT8wlg",
+   "FHkGd1cA1gc",
+   "s7YVEyinxDE"
+  ],
+  "PLW88AiB_GiWg": [
+   "bp0jSmKuudA",
+   "QS66i62EgJk",
+   "9Bhnbw5bFeE",
+   "uCqhnwWH6Uc",
+   "UTvk61Gos1M",
+   "tGpma37GZ0w",
+   "-xjlegO4ZzQ",
+   "6wh9nvwtWT0",
+   "uDbIq2IzlzM",
+   "bZkIDNIRoxo",
+   "FOOO2vAwUqk",
+   "DfhrXx_10FM",
+   "bUNtjpCanl4",
+   "KAhupG0LgRo",
+   "E5MsBkrW94s"
+  ],
+  "PLflqNydnG5vQ": [
+   "oTe1dEelJPs",
+   "3XxxiR2Zxb8",
+   "dsp3ZOrwTkc",
+   "UPEDaeR0O_c",
+   "pOqCGUpn9lU"
+  ],
+  "PLYfbX7s-CsKw": [
+   "CmOu0xXc0UI",
+   "Wn5dNQsrpxk",
+   "wmnrIivD1HE",
+   "6g-0gS9lSkI"
+  ],
+  "PLdFzvptW-NVI": [],
+  "PLIVjPUG-C-Xc": [
+   "3YjkmOrxDLA",
+   "sCThiwmigy0",
+   "ACy21tT97a4",
+   "qYSbQisqEpc",
+   "xRwwXYXVxSc",
+   "wweAPl3P29w",
+   "FxIlxGWVCuw",
+   "2Ych7OkX1vc",
+   "1As0yonBV9Q",
+   "KhaAsIVKwCM",
+   "XANzL3z9wqY",
+   "XtSnXx4nVq8",
+   "bpaR4hHC6YU",
+   "dwPNCXCcu24"
+  ],
+  "PLfmef1R-EinQ": [
+   "UPEDaeR0O_c",
+   "dsp3ZOrwTkc",
+   "3XxxiR2Zxb8",
+   "-xjlegO4ZzQ",
+   "OpMT1DWymCA",
+   "4PYRNmbopwo",
+   "F5-BqfTnA_w",
+   "oTe1dEelJPs"
+  ],
+  "PLQTlKCepQASo": [
+   "XANzL3z9wqY",
+   "1As0yonBV9Q",
+   "bpaR4hHC6YU",
+   "dwPNCXCcu24",
+   "2Ych7OkX1vc"
+  ],
+  "PLdw0oYeWmhPQ": [],
+  "PLCm8pdmeRbV0": [],
+  "PLLncmzxjs43Q": [
+   "FTq9Ohgh0VU",
+   "gfY93d0uhaE"
+  ],
+  "PLWjpodWUsTEE": [
+   "OpMT1DWymCA",
+   "3XxxiR2Zxb8",
+   "uDbIq2IzlzM",
+   "bZkIDNIRoxo",
+   "FOOO2vAwUqk",
+   "s7YVEyinxDE"
+  ],
+  "PLXlskkOWeUz8": [
+   "qObYVIIHjY4"
+  ],
+  "PLd0qTfm8nJlc": [
+   "nxFUh8vQiSM",
+   "E5MsBkrW94s",
+   "wmnrIivD1HE",
+   "DfhrXx_10FM",
+   "6g-0gS9lSkI",
+   "pOqCGUpn9lU",
+   "bUNtjpCanl4",
+   "KAhupG0LgRo",
+   "Wn5dNQsrpxk",
+   "FHkGd1cA1gc",
+   "FOOO2vAwUqk",
+   "7l4EOB02DSg",
+   "6wh9nvwtWT0",
+   "UTvk61Gos1M",
+   "tGpma37GZ0w"
+  ],
+  "PLiIchfmJBt9tVuihe8_RdqYd0z0Hgnesp": [],
+  "PLiIchfmJBt9vpzfhGuLBBCIh3SPOpfyA5": [
+   "qgSgw4EZgq8",
+   "FbeRJFzrnCQ",
+   "m3i_VrUzNWo",
+   "u23Xx-1oc8E"
+  ]
+ }
+}
