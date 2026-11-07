@@ -431,7 +431,7 @@
       "id": "kino_010",
       "kind": "short",
       "author": "Codex",
-      "status": "review",
+      "status": "error",
       "slot": null,
       "style": "S6-D25",
       "mp4": "C:/M1lash/Готово/m1lash_kino_010_ru.mp4",
@@ -440,8 +440,9 @@
       "youtube_id": "_dXT3MYOmow",
       "private_review_url": "https://studio.youtube.com/video/_dXT3MYOmow/edit",
       "duration_seconds": 39.5,
-      "note": "Залит приватно по прямой команде07.11, без даты. TECH/ASR/visual sample QA PASS; owner hearing/source rights не подтверждены.",
-      "manifest": "publishing/queue/kino_010.json"
+      "note": "Заливка выполнена успешно, но позднее YouTube сообщил: видео удалено пользователем, который его добавил. GET status больше не возвращает ID; запрос9ноя10:00 завершился404 и не применён. Повторная заливка ждёт ответа владельца. Локальный MP4 сохранён.",
+      "manifest": "publishing/queue/kino_010.json",
+      "live_state": "owner_deleted"
     },
     {
       "id": "kino_011",

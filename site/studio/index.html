@@ -400,7 +400,7 @@ function recordingPlanCard(){
   const ready=p.existing||[];
   return `<section class="card reveal" id="recording-plan"><div class="row"><h2>Что записать: 12–15 ноября</h2><span class="chip c-info">Только список</span></div>
     <p class="muted">${esc(p.note||"")} · ${esc(p.scope||"")}</p>
-    <p><b>На 9–11 ноября уже готовы:</b> ${ready.map(x=>`<a target="_blank" rel="noopener" href="https://studio.youtube.com/video/${esc(x.video_id||"")}/edit">${esc(x.label)}</a> · приватно`).join("; ")}. Даты пока предложены.</p>
+    <p><b>Готовые MP4 на 9–11 ноября:</b> ${ready.map(x=>`<a target="_blank" rel="noopener" href="https://studio.youtube.com/video/${esc(x.video_id||"")}/edit">${esc(x.label)}</a> · ${x.status==="owner_deleted"?"удалён на YouTube · ждёт решения":"приватно"}`).join("; ")}. Даты пока предложены.</p>
     <div class="grid">${list.map(x=>`<article class="recording-item"><div class="row"><span class="chip">${dshort(x.date)} · ${esc(x.time)}</span><span class="chip c-warn">Запись не начата</span></div><h3>${esc(x.film)}</h3><b>${esc(x.concept)}</b><p>${esc(x.scene_to_find)}</p><details><summary>Что записать и проверить</summary><p>${esc(x.record_task)}</p><p>Кадр: ${esc(x.crop_check)}</p><p>Тело ${esc(x.body_target)}; запись предложена ${dshort(x.record_on)}, готовность к ${dshort(x.ready_by)}.</p><p class="muted">Таймкоды, доступность источника и права ещё не проверены.</p></details></article>`).join("")}</div>
     <details style="margin-top:14px"><summary>Правила будущей записи</summary><ol>${(p.checklist||[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ol></details></section>`;
 }

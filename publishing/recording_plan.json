@@ -22,8 +22,9 @@
       "date": "2026-11-10",
       "time": "10:00",
       "label": "Тело дерётся само",
-      "status": "uploaded_private",
-      "video_id": "_dXT3MYOmow"
+      "status": "owner_deleted",
+      "video_id": "_dXT3MYOmow",
+      "note": "YouTube: удалено пользователем, который добавил видео; повторная заливка ждёт ответа владельца."
     },
     {
       "id": "kino_011",
