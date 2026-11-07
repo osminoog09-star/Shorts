@@ -1,0 +1,66 @@
+{
+  "internal": {
+    "film_title": "Престиж",
+    "film_title_aliases": [
+      "The Prestige",
+      "Prestige",
+      "Prestizh"
+    ],
+    "film_rights_verified": false,
+    "source": "owner-requested short Chrome window capture; HDRezka, no DRM/access bypass",
+    "source_max_quality": "1920x818 1080p Ultra",
+    "capture_resolution": "2560x1528",
+    "recording": "private, outside public Git"
+  },
+  "public": {
+    "title": "Все смотрели на фокус. Ребёнок заметил другое 🎩 #shorts",
+    "description": "Зрители смотрят на фокус, а ребёнок замечает деталь, которую взрослые пропустили. Когда догадался?\n\nПодписывайся на M1lash.\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #Кино #УгадайФильм",
+    "tags": [
+      "кино",
+      "угадай фильм",
+      "сцены из фильмов",
+      "m1lash",
+      "shorts"
+    ],
+    "hashtags": [
+      "#shorts",
+      "#Кино",
+      "#УгадайФильм"
+    ],
+    "pinned_comment": "На какой секунде понял, что за фильм? 👇",
+    "thumbnail_text": "КУДА ДЕЛАСЬ ПТИЦА?",
+    "public_filename": "m1lash_kino_011_ru.mp4",
+    "captions": "Русские субтитры реплик, без названия фильма.",
+    "end_card_text": "Утверждённый M1lash outro v7, без экранного названия."
+  },
+  "outro": {
+    "cta_voice_id": "denis-qwen3tts-reference-v1",
+    "last_title_voice_id": "denis-qwen3tts-reference-v1",
+    "title_visible_on_screen": false,
+    "cta_text": "Подпишись! И спасибо всем, кто досмотрел и поставил лайк!",
+    "spoken_lines": [
+      "Подпишись! И спасибо всем, кто досмотрел и поставил лайк!",
+      "Это был фильм",
+      "Престиж"
+    ],
+    "lip_sync_verified": false
+  },
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "full_bleed": true,
+    "dialogue_language": "ru",
+    "music_ducking": true,
+    "music_ducking_scope": "approved outro music balance; no added body music, original film mix retained",
+    "music_license_verified": false,
+    "visual_qa_done": false,
+    "audio_qa_done": false
+  },
+  "publication": {
+    "publish_ready": false,
+    "privacy": "local private review",
+    "scheduled_at": null,
+    "reason": "owner hearing and source rights unverified; final QA recorded separately"
+  }
+}

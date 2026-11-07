@@ -1,0 +1,12 @@
+{
+  "job_id": "kino010_title_local_v3",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "utterances": [
+    {
+      "id": "title",
+      "text": "Это был фильм «Апгрейд».",
+      "rate": 1.0
+    }
+  ]
+}
