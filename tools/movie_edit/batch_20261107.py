@@ -55,6 +55,7 @@ def inspect(name,asr=False):
     print('ASR_COMPLETE',name,len(rows),flush=True)
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('name');p.add_argument('--asr',action='store_true');p.add_argument('--range',nargs=3);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('name');p.add_argument('--asr',action='store_true');p.add_argument('--range',nargs=3);p.add_argument('--root',type=Path);a=p.parse_args()
+    if a.root:ROOT=a.root
     if a.range:contact_range(a.name,float(a.range[0]),float(a.range[1]),a.range[2])
     else:inspect(a.name,a.asr)
