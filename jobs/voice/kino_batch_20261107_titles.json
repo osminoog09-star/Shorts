@@ -1,0 +1,9 @@
+{
+  "job_id": "kino_batch_20261107_titles",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "utterances": [
+    {"id": "batman", "text": "Это был фильм «Бэтмен».", "rate": 1.0},
+    {"id": "oppenheimer", "text": "Это был фильм «Оппенгеймер».", "rate": 1.0}
+  ]
+}
