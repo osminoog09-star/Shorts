@@ -1,0 +1,8 @@
+{
+  "job_id": "pretend_bot4_f2",
+  "voice_id": "female-qwen3-voicedesign-warm-v1",
+  "utterances": [
+    { "id": "f3b", "text": "Весь офис. Каждый думал, что вокруг одни роботы.", "instruct_extra": "Tired, deadpan, a little embarrassed." },
+    { "id": "f4b", "text": "Коллеги… среди нас — нейросеть.", "instruct_extra": "Calm synthetic coffee machine voice, slow, ominous, polite." }
+  ]
+}
