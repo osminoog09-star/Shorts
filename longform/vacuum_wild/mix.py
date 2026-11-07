@@ -134,9 +134,18 @@ def main():
     st = np.stack([mix, mix], 1).astype(np.float32)
     (out / 'mix.f32').write_bytes(st.tobytes())
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'f32le', '-ar', str(SR), '-ac', '2', '-i', str(out / 'mix.f32'), '-c:a', 'pcm_s16le', str(out / 'mix.wav')], check=True)
+    # body loudness: one linear gain to -15 LUFS (owner target -14…-16 incl. the quiet approved outro), true peak <= -1.5 dBTP
+    meas = subprocess.run(['ffmpeg', '-hide_banner', '-nostdin', '-i', str(out / 'mix.wav'), '-af', 'loudnorm=I=-15:TP=-1.5:print_format=json', '-f', 'null', '-'],
+                          capture_output=True, text=True).stderr
+    j = json.loads(meas[meas.rfind('{'):meas.rfind('}') + 1]); I0, TP0 = float(j['input_i']), float(j['input_tp'])
+    gain_db = -15.0 - I0 + .3   # +0.3 dB for what the peak limiter takes back (SFX hits only)
+    (out / 'mix.f32').write_bytes(st.astype(np.float32).tobytes())
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'f32le', '-ar', str(SR), '-ac', '2', '-i', str(out / 'mix.f32'),
+                    '-af', f'volume={gain_db:.2f}dB,alimiter=limit=0.80:attack=3:release=60:level=false', '-c:a', 'pcm_s16le', str(out / 'mix.wav')], check=True)
     (out / 'mix.f32').unlink()
+    print(f'LOUDNESS body {I0:.1f} LUFS / TP {TP0:.1f} → gain {gain_db:+.2f} dB')
     (HERE / 'voices').mkdir(exist_ok=True); (HERE / 'voices' / 'dur.json').write_text(json.dumps(durs, indent=1))
-    rep = {'voice_pieces': used, 'music_to_voice_rms': round(ratio, 3), 'peak_before_norm': float(pk), 'durations': durs, 'music': music.name, 'sfx': [n for n, _ in SFX_AT]}
+    rep = {'voice_pieces': used, 'body_lufs_before': I0, 'body_gain_db': round(gain_db, 2), 'music_to_voice_rms': round(ratio, 3), 'peak_before_norm': float(pk), 'durations': durs, 'music': music.name, 'sfx': [n for n, _ in SFX_AT]}
     (out / 'mix_report.json').write_text(json.dumps(rep, ensure_ascii=False, indent=1)); print(rep)
 
 
