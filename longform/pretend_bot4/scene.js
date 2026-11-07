@@ -60,6 +60,10 @@ scene.environment = pmrem.fromScene(new RoomEnvironment(), .04).texture; scene.e
 const post = makePost(renderer, scene, camera, W, H, { ssaa: SS, ao: true, aoRadius: .18, aoScale: 1.6, aoAmt: .9 });
 post.bloom.strength = .35; post.bloom.radius = .45; post.bloom.threshold = 1.1;
 post.vig.uniforms.amt.value = .18; post.vig.uniforms.warm.value = .2; post.vig.uniforms.contrast.value = .16; post.vig.uniforms.sat.value = 1.06; post.dof.maxCoc = 14;
+// ?paint=1 → illustrated look (test for the long Film-Mult)
+const PAINT = new URLSearchParams(location.search).get('paint');
+if (PAINT) { const { ShaderPass } = await import('three/addons/postprocessing/ShaderPass.js'); const { PainterlyShader } = await import('./vendor/painterly.js');
+  const pp = new ShaderPass(PainterlyShader); pp.uniforms.res.value.set(W * SS, H * SS); pp.uniforms.radius.value = Number(PAINT) > 1 ? Number(PAINT) : 4 * SS; post.composer.insertPass(pp, 2); }
 
 // ───────── textures ─────────
 function canvasTex(w, h, draw, rep) {
