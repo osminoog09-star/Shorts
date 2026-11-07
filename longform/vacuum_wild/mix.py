@@ -14,7 +14,7 @@ SR, DUR = 48000, 38.5
 HERE = Path(__file__).resolve().parent
 LINES = {'v1': .2, 'v2': 3.55, 'v3': 9.85, 'v4': 13.3, 'v5': 18.2, 'v6': 23.9, 'v7': 29.3, 'v8': 32.7}  # must match scene.js
 # lines re-synthesized as short pieces (ASR fix 07.11): played back to back with a pause, one subtitle id
-CHAINS = {'v5': (['v5a', 'v5b'], .2), 'v7': (['v7a', 'v7b'], .35)}
+CHAINS = {'v5': (['v5a', 'v5c', 'v5d'], .2), 'v7': (['v7a', 'v7b'], .35)}
 rng = np.random.default_rng(11)
 
 
