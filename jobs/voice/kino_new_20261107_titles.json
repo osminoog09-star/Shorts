@@ -1,0 +1,10 @@
+{
+  "job_id": "kino_new_20261107_titles",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "utterances": [
+    {"id": "menu", "text": "Это был фильм «Меню».", "rate": 1.0},
+    {"id": "upgrade", "text": "Это был фильм «Апгрейд».", "rate": 1.0},
+    {"id": "prestige", "text": "Это был фильм «Престиж».", "rate": 1.0}
+  ]
+}
