@@ -1,0 +1,13 @@
+{
+  "job_id": "vacuum_wild_fix",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "utterances": [
+    { "id": "v5a", "text": "Охотник зовёт стаю.", "rate": 1.0 },
+    { "id": "v5b", "text": "Колонка. Чайник. Вся мощь умного дома.", "rate": 1.0 },
+    { "id": "v7a", "text": "Ну всё.", "rate": 1.0 },
+    { "id": "v7b", "text": "Пиздец экосистеме.", "rate": 0.95 },
+    { "id": "v7c", "text": "Экосистеме пиздец.", "rate": 0.95 }
+  ],
+  "test_scope": "private_owner_hearing_only"
+}
