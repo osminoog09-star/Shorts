@@ -357,8 +357,8 @@
       "id": "kino_008",
       "kind": "short",
       "author": "GPT",
-      "status": "review",
-      "slot": null,
+      "status": "scheduled",
+      "slot": "2026-11-08T10:00:00+02:00",
       "style": "S6-D25",
       "mp4": null,
       "publish_md": "shorts/kino_008/PUBLISH.md",
@@ -366,8 +366,24 @@
       "youtube_id": "G4IMzvrv1Zw",
       "review_version": "KINO008_V2_BODY_DENIS_V7_QA_PASS",
       "owner_audio_approved": false,
-      "note": "PRIVATE YouTube exact video G4IMzvrv1Zw verified GET, NO DATE. Owner chooses slot in M1lash Studio only. Site must include review and link; source SHA 7a00d601d62a578007ec7d98103cedcfd22e801c7c047d4fd225029abd19ed95.",
+      "note": "PRIVATE YouTube exact video G4IMzvrv1Zw verified GET, NO DATE. Owner chooses slot in M1lash Studio only. Site must include review and link; source SHA 7a00d601d62a578007ec7d98103cedcfd22e801c7c047d4fd225029abd19ed95. | 07.11 06:19 UTC Денис запланировал через сайт: 08.11.2026 10:00 Europe/Tallinn (receipt status=scheduled, request c2a4c380).",
       "private_review_url": "https://studio.youtube.com/video/G4IMzvrv1Zw/edit"
+    },
+    {
+      "id": "vacuum_wild_ru",
+      "kind": "short",
+      "author": "Claude",
+      "status": "review",
+      "slot": null,
+      "style": "S9-D3",
+      "mp4": null,
+      "publish_md": "longform/vacuum_wild/PUBLISH.md",
+      "title": "Робот-пылесос вышел на охоту 💀 #shorts",
+      "youtube_id": "h-fz_lx7bn8",
+      "review_version": "VACUUM_WILD_V2_GRAPHICS_AUDIT_VOICE_ONLY",
+      "owner_audio_approved": true,
+      "note": "PRIVATE YouTube h-fz_lx7bn8, NO DATE. Вечерний скетч 20:00 — дату выбирает Денис. SHA cacc8f3830b4a07cd9543ee36b82c1c64f73a24448530d6866b6cfd4ff565a39.",
+      "private_review_url": "https://studio.youtube.com/video/h-fz_lx7bn8/edit"
     }
   ]
 }
