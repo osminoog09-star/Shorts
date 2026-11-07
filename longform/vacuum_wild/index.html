@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
 html,body{margin:0;background:#000;overflow:hidden;width:1080px;height:1920px}
-canvas{display:block}
+canvas{display:block;width:1080px!important;height:1920px!important}
 #sub{position:absolute;left:70px;right:150px;top:1250px;text-align:center;font:800 70px/1.12 Rubik,sans-serif;color:#fff;
  text-shadow:0 0 2px #120c08,0 4px 0 #120c08,3px 3px 0 #120c08,-3px 3px 0 #120c08,3px -3px 0 #120c08,-3px -3px 0 #120c08,0 8px 18px rgba(0,0,0,.5)}
 #sub b{color:#ffc35a}
@@ -16,7 +16,7 @@ canvas{display:block}
 #rec{position:absolute;right:150px;top:170px;font:800 64px Rubik,sans-serif;color:#fff;opacity:0;text-shadow:0 4px 12px rgba(0,0,0,.6)}
 #rec span{display:inline-block;width:40px;height:40px;border-radius:50%;background:#ff3b30;margin-right:14px;vertical-align:-4px}
 </style>
-<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/addons/"}}</script>
 </head><body><canvas id="c" width="1080" height="1920"></canvas><div id="vig"></div><div id="flash"></div>
 <div id="doc">ДИКАЯ ПРИРОДА<small>Гостиная, 07:12</small><i></i></div><div id="rec" style="display:none"></div><div id="sub"></div>
 <script type="module" src="scene.js"></script></body></html>
