@@ -105,6 +105,8 @@ def finish(a):
     args = [sys.executable, "tools/assemble_with_outro.py", a.body, "-o", a.out]
     if a.vertical:
         args += ["--max-seconds", "59"]
+    else:
+        args += ["--horizontal"]
     run(args)
     qa = Path(a.out).with_suffix("")
     qa = qa.parent / (qa.name + "_qa"); qa.mkdir(exist_ok=True)

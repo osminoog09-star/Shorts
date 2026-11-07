@@ -1,3 +1,11 @@
+# 07.11 · Claude · «Ты прошёл 8 уровней искусственного интеллекта» — длинный ролик 22:56 готов локально, ждёт «ок» Дениса
+
+- **Файл:** `C:\M1lash\Готовоi_levels_8_urovney.mp4` (1920×1080, 22:56, body −16 LUFS, концовка v7 горизонтальная, check.py ok, duration gate ≥21 мин PASS, QA `..._qa/`). На YouTube НЕ залит.
+- **Проект:** `longform/ai_levels/` — референс vVZK_o13Qk4 (`reports/research/references/vVZK_o13Qk4/reference_audit.md`), тексты `levels/l1..l8.json`, сборщик `build.py` (voice/frames/timeline/mix), рисованные кадры SDXL + глубина Depth-Anything + параллакс three.js. Рабочие файлы `C:\M1lash\Работаi_levels`.
+- **Голос:** только Денис, локально Qwen3-TTS, 175 строк, все прошли ASR (мягкий режим `M1LASH_ASR_SOFT=1` + алиасы для чисел). Музыка: Kevin MacLeod «Lightless Dawn» (CC BY 4.0) — кредит в описание.
+- **Фикс:** `local_jobs.py finish` без `--vertical` теперь передаёт `--horizontal` (раньше лепил вертикальную концовку).
+- **Дальше:** обложка + описание с таймкодами уровней, заливка PRIVATE без даты после «ок».
+
 # 07.11 · Claude · «Притворись ботом» · серия 4 (S2E1) — PRIVATE keMWV5guOLw без даты, на сайте «Ждёт твоего ок»
 
 - **Ролик:** https://youtu.be/keMWV5guOLw (PRIVATE, publish_at=null), квитанция `publishing/receipts/pretend_bot4_ru.json`, проект `longform/pretend_bot4/` (SCRIPT.md, scene.js, mix.py). 39,3 с, SHA `221070cc…`, body −15,3 LUFS, assemble problems 0, decode PASS. Идея `2026-11-07-claude-1` (in_work). Время (вечер 20:00) ставит Денис.

@@ -3,13 +3,13 @@
   "card": ["УРОВЕНЬ ПЯТЫЙ", "Мастер · Сеул, 2016"],
   "shots": [
     {"id": "l5_a", "seed": 501, "prompt": "Seoul at night in March 2016, a luxury hotel tower lit up, city lights, light rain, wide cinematic establishing shot", "layers": []},
-    {"id": "l5_b", "seed": 502, "prompt": "a traditional wooden Go board with black and white stones under a soft spotlight in a quiet hall, close-up, elegant, serene", "layers": ["dust"]},
+    {"id": "l5_b", "seed": 522, "prompt": "top-down view of a light wooden go game board with a fine grid of thin black lines, many small round flat black and white go stones placed on line intersections, soft spotlight, serene", "layers": ["dust"]},
     {"id": "l5_c", "seed": 503, "prompt": "a Go professional player seen from behind in a dark suit sitting at a Go board, opposite him an operator placing a stone, audience shadows, tense", "layers": []},
-    {"id": "l5_d", "seed": 504, "prompt": "a single black Go stone placed in an unusual position on the board, glowing faintly, macro, dramatic light", "layers": ["dust"]},
+    {"id": "l5_d", "seed": 541, "prompt": "close-up of round black and white go stones on a pale wooden board with thin black grid lines, shallow depth of field, one black stone in sharp focus, warm dramatic side light", "layers": ["dust"]},
     {"id": "l5_e", "seed": 505, "prompt": "commentators in a TV studio staring at a large Go board on a screen in shock, 2016, studio lights", "layers": []},
     {"id": "l5_f", "seed": 506, "prompt": "a man's hand placing a white Go stone on the board, close-up, shallow depth of field, decisive moment", "layers": ["dust"]},
     {"id": "l5_g", "seed": 507, "prompt": "a crowd of people in a Korean street watching the Go match on a giant outdoor screen at night, cheering, rain", "layers": []},
-    {"id": "l5_h", "seed": 508, "prompt": "an empty Go hall after the match, the board with stones left on the table, a single lamp, melancholic", "layers": ["dust"]},
+    {"id": "l5_h", "seed": 528, "prompt": "an empty traditional Korean room after a match, a low thick wooden go board with grid lines and scattered black and white stones on the floor mat, two empty cushions, single lamp, melancholic", "layers": ["dust"]},
     {"id": "l5_i", "seed": 509, "prompt": "a vast abstract landscape of glowing neural network connections like a starry night sky over mountains, poetic concept art", "layers": ["dust"]},
     {"id": "l5_j", "seed": 510, "prompt": "an old wooden Go board on a windowsill at dawn, a single white stone on it, soft morning light, still life", "layers": ["dust"]}
   ],
