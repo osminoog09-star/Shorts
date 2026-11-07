@@ -28,6 +28,16 @@ class VoiceError(RuntimeError):
     pass
 
 
+
+def _thermal_guard(tag: str) -> None:
+    """Denis's PC only: pause while the RTX is >= 75 C (scripts/pc/thermal.py). No-op in CI/without nvidia-smi."""
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent / "pc"))
+        from thermal import guard
+        guard(tag)
+    except Exception:
+        pass
+
 def job_config(job_path: Path) -> tuple[str, list[dict]]:
     if not job_path.as_posix().endswith(".json"):
         raise VoiceError("NO-GO: ожидается jobs/voice/<id>.json")
@@ -151,6 +161,7 @@ def generate(job: Path, assets: Path, model_dir: Path, output: Path) -> dict:
     out_audio.mkdir(parents=True, exist_ok=True)
     utterances = []
     for i, u in enumerate(lines):
+        _thermal_guard(u["id"])
         print("SYNTHESIZE", u["id"], "length_chars", len(u["text"]), flush=True)
         torch.manual_seed(733 + i)
         args = params.get("inference", {})

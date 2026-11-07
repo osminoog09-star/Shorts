@@ -6,6 +6,7 @@ shots.json: [{"id": "l1_s01", "prompt": "...", "seed": 1}, ...]  → <out_dir>/<
 import json, sys, argparse
 from pathlib import Path
 import torch
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts' / 'pc')); from thermal import guard
 from diffusers import StableDiffusionXLPipeline, AutoencoderKL, DPMSolverMultistepScheduler
 
 M = Path(r'C:\M1lash\models')
@@ -24,6 +25,7 @@ def main():
     pipe.set_progress_bar_config(disable=True)
     for s in json.loads(Path(a.shots).read_text(encoding='utf-8')):
         if a.only and s['id'] not in a.only.split(','): continue
+        guard(s['id'])   # GPU ≤ 75 °C (Denis 07.11)
         g = torch.Generator('cuda').manual_seed(int(s.get('seed', 1)))
         img = pipe(prompt=s['prompt'] + ', ' + STYLE, negative_prompt=NEG + ', ' + s.get('neg', ''), width=s.get('w', 1344), height=s.get('h', 768),
                    num_inference_steps=a.steps, guidance_scale=s.get('cfg', 6.0), generator=g).images[0]

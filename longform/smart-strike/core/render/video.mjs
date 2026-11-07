@@ -8,6 +8,8 @@ import fs from 'fs'; import path from 'path'; import { spawn, execFileSync } fro
 import { openDemo, closeServer, requireDemo, takeSize } from './page.mjs';
 const args = process.argv.slice(2), { w: W, h: H } = takeSize(args), opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const dir = args[0]; requireDemo(dir);
+// M1LASH_NVENC=1: segments via the RTX hardware encoder (same SSIM as x264 crf14 in a test, ~1.5× faster, frees the CPU for Chromium; Denis PC 07.11)
+const ENC = process.env.M1LASH_NVENC === '1' ? ['-c:v', 'h264_nvenc', '-preset', 'p5', '-tune', 'hq', '-rc', 'vbr', '-cq', '16', '-b:v', '0'] : ['-c:v', 'libx264', '-preset', 'medium', '-crf', '14'];
 const FPS = +opt('--fps', 24), WK = +opt('--workers', 3), Q = opt('--q', '');
 if (!(FPS > 0) || !Number.isInteger(WK) || WK < 1) { console.error('bad --fps / --workers: fps must be > 0, workers an integer ≥ 1'); process.exit(2); }
 const out = path.resolve(opt('--out', path.join(dir, 'out', 'video.mp4')));
@@ -46,7 +48,7 @@ try { await Promise.all([...Array(WK)].map(async (_, w) => {
   const { browser, page } = await openDemo(dir, { w: W, h: H, q: Q });
   // cwd set to the segment directory with relative filenames: that way ffmpeg won't read characters such as # ? in the path as protocol syntax
   const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-',
-    '-c:v', 'libx264', '-preset', 'medium', '-crf', '14', '-pix_fmt', 'yuv420p', `seg_${w}.mp4`], { cwd: segDir, stdio: ['pipe', 'inherit', 'inherit'] });
+    ...ENC, '-pix_fmt', 'yuv420p', `seg_${w}.mp4`], { cwd: segDir, stdio: ['pipe', 'inherit', 'inherit'] });
   procs.add(ff); ff.on('close', () => procs.delete(ff));
   let dead = null;   // ffmpeg exited early (missing encoder, disk full…): its own error is already on stderr; here we just note it and stop feeding frames
   let done; const closed = new Promise(r => { done = r; }); ff.on('close', code => done(code));
