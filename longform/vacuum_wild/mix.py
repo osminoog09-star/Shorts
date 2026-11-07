@@ -14,6 +14,7 @@ SR, DUR = 48000, 38.5
 HERE = Path(__file__).resolve().parent
 LINES = {'v1': .2, 'v2': 3.55, 'v3': 9.85, 'v4': 13.3, 'v5': 18.2, 'v6': 23.9, 'v7': 29.3, 'v8': 32.7}  # must match scene.js
 # lines re-synthesized as short pieces (ASR fix 07.11): played back to back with a pause, one subtitle id
+VOICE_ONLY = True  # owner 07.11: «фоновые звуки — кринж, оставь только голос» → no SFX, no music in the body (outro untouched)
 CHAINS = {'v5': (['v5a', 'v5c'], .3), 'v7': (['v7a', 'v7b'], .35)}
 rng = np.random.default_rng(11)
 
@@ -130,6 +131,7 @@ def main():
     mus *= env(N, 1.0, 2.5)
     vr = np.sqrt(np.mean(voice[active] ** 2)); mus *= (.08 * vr) / (np.sqrt(np.mean(mus ** 2)) + 1e-9)
     ratio = float(np.sqrt(np.mean(mus ** 2)) / vr)
+    if VOICE_ONLY: fx[:] = 0; mus[:] = 0; ratio = 0.0
     mix = voice + fx + mus; pk = np.abs(mix).max(); mix *= min(1.0, .89 / pk)
     st = np.stack([mix, mix], 1).astype(np.float32)
     (out / 'mix.f32').write_bytes(st.tobytes())
