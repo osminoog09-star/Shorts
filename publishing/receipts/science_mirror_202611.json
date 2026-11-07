@@ -1,9 +1,9 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/science_mirror_202611.json",
   "manifest_sha256": "4e24c4ee88ce95afdef00195bb302102679317029dd842e623a1fbbc8ab820a7",
   "channel": "ru",
-  "publish_at_utc": null,
+  "publish_at_utc": "2026-11-12T08:00:00Z",
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "6KgLv_omqao",
   "video_url": "https://youtu.be/6KgLv_omqao",
@@ -13,5 +13,7 @@
   "source_sha256": "b9bfb516fc14f16af3d065645fcd0f0501653afba624fd874cdd3336f342a5cd",
   "upload_method": "youtube-direct",
   "owner_audio_approved": true,
-  "owner_migration_20261104": "Confirmed via live YouTube API GET, Actions run 41922020447; no upload or deletion"
+  "owner_migration_20261104": "Confirmed via live YouTube API GET, Actions run 41922020447; no upload or deletion",
+  "schedule_confirmed_at": "2026-11-07T17:41:18.641976+00:00",
+  "schedule_request_id": null
 }
