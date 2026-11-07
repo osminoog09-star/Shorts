@@ -89,6 +89,40 @@
    "layers": [
     "dust"
    ]
+  },
+  {
+   "id": "c8_x04",
+   "seed": 2804,
+   "prompt": "a hand holding a printed photograph of a star field with a tiny dot, warm lamp, close-up, no readable text",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c8_x06",
+   "seed": 2806,
+   "prompt": "countless faint dark objects drifting between distant stars, an invisible river of travelers, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c8_x12",
+   "seed": 2812,
+   "prompt": "a white observatory dome on a volcano summit at sunrise above the clouds, golden light, hopeful",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c8_x14",
+   "seed": 2814,
+   "prompt": "the pale blue earth seen from deep space with a tiny visitor passing by, vast darkness, stars, contemplative",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
   }
  ],
  "beats": [
@@ -112,7 +146,7 @@
   },
   {
    "id": "c8b04",
-   "shot": "c8_d",
+   "shot": "c8_x04",
    "text": "И этот камень — единственное, что мы когда-либо держали в руках из того мира. Пусть только в виде точки на снимке."
   },
   {
@@ -122,7 +156,7 @@
   },
   {
    "id": "c8b06",
-   "shot": "c8_h",
+   "shot": "c8_x06",
    "text": "Но он научил нас главному. Между звёздами не пусто. Там постоянно летят гости. Просто раньше мы их не замечали."
   },
   {
@@ -151,11 +185,12 @@
    "text": "Гавайцы назвали его Оумуамуа. Посланник издалека, прибывший первым.",
    "alias": [
     "Гавайцы назвали его Умуамуа. Посланник издалека, прибывший первым."
-   ]
+   ],
+   "quote": "Оумуамуа — «посланник издалека, прибывший первым»"
   },
   {
    "id": "c8b12",
-   "shot": "c8_a",
+   "shot": "c8_x12",
    "text": "Первым — значит, не последним."
   },
   {
@@ -165,7 +200,7 @@
   },
   {
    "id": "c8b14",
-   "shot": "c8_j",
+   "shot": "c8_x14",
    "text": "Кто мы для таких гостей? Случайная остановка на долгом пути? Или те, кто наконец научился смотреть?"
   }
  ]

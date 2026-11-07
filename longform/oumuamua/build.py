@@ -118,19 +118,45 @@ def timeline(levels):
     print('TIMELINE', levels, 'dur', tl['dur'], 's =', round(tl['dur'] / 60, 2), 'min, shots', len(shots), flush=True)
 
 
+# music by chapter (all Kevin MacLeod, CC BY 4.0) — crossfaded, louder in pauses, ducked under the voice
+TRACKS = {'c0': 'Interloper', 'c2': 'Echoes of Time v2', 'c4': 'Mesmerize', 'c6': 'Long Note Four', 'c8': 'Ossuary 6 - Air'}
+VOICE_AF = 'highpass=f=70,equalizer=f=220:t=q:w=1.2:g=1.5,equalizer=f=3200:t=q:w=1.5:g=1.5,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=120:makeup=2,loudnorm=I=-20:TP=-3:LRA=7'
+
+
 def mix():
     import numpy as np
     P = json.loads((WORK / 'placement.json').read_text(encoding='utf-8')); SR = 48000; N = int(P['dur'] * SR)
-    def load(p):
-        raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', str(p), '-f', 'f32le', '-ac', '1', '-ar', str(SR), '-'], check=True, capture_output=True).stdout
+    def load(p, af=None):
+        raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', str(p)] + (['-af', af] if af else []) + ['-f', 'f32le', '-ac', '1', '-ar', str(SR), '-'], check=True, capture_output=True).stdout
         return np.frombuffer(raw, np.float32).copy()
     voice = np.zeros(N, np.float32); act = np.zeros(N, bool)
-    for p in P['place']:
-        x = load(WORK / 'voice' / p['level'] / f"{p['id']}.wav"); x = x / (np.sqrt(np.mean(x[np.abs(x) > .01] ** 2)) + 1e-9) * .12
+    for p in P['place']:   # every line: same loudness (−20 LUFS) + gentle EQ/compression → no jumps between lines
+        x = load(WORK / 'voice' / p['level'] / f"{p['id']}.wav", VOICE_AF)
         o = int(p['t'] * SR); e = min(N, o + len(x)); voice[o:e] += x[:e - o]; act[o:e] |= np.abs(x[:e - o]) > .01
-    mus = load(MUSIC); reps = int(np.ceil(N / len(mus))); mus = np.tile(mus, reps)[:N]
+    # music: one track per chapter pair, starting at the chapter, 5 s crossfades, looped with crossfade if short
+    starts = {}
+    for p in P['place']: starts.setdefault(p['level'], p['t'])
+    cues = sorted((max(0, starts[c] - 2.0), t) for c, t in TRACKS.items() if c in starts)
+    mus = np.zeros(N, np.float32); X = int(5 * SR)
+    for i, (t0, name) in enumerate(cues):
+        a0 = int(t0 * SR); a1 = int(cues[i + 1][0] * SR) + X if i + 1 < len(cues) else N; a1 = min(a1, N)
+        m = load(REPO / 'media' / 'music' / f'{name}.mp3'); m /= np.sqrt(np.mean(m[np.abs(m) > .005] ** 2)) + 1e-9
+        seg = np.zeros(a1 - a0, np.float32); pos = 0
+        while pos < len(seg):
+            n = min(len(m), len(seg) - pos); piece = m[:n].copy()
+            if pos:   # loop seam: crossfade X samples
+                k = min(X, n); piece[:k] *= np.linspace(0, 1, k); seg[pos:pos + k] *= np.linspace(1, 0, k)
+            seg[pos:pos + n] += piece
+            if pos + n >= len(seg): break
+            pos += n - X
+        env = np.ones(len(seg), np.float32); k = min(X, len(seg)); env[:k] = np.linspace(0, 1, k); env[-k:] = np.minimum(env[-k:], np.linspace(1, 0, k))
+        mus[a0:a1] += seg * env
+    # ducking: music ~ −16 dB under the voice while he speaks, ~ −9 dB in pauses (smoothed)
+    vr = np.sqrt(np.mean(voice[act] ** 2)); duck = np.where(act, .16, .34).astype(np.float32)
+    w = int(.35 * SR); c = np.concatenate([[0.], np.cumsum(duck, dtype=np.float64)]); i = np.arange(N); lo = np.clip(i - w // 2, 0, N); hi = np.clip(i + w // 2, 0, N)
+    duck = ((c[hi] - c[lo]) / np.maximum(hi - lo, 1)).astype(np.float32)   # moving average, O(N)
+    mus *= duck * vr
     fade = np.ones(N, np.float32); k = int(3 * SR); fade[:k] = np.linspace(0, 1, k); fade[-k:] = np.linspace(1, 0, k); mus *= fade
-    vr = np.sqrt(np.mean(voice[act] ** 2)); mus *= (.08 * vr) / (np.sqrt(np.mean(mus ** 2)) + 1e-9)
     st = np.stack([voice + mus, voice + mus], 1).astype(np.float32); (WORK / 'mix.f32').write_bytes(st.tobytes())
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'f32le', '-ar', str(SR), '-ac', '2', '-i', str(WORK / 'mix.f32'), '-c:a', 'pcm_s16le', str(WORK / 'raw.wav')], check=True)
     meas = subprocess.run(['ffmpeg', '-hide_banner', '-nostdin', '-i', str(WORK / 'raw.wav'), '-af', 'loudnorm=I=-15:TP=-1.5:print_format=json', '-f', 'null', '-'], capture_output=True, text=True).stderr

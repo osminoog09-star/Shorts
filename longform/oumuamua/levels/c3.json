@@ -92,6 +92,75 @@
     "dust"
    ],
    "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c3_x03",
+   "seed": 2303,
+   "prompt": "a graph of light curve drawn as a glowing line on a dark screen, peaks and valleys, astronomer hand pointing, night, no readable text",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c3_x06",
+   "seed": 2306,
+   "prompt": "an extremely long thin asteroid like a cigar, many times longer than wide, floating in black outer space, sunlight along its length",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c3_x09",
+   "seed": 2309,
+   "prompt": "an artist painting an elongated red asteroid on a canvas in a dim studio at night, easel, brushes, warm lamp",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c3_x11",
+   "seed": 2311,
+   "prompt": "a large asteroid shattering after an impact in a young star system, fragments and dust flying, young star glowing behind",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c3_x12",
+   "seed": 2312,
+   "prompt": "a reddish icy body at the cold edge of the solar system bombarded by faint streaks of cosmic rays, black space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c3_x15",
+   "seed": 2315,
+   "prompt": "an elongated dark asteroid floating above a tiny earth for scale, black outer space, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c3_x16",
+   "seed": 2316,
+   "prompt": "a small dark tumbling asteroid surrounded by question marks of faint starlight, mysterious, black space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c3_e05",
+   "seed": 3305,
+   "prompt": "a child's hand rotating a pencil in front of a flashlight beam in a dark room, a long shadow on the wall, cozy, simple illustration",
+   "layers": [
+    "dust"
+   ]
   }
  ],
  "beats": [
@@ -110,7 +179,7 @@
   },
   {
    "id": "c3b03",
-   "shot": "c3_b",
+   "shot": "c3_x03",
    "text": "Всё, что у астрономов было, — это свет. Как ярко точка светится. И как этот блеск меняется со временем."
   },
   {
@@ -124,8 +193,13 @@
    "text": "Так бывает, когда вращается тело очень вытянутой формы. Когда оно повёрнуто к нам боком, оно отражает много света. Когда торцом — почти ничего."
   },
   {
+   "id": "c3b05e",
+   "shot": "c3_e05",
+   "text": "Возьми карандаш и покрути его перед фонариком. Тень становится то длинной, то короткой. Так и гость то вспыхивал, то тускнел."
+  },
+  {
    "id": "c3b06",
-   "shot": "c3_c",
+   "shot": "c3_x06",
    "text": "По расчётам выходило, что гость в несколько раз длиннее, чем шире. Возможно, в шесть раз. А может, и больше."
   },
   {
@@ -140,7 +214,7 @@
   },
   {
    "id": "c3b09",
-   "shot": "c3_d",
+   "shot": "c3_x09",
    "text": "Обе формы объясняли блеск. Обе были невероятными. Художники рисовали сигару. Учёные спорили."
   },
   {
@@ -150,12 +224,12 @@
   },
   {
    "id": "c3b11",
-   "shot": "c3_f",
+   "shot": "c3_x11",
    "text": "Такое случается после сильного удара. Возможно, когда-то давно, в своей родной системе, он пережил столкновение."
   },
   {
    "id": "c3b12",
-   "shot": "c3_e",
+   "shot": "c3_x12",
    "text": "Его цвет оказался красноватым. Как у ледяных тел на окраине нашей системы, которые миллиарды лет облучают космические лучи."
   },
   {
@@ -166,11 +240,12 @@
   {
    "id": "c3b14",
    "shot": "c3_g",
-   "text": "Космический телескоп Спитцер попытался поймать его тепло. И не увидел ничего. Гость оказался слишком мал даже для него."
+   "text": "Космический телескоп Спитцер попытался поймать его тепло. И не увидел ничего. Гость оказался слишком мал даже для него.",
+   "quote": "Спитцер — телескоп, который видит тепло"
   },
   {
    "id": "c3b15",
-   "shot": "c3_g",
+   "shot": "c3_x15",
    "text": "Это позволило оценить размер. Примерно от ста до четырёхсот с лишним метров. Как небоскрёб, летящий через пустоту.",
    "alias": [
     "Это позволило оценить размер. Примерно от 100 до 400 с лишним метров. Как небоскрёб, летящий через пустоту."
@@ -178,7 +253,7 @@
   },
   {
    "id": "c3b16",
-   "shot": "c3_b",
+   "shot": "c3_x16",
    "text": "Маленький. Тёмный. Неправильной формы. Кувыркающийся. Уже этого хватило бы, чтобы назвать его самым странным объектом года."
   },
   {

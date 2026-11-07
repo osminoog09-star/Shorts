@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1lash · Производство</title>
+<style>
+:root{--glass:rgba(255,255,255,.075);--glass2:rgba(255,255,255,.12);--line:rgba(255,255,255,.14);--tx:#f3f5f7;--mut:rgba(235,240,245,.62);--acc:#ffc93c;--ok:#34d399;--warn:#fbbf24;--bad:#f87171;--blue:#7cc4ff}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{font:14px/1.45 "Segoe UI",system-ui,sans-serif;color:var(--tx);background:#0b0f14 url(/bg.jpg) center/cover fixed}
+body:before{content:"";position:fixed;inset:0;background:linear-gradient(120deg,rgba(6,10,16,.78),rgba(10,16,24,.55));z-index:-1}
+.app{display:grid;grid-template-columns:240px 1fr;gap:18px;padding:18px;min-height:100%}
+.gl{background:var(--glass);border:1px solid var(--line);border-radius:22px;backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);box-shadow:0 10px 40px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.08)}
+aside{padding:18px 14px;display:flex;flex-direction:column;gap:6px;position:sticky;top:18px;height:calc(100vh - 36px)}
+.logo{display:flex;align-items:center;gap:10px;padding:4px 8px 16px}.logo b{font-size:16px}.logo small{display:block;color:var(--mut);font-size:11px}
+.mk{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--acc),#ff7a3c);display:grid;place-items:center;font-weight:800;color:#1b1203}
+.sec{color:var(--mut);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin:12px 10px 4px}
+aside a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:12px;color:var(--tx);text-decoration:none}
+aside a:hover,aside a.on{background:var(--glass2)}aside a.on{box-shadow:inset 0 0 0 1px rgba(124,196,255,.45);background:rgba(124,196,255,.16)}
+aside a .n{margin-left:auto;font-size:11px;color:var(--mut)}
+.gpu{margin-top:auto;padding:12px}.gpu .bar{height:6px}
+main{display:flex;flex-direction:column;gap:18px;min-width:0}
+.top{display:flex;align-items:center;gap:12px;padding:10px 14px}
+.search{flex:1;display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:999px;padding:8px 14px;color:var(--mut)}
+.live{display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:rgba(52,211,153,.14);border:1px solid rgba(52,211,153,.35);font-weight:600;font-size:12px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(52,211,153,.7);animation:pulse 1.6s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+.who{display:flex;align-items:center;gap:10px}.av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#7cc4ff,#a78bfa);display:grid;place-items:center;font-weight:700}
+.hello{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:0 4px}
+.hello h1{margin:0;font-size:28px;font-weight:700}.hello p{margin:4px 0 0;color:var(--mut)}
+.btn{padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--glass2);color:var(--tx);font-weight:600;font-size:13px}
+.btn.pri{background:#f3f5f7;color:#0b0f14;border-color:transparent}
+.row{display:grid;gap:18px}.r1{grid-template-columns:1.7fr 1fr}.k{grid-template-columns:repeat(6,1fr)}.r3{grid-template-columns:1.6fr 1fr}
+.card{padding:18px}.card h3{margin:0 0 4px;font-size:15px}.card .sub{color:var(--mut);font-size:12px;margin-bottom:12px}
+.stage{display:grid;grid-template-columns:96px 1fr 120px;align-items:center;gap:12px;margin:10px 0}
+.stage .l{font-weight:600}.stage .v{text-align:right;color:var(--mut);font-variant-numeric:tabular-nums;font-size:12px}
+.bar{height:10px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--acc),#ffdd7a);transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.bar i.done{background:linear-gradient(90deg,#10b981,var(--ok))}
+.bar i.run{background-size:200% 100%;background-image:linear-gradient(90deg,var(--acc),#fff0b3,var(--acc));animation:sh 1.6s linear infinite}
+@keyframes sh{to{background-position:-200% 0}}
+svg text{fill:var(--mut);font-size:11px}
+.kpi{padding:16px}.kpi .ic{width:30px;height:30px;border-radius:9px;background:var(--glass2);display:grid;place-items:center;margin-bottom:10px}
+.kpi .n{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .d{color:var(--mut);font-size:12px}
+.donut{display:flex;align-items:center;gap:18px}.legend div{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px}.legend b{margin-left:auto;font-variant-numeric:tabular-nums}
+.sw{width:10px;height:10px;border-radius:3px}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.fr{border-radius:16px;overflow:hidden;background:rgba(0,0,0,.2);border:1px solid var(--line);animation:in .5s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+.fr img{width:100%;aspect-ratio:1344/768;object-fit:cover;display:block}
+.fr .m{padding:8px 10px}.fr .m b{font-size:12px}.fr .m p{margin:3px 0 6px;color:var(--mut);font-size:11px;height:30px;overflow:hidden}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:99px;font-size:11px;background:var(--glass2)}
+.chip.ok{background:rgba(52,211,153,.16);color:#a7f3d0}.chip.w{background:rgba(251,191,36,.16);color:#fde68a}
+.vl{display:flex;flex-direction:column;gap:8px;max-height:430px;overflow:auto}
+.vl div{display:grid;grid-template-columns:70px 52px 1fr;gap:10px;align-items:center;padding:8px 10px;border-radius:12px;background:rgba(0,0,0,.16);font-size:12px;animation:in .5s}
+.vl code{color:var(--blue)}
+.ch{display:grid;grid-template-columns:150px 1fr 1fr 60px;gap:12px;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px}
+.ch .bar{height:7px}
+.log{font:12px/1.5 Consolas,monospace;color:var(--mut);white-space:pre-wrap;background:rgba(0,0,0,.25);border-radius:12px;padding:10px;max-height:150px;overflow:auto}
+.final{display:flex;align-items:center;gap:12px;padding:14px 18px}
+@media(max-width:1100px){.app{grid-template-columns:1fr}aside{display:none}.r1,.r3{grid-template-columns:1fr}.k{grid-template-columns:repeat(3,1fr)}.gal{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="gl">
+    <div class="logo"><div class="mk">M1</div><div><b>M1lash Studio</b><small>Производство на ПК</small></div></div>
+    <div class="sec">Сборка</div>
+    <a href="#ov" class="on">◎ Обзор</a>
+    <a href="#vo">🎙 Голос <span class="n" id="nv"></span></a>
+    <a href="#fr">🖼 Кадры <span class="n" id="nf"></span></a>
+    <a href="#ch">📚 Главы <span class="n" id="nc"></span></a>
+    <a href="#re">🎬 Рендер <span class="n" id="nr"></span></a>
+    <div class="sec">Конвейер</div>
+    <a>Qwen3-TTS · голос Дениса</a><a>SDXL · Depth-Anything</a><a>three.js · ffmpeg</a>
+    <div class="gpu gl"><div style="display:flex;justify-content:space-between;font-size:12px"><b id="gname">GPU</b><span id="gtemp" style="color:var(--mut)"></span></div>
+      <div class="sub" style="margin:6px 0 4px;font-size:11px;color:var(--mut)">Загрузка</div><div class="bar"><i id="gutil"></i></div>
+      <div class="sub" style="margin:8px 0 4px;font-size:11px;color:var(--mut)">Видеопамять <span id="gmem"></span></div><div class="bar"><i id="gmemb" style="background:linear-gradient(90deg,#7cc4ff,#a78bfa)"></i></div></div>
+  </aside>
+  <main>
+    <div class="top gl"><div class="search">⌕ <span id="proj">проект</span></div><div class="live"><span class="dot"></span>LIVE <span id="clock"></span></div><div class="who"><div class="av">Д</div><div><b>Денис</b><div style="font-size:11px;color:var(--mut)">@m1lash93</div></div></div></div>
+    <div class="hello" id="ov"><div><h1 id="hi">Привет, Денис</h1><p id="hisub">Собираем фильм…</p></div><div style="display:flex;gap:8px"><span class="btn" id="eta">ETA —</span><span class="btn pri" id="state">Идёт сборка</span></div></div>
+    <div class="row r1">
+      <div class="card gl"><h3>Прогресс сборки</h3><div class="sub">Каждый этап — живые файлы на диске, обновление каждые 2 с</div><div id="stages"></div>
+        <svg id="chart" viewBox="0 0 600 120" width="100%" height="120" preserveAspectRatio="none"></svg></div>
+      <div class="card gl"><h3>Готовность фильма</h3><div class="sub">Взвешенно по этапам</div>
+        <div class="donut"><svg viewBox="0 0 120 120" width="150" height="150"><circle cx="60" cy="60" r="48" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="14"/><g id="arcs" transform="rotate(-90 60 60)"></g>
+          <text x="60" y="58" text-anchor="middle" style="fill:#fff;font-size:22px;font-weight:700" id="pct">0%</text><text x="60" y="76" text-anchor="middle">готово</text></svg>
+          <div class="legend" id="legend" style="flex:1"></div></div></div>
+    </div>
+    <div class="row k" id="kpis"></div>
+    <div class="row r3">
+      <div class="card gl" id="fr"><h3>Свежие кадры</h3><div class="sub">Последние картины SDXL · рельеф глубины для параллакса</div><div class="gal" id="gal"></div></div>
+      <div class="card gl" id="vo"><h3>Голос · проверка ASR</h3><div class="sub">Совпадение с текстом ≥ 0,80 — фраза принята</div><div class="vl" id="lines"></div></div>
+    </div>
+    <div class="row r3">
+      <div class="card gl" id="ch"><h3>Главы</h3><div class="sub">Голос и кадры по главам</div><div id="chs"></div></div>
+      <div class="card gl" id="re"><h3>Рендер и финал</h3><div class="sub">Воркеры headless Chromium → ffmpeg</div><div class="log" id="log">—</div>
+        <div class="final gl" style="margin-top:12px"><span style="font-size:22px" id="fico">⏳</span><div><b id="ftitle">Финал ещё не собран</b><div style="font-size:12px;color:var(--mut)" id="fsub">концовка v7 + check.py + длительность ≥ 21 мин</div></div></div></div>
+    </div>
+  </main>
+</div>
+<script>
+const $=s=>document.querySelector(s), fmt=s=>{s=Math.max(0,Math.round(s));const h=s/3600|0,m=(s%3600)/60|0,x=s%60;return (h?h+':':'')+String(m).padStart(h?2:1,'0')+':'+String(x).padStart(2,'0')};
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const W={voice:.25,frames:.25,depth:.05,render:.35,final:.10}, COL={voice:'#7cc4ff',frames:'#ffc93c',depth:'#a78bfa',render:'#34d399',final:'#f472b6'};
+const NAMES={voice:'Голос',frames:'Кадры',depth:'Глубина',render:'Рендер',final:'Финал'};
+let galKey='', lineKey='';
+function rate(h,key){if(h.length<4)return 0;const a=h[Math.max(0,h.length-30)],b=h[h.length-1];const dt=b.t-a.t;return dt>0?(b[key]-a[key])/dt:0}
+function draw(S){
+  const st={voice:[S.voice.done,S.voice.total],frames:[S.frames.done,S.frames.total],depth:[S.frames.depth,S.frames.total],render:[S.render.done,S.render.total||1],final:[S.final.ready?1:0,1]};
+  if(!S.render.total)st.render=[0,1];
+  const p=k=>Math.min(1,st[k][0]/Math.max(1,st[k][1]));
+  const all=Object.keys(W).reduce((a,k)=>a+W[k]*p(k),0);
+  $('#proj').textContent='Проект: '+S.project+' · '+S.words+' слов · '+S.chapters.length+' глав';
+  $('#clock').textContent=new Date().toLocaleTimeString('ru-RU');
+  const hr=new Date().getHours();$('#hi').textContent=(hr<6?'Доброй ночи':hr<12?'Доброе утро':hr<18?'Добрый день':'Добрый вечер')+', Денис';
+  $('#hisub').textContent='Собираем «'+S.project+'» · панель открыта '+fmt(S.uptime)+(S.film_dur?' · фильм '+fmt(S.film_dur):'');
+  $('#stages').innerHTML=Object.keys(W).map(k=>{const v=p(k),cls=v>=1?'done':v>0?'run':'';const lab=k==='render'&&!S.render.total?'ещё не начат':k==='final'?(S.final.ready?'готово':'ждёт рендер'):st[k][0]+' / '+st[k][1];
+    return `<div class="stage"><span class="l">${NAMES[k]}</span><div class="bar"><i class="${cls}" style="width:${(v*100).toFixed(1)}%"></i></div><span class="v">${Math.round(v*100)}% · ${lab}</span></div>`}).join('');
+  // history chart (frames + voice + render as % lines)
+  const H=S.hist||[];if(H.length>1){const t0=H[0].t,t1=H[H.length-1].t||t0+1;const L=(key,tot,c)=>{const pts=H.map(h=>[(h.t-t0)/Math.max(1,t1-t0)*600,115-Math.min(1,h[key]/Math.max(1,tot))*105]);return `<path d="M${pts.map(p=>p.join(',')).join('L')}" fill="none" stroke="${c}" stroke-width="2.2"/>`};
+    $('#chart').innerHTML=`<line x1="0" y1="115" x2="600" y2="115" stroke="rgba(255,255,255,.1)"/>`+L('v',S.voice.total,COL.voice)+L('f',S.frames.total,COL.frames)+L('r',S.render.total||1,COL.render)+`<text x="596" y="12" text-anchor="end">последние ${fmt(t1-t0)}</text>`}
+  // donut
+  let off=0;const C=2*Math.PI*48;$('#arcs').innerHTML=Object.keys(W).map(k=>{const len=W[k]*p(k)*C;const s=`<circle cx="60" cy="60" r="48" fill="none" stroke="${COL[k]}" stroke-width="14" stroke-dasharray="${len} ${C}" stroke-dashoffset="${-off}"/>`;off+=W[k]*C;return s}).join('');
+  $('#pct').textContent=Math.round(all*100)+'%';
+  $('#legend').innerHTML=Object.keys(W).map(k=>`<div><span class="sw" style="background:${COL[k]}"></span>${NAMES[k]}<b>${Math.round(p(k)*100)}%</b></div>`).join('');
+  // ETA from rates
+  const rf=rate(H,'f'),rv=rate(H,'v'),rr=rate(H,'r');let eta=null;
+  if(S.render.total&&!S.render.finished&&rr>0)eta=(S.render.total-S.render.done)/rr+90;
+  else if(S.frames.done<S.frames.total&&rf>0)eta=(S.frames.total-S.frames.done)/rf+600+90;
+  else if(S.voice.done<S.voice.total&&rv>0)eta=(S.voice.total-S.voice.done)/rv+900;
+  $('#eta').textContent=S.final.ready?'Готово ✓':eta?'≈ '+fmt(eta)+' до конца':'ETA —';
+  $('#state').textContent=S.final.ready?'Фильм собран':S.render.total&&!S.render.finished?'Рендер…':S.frames.done<S.frames.total?'Генерация кадров…':S.voice.done<S.voice.total?'Озвучка…':'Сборка…';
+  // KPIs
+  const g=S.gpu||{};const K=[['🎙','Фразы голоса',S.voice.done+'/'+S.voice.total,S.voice.failed?S.voice.failed+' провалов':'все прошли ASR'],['🖼','Картины',S.frames.done+'/'+S.frames.total,rf>0?(rf*60).toFixed(1)+' в минуту':'SDXL 1344×768'],
+    ['🎬','Кадры видео',S.render.total?Math.round(S.render.done/1000)+'k/'+Math.round(S.render.total/1000)+'k':'—',rr>0?Math.round(rr)+' кадров/с':'30 fps · 1920×1080'],['⏱','Длина фильма',S.film_dur?fmt(S.film_dur):'—','цель ≥ 21:00'],
+    ['🌡','Видеокарта',g.util!=null?g.util+'%':'—',g.temp!=null?g.temp+' °C · '+(g.mem/1024).toFixed(1)+' ГБ':''],['📚','Слов в тексте',S.words,S.chapters.length+' глав']];
+  $('#kpis').innerHTML=K.map(k=>`<div class="kpi gl"><div class="ic">${k[0]}</div><div class="n">${k[2]}</div><div style="font-weight:600;font-size:13px">${k[1]}</div><div class="d">${k[3]}</div></div>`).join('');
+  if(g.name){$('#gname').textContent=g.name.replace('NVIDIA GeForce ','');$('#gtemp').textContent=g.temp+' °C';$('#gutil').style.width=g.util+'%';$('#gmem').textContent=(g.mem/1024).toFixed(1)+' / '+(g.mem_total/1024).toFixed(0)+' ГБ';$('#gmemb').style.width=(g.mem/g.mem_total*100)+'%'}
+  $('#nv').textContent=S.voice.done+'/'+S.voice.total;$('#nf').textContent=S.frames.done+'/'+S.frames.total;$('#nc').textContent=S.chapters.length;$('#nr').textContent=S.render.total?Math.round(p('render')*100)+'%':'';
+  // gallery (re-render only when new frames arrive)
+  const gk=S.frames.latest.map(f=>f.id).join();if(gk!==galKey){galKey=gk;$('#gal').innerHTML=S.frames.latest.slice(0,8).map(f=>`<div class="fr"><img loading="lazy" src="/thumb/${f.id}.jpg?${Math.round(f.age<1e5?Date.now()/6e4:0)}" alt=""><div class="m"><b>${esc(f.id)}</b><p>${esc(f.prompt)}</p>${f.depth?'<span class="chip ok">✓ глубина</span>':'<span class="chip w">глубина…</span>'} <span class="chip">${fmt(f.age)} назад</span></div></div>`).join('')}
+  const lk=S.voice.lines.map(l=>l.id).join();if(lk!==lineKey){lineKey=lk;$('#lines').innerHTML=S.voice.lines.map(l=>`<div><code>${esc(l.id)}</code><span class="chip ${l.sim>=.9?'ok':'w'}">${l.sim.toFixed(2)}</span><span>${esc(l.asr)}</span></div>`).join('')||'<div>—</div>'}
+  $('#chs').innerHTML=S.chapters.map(c=>`<div class="ch"><span><b>${esc(c.title)}</b><br><span style="color:var(--mut)">${esc(c.sub)}</span></span><div><div class="bar"><i class="${c.voice>=c.beats?'done':''}" style="width:${c.voice/c.beats*100}%;background:${c.voice>=c.beats?'':COL.voice}"></i></div><small style="color:var(--mut)">голос ${c.voice}/${c.beats}</small></div><div><div class="bar"><i class="${c.frames>=c.shots?'done':''}" style="width:${c.frames/c.shots*100}%"></i></div><small style="color:var(--mut)">кадры ${c.frames}/${c.shots}</small></div><span style="text-align:right;color:var(--mut)">${c.words} сл.</span></div>`).join('');
+  $('#log').textContent=(S.render.log||[]).join('\n')||'рендер ещё не начат';
+  $('#fico').textContent=S.final.ready?'✅':'⏳';$('#ftitle').textContent=S.final.ready?'Фильм готов · '+S.final.mb+' МБ':'Финал ещё не собран';$('#fsub').textContent=S.final.ready?S.final.path:'концовка v7 + check.py + длительность ≥ 21 мин';
+}
+async function tick(){try{const r=await fetch('/api/status');const S=await r.json();if(!S.error)draw(S)}catch(e){$('#state').textContent='нет связи с сервером'}setTimeout(tick,2000)}
+tick();
+document.querySelectorAll('aside a[href]').forEach(a=>a.onclick=()=>{document.querySelectorAll('aside a').forEach(x=>x.classList.remove('on'));a.classList.add('on')});
+</script>
+</body>
+</html>

@@ -89,6 +89,75 @@
     "dust"
    ],
    "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c5_x03",
+   "seed": 2503,
+   "prompt": "a small real solar sail spacecraft with four triangular silver sails unfolding in black outer space above the earth",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c5_x05",
+   "seed": 2505,
+   "prompt": "a precisely engineered thin metallic structure drifting in deep space, alien technology, faint glow, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c5_x07",
+   "seed": 2507,
+   "prompt": "a sleek ancient alien probe approaching a bright yellow sun in deep space, mysterious, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c5_x10",
+   "seed": 2510,
+   "prompt": "a radio telescope control room at night with silent monitors showing flat noise lines, empty chair, quiet",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c5_x12",
+   "seed": 2512,
+   "prompt": "a professor writing a book at night at a desk full of papers in a book-lined study, lamp, determined",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c5_x15",
+   "seed": 2515,
+   "prompt": "a powerful laser beam from earth pushing a tiny probe with a light sail toward distant stars, science fiction, black space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c5_x17",
+   "seed": 2517,
+   "prompt": "a silver solar sail and a dark natural rock floating opposite each other in black outer space, a choice, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c5_e02",
+   "seed": 3502,
+   "prompt": "an open palm in a beam of sunlight with a single grain of sand on it, dust particles in the light, macro, warm, gentle",
+   "layers": [
+    "dust"
+   ]
   }
  ],
  "beats": [
@@ -106,8 +175,14 @@
    "text": "Их идея была простой и пугающей. Свет имеет давление. Слабое, но настоящее. Если предмет очень лёгкий и очень большой, свет может его толкать."
   },
   {
+   "id": "c5b02e",
+   "shot": "c5_e02",
+   "text": "Свет давит на твою ладонь намного слабее, чем весит одна песчинка. Но в космосе нет воздуха и трения. И даже такой слабый толчок за много дней разгоняет лёгкий парус.",
+   "quote": "Давление света"
+  },
+  {
    "id": "c5b03",
-   "shot": "c5_b",
+   "shot": "c5_x03",
    "text": "Так работают солнечные паруса. Люди уже запускали такие аппараты в космос. Тонкая плёнка, которую разгоняет Солнце."
   },
   {
@@ -120,7 +195,7 @@
   },
   {
    "id": "c5b05",
-   "shot": "c5_c",
+   "shot": "c5_x05",
    "text": "Такую вещь природа сделать не умеет. А цивилизация — может."
   },
   {
@@ -130,7 +205,7 @@
   },
   {
    "id": "c5b07",
-   "shot": "c5_d",
+   "shot": "c5_x07",
    "text": "Или даже зонд, который прислали к нам специально."
   },
   {
@@ -148,7 +223,7 @@
   },
   {
    "id": "c5b10",
-   "shot": "c5_e",
+   "shot": "c5_x10",
    "text": "Тишина. Ни передачи, ни шума двигателей. Ничего, что можно было бы назвать голосом."
   },
   {
@@ -158,7 +233,7 @@
   },
   {
    "id": "c5b12",
-   "shot": "c5_g",
+   "shot": "c5_x12",
    "text": "Лёб не отступал. Он написал книгу. Выступал. Повторял: наука должна допускать и такую возможность, а не отбрасывать её заранее."
   },
   {
@@ -173,7 +248,7 @@
   },
   {
    "id": "c5b15",
-   "shot": "c5_f",
+   "shot": "c5_x15",
    "text": "Люди уже обсуждают проекты: крошечные зонды на световых парусах, которые мощные лазеры разгонят к соседним звёздам."
   },
   {
@@ -183,7 +258,7 @@
   },
   {
    "id": "c5b17",
-   "shot": "c5_c",
+   "shot": "c5_x17",
    "text": "А пока у учёных был выбор. Поверить в парус. Или найти природное тело, которое могло бы вести себя так же."
   }
  ]

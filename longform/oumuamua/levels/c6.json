@@ -93,6 +93,78 @@
     "dust"
    ],
    "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_x02",
+   "seed": 2602,
+   "prompt": "a translucent blue ice block in black outer space with faint invisible shimmering vapor leaving it, sunlight, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_x04",
+   "seed": 2604,
+   "prompt": "a translucent iceberg slowly evaporating into nothing in deep space under the light of many stars, fading",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_x08",
+   "seed": 2608,
+   "prompt": "a flat bright nitrogen ice slab in black outer space with a faint transparent vapor jet pushing it, sunlight, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_x09",
+   "seed": 2609,
+   "prompt": "many white ice fragments scattered through the galaxy between stars, deep space, vast",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_x11",
+   "seed": 2611,
+   "prompt": "a delicate fluffy dust clump breaking apart slowly in sunlight, black outer space, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_x15",
+   "seed": 2615,
+   "prompt": "a dark asteroid moving slightly off its path with a barely visible shimmer behind it, black space, subtle",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_x17",
+   "seed": 2617,
+   "prompt": "the solar system with the sun in the center seen from far away, waiting, a faint new object approaching from the dark, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_e13",
+   "seed": 3613,
+   "prompt": "tiny glowing particles streaking through the galaxy at enormous speed like rain of light, black space, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
   }
  ],
  "beats": [
@@ -103,7 +175,7 @@
   },
   {
    "id": "c6b02",
-   "shot": "c6_a",
+   "shot": "c6_x02",
    "text": "Водородный лёд испаряется, не оставляя видимого следа. Нет пыли. Нет яркого газа. Только невидимая струя, которая мягко толкает тело."
   },
   {
@@ -113,7 +185,7 @@
   },
   {
    "id": "c6b04",
-   "shot": "c6_b",
+   "shot": "c6_x04",
    "text": "Но у версии нашёлся слабый пункт. Водородный лёд слишком нежный. В межзвёздной пустоте его быстро испарил бы свет звёзд. Он просто не дожил бы до нас."
   },
   {
@@ -133,12 +205,12 @@
   },
   {
    "id": "c6b08",
-   "shot": "c6_e",
+   "shot": "c6_x08",
    "text": "Азот при испарении тоже почти не виден. А плоская форма объясняет и блеск, и сильный толчок от слабой струи."
   },
   {
    "id": "c6b09",
-   "shot": "c6_e",
+   "shot": "c6_x09",
    "text": "Модель была красивой. Но для неё нужно слишком много азотных обломков в галактике. Хватит ли их — неизвестно."
   },
   {
@@ -148,7 +220,7 @@
   },
   {
    "id": "c6b11",
-   "shot": "c6_f",
+   "shot": "c6_x11",
    "text": "Такую хрупкую вещь солнечный свет и правда может толкать. Но выжила бы она в долгом путешествии — большой вопрос."
   },
   {
@@ -167,13 +239,19 @@
    "text": "Гость — обычная ледяная комета. Только за миллионы лет пути космические лучи превратили часть его льда в водород. И водород остался запертым внутри."
   },
   {
+   "id": "c6b13e",
+   "shot": "c6_e13",
+   "text": "Космические лучи — это крошечные частицы, которые носятся по галактике почти со скоростью света. За миллионы лет они меняют даже лёд.",
+   "quote": "Космические лучи"
+  },
+  {
    "id": "c6b14",
    "shot": "c6_g",
    "text": "Когда гость подлетел к Солнцу, лёд прогрелся, и запертый водород начал выходить наружу. Тихо. Невидимо. Без пыли."
   },
   {
    "id": "c6b15",
-   "shot": "c6_g",
+   "shot": "c6_x15",
    "text": "Этого хватает, чтобы дать то самое крошечное ускорение. И при этом не оставить следа, который увидели бы телескопы."
   },
   {
@@ -183,7 +261,7 @@
   },
   {
    "id": "c6b17",
-   "shot": "c6_j",
+   "shot": "c6_x17",
    "text": "Мы так и не узнаем наверняка. И поэтому все взгляды обратились к одному вопросу. Когда прилетит следующий?"
   }
  ]

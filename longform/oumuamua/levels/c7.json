@@ -91,6 +91,66 @@
     "dust"
    ],
    "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c7_x02",
+   "seed": 2702,
+   "prompt": "an amateur astronomer man in a warm jacket next to his homemade telescope at night in a small observatory, starry sky",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c7_x04",
+   "seed": 2704,
+   "prompt": "a comet with a bright fuzzy coma and long curved tail against stars, deep space, beautiful",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c7_x05",
+   "seed": 2705,
+   "prompt": "two different interstellar visitors in space: a dark tailless cigar rock and a bright fuzzy comet, side by side, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c7_x10",
+   "seed": 2710,
+   "prompt": "a comet with a glowing coma and tail with a faint mysterious light inside it, black space, intrigue",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c7_x12",
+   "seed": 2712,
+   "prompt": "a giant telescope camera with a huge lens inside an observatory, engineers in clean suits, dramatic light",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c7_x16",
+   "seed": 2716,
+   "prompt": "a spacecraft flying close to a dark interstellar rock, its lights illuminating the surface, black space, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c7_e03",
+   "seed": 3703,
+   "prompt": "an old leather guest book open on a wooden desk with a quill pen, starlight falling on the pages from a window, cozy, no readable text",
+   "layers": [
+    "dust"
+   ]
   }
  ],
  "beats": [
@@ -104,7 +164,7 @@
   },
   {
    "id": "c7b02",
-   "shot": "c7_a",
+   "shot": "c7_x02",
    "text": "Астроном-любитель Геннадий Борисов в Крыму. На телескоп, который он собрал сам."
   },
   {
@@ -113,13 +173,22 @@
    "text": "Второй межзвёздный гость получил имя Борисов. И оказался совсем не похожим на первого."
   },
   {
+   "id": "c7b03e",
+   "shot": "c7_e03",
+   "text": "Кстати, у межзвёздных гостей есть свои номера. Первый — Оумуамуа. Второй — Борисов. Как первые гости в большой книге посещений.",
+   "quote": "1I · 2I · 3I",
+   "alias": [
+    "Кстати, у межзвёздных гостей есть свои номера. Первый — Умуамуа. Второй — Борисов. Как первые гости в большой книге посещений."
+   ]
+  },
+  {
    "id": "c7b04",
-   "shot": "c7_b",
+   "shot": "c7_x04",
    "text": "У него была кома. Был хвост. Он выглядел как самая обычная комета. Только прилетевшая из другой звёздной системы."
   },
   {
    "id": "c7b05",
-   "shot": "c7_b",
+   "shot": "c7_x05",
    "text": "Это стало важным выводом. Значит, такие тела бывают разными. И Оумуамуа — не правило, а исключение.",
    "alias": [
     "Это стало важным выводом. Значит, такие тела бывают разными. И Умуамуа — не правило, а исключение."
@@ -155,7 +224,7 @@
   },
   {
    "id": "c7b10",
-   "shot": "c7_d",
+   "shot": "c7_x10",
    "text": "Он вёл себя как комета. Кома, хвост, газ. И всё-таки нашлись те, кто снова спросил: а вдруг?"
   },
   {
@@ -165,7 +234,7 @@
   },
   {
    "id": "c7b12",
-   "shot": "c7_f",
+   "shot": "c7_x12",
    "text": "Она будет снимать всё южное небо каждые несколько ночей. Учёные надеются, что межзвёздных гостей станут находить регулярно."
   },
   {
@@ -188,7 +257,7 @@
   },
   {
    "id": "c7b16",
-   "shot": "c7_j",
+   "shot": "c7_x16",
    "text": "И тогда, может быть, мы впервые подлетим к осколку чужой звёздной системы и посмотрим на него вблизи."
   }
  ]

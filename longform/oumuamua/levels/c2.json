@@ -92,6 +92,102 @@
     "dust"
    ],
    "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_x02",
+   "seed": 2202,
+   "prompt": "planets moving on elliptical orbits around a bright sun, glowing orbit rings, small comets on long looping orbits, black space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_x05",
+   "seed": 2205,
+   "prompt": "a dark asteroid streaking past the sun at enormous speed, motion streaks of light, black space, dramatic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_x09",
+   "seed": 2209,
+   "prompt": "a tiny barely visible dark object against a field of countless stars, almost invisible, deep space, mysterious",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_x11",
+   "seed": 2211,
+   "prompt": "a computer screen in a dark observatory showing a series of star field images with one dot circled, astronomer silhouette, night",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c2_x12",
+   "seed": 2212,
+   "prompt": "a small dark object passing very close to the blazing sun inside the orbit of a small grey planet, solar flares, black space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_x14",
+   "seed": 2214,
+   "prompt": "stars of the galaxy slowly moving, long glowing star trails across deep space, time passing, majestic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_x15",
+   "seed": 2215,
+   "prompt": "a dying red giant star in deep space, faded planets around it, an icy fragment drifting away from it, melancholic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_x16",
+   "seed": 2216,
+   "prompt": "an old astronomer's notebook on a desk with handwritten symbols and a sketch of a curved trajectory, lamp light, no readable text",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c2_x17",
+   "seed": 2217,
+   "prompt": "a lone glowing object leading a path of light through the stars, first of its kind, majestic, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_e03",
+   "seed": 3203,
+   "prompt": "the solar system wrapped in a gigantic faint sphere of tiny icy specks like a snowy shell, the sun a small star in the center, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_e04",
+   "seed": 3204,
+   "prompt": "a ball rolling fast past a small round hole in a sandy playground, motion blur, warm sunset light, simple and clear illustration",
+   "layers": [
+    "dust"
+   ]
   }
  ],
  "beats": [
@@ -102,13 +198,19 @@
   },
   {
    "id": "c2b02",
-   "shot": "c2_a",
+   "shot": "c2_x02",
    "text": "Планеты, астероиды и кометы движутся вокруг Солнца по замкнутым орбитам. Они вечно возвращаются. Солнце держит их всех."
   },
   {
    "id": "c2b03",
    "shot": "c2_b",
    "text": "Даже самые далёкие кометы прилетают из облака Оорта. Это огромная ледяная оболочка на краю нашей системы. Но и она принадлежит Солнцу."
+  },
+  {
+   "id": "c2b03e",
+   "shot": "c2_e03",
+   "text": "Облако Оорта — это как огромная ледяная шуба вокруг Солнечной системы. Из неё к нам иногда падают кометы.",
+   "quote": "Облако Оорта — ледяная «шуба» Солнечной системы"
   },
   {
    "id": "c2b04",
@@ -119,8 +221,14 @@
    ]
   },
   {
+   "id": "c2b04e",
+   "shot": "c2_e04",
+   "text": "Представь мяч, который катится мимо ямки. Медленный мяч упадёт в неё. Быстрый проскочит мимо и укатится навсегда. Наш гость был быстрым мячом.",
+   "quote": "Гипербола — путь, который не замыкается"
+  },
+  {
    "id": "c2b05",
-   "shot": "c2_h",
+   "shot": "c2_x05",
    "text": "Его скорость была слишком велика. Никакая планета не могла так разогнать камень. Он пришёл извне."
   },
   {
@@ -140,7 +248,7 @@
   },
   {
    "id": "c2b09",
-   "shot": "c2_f",
+   "shot": "c2_x09",
    "text": "Но ни одного такого гостя никто не видел. Они слишком маленькие и слишком тёмные. Их невозможно заметить, пока они не подлетят совсем близко."
   },
   {
@@ -150,7 +258,7 @@
   },
   {
    "id": "c2b11",
-   "shot": "c2_g",
+   "shot": "c2_x11",
    "text": "Один из них и поймал Оумуамуа. Через сорок дней после того, как гость прошёл ближе всего к Солнцу.",
    "alias": [
     "Один из них и поймал Умуамуа. Через сорок дней после того, как гость прошёл ближе всего к Солнцу.",
@@ -159,7 +267,7 @@
   },
   {
    "id": "c2b12",
-   "shot": "c2_h",
+   "shot": "c2_x12",
    "text": "К тому моменту он уже пролетел внутри орбиты Меркурия. Обогнул Солнце. И теперь уходил прочь."
   },
   {
@@ -169,23 +277,23 @@
   },
   {
    "id": "c2b14",
-   "shot": "c2_e",
+   "shot": "c2_x14",
    "text": "Но это совпадение. Сотни тысяч лет назад, когда гость был в тех краях, Веги там ещё не было. Звёзды тоже движутся."
   },
   {
    "id": "c2b15",
-   "shot": "c2_c",
+   "shot": "c2_x15",
    "text": "Откуда он на самом деле, не знает никто. Его родная звезда могла давно погаснуть. Или уйти на другой край галактики."
   },
   {
    "id": "c2b16",
-   "shot": "c2_f",
+   "shot": "c2_x16",
    "text": "Сначала ему дали обозначение кометы. Потом астероида. А потом пришлось придумать новую категорию.",
    "quote": "1I/2017 U1"
   },
   {
    "id": "c2b17",
-   "shot": "c2_f",
+   "shot": "c2_x17",
    "text": "Буква I. Межзвёздный. Номер один. Первый в истории человечества.",
    "alias": [
     "Буква И. Межзвёздный. Номер один. Первый в истории человечества."

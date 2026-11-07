@@ -92,6 +92,66 @@
     "dust"
    ],
    "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c4_x05",
+   "seed": 2405,
+   "prompt": "a dark elongated asteroid with its predicted path and its real path diverging as two glowing lines, black space, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c4_x07",
+   "seed": 2407,
+   "prompt": "a printed scientific journal lying on a desk next to a coffee cup and glasses, morning light, no readable text",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c4_x09",
+   "seed": 2409,
+   "prompt": "a classic comet with a glowing coma and long blue tail near the sun, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c4_x11",
+   "seed": 2411,
+   "prompt": "a large telescope instrument with spectrograph and cables in a cold observatory, scientists looking at empty readings on screens, blue light",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c4_x13",
+   "seed": 2413,
+   "prompt": "a dark asteroid spinning steadily in black outer space with circular motion trails showing smooth rotation, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c4_x16",
+   "seed": 2416,
+   "prompt": "beams of golden sunlight striking a dark object in black space like a gentle push, light rays, majestic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c4_e05",
+   "seed": 3405,
+   "prompt": "a child throwing a ball high in a park at dusk, the ball flying slightly further along a glowing curved path, wonder, painting",
+   "layers": [
+    "dust"
+   ]
   }
  ],
  "beats": [
@@ -120,11 +180,17 @@
   },
   {
    "id": "c4b05",
-   "shot": "c4_a",
+   "shot": "c4_x05",
    "text": "Оумуамуа ускорялся. Совсем слабо — примерно на тысячную долю от силы солнечного притяжения. Но ускорялся.",
    "alias": [
     "Умуамуа ускорялся. Совсем слабо — примерно на тысячную долю от силы солнечного притяжения. Но ускорялся."
    ]
+  },
+  {
+   "id": "c4b05e",
+   "shot": "c4_e05",
+   "text": "Это как если бы ты подбросил мяч, а он вдруг полетел чуть дальше, чем должен. Без ветра. Без толчка. Сам.",
+   "quote": "Ускорение без видимой причины"
   },
   {
    "id": "c4b06",
@@ -133,7 +199,7 @@
   },
   {
    "id": "c4b07",
-   "shot": "c4_e",
+   "shot": "c4_x07",
    "text": "Летом две тысячи восемнадцатого года статью об этом опубликовал журнал Nature. Один из главных научных журналов мира.",
    "say": "Летом две тысячи восемнадцатого года статью об этом опубликовал журнал Нейчер. Один из главных научных журналов мира.",
    "alias": [
@@ -148,17 +214,18 @@
   },
   {
    "id": "c4b09",
-   "shot": "c4_c",
+   "shot": "c4_x09",
    "text": "Самое простое объяснение: гость — это комета. Просто необычная."
   },
   {
    "id": "c4b10",
    "shot": "c4_d",
-   "text": "Но у кометы, которую толкают струи, должна быть кома. Облако пыли и газа вокруг ядра. И хвост."
+   "text": "Но у кометы, которую толкают струи, должна быть кома. Облако пыли и газа вокруг ядра. И хвост.",
+   "quote": "Кома — облако газа и пыли вокруг кометы"
   },
   {
    "id": "c4b11",
-   "shot": "c4_d",
+   "shot": "c4_x11",
    "text": "У гостя не было ни того, ни другого. Самые чувствительные приборы не нашли ни пыли, ни углекислого газа, ни угарного."
   },
   {
@@ -168,7 +235,7 @@
   },
   {
    "id": "c4b13",
-   "shot": "c4_h",
+   "shot": "c4_x13",
    "text": "Вращение гостя почти не изменилось. Его что-то толкало. Сильно и ровно. Но ничего не было видно."
   },
   {
@@ -183,7 +250,7 @@
   },
   {
    "id": "c4b16",
-   "shot": "c4_b",
+   "shot": "c4_x16",
    "text": "И самая громкая версия утверждала: этого гостя толкает не газ. А сам солнечный свет."
   }
  ]

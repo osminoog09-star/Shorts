@@ -83,6 +83,58 @@
     "dust"
    ],
    "neg": "planet, moon, landscape, ground, horizon, mountains, desert, planet surface, terrain"
+  },
+  {
+   "id": "c1_x05",
+   "seed": 2105,
+   "prompt": "an elongated cigar shaped reddish asteroid and next to it a flat disc shaped asteroid, both floating in black outer space side by side, comparison, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c1_x06",
+   "seed": 2106,
+   "prompt": "a tall skyscraper standing at night with an elongated dark asteroid of the same size hovering beside it in the sky, sense of scale, surreal painting",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c1_x09",
+   "seed": 2109,
+   "prompt": "a dark elongated asteroid with a faint glowing arrow of motion pushing it away from the sun, invisible force, stars, mysterious",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c1_x10",
+   "seed": 2110,
+   "prompt": "a comet nucleus with bright white gas jets erupting from cracks in its icy surface, sunlight, black space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c1_x14",
+   "seed": 2114,
+   "prompt": "a collage-like scene in space: a translucent iceberg, a silver solar sail and a dark rock floating together in black outer space, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c1_e06",
+   "seed": 3106,
+   "prompt": "a big city seen from high above at night with a glowing streak crossing over it from one edge to the other in a single second, sense of speed, painting",
+   "layers": [
+    "dust"
+   ]
   }
  ],
  "beats": [
@@ -115,16 +167,22 @@
   },
   {
    "id": "c1b05",
-   "shot": "c1_d",
+   "shot": "c1_x05",
    "text": "Так ведёт себя тело очень необычной формы. Вытянутое, как сигара. Или плоское, как блин. Ничего похожего в Солнечной системе мы не видели."
   },
   {
    "id": "c1b06",
-   "shot": "c1_a",
+   "shot": "c1_x06",
    "text": "Длина — всего несколько сотен метров. А вдали от Солнца он нёсся со скоростью около двадцати шести километров в секунду.",
    "alias": [
     "Длина — всего несколько сотен метров. А вдали от Солнца он нёсся со скоростью около 26 километров в секунду."
    ]
+  },
+  {
+   "id": "c1b06e",
+   "shot": "c1_e06",
+   "text": "Чтобы было понятнее: за одну секунду он пролетал расстояние, как через целый большой город.",
+   "quote": "26 км за 1 секунду"
   },
   {
    "id": "c1b07",
@@ -141,7 +199,7 @@
   },
   {
    "id": "c1b09",
-   "shot": "c1_f",
+   "shot": "c1_x09",
    "text": "Уходя от Солнца, Оумуамуа ускорился. Совсем чуть-чуть. Но одной гравитацией это объяснить было нельзя.",
    "alias": [
     "Уходя от Солнца, Умуамуа ускорился. Совсем чуть-чуть. Но одной гравитацией это объяснить было нельзя."
@@ -150,7 +208,7 @@
   },
   {
    "id": "c1b10",
-   "shot": "c1_c",
+   "shot": "c1_x10",
    "text": "Кометы так умеют — их толкают струи испаряющегося газа. Но у этого гостя газа никто не увидел."
   },
   {
@@ -174,7 +232,7 @@
   },
   {
    "id": "c1b14",
-   "shot": "c1_i",
+   "shot": "c1_x14",
    "text": "В этом фильме мы разберём каждую версию. От ледяного айсберга до чужого корабля."
   },
   {

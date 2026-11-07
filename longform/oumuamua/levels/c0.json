@@ -41,6 +41,23 @@
    "layers": [
     "dust"
    ]
+  },
+  {
+   "id": "c0_x03",
+   "seed": 2003,
+   "prompt": "two astronomers at night leaning over a desk with printed orbit diagrams and a glowing monitor, one pointing at a curved line, tense, dark observatory office",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c0_x06",
+   "seed": 2006,
+   "prompt": "an elongated dark rock moving away from the bright sun, the sun glowing behind it, its long shadow stretching into space, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
   }
  ],
  "beats": [
@@ -59,7 +76,7 @@
   },
   {
    "id": "c0b03",
-   "shot": "c0_b",
+   "shot": "c0_x03",
    "text": "Астрономы считают её орбиту. И не верят результату."
   },
   {
@@ -74,7 +91,7 @@
   },
   {
    "id": "c0b06",
-   "shot": "c0_c",
+   "shot": "c0_x06",
    "text": "Возможно, он летел к нам миллионы лет. А мы заметили его, когда он уже уходил."
   },
   {
