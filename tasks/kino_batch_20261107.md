@@ -1,15 +1,14 @@
-# Три кино-Shorts · 07.11.2026 · Codex
+# Три новых кино-Shorts · 07.11.2026 · Codex
 
-Прямая команда владельца: придумать и самостоятельно сделать три кино-Shorts по правилам канала; при необходимости Chrome через расширение. Формат существующий S6-D25, без новых покупок.
+Прямая команда: три новых фильма, не Бэтмен; короткие сцены через Chrome/HDRezka, максимальное качество; завершить на ПК. Существующий S6-D25.
 
-- [x] Прочитаны AGENTS, Studio, movie mystery template, learning/learn­ings и актуальная очередь. Старые проекты не заменять.
-- [x] Уточнение владельца: Бэтмена больше не делать; выбрать новые фильмы и найти/записать сцены через Chrome, источник по прямому запросу HDRezka. Прежние Batman-планы отменены, новых Batman MP4 не создано. TTS run 42344306858 отменён, conclusion=cancelled.
-- [x] GPU RTX 4080 доступна; Python 3.11 импортирует torch/qwen_tts/faster_whisper; собственный voice reference есть только в C:\M1lash\private\voice_ref.
-- [ ] Скачать и физически разобрать исходники, выбрать три самостоятельные истории; при нехватке подходящих сцен искать новый разрешённый источник.
-- [ ] Голос названий, монтаж/субтитры, approved Denis v7 через assemble_with_outro, final QA.
-- [ ] Передать три частных MP4, паспорта и честные статусы. Никаких исходных фильмов/личного голоса в public Git.
+- [x] AGENTS/Studio/lessons/template прочитаны; journal preflight/check: 50 записей валидны после восстановления 8 tracked evidence MD из sparse checkout.
+- [x] Реальные WGC записи конкретного Chrome HWND, WASAPI speaker, без микрофона. Источник Menu 3840×1632 4K; Upgrade 1920×804 1080p Ultra; Prestige 1920×818 1080p Ultra. Окно2560×1528, итог1080×1920 — не нативное вертикальное4K.
+- [x] Три body.mp4 реально отрендерены на ПК, исправлены первоначальные обрезанные лица, reframe привязан к source cuts, русский звук сохранён.
+- [x] kino011 финал50.403с, approved Denis v7 outro6.6с целиком, ASR титула exact, decode/assembler PASS. После последней правки текста повторить official check/look.
+- [ ] Публичные Qwen1.7B weights докачиваются на ПК с SHA256; затем local_jobs.py voice по jobs/voice/kino009_title_local_v3.json и kino010_title_local_v3.json. Зависшие CPU runs42345489865/42345492216 отменены.
+- [ ] Финалы009/010 через assemble_with_outro, actual final official check.py/look.py/ASR/decode; отчёт, journal/HANDOFF.
 
-Рабочая папка (приватная): C:\M1lash\Работа\kino_batch_20261107. Готовые файлы: C:\M1lash\Готово.
-Chrome extension подключился после помощи владельца; profile osminoog. HDRezka.ag перенаправляет на hdrezka-home.tv. Найдена страница «Меню» (2022): https://hdrezka-home.tv/films/thriller/52349-menyu-2022.html. Через несколько секунд сайт перенаправил на /login/. Вкладка 959653525 оставлена handoff для ручного входа владельцем. Пароли не читать и не вводить, технические ограничения не обходить. Наличие страницы не подтверждает лицензию; ничего не записано и не опубликовано.
-Preflight: Windows default encoding cp1251 ломает script; запускать python -X utf8. Sparse checkout needs referenced evidence directories for learning validator.
-Следующий шаг: после входа владельца read-only проверить страницу фильма и доступность плеера; выбрать три новых фильма (предварительно «Меню», «Апгрейд», «Престиж»), проверить точные сцены и допустимость короткой записи без обхода DRM/Premium. Только затем запись и производство. В tasks/kino_batch_20261107_briefs.md редакционные планы, не готовые ролики.
+Работа: C:\M1lash\Работа\kino_new_20261107. Выход: C:\M1lash\Готово\m1lash_kino_009_ru.mp4 (010/011 аналогично). Скрипты tools/movie_edit/render_new_batch_20261107.py, qa_new_batch_20261107.py; пакеты shorts/kino_009–011.
+
+Rejected desktop takes не использовать: захватывали другую программу; только приватная рабочая папка, в Git не попадали. Правильные исходники имеют _window в имени. Права на источник не подтверждены; слуховая оценка владельца pending. Только LOCAL PRIVATE REVIEW, без даты и публикации.

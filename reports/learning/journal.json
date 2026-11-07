@@ -655,6 +655,32 @@
       "owner_review": "pending",
       "audience_effect": "unknown",
       "regression": false
+    },
+    {
+      "id": "KINO-PC-WINDOW-CAPTURE-20261107",
+      "project": "kino_new_20261107",
+      "issue": "Desktop capture мог включить другое приложение после смены фокуса.",
+      "cause": "Захват всего desktop вместо конкретного Chrome HWND.",
+      "fix": "Неверные takes отклонены; WGC конкретного HWND, без микрофона. Проверять реальные source frames до монтажа.",
+      "status": "fixed",
+      "evidence": "reports/research/2026-11-07_KINO_009_011_LOCAL.md",
+      "acceptance": "Правильные *_window*.mp4 реально просмотрены, источник соответствует Chrome; ASR подтверждает сцену. Не утверждает права/слух.",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": false
+    },
+    {
+      "id": "KINO-PC-REFRAME-CUTS-20261107",
+      "project": "kino_new_20261107",
+      "issue": "В первом вертикальном монтаже лица оказывались на краю/вне кадра.",
+      "cause": "Центры и границы смены плана предполагались по редкому contact вместо точных source cuts.",
+      "fix": "ROI и центры поправлены по source frames; переключения009/010 привязаны к scene cuts, повторно осмотреть final MP4.",
+      "status": "fixed",
+      "evidence": "reports/research/2026-11-07_KINO_009_011_LOCAL.md",
+      "acceptance": "Физический final01116-frame contact просмотрен; для009/010 final review ещё pending. Тест относится к исправлению метода, не общему ART GO.",
+      "owner_review": "pending",
+      "audience_effect": "unknown",
+      "regression": true
     }
   ]
 }

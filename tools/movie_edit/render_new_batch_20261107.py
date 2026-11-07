@@ -21,6 +21,7 @@ PROJECTS={
   'title':'Все смотрели на фокус. Ребёнок заметил другое 🎩 #shorts',
   'segments':[['kino011_window1',14.5,41.1,352,1092,[[14.5,1240],[17.3,1390],[19.0,1240],[21.0,1300],[23.0,1030],[25.0,1450],[27.0,1300],[29.0,1180],[31.0,1050],[33.0,1350],[35.0,1450],[37.0,1300],[41.0,1370],[43.0,1650],[45.0,1770],[47.0,1400],[49.0,1350],[51.0,1320],[53.0,900]]]],
   'hook':'КУДА ДЕЛАСЬ ПТИЦА?',
+  'editorial':[[4.0,5.8,'КЛЕТКА ИСЧЕЗЛА'],[11.6,13.6,'ПТИЦА ВЕРНУЛАСЬ'],[20.0,22.2,'НО МАЛЬЧИК ПЛАЧЕТ']],
  }
 }
 
@@ -52,7 +53,7 @@ def caption_words(name,start,dur,offset):
   flush()
  return result
 
-def write_ass(path,captions,hook):
+def write_ass(path,captions,hook,editorial=()):
  header='''[Script Info]
 ScriptType: v4.00+
 PlayResX: 1080
@@ -67,6 +68,8 @@ Style: Hook,Arial,62,&H0000DAFF,&H0000DAFF,&H00201810,&H90000000,-1,0,0,0,100,10
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 '''
  lines=[f'Dialogue: 1,0:00:00.00,0:00:01.85,Hook,,0,0,0,,{{\\fad(50,140)}}{hook}']
+ for st,en,text in editorial:
+  lines.append(f'Dialogue: 1,{ts(st)},{ts(en)},Hook,,0,0,0,,{{\\fad(80,120)}}{text}')
  for st,en,text in captions:
   if en-st<.10:continue
   style='{\\fscx108\\fscy108\\t(0,100,\\fscx100\\fscy100)\\fad(35,65)}'
@@ -90,7 +93,7 @@ def render(key):
  concat=out/'concat.txt';concat.write_text(''.join("file '"+f.as_posix()+"'\n" for f in parts),encoding='utf8')
  raw=out/'body_clean.mp4'
  cmd(['ffmpeg','-v','error','-y','-f','concat','-safe','0','-i',concat,'-c','copy','-movflags','+faststart',raw])
- write_ass(out/'captions.ass',caps,p['hook'])
+ write_ass(out/'captions.ass',caps,p['hook'],p.get('editorial',[]))
  # Render from this directory so the ASS filename contains no Windows drive colon.
  prev=Path.cwd()
  import os

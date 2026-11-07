@@ -13,24 +13,35 @@
   },
   "public": {
     "title": "Она попросила обычный бургер — и всё изменилось 🍔 #shorts",
-    "description": "Обычный заказ меняет ход опасного ужина. Успел догадаться, что за фильм, до финала?\n\nПодписывайся на M1lash.\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #Кино #УгадайФильм",
+    "description": "Обычный заказ меняет ход опасного ужина. Успел догадаться, что за фильм, до финала?\n\nПодписывайся на M1lash.\n\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #Кино #УгадайФильм #КиноШортс #СценыИзФильмов #Кинозагадка #M1lash",
     "tags": [
       "кино",
       "угадай фильм",
       "сцены из фильмов",
       "m1lash",
-      "shorts"
+      "shorts",
+      "киношортс",
+      "кинозагадка",
+      "сильные сцены",
+      "русский дубляж",
+      "movie edit"
     ],
     "hashtags": [
       "#shorts",
       "#Кино",
-      "#УгадайФильм"
+      "#УгадайФильм",
+      "#КиноШортс",
+      "#СценыИзФильмов",
+      "#Кинозагадка",
+      "#M1lash"
     ],
     "pinned_comment": "На какой секунде понял, что за фильм? 👇",
     "thumbnail_text": "ОБЫЧНЫЙ БУРГЕР?",
     "public_filename": "m1lash_kino_009_ru.mp4",
     "captions": "Русские субтитры реплик, без названия фильма.",
-    "end_card_text": "Утверждённый M1lash outro v7, без экранного названия."
+    "end_card_text": "Утверждённый M1lash outro v7, без экранного названия.",
+    "category_id": "1",
+    "madeForKids": false
   },
   "outro": {
     "cta_voice_id": "denis-qwen3tts-reference-v1",
