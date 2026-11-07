@@ -1,7 +1,20 @@
 {
-  "checked_at": "2026-11-07T11:40:09.203904+00:00",
+  "checked_at": "2026-11-07T11:50:04.621208+00:00",
   "count": 24,
-  "problems": [],
+  "problems": [
+    {
+      "slug": "kino_010",
+      "video_id": "_dXT3MYOmow",
+      "receipt": "uploaded",
+      "receipt_publish_at": null,
+      "queue": "review",
+      "queue_slot": null,
+      "live_privacy": null,
+      "live_publishAt": null,
+      "title": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
+    }
+  ],
   "rows": [
     {
       "slug": "ai_bureaucracy_claude",
@@ -162,7 +175,7 @@
       "video_id": "izqrEKmU38g",
       "receipt": "uploaded",
       "receipt_publish_at": null,
-      "queue": null,
+      "queue": "review",
       "queue_slot": null,
       "live_privacy": "private",
       "live_publishAt": null,
@@ -173,18 +186,19 @@
       "video_id": "_dXT3MYOmow",
       "receipt": "uploaded",
       "receipt_publish_at": null,
-      "queue": null,
+      "queue": "review",
       "queue_slot": null,
-      "live_privacy": "private",
+      "live_privacy": null,
       "live_publishAt": null,
-      "title": "Тело дерётся само. А он просит не вставать 🤖 #shorts"
+      "title": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
     },
     {
       "slug": "kino_011",
       "video_id": "gLdXWqOj8hw",
       "receipt": "uploaded",
       "receipt_publish_at": null,
-      "queue": null,
+      "queue": "review",
       "queue_slot": null,
       "live_privacy": "private",
       "live_publishAt": null,
