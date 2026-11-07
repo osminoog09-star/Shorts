@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from denis_voice_tts import VoiceError, job_config
+from denis_voice_tts import VoiceError, job_config, asr_match
 from voice_private_io import VoicePrivateError, fetch_refs, approved, verify_refs, upload_result
 
 
@@ -108,6 +108,25 @@ class VoiceTests(unittest.TestCase):
         obj["utterances"][0]["rate"]=2.0
         path.write_text(json.dumps(obj))
         with self.assertRaisesRegex(VoiceError,"rate"):
+            job_config(path)
+
+    def test_explicit_asr_spelling_keeps_original_voice_text(self):
+        text = "Это был фильм «Апгрейд»."
+        heard = "Это был фильм Upgrade."
+        self.assertLess(asr_match(text, heard)[0], 0.8)
+        score, spelling = asr_match(text, heard, [heard])
+        self.assertEqual(score, 1.0)
+        self.assertEqual(spelling, heard)
+        self.assertLess(asr_match(text, "Совсем другая реплика", [heard])[0], 0.8)
+        self.assertEqual(asr_match(text, "", [heard])[0], 0.0)
+
+    def test_job_rejects_invalid_asr_spelling_aliases(self):
+        path = self.root / "job.json"
+        obj = {"job_id":"test_claude", "speaker":"denis", "voice_id":"denis-qwen3tts-reference-v1",
+               "utterances":[{"id":"title", "text":"Это был фильм Апгрейд", "rate":1.0,
+                              "asr_text_aliases":"arbitrary string"}]}
+        path.write_text(json.dumps(obj))
+        with self.assertRaisesRegex(VoiceError, "asr_text_aliases"):
             job_config(path)
 
     def test_private_drive_upload_never_uploads_reference(self):

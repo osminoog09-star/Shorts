@@ -55,12 +55,26 @@ def job_config(job_path: Path) -> tuple[str, list[dict]]:
             raise VoiceError("NO-GO: текст реплики должен содержать от 5 до 220 символов")
         if not isinstance(rate, (float, int)) or isinstance(rate, bool) or not 0.85 <= rate <= 1.15:
             raise VoiceError("NO-GO: rate от 0.85 до 1.15, не меняй голос через сильный time-stretch")
+        aliases = u.get("asr_text_aliases", [])
+        if (not isinstance(aliases, list) or len(aliases) > 3 or
+                any(not isinstance(x, str) or not 5 <= len(x.strip()) <= 220 for x in aliases)):
+            raise VoiceError("NO-GO: asr_text_aliases must be at most three explicit transcript spellings")
     return job_id, lines
 
 
 def norm(text: str) -> str:
     text = unicodedata.normalize("NFKC", text).lower().replace("ё", "е")
     return " ".join(re.findall(r"[а-яa-z0-9]+", text))
+
+
+def asr_match(expected: str, recognized: str, aliases=()) -> tuple[float, str]:
+    """Match explicitly reviewed alternate spellings, e.g. a localized film name.
+
+    This changes ASR spelling comparison only, never generated text or voice.
+    No implicit transliteration and no lowering of the 0.80 threshold.
+    """
+    return max(((SequenceMatcher(None, norm(candidate), norm(recognized)).ratio(), candidate)
+                for candidate in [expected, *aliases]), key=lambda x: x[0])
 
 
 def check_inputs(assets: Path, job: Path, model_dir: Path) -> tuple[str, list[dict], dict]:
@@ -162,6 +176,7 @@ def generate(job: Path, assets: Path, model_dir: Path, output: Path) -> dict:
             "sha256": hashlib.sha256(wav.read_bytes()).hexdigest(),
             "sample_rate": 24000, "asr_text": None, "asr_similarity": None,
             "owner_hearing": "pending",
+            "asr_text_aliases": u.get("asr_text_aliases", []),
         })
         print("WAV_GENERATED", u["id"], wav.stat().st_size, "bytes", flush=True)
     del model, prompt
@@ -202,9 +217,10 @@ def generate(job: Path, assets: Path, model_dir: Path, output: Path) -> dict:
             recognized = " ".join(s.text.strip() for s in segs).strip()
         except Exception as exc:
             raise VoiceError("NO-GO: ASR inference failed: " + item["id"]) from exc
-        expected = norm(item["text"])
+        score, matched = asr_match(item["text"], recognized, item.get("asr_text_aliases", []))
+        expected = norm(matched)
         got = norm(recognized)
-        score = SequenceMatcher(None, expected, got).ratio()
+        item["asr_matched_spelling"] = matched
         item["asr_text"] = recognized
         item["asr_similarity"] = round(score, 4)
         print("ASR", item["id"], "similarity=", round(score, 4), flush=True)

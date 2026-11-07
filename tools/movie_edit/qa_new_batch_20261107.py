@@ -22,7 +22,7 @@ def main(key):
  modelpath=Path.home()/'.cache/huggingface/hub/models--Systran--faster-whisper-small/snapshots/536b0662742c02347bc0e980a01041f333bce120'
  m=WhisperModel(str(modelpath),device='cuda',compute_type='float16',local_files_only=True)
  segs,_=m.transcribe(str(voice),language='ru',beam_size=5,vad_filter=False,condition_on_previous_text=False)
- text=' '.join(s.text for s in segs).strip();match=EXPECTED[key].casefold() in text.casefold()
+ text=' '.join(s.text for s in segs).strip();match=any(alias.casefold() in text.casefold() for alias in ([EXPECTED[key],'Upgrade'] if key=='010' else [EXPECTED[key]]))
  report={'file':str(f),'sha256':hashlib.sha256(f.read_bytes()).hexdigest(),'bytes':f.stat().st_size,'duration':float(probe['format']['duration']),'full_decode':'pass','assembler':assembly,'final_spoken_title_asr':text,'title_asr_matches':match,'owner_hearing':'pending; model has no audio-input support','rights':'unverified','publication':'private local review only'}
  (out/'final_evidence.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf8')
  print(json.dumps(report,ensure_ascii=False),flush=True)

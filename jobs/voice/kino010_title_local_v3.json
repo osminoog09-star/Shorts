@@ -6,7 +6,10 @@
     {
       "id": "title",
       "text": "Это был фильм «Апгрейд».",
-      "rate": 1.0
+      "rate": 1.0,
+      "asr_text_aliases": [
+        "Это был фильм Upgrade."
+      ]
     }
   ]
 }
