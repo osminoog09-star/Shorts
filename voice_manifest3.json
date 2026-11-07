@@ -1,0 +1,27 @@
+{
+  "job_id": "vacuum_wild_fix3",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "engine": "qwen3-tts-local",
+  "model": "Qwen3-TTS-12Hz-1.7B-Base",
+  "reference": "owner-private Drive SHA256-verified; not included in artifact",
+  "utterances": [
+    {
+      "id": "v5c",
+      "text": "Колонка. Чайник.",
+      "rate": 1.0,
+      "speaker": "denis",
+      "voice_id": "denis-qwen3tts-reference-v1",
+      "engine": "qwen3-tts-local",
+      "source_file": "audio/v5c.wav",
+      "sha256": "12929ae203fc6fab99c9f4d6574c4a65fbeb857d76f42ba8e58ee9f2daf30112",
+      "sample_rate": 24000,
+      "asr_text": "колонка чайник",
+      "asr_similarity": 1.0,
+      "owner_hearing": "pending"
+    }
+  ],
+  "owner_hearing": "pending",
+  "publication": "forbidden",
+  "generation_seconds": 624.4
+}

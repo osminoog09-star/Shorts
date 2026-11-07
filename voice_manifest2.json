@@ -1,0 +1,83 @@
+{
+  "job_id": "vacuum_wild_fix",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "engine": "qwen3-tts-local",
+  "model": "Qwen3-TTS-12Hz-1.7B-Base",
+  "reference": "owner-private Drive SHA256-verified; not included in artifact",
+  "utterances": [
+    {
+      "id": "v5a",
+      "text": "Охотник зовёт стаю.",
+      "rate": 1.0,
+      "speaker": "denis",
+      "voice_id": "denis-qwen3tts-reference-v1",
+      "engine": "qwen3-tts-local",
+      "source_file": "audio/v5a.wav",
+      "sha256": "5653c6eac73b8806afce090b67b13ab9ae41ed298aab3c93ed0d75f0818f1755",
+      "sample_rate": 24000,
+      "asr_text": "Охотник зовет стаю.",
+      "asr_similarity": 1.0,
+      "owner_hearing": "pending"
+    },
+    {
+      "id": "v5b",
+      "text": "Колонка. Чайник. Вся мощь умного дома.",
+      "rate": 1.0,
+      "speaker": "denis",
+      "voice_id": "denis-qwen3tts-reference-v1",
+      "engine": "qwen3-tts-local",
+      "source_file": "audio/v5b.wav",
+      "sha256": "0516efcdd63c871ef81ee8550885eb5aded8bb0190106bc76a5199ec611b6ee2",
+      "sample_rate": 24000,
+      "asr_text": "колонка, чайник, сам мощь умного дома.",
+      "asr_similarity": 0.9429,
+      "owner_hearing": "pending"
+    },
+    {
+      "id": "v7a",
+      "text": "Ну всё.",
+      "rate": 1.0,
+      "speaker": "denis",
+      "voice_id": "denis-qwen3tts-reference-v1",
+      "engine": "qwen3-tts-local",
+      "source_file": "audio/v7a.wav",
+      "sha256": "01fa603e9fb7f77c2e8c937ab719d87c17b8892e864099412e568e3bfff2e45d",
+      "sample_rate": 24000,
+      "asr_text": "Ну всё.",
+      "asr_similarity": 1.0,
+      "owner_hearing": "pending"
+    },
+    {
+      "id": "v7b",
+      "text": "Пиздец экосистеме.",
+      "rate": 0.95,
+      "speaker": "denis",
+      "voice_id": "denis-qwen3tts-reference-v1",
+      "engine": "qwen3-tts-local",
+      "source_file": "audio/v7b.wav",
+      "sha256": "36ad38bffae6239878573b2b4d4c881a1abbfcaadb161ddb44abacce75edd434",
+      "sample_rate": 24000,
+      "asr_text": "пиздец экосистеме",
+      "asr_similarity": 1.0,
+      "owner_hearing": "pending"
+    },
+    {
+      "id": "v7c",
+      "text": "Экосистеме пиздец.",
+      "rate": 0.95,
+      "speaker": "denis",
+      "voice_id": "denis-qwen3tts-reference-v1",
+      "engine": "qwen3-tts-local",
+      "source_file": "audio/v7c.wav",
+      "sha256": "7feaab00107e7e6cdd1c78ec91e48cb10d84c01febc1fbd38f043e8c0ea41474",
+      "sample_rate": 24000,
+      "asr_text": "Экосистемия пиздец.",
+      "asr_similarity": 0.9143,
+      "owner_hearing": "pending"
+    }
+  ],
+  "owner_hearing": "pending",
+  "publication": "forbidden",
+  "generation_seconds": 107.6
+}

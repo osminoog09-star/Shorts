@@ -1,0 +1,77 @@
+{
+ "voice_pieces": {
+  "v1": [
+   "v1"
+  ],
+  "v2": [
+   "v2"
+  ],
+  "v3": [
+   "v3"
+  ],
+  "v4": [
+   "v4"
+  ],
+  "v5": [
+   "v5a",
+   "v5c"
+  ],
+  "v6": [
+   "v6"
+  ],
+  "v7": [
+   "v7a",
+   "v7b"
+  ],
+  "v8": [
+   "v8"
+  ]
+ },
+ "body_lufs_before": -18.87,
+ "body_gain_db": 4.17,
+ "music_to_voice_rms": 0.0,
+ "peak_before_norm": 0.6829091310501099,
+ "durations": {
+  "v1": 3.105,
+  "v2": 6.158,
+  "v3": 2.8,
+  "v4": 1.714,
+  "v5": 4.22,
+  "v6": 1.798,
+  "v7": 2.94,
+  "v8": 4.256
+ },
+ "music": "Investigations.mp3",
+ "sfx": [
+  "twitch",
+  "scan",
+  "scan",
+  "motor",
+  "scan",
+  "whoosh",
+  "grab",
+  "drag",
+  "purrlow",
+  "swoosh",
+  "tug",
+  "alarm",
+  "chime",
+  "hop",
+  "hop",
+  "hop",
+  "click",
+  "boil",
+  "growl",
+  "whoosh",
+  "thwack",
+  "spin",
+  "clang",
+  "thud",
+  "thud",
+  "clink",
+  "whoosh",
+  "boing",
+  "sad",
+  "purr"
+ ]
+}

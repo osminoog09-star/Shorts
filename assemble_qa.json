@@ -1,0 +1,17 @@
+{
+ "out": "longform/vacuum_wild/out/vacuum_wild_ru.mp4",
+ "duration": 41.5,
+ "video_s": 41.5,
+ "audio_s": 41.5,
+ "body_s": 34.9,
+ "outro_s": 6.6,
+ "title_s": 0.0,
+ "body_lufs": -16.2,
+ "body_tp": -4.4,
+ "outro_lufs": -16.5,
+ "outro_tp": -3.3,
+ "outro_lag_ms": 0.0,
+ "outro_diff_db": -30.8,
+ "decode_ok": true,
+ "problems": []
+}
