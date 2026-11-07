@@ -1,17 +1,66 @@
 {
-  "status": "partial",
-  "updated_at": "2026-11-06T23:08:16.669306Z",
-  "last_attempt_at": "2026-11-06T23:08:16.669306Z",
-  "feeds_ok": 6,
-  "feeds_failed": 1,
-  "errors": [
-    {
-      "source": "NASA Technology",
-      "error_type": "HTTPError"
-    }
-  ],
+  "status": "success",
+  "updated_at": "2026-11-07T12:59:32.181602Z",
+  "last_attempt_at": "2026-11-07T12:59:32.181602Z",
+  "feeds_ok": 7,
+  "feeds_failed": 0,
+  "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "b62c9c03eb5f12028f",
+      "title": "The migration that transformed Africa's languages, genes, and cultures",
+      "url": "https://arstechnica.com/science/2026/11/the-migration-that-transformed-africas-languages-genes-and-cultures/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-07T12:15:55Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ad36c2a7e444f2e2c0",
+      "title": "British soldier ignored order to pull his SIM card, then got blackmailed",
+      "url": "https://arstechnica.com/security/2026/11/british-soldier-ignored-order-to-pull-his-sim-card-then-got-blackmailed/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-07T11:00:34Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ec2480d446f6212cdd",
+      "title": "Crusoe sells troubled Wyoming data center project to Google",
+      "url": "https://techcrunch.com/2026/11/06/crusoe-sells-troubled-wyoming-data-center-project-to-google/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-07T01:40:28Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "6c7191a9daddd03288",
+      "title": "OpenAI valued at $1.25 trillion, as rival Anthropic nears its IPO",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1029380/openai-1-25-trillion-investment-valuation",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-06T23:46:18Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b6f2bcabcdce26e1db",
+      "title": "Doctors pull knife from man's eye that went through his brain—and he's fine now",
+      "url": "https://arstechnica.com/health/2026/11/man-unexpectedly-recovers-from-a-knife-wound-through-his-eye-and-brain/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T23:09:45Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "a7e1415152c9585b8d",
+      "title": "China reportedly recruited AI exec to spy on Jensen Huang",
+      "url": "https://www.theverge.com/tech/1029338/nvidia-ceo-jensen-huang-china-spy",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-06T23:00:44Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "b19a52adc818672926",
       "title": "OpenAI reportedly raises an additional $11 billion at a $1.25 trillion valuation",
@@ -19,6 +68,24 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-11-06T22:53:46Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c828464b88b192e8ff",
+      "title": "Ships loiter near subsea cables amid Iran's warnings to Trump",
+      "url": "https://arstechnica.com/gadgets/2026/11/ships-loiter-near-subsea-cables-amid-irans-warnings-to-trump/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T22:41:37Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "59a23201da2e251285",
+      "title": "Re-releases of Wing Commander, Ultima titles hit Steam and GOG",
+      "url": "https://arstechnica.com/gaming/2026/11/ea-producer-tells-the-inside-story-behind-new-wing-commander-remasters/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-06T22:08:47Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -658,78 +725,6 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-05T12:00:01Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "86c146bd7f606cc4b7",
-      "title": "Agility is the first pure humanoid robot company on the stock market. Are you buying?",
-      "url": "https://techcrunch.com/2026/11/05/agility-is-the-first-pure-humanoid-robot-company-on-the-stock-market-are-you-buying/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-05T12:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "788aca0b86fe44b26f",
-      "title": "Big Tech’s big AI buildout will not end until someone stops it",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1027344/amazon-microsoft-alphabet-google-meta-data-centers-earnings-q3",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-05T10:45:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "71935939aaf2bd4f1d",
-      "title": "Mercedes-AMG GT 4-Door Coupe first drive: Where tech and fun collide",
-      "url": "https://arstechnica.com/cars/2026/11/mercedes-amg-gt-4-door-coupe-first-drive-where-tech-and-fun-collide/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-05T09:00:13Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "87631feae5b67cf18c",
-      "title": "Clearing up a robot’s fuzzy memory",
-      "url": "https://news.mit.edu/2026/clearing-up-robot-fuzzy-memory-1105",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-11-05T05:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "1522f10d7fdf55bdd9",
-      "title": "NASA Announces X-70 Experimental Aircraft to Advance Flight Research",
-      "url": "https://www.nasa.gov/news-release/nasa-announces-x-70-experimental-aircraft-to-advance-flight-research/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-05T01:43:21Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ad1030df5ce46710e2",
-      "title": "Apple is reportedly cutting budgets for its internal AI usage",
-      "url": "https://techcrunch.com/2026/11/04/apple-is-reportedly-cutting-budgets-for-its-internal-ai-usage/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-05T01:26:22Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0ee5115bb8658d796c",
-      "title": "After the midterms, a bigger clash over data centers could be coming",
-      "url": "https://techcrunch.com/2026/11/04/after-the-midterms-a-bigger-clash-over-data-centers-could-be-coming/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-05T01:02:14Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7d01c5c4ee294cff99",
-      "title": "Nintendo's biggest ROM chip supplier is bowing out of the business",
-      "url": "https://arstechnica.com/gaming/2026/11/the-tech-memory-shortage-comes-for-nintendos-cartridge-supply-chain/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-04T22:47:51Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
