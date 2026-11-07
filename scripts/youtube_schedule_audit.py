@@ -40,7 +40,8 @@ def main():
         want = utc(r.get("publish_at_utc")) if r.get("status") == "scheduled" else None
         row = {"slug": slug, "video_id": vid, "receipt": r.get("status"), "receipt_publish_at": r.get("publish_at_utc"), "queue": q.get("status"), "queue_slot": q.get("slot"),
                "live_privacy": L and L["privacy"], "live_publishAt": L and L["publishAt"], "title": L and L["title"]}
-        if not L: row["problem"] = "видео не найдено на канале (удалено или нет доступа)"
+        if not L and r.get("status") == "deleted": pass   # deleted on purpose by the owner's decision
+        elif not L: row["problem"] = "видео не найдено на канале (удалено или нет доступа)"
         elif want and want > now and not (L["privacy"] == "private" and utc(L["publishAt"]) == want): row["problem"] = f"на YouTube другая дата/статус: {L['privacy']} {L['publishAt']}"
         elif want and want <= now and L["privacy"] != "public": row["problem"] = f"дата {r.get('publish_at_utc')} прошла, а видео {L['privacy']} (не вышло)"
         elif q.get("status") == "scheduled" and not want: row["problem"] = "в очереди scheduled, а в квитанции нет даты"

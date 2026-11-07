@@ -462,7 +462,7 @@ function openVideo(id){
   const v=D.videos.find(x=>x.id===id)||freshList().find(x=>x.id===id); if(!v)return;
   const A=fmtAvg()[v.format]||{}, tr=Object.entries(v.traffic||{}).sort((a,b)=>b[1]-a[1]), tt=tr.reduce((s,x)=>s+x[1],0)||1;
   const cmp=(x,a)=>x==null||!a?"":`<em class="${x>=a?"up":"down"}">${x>=a?"▲":"▼"} ${Math.abs(pct(x,a)).toFixed(0)}% к среднему</em>`;
-  openSheet(`<div class="th" style="border-radius:18px"><img src="${esc(v.thumb||`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`)}" alt=""></div>
+  openSheet(`<div class="th" style="border-radius:18px"><img src="${esc(v.thumb||"i/private.svg")}" alt=""></div>
     <h2 style="font-size:18px;margin:14px 0 6px;display:block">${esc(clean(v.title))}</h2>
     <div class="row" style="margin-bottom:14px">${v.format?`<span class="chip">${esc(v.format)}</span>`:""}<span class="chip">${dshort(v.published)}</span>${v.duration?`<span class="chip">${dur(v.duration)}</span>`:""}</div>
     <div class="stat"><div><small>Просмотры</small><b class="num">${num(v.views)}</b>${cmp(v.views,A.views)}</div><div><small>Засчитанные</small><b class="num">${num(v.engaged_views)}</b></div><div><small>Досмотр</small><b>${v.avp==null?"—":Math.round(v.avp)+"%"}</b>${cmp(v.avp,A.avp)}</div><div><small>Ср. время</small><b>${v.avd==null?"—":dur(Math.round(v.avd))}</b></div><div><small>Подписки</small><b>${v.subs==null?"—":"+"+v.subs}</b>${cmp(v.subs,A.subs)}</div><div><small>Лайки</small><b>${num(v.likes)}</b></div><div><small>Комменты</small><b>${num(v.comments)}</b></div><div><small>Репосты</small><b>${num(v.shares)}</b></div></div>

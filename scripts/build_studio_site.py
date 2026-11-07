@@ -112,7 +112,7 @@ def add_pending_uploads(videos, receipts, manifests):
             "privacy": "private", "duration": None, "format": format_name,
             "views": None, "engaged": None, "avp": None, "avd": None,
             "subs": None, "likes": None, "comments": None, "shares": None,
-            "thumb": f"https://i.ytimg.com/vi/{vid}/mqdefault.jpg",
+            "thumb": "i/private.svg",   # YouTube serves no thumbnail for private videos (was a 404 per card)
             "traffic": {}, "v48": None, "v7d": None, "engaged_views": None,
             "analytics_pending": True,
         })
@@ -235,7 +235,7 @@ def main():
             "avd": a.get("averageViewDuration"), "subs": a.get("subscribersGained"),
             "likes": a.get("likes") if a.get("likes") is not None else int(stats.get("likeCount", 0) or 0),
             "comments": a.get("comments"), "shares": a.get("shares"),
-            "thumb": f"https://i.ytimg.com/vi/{vid}/mqdefault.jpg",
+            "thumb": f"https://i.ytimg.com/vi/{vid}/mqdefault.jpg" if inv.get("privacy") == "public" else "i/private.svg",
             "traffic": {r.get("insightTrafficSourceType"): r.get("views") for r in traffic.get(vid, []) if r.get("views")},
             "v48": int(csv_rows.get(vid, {}).get("views_48h") or 0) or None,
             "v7d": int(csv_rows.get(vid, {}).get("views_7d") or 0) or None,
