@@ -1,0 +1,190 @@
+{
+ "id": "c4",
+ "card": [
+  "ГЛАВА ЧЕТВЁРТАЯ",
+  "Ускорение"
+ ],
+ "shots": [
+  {
+   "id": "c4_a",
+   "seed": 1401,
+   "prompt": "a dark elongated asteroid moving away from the bright sun along a glowing trajectory line, a second faint predicted line diverging from it, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c4_b",
+   "seed": 1402,
+   "prompt": "the sun shining fiercely in black outer space, solar wind and light rays streaming outward, majestic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c4_c",
+   "seed": 1403,
+   "prompt": "an ordinary icy comet near the sun with bright jets of gas shooting from its surface and a glowing coma, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c4_d",
+   "seed": 1404,
+   "prompt": "a dark asteroid in sunlight with absolutely no gas and no dust around it, clean sharp silhouette, black space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c4_e",
+   "seed": 1405,
+   "prompt": "a scientist's desk at night covered with orbit calculations, curved lines, a laptop with a graph, coffee, lamp, no readable text",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c4_f",
+   "seed": 1406,
+   "prompt": "the hubble space telescope floating above the blue earth, stars, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c4_g",
+   "seed": 1407,
+   "prompt": "a large professional telescope observatory on a high mountain at dusk, several domes open, purple sky",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c4_h",
+   "seed": 1408,
+   "prompt": "a spinning asteroid with small jets of gas pushing it, rotating faster, motion blur, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c4_i",
+   "seed": 1409,
+   "prompt": "a giant question mark shape formed by stars and dust in a dark nebula, deep space, mysterious",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c4_j",
+   "seed": 1410,
+   "prompt": "a tiny dark object disappearing into the black, the sun far behind, stars, melancholic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  }
+ ],
+ "beats": [
+  {
+   "id": "c4b01",
+   "shot": "c4_j",
+   "text": "Пока гость уходил, астрономы продолжали следить за ним. Каждую ночь. Хаббл, огромные телескопы в Чили и на Гавайях."
+  },
+  {
+   "id": "c4b02",
+   "shot": "c4_g",
+   "text": "Они хотели точно рассчитать его путь. Это обычная работа. Законы Ньютона известны больше трёхсот лет.",
+   "alias": [
+    "Они хотели точно рассчитать его путь. Это обычная работа. Законы Ньютона известны больше 300 лет."
+   ]
+  },
+  {
+   "id": "c4b03",
+   "shot": "c4_a",
+   "text": "Но точки на снимках не ложились на расчётную кривую. Гость каждый день оказывался чуть дальше, чем должен был."
+  },
+  {
+   "id": "c4b04",
+   "shot": "c4_e",
+   "text": "Сначала подумали на ошибки измерений. Проверили. Пересчитали. Ошибки не было."
+  },
+  {
+   "id": "c4b05",
+   "shot": "c4_a",
+   "text": "Оумуамуа ускорялся. Совсем слабо — примерно на тысячную долю от силы солнечного притяжения. Но ускорялся.",
+   "alias": [
+    "Умуамуа ускорялся. Совсем слабо — примерно на тысячную долю от силы солнечного притяжения. Но ускорялся."
+   ]
+  },
+  {
+   "id": "c4b06",
+   "shot": "c4_b",
+   "text": "И это ускорение было направлено от Солнца. Чем ближе к Солнцу, тем сильнее. Как будто Солнце мягко толкало его в спину."
+  },
+  {
+   "id": "c4b07",
+   "shot": "c4_e",
+   "text": "Летом две тысячи восемнадцатого года статью об этом опубликовал журнал Nature. Один из главных научных журналов мира.",
+   "say": "Летом две тысячи восемнадцатого года статью об этом опубликовал журнал Нейчер. Один из главных научных журналов мира.",
+   "alias": [
+    "Летом 2018 года статью об этом опубликовал журнал Nature. Один из главных научных журналов мира.",
+    "Летом 2018 года статью об этом опубликовал журнал Нейчер. Один из главных научных журналов мира."
+   ]
+  },
+  {
+   "id": "c4b08",
+   "shot": "c4_c",
+   "text": "У комет такое бывает. Солнце нагревает лёд, из трещин бьют струи газа. И работают как маленькие реактивные двигатели."
+  },
+  {
+   "id": "c4b09",
+   "shot": "c4_c",
+   "text": "Самое простое объяснение: гость — это комета. Просто необычная."
+  },
+  {
+   "id": "c4b10",
+   "shot": "c4_d",
+   "text": "Но у кометы, которую толкают струи, должна быть кома. Облако пыли и газа вокруг ядра. И хвост."
+  },
+  {
+   "id": "c4b11",
+   "shot": "c4_d",
+   "text": "У гостя не было ни того, ни другого. Самые чувствительные приборы не нашли ни пыли, ни углекислого газа, ни угарного."
+  },
+  {
+   "id": "c4b12",
+   "shot": "c4_h",
+   "text": "И ещё одна нестыковка. Струи газа почти никогда не бьют ровно. Они закручивают комету. Её вращение меняется."
+  },
+  {
+   "id": "c4b13",
+   "shot": "c4_h",
+   "text": "Вращение гостя почти не изменилось. Его что-то толкало. Сильно и ровно. Но ничего не было видно."
+  },
+  {
+   "id": "c4b14",
+   "shot": "c4_f",
+   "text": "Для науки это неприятная ситуация. Есть сила. Есть её след. И нет источника."
+  },
+  {
+   "id": "c4b15",
+   "shot": "c4_i",
+   "text": "Учёные начали предлагать версии. Одни — осторожные. Другие — настолько смелые, что о них заговорили в новостях по всему миру."
+  },
+  {
+   "id": "c4b16",
+   "shot": "c4_b",
+   "text": "И самая громкая версия утверждала: этого гостя толкает не газ. А сам солнечный свет."
+  }
+ ]
+}

@@ -1,0 +1,195 @@
+{
+ "id": "c7",
+ "card": [
+  "ГЛАВА СЕДЬМАЯ",
+  "Второй и третий"
+ ],
+ "shots": [
+  {
+   "id": "c7_a",
+   "seed": 1701,
+   "prompt": "a small amateur observatory with a homemade dome on a hill in Crimea at night, starry sky, one lit window",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c7_b",
+   "seed": 1702,
+   "prompt": "a fuzzy interstellar comet with a bright coma and a long tail crossing the stars, deep space, cinematic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c7_c",
+   "seed": 1703,
+   "prompt": "a telescope in the chilean desert at night under the milky way, clear sky, red dome lights",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c7_d",
+   "seed": 1704,
+   "prompt": "an ancient very fast comet with a glowing green coma speeding past the sun, motion streak, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c7_e",
+   "seed": 1705,
+   "prompt": "the red planet mars in black space with a bright comet passing near it, a small orbiter spacecraft in the foreground",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c7_f",
+   "seed": 1706,
+   "prompt": "a huge modern observatory building on a chilean mountain top at sunset, a large telescope, dramatic sky",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c7_g",
+   "seed": 1707,
+   "prompt": "a spacecraft waiting in deep space far from earth, solar panels deployed, ready to intercept a comet, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c7_h",
+   "seed": 1708,
+   "prompt": "the milky way galaxy seen from above with countless stars, an ancient object drifting from the old galactic disk, majestic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c7_i",
+   "seed": 1709,
+   "prompt": "a fast probe spacecraft chasing a tiny dark object into interstellar space, long exhaust glow, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c7_j",
+   "seed": 1710,
+   "prompt": "a new mysterious object approaching the solar system from interstellar darkness, the sun bright ahead, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  }
+ ],
+ "beats": [
+  {
+   "id": "c7b01",
+   "shot": "c7_a",
+   "text": "Ответ пришёл быстрее, чем ожидали. Летом две тысячи девятнадцатого года. И нашёл гостя не большой институт, а один человек.",
+   "alias": [
+    "Ответ пришёл быстрее, чем ожидали. Летом 2019 года. И нашёл гостя не большой институт, а один человек."
+   ]
+  },
+  {
+   "id": "c7b02",
+   "shot": "c7_a",
+   "text": "Астроном-любитель Геннадий Борисов в Крыму. На телескоп, который он собрал сам."
+  },
+  {
+   "id": "c7b03",
+   "shot": "c7_b",
+   "text": "Второй межзвёздный гость получил имя Борисов. И оказался совсем не похожим на первого."
+  },
+  {
+   "id": "c7b04",
+   "shot": "c7_b",
+   "text": "У него была кома. Был хвост. Он выглядел как самая обычная комета. Только прилетевшая из другой звёздной системы."
+  },
+  {
+   "id": "c7b05",
+   "shot": "c7_b",
+   "text": "Это стало важным выводом. Значит, такие тела бывают разными. И Оумуамуа — не правило, а исключение.",
+   "alias": [
+    "Это стало важным выводом. Значит, такие тела бывают разными. И Умуамуа — не правило, а исключение."
+   ]
+  },
+  {
+   "id": "c7b06",
+   "shot": "c7_c",
+   "text": "А первого июля две тысячи двадцать пятого года телескоп системы ATLAS в Чили заметил третьего гостя.",
+   "say": "А первого июля две тысячи двадцать пятого года телескоп системы Атлас в Чили заметил третьего гостя.",
+   "alias": [
+    "А 1 июля 2025 года телескоп системы ATLAS в Чили заметил третьего гостя.",
+    "А 1 июля 2025 года телескоп системы Атлас в Чили заметил третьего гостя."
+   ]
+  },
+  {
+   "id": "c7b07",
+   "shot": "c7_d",
+   "text": "Он летел очень быстро. Почти шестьдесят километров в секунду. Быстрее обоих предшественников.",
+   "alias": [
+    "Он летел очень быстро. Почти 60 километров в секунду. Быстрее обоих предшественников."
+   ]
+  },
+  {
+   "id": "c7b08",
+   "shot": "c7_h",
+   "text": "Его путь подсказывает, что он мог прийти из древней части галактики. Возможно, он старше нашего Солнца."
+  },
+  {
+   "id": "c7b09",
+   "shot": "c7_e",
+   "text": "На этот раз за гостем следили не только с Земли. Его снимали аппараты у Марса, мимо которого он пролетал осенью."
+  },
+  {
+   "id": "c7b10",
+   "shot": "c7_d",
+   "text": "Он вёл себя как комета. Кома, хвост, газ. И всё-таки нашлись те, кто снова спросил: а вдруг?"
+  },
+  {
+   "id": "c7b11",
+   "shot": "c7_f",
+   "text": "Но главное событие тех лет — не сам гость. В Чили заработала новая обсерватория имени Веры Рубин."
+  },
+  {
+   "id": "c7b12",
+   "shot": "c7_f",
+   "text": "Она будет снимать всё южное небо каждые несколько ночей. Учёные надеются, что межзвёздных гостей станут находить регулярно."
+  },
+  {
+   "id": "c7b13",
+   "shot": "c7_g",
+   "text": "А Европейское космическое агентство готовит аппарат, который будет ждать в космосе. Когда появится подходящая цель, он полетит навстречу."
+  },
+  {
+   "id": "c7b14",
+   "shot": "c7_i",
+   "text": "Есть даже проекты погони за самим Оумуамуа. Догнать его можно. Но полёт займёт десятилетия.",
+   "alias": [
+    "Есть даже проекты погони за самим Умуамуа. Догнать его можно. Но полёт займёт десятилетия."
+   ]
+  },
+  {
+   "id": "c7b15",
+   "shot": "c7_j",
+   "text": "Первый гость застал нас врасплох. Мы увидели его, когда он уже уходил. Следующего мы надеемся встретить заранее."
+  },
+  {
+   "id": "c7b16",
+   "shot": "c7_j",
+   "text": "И тогда, может быть, мы впервые подлетим к осколку чужой звёздной системы и посмотрим на него вблизи."
+  }
+ ]
+}

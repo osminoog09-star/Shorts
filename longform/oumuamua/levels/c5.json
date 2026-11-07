@@ -1,0 +1,190 @@
+{
+ "id": "c5",
+ "card": [
+  "ГЛАВА ПЯТАЯ",
+  "Парус"
+ ],
+ "shots": [
+  {
+   "id": "c5_a",
+   "seed": 1501,
+   "prompt": "an old university campus building at night in winter, warm lit windows, snow, quiet, mysterious",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c5_b",
+   "seed": 1502,
+   "prompt": "a gigantic ultra thin square solar sail of shimmering silver foil floating in black outer space, sunlight reflecting off it, distant sun",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c5_c",
+   "seed": 1593,
+   "prompt": "a gigantic ultra thin square solar sail membrane of shimmering silver foil tumbling in black outer space, sunlight flashing off it, science fiction spacecraft, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c5_d",
+   "seed": 1504,
+   "prompt": "an alien derelict object of unknown technology drifting in black outer space, dark metallic, faint glow, mysterious, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c5_e",
+   "seed": 1505,
+   "prompt": "a huge radio telescope dish at night under the milky way, green valley, listening to the sky",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c5_f",
+   "seed": 1506,
+   "prompt": "many small light sails propelled by powerful laser beams from earth toward distant stars, science fiction concept, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c5_g",
+   "seed": 1507,
+   "prompt": "a crowded scientific conference hall with a speaker on stage in front of a large screen showing a starry sky, audience silhouettes",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c5_h",
+   "seed": 1508,
+   "prompt": "a stack of newspapers and magazines on a desk with dramatic space covers, morning light, no readable text",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c5_i",
+   "seed": 1509,
+   "prompt": "a lone man in a coat standing on a hill at night looking up at the stars, city lights far below, contemplative",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c5_j",
+   "seed": 1590,
+   "prompt": "a small broken square solar sail membrane of silver foil with torn edges drifting in black interstellar space, tiny distant sun, science fiction spacecraft wreck, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  }
+ ],
+ "beats": [
+  {
+   "id": "c5b01",
+   "shot": "c5_a",
+   "text": "Осенью две тысячи восемнадцатого года в Гарварде вышла короткая статья. Её авторы — астрофизик Ави Лёб и его коллега Шмуэль Бялый.",
+   "alias": [
+    "Осенью 2018 года в Гарварде вышла короткая статья. Её авторы — астрофизик Ави Лёб и его коллега Шмуэль Бялый."
+   ]
+  },
+  {
+   "id": "c5b02",
+   "shot": "c5_b",
+   "text": "Их идея была простой и пугающей. Свет имеет давление. Слабое, но настоящее. Если предмет очень лёгкий и очень большой, свет может его толкать."
+  },
+  {
+   "id": "c5b03",
+   "shot": "c5_b",
+   "text": "Так работают солнечные паруса. Люди уже запускали такие аппараты в космос. Тонкая плёнка, которую разгоняет Солнце."
+  },
+  {
+   "id": "c5b04",
+   "shot": "c5_c",
+   "text": "Чтобы свет разогнал Оумуамуа так, как это видели телескопы, он должен быть невероятно тонким. Меньше миллиметра в толщину.",
+   "alias": [
+    "Чтобы свет разогнал Умуамуа так, как это видели телескопы, он должен быть невероятно тонким. Меньше миллиметра в толщину."
+   ]
+  },
+  {
+   "id": "c5b05",
+   "shot": "c5_c",
+   "text": "Такую вещь природа сделать не умеет. А цивилизация — может."
+  },
+  {
+   "id": "c5b06",
+   "shot": "c5_d",
+   "text": "Авторы осторожно написали: возможно, это обломок чужой технологии. Сломанный парус, который миллионы лет дрейфует между звёздами."
+  },
+  {
+   "id": "c5b07",
+   "shot": "c5_d",
+   "text": "Или даже зонд, который прислали к нам специально."
+  },
+  {
+   "id": "c5b08",
+   "shot": "c5_h",
+   "text": "Через несколько дней об этом писали все. Пришельцы. Инопланетный корабль. Гарвардский профессор считает, что нас посетили."
+  },
+  {
+   "id": "c5b09",
+   "shot": "c5_e",
+   "text": "Проверить хотели сразу. Ещё в декабре две тысячи семнадцатого года на гостя направили огромный радиотелескоп. Искали сигналы.",
+   "alias": [
+    "Проверить хотели сразу. Ещё в декабре 2017 года на гостя направили огромный радиотелескоп. Искали сигналы."
+   ]
+  },
+  {
+   "id": "c5b10",
+   "shot": "c5_e",
+   "text": "Тишина. Ни передачи, ни шума двигателей. Ничего, что можно было бы назвать голосом."
+  },
+  {
+   "id": "c5b11",
+   "shot": "c5_g",
+   "text": "Большинство учёных отнеслись к идее паруса скептически. Необычные утверждения требуют необычных доказательств. А доказательств не было."
+  },
+  {
+   "id": "c5b12",
+   "shot": "c5_g",
+   "text": "Лёб не отступал. Он написал книгу. Выступал. Повторял: наука должна допускать и такую возможность, а не отбрасывать её заранее."
+  },
+  {
+   "id": "c5b13",
+   "shot": "c5_i",
+   "text": "Ирония в том, что он во многом был прав. Само по себе ускорение никто не мог объяснить. Просто большинство не хотело объяснять его пришельцами."
+  },
+  {
+   "id": "c5b14",
+   "shot": "c5_f",
+   "text": "И в этом же споре родилась другая мысль. Если парус — это так удобно, может, его стоит сделать нам самим?"
+  },
+  {
+   "id": "c5b15",
+   "shot": "c5_f",
+   "text": "Люди уже обсуждают проекты: крошечные зонды на световых парусах, которые мощные лазеры разгонят к соседним звёздам."
+  },
+  {
+   "id": "c5b16",
+   "shot": "c5_j",
+   "text": "Если когда-нибудь такой зонд улетит от нас и сломается, где-то в другой системе его тоже назовут загадкой."
+  },
+  {
+   "id": "c5b17",
+   "shot": "c5_c",
+   "text": "А пока у учёных был выбор. Поверить в парус. Или найти природное тело, которое могло бы вести себя так же."
+  }
+ ]
+}

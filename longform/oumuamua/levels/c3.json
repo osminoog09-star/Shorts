@@ -1,0 +1,190 @@
+{
+ "id": "c3",
+ "card": [
+  "ГЛАВА ТРЕТЬЯ",
+  "Тень неправильной формы"
+ ],
+ "shots": [
+  {
+   "id": "c3_a",
+   "seed": 1301,
+   "prompt": "a large professional telescope at night under a starry sky on a mountain, laser guide beam, cinematic",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c3_b",
+   "seed": 1302,
+   "prompt": "a single tiny point of light among stars seen through a telescope, flickering brightness, dark, minimal, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c3_c",
+   "seed": 1303,
+   "prompt": "an extremely elongated dark red cigar shaped asteroid tumbling end over end in black outer space, sunlight on its edge, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c3_d",
+   "seed": 1396,
+   "prompt": "a flat oval reddish asteroid shaped like a thin smooth pebble, seen from above at an angle, floating alone in black outer space with stars all around it, nothing below it",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c3_e",
+   "seed": 1305,
+   "prompt": "close-up of a dark reddish rocky surface covered in cosmic dust, irradiated crust, harsh sunlight, black space behind",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c3_f",
+   "seed": 1306,
+   "prompt": "two asteroids colliding in black outer space, fragments flying apart, bright flash, dramatic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c3_g",
+   "seed": 1307,
+   "prompt": "a small infrared space telescope with a gold sunshield orbiting far from earth, stars, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c3_h",
+   "seed": 1308,
+   "prompt": "a scientist at night comparing many photographs of a star field on a light table, magnifying glass, warm lamp",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c3_i",
+   "seed": 1309,
+   "prompt": "a reddish icy dwarf world in the distant cold outer solar system, faint sun, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c3_j",
+   "seed": 1390,
+   "prompt": "a dark elongated asteroid floating in pitch black outer space, tumbling slowly, faint sunlight on its tip, stars, mysterious, lonely",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  }
+ ],
+ "beats": [
+  {
+   "id": "c3b01",
+   "shot": "c3_a",
+   "text": "Весь мир бросился смотреть на гостя. Но увидеть Оумуамуа по-настоящему не смог ни один телескоп.",
+   "alias": [
+    "Весь мир бросился смотреть на гостя. Но увидеть Умуамуа по-настоящему не смог ни один телескоп."
+   ]
+  },
+  {
+   "id": "c3b02",
+   "shot": "c3_b",
+   "text": "Он был слишком мал и слишком далёк. Даже в самые мощные инструменты он выглядел как одна-единственная точка."
+  },
+  {
+   "id": "c3b03",
+   "shot": "c3_b",
+   "text": "Всё, что у астрономов было, — это свет. Как ярко точка светится. И как этот блеск меняется со временем."
+  },
+  {
+   "id": "c3b04",
+   "shot": "c3_h",
+   "text": "И блеск менялся очень странно. За несколько часов точка становилась ярче почти в десять раз. А потом снова тускнела."
+  },
+  {
+   "id": "c3b05",
+   "shot": "c3_c",
+   "text": "Так бывает, когда вращается тело очень вытянутой формы. Когда оно повёрнуто к нам боком, оно отражает много света. Когда торцом — почти ничего."
+  },
+  {
+   "id": "c3b06",
+   "shot": "c3_c",
+   "text": "По расчётам выходило, что гость в несколько раз длиннее, чем шире. Возможно, в шесть раз. А может, и больше."
+  },
+  {
+   "id": "c3b07",
+   "shot": "c3_e",
+   "text": "Ни один известный астероид или комета в Солнечной системе не бывает настолько вытянутым. Это было за пределами всего, что мы знали."
+  },
+  {
+   "id": "c3b08",
+   "shot": "c3_d",
+   "text": "Позже появилась другая модель. Что, если он не сигара, а плоский блин? Тонкий диск, который вращается и вспыхивает краем."
+  },
+  {
+   "id": "c3b09",
+   "shot": "c3_d",
+   "text": "Обе формы объясняли блеск. Обе были невероятными. Художники рисовали сигару. Учёные спорили."
+  },
+  {
+   "id": "c3b10",
+   "shot": "c3_f",
+   "text": "Ещё одна деталь: он не просто вращался, а кувыркался. Беспорядочно, сразу вокруг нескольких осей."
+  },
+  {
+   "id": "c3b11",
+   "shot": "c3_f",
+   "text": "Такое случается после сильного удара. Возможно, когда-то давно, в своей родной системе, он пережил столкновение."
+  },
+  {
+   "id": "c3b12",
+   "shot": "c3_e",
+   "text": "Его цвет оказался красноватым. Как у ледяных тел на окраине нашей системы, которые миллиарды лет облучают космические лучи."
+  },
+  {
+   "id": "c3b13",
+   "shot": "c3_i",
+   "text": "Похоже, он долго странствовал в холоде, и излучение испекло его поверхность в тёмную корку."
+  },
+  {
+   "id": "c3b14",
+   "shot": "c3_g",
+   "text": "Космический телескоп Спитцер попытался поймать его тепло. И не увидел ничего. Гость оказался слишком мал даже для него."
+  },
+  {
+   "id": "c3b15",
+   "shot": "c3_g",
+   "text": "Это позволило оценить размер. Примерно от ста до четырёхсот с лишним метров. Как небоскрёб, летящий через пустоту.",
+   "alias": [
+    "Это позволило оценить размер. Примерно от 100 до 400 с лишним метров. Как небоскрёб, летящий через пустоту."
+   ]
+  },
+  {
+   "id": "c3b16",
+   "shot": "c3_b",
+   "text": "Маленький. Тёмный. Неправильной формы. Кувыркающийся. Уже этого хватило бы, чтобы назвать его самым странным объектом года."
+  },
+  {
+   "id": "c3b17",
+   "shot": "c3_j",
+   "text": "Но всё это было только началом. Главная загадка пряталась не в его форме. А в том, как он двигался."
+  }
+ ]
+}

@@ -1,0 +1,208 @@
+{
+ "id": "c2",
+ "card": [
+  "ГЛАВА ВТОРАЯ",
+  "Откуда приходят гости"
+ ],
+ "shots": [
+  {
+   "id": "c2_a",
+   "seed": 1201,
+   "prompt": "the whole solar system seen from far above, planets on thin glowing elliptical orbits around the bright sun, one dark object crossing on an open curved path, majestic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_b",
+   "seed": 1202,
+   "prompt": "a vast spherical cloud of billions of icy comets surrounding a tiny distant sun, faint blue glow, enormous scale, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_c",
+   "seed": 1203,
+   "prompt": "two distant star systems separated by an immense black void, a tiny icy fragment drifting between them, loneliness, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_d",
+   "seed": 1204,
+   "prompt": "a young star surrounded by a dusty protoplanetary disk with forming planets, a giant planet flinging small icy bodies out into space, dramatic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_e",
+   "seed": 1205,
+   "prompt": "the bright blue white star Vega shining in a dense star field of the constellation Lyra, deep space, sparkling",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_f",
+   "seed": 1206,
+   "prompt": "astronomers in a 1980s observatory office at night with printed star charts and a large telescope visible through a doorway, warm lamp",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c2_g",
+   "seed": 1207,
+   "prompt": "a huge modern survey telescope inside an open observatory dome at night pointing at the milky way, red interior lights",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c2_h",
+   "seed": 1208,
+   "prompt": "a small dark object moving fast past the earth and the moon, distant sun, sense of speed, motion streak, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_i",
+   "seed": 1209,
+   "prompt": "an object leaving the solar system toward a cluster of stars in Pegasus, the sun small behind, long glowing trajectory line, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c2_j",
+   "seed": 1291,
+   "prompt": "a dark elongated asteroid floating in pitch black interstellar space, faint cold starlight on its edge, no star nearby, melancholic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  }
+ ],
+ "beats": [
+  {
+   "id": "c2b01",
+   "shot": "c2_a",
+   "text": "Чтобы понять, почему эта находка так взволновала учёных, нужно вспомнить, как устроена наша Солнечная система."
+  },
+  {
+   "id": "c2b02",
+   "shot": "c2_a",
+   "text": "Планеты, астероиды и кометы движутся вокруг Солнца по замкнутым орбитам. Они вечно возвращаются. Солнце держит их всех."
+  },
+  {
+   "id": "c2b03",
+   "shot": "c2_b",
+   "text": "Даже самые далёкие кометы прилетают из облака Оорта. Это огромная ледяная оболочка на краю нашей системы. Но и она принадлежит Солнцу."
+  },
+  {
+   "id": "c2b04",
+   "shot": "c2_h",
+   "text": "Орбита Оумуамуа не была замкнутой. Она была открытой кривой — гиперболой. Объект не падал к Солнцу. Он пролетал мимо.",
+   "alias": [
+    "Орбита Умуамуа не была замкнутой. Она была открытой кривой — гиперболой. Объект не падал к Солнцу. Он пролетал мимо."
+   ]
+  },
+  {
+   "id": "c2b05",
+   "shot": "c2_h",
+   "text": "Его скорость была слишком велика. Никакая планета не могла так разогнать камень. Он пришёл извне."
+  },
+  {
+   "id": "c2b06",
+   "shot": "c2_f",
+   "text": "Астрономы ждали таких гостей десятилетиями. Расчёты давно говорили: межзвёздные тела должны существовать. И их должно быть много."
+  },
+  {
+   "id": "c2b07",
+   "shot": "c2_d",
+   "text": "Когда рождаются планеты, гиганты вроде Юпитера выбрасывают из молодых систем миллиарды ледяных обломков."
+  },
+  {
+   "id": "c2b08",
+   "shot": "c2_c",
+   "text": "Эти обломки уходят в межзвёздную пустоту. И летят. Миллионы лет. Сотни миллионов лет. Пока случайно не встретят другую звезду."
+  },
+  {
+   "id": "c2b09",
+   "shot": "c2_f",
+   "text": "Но ни одного такого гостя никто не видел. Они слишком маленькие и слишком тёмные. Их невозможно заметить, пока они не подлетят совсем близко."
+  },
+  {
+   "id": "c2b10",
+   "shot": "c2_g",
+   "text": "Всё изменилось, когда появились телескопы, которые каждую ночь фотографируют всё небо. Их строили, чтобы защищать Землю от астероидов."
+  },
+  {
+   "id": "c2b11",
+   "shot": "c2_g",
+   "text": "Один из них и поймал Оумуамуа. Через сорок дней после того, как гость прошёл ближе всего к Солнцу.",
+   "alias": [
+    "Один из них и поймал Умуамуа. Через сорок дней после того, как гость прошёл ближе всего к Солнцу.",
+    "Один из них и поймал Оумуамуа. Через 40 дней после того, как гость прошёл ближе всего к Солнцу."
+   ]
+  },
+  {
+   "id": "c2b12",
+   "shot": "c2_h",
+   "text": "К тому моменту он уже пролетел внутри орбиты Меркурия. Обогнул Солнце. И теперь уходил прочь."
+  },
+  {
+   "id": "c2b13",
+   "shot": "c2_e",
+   "text": "Он прилетел со стороны созвездия Лиры. Почти оттуда, где на нашем небе сияет яркая Вега."
+  },
+  {
+   "id": "c2b14",
+   "shot": "c2_e",
+   "text": "Но это совпадение. Сотни тысяч лет назад, когда гость был в тех краях, Веги там ещё не было. Звёзды тоже движутся."
+  },
+  {
+   "id": "c2b15",
+   "shot": "c2_c",
+   "text": "Откуда он на самом деле, не знает никто. Его родная звезда могла давно погаснуть. Или уйти на другой край галактики."
+  },
+  {
+   "id": "c2b16",
+   "shot": "c2_f",
+   "text": "Сначала ему дали обозначение кометы. Потом астероида. А потом пришлось придумать новую категорию.",
+   "quote": "1I/2017 U1"
+  },
+  {
+   "id": "c2b17",
+   "shot": "c2_f",
+   "text": "Буква I. Межзвёздный. Номер один. Первый в истории человечества.",
+   "alias": [
+    "Буква И. Межзвёздный. Номер один. Первый в истории человечества."
+   ]
+  },
+  {
+   "id": "c2b18",
+   "shot": "c2_i",
+   "text": "Теперь он летит в сторону созвездия Пегаса. В две тысячи двадцать втором году он пересёк орбиту Нептуна.",
+   "alias": [
+    "Теперь он летит в сторону созвездия Пегаса. В 2022 году он пересёк орбиту Нептуна."
+   ]
+  },
+  {
+   "id": "c2b19",
+   "shot": "c2_j",
+   "text": "И больше никогда не вернётся. Ни к нам, ни к одному из своих прежних солнц. У него нет дома. Только дорога."
+  }
+ ]
+}

@@ -1,0 +1,172 @@
+{
+ "id": "c8",
+ "card": [
+  "ГЛАВА ВОСЬМАЯ",
+  "Посланник"
+ ],
+ "shots": [
+  {
+   "id": "c8_a",
+   "seed": 1801,
+   "prompt": "white observatory telescope dome on top of a dormant volcano summit at dawn above a sea of clouds, first light, peaceful, wide shot",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c8_b",
+   "seed": 1802,
+   "prompt": "the milky way galaxy spanning the whole sky above a quiet mountain, a lone observer silhouette, awe",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c8_c",
+   "seed": 1803,
+   "prompt": "a lonely elongated reddish rock drifting through a glowing colorful nebula in deep space, majestic, slow",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c8_d",
+   "seed": 1804,
+   "prompt": "an alien star system with a red sun and ringed planets seen from far away, ancient, mysterious, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c8_e",
+   "seed": 1805,
+   "prompt": "a child looking through a small telescope at night on a balcony, city lights, stars, wonder",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c8_f",
+   "seed": 1806,
+   "prompt": "the earth seen from deep space as a tiny pale blue dot in a beam of sunlight, vast darkness",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c8_g",
+   "seed": 1807,
+   "prompt": "an empty observatory control room at dawn, monitors glowing with star fields, coffee cup, quiet",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c8_h",
+   "seed": 1808,
+   "prompt": "countless tiny dark objects drifting between stars of the galaxy, invisible travelers, deep space, poetic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c8_i",
+   "seed": 1809,
+   "prompt": "a tiny dark object fading into the black depths of interstellar space, the sun a small bright star far behind, loneliness",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c8_j",
+   "seed": 1810,
+   "prompt": "a sky full of stars over the ocean at night seen from a volcano summit, one star slightly moving, quiet ending",
+   "layers": [
+    "dust"
+   ]
+  }
+ ],
+ "beats": [
+  {
+   "id": "c8b01",
+   "shot": "c8_i",
+   "text": "Сегодня Оумуамуа уже за орбитой Нептуна. Его не видит ни один телескоп. Он снова стал тем, кем был до встречи с нами. Тёмной точкой в пустоте.",
+   "alias": [
+    "Сегодня Умуамуа уже за орбитой Нептуна. Его не видит ни один телескоп. Он снова стал тем, кем был до встречи с нами. Тёмной точкой в пустоте."
+   ]
+  },
+  {
+   "id": "c8b02",
+   "shot": "c8_c",
+   "text": "Через десятки тысяч лет он уйдёт из облака Оорта. Через миллионы — встретит другую звезду. Может быть, там тоже кто-то посмотрит в небо."
+  },
+  {
+   "id": "c8b03",
+   "shot": "c8_d",
+   "text": "Он пришёл из системы, которую мы никогда не увидим. Может быть, её солнце давно погасло. А может быть, там до сих пор кружатся планеты."
+  },
+  {
+   "id": "c8b04",
+   "shot": "c8_d",
+   "text": "И этот камень — единственное, что мы когда-либо держали в руках из того мира. Пусть только в виде точки на снимке."
+  },
+  {
+   "id": "c8b05",
+   "shot": "c8_h",
+   "text": "Мы до сих пор не знаем, чем он был. Ледяным осколком. Плитой азота. Пушистым облаком пыли. Или чем-то, что сделали чьи-то руки."
+  },
+  {
+   "id": "c8b06",
+   "shot": "c8_h",
+   "text": "Но он научил нас главному. Между звёздами не пусто. Там постоянно летят гости. Просто раньше мы их не замечали."
+  },
+  {
+   "id": "c8b07",
+   "shot": "c8_g",
+   "text": "Ещё десять лет назад о межзвёздных объектах писали только теоретики. Теперь у них есть номера. Первый. Второй. Третий."
+  },
+  {
+   "id": "c8b08",
+   "shot": "c8_e",
+   "text": "Где-то сейчас подрастает ребёнок, который станет астрономом. Возможно, именно он увидит четвёртого. Или сотого."
+  },
+  {
+   "id": "c8b09",
+   "shot": "c8_b",
+   "text": "И однажды кто-то из них поймает гостя, который будет вести себя совсем не как камень."
+  },
+  {
+   "id": "c8b10",
+   "shot": "c8_f",
+   "text": "Что мы тогда сделаем? Узнаем ли мы послание, если оно прилетит? Или примем его за ещё одну странную комету?"
+  },
+  {
+   "id": "c8b11",
+   "shot": "c8_a",
+   "text": "Гавайцы назвали его Оумуамуа. Посланник издалека, прибывший первым.",
+   "alias": [
+    "Гавайцы назвали его Умуамуа. Посланник издалека, прибывший первым."
+   ]
+  },
+  {
+   "id": "c8b12",
+   "shot": "c8_a",
+   "text": "Первым — значит, не последним."
+  },
+  {
+   "id": "c8b13",
+   "shot": "c8_j",
+   "text": "А значит, где-то там, в темноте, уже летит следующий. И он тоже не знает, что мы его ждём."
+  },
+  {
+   "id": "c8b14",
+   "shot": "c8_j",
+   "text": "Кто мы для таких гостей? Случайная остановка на долгом пути? Или те, кто наконец научился смотреть?"
+  }
+ ]
+}

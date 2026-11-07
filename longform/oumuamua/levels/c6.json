@@ -1,0 +1,190 @@
+{
+ "id": "c6",
+ "card": [
+  "ГЛАВА ШЕСТАЯ",
+  "Ледяные версии"
+ ],
+ "shots": [
+  {
+   "id": "c6_a",
+   "seed": 1601,
+   "prompt": "a translucent iceberg of frozen hydrogen floating in black outer space, faint blue glow, starlight, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_b",
+   "seed": 1602,
+   "prompt": "a giant molecular cloud in deep space, dark dense regions of gas and dust with young stars glowing inside",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_c",
+   "seed": 1603,
+   "prompt": "an icy dwarf planet like Pluto with nitrogen glaciers and a heart shaped plain, distant sun, deep space",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_d",
+   "seed": 1604,
+   "prompt": "a large asteroid impact on an icy dwarf planet, chunks of white ice flying into space, dramatic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_e",
+   "seed": 1605,
+   "prompt": "a bright white flat slab of nitrogen ice drifting in black outer space, reflecting sunlight, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_f",
+   "seed": 1606,
+   "prompt": "a fluffy porous cloud-like clump of cosmic dust, extremely delicate, floating in black outer space, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_g",
+   "seed": 1607,
+   "prompt": "an icy rock in black outer space with an invisible gentle glow of escaping gas, sunlight, subtle shimmer, stars",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_h",
+   "seed": 1608,
+   "prompt": "cosmic rays striking an icy surface in deep space, tiny bright streaks hitting ice, scientific concept art",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  },
+  {
+   "id": "c6_i",
+   "seed": 1609,
+   "prompt": "a scientist laboratory with a cryogenic chamber, frost on metal, blue light, no readable text",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c6_j",
+   "seed": 1610,
+   "prompt": "a reddish elongated rock with a faint icy shimmer floating away into black outer space, stars, calm",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain, boat, sea, water"
+  }
+ ],
+ "beats": [
+  {
+   "id": "c6b01",
+   "shot": "c6_a",
+   "text": "Первая природная версия звучала почти как фантастика. Что, если гость — это айсберг из замёрзшего водорода?"
+  },
+  {
+   "id": "c6b02",
+   "shot": "c6_a",
+   "text": "Водородный лёд испаряется, не оставляя видимого следа. Нет пыли. Нет яркого газа. Только невидимая струя, которая мягко толкает тело."
+  },
+  {
+   "id": "c6b03",
+   "shot": "c6_b",
+   "text": "Такие айсберги могли бы рождаться в самых холодных уголках галактики. В плотных облаках газа, где появляются новые звёзды."
+  },
+  {
+   "id": "c6b04",
+   "shot": "c6_b",
+   "text": "Но у версии нашёлся слабый пункт. Водородный лёд слишком нежный. В межзвёздной пустоте его быстро испарил бы свет звёзд. Он просто не дожил бы до нас."
+  },
+  {
+   "id": "c6b05",
+   "shot": "c6_c",
+   "text": "Вторая версия пришла с окраин нашей собственной системы. Посмотрите на Плутон. Его поверхность покрыта ледниками из замёрзшего азота."
+  },
+  {
+   "id": "c6b06",
+   "shot": "c6_d",
+   "text": "Когда в молодой системе рождаются планеты, такие ледяные миры часто сталкиваются. От них откалываются куски."
+  },
+  {
+   "id": "c6b07",
+   "shot": "c6_e",
+   "text": "Что, если гость — осколок азотной коры чужого Плутона? Плоский, как плита. Светлый. И очень холодный."
+  },
+  {
+   "id": "c6b08",
+   "shot": "c6_e",
+   "text": "Азот при испарении тоже почти не виден. А плоская форма объясняет и блеск, и сильный толчок от слабой струи."
+  },
+  {
+   "id": "c6b09",
+   "shot": "c6_e",
+   "text": "Модель была красивой. Но для неё нужно слишком много азотных обломков в галактике. Хватит ли их — неизвестно."
+  },
+  {
+   "id": "c6b10",
+   "shot": "c6_f",
+   "text": "Третья версия совсем странная. Гость — это пушистый комок пыли, в сотню раз менее плотный, чем воздух. Почти облако."
+  },
+  {
+   "id": "c6b11",
+   "shot": "c6_f",
+   "text": "Такую хрупкую вещь солнечный свет и правда может толкать. Но выжила бы она в долгом путешествии — большой вопрос."
+  },
+  {
+   "id": "c6b12",
+   "shot": "c6_i",
+   "text": "А в две тысячи двадцать третьем году в журнале Nature появилось объяснение, которое многим показалось самым простым.",
+   "say": "А в две тысячи двадцать третьем году в журнале Нейчер появилось объяснение, которое многим показалось самым простым.",
+   "alias": [
+    "А в 2023 году в журнале Nature появилось объяснение, которое многим показалось самым простым.",
+    "А в 2023 году в журнале Нейчер появилось объяснение, которое многим показалось самым простым."
+   ]
+  },
+  {
+   "id": "c6b13",
+   "shot": "c6_h",
+   "text": "Гость — обычная ледяная комета. Только за миллионы лет пути космические лучи превратили часть его льда в водород. И водород остался запертым внутри."
+  },
+  {
+   "id": "c6b14",
+   "shot": "c6_g",
+   "text": "Когда гость подлетел к Солнцу, лёд прогрелся, и запертый водород начал выходить наружу. Тихо. Невидимо. Без пыли."
+  },
+  {
+   "id": "c6b15",
+   "shot": "c6_g",
+   "text": "Этого хватает, чтобы дать то самое крошечное ускорение. И при этом не оставить следа, который увидели бы телескопы."
+  },
+  {
+   "id": "c6b16",
+   "shot": "c6_j",
+   "text": "Многие учёные сегодня считают это объяснение самым вероятным. Но проверить его уже нельзя. Гость ушёл слишком далеко."
+  },
+  {
+   "id": "c6b17",
+   "shot": "c6_j",
+   "text": "Мы так и не узнаем наверняка. И поэтому все взгляды обратились к одному вопросу. Когда прилетит следующий?"
+  }
+ ]
+}
