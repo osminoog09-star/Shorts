@@ -37,5 +37,6 @@
     "asr": "reports/research/qa/next_four_20261103/final_asr_summary.json",
     "no_schedule_authorized": true
   },
-  "missed_publish_at": "2026-11-06T20:00:00+02:00"
+  "missed_publish_at": "2026-11-06T20:00:00+02:00",
+  "publish_at": "2026-11-09T20:00:00+02:00"
 }
