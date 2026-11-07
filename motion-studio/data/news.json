@@ -1,15 +1,69 @@
 {
   "status": "success",
-  "updated_at": "2026-11-07T12:59:32.181602Z",
-  "last_attempt_at": "2026-11-07T12:59:32.181602Z",
+  "updated_at": "2026-11-07T21:50:00.113772Z",
+  "last_attempt_at": "2026-11-07T21:50:00.113772Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
     {
+      "id": "4e392e0aaa87851434",
+      "title": "Megaspeed exec was recruited to spy on Nvidia CEO, according to US intelligence memo",
+      "url": "https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-07T21:17:08Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "44a6b3793253ee6a4d",
+      "title": "NASA Seeks Next Generation of Explorers to Join Astronaut Corps",
+      "url": "https://www.nasa.gov/news-release/nasa-seeks-next-generation-of-explorers-to-join-astronaut-corps/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-07T18:11:57Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1ab28dde47a3074f5d",
+      "title": "NYT Cooking’s AI assistant saved my weeknight chicken, but almost ruined my cake",
+      "url": "https://www.theverge.com/tech/1029489/nyt-cooking-ai-assistant-review",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-07T15:50:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b521172828d6261302",
+      "title": "The US let Nvidia sell chips to an empty office in China",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1029483/nvidia-ai-chips-china-blacklist-government",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-07T15:43:45Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4b429bd7582936e31a",
+      "title": "AI broke the cybersecurity world. What’s next?",
+      "url": "https://www.theverge.com/podcast/1029038/ai-cybersecurity-hackers-data-breach-dark-age-alex-stamos",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-07T15:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "eecad6fef1daea32ea",
+      "title": "Why a new report on Anthropic automating AI development is alarming researchers",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1029126/anthropic-metr-report-accelerating-ai-development",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-07T12:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
       "id": "b62c9c03eb5f12028f",
-      "title": "The migration that transformed Africa's languages, genes, and cultures",
+      "title": "The Bantu expansion changed Africa. Scientists are still tracing how.",
       "url": "https://arstechnica.com/science/2026/11/the-migration-that-transformed-africas-languages-genes-and-cultures/",
       "category": "technology",
       "source": "Ars Technica",
@@ -671,60 +725,6 @@
       "category": "ai",
       "source": "The Verge AI",
       "published_at": "2026-11-05T15:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e79288c48dc9eade23",
-      "title": "Aina’s smart ring has a screen, a joystick, and a mic so you can talk to AI agents",
-      "url": "https://techcrunch.com/2026/11/05/ainas-smart-ring-has-a-screen-a-joystick-and-a-mic-so-you-can-talk-to-ai-agents/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-05T14:42:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f5a829f9a8eba31c4c",
-      "title": "Box taps Nvidia’s Nemotron for new agent-first content retrieval system",
-      "url": "https://techcrunch.com/2026/11/05/box-taps-nvidias-nemotron-for-new-agent-first-content-retrieval-system/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-05T14:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "2fd237ae4bf33b8f5a",
-      "title": "Motorola's new Signature 27 has it all if you can stomach the $1,600 price tag",
-      "url": "https://arstechnica.com/gadgets/2026/11/motorolas-new-signature-27-has-it-all-if-you-can-stomach-the-1600-price-tag/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-05T13:00:56Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "44f488c59aa9e3a6dd",
-      "title": "A YC startup is putting $1M behind 5 unsolved materials science problems for AI",
-      "url": "https://techcrunch.com/2026/11/05/a-yc-startup-is-putting-1m-behind-five-unsolved-materials-science-problems-for-ai/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-05T13:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "9db55803402ec47c3e",
-      "title": "Agility Robotics' Nasdaq debut invites scrutiny of humanoid robot market",
-      "url": "https://arstechnica.com/ai/2026/11/agility-robotics-nasdaq-debut-invites-scrutiny-of-humanoid-robot-market/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-05T12:00:41Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "07e0ef8d48b748b308",
-      "title": "2026 iPad mini review: Maximizing the mini",
-      "url": "https://arstechnica.com/gadgets/2026/11/ipad-mini-2026-review-maximizing-the-mini/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-05T12:00:01Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
