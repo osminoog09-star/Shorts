@@ -1,9 +1,10 @@
 {
   "channel": "ru",
   "source": {
-    "type": "repo",
-    "path": "longform/vacuum_wild/out/vacuum_wild_ru.mp4",
-    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    "type": "release",
+    "tag": "private-vacuum-wild-ru-cacc8f38",
+    "asset": "vacuum_wild_ru.mp4",
+    "sha256": "cacc8f3830b4a07cd9543ee36b82c1c64f73a24448530d6866b6cfd4ff565a39"
   },
   "metadata": {
     "type": "short",
