@@ -1,8 +1,10 @@
 {
-  "status": "reserved",
+  "status": "uploaded",
   "manifest": "publishing/queue/kino_009.json",
   "manifest_sha256": "1ce67d3e2cb08f3dfde18d89bc12c024e154181961a831cd9699ec8c542ac79b",
   "channel": "ru",
   "publish_at_utc": null,
-  "note": "A reserved attempt must NEVER be automatically retried."
+  "note": "A reserved attempt must NEVER be automatically retried.",
+  "video_id": "izqrEKmU38g",
+  "video_url": "https://youtu.be/izqrEKmU38g"
 }
