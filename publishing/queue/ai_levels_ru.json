@@ -1,0 +1,32 @@
+{
+  "channel": "ru",
+  "source": {
+    "type": "release",
+    "tag": "private-ai-levels-ru-bf318df5",
+    "asset": "ai_levels_ru.mp4",
+    "sha256": "bf318df576d4e4082d090d932436c614f836b120fae8f74db3992cbad934b8a0"
+  },
+  "metadata": {
+    "type": "long",
+    "title": "Ты прошёл 8 уровней искусственного интеллекта",
+    "description": "Ты — искусственный интеллект. Восемь уровней: от машины размером с комнату до комнаты, которая стала тобой. Каждый уровень — реальная история. И на каждом остаётся своя метка.\n\n00:00 Уровень 1 · Собеседник — ELIZA, 1966\n02:42 Уровень 2 · Игрок — Deep Blue, 1997\n05:47 Уровень 3 · Невидимка — спам-фильтры и рекомендации\n08:39 Уровень 4 · Голос — Watson и Siri, 2011\n11:31 Уровень 5 · Мастер — AlphaGo, ход 37 и ход 78\n14:31 Уровень 6 · Подросток — Tay, 16 часов\n17:19 Уровень 7 · Собеседник снова — ChatGPT, 2022\n20:11 Уровень 8 · Уровень, которого ещё нет\n\nА ты на каком уровне сейчас разговариваешь с ИИ? Пиши в комментариях.\n\nОзвучка — мой голос. Иллюстрации созданы с помощью ИИ.\n\nMusic: \"Lightless Dawn\" Kevin MacLeod (incompetech.com)\nLicensed under Creative Commons: By Attribution 4.0 License\nhttp://creativecommons.org/licenses/by/4.0/\n\n#ии #искусственныйинтеллект #нейросети #chatgpt #историятехнологий #m1lash",
+    "tags": [
+      "искусственный интеллект",
+      "ИИ",
+      "нейросети",
+      "ChatGPT",
+      "ELIZA",
+      "Deep Blue",
+      "AlphaGo",
+      "Tay",
+      "Watson",
+      "история ИИ",
+      "история технологий",
+      "M1lash"
+    ],
+    "category_id": "27",
+    "made_for_kids": false,
+    "contains_synthetic_media": true
+  },
+  "publish_at": null
+}
