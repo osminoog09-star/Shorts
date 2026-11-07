@@ -1,5 +1,5 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "id": "kino_008",
   "action": "one_time_private_only",
   "expected_sha256": "7a00d601d62a578007ec7d98103cedcfd22e801c7c047d4fd225029abd19ed95",
@@ -11,5 +11,9 @@
   "uploaded_at": "2026-11-06T02:46:56.207508+00:00",
   "youtube_url": "https://www.youtube.com/watch?v=G4IMzvrv1Zw",
   "channel": "ru",
-  "source_sha256": "7a00d601d62a578007ec7d98103cedcfd22e801c7c047d4fd225029abd19ed95"
+  "source_sha256": "7a00d601d62a578007ec7d98103cedcfd22e801c7c047d4fd225029abd19ed95",
+  "publish_at_utc": "2026-11-08T08:00:00Z",
+  "privacy_status": "private",
+  "schedule_confirmed_at": "2026-11-07T06:19:44.345133+00:00",
+  "schedule_request_id": "c2a4c380-33b4-438b-b60b-2182752ac608"
 }
