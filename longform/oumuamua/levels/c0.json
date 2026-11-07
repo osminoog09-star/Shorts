@@ -1,0 +1,86 @@
+{
+ "id": "c0",
+ "card": null,
+ "shots": [
+  {
+   "id": "c0_a",
+   "seed": 1001,
+   "prompt": "white observatory telescope dome on top of a dormant volcano summit at night high above a sea of clouds, milky way overhead, Hawaii, wide cinematic establishing shot",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c0_b",
+   "seed": 1002,
+   "prompt": "astronomer seen from behind in a dark observatory control room looking at large monitors showing black star fields with one tiny bright moving dot, blue screen glow, night",
+   "layers": []
+  },
+  {
+   "id": "c0_c",
+   "seed": 1013,
+   "prompt": "a tiny reddish speck of light floating alone in black outer space, a distant yellow star far away, deep empty space, stars, no ground",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain"
+  },
+  {
+   "id": "c0_d",
+   "seed": 1014,
+   "prompt": "an elongated cigar shaped dark red asteroid floating in black outer space, slowly tumbling, lit by sunlight from the left, stars and faint nebula behind",
+   "layers": [
+    "dust"
+   ],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain"
+  },
+  {
+   "id": "c0_e",
+   "seed": 1005,
+   "prompt": "the solar system seen from far outside, a tiny dark object passing by the bright sun on a curved hyperbolic path, glowing faint trajectory line, majestic space painting",
+   "layers": [
+    "dust"
+   ]
+  }
+ ],
+ "beats": [
+  {
+   "id": "c0b01",
+   "shot": "c0_a",
+   "text": "Девятнадцатое октября две тысячи семнадцатого года. Гавайи. Вершина потухшего вулкана.",
+   "alias": [
+    "19 октября 2017 года. Гавайи. Вершина потухшего вулкана."
+   ]
+  },
+  {
+   "id": "c0b02",
+   "shot": "c0_b",
+   "text": "Телескоп, который каждую ночь ищет опасные астероиды, замечает слабую точку. Она движется слишком быстро."
+  },
+  {
+   "id": "c0b03",
+   "shot": "c0_b",
+   "text": "Астрономы считают её орбиту. И не верят результату."
+  },
+  {
+   "id": "c0b04",
+   "shot": "c0_e",
+   "text": "Этот объект не принадлежит Солнечной системе. Он прилетел из межзвёздной темноты."
+  },
+  {
+   "id": "c0b05",
+   "shot": "c0_c",
+   "text": "Впервые в истории люди видят гостя из другой звёздной системы."
+  },
+  {
+   "id": "c0b06",
+   "shot": "c0_c",
+   "text": "Возможно, он летел к нам миллионы лет. А мы заметили его, когда он уже уходил."
+  },
+  {
+   "id": "c0b07",
+   "shot": "c0_d",
+   "text": "И в этом госте было что-то очень неправильное."
+  }
+ ]
+}

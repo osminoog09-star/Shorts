@@ -1,0 +1,18 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>8 уровней ИИ</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+html,body{margin:0;background:#000;overflow:hidden;width:1920px;height:1080px}
+canvas{display:block;width:1920px!important;height:1080px!important}
+#sub{position:absolute;left:260px;right:260px;bottom:70px;text-align:center;font:800 46px/1.2 Rubik,sans-serif;color:#f5ead6;
+ text-shadow:0 0 2px #0b0806,0 3px 0 #0b0806,2px 2px 0 #0b0806,-2px 2px 0 #0b0806,0 6px 18px rgba(0,0,0,.6)}
+#card{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);opacity:0;text-align:center;padding:26px 56px;background:rgba(10,8,6,.62);border-top:2px solid rgba(214,170,90,.7);border-bottom:2px solid rgba(214,170,90,.7)}
+#card b{display:block;font:400 74px/1.05 'Russo One',sans-serif;letter-spacing:6px;color:#f1e3c4}
+#card small{display:block;margin-top:12px;font:600 34px Rubik,sans-serif;color:#cdb68a}
+#quote{position:absolute;left:90px;bottom:170px;max-width:760px;opacity:0;padding:16px 24px;background:rgba(10,8,6,.7);font:700 36px/1.25 Rubik,sans-serif;color:#f1e3c4;border-left:4px solid #d6aa5a}
+#vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 75% 70% at 50% 50%,rgba(0,0,0,0) 55%,rgba(8,5,2,.55) 100%)}
+#black{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head><body><canvas id="c" width="1920" height="1080"></canvas><div id="vig"></div><div id="card"><b></b><small></small></div><div id="quote"></div><div id="sub"></div><div id="black"></div>
+<script type="module" src="film.js"></script></body></html>

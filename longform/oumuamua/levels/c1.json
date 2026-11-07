@@ -1,0 +1,189 @@
+{
+ "id": "c1",
+ "card": [
+  "ОУМУАМУА",
+  "Гость, который не должен был ускоряться"
+ ],
+ "shots": [
+  {
+   "id": "c1_a",
+   "seed": 1101,
+   "prompt": "an elongated reddish rock drifting in front of a huge glowing nebula and stars, lonely, majestic, slow, cinematic space painting",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c1_b",
+   "seed": 1102,
+   "prompt": "a bright comet near the sun with a long glowing blue and white tail of gas and dust streaming away, spectacular space painting",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c1_c",
+   "seed": 1113,
+   "prompt": "a dark elongated asteroid floating in black outer space with no tail and no gas, harsh sunlight on one side, deep shadow on the other, stars",
+   "layers": [],
+   "neg": "landscape, ground, horizon, mountains, desert, planet surface, terrain"
+  },
+  {
+   "id": "c1_d",
+   "seed": 1104,
+   "prompt": "a flat pancake shaped disc of dark reddish rock slowly tumbling in space, sunlight glinting on its edge, stars, mysterious",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c1_e",
+   "seed": 1105,
+   "prompt": "a space telescope in orbit above the blue earth, solar panels shining, stars, cinematic space painting",
+   "layers": []
+  },
+  {
+   "id": "c1_f",
+   "seed": 1106,
+   "prompt": "a scientist's desk at night with printed orbit diagrams, curved trajectory drawings, a lamp and coffee, tense quiet mood, no readable text",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c1_g",
+   "seed": 1107,
+   "prompt": "an old red brick university building at night with a single lit window, snow, quiet, mysterious",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c1_h",
+   "seed": 1118,
+   "prompt": "a gigantic ultra thin square solar sail membrane of shimmering silver foil floating in black outer space, sunlight reflecting off it, distant bright sun, stars, science fiction spacecraft",
+   "layers": [
+    "dust"
+   ],
+   "neg": "boat, ship, sailboat, sea, water, ocean, lake, landscape, ground, horizon, mountains, desert, planet surface, terrain"
+  },
+  {
+   "id": "c1_i",
+   "seed": 1109,
+   "prompt": "a tiny dark object fading into the black depths of interstellar space, the sun a small bright star far behind, loneliness, vast",
+   "layers": [
+    "dust"
+   ]
+  },
+  {
+   "id": "c1_j",
+   "seed": 1120,
+   "prompt": "a bright comet with a glowing green head and a long tail flying through black outer space toward the sun, stars, dramatic",
+   "layers": [
+    "dust"
+   ],
+   "neg": "planet, moon, landscape, ground, horizon, mountains, desert, planet surface, terrain"
+  }
+ ],
+ "beats": [
+  {
+   "id": "c1b01",
+   "shot": "c1_a",
+   "text": "Его назвали Оумуамуа. С гавайского — посланник издалека, прибывший первым.",
+   "alias": [
+    "Его назвали Умуамуа. С гавайского посланник издалека, прибывший первым.",
+    "Его назвали О-умуамуа. С гавайского — посланник издалека, прибывший первым."
+   ]
+  },
+  {
+   "id": "c1b02",
+   "shot": "c1_b",
+   "text": "Обычные кометы, подлетая к Солнцу, оживают. Лёд испаряется, и за ними тянется сияющий хвост."
+  },
+  {
+   "id": "c1b03",
+   "shot": "c1_c",
+   "text": "У Оумуамуа хвоста не было. Ни газа. Ни пыли. Только холодный камень, отражающий солнечный свет.",
+   "alias": [
+    "У Умуамуа хвоста не было. Ни газа. Ни пыли. Только холодный камень, отражающий солнечный свет."
+   ]
+  },
+  {
+   "id": "c1b04",
+   "shot": "c1_d",
+   "text": "Ещё страннее был его блеск. За несколько часов яркость менялась почти в десять раз."
+  },
+  {
+   "id": "c1b05",
+   "shot": "c1_d",
+   "text": "Так ведёт себя тело очень необычной формы. Вытянутое, как сигара. Или плоское, как блин. Ничего похожего в Солнечной системе мы не видели."
+  },
+  {
+   "id": "c1b06",
+   "shot": "c1_a",
+   "text": "Длина — всего несколько сотен метров. А вдали от Солнца он нёсся со скоростью около двадцати шести километров в секунду.",
+   "alias": [
+    "Длина — всего несколько сотен метров. А вдали от Солнца он нёсся со скоростью около 26 километров в секунду."
+   ]
+  },
+  {
+   "id": "c1b07",
+   "shot": "c1_e",
+   "text": "У людей было всего несколько недель. Гость быстро тускнел. На него направили всё, что могли. Даже космический телескоп Хаббл."
+  },
+  {
+   "id": "c1b08",
+   "shot": "c1_f",
+   "text": "А летом две тысячи восемнадцатого года вышла статья, после которой спокойствие закончилось.",
+   "alias": [
+    "А летом 2018 года вышла статья, после которой спокойствие закончилось."
+   ]
+  },
+  {
+   "id": "c1b09",
+   "shot": "c1_f",
+   "text": "Уходя от Солнца, Оумуамуа ускорился. Совсем чуть-чуть. Но одной гравитацией это объяснить было нельзя.",
+   "alias": [
+    "Уходя от Солнца, Умуамуа ускорился. Совсем чуть-чуть. Но одной гравитацией это объяснить было нельзя."
+   ],
+   "quote": "Ускорение, которого не должно быть"
+  },
+  {
+   "id": "c1b10",
+   "shot": "c1_c",
+   "text": "Кометы так умеют — их толкают струи испаряющегося газа. Но у этого гостя газа никто не увидел."
+  },
+  {
+   "id": "c1b11",
+   "shot": "c1_g",
+   "text": "Тогда астрофизик из Гарварда задал вопрос, который облетел весь мир."
+  },
+  {
+   "id": "c1b12",
+   "shot": "c1_h",
+   "text": "А что, если это не камень? Что, если это парус? Тонкий, как лист бумаги. И толкает его свет нашего Солнца.",
+   "quote": "«А что, если это не камень?»"
+  },
+  {
+   "id": "c1b13",
+   "shot": "c1_i",
+   "text": "Сегодня Оумуамуа уже не догнать. Он ушёл в темноту, откуда пришёл. Но загадка осталась с нами.",
+   "alias": [
+    "Сегодня Умуамуа уже не догнать. Он ушёл в темноту, откуда пришёл. Но загадка осталась с нами."
+   ]
+  },
+  {
+   "id": "c1b14",
+   "shot": "c1_i",
+   "text": "В этом фильме мы разберём каждую версию. От ледяного айсберга до чужого корабля."
+  },
+  {
+   "id": "c1b15",
+   "shot": "c1_j",
+   "text": "И узнаем, почему в две тысячи двадцать пятом году к нам прилетел третий гость. И почему на этот раз мы смотрели очень внимательно.",
+   "alias": [
+    "И узнаем, почему в 2025 году к нам прилетел третий гость. И почему на этот раз мы смотрели очень внимательно."
+   ]
+  }
+ ]
+}
