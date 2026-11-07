@@ -1,13 +1,13 @@
 {
-  "checked_at": "2026-11-07T11:50:04.621208+00:00",
-  "count": 24,
+  "checked_at": "2026-11-07T15:24:34.927146+00:00",
+  "count": 26,
   "problems": [
     {
       "slug": "kino_010",
       "video_id": "_dXT3MYOmow",
       "receipt": "uploaded",
       "receipt_publish_at": null,
-      "queue": "review",
+      "queue": null,
       "queue_slot": null,
       "live_privacy": null,
       "live_publishAt": null,
@@ -37,6 +37,17 @@
       "live_privacy": "public",
       "live_publishAt": null,
       "title": "Холодильник с ИИ взял мою диету под контроль #shorts"
+    },
+    {
+      "slug": "ai_levels_ru",
+      "video_id": "2suySU6uCGk",
+      "receipt": "uploaded",
+      "receipt_publish_at": null,
+      "queue": "uploaded_private",
+      "queue_slot": null,
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Ты прошёл 8 уровней искусственного интеллекта"
     },
     {
       "slug": "ai_news_2026_11_03",
@@ -186,7 +197,7 @@
       "video_id": "_dXT3MYOmow",
       "receipt": "uploaded",
       "receipt_publish_at": null,
-      "queue": "review",
+      "queue": null,
       "queue_slot": null,
       "live_privacy": null,
       "live_publishAt": null,
@@ -280,6 +291,17 @@
       "live_privacy": "private",
       "live_publishAt": "2026-11-08T18:00:00Z",
       "title": "Робот-пылесос вышел на охоту 💀 #shorts"
+    },
+    {
+      "slug": "weather_bureau",
+      "video_id": "uxS6DACvQGY",
+      "receipt": "uploaded",
+      "receipt_publish_at": null,
+      "queue": "review",
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": null,
+      "title": "POV: ты работаешь в городе, где продают погоду"
     }
   ]
 }
