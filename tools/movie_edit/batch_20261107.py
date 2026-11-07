@@ -10,6 +10,17 @@ def run(args):
     if p.returncode: raise RuntimeError(p.stderr.decode('utf-8','replace')[-2000:])
     return p.stdout
 
+def contact_range(name,start,end,label):
+    from PIL import Image,ImageDraw
+    import math
+    count=math.ceil((end-start)/1.5); rows=math.ceil(count/5)
+    canvas=Image.new('RGB',(1800,rows*180),'#141722');pen=ImageDraw.Draw(canvas)
+    for i in range(count):
+        t=min(end-.05,start+i*1.5+.2);f=ROOT/f'{label}_{i:02d}.jpg'
+        run(['ffmpeg','-v','error','-y','-ss',t,'-i',ROOT/(name+'.mp4'),'-frames:v','1','-vf','crop=1258:524:0:278,scale=350:146',f])
+        im=Image.open(f);canvas.paste(im,((i%5)*360,(i//5)*180));pen.text(((i%5)*360+5,(i//5)*180+150),str(round(t,2)),fill='white')
+    canvas.save(ROOT/(label+'_shots.jpg'),quality=92)
+
 def inspect(name,asr=False):
     src=ROOT/(name+'.mp4'); out=ROOT/name; out.mkdir(exist_ok=True)
     probe=json.loads(run(['ffprobe','-v','error','-show_streams','-show_format','-of','json',src]))
@@ -44,4 +55,6 @@ def inspect(name,asr=False):
     print('ASR_COMPLETE',name,len(rows),flush=True)
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('name');p.add_argument('--asr',action='store_true');a=p.parse_args();inspect(a.name,a.asr)
+    p=argparse.ArgumentParser();p.add_argument('name');p.add_argument('--asr',action='store_true');p.add_argument('--range',nargs=3);a=p.parse_args()
+    if a.range:contact_range(a.name,float(a.range[0]),float(a.range[1]),a.range[2])
+    else:inspect(a.name,a.asr)
