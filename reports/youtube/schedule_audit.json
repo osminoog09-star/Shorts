@@ -1,0 +1,252 @@
+{
+  "checked_at": "2026-11-07T10:19:30.896373+00:00",
+  "count": 21,
+  "problems": [
+    {
+      "slug": "chigur_long_denis_v7",
+      "video_id": "RJEZKHegzUY",
+      "receipt": "deleted",
+      "receipt_publish_at": null,
+      "queue": "deleted",
+      "queue_slot": null,
+      "live_privacy": null,
+      "live_publishAt": null,
+      "title": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
+    }
+  ],
+  "rows": [
+    {
+      "slug": "ai_bureaucracy_claude",
+      "video_id": "9Bhnbw5bFeE",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-03T14:00:00Z",
+      "queue": "published",
+      "queue_slot": "2026-11-03T16:00:00+02:00",
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Нанял ИИ, чтобы меньше работать. Получил 40 подчинённых 🤖 #shorts"
+    },
+    {
+      "slug": "ai_fridge_202611",
+      "video_id": "QS66i62EgJk",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-05T18:00:00Z",
+      "queue": "published",
+      "queue_slot": "2026-11-05T20:00:00+02:00",
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Холодильник с ИИ взял мою диету под контроль #shorts"
+    },
+    {
+      "slug": "ai_news_2026_11_03",
+      "video_id": "oMhef8NQg1s",
+      "receipt": "uploaded",
+      "receipt_publish_at": null,
+      "queue": "editorial_hold",
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": null,
+      "title": "Экзамен по бытовухе: 3 новости ИИ за 2 ноября #shorts"
+    },
+    {
+      "slug": "ai_vacation_202611",
+      "video_id": "R0y8D9MZanc",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-09T18:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-09T20:00:00+02:00",
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-09T18:00:00Z",
+      "title": "ИИ согласовал отпуск. Отдыхать будет он #shorts"
+    },
+    {
+      "slug": "chigur_long_denis_v7",
+      "video_id": "RJEZKHegzUY",
+      "receipt": "deleted",
+      "receipt_publish_at": null,
+      "queue": "deleted",
+      "queue_slot": null,
+      "live_privacy": null,
+      "live_publishAt": null,
+      "title": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
+    },
+    {
+      "slug": "coffee_v8_20261104",
+      "video_id": "bEdC0uFDvl4",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-07T18:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-07T20:00:00+02:00",
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-07T18:00:00Z",
+      "title": "Моя кофемашина требует доказать, что я проснулся #shorts"
+    },
+    {
+      "slug": "kino_001",
+      "video_id": "xRwwXYXVxSc",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-04T08:00:00Z",
+      "queue": "published",
+      "queue_slot": "2026-11-04T10:00:00+02:00",
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Он предложил деньги. Ответ оказался страшнее угрозы #shorts"
+    },
+    {
+      "slug": "kino_002",
+      "video_id": "qYSbQisqEpc",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-04T13:00:00Z",
+      "queue": "published",
+      "queue_slot": "2026-11-04T15:00:00+02:00",
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Она отказалась играть по его правилам #shorts"
+    },
+    {
+      "slug": "kino_003",
+      "video_id": "FxIlxGWVCuw",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-03T08:00:00Z",
+      "queue": "published",
+      "queue_slot": "2026-11-03T10:00:00+02:00",
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Урок музыки вышел из-под контроля #shorts"
+    },
+    {
+      "slug": "kino_004",
+      "video_id": "wweAPl3P29w",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-03T18:00:00Z",
+      "queue": "published",
+      "queue_slot": "2026-11-03T20:00:00+02:00",
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Она знает, кому нельзя верить #shorts"
+    },
+    {
+      "slug": "kino_005",
+      "video_id": "ACy21tT97a4",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-04T18:00:00Z",
+      "queue": "published",
+      "queue_slot": "2026-11-04T20:00:00+02:00",
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Он попросил работу. Ответ оказался унизительным #shorts"
+    },
+    {
+      "slug": "kino_006",
+      "video_id": "sCThiwmigy0",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-05T08:00:00Z",
+      "queue": "published",
+      "queue_slot": "2026-11-05T10:00:00+02:00",
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Они заметили волну слишком поздно #shorts"
+    },
+    {
+      "slug": "kino_007",
+      "video_id": "3YjkmOrxDLA",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-06T08:00:00Z",
+      "queue": "published",
+      "queue_slot": "2026-11-06T10:00:00+02:00",
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Он думал, что они КОМАНДА… Но услышал ЭТО 😳 #shorts"
+    },
+    {
+      "slug": "kino_008",
+      "video_id": "G4IMzvrv1Zw",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-08T08:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-08T10:00:00+02:00",
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-08T08:00:00Z",
+      "title": "Они нажали кнопку — и даже ЗВУК исчез… 😨 #shorts"
+    },
+    {
+      "slug": "mini_strike_ru",
+      "video_id": "bp0jSmKuudA",
+      "receipt": "uploaded_private",
+      "receipt_publish_at": null,
+      "queue": "published",
+      "queue_slot": null,
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Мой умный дом объявил забастовку 💀 #shorts"
+    },
+    {
+      "slug": "moto_dogs_remake_ru",
+      "video_id": "KIGLaVhTlhw",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-01T18:00:00Z",
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Пёс-байкер уходит от погони 💀 #shorts"
+    },
+    {
+      "slug": "pretend_bot3_gpt",
+      "video_id": "CmOu0xXc0UI",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-01T14:00:00Z",
+      "queue": "published",
+      "queue_slot": "2026-11-01T16:00:00+02:00",
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "ИИ доказал, что я робот 💀 | Притворись ботом 3 #shorts"
+    },
+    {
+      "slug": "pretend_bot4_ru",
+      "video_id": "keMWV5guOLw",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-10T18:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-10T20:00:00+02:00",
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-10T18:00:00Z",
+      "title": "Притворись ботом · серия 4: среди нас нейросеть ☕🤖 #shorts"
+    },
+    {
+      "slug": "science_mirror_202611",
+      "video_id": "6KgLv_omqao",
+      "receipt": "uploaded",
+      "receipt_publish_at": null,
+      "queue": "editorial_hold",
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": null,
+      "title": "Зеркало не меняет лево и право. Проверь рукой #shorts"
+    },
+    {
+      "slug": "science_orbit_202611",
+      "video_id": "9XeZBiX7Pr8",
+      "receipt": "uploaded",
+      "receipt_publish_at": null,
+      "queue": "editorial_hold",
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": null,
+      "title": "На МКС почти земная гравитация. Почему все летают? #shorts"
+    },
+    {
+      "slug": "vacuum_wild_ru",
+      "video_id": "h-fz_lx7bn8",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-08T18:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-08T20:00:00+02:00",
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-08T18:00:00Z",
+      "title": "Робот-пылесос вышел на охоту 💀 #shorts"
+    }
+  ]
+}
