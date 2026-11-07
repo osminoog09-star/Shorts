@@ -2039,3 +2039,8 @@ QA: полный decode обоих MP4; после финального сжат
 Три local upload были SUCCESS:009 izqrEKmU38g,010 _dXT3MYOmow,011 gLdXWqOj8hw. После этого010 удалён uploader; Денис явно ответил «Оставить удалённым». Повторно не заливать. Failed reservation09.11 снята, история publishing/owner_decisions/kino_010_20261107.json, локальный MP4 сохранён.009/011 последний GET:PRIVATE бездат.
 
 План12–15.11 на https://osminoog09-star.github.io/Shorts/studio/: «Телефоннаябудка»,«Исходныйкод»,«Иллюзияобмана»,«Граньбудущего», только список с задачами записи/кадра/готовности. Новые записи по этому списку не запускались. Live HTML/data.json подтвердили4карточки, excluded010 и отсутствие удалённого видео вreview/inventory.12review tests, recording-plan и scheduling fixturesPASS. Отчёт reports/research/2026-11-07_KINO_UPLOAD_AND_RECORDING_PLAN.md. Все материалыC:\M1lash, готовые3MP4C:\M1lash\Готово; правила максимального качества источника и запрета записи во время любого рендера внесены вAGENTS/Studio.
+
+
+### 07.11 — Watch → Бюро ясного неба завершено · Codex
+
+Готовый локальный оригинальный рисованный фильм `C:\M1lash\Готово\m1lash_weather_bureau_ru.mp4`:31:50.3,1920×1080/30,318планов/14локаций,156Denis Qwen фраз rate1.0. SHA256 `951475661ec29a275f18bd67e5554757ad27e25df6a89240a1fc11cd15860fe2`. SRT/обложка/PUBLISH рядом. Decode/check/duration PASS,0FAIL/1WARN (SRT sidecar),318финальных кадров+outro просмотрены. ASR/метрики PASS, слух не оценивался, owner_hearing=pending. Не загружен на YouTube, публикация не назначена. Полный отчёт reports/research/2026-11-07_WEATHER_BUREAU_FINAL.md; reference audit reports/research/references/YEoAxizhy-U/reference_audit.md. Работа завершена; не запускать повторный рендер/голос.

@@ -346,21 +346,3 @@
 
 
 
-### 07.11 — Заливка kino009–011 и список записей следующей недели · Codex
-Цель: три PRIVATE YouTube upload с readback, список записей12–15.11 на сайте, без новых записей/рендеров.
-- [x] Владелец явно разрешил заливку3файлов; metadata/actual SHA проверены, upload manifests без publish_at.
-- [x] ТриuploadSUCCESS/receipts. Позднее010 удалён пользователем по прямомуYouTubeUI;009/011PRIVATE. Денис ответил «Оставить удалённым»: повторная заливка010 отменена, failed reservation снята, история сохранена.
-- [x] План12–15.11 опубликован на сайте,4карточки/desktop/mobile проверены; новые записи/рендеры не запускались.
-Следующий шаг: завершено —009/011PRIVATE,010 оставить удалённым по прямому решению Дениса; план12–15.11 на сайте.
-Ждёт Дениса: нет.
-
-### 07.11 — Watch YEoAxizhy-U → оригинальный рисованный фильм21+мин · Codex
-Прямая команда владельца: полный Watch-разбор https://www.youtube.com/watch?v=YEoAxizhy-U и своё21+мин видео с рисованной графикой по общим приёмам. Публикация нового длинного не заказана.
-- [x] Watch/Film-Mult/reference-analysis прочитаны. Реальный MP4 скачан на ПК обычным yt-dlp без обхода;2652с, русские native captions,80global+20hook frames просмотрены как contact.
-- [x] Полный разбор10глав:8Watch-окон/580фактических кадров +6242слова native transcript. Аудит reports/research/references/YEoAxizhy-U/reference_audit.md. FRAMES_ONLY + FULL_NATIVE_TRANSCRIPT; слух недоступен.
-- [x] Оригинальный сценарий «Город, где продают погоду»:8глав/3652слова,73абзаца; blueprint14локаций, Canvas-рисунки/герои/предметы,6стопов, model sheet,12с физический motion pilot. Denis pilot ASR.993 PASS, owner hearing pending.
-- [x] Полная озвучка156ASR PASS,1871.041с приrate1.0,clipping0. Actual animatic1903.691с/318планов/14локаций:318+33исправленных кадра просмотрены, VISUAL GO.
-- [ ] Финальный1920×1080/30рендер по8главам, approved horizontal outro, actual final check/look/decode/durationgate.
-Следующий шаг: голос/аниматик завершены; следить за private final_render_main.log иchapter_01…08_render.log. Python longform/weather_bureau_20261107/render_final.py уже запускается; затем assembler --horizontal --body-lufs -14 --preset veryfast. Actual final пока отсутствует. Старые команды до аниматика ниже — история: private voice_full_v6.log и voice_full/manifest.json. Генератор longform/weather_bureau_20261107/voice_full.py возобновляемый, batch6/SDPA,156фраз, принимает только ASR≥.80; чужой ai_levels GPU не останавливать. После156PASS: python -X utf8 longform/weather_bureau_20261107/build_timeline.py; python .../finish_audio.py; node .../src/film.cjs animatic; mux с mix.wav в private animatic.mp4. Затем qa_media.py и просмотреть все actual coverage sheets; записать private animatic_review.json {decision:GO,actual_frames_viewed:true,animatic_sha256:...} только после просмотра. Финальный рендер python .../render_final.py (4CPU/Canvas+NVENC workers,8глав с точным общим frame partition), затем assemble_with_outro.py --horizontal --body-lufs -14. Пока готового21+MP4 нет.
-Материалы: C:\M1lash\Работа\reference_YEoAxizhy-U; активный код C:\M1lash\Shorts. Запись и рендер не совмещать ни с одним другим проектом на ПК.
-Ждёт Дениса: нет, работа прямо поручена. ASR false negative на200+кириллических символах исправлен в scripts/denis_voice_tts.py: autojunk=False, порог.80 неизменен,10testsPASS (77ab79b6).

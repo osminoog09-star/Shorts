@@ -1,0 +1,36 @@
+{
+  "title": "POV: ты работаешь в городе, где продают погоду",
+  "file": "C:\\M1lash\\Готово\\m1lash_weather_bureau_ru.mp4",
+  "sha256": "951475661ec29a275f18bd67e5554757ad27e25df6a89240a1fc11cd15860fe2",
+  "bytes": 444353448,
+  "duration_seconds": 1910.3,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "shots": 318,
+  "locations": 14,
+  "voice_utterances": 156,
+  "visual_style": "original limited outline 2D animation",
+  "metadata": "metadata.json",
+  "technical_qa": {
+    "failed": 0,
+    "warnings": 1,
+    "warning": "No embedded subtitle stream; complete separate SRT delivered",
+    "integrated_lufs": -15.3,
+    "true_peak_dbtp": -3.3,
+    "full_decode": "PASS",
+    "duration_gate": "PASS"
+  },
+  "visual_review": "318 final shot midpoint frames, official contact sheet, body ending and approved outro viewed",
+  "audio_review": {
+    "asr": "PASS",
+    "metrics": "PASS",
+    "owner_hearing": "pending",
+    "heard_by_agent": false
+  },
+  "publication": {
+    "status": "LOCAL_REVIEW",
+    "upload_authorized": false,
+    "uploaded": false
+  }
+}

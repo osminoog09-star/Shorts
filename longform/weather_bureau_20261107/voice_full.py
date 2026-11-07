@@ -90,7 +90,7 @@ def main():
             score,_=asr_match(u['text'],recognized)
             passed=score>=.8 and len(norm(recognized))>=max(5,int(len(norm(u['text']))*.55))
             print('VOICE',u['id'],round(len(arr)/sr,3),'ASR',round(score,4),'PASS' if passed else 'RETRY','completed',len(done),'elapsed',round(time.monotonic()-started),flush=True)
-            item={**u,'source_file':'audio/'+wav.name,'sample_rate':sr,'duration_s':len(arr)/sr,'sha256':hashlib.sha256(wav.read_bytes()).hexdigest(),'asr_text':recognized,'asr_similarity':round(score,4),'asr_pass':passed,'seed_attempt':attempt,'owner_hearing':'pending','voice_id':EXPECTED_VOICE}
+            item={**u,'source_file':'audio/'+wav.name,'sample_rate':sr,'duration_s':len(arr)/sr,'sha256':hashlib.sha256(wav.read_bytes()).hexdigest(),'asr_text':recognized,'asr_similarity':round(score,4),'asr_pass':passed,'seed_attempt':attempt,'owner_hearing':'pending','voice_id':EXPECTED_VOICE,'speaker':'denis','engine':'qwen3-tts-local'}
             if passed:done[u['id']]=item;save()
             else:
                 (OUT/(u['id']+f'_failed_{attempt}.json')).write_text(json.dumps(item,ensure_ascii=False,indent=2),'utf8');failed.append(u)
