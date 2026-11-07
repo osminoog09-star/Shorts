@@ -365,8 +365,10 @@ def main():
             raise ValueError("Receipt has no uploaded video ID: manual intervention required")
         if data.get("source", {}).get("type") == "uploaded":
             source = data["source"]
-            if (vid != source["video_id"] or prior.get("channel") != channel
-                    or prior.get("source_sha256") != source["sha256"]):
+            # Квитанции one-time заливки (kino_008 и др.) хранят хеш как expected_sha256 и без channel.
+            prior_sha = prior.get("source_sha256") or prior.get("sha256") or prior.get("expected_sha256")
+            if (vid != source["video_id"] or prior.get("channel", channel) != channel
+                    or prior_sha != source["sha256"]):
                 raise ValueError("Existing upload receipt/source mismatch; scheduling blocked")
         token = token_for(channel)
         verify_channel(token, expected_id)
