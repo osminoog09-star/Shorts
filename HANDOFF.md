@@ -521,6 +521,15 @@ FinalMP4 `deliverables/M1lash_Coffee_V8_Rewrite_PRIVATE.mp4` 41.1с/1080×1920/3
 
 # 04.11 · GPT · Чигур V22 — два настоящих six-still прогона, улучшено кадрирование, ART NO-GO
 
+## 07.11.2026 · Claude — аудит сайта и YouTube
+- kino_008: назначение на 08.11 10:00 падало (run 42345744729: квитанция one-time заливки без channel/source_sha256). `youtube_direct.py` теперь принимает expected_sha256; повтор run 42346443747 SUCCESS, YouTube подтвердил 08.11 08:00Z.
+- ai_vacation (R0y8D9MZanc): дата 06.11 20:00 НЕ сработала — inventory 07.11 06:21Z private. Квитанция → uploaded (+missed_schedule), publish_at манифеста → missed_publish_at, запись ledger снята, queue → review: снова в «Ждёт ок», Денису выбрать новый слот (свободно 08.11 20:00).
+- coffee_v8 (bEdC0uFDvl4): private, дата 07.11 20:00 последний раз подтверждена 04.11. Повторное подтверждение (mode=schedule на ту же дату) заблокировал классификатор — проверить вечером/Денису в Studio.
+- mini_strike (bp0jSmKuudA): вышел 06.11 17:00 вне сетки, не через youtube-direct; внесён в queue.json как published.
+- queue.json: 10 вышедших «scheduled» → published.
+- Сайт: «Агенты» — убраны мёртвые чат/режимы/цикл директора/настройки (агенты отменены 06.11), «Запуск» скрыт у workflows с обязательными входами (denis-voice-tts, female-voice-design, movie-short, youtube-direct); «Сохранить ключ YouTube» → youtube-auth-check с channel=ru. Прокликаны все кнопки 7 вкладок (Pixel 7, подменённый GitHub) — JS-ошибок нет.
+- Не трогал (решение Дениса): старые публичные кино-Shorts с названием фильма в заголовке (XANzL3z9wqY, dwPNCXCcu24), заголовки без « #shorts» у 6 старых Shorts, studio_settings mode/autonomy.
+
 ## 07.11.2026 · Claude — сайт: кнопка «Выбрать время» «ничего не делала»
 - Причина: `site/studio/glass.css` ставил `.sheet,#scrim,#toast{position:relative}` — окно выбора времени, затемнение и все сообщения (включая ошибки) рисовались в самом низу страницы, а не поверх. На телефоне казалось, что кнопка мёртвая; в GitHub ничего не записывалось.
 - Исправлено: оверлеи снова `fixed` поверх экрана, кеш `glass.css?v=20261107`. Регресс-тест `scripts/qa/test_studio_overlay_fixed.cjs` в `motion-pages.yml`.

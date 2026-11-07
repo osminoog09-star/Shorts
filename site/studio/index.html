@@ -792,7 +792,7 @@ document.addEventListener("click",async e=>{
   if(el=q("#mkKey")){if(!needTok())return;return act(el,()=>makeSigningKey(el))}
   if(el=q("#driveSave")){if(!needTok())return;const v=($("#driveTok")?.value||"").trim();if(v.length<20)return toast("Вставь Drive refresh token из OAuth Playground");return act(el,async()=>{await setSecret("GDRIVE_REFRESH_TOKEN",v);$("#driveTok").value="";await dispatch("hdrezka-intake.yml",{url:"",quality:"1080p",mode:"drive_check",translation:""});toast("Токен зашифрован в GitHub. Проверка Drive запущена.");el.disabled=false})}
   if(el=q("#driveCheck")){if(!needTok())return;return act(el,async()=>{await dispatch("hdrezka-intake.yml",{url:"",quality:"1080p",mode:"drive_check",translation:""});toast("Проверка подключения Drive запущена");el.disabled=false})}
-  if(el=q("#ytSave")){if(!needTok())return;const v=$("#ytTok").value.trim();if(!v)return toast("Вставь refresh token");return act(el,async()=>{klog("Шифрую и сохраняю…");await setSecret("YOUTUBE_REFRESH_TOKEN_RU",v);$("#ytTok").value="";await dispatch("youtube-auth-check.yml").catch(()=>{});await dispatch("youtube-pulse.yml");klog("Сохранено ✓ Проверка и сбор комментариев запущены — через пару минут загляни во «Зрители».");toast("Ключ YouTube обновлён ✓");el.textContent="Сохранено ✓"})}
+  if(el=q("#ytSave")){if(!needTok())return;const v=$("#ytTok").value.trim();if(!v)return toast("Вставь refresh token");return act(el,async()=>{klog("Шифрую и сохраняю…");await setSecret("YOUTUBE_REFRESH_TOKEN_RU",v);$("#ytTok").value="";await dispatch("youtube-auth-check.yml",{channel:"ru"}).catch(()=>{});await dispatch("youtube-pulse.yml");klog("Сохранено ✓ Проверка и сбор комментариев запущены — через пару минут загляни во «Зрители».");toast("Ключ YouTube обновлён ✓");el.textContent="Сохранено ✓"})}
   if(q("#tokDel")){store.set("m1-gh",null);toast("Токен удалён");return openSettings()}
 });
 $("#scrim").onclick=closeSheet;
@@ -809,7 +809,7 @@ async function load(quiet){
 }
 load();
 </script>
-<script src="agents.js?v=20261106"></script>
+<script src="agents.js?v=20261107"></script>
 <script src="depth3d.js?v=20261106"></script>
 <script src="auto_refresh.js"></script>
 <script src="drive_connect.js"></script>

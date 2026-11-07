@@ -37,10 +37,5 @@
     "asr": "reports/research/qa/next_four_20261103/final_asr_summary.json",
     "no_schedule_authorized": true
   },
-  "publish_at": "2026-11-06T20:00:00+02:00",
-  "schedule_request": {
-    "id": "migration-20261104-ai_vacation_202611",
-    "requested_at": "2026-11-04T21:59:00Z",
-    "publish_at": "2026-11-06T20:00:00+02:00"
-  }
+  "missed_publish_at": "2026-11-06T20:00:00+02:00"
 }

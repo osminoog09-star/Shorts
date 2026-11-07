@@ -23,6 +23,9 @@
     'm1lash-researcher': { t: 'Ресёрчер', c: '#ff9f6b', wf: ['m1lash-news-radar.yml', 'motion-trends.yml'] },
   };
   const KEY_WF = ['youtube-pulse.yml', 'youtube-analytics.yml', 'm1lash-news-radar.yml', 'playlists.yml', 'denis-voice-tts.yml', 'female-voice-design.yml', 'mini-strike.yml', 'movie-short.yml', 'motion-pages.yml', 'youtube-direct.yml'];
+  // Решение Дениса 06.11 18:23: агенты на ПК отменены — чат/режимы/циклы никто не читает (аудит 07.11).
+  const AGENTS_OFF = true;
+  const NEEDS_INPUT = new Set(['denis-voice-tts.yml', 'female-voice-design.yml', 'movie-short.yml', 'youtube-direct.yml']);
   let PC = null, pcAt = 0;
   async function loadPC() {
     if (Date.now() - pcAt < 120000) return; pcAt = Date.now();
@@ -65,7 +68,7 @@
         <button class="btn" data-agchat="${e(a.id)}">Написать</button></div></div>`;
     }).join('');
     const wf = KEY_WF.map(w => { const r = lastRun(w); return `<div class="wf"><i class="${dotCls(r)}"></i><span>${e(w.replace('.yml', ''))}<br><code>${r ? (r.st !== 'completed' ? 'идёт' : r.c) + ' · ' + since(r.at) + ' назад · ' + r.ev : RUNS ? 'нет свежих запусков' : 'загрузка…'}</code></span>
-      ${r ? `<a class="btn" href="${e(r.url)}" target="_blank" rel="noopener">Лог</a>` : '<span></span>'}<button class="btn" data-run="${e(w)}">Запуск</button></div>`; }).join('');
+      ${r ? `<a class="btn" href="${e(r.url)}" target="_blank" rel="noopener">Лог</a>` : '<span></span>'}${NEEDS_INPUT.has(w) ? '<small class="muted">запуск — из задачи</small>' : `<button class="btn" data-run="${e(w)}">Запуск</button>`}</div>`; }).join('');
     const msgs = (S.chat || []).map(m => `<div class="msg ${m.box === 'inbox' ? 'me' : ''}"><small>${m.box === 'inbox' ? 'Ты → ' + e((AG[m.to] || {}).t || m.to) : e((AG[m.from] || {}).t || m.from || 'агент')} · ${e((m.t || '').replace('T', ' ').slice(5, 16))}</small>${e(m.text)}</div>`).join('') || '<p class="muted">Здесь будет переписка с агентами. Напиши задачу — агент на ПК возьмёт её в работу и ответит сюда.</p>';
     const opts = list.map(a => `<option value="${e(a.id)}" ${a.id === chatTo ? 'selected' : ''}>${e((AG[a.id] || {}).t || a.id)}</option>`).join('');
     const ST = D.studio_settings || {}, BF = D.studio_buffer || { grid: [], covered_days: 0, days: 7, ready_unscheduled: 0 };
@@ -102,6 +105,14 @@
         <div class="chatin"><input id="c_new" placeholder="Добавить сайт: адрес (например, kino.example.ru)"><button class="btn" id="c_add">Добавить</button></div>
         <label class="tg"><input id="c_ok" type="checkbox"> Подтверждаю, что запись и использование выбранных материалов разрешены правообладателем либо другими имеющимися правами</label></div>`; })()}
       <div class="row2"><button class="btn pri" id="s_save">Сохранить</button><button class="btn" id="s_pause">${ST.paused ? '▶ Вернуть публикацию' : '⏸ Не публиковать'}</button><button class="btn" id="s_cycle">Цикл директора сейчас</button></div></div>`;
+    if (AGENTS_OFF) {
+      const buf = `<div class="card ctl" style="padding:16px"><div class="sec-row"><b>Студия</b><span class="chip warn">агенты на ПК отключены</span></div>
+        <small class="mhint">06.11 ты отменил автономных агентов. Всё производство теперь идёт через Claude в чате, а даты ставишь ты: «Ролики → Очередь и план → Выбрать время». Здесь остались запас по сетке и техпанель GitHub Actions.</small>
+        <div class="buf"><div class="bufh">Запас на ${BF.days} дн.: <b>${BF.covered_days}</b> дн. закрыто подряд · готово без даты: ${BF.ready_unscheduled}</div>
+        <div class="bufg">${BF.grid.map(g => `<div><small>${wd(g.day)} ${g.day.slice(8)}</small>${dot(g.kino)}${dot(g.sketch)}</div>`).join('')}</div>
+        <div class="bufl"><span>${dot(1)} кино ${e((ST.slots || {}).kino || '10:00')}</span><span>${dot(1)} скетч ${e((ST.slots || {}).sketch || '20:00')}</span></div></div></div>`;
+      return `${buf}<div class="card" style="padding:16px"><div class="sec-row"><b>Техническая панель · GitHub Actions</b><span class="chip">${RUNS ? 'обновлено ' + since(new Date(runsAt).toISOString()) + ' назад' : '…'}</span></div>${wf}</div>`;
+    }
     return `${ctl}<section class="sec-row"><h2 style="margin:0;font:800 22px var(--f-d)">Агенты студии</h2><span class="chip">${S.agents.length} агентов · директор + отделы</span></section>
       <div class="ag-grid">${cards}</div>
       <div class="card" style="padding:16px"><div class="sec-row"><b>Техническая панель · GitHub Actions</b><span class="chip">${RUNS ? 'обновлено ' + since(new Date(runsAt).toISOString()) + ' назад' : '…'}</span></div>${wf}</div>
