@@ -73,14 +73,15 @@
   },
   "publication": {
     "publish_ready": false,
-    "privacy": "local private review",
+    "privacy": "deleted_on_youtube",
     "scheduled_at": null,
-    "reason": "local MP4 complete; owner hearing and source reuse rights unverified; no upload or schedule",
-    "status": "uploaded_private",
+    "reason": "07.11.2026 владелец явно ответил «Оставить удалённым». Повторная заливка запрещена; старый запрос даты снят, MP4 сохранён.",
+    "status": "owner_deleted",
     "owner_authorized_private_upload": true,
     "owner_authorized_at": "2026-11-07",
     "authorization": "согласно правилам заливаем 3 этих шортса",
-    "youtube_id": "_dXT3MYOmow"
+    "youtube_id": "_dXT3MYOmow",
+    "owner_authorized_reupload": false
   },
   "qa_report": "reports/research/2026-11-07_KINO_009_011_LOCAL.md"
 }

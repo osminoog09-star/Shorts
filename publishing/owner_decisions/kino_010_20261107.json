@@ -1,0 +1,40 @@
+{
+  "id": "kino_010",
+  "video_id": "_dXT3MYOmow",
+  "decision": "leave_deleted",
+  "owner_quote": "Оставить удалённым",
+  "confirmed_at": "2026-11-07T13:11:04.124602+00:00",
+  "reupload_allowed": false,
+  "old_queue_entry": {
+    "id": "kino_010",
+    "kind": "short",
+    "author": "Codex",
+    "status": "error",
+    "slot": null,
+    "style": "S6-D25",
+    "mp4": "C:/M1lash/Готово/m1lash_kino_010_ru.mp4",
+    "publish_md": "shorts/kino_010/PUBLISH.md",
+    "title": "Тело дерётся само. А он просит не вставать 🤖 #shorts",
+    "youtube_id": "_dXT3MYOmow",
+    "private_review_url": "https://studio.youtube.com/video/_dXT3MYOmow/edit",
+    "duration_seconds": 39.5,
+    "note": "Заливка выполнена успешно, но позднее YouTube сообщил: видео удалено пользователем, который его добавил. GET status больше не возвращает ID; запрос9ноя10:00 завершился404 и не применён. Повторная заливка ждёт ответа владельца. Локальный MP4 сохранён.",
+    "manifest": "publishing/queue/kino_010.json",
+    "live_state": "owner_deleted"
+  },
+  "old_publish_at": "2026-11-09T10:00:00+02:00",
+  "old_schedule_request": {
+    "id": "3d947f72-7901-4fe1-a4ab-0ee4b54cd8a8",
+    "requested_at": "2026-11-07T11:45:10.581Z",
+    "publish_at": "2026-11-09T10:00:00+02:00"
+  },
+  "cancelled_reservation": {
+    "at": "2026-11-09T10:00:00+02:00",
+    "kind": "short",
+    "title": "Тело дерётся само. А он просит не вставать 🤖 #shorts",
+    "video_id": "_dXT3MYOmow",
+    "request_id": "3d947f72-7901-4fe1-a4ab-0ee4b54cd8a8",
+    "requested_at": "2026-11-07T11:45:10.581Z"
+  },
+  "local_mp4_preserved": true
+}

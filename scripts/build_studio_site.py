@@ -56,10 +56,17 @@ def section(md, name):
     return [i for i in items if not i.startswith("_(")]
 
 
+def owner_left_deleted(manifest):
+    decision = (manifest or {}).get('owner_decision') or {}
+    return decision.get('status') == 'leave_deleted' and decision.get('reupload_allowed') is False
+
+
 def build_review_queue(queue, receipts, manifests):
     """Only actual review candidates; receipt scheduling wins over stale queue rows."""
     result, seen = [], set()
     for key, receipt in receipts.items():
+        if owner_left_deleted(manifests.get(key)):
+            continue
         if receipt.get("status") != "uploaded" or receipt.get("publish_at_utc") or not receipt.get("video_id"):
             continue
         title = (manifests.get(key, {}).get("metadata") or {}).get("title")
@@ -69,6 +76,8 @@ def build_review_queue(queue, receipts, manifests):
         seen.add(key)
     for item in queue:
         key = item.get("id")
+        if owner_left_deleted(manifests.get(key)):
+            continue
         if item.get("status") != "review" or not key or key in seen:
             continue
         receipt = receipts.get(key, {})
@@ -92,6 +101,8 @@ def add_pending_uploads(videos, receipts, manifests):
     """
     seen = {v.get("id") for v in videos}
     for key, receipt in sorted(receipts.items()):
+        if owner_left_deleted(manifests.get(key)):
+            continue
         if receipt.get("status") not in ("uploaded", "scheduled"):
             continue
         vid = receipt.get("video_id")

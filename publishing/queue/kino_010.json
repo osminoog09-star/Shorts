@@ -26,10 +26,10 @@
     "made_for_kids": false,
     "contains_synthetic_media": true
   },
-  "publish_at": "2026-11-09T10:00:00+02:00",
-  "schedule_request": {
-    "id": "3d947f72-7901-4fe1-a4ab-0ee4b54cd8a8",
-    "requested_at": "2026-11-07T11:45:10.581Z",
-    "publish_at": "2026-11-09T10:00:00+02:00"
+  "owner_decision": {
+    "status": "leave_deleted",
+    "reupload_allowed": false,
+    "quote": "Оставить удалённым",
+    "confirmed_at": "2026-11-07T13:11:04.124602+00:00"
   }
 }

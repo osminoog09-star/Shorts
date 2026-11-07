@@ -18,15 +18,6 @@
       "video_id": "izqrEKmU38g"
     },
     {
-      "id": "kino_010",
-      "date": "2026-11-10",
-      "time": "10:00",
-      "label": "Тело дерётся само",
-      "status": "owner_deleted",
-      "video_id": "_dXT3MYOmow",
-      "note": "YouTube: удалено пользователем, который добавил видео; повторная заливка ждёт ответа владельца."
-    },
-    {
       "id": "kino_011",
       "date": "2026-11-11",
       "time": "10:00",
@@ -137,5 +128,16 @@
     "basis": "Угрозы/выбор — сильные прежние киноэпизоды; это разновозрастная малая выборка, не причинный тест.",
     "vidiq": "Identity confirmed; channel_videos unavailable:1credit balance, cost5; no credits charged. Research uses local analytics and editorial judgement.",
     "scene_verification": "Film premises referenced; proposed exact moments/availability/timestamps not yet checked in source video."
-  }
+  },
+  "excluded": [
+    {
+      "id": "kino_010",
+      "date": "2026-11-10",
+      "time": "10:00",
+      "label": "Тело дерётся само",
+      "status": "owner_deleted",
+      "video_id": "_dXT3MYOmow",
+      "note": "Владелец: оставить удалённым; повторно не заливать. Локальный MP4 сохранён."
+    }
+  ]
 }

@@ -8,6 +8,7 @@ assert.ok(plan.items.every(x=>x.started===false&&!x.timestamps_verified&&!x.righ
 const ctx={D:{recording_plan:plan},esc:x=>String(x).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'),dshort:x=>x};
 vm.createContext(ctx);vm.runInContext(fn,ctx);let out=ctx.recordingPlanCard();
 assert.ok(out.includes('Только список'));assert.ok(out.includes('Запись не начата'));assert.ok(!out.includes('подтверждено YouTube'));
+assert.ok(out.includes('оставлен удалённым'));assert.ok(!out.includes('_dXT3MYOmow'));
 ctx.D.recording_plan=JSON.parse(JSON.stringify(plan));ctx.D.recording_plan.items[0].concept='<img src=x onerror=alert(1)>';
 out=ctx.recordingPlanCard();assert.ok(out.includes('&lt;img'));assert.ok(!out.includes('<img src=x'));
 ctx.D.recording_plan={};assert.equal(ctx.recordingPlanCard(),'');

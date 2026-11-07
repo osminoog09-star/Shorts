@@ -12,6 +12,18 @@ from build_studio_site import build_review_queue, add_pending_uploads
 
 
 class StudioReviewStateTests(unittest.TestCase):
+    def test_owner_left_deleted_is_not_review_even_with_historical_upload(self):
+        q = [{"id": "gone", "status": "review"}]
+        receipts = {"gone": {"status": "uploaded", "video_id": "abcdefghijk"}}
+        manifests = {"gone": {"owner_decision": {"status": "leave_deleted", "reupload_allowed": False}}}
+        self.assertEqual(build_review_queue(q, receipts, manifests), [])
+        self.assertEqual(receipts["gone"]["status"], "uploaded", "historical receipt stays intact")
+
+    def test_owner_left_deleted_is_not_recreated_as_pending_video(self):
+        receipts = {"gone": {"status": "uploaded", "video_id": "abcdefghijk"}}
+        manifests = {"gone": {"metadata": {"title": "Deleted"}, "owner_decision": {"status": "leave_deleted", "reupload_allowed": False}}}
+        self.assertEqual(add_pending_uploads([], receipts, manifests), [])
+
     def test_scheduled_receipt_beats_stale_review_queue(self):
         q = [{"id": "kino_001", "status": "review", "title": "Kino"}]
         receipts = {"kino_001": {"status": "scheduled", "video_id": "abcdefghijk",
