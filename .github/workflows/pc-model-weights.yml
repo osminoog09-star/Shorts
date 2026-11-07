@@ -1,0 +1,37 @@
+name: PC · public model weights for Denis's PC (Qwen3-TTS 1.7B Base + faster-whisper small)
+# Only PUBLIC open weights (Apache-2.0 / MIT). Never any voice reference, embedding or owner media.
+# Why: huggingface.co is unreachable from Claude's sandbox on the PC, GitHub is reachable → relay as an artifact.
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  weights:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Download public snapshots
+        env: { HF_HUB_DISABLE_TELEMETRY: '1' }
+        run: |
+          set -euo pipefail
+          python -m pip install -q 'huggingface-hub==0.36.2'
+          python - <<'PY'
+          from huggingface_hub import snapshot_download
+          from pathlib import Path
+          for repo, name in [('Qwen/Qwen3-TTS-12Hz-1.7B-Base', 'Qwen3-TTS-12Hz-1.7B-Base'), ('Systran/faster-whisper-small', 'faster-whisper-small')]:
+              d = Path('models') / name
+              snapshot_download(repo_id=repo, local_dir=str(d))
+              (d / '.cache').exists() and __import__('shutil').rmtree(d / '.cache')
+              print(repo, sum(f.stat().st_size for f in d.rglob('*') if f.is_file()) // 2**20, 'MB')
+          assert (Path('models/Qwen3-TTS-12Hz-1.7B-Base') / 'config.json').is_file()
+          assert (Path('models/faster-whisper-small') / 'model.bin').is_file()
+          PY
+          find models -type f | sort > models/MANIFEST.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pc-models
+          path: models/
+          retention-days: 3
+          compression-level: 0
