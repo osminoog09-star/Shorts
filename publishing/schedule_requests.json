@@ -87,6 +87,14 @@
       "requested_at": "2026-11-06T00:51:56Z",
       "origin": "owner_chat_ok_20261106",
       "confirmed_by": "youtube_videos_list_GET"
+    },
+    "kino_008": {
+      "at": "2026-11-08T10:00:00+02:00",
+      "kind": "short",
+      "title": "Они нажали кнопку — и даже ЗВУК исчез… 😨 #shorts",
+      "video_id": "G4IMzvrv1Zw",
+      "request_id": "c2a4c380-33b4-438b-b60b-2182752ac608",
+      "requested_at": "2026-11-07T06:09:28.086Z"
     }
   }
 }
