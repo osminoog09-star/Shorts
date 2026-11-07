@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/weather_bureau.json",
+  "manifest_sha256": "dbe4331aee4dcbf891ad243fd056801f0de2404c22b883d5d0a594f17b8183a0",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
