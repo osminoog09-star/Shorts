@@ -255,7 +255,7 @@ def youtube_schedule(video_id, data, publish_at, token):
     response = requests.put(API + "/videos", params={"part": "status"},
                             headers={"Authorization": "Bearer " + token}, json=body, timeout=60)
     if not response.ok:
-        raise RuntimeError("YouTube schedule update failed (HTTP %s)" % response.status_code)
+        raise RuntimeError("YouTube schedule update failed (HTTP %s): %s" % (response.status_code, response.text[:400]))
     got = response.json().get("status", {}).get("publishAt")
     if not got:
         raise RuntimeError("YouTube did not confirm publishAt; check Studio")
