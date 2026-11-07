@@ -36,7 +36,7 @@ const LINES = [
   { id: 'v2', t: 3.55, text: 'Он замечает добычу. Одинокий <b>носок</b>. Отбился от пары.' },
   { id: 'v3', t: 9.85, text: '<b>Бросок!</b> Хватка мёртвая.' },
   { id: 'v4', t: 13.3, text: 'Но у носка есть <b>хозяин</b>.' },
-  { id: 'v5', t: 18.2, text: 'Охотник зовёт стаю. Колонка. Чайник. Вся мощь <b>умного дома</b>.' },
+  { id: 'v5', t: 18.2, text: 'Охотник зовёт стаю. <b>Колонка. Чайник.</b>' },
   { id: 'v6', t: 23.9, text: '<b>Хищник</b> выходит из тени.' },
   { id: 'v7', t: 29.3, text: 'Ну всё. П**дец <b>экосистеме</b>.' },
   { id: 'v8', t: 32.7, text: 'Природа жестока. Особенно за <b>сорок тысяч рублей</b>.' },
@@ -426,8 +426,8 @@ const SHOTS = [
   { a: 9.25, b: 13.0, cam: t => { const u = ss(seg(t, 9.25, 13)); return [V(lerp(-1.5, -1.44, u), .22, lerp(-.72, -.66, u)), V(lerp(-.2, -.08, u), .06, lerp(-.85, -.66, u)), 38]; } },
   { a: 13.0, b: 18.0, cam: t => { const v = vacPos(); const b = fwdOf(H_SOCK); const u = ss(seg(t, 13, 18)); return [v.clone().addScaledVector(b, -.42).add(V(.16, lerp(.2, .16, u), 0)), V(-0.42, lerp(.11, .08, u), -1.3), lerp(40, 34, u)]; } },
   { a: 18.0, b: 19.7, cam: t => { const v = vacPos(); const f = fwdOf(H_SOCK); const u = ss(seg(t, 18, 19.7)); const pp = V(-f.z, 0, f.x); return [v.clone().addScaledVector(f, lerp(.85, .78, u)).addScaledVector(pp, -.42).add(V(0, .16, 0)), v.clone().addScaledVector(f, .12).add(V(0, .05, 0)), 34]; } },
-  { a: 19.7, b: 21.3, cam: t => { const u = ss(seg(t, 19.7, 21.3)); return [V(lerp(.86, .83, u), .68, lerp(-1.36, -1.4, u)), V(1.17, .62, -1.92), 40]; } },
-  { a: 21.3, b: 23.0, cam: t => { const u = ss(seg(t, 21.3, 23)); return [V(lerp(.6, .62, u), .6, lerp(-.08, -.12, u)), V(.97, .5, -.52), 40]; } },
+  { a: 19.7, b: 20.5, cam: t => { const u = ss(seg(t, 19.7, 20.5)); return [V(lerp(.86, .83, u), .68, lerp(-1.36, -1.4, u)), V(1.17, .62, -1.92), 40]; } },
+  { a: 20.5, b: 23.0, cam: t => { const u = ss(seg(t, 20.5, 23)); return [V(lerp(.6, .62, u), .6, lerp(-.08, -.12, u)), V(.97, .5, -.52), 40]; } },
   { a: 23.0, b: 27.3, cam: t => { const u = ss(seg(t, 23, 27.3)); return [V(lerp(-1.0, -0.94, u), lerp(.15, .18, u), lerp(.08, .0, u)), V(-0.36, lerp(.12, .22, u), lerp(-1.4, -1.02, ss(seg(t, 23, 25.2)))), lerp(48, 44, u)]; } },
   { a: 27.3, b: 31.0, cam: t => { const u = ss(seg(t, 27.3, 31)); return [V(lerp(.12, .16, u), lerp(1.0, 1.05, u), lerp(1.25, 1.35, u)), V(.22, .18, -1.05), 60]; } },
   { a: 31.0, b: 32.9, cam: t => { const u = ss(seg(t, 31, 32.9)); return [V(lerp(-.1, .05, u), .38, lerp(.45, .5, u)), V(lerp(-.1, .5, u), .2, -1.0), 46]; } },
@@ -524,8 +524,8 @@ window.render = function (t) {
     spk.position.set(1.17 - u * .08 * (u < .5 ? 1 : 0) - Math.min(u, .5) * 0, y, -1.86 + Math.min(u, .45) * .5); spk.rotation.set(rx, .6, 0);
   }
   // ── kettle: wakes 21.4, turns, slides to edge; topples at 28.35
-  const kw = ss(seg(t, 21.4, 21.8));
-  drawFace(kScr, t < 21.4 ? 'flat' : t < 28.35 ? (alarm ? 'hunt' : 'wide') : 'dizzy', t < 21.4 ? '#6a7a80' : t < 28.35 ? C_RED : C_GOLD, t >= 28.35 ? { spin: Math.round(t * 12) * .5 } : {});
+  const kw = ss(seg(t, 20.6, 21.0));
+  drawFace(kScr, t < 20.6 ? 'flat' : t < 28.35 ? (alarm ? 'hunt' : 'wide') : 'dizzy', t < 20.6 ? '#6a7a80' : t < 28.35 ? C_RED : C_GOLD, t >= 28.35 ? { spin: Math.round(t * 12) * .5 } : {});
   if (t < 28.35) { kettle.rotation.set(0, lerp(1.4, -0.69, back(kw, 1.4)), 0); kettle.position.set(lerp(1.05, .95, ss(seg(t, 22.0, 22.9))), .44 + (t > 22.0 && t < 22.9 ? Math.abs(Math.sin(t * 22)) * .012 : 0), lerp(-.55, -.5, ss(seg(t, 22, 22.9))));
     kBody.rotation.z = (t > 28.2) ? Math.sin(seg(t, 28.2, 28.35) * Math.PI * 2) * .1 : 0; kLid.position.set(0, .175, 0); kLid.rotation.set(0, 0, 0); }
   else { const u = seg(t, 28.35, 28.75); kBody.rotation.z = -back(u, 1.2) * Math.PI / 2 * .98; kettle.position.y = .44 + Math.sin(u * Math.PI) * .03;

@@ -14,7 +14,7 @@ SR, DUR = 48000, 38.5
 HERE = Path(__file__).resolve().parent
 LINES = {'v1': .2, 'v2': 3.55, 'v3': 9.85, 'v4': 13.3, 'v5': 18.2, 'v6': 23.9, 'v7': 29.3, 'v8': 32.7}  # must match scene.js
 # lines re-synthesized as short pieces (ASR fix 07.11): played back to back with a pause, one subtitle id
-CHAINS = {'v5': (['v5a', 'v5c', 'v5d'], .2), 'v7': (['v7a', 'v7b'], .35)}
+CHAINS = {'v5': (['v5a', 'v5c'], .3), 'v7': (['v7a', 'v7b'], .35)}
 rng = np.random.default_rng(11)
 
 
@@ -96,7 +96,7 @@ def bank():
 
 SFX_AT = [('twitch', .4), ('scan', .7), ('scan', 2.2), ('motor', 3.6), ('scan', 6.8), ('whoosh', 9.25), ('grab', 9.55),
           ('drag', 9.9), ('purrlow', 13.2), ('swoosh', 14.4), ('tug', 14.8), ('alarm', 18.05), ('chime', 19.6), ('hop', 20.6),
-          ('hop', 21.2), ('hop', 21.8), ('click', 21.4), ('boil', 21.6), ('growl', 23.0), ('whoosh', 27.75), ('thwack', 27.95),
+          ('hop', 21.2), ('hop', 21.8), ('click', 20.6), ('boil', 20.8), ('growl', 23.0), ('whoosh', 27.75), ('thwack', 27.95),
           ('spin', 28.0), ('clang', 28.35), ('thud', 28.8), ('thud', 29.15), ('clink', 28.75), ('whoosh', 31.45), ('boing', 32.1),
           ('sad', 32.4), ('purr', 32.6)]
 

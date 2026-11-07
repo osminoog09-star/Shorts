@@ -1,0 +1,9 @@
+{
+  "job_id": "vacuum_wild_fix3",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "utterances": [
+    { "id": "v5c", "text": "Колонка. Чайник.", "rate": 1.0 }
+  ],
+  "test_scope": "private_owner_hearing_only"
+}
