@@ -1,5 +1,5 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/ai_vacation_202611.json",
   "manifest_sha256": "8104dbfebe7884501b5b532da535a71bf0c981079418a778eeb57a313e51adc3",
   "channel": "ru",
@@ -12,12 +12,13 @@
   "source_sha256": "3de6317eaf5226e67c48058a046e7921928a53e7506a235bb9fe7bf8e551ed20",
   "upload_method": "youtube-direct",
   "owner_audio_approved": true,
-  "schedule_confirmed_at": "2026-11-04T22:06:11Z",
-  "schedule_request_id": "migration-20261104-ai_vacation_202611",
+  "schedule_confirmed_at": "2026-11-07T06:39:51.866848+00:00",
+  "schedule_request_id": null,
   "owner_migration_20261104": "Confirmed via live YouTube API GET, Actions run 41922020447; no upload or deletion",
   "missed_schedule": {
     "publish_at_utc": "2026-11-06T18:00:00Z",
     "observed": "2026-11-07 inventory: privacy=private, не вышел",
     "audit": "Claude 07.11"
-  }
+  },
+  "publish_at_utc": "2026-11-09T18:00:00Z"
 }
