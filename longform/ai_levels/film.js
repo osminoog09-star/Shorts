@@ -12,17 +12,18 @@ const hash = n => { n = Math.sin(n * 127.1 + 311.7) * 43758.5453; return n - Mat
 
 const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('c'), antialias: true, preserveDrawingBuffer: true });
 renderer.setPixelRatio(1); renderer.setSize(W, H, false); renderer.outputColorSpace = THREE.SRGBColorSpace;
-const scene = new THREE.Scene(); scene.background = new THREE.Color('#000');
+const scene = new THREE.Scene(); renderer.setClearColor('#000', 1);   // no scene.background: it would wipe the outgoing shot during crossfades
 const camera = new THREE.PerspectiveCamera(36, W / H, .01, 50);
 const loader = new THREE.TextureLoader();
 const load = u => new Promise(r => loader.load(u, t => r(t), undefined, () => r(null)));
 
-// relief material: depth displaces vertices toward the camera; slight edge stretching hidden by modest moves
+// relief material: softened (5×5 blurred) depth displaces vertices gently — strong values tear edges (Denis 07.11: искажения не надо сильно)
 const reliefMat = (tex, dep) => new THREE.ShaderMaterial({
-  uniforms: { map: { value: tex }, dep: { value: dep }, amt: { value: .55 }, fade: { value: 1 }, glow: { value: 0 }, glowCol: { value: new THREE.Color('#7dff9a') } },
-  vertexShader: `uniform sampler2D dep; uniform float amt; varying vec2 vUv; void main(){ vUv = uv; float d = texture2D(dep, uv).r; vec3 p = position; p.z += (d - .5) * amt; gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.); }`,
+  uniforms: { map: { value: tex }, dep: { value: dep }, amt: { value: .24 }, fade: { value: 1 }, glow: { value: 0 }, glowCol: { value: new THREE.Color('#7dff9a') } },
+  vertexShader: `uniform sampler2D dep; uniform float amt; varying vec2 vUv; void main(){ vUv = uv; float d = 0.; for (int i = -2; i <= 2; i++) for (int j = -2; j <= 2; j++) d += texture2D(dep, uv + vec2(float(i), float(j)) * vec2(.006, .0105)).r; d /= 25.; vec3 p = position; p.z += (d - .5) * amt; gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.); }`,
   fragmentShader: `uniform sampler2D map; uniform float fade, glow; uniform vec3 glowCol; varying vec2 vUv;
-    void main(){ vec3 c = texture2D(map, vUv).rgb; float l = dot(c, vec3(.3,.59,.11)); c += glowCol * glow * smoothstep(.35, .9, l) * .25; gl_FragColor = vec4(c * fade, 1.); }`,
+    void main(){ vec3 c = texture2D(map, vUv).rgb; float l = dot(c, vec3(.3,.59,.11)); c += glowCol * glow * smoothstep(.35, .9, l) * .25; gl_FragColor = vec4(c, fade); }`,
+  transparent: true,
 });
 const geo = new THREE.PlaneGeometry(1.75 * 1.6, 1.6, 360, 206);   // image aspect 1344:768 = 1.75
 const shots = [];
@@ -43,20 +44,25 @@ const cursor = new THREE.Mesh(new THREE.PlaneGeometry(.035, .05), new THREE.Mesh
 const subEl = document.getElementById('sub'), cardEl = document.getElementById('card'), quoteEl = document.getElementById('quote'), blackEl = document.getElementById('black');
 let lastSub = '';
 window.render = function (t) {
-  // active shot + crossfade
-  let cur = shots.find(s => t >= s.a && t < s.b) || shots[shots.length - 1];
+  // active shots: true crossfade (no dip to black) — outgoing shot drawn first, incoming blended over it with its own camera pose
+  const act = shots.filter(s => t >= s.a && t < s.b); if (!act.length) act.push(shots[shots.length - 1]);
   for (const s of shots) s.mesh.visible = false;
-  if (!cur) { renderer.render(scene, camera); return; }
-  const u = seg(t, cur.a, cur.b), m = cur.move || {};
-  cur.mesh.visible = true;
-  const fadeIn = ss(seg(t, cur.a, cur.a + (cur.xf ?? .6))), fadeOut = 1 - ss(seg(t, cur.b - (cur.xf ?? .6), cur.b));
-  cur.mesh.material.uniforms.fade.value = Math.min(fadeIn, fadeOut);
-  cur.mesh.material.uniforms.amt.value = m.depth ?? .55;
-  cur.mesh.material.uniforms.glow.value = (m.glow || 0) * (.7 + .3 * Math.sin(t * 5));
-  // camera: dolly (z), pan (x/y) and slight rotation — through the relief
-  const e = ss(u);
-  camera.position.set(lerp(m.x0 ?? 0, m.x1 ?? 0, e), lerp(m.y0 ?? 0, m.y1 ?? 0, e), lerp(m.z0 ?? 2.15, m.z1 ?? 1.9, e));
-  camera.lookAt(lerp(m.tx0 ?? 0, m.tx1 ?? 0, e), lerp(m.ty0 ?? 0, m.ty1 ?? 0, e), 0); camera.rotation.z = lerp(m.r0 ?? 0, m.r1 ?? 0, e);
+  const cur = act[act.length - 1];
+  const pose = (s) => {
+    const m = s.move || {}, e = ss(seg(t, s.a, s.b));
+    camera.position.set(lerp(m.x0 ?? 0, m.x1 ?? 0, e), lerp(m.y0 ?? 0, m.y1 ?? 0, e), lerp(m.z0 ?? 2.15, m.z1 ?? 1.9, e));
+    camera.lookAt(lerp(m.tx0 ?? 0, m.tx1 ?? 0, e), lerp(m.ty0 ?? 0, m.ty1 ?? 0, e), 0); camera.rotation.z = lerp(m.r0 ?? 0, m.r1 ?? 0, e);
+    const i = shots.indexOf(s), prev = shots[i - 1], next = shots[i + 1];
+    const ovIn = prev && prev.b > s.a ? prev.b - s.a : 0, ovOut = next && next.a < s.b;
+    const fadeIn = ovIn ? ss(seg(t, s.a, s.a + ovIn)) : ss(seg(t, s.a, s.a + (s.xf ?? .6)));
+    const fadeOut = ovOut ? 1 : 1 - ss(seg(t, s.b - (s.xf ?? .6), s.b));
+    const u = s.mesh.material.uniforms; u.fade.value = s === cur ? Math.min(fadeIn, fadeOut) : fadeOut;
+    u.amt.value = m.depth ?? .24; u.glow.value = (m.glow || 0) * (.7 + .3 * Math.sin(t * 5));
+    return Math.min(fadeIn, fadeOut);
+  };
+  renderer.autoClear = false; renderer.clear(); snow.visible = dust.visible = cursor.visible = false;
+  for (const s of act.slice(0, -1)) { s.mesh.visible = true; pose(s); renderer.render(scene, camera); s.mesh.visible = false; renderer.clearDepth(); }
+  cur.mesh.visible = true; const fadeIn = pose(cur), fadeOut = 1;
   // layers per shot
   snow.visible = !!cur.snow; if (snow.visible) { const p = snow.geometry.attributes.position; for (let i = 0; i < p.count; i++) { p.setY(i, ((hash(i + 7) * 1.8 - t * (.05 + hash(i) * .06)) % 1.8 + 1.8) % 1.8 - .9); p.setX(i, (hash(i) - .5) * 3 + Math.sin(t * .6 + i) * .02); } p.needsUpdate = true; }
   dust.visible = !!cur.dust; if (dust.visible) { const p = dust.geometry.attributes.position; for (let i = 0; i < p.count; i++) { p.setY(i, (hash(i * 5) - .5) * 1.5 + Math.sin(t * .3 + i) * .03); p.setX(i, (hash(i * 3) - .5) * 2.6 + Math.cos(t * .25 + i * 1.3) * .04); } p.needsUpdate = true; }
