@@ -32,11 +32,16 @@ def main():
         row=blueprint[ch-1]['rows'][par-1].split('/')
         loc,other,prop,action,emotion=row
         duration=g['end']-g['start'];count=max(3,round(duration/6))
-        modes=['wide','insert','medium','reaction','insert','wide','medium']
-        if (ch,par)==(7,7):count=1
+        modes=['wide','insert','medium','reaction','insert','reverse','environment']
+        if (ch,par)==(7,7):count=3
         for j in range(count):
-            start=g['start']+duration*j/count;end=g['start']+duration*(j+1)/count
+            bounds=[g['start']+duration*k/count for k in range(count+1)]
+            if (ch,par)==(7,7):
+                first=min(12,duration*.6);bounds=[g['start'],g['start']+first,g['start']+first+(duration-first)/2,g['end']]
+            start,end=bounds[j:j+2]
             mode=modes[j%len(modes)]
+            if j==0 and par==1 and ch in [3,4,5,7]:mode='environment'
+            if j==2 and par%3==0:mode='reverse'
             if prop=='umbrella' and mode=='insert':prop_shot='contract' if ch==1 else 'board'
             elif prop=='gauge' and mode=='insert':prop_shot='tube' if ch==5 else 'gauge'
             else:prop_shot=prop
@@ -46,9 +51,13 @@ def main():
                 for k,w in enumerate(ws):
                     tm=u['start']+(u['end']-u['start'])*(k+.5)/len(ws)
                     if start<=tm<end:words.append(w)
-            other_action='inspect' if other=='nora' else 'box' if other=='woman' and prop=='flowers' else 'read' if other in ['chief','manager'] else 'explain' if other=='client' else 'idle'
-            sc=dict(id=f'c{ch:02d}p{par:02d}s{j:02d}',chapter=ch,paragraph=par,start=round(start,6),end=round(end,6),location=loc,mode=mode,other=other,otherAction=other_action,action=action if mode!='reaction' else 'idle',emotion=emotion,prop=prop_shot,variant=int(ch>=7),spoken_words=' '.join(words),transition='cut',reason='Событие и реакция в исходном абзаце',source_utterances=[u['id'] for u in g['utterances']])
-            if (ch,par)==(7,7):sc['mode']='pilot'
+            other_action='telescope' if ch==8 and par>=6 and other=='child' else 'inspect' if other=='nora' else 'box' if other=='woman' and prop=='flowers' else 'read' if other in ['chief','manager'] else 'explain' if other=='client' else 'idle'
+            sc=dict(id=f'c{ch:02d}p{par:02d}s{j:02d}',chapter=ch,paragraph=par,start=round(start,6),end=round(end,6),location=loc,mode=mode,other=other,otherAction=other_action,action=action if mode!='reaction' else 'idle',emotion=emotion,prop=prop_shot,variant=2 if ch==8 else 1 if ch==7 else 3 if (ch,par)==(4,1) and j>0 else 0,spoken_words=' '.join(words),transition='cut',reason='Событие и реакция в исходном абзаце',source_utterances=[u['id'] for u in g['utterances']])
+            sc['propVariant']=2 if (ch,par)==(3,3) and prop=='jar' else 2 if (ch,par)==(3,4) and prop=='ledger' else 3 if (ch,par) in [(3,5),(5,6),(5,7)] and prop=='ledger' else 4 if (ch,par)==(6,7) and prop=='ledger' else 2 if prop=='contract' and ch==1 and par<=2 else 1 if prop=='contract' and ch==4 else 3 if prop=='contract' and ch==6 else 2 if prop=='map' and (ch,par)==(5,3) else 1 if prop=='ledger' and ch>=6 else int(ch>=7)
+            if (ch,par,j)==(1,1,0):sc['mode']='hook'
+            if (ch,par,j)==(2,4,0):sc['mode']='environment';sc['location']='city'
+            if (ch,par)==(7,7) and j==0:sc['mode']='pilot'
+            if (ch,par)==(8,8) and j==count-1:sc['action']='closedUmbrella';sc['mode']='wide'
             if par==1 and j==0:sc['chapterTitle']=blueprint[ch-1]['title']
             if ch==1 and par==1 and j==0:sc['chapterTitle']=''
             scenes.append(sc)

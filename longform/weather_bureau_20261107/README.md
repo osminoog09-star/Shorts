@@ -29,7 +29,7 @@ python -X utf8 longform/weather_bureau_20261107/build_timeline.py
 python -X utf8 longform/weather_bureau_20261107/finish_audio.py
 node longform/weather_bureau_20261107/src/film.cjs animatic
 # После просмотра полного actual-timed аниматика:
-node longform/weather_bureau_20261107/src/film.cjs final
+python -X utf8 longform/weather_bureau_20261107/render_final.py
 ```
 
 Сначала сверить отсутствие записи экрана/видео: запись и рендер запрещено совмещать на всём ПК. Утверждённую горизонтальную концовку v7 добавлять только штатным `tools/assemble_with_outro.py --horizontal`; не изменять её. Перед выдачей готового MP4 обязательны full decode, официальный check/look и `scripts/qa/longform_duration_gate.py`.

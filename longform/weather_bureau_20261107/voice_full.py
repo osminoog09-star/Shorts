@@ -97,7 +97,9 @@ def main():
         for u in failed:
             if attempt>=3:raise RuntimeError('ASR failed after four attempts '+u['id'])
             synth([u],attempt+1)
-    for i in range(0,len(pending),4):synth(pending[i:i+4])
+    batch_size=int(os.environ.get('WEATHER_VOICE_BATCH','6'))
+    assert 1<=batch_size<=6
+    for i in range(0,len(pending),batch_size):synth(pending[i:i+batch_size])
     assert len(done)==len(rows)
     print('ALL_VOICE_PASS',len(done),'duration_s',sum(u['duration_s'] for u in done.values()),flush=True)
 

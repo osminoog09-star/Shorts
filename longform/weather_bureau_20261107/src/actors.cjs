@@ -16,7 +16,7 @@ function hand(c,x,y,angle=0,kind='open',skin='#e7c4a1',size=.68){c.save();c.tran
   path(c,'M-14 -11 Q-7 -5 -9 7 M-4 -15 Q3 -7 1 7 M8 -16 Q16 -5 11 9 M20 -10 Q26 -1 21 10 M-18 5 Q-7 -2 4 7',null,'#9e785e',1.5);
  }
  c.restore()}
-function head(c,person='hero',emotion='neutral',angle='three',look=0,t=0){const p=PEOPLE[person]||PEOPLE.hero;const female=['nora','woman'].includes(person);c.save();
+function head(c,person='hero',emotion='neutral',angle='three',look=0,t=0){const p=PEOPLE[person]||PEOPLE.hero;const female=['nora','woman','child'].includes(person);c.save();
  if(angle==='front'){
   path(c,'M-36 -45 Q-49 -24 -43 7 Q-39 48 0 54 Q39 48 43 7 Q49 -24 36 -45 Q0 -72 -36 -45 Z',p.skin);
   path(c,'M-36 -41 Q-42 2 -24 33 Q-15 47 0 51 Q-36 49 -43 7 Q-49 -24 -36 -41 Z',p.shade,null);
@@ -30,7 +30,9 @@ function head(c,person='hero',emotion='neutral',angle='three',look=0,t=0){const 
   path(c,'M-36 -41 Q-45 -11 -33 13 Q-24 35 -1 49 Q-28 44 -36 28 L-45 5 Q-51 -22 -36 -41 Z',p.shade,null);
   oval(c,-44,-2,11,17,p.skin);path(c,'M-47 -10 Q-35 -8 -43 7',null,'#a77b61',1.3);
  }
- if(person==='hero'||person==='child'){
+ if(person==='child'){
+  oval(c,-48,-25,17,22,p.hair);oval(c,49,-25,17,22,p.hair);path(c,'M-47 -8 Q-58 -44 -30 -61 Q-2 -75 27 -57 Q55 -44 45 -6 L33 -35 Q20 -20 10 -39 Q-5 -21 -17 -39 L-31 -19 L-35 5 Z',p.hair);path(c,'M-34 -44 Q-12 -61 15 -48',null,'#9a7054',2);
+ }else if(person==='hero'){
   path(c,'M-47 -6 Q-57 -23 -45 -38 Q-51 -57 -30 -57 Q-29 -72 -10 -65 Q0 -78 16 -65 Q32 -71 37 -52 Q57 -47 47 -28 L39 -17 L33 -40 Q19 -29 13 -44 Q-5 -31 -10 -47 Q-18 -32 -29 -39 L-34 -13 L-40 1 Z',p.hair);
   path(c,'M-40 -40 Q-29 -54 -20 -48 M-12 -55 Q0 -66 9 -56 M14 -52 Q30 -62 35 -47',null,'#87614b',2);
  }else if(person==='nora'){
@@ -49,7 +51,7 @@ function head(c,person='hero',emotion='neutral',angle='three',look=0,t=0){const 
  for(const [x,y,rx,ry] of eyes){if(blink){path(c,`M${x-rx} ${y} Q${x} ${y+4} ${x+rx} ${y}`,null,INK,2.5)}else{oval(c,x,y,rx,emotion==='surprise'?ry*1.25:emotion==='focused'?ry*.72:ry,'#f4f1e3');oval(c,x+look*4+2,y+1,4.5,emotion==='focused'?5.6:6,INK,null);oval(c,x+look*4+3,y-1,1.2,1.2,'white',null)}}
  const brow=emotion==='worried'?-7:emotion==='angry'?5:emotion==='surprise'?-9:emotion==='focused'?2:0;
  path(c,emotion==='angry'?'M-29 -31 L1 -20 M16 -20 L43 -31':emotion==='focused'?'M-28 -24 L1 -21 M15 -21 L42 -25':`M-28 -27 Q-14 ${-32+brow} 1 ${-25-brow*.5} M15 ${-26-brow*.5} Q30 ${-32+brow} 42 -25`,null,p.hair,4);
- if(angle==='profile')path(c,'M28 -9 L27 8 L38 11',null,INK,1.6);else path(c,angle==='front'?'M2 -8 L-3 10 Q3 15 9 10':'M17 -10 L10 10 Q18 16 25 9',null,'#9d795f',1.6);
+ if(angle==='profile')path(c,'M28 -9 L27 8 L38 11',null,INK,1.6);else if(person==='child')path(c,'M9 0 q-5 10 5 10',null,'#9d795f',1.6);else path(c,angle==='front'?'M2 -8 L-3 10 Q3 15 9 10':'M17 -10 L10 10 Q18 16 25 9',null,'#9d795f',1.6);
  if(emotion==='smile'||emotion==='relieved'){path(c,'M-7 27 Q11 39 29 24 Q11 49 -7 27 Z','#f4efe1');path(c,'M-18 12 Q-21 22 -15 24 M31 11 Q38 18 34 25',null,'#b68d71',1.3)}
  else if(emotion==='surprise')path(c,'M1 29 Q10 21 19 28 L20 37 Q8 43 1 35 Z','#785348');
  else if(emotion==='worried')path(c,'M-5 34 Q11 23 27 32',null,INK,2);
@@ -61,9 +63,10 @@ function head(c,person='hero',emotion='neutral',angle='three',look=0,t=0){const 
  if(female)path(c,'M-27 -15 L-33 -20 M37 -14 L44 -18',null,INK,1.8);
  c.restore()}
 function actor(c,person,x,y,s=1,pose='idle',emotion='neutral',t=0,opt={}){const p=PEOPLE[person]||PEOPLE.hero;c.save();c.translate(x,y);c.scale(s,s);if(opt.flip)c.scale(-1,1);
- const walk=pose==='walk'?Math.sin(t*7):0,lean=pose==='stamp'?-.045:pose==='lever'?0:0;
+ oval(c,0,6,83,12,'rgba(24,42,43,.17)',null);
+ const walk=pose==='walk'?Math.sin(t*7)*(opt.walkFactor??1):0,lean=pose==='stamp'?-.045:pose==='lever'?0:0;
  // Individual feet and bent knees retain a stable floor.
- for(let side of [-1,1]){let hip=side*28,knee=side*35+walk*side*13,ankle=side*38+walk*side*31;bone(c,hip,-175,knee,-88,27,23,p.pants);bone(c,knee,-88,ankle,-10,24,19,p.pants);path(c,`M${ankle-22} -19 L${ankle+18} -17 Q${ankle+34} -12 ${ankle+43} -2 L${ankle+43} 12 L${ankle-23} 12 Z`,'#464d48');line(c,ankle-19,8,ankle+39,8,'#232d30',3);for(let k=0;k<3;k++)line(c,ankle+6-k*3,-13+k*5,ankle+23-k*3,-10+k*4,'#aab0a2',1.3)}
+ for(let side of [-1,1]){c.save();const lift=Math.max(0,walk*side)*16;c.translate(0,-lift);let hip=side*28,knee=side*35+walk*side*13,ankle=side*38+walk*side*31;bone(c,hip,-175,knee,-88,27,23,p.pants);bone(c,knee,-88,ankle,-10,24,19,p.pants);path(c,`M${ankle-22} -19 L${ankle+18} -17 Q${ankle+34} -12 ${ankle+43} -2 L${ankle+43} 12 L${ankle-23} 12 Z`,'#464d48');line(c,ankle-19,8,ankle+39,8,'#232d30',3);for(let k=0;k<3;k++)line(c,ankle+6-k*3,-13+k*5,ankle+23-k*3,-10+k*4,'#aab0a2',1.3);c.restore()}
  c.save();c.rotate(lean);
  // Neck and tailored coat, seams, storm flap and readable silhouette.
  path(c,'M-24 -396 L23 -397 L29 -360 L-26 -359 Z',p.skin);
@@ -72,12 +75,14 @@ function actor(c,person,x,y,s=1,pose='idle',emotion='neutral',t=0,opt={}){const 
  path(c,'M-27 -383 L-2 -361 L-15 -338 L-43 -372 Z',P.cream);path(c,'M27 -383 L-2 -361 L12 -339 L44 -373 Z',P.cream);
  line(c,-2,-360,-2,-157,INK,2.2);for(let yy=-327;yy<-172;yy+=29)oval(c,9,yy,3.2,3.2,'#dbc9a2',INK,1);
  for(let side of [-1,1]){rect(c,side<0?-62:23,-265,40,49,p.shadow,INK,1.8);path(c,`M${side<0?-64:21} -267 l44 0 l-3 14 l-38 0 Z`,p.coat);line(c,side<0?-64:22,-196,side<0?-22:61,-196,'#746448',1)}
- path(c,'M-45 -329 Q-53 -322 -45 -317 Q-36 -317 -37 -325 Q-34 -336 -43 -336 Q-50 -336 -49 -329 Z',P.cream,INK,1.4);
+ if(person!=='child')path(c,'M-45 -329 Q-53 -322 -45 -317 Q-36 -317 -37 -325 Q-34 -336 -43 -336 Q-50 -336 -49 -329 Z',P.cream,INK,1.4);
  let L=[-74,-168],R=[74,-168],lk='grip',rk='grip';
  if(pose==='walk'){L=[-72+walk*29,-175+walk*17];R=[72-walk*29,-175-walk*17]}
  if(pose==='point'){R=[165,-317];rk='point';L=[-70,-210]}
  if(pose==='read'||pose==='carry'){L=[-48,-269];R=[48,-269];lk=rk='grip'}
  if(pose==='explain'){L=[-65,-235];R=[148,-325+7*Math.sin(t*1.6)];lk='grip';rk='open'}
+ if(pose==='telescope'){L=[-20,-270];R=[82,-313];lk=rk='grip'}
+ if(pose==='closedUmbrella'){L=[-70,-210];R=[35,-220];rk='grip'}
  if(pose==='offer'){L=[-70,-210];R=[145,-265];rk='open'}
  if(pose==='inspect'){L=[-48,-269];R=[110,-335];lk='grip';rk='point'}
  if(pose==='umbrella'){L=[-70,-210];R=[35,-280];rk='grip'}
@@ -89,23 +94,27 @@ function actor(c,person,x,y,s=1,pose='idle',emotion='neutral',t=0,opt={}){const 
  if(pose==='stamp'){R=[90,-228-20*Math.sin(Math.min(1,t%3)*Math.PI)];L=[-45,-260];rk='grip';lk='open'}
  if(pose==='worried'){R=[26,-404];L=[-57,-230];rk='open'}
  if(pose==='lever'){L=opt.left||[120,-248];R=opt.right||[145,-250];lk=rk='grip'}
+ if(['point','explain','stop','offer','inspect'].includes(pose)){const e=A.ease(((opt.phase??Math.min(1,t/5))-.04)/.23);R=[72+(R[0]-72)*e,-205+(R[1]+205)*e]}
+ if(pose==='telescope'){c.save();c.translate(34,-303);c.rotate(-.55);rect(c,-60,-15,160,30,'#ba9567');rect(c,83,-20,22,40,'#755d46');rect(c,-65,-12,20,24,'#765e47');oval(c,106,0,4,19,'#59747a');c.restore()}
+ if(pose==='closedUmbrella'){path(c,'M35 -422 Q13 -375 12 -278 L55 -278 Q58 -375 35 -422 Z',P.gold);line(c,35,-414,35,-207,INK,3);path(c,'M35 -208 q0 20 19 10',null,INK,4);rect(c,11,-305,45,10,'#9e7c3f')}
  if(pose==='umbrella')A.umbrella(c,35,-408,1,.01*Math.sin(t));
  if(pose==='box')require('./props.cjs').flowers(c,0,-250,.65);
  if(pose==='tool'){line(c,107,-354+12*Math.sin(t*2),107,-410+12*Math.sin(t*2),'#758a86',7);rect(c,99,-354+12*Math.sin(t*2),16,40,'#a66b4c')}
  if(pose==='write'){paper(c,0,-262,.78,'ЖУРНАЛ');line(c,50,-278,16,-316,'#465e64',5)}
- if(pose==='offer')paper(c,140,-271,.62,'ДОГОВОР');
+ if(pose==='offer')paper(c,R[0]-5,R[1]-6,.62,'ДОГОВОР');
  if(pose==='inspect')paper(c,-17,-260,.64,'ЗАМЕР');
  if(pose==='read')paper(c,0,-262,.78,'ЗАЯВКА');
  if(pose==='carry')A.weatherJar(c,0,-265,.55,false);
  if(pose==='call'){rect(c,35,-451,24,72,'#45585a');for(let i=0;i<3;i++)line(c,39,-435+i*7,55,-435+i*7,'#bcb59b',1.2)}
  if(opt.left)L=opt.left;if(opt.right)R=opt.right;if(opt.leftKind)lk=opt.leftKind;if(opt.rightKind)rk=opt.rightKind;
  // Two-bone IK, lowered elbows for raised gestures, stable holds for carried props.
- for(const [side,target,kind] of [[-1,L,lk],[1,R,rk]]){const sx=side*58,sy=-350,dx=target[0]-sx,dy=target[1]-sy,d=Math.min(204,Math.max(12,Math.hypot(dx,dy))),theta=Math.atan2(dy,dx),alpha=Math.acos(Math.max(-1,Math.min(1,d/210))),ea=theta+(target[1]<-300?side:-side)*alpha,ex=sx+Math.cos(ea)*105,ey=sy+Math.sin(ea)*105;
+ for(const [side,target,kind] of [[-1,L,lk],[1,R,rk]]){const sx=side*58,sy=-350,dx=target[0]-sx,dy=target[1]-sy,d=Math.min(204,Math.max(12,Math.hypot(dx,dy))),theta=Math.atan2(dy,dx),alpha=Math.acos(Math.max(-1,Math.min(1,d/210))),ea=theta+((side===1&&['point','explain','stop','inspect','call','tool','worried','telescope'].includes(pose))?side:-side)*alpha,ex=sx+Math.cos(ea)*105,ey=sy+Math.sin(ea)*105;
   bone(c,sx,sy,ex,ey,25,21,p.coat);bone(c,ex,ey,target[0],target[1],22,16,p.coat);const aa=Math.atan2(target[1]-ey,target[0]-ex);bone(c,target[0]-Math.cos(aa)*12,target[1]-Math.sin(aa)*12,target[0],target[1],18,18,p.shadow);hand(c,target[0],target[1],aa+Math.PI/2,kind,p.skin,.68)
  }
  if(pose==='stamp'){rect(c,76,R[1]-7,28,34,'#8f5c3d');oval(c,90,R[1]-17,13,10,P.rust);rect(c,67,R[1]+24,46,10,'#655142')}
- c.save();c.translate(0,-435);c.scale(.86,.86);head(c,person,emotion,opt.angle||'three',opt.look||0,t+1.2);c.restore();
+ c.save();c.translate(0,-435);c.scale(person==='child'?1.02:.86,person==='child'?1.02:.86);head(c,person,emotion,opt.angle||'three',opt.look||0,t+1.2);c.restore();
  c.restore();c.restore();
  return {left:{x:x+L[0]*s,y:y+L[1]*s},right:{x:x+R[0]*s,y:y+R[1]*s}};
 }
-module.exports={PEOPLE,bone,hand,head,actor};
+function actorBack(c,person,x,y,s=1){const p=PEOPLE[person]||PEOPLE.hero;c.save();c.translate(x,y);c.scale(s,s);path(c,'M-70 -362 Q-95 -340 -90 -270 L-86 -120 Q0 -95 86 -120 L90 -270 Q95 -340 70 -362 Q30 -382 0 -376 Q-30 -382 -70 -362 Z',p.coat);path(c,'M-32 -390 L32 -390 L30 -358 Q0 -344 -30 -358 Z',p.skin);path(c,'M-59 -457 Q-62 -505 -20 -518 Q15 -538 48 -505 Q70 -483 57 -445 L42 -405 Q0 -382 -40 -411 Z',p.hair);path(c,'M-49 -467 Q-16 -485 35 -468 M-42 -438 Q-10 -450 39 -438',null,'#87664e',3);path(c,'M-65 -361 Q0 -330 65 -361 M0 -335 L0 -119 M-70 -293 Q-62 -250 -72 -192',null,INK,2.2);bone(c,-74,-343,-112,-145,28,24,p.coat);bone(c,74,-343,113,-144,28,24,p.coat);c.restore()}
+module.exports={PEOPLE,bone,hand,head,actor,actorBack};

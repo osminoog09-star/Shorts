@@ -14,12 +14,12 @@ def main():
     chords=[(146.832,220,293.665),(130.813,196,293.665),(164.814,220,329.628),(146.832,195.998,293.665)]
     rng=np.random.default_rng(20261107)
     block=round(24*sr)
-    for j,start in enumerate(range(0,n,block)):
+    for j,start in enumerate(range(0,n,round(20*sr))):
         length=min(block,n-start);t=np.arange(length,dtype=np.float32)/sr
         env=np.minimum(1,t/3)*np.minimum(1,(length/sr-t)/3)
         pad=np.zeros(length,np.float32)
         for k,f in enumerate(chords[j%len(chords)]):pad+=np.sin(2*np.pi*f*t+.6*k)*(.7+.3*np.sin(t*.13+k))
-        music[start:start+length]=pad*env
+        music[start:start+length]+=pad*env
     music*=rms*.015/max(1e-6,float(np.sqrt(np.mean(music**2))))
     # Low-level atmosphere follows locations, with half-second boundary fades.
     for s in tl['scenes']:

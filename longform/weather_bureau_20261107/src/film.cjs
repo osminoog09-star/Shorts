@@ -5,14 +5,15 @@ const A=require('./art.cjs');
 const HERE=path.dirname(__dirname);
 function draw(c,sc,t,duration){if(sc.mode==='pilot')pilot(c,t,duration);else shot(c,sc,t,duration)}
 async function render(op='animatic'){
- const tl=JSON.parse(fs.readFileSync(path.join(HERE,'timeline.json'),'utf8'));
- const draft=op==='animatic',fps=draft?2:30,scale=draft?.75:1.5;
- const {cv,c}=makeCanvas(scale),dest=path.join(OUT,draft?'animatic_silent.mp4':'film_silent.mp4');
+ const tl=JSON.parse(fs.readFileSync(process.argv[3]||path.join(HERE,'timeline.json'),'utf8'));
+ const draft=op==='animatic',fps=draft?2:30,scale=draft?.75:1.5,chapter=op.startsWith('chapter-')?Number(op.split('-')[1]):null;
+ const {cv,c}=makeCanvas(scale),dest=path.join(OUT,chapter?`chapter_${String(chapter).padStart(2,'0')}_silent.mp4`:op==='opening'?'opening_silent.mp4':draft?'animatic_silent.mp4':'film_silent.mp4');
  const log=fs.openSync(path.join(OUT,op+'_encode.log'),'w');
- const ff=spawn('ffmpeg',['-v','error','-y','-f','rawvideo','-pixel_format','rgba','-video_size',`${cv.width}x${cv.height}`,'-framerate',String(fps),'-i','pipe:0','-an','-vf',`scale=in_range=pc:out_range=tv:out_color_matrix=bt709,format=yuv420p${draft?',fps=30':''}`,'-c:v','h264_nvenc','-preset','p4','-cq',draft?'24':'18','-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709','-color_range','tv','-movflags','+faststart',dest],{stdio:['pipe','ignore',log]});
+ const ff=spawn('ffmpeg',['-v','error','-y','-filter_threads','2','-f','rawvideo','-pixel_format','rgba','-video_size',`${cv.width}x${cv.height}`,'-framerate',String(fps),'-i','pipe:0','-an','-vf',`scale=in_range=pc:out_range=tv:out_color_matrix=bt709,format=yuv420p${draft?',fps=30':''}`,'-c:v','h264_nvenc','-preset','p4','-cq',draft?'24':'18','-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709','-color_range','tv','-movflags','+faststart',dest],{stdio:['pipe','ignore',log]});
  let failure=null;ff.on('error',e=>failure=e);ff.stdin.on('error',e=>failure=e);
- const frames=Math.ceil(tl.duration_s*fps);let si=0;
- for(let n=0;n<frames;n++){
+ const frames=Math.ceil(tl.duration_s*fps);let si=0,startFrame=0,endFrame=frames;
+ if(chapter){const cs=tl.scenes.filter(s=>s.chapter===chapter);if(!cs.length)throw Error('Missing chapter');startFrame=Math.round(cs[0].start*fps);endFrame=chapter===8?frames:Math.round(cs[cs.length-1].end*fps)}
+ for(let n=startFrame;n<endFrame;n++){
   if(failure)throw failure;
   const tm=n/fps;while(si<tl.scenes.length-1&&tm>=tl.scenes[si].end)si++;
   const sc=tl.scenes[si];c.save();draw(c,sc,tm-sc.start,sc.end-sc.start);c.restore();
