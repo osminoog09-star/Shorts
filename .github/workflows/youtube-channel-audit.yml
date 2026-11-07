@@ -1,0 +1,31 @@
+name: YouTube · channel audit (read-only)
+# Lists every upload and playlist of the channel. Changes nothing on YouTube.
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency: { group: youtube-channel-audit, cancel-in-progress: false }
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: python -m pip install -q 'requests>=2.32,<3'
+      - name: Audit
+        env:
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN_RU: ${{ secrets.YOUTUBE_REFRESH_TOKEN_RU }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python scripts/youtube_channel_audit.py | tee "$RUNNER_TEMP/audit.txt"
+      - name: Save report
+        run: |
+          git config user.name channel-audit-bot; git config user.email channel-audit-bot@users.noreply.github.com
+          git add reports/youtube/channel_audit.json
+          git commit -qm "youtube: channel audit (read-only)" || exit 0
+          for i in 1 2 3; do git pull -q --rebase --autostash origin main && git push -q origin HEAD:main && exit 0; sleep 4; done
