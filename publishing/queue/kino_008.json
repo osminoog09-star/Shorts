@@ -27,9 +27,14 @@
     "default_language": "ru",
     "default_audio_language": "ru"
   },
-  "publish_at": null,
+  "publish_at": "2026-11-08T10:00:00+02:00",
   "provenance": {
     "qa_report": "reports/research/2026-11-06_KINO_008_FINAL_V1_PRIVATE_QA.json",
     "owner_review": "PRIVATE_ONLY_PUBLISH_DATE_NOT_APPROVED"
+  },
+  "schedule_request": {
+    "id": "c2a4c380-33b4-438b-b60b-2182752ac608",
+    "requested_at": "2026-11-07T06:09:28.086Z",
+    "publish_at": "2026-11-08T10:00:00+02:00"
   }
 }
