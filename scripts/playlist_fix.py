@@ -44,7 +44,7 @@ def main():
         if any(it["contentDetails"]["videoId"] == vid for it in items(token, pl)):
             print("ALREADY", pl, vid); continue
         r = requests.post(yd.API + "/playlistItems", params={"part": "snippet"}, headers=H, timeout=40,
-                          json={"snippet": {"playlistId": pl, "position": 0, "resourceId": {"kind": "youtube#video", "videoId": vid}}})
+                          json={"snippet": {"playlistId": pl, "resourceId": {"kind": "youtube#video", "videoId": vid}}})
         print("ADDED" if r.ok else f"FAIL {r.status_code} {r.text[:200]}", pl, vid, why)
 
 
