@@ -1,12 +1,39 @@
 {
   "status": "success",
-  "updated_at": "2026-11-07T21:50:00.113772Z",
-  "last_attempt_at": "2026-11-07T21:50:00.113772Z",
+  "updated_at": "2026-11-08T13:23:57.609363Z",
+  "last_attempt_at": "2026-11-08T13:23:57.609363Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "9e3feb6bb8fadf243e",
+      "title": "Physicists listened to electrical noise to crack a superconductor mystery",
+      "url": "https://arstechnica.com/science/2026/11/physicists-listened-to-electrical-noise-to-crack-a-superconductor-mystery/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-08T12:15:31Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7723ccbf8c3a4f1aba",
+      "title": "NASA Awards Moon Base Transportation, Technology, Science Projects",
+      "url": "https://www.nasa.gov/news-release/nasa-awards-moon-base-transportation-technology-science-projects/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-07T22:47:03Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "757379c07d1179f77b",
+      "title": "After the midterms, things are looking rocky for Elon Musk and data centers",
+      "url": "https://techcrunch.com/2026/11/07/after-the-midterms-things-are-looking-rocky-for-elon-musk-and-data-centers/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-07T22:07:22Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "4e392e0aaa87851434",
       "title": "Megaspeed exec was recruited to spy on Nvidia CEO, according to US intelligence memo",
@@ -698,33 +725,6 @@
       "category": "space",
       "source": "NASA News",
       "published_at": "2026-11-05T15:17:19Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e95078269422a6a1bf",
-      "title": "NASA Astronauts to Answer Questions from Florida Students",
-      "url": "https://www.nasa.gov/learning-resources/nasa-astronauts-to-answer-questions-from-florida-students-2/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-05T15:11:25Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "6167ca4f496ea89584",
-      "title": "The hidden supply chain costs of the AI boom",
-      "url": "https://www.theverge.com/podcast/1024438/willy-shih-supply-chain-ai-chips-ram-where-does-my-stuff-come-from-book",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-05T15:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5c6fd66a42c8ea494a",
-      "title": "You can post AI music straight to SoundCloud from ElevenLabs",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1027427/ai-music-soundcloud-elevenlabs",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-05T15:00:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
