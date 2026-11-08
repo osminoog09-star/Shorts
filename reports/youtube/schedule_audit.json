@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-07T20:59:51.098155+00:00",
+  "checked_at": "2026-11-08T13:41:42.049920+00:00",
   "count": 27,
   "problems": [
     {
@@ -207,8 +207,8 @@
       "receipt_publish_at": "2026-11-08T08:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-08T10:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-08T08:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "Они нажали кнопку — и даже ЗВУК исчез… 😨 #shorts",
       "upload_status": "processed",
       "rejection": null
