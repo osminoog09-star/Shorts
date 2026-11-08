@@ -1,12 +1,57 @@
 {
   "status": "success",
-  "updated_at": "2026-11-08T13:23:57.609363Z",
-  "last_attempt_at": "2026-11-08T13:23:57.609363Z",
+  "updated_at": "2026-11-08T22:04:17.890188Z",
+  "last_attempt_at": "2026-11-08T22:04:17.890188Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "ab3c0090fa33621fad",
+      "title": "Nvidia will investigate CEO Jensen Huang’s relationship with possible Chinese spy",
+      "url": "https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-08T21:00:11Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "54c06e97d6e0a2b71c",
+      "title": "Nvidia is investigating Jensen Huang’s relationship with a Chinese spy",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-08T20:22:39Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b9c0dd474c98ba8411",
+      "title": "Apple is racing to make Siri more agentic",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1029552/apple-siri-ai-agentic",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-08T19:18:19Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c08233254ab5569234",
+      "title": "Elvis and Eminem rights holders are suing Suno",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1029533/elvis-eminem-suno-ai-music-clone-lawsuit",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-08T17:23:19Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e12ad5f5bdc739ac1d",
+      "title": "NASA Announces $1 Million to Students for Moon Base Challenge",
+      "url": "https://www.nasa.gov/news-release/nasa-announces-1-million-to-students-for-moon-base-challenge/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-08T15:26:38Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "9e3feb6bb8fadf243e",
       "title": "Physicists listened to electrical noise to crack a superconductor mystery",
@@ -680,51 +725,6 @@
       "category": "ai",
       "source": "The Verge AI",
       "published_at": "2026-11-05T17:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c84a4cb62f0462d241",
-      "title": "OpenAI says its new cybersecurity model is better at not hacking other companies",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1027599/openai-gpt-6-cyber-launch",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-05T17:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ebef47c413e7a9e7a4",
-      "title": "Axiom Math wants to keep AI slop out of mathematics",
-      "url": "https://techcrunch.com/2026/11/05/axiom-math-wants-to-keep-ai-slop-out-of-mathematics/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-05T16:16:45Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3f8ff5b7d132d1e2f5",
-      "title": "Statehouse wins give Democrats new power to push clean energy",
-      "url": "https://arstechnica.com/science/2026/11/statehouse-wins-give-democrats-new-power-to-push-clean-energy/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-05T15:59:51Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "9c6e67cc65141fc07b",
-      "title": "Dropbox acquires Tigris Data for $350M to bolster its AI infrastructure",
-      "url": "https://techcrunch.com/2026/11/05/dropbox-acquires-tigris-data-for-350m-to-bolster-its-ai-iinfrastructure/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-05T15:19:05Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "6ca3f20209661162f4",
-      "title": "Midwestern City Lights",
-      "url": "https://www.nasa.gov/image-article/midwestern-city-lights/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-05T15:17:19Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
