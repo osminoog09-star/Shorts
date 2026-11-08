@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-08T13:41:42.049920+00:00",
+  "checked_at": "2026-11-08T21:15:54.544150+00:00",
   "count": 27,
   "problems": [
     {
@@ -351,8 +351,8 @@
       "receipt_publish_at": "2026-11-08T18:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-08T20:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-08T18:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "Робот-пылесос вышел на охоту 💀 #shorts",
       "upload_status": "processed",
       "rejection": null
