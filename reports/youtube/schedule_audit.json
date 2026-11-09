@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-08T21:15:54.544150+00:00",
+  "checked_at": "2026-11-09T16:41:14.305336+00:00",
   "count": 27,
   "problems": [
     {
@@ -9,6 +9,20 @@
       "receipt_publish_at": null,
       "queue": null,
       "queue_slot": null,
+      "live_privacy": null,
+      "live_publishAt": null,
+      "title": null,
+      "upload_status": null,
+      "rejection": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
+    },
+    {
+      "slug": "kino_011",
+      "video_id": "gLdXWqOj8hw",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-10T08:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-10T10:00:00+02:00",
       "live_privacy": null,
       "live_publishAt": null,
       "title": null,
@@ -220,8 +234,8 @@
       "receipt_publish_at": "2026-11-09T08:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-09T10:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-09T08:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "Она попросила обычный бургер — и всё изменилось 🍔 #shorts",
       "upload_status": "processed",
       "rejection": null
@@ -247,11 +261,12 @@
       "receipt_publish_at": "2026-11-10T08:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-10T10:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-10T08:00:00Z",
-      "title": "Все смотрели на фокус. Ребёнок заметил другое 🎩 #shorts",
-      "upload_status": "processed",
-      "rejection": null
+      "live_privacy": null,
+      "live_publishAt": null,
+      "title": null,
+      "upload_status": null,
+      "rejection": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
     },
     {
       "slug": "mini_strike_ru",
