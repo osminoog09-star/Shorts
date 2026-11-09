@@ -1,12 +1,156 @@
 {
   "status": "success",
-  "updated_at": "2026-11-08T22:04:17.890188Z",
-  "last_attempt_at": "2026-11-08T22:04:17.890188Z",
+  "updated_at": "2026-11-09T16:17:54.050006Z",
+  "last_attempt_at": "2026-11-09T16:17:54.050006Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "4d2c1dac08712af858",
+      "title": "Medium’s new TK app brings AI assistance directly into the writing process",
+      "url": "https://techcrunch.com/2026/11/09/mediums-new-tk-app-brings-ai-assistance-directly-into-the-writing-process/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-09T16:12:28Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "5ef96bda92f480d3b9",
+      "title": "Trump’s 60 Minutes interview touched on AI safety, threat to arrest an AI exec",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1029802/trump-60-minutes-ai",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-09T15:50:38Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "bc64bea0832685bcff",
+      "title": "SpaceX now fundamentally an \"infrastructure company,\" senior official says",
+      "url": "https://arstechnica.com/space/2026/11/spacex-now-fundamentally-an-infrastructure-company-senior-official-says/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-09T15:39:21Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "a1d6a1e656f4ce844a",
+      "title": "Disney and Adobe are building generative AI tools together",
+      "url": "https://www.theverge.com/tech/1029773/disney-adobe-generative-ai-partnership",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-09T15:38:56Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "717aea7cb5bba68cb0",
+      "title": "Hold up — I had a great time talking to the RIAA guy",
+      "url": "https://www.theverge.com/podcast/1029684/riaa-mitch-glazier-napster-ai-labels-music",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-09T15:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "637cc51b2facce74ae",
+      "title": "Nvidia CEO's affair becomes a national security problem",
+      "url": "https://arstechnica.com/tech-policy/2026/11/ceo-jensen-huang-admits-affair-as-nvidia-probes-possible-chinese-espionage/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-09T15:23:20Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b48b9f65c9785166aa",
+      "title": "F1 in Brazil: You’ve got to keep your tires alive",
+      "url": "https://arstechnica.com/cars/2026/11/f1-in-brazil-drivers-at-their-very-best-in-tricky-conditions/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-09T15:16:31Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d8ba4af02850aa5ef5",
+      "title": "Jonathan Kanter is using AI to take on Big Tech",
+      "url": "https://www.theverge.com/policy/1029652/kanter-doj-biden-legal-tech",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-09T14:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "195379aa7df783ab13",
+      "title": "Can Agentic Robotics Solve Robotics’ Data Scaling Problem?",
+      "url": "https://spectrum.ieee.org/agentic-robotics",
+      "category": "robotics",
+      "source": "IEEE Spectrum Robotics",
+      "published_at": "2026-11-09T14:00:02Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "fdb2f84630d3508ec4",
+      "title": "Automattic debuts a platform to deploy vibe coding apps amid a changing internet",
+      "url": "https://techcrunch.com/2026/11/09/automattic-debuts-a-platform-to-deploy-vibe-coding-apps-amid-a-changing-internet/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-09T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "baf5400148dd2082c0",
+      "title": "New Democratic Congress will likely strip the gilding from Trump's Golden Dome",
+      "url": "https://arstechnica.com/space/2026/11/new-democratic-congress-will-likely-strip-the-gilding-from-trumps-golden-dome/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-09T12:00:05Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ffc125749edfcb4289",
+      "title": "CHAPEA Mission 2 Crew Reflects After 378 Days on Simulated Mars",
+      "url": "https://www.nasa.gov/centers-and-facilities/johnson/chapea-mission-2-crew-reflects-after-378-days-on-simulated-mars/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-09T11:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e120b878a12761b045",
+      "title": "Is Jensen Huang’s job on the line? Yale’s Jeffrey Sonnenfeld estimates it’s “about a 50-50”",
+      "url": "https://techcrunch.com/2026/11/08/is-jensen-huangs-job-on-the-line-yales-jeffrey-sonnenfeld-estimates-its-about-a-50-50/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-09T05:26:29Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "6fbb9cbc09ce7eb4c3",
+      "title": "A single AI model simulates the behavior of many substances, from sliding sand to folding proteins",
+      "url": "https://news.mit.edu/2026/single-ai-model-simulates-many-substances-behavior-1109",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-09T05:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "f2b130fea883df692e",
+      "title": "AI-assisted learning platform helps robots reason beyond literal commands",
+      "url": "https://news.mit.edu/2026/ai-assisted-learning-platform-helps-robots-reason-beyond-literal-commands-1109",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-09T05:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "f0be6325bfc4dec9fd",
+      "title": "Here’s the full text of Jensen Huang’s memo to Nvidia",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1029595/full-text-jensen-huang-affair-memo-nvidia",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-08T22:54:50Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "ab3c0090fa33621fad",
       "title": "Nvidia will investigate CEO Jensen Huang’s relationship with possible Chinese spy",
@@ -18,7 +162,7 @@
     },
     {
       "id": "54c06e97d6e0a2b71c",
-      "title": "Nvidia is investigating Jensen Huang’s relationship with a Chinese spy",
+      "title": "Nvidia is investigating Jensen Huang’s relationship with an alleged Chinese spy",
       "url": "https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy",
       "category": "ai",
       "source": "The Verge AI",
@@ -581,150 +725,6 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-05T21:56:36Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c73a8421f0de0a7da6",
-      "title": "Google: Schools can keep search while skipping Gemini, but AI search is non-negotiable",
-      "url": "https://arstechnica.com/ai/2026/11/google-schools-can-keep-search-while-skipping-gemini-but-ai-search-is-non-negotiable/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-05T21:40:36Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "1ebc0fcad61a0f6917",
-      "title": "Lawsuit: Man introduced his wife to ChatGPT. She used it to plan his murder.",
-      "url": "https://arstechnica.com/tech-policy/2026/11/lawsuit-man-introduced-his-wife-to-chatgpt-she-used-it-to-plan-his-murder/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-05T21:39:40Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f95880d64b0a9632bc",
-      "title": "BMW bumps battery for the better: The 2027 i7 60 xDrive, driven",
-      "url": "https://arstechnica.com/cars/2026/11/bmw-bumps-battery-for-the-better-the-2027-i7-60-xdrive-driven/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-05T20:45:50Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f93c3c74424d507fcb",
-      "title": "Software squeezes more data out of Webb Telescope for imaging exoplanets",
-      "url": "https://arstechnica.com/science/2026/11/getting-software-to-help-block-out-a-star-so-we-can-see-exoplanets/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-05T19:59:22Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ce33817e4026d3a9fd",
-      "title": "Meta says US users can now video chat with their Muse AI avatar",
-      "url": "https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-05T19:48:28Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "410d35f0bc7653f722",
-      "title": "Kalshi court losses pile up as judges refuse to block state gambling laws",
-      "url": "https://arstechnica.com/tech-policy/2026/11/kalshi-court-losses-pile-up-as-judges-refuse-to-block-state-gambling-laws/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-05T19:46:37Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7d05777f3cb4ebe2da",
-      "title": "Meta warns that election backlash against data centers could make AI expansion harder",
-      "url": "https://techcrunch.com/2026/11/05/metas-warns-that-election-backlash-against-data-centers-could-make-ai-expansion-harder/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-05T19:12:39Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "42370702883d2723a9",
-      "title": "OpenAI released a new cybersecurity model. Is that enough?",
-      "url": "https://techcrunch.com/2026/11/05/openai-released-a-new-cybersecurity-model-is-that-enough/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-05T19:06:12Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "bcea566fc08fba9bba",
-      "title": "Muse has a voice mode now",
-      "url": "https://www.theverge.com/tech/1028015/meta-muse-ai-voice-mode-expressive-avatar",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-05T19:03:04Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7ad6414128e013311f",
-      "title": "MAHA lost bigly in the midterms—is it at death's door?",
-      "url": "https://arstechnica.com/health/2026/11/is-maha-dying-or-will-it-be-reborn-whats-next-after-crushing-midterm-losses/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-05T18:49:41Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "2a8256897722920e0c",
-      "title": "OpenAI president Greg Brockman says company could be IPO ready in 2027",
-      "url": "https://techcrunch.com/2026/11/05/openai-president-greg-brockman-says-company-could-be-ipo-ready-in-2027/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-05T18:02:27Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b86f7c45dcb3e5423e",
-      "title": "Claude can now analyze your spending with its new Personal Finance tool",
-      "url": "https://techcrunch.com/2026/11/05/claude-can-now-analyze-your-spending-with-its-new-personal-finance-tool/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-05T18:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e6d6c85b3eb3fa4e89",
-      "title": "Claude AI can plug directly into your bank account",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1027652/anthropic-claude-plaid-personal-finance",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-05T18:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "a05905dc499c67f34c",
-      "title": "‘Total repudiation’: The blue wave is about to hit AI",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1026927/total-repudiation-the-blue-wave-is-about-to-hit-ai",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-05T17:51:52Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "aaddea4db7b3865d54",
-      "title": "Gamers go to ridiculous lengths to \"improve\" GTA VI with Nvidia's DLSS 5",
-      "url": "https://arstechnica.com/gaming/2026/11/gamers-go-to-ridiculous-lengths-to-improve-gta-vi-with-nvidias-dlss-5/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-05T17:40:27Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "94c971e34f7981b09f",
-      "title": "Grimes is going to star in an AI movie that’s coming to theaters",
-      "url": "https://www.theverge.com/entertainment/1026282/grimes-ai-movie",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-05T17:00:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
