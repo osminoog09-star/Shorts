@@ -18,6 +18,14 @@
       "note": "Источник для записи коротких сцен по решению Дениса 10.11.2026. Разрешение правообладателя не подтверждено.",
       "added": "2026-11-06",
       "owner_approved": true
+    },
+    {
+      "domain": "hdrezka-home.tv",
+      "name": "HDRezka (перенаправление в Chrome)",
+      "enabled": true,
+      "legal": false,
+      "owner_approved": true,
+      "note": "Фактическое перенаправление с hdrezka.ag, подтверждено в Chrome 10.11.2026."
     }
   ],
   "enabled": true,
