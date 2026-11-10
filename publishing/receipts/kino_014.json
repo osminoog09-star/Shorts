@@ -1,10 +1,13 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/kino_014.json",
   "manifest_sha256": "2384a15bccaf99144df420864a63d8b71abd5457fa2a54f76996b70f9ad007d6",
   "channel": "ru",
-  "publish_at_utc": null,
+  "publish_at_utc": "2026-11-11T08:00:00Z",
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "hUTYiTxz42c",
-  "video_url": "https://youtu.be/hUTYiTxz42c"
+  "video_url": "https://youtu.be/hUTYiTxz42c",
+  "privacy_status": "private",
+  "schedule_confirmed_at": "2026-11-10T22:21:33.284312+00:00",
+  "schedule_request_id": "9cd9da45-329a-4ad8-970a-4a27899b7fe3"
 }
