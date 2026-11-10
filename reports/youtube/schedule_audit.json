@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-10T15:04:51.779158+00:00",
+  "checked_at": "2026-11-10T22:15:37.799223+00:00",
   "count": 27,
   "problems": [
     {
@@ -327,8 +327,8 @@
       "receipt_publish_at": "2026-11-10T18:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-10T20:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-10T18:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "Притворись ботом · серия 4: среди нас нейросеть ☕🤖 #shorts",
       "upload_status": "processed",
       "rejection": null
