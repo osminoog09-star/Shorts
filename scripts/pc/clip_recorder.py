@@ -5,7 +5,7 @@
 (видео + звук системы) → проверка на чёрный кадр (защита от записи = НЕ обходим, фильм пропускается) →
 файл в C:\\M1lash\\Входящие\\clips → дальше монтажёр кино-Shorts.
 
-Сайты не блокируются по имени домена. Разрешены только включённые сайты из publishing/clip_sources.json с подтверждёнными правами (legal: true). Любой другой домен — отказ.
+Сайты не блокируются по имени домена. Разрешены только включённые сайты из publishing/clip_sources.json с подтверждёнными правами (legal: true) или прямым разрешением владельца студии (owner_approved: true). Любой другой домен — отказ.
 Длина фрагмента ≤ max_fragment_sec (60 с). Ничего не скачивает с сайта, не трогает DRM, капчи и платный доступ.
 
 Нужно на ПК: OBS 28+ (Инструменты → Настройки WebSocket-сервера → включить, пароль → переменная OBS_WS_PASSWORD;
@@ -43,7 +43,7 @@ def allowed(url):
         sys.exit("NO-GO: запись фрагментов выключена на сайте студии")
     for s in cfg["sources"]:
         d = s["domain"].lower()
-        if s.get("legal") and s.get("enabled", True) and (host == d or host.endswith("." + d)):
+        if (s.get("legal") or s.get("owner_approved")) and s.get("enabled", True) and (host == d or host.endswith("." + d)):
             return s, int(cfg.get("max_fragment_sec", 60))
     return None, int(cfg.get("max_fragment_sec", 60))
 
@@ -97,7 +97,7 @@ def main():
     a = ap.parse_args()
     src, cap = allowed(a.url)
     if not src:
-        sys.exit("NO-GO: домен не включён в publishing/clip_sources.json либо не подтверждены права на материал (настраивается на сайте студии)")
+        sys.exit("NO-GO: домен не включён в publishing/clip_sources.json либо нет разрешения в настройках (настраивается на сайте студии)")
     if not re.fullmatch(r"[a-z0-9_]{3,40}", a.id):
         sys.exit("NO-GO: id латиницей")
     cfg = json.loads((REPO / "publishing" / "clip_sources.json").read_text(encoding="utf-8"))
