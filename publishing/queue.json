@@ -487,6 +487,48 @@
       "owner_audio_approved": true,
       "note": "07.11 Денис: «как готово — заливай и ставь время». 24:07, хук+крючки+опрос, произношение «Оу-муа-муа». Обложку oumuamua_thumb.png поставить в Studio вручную.",
       "private_review_url": "https://studio.youtube.com/video/iYmh6Fd3LMY/edit"
+    },
+    {
+      "id": "kino_014",
+      "kind": "short",
+      "author": "Codex",
+      "status": "review",
+      "slot": null,
+      "mp4": "C:/M1lash/Готово/m1lash_kino_014_ru.mp4",
+      "title": "Фокусник пришёл на допрос в наручниках 🎩 #shorts",
+      "youtube_id": "hUTYiTxz42c",
+      "private_review_url": "https://studio.youtube.com/video/hUTYiTxz42c/edit",
+      "duration_seconds": 38.637,
+      "note": "Приватно загружено по команде Дениса. Дата будет отмечена после подтверждения YouTube.",
+      "manifest": "publishing/queue/kino_014.json"
+    },
+    {
+      "id": "kino_012",
+      "kind": "short",
+      "author": "Codex",
+      "status": "review",
+      "slot": null,
+      "mp4": "C:/M1lash/Готово/m1lash_kino_012_ru.mp4",
+      "title": "Он хотел положить трубку. Незнакомец запретил ☎️ #shorts",
+      "youtube_id": "9Wzqaq-5-KI",
+      "private_review_url": "https://studio.youtube.com/video/9Wzqaq-5-KI/edit",
+      "duration_seconds": 31.416,
+      "note": "Приватно загружено по команде Дениса. Дата будет отмечена после подтверждения YouTube.",
+      "manifest": "publishing/queue/kino_012.json"
+    },
+    {
+      "id": "kino_013",
+      "kind": "short",
+      "author": "Codex",
+      "status": "review",
+      "slot": null,
+      "mp4": "C:/M1lash/Готово/m1lash_kino_013_ru.mp4",
+      "title": "Она назвала его чужим именем 🚆 #shorts",
+      "youtube_id": "mp0irGtOUzw",
+      "private_review_url": "https://studio.youtube.com/video/mp0irGtOUzw/edit",
+      "duration_seconds": 27.07,
+      "note": "Приватно загружено по команде Дениса. Дата будет отмечена после подтверждения YouTube.",
+      "manifest": "publishing/queue/kino_013.json"
     }
   ]
 }

@@ -86,6 +86,33 @@
       "video_id": "G4IMzvrv1Zw",
       "request_id": "c2a4c380-33b4-438b-b60b-2182752ac608",
       "requested_at": "2026-11-07T06:09:28.086Z"
+    },
+    "kino_014": {
+      "at": "2026-11-11T10:00:00+02:00",
+      "kind": "short",
+      "title": "Фокусник пришёл на допрос в наручниках 🎩 #shorts",
+      "video_id": "hUTYiTxz42c",
+      "request_id": "9cd9da45-329a-4ad8-970a-4a27899b7fe3",
+      "requested_at": "2026-11-10T22:18:44.590261+00:00",
+      "origin": "owner_delegated_schedule_20261111"
+    },
+    "kino_012": {
+      "at": "2026-11-14T10:00:00+02:00",
+      "kind": "short",
+      "title": "Он хотел положить трубку. Незнакомец запретил ☎️ #shorts",
+      "video_id": "9Wzqaq-5-KI",
+      "request_id": "41725a1d-b877-4ef0-8ccf-ab3f21b82da0",
+      "requested_at": "2026-11-10T22:18:44.590261+00:00",
+      "origin": "owner_delegated_schedule_20261111"
+    },
+    "kino_013": {
+      "at": "2026-11-15T10:00:00+02:00",
+      "kind": "short",
+      "title": "Она назвала его чужим именем 🚆 #shorts",
+      "video_id": "mp0irGtOUzw",
+      "request_id": "eac0f982-61c7-4368-9fff-ee459dff1f82",
+      "requested_at": "2026-11-10T22:18:44.590261+00:00",
+      "origin": "owner_delegated_schedule_20261111"
     }
   },
   "cancelled_requests": [

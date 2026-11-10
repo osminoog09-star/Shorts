@@ -25,5 +25,11 @@
     "category_id": "1",
     "made_for_kids": false,
     "contains_synthetic_media": true
+  },
+  "publish_at": "2026-11-14T10:00:00+02:00",
+  "schedule_request": {
+    "id": "41725a1d-b877-4ef0-8ccf-ab3f21b82da0",
+    "requested_at": "2026-11-10T22:18:44.590261+00:00",
+    "origin": "owner_delegated_schedule_20261111"
   }
 }
