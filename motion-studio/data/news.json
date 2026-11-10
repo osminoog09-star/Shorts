@@ -1,12 +1,129 @@
 {
   "status": "success",
-  "updated_at": "2026-11-10T01:30:34.651102Z",
-  "last_attempt_at": "2026-11-10T01:30:34.651102Z",
+  "updated_at": "2026-11-10T14:52:45.317752Z",
+  "last_attempt_at": "2026-11-10T14:52:45.317752Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "c039564e4f55eeeec8",
+      "title": "Anthropic targets $1.4 trillion IPO",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1030703/anthropic-ipo-1-4-trillion",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-10T14:06:54Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "5ac8836f0ba144b39f",
+      "title": "Adobe brings AI agents and new creative tools to Photoshop, Premiere, and Firefly",
+      "url": "https://techcrunch.com/2026/11/10/adobe-adds-more-ai-to-its-products-and-launches-an-mcp/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-10T14:05:10Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1a56c99530ddc4c22f",
+      "title": "Anthropic sets IPO price range of $70 to $78 per share to reach an implied valuation of $1.404 trillion",
+      "url": "https://techcrunch.com/2026/11/10/anthropic-sets-ipo-price-range-of-70-to-78-per-share-to-reach-an-implied-valuation-of-1-404-trillion/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-10T14:01:39Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "3739b5b6833681c55f",
+      "title": "After challenging Google’s Android with Cyanogen, its co-founder takes aim at Windows for AI era",
+      "url": "https://techcrunch.com/2026/11/10/after-challenging-googles-android-with-cyanogen-its-co-founder-takes-aim-at-windows-for-ai-era/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-10T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "90450c1293322385f7",
+      "title": "Spotify’s AI DJ gets new voices, personalities, and an option for less chatter",
+      "url": "https://techcrunch.com/2026/11/10/spotifys-ai-dj-gets-new-voices-personalities-and-an-option-for-less-chatter/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-10T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "499cff9552f92642d8",
+      "title": "Adobe is going all in on agentic AI",
+      "url": "https://www.theverge.com/tech/1030593/adobe-max-ai-agents-mcp-firefly-assistant-updates",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-10T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e313ab2892aad27b24",
+      "title": "Photoshop, Lightroom, and Premiere are making it easier to remove things",
+      "url": "https://www.theverge.com/tech/1030653/adobe-max-2026-photoshop-premiere-removal-updates",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-10T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1d8889c9661cfe547b",
+      "title": "Hands-on with Ring’s new AI drone camera for your home",
+      "url": "https://www.theverge.com/tech/1030601/ring-drone-cam-hands-on-price-release-date-ai-pilot",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-10T13:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "697debda975c187536",
+      "title": "Cyberattacks threaten to make open-source AI a little less open, Hugging Face exec warns",
+      "url": "https://techcrunch.com/2026/11/10/cyberattacks-threaten-to-make-open-source-ai-a-little-less-open-hugging-face-exec-warns/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-10T13:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "94172b3b33d9078383",
+      "title": "Ukraine’s fiber-optic drones get squeezed by AI data center demand",
+      "url": "https://arstechnica.com/gadgets/2026/11/ukraines-fiber-optic-drones-get-squeezed-by-ai-data-center-demand/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-10T12:15:32Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8ac477a7a32a1c05e3",
+      "title": "Review: Apple's M6 MacBook Pro is good, but it's missing all the exciting stuff",
+      "url": "https://arstechnica.com/gadgets/2026/11/review-apples-1999-m6-macbook-pro-feels-stuck-in-the-middle/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-10T12:00:21Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "775ac0a390011ca0c2",
+      "title": "Otter AI can now follow conversations across 30+ languages",
+      "url": "https://techcrunch.com/2026/11/09/otter-ai-can-now-follow-conversations-across-30-languages/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-10T07:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ec52a02e1b50c5bf7b",
+      "title": "MIT-led team receives funding to develop next-generation alternatives to modern weed killers",
+      "url": "https://news.mit.edu/2026/mit-led-team-receives-funding-next-generation-alternatives-modern-weed-killers-1110",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-10T05:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "8a35af252b32001f77",
       "title": "Anthropic reportedly plans to move forward with IPO plans",
@@ -95,6 +212,15 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-09T21:13:39Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "79ac4b66951afb869c",
+      "title": "The global pledge to use AI for climate good is a cruel joke",
+      "url": "https://www.theverge.com/science/1030252/ai-data-center-climate-pledge-united-nations-cop31",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-09T21:13:16Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -333,7 +459,7 @@
     },
     {
       "id": "195379aa7df783ab13",
-      "title": "Can Agentic Robotics Solve Robotics’ Data Scaling Problem?",
+      "title": "Can Agentic Robotics Solve Robotics’ Data-Scaling Problem?",
       "url": "https://spectrum.ieee.org/agentic-robotics",
       "category": "robotics",
       "source": "IEEE Spectrum Robotics",
@@ -599,132 +725,6 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-11-06T22:53:46Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c828464b88b192e8ff",
-      "title": "Ships loiter near subsea cables amid Iran's warnings to Trump",
-      "url": "https://arstechnica.com/gadgets/2026/11/ships-loiter-near-subsea-cables-amid-irans-warnings-to-trump/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-06T22:41:37Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "59a23201da2e251285",
-      "title": "Re-releases of Wing Commander, Ultima titles hit Steam and GOG",
-      "url": "https://arstechnica.com/gaming/2026/11/ea-producer-tells-the-inside-story-behind-new-wing-commander-remasters/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-06T22:08:47Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0d0fe76a488381231f",
-      "title": "Chainalysis says hackers stole credentials and tokens for all of its customers",
-      "url": "https://arstechnica.com/security/2026/11/chainalysis-says-hackers-stole-credentials-and-tokens-for-all-of-its-customers/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-06T20:56:41Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d96fde15d60ceefd6f",
-      "title": "Earth's churning mantle may have created the Great Unconformity",
-      "url": "https://arstechnica.com/science/2026/11/earths-churning-mantle-may-have-created-the-great-unconformity/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-06T20:24:20Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "43ea3ada9c080dbf3c",
-      "title": "Nvidia hardware worth $11.4M vanished between Oakland and Texas",
-      "url": "https://arstechnica.com/gadgets/2026/11/nvidia-hardware-worth-11-4m-vanished-between-oakland-and-texas/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-06T20:05:30Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f8fe21ba7f368ed10c",
-      "title": "All the latest updates on AI data centers",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/902546/data-centers-ai-energy-power-grids-controversy",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-06T20:02:22Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "35b3d6631ca50318b3",
-      "title": "Developer ends lucrative screensaver deal with Roku because Fox bought it",
-      "url": "https://arstechnica.com/gadgets/2026/11/artist-pulls-popular-screensaver-from-roku-os-because-of-fox-acquisition/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-06T19:50:18Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "1de05e7ba82bef3b0b",
-      "title": "FAA to finally ditch floppy disks in what it calls \"historic\" tech upgrade",
-      "url": "https://arstechnica.com/tech-policy/2026/11/faa-to-finally-ditch-floppy-disks-in-what-it-calls-historic-tech-upgrade/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-06T19:12:28Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0bb49f96544d94ecd8",
-      "title": "How to predict the behavior of molecules from scant data",
-      "url": "https://news.mit.edu/2026/how-to-predict-molecule-behavior-with-scant-data-1106",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-11-06T19:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c262b9961ff71dc31a",
-      "title": "Hundreds of Artex AI hacking tools found publicly exposed to the web",
-      "url": "https://techcrunch.com/2026/11/06/hundreds-of-artex-ai-hacking-tools-found-publicly-exposed-to-the-web/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-06T18:44:38Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "2d23850120e57d6c5e",
-      "title": "Meta introduces Spaces, a new way to collaborate with your Muse agent",
-      "url": "https://techcrunch.com/2026/11/06/meta-introduces-spaces-a-new-way-to-collaborate-with-your-muse-agent/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-06T18:44:20Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7e8114761040ce5e40",
-      "title": "The folks behind John Wick are back with Karōshi trailer",
-      "url": "https://arstechnica.com/culture/2026/11/the-folks-behind-john-wick-are-back-with-karoshi-trailer/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-06T18:30:19Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "84a88c7c4fe909538b",
-      "title": "You know the launch market is tough when satellite companies start building rockets",
-      "url": "https://arstechnica.com/space/2026/11/ast-spacemobile-is-so-desperate-for-launch-theyre-building-their-own-rocket/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-06T18:20:47Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "9aeac73058ac351bd9",
-      "title": "Meta’s Muse AI can create custom ‘spaces’ for the version of the app you need right now",
-      "url": "https://www.theverge.com/tech/1028871/meta-muse-ai-spaces",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-06T18:10:10Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
