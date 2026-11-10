@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-11-10T22:15:37.799223+00:00",
-  "count": 27,
+  "checked_at": "2026-11-10T22:25:35.694180+00:00",
+  "count": 30,
   "problems": [
     {
       "slug": "kino_010",
@@ -267,6 +267,45 @@
       "upload_status": null,
       "rejection": null,
       "problem": "видео не найдено на канале (удалено или нет доступа)"
+    },
+    {
+      "slug": "kino_012",
+      "video_id": "9Wzqaq-5-KI",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-14T08:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-14T10:00:00+02:00",
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-14T08:00:00Z",
+      "title": "Он хотел положить трубку. Незнакомец запретил ☎️ #shorts",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "kino_013",
+      "video_id": "mp0irGtOUzw",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-15T08:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-15T10:00:00+02:00",
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-15T08:00:00Z",
+      "title": "Она назвала его чужим именем 🚆 #shorts",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "kino_014",
+      "video_id": "hUTYiTxz42c",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-11T08:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-11T10:00:00+02:00",
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-11T08:00:00Z",
+      "title": "Фокусник пришёл на допрос в наручниках 🎩 #shorts",
+      "upload_status": "processed",
+      "rejection": null
     },
     {
       "slug": "mini_strike_ru",
