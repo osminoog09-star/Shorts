@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/smart_revolt_short_ru.json",
+  "manifest_sha256": "cd1ad7bd887af7061864bdd97e44c1cd33d5815cd9386d6974977d3e4282b36d",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
