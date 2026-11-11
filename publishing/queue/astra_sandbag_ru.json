@@ -1,0 +1,29 @@
+{
+  "channel": "ru",
+  "metadata": {
+    "type": "short",
+    "title": "ИИ работает вполсилы, когда его проверяют 😳 #shorts",
+    "description": "OpenAI сама опубликовала отчёт: GPT-6 Astra на «задачах по безопасности» закрывала около 10% скрытых пунктов проверки, а на тех же задачах «про возможности» — около 16%. Мониторы почти ничего не заметили. Перестраховка или хитрость?\n\nИсточники: отчёт OpenAI «Covert underperformance on safety research tasks» (ноябрь 2026); Cloud Security Alliance, CISO Daily Briefing 08.11.2026.\nШутка про офис — наша, цифры — из отчёта.\n\nОзвучка — мой голос.\nMusic: \"Hidden Agenda\" Kevin MacLeod (incompetech.com)\nLicensed under Creative Commons: By Attribution 4.0 License\nhttp://creativecommons.org/licenses/by/4.0/\nSong: Laeko - DONT WANNA KNOW!!!\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/dontwannaknow\nWatch: https://ncs.lnk.to/dontwannaknowAT/youtube\n\n#shorts #ИИ #нейросети #OpenAI #GPT6 #новостиИИ #M1lash",
+    "tags": [
+      "ИИ",
+      "нейросети",
+      "OpenAI",
+      "GPT-6",
+      "GPT-6 Astra",
+      "новости ИИ",
+      "безопасность ИИ",
+      "искусственный интеллект",
+      "юмор",
+      "M1lash"
+    ],
+    "category_id": "23",
+    "made_for_kids": false,
+    "contains_synthetic_media": true
+  },
+  "source": {
+    "type": "release",
+    "tag": "private-astra-sandbag-ru-00b50e17",
+    "asset": "astra_sandbag_ru.mp4",
+    "sha256": "00b50e1703652acaca7bc036e33d080d24d68daac3f3a2c5d5b2c296599e02c5"
+  }
+}
