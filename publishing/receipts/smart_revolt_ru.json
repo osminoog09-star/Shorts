@@ -1,10 +1,13 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/smart_revolt_ru.json",
   "manifest_sha256": "40f6501be4213be69859a3cfbff1aa5878970d8123decc8d6854017e0a2f2928",
   "channel": "ru",
-  "publish_at_utc": null,
+  "publish_at_utc": "2026-11-21T13:00:00Z",
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "5yZu11PYoc4",
-  "video_url": "https://youtu.be/5yZu11PYoc4"
+  "video_url": "https://youtu.be/5yZu11PYoc4",
+  "privacy_status": "private",
+  "schedule_confirmed_at": "2026-11-11T08:00:20.611072+00:00",
+  "schedule_request_id": null
 }
