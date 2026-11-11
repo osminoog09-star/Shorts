@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-11T14:36:22.893862+00:00",
+  "checked_at": "2026-11-11T23:32:55.922012+00:00",
   "count": 33,
   "problems": [
     {
@@ -104,8 +104,8 @@
       "receipt_publish_at": "2026-11-11T18:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-11T20:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-11T18:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "ИИ работает вполсилы, когда его проверяют 😳 #shorts",
       "upload_status": "processed",
       "rejection": null
