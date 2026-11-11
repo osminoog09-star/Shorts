@@ -1,8 +1,10 @@
 {
-  "status": "reserved",
+  "status": "uploaded",
   "manifest": "publishing/queue/astra_sandbag_ru.json",
   "manifest_sha256": "97222097617fa05710b7d6c80c1194991fda4c3830e001ae633452671155f5de",
   "channel": "ru",
   "publish_at_utc": null,
-  "note": "A reserved attempt must NEVER be automatically retried."
+  "note": "A reserved attempt must NEVER be automatically retried.",
+  "video_id": "kyfDKmGDfZo",
+  "video_url": "https://youtu.be/kyfDKmGDfZo"
 }
