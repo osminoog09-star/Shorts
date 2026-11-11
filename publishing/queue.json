@@ -529,6 +529,19 @@
       "duration_seconds": 27.07,
       "note": "Загружено и назначено по прямой команде Дениса. YouTube API подтвердил дату; один кино-Shorts в этот день.",
       "manifest": "publishing/queue/kino_013.json"
+    },
+    {
+      "id": "smart_revolt_ru",
+      "kind": "long",
+      "author": "Claude",
+      "status": "scheduled",
+      "slot": "2026-11-21T15:00:00+02:00",
+      "studio_format": "zhivaya_kartina",
+      "mp4": "C:\\M1lash\\Готово6-11-11_smart_revolt.mp4",
+      "publish_md": "longform/smart_revolt/PUBLISH.md",
+      "title": "20 правил, если все умные устройства выйдут из-под контроля",
+      "youtube_id": "5yZu11PYoc4",
+      "note": "11.11 Денис: «Ок, заливай» → PRIVATE; «Да, 21.11 15:00» → дата (Claude)"
     }
   ]
 }
