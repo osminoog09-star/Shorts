@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-11-10T22:26:23.273039+00:00",
-  "count": 30,
+  "checked_at": "2026-11-11T14:36:22.893862+00:00",
+  "count": 33,
   "problems": [
     {
       "slug": "kino_010",
@@ -94,6 +94,19 @@
       "live_privacy": "public",
       "live_publishAt": null,
       "title": "ИИ согласовал отпуск. Отдыхать будет он #shorts",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "astra_sandbag_ru",
+      "video_id": "kyfDKmGDfZo",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-11T18:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-11T20:00:00+02:00",
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-11T18:00:00Z",
+      "title": "ИИ работает вполсилы, когда его проверяют 😳 #shorts",
       "upload_status": "processed",
       "rejection": null
     },
@@ -301,8 +314,8 @@
       "receipt_publish_at": "2026-11-11T08:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-11T10:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-11T08:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "Фокусник пришёл на допрос в наручниках 🎩 #shorts",
       "upload_status": "processed",
       "rejection": null
@@ -395,6 +408,32 @@
       "live_privacy": "private",
       "live_publishAt": "2026-11-13T08:00:00Z",
       "title": "На МКС почти земная гравитация. Почему все летают? #shorts",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "smart_revolt_ru",
+      "video_id": "5yZu11PYoc4",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-21T13:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-21T15:00:00+02:00",
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-21T13:00:00Z",
+      "title": "20 правил, если все умные устройства выйдут из-под контроля",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "smart_revolt_short_ru",
+      "video_id": "-l_Xunkg4yg",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-21T18:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-21T20:00:00+02:00",
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-21T18:00:00Z",
+      "title": "Ей позвонила мама. Только мама заперта в больнице 😨 #shorts",
       "upload_status": "processed",
       "rejection": null
     },
