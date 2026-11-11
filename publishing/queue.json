@@ -542,6 +542,19 @@
       "title": "20 правил, если все умные устройства выйдут из-под контроля",
       "youtube_id": "5yZu11PYoc4",
       "note": "11.11 Денис: «Ок, заливай» → PRIVATE; «Да, 21.11 15:00» → дата (Claude)"
+    },
+    {
+      "id": "smart_revolt_short_ru",
+      "kind": "short",
+      "author": "Claude",
+      "status": "scheduled",
+      "slot": "2026-11-21T20:00:00+02:00",
+      "studio_format": "teaser",
+      "mp4": "C:\\M1lash\\Готово6-11-11_smart_revolt_short.mp4",
+      "publish_md": "C:\\M1lash\\Готово6-11-11_smart_revolt_short_PUBLISH.md",
+      "title": "Ей позвонила мама. Только мама заперта в больнице 😨 #shorts",
+      "youtube_id": "-l_Xunkg4yg",
+      "note": "Тизер к 5yZu11PYoc4. 11.11 Денис «давай» → 21.11 20:00 (Claude). Связанное видео ставит Денис в Studio после 21.11 15:00"
     }
   ]
 }
