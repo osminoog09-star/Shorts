@@ -1,12 +1,39 @@
 {
   "status": "success",
-  "updated_at": "2026-11-10T23:20:59.721895Z",
-  "last_attempt_at": "2026-11-10T23:20:59.721895Z",
+  "updated_at": "2026-11-11T14:21:55.571799Z",
+  "last_attempt_at": "2026-11-11T14:21:55.571799Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "1251f00274bede43be",
+      "title": "Adobe’s AI experiments let you walk around in photos and interview your characters",
+      "url": "https://www.theverge.com/tech/1031505/adobe-max-2026-sneaks-experiments-ai",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-11T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d1951b7785beef233e",
+      "title": "Nvidia’s crisis has corporate governance experts reaching for the popcorn",
+      "url": "https://techcrunch.com/2026/11/10/nvidias-crisis-has-corporate-governance-experts-reaching-for-the-popcorn/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-11T07:30:51Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c98fb37f4201def301",
+      "title": "Seagate's new hybrid drive raises some old questions",
+      "url": "https://arstechnica.com/gadgets/2026/11/seagate-resurrects-the-ssd-hdd-hybrid-drive/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-10T23:30:56Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "6861ada54d72cff29b",
       "title": "The US military seems to be getting nervous about the launch supply crunch",
@@ -698,33 +725,6 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-11-09T16:12:28Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "a7fbc1af55fcfab127",
-      "title": "MAX POWER: NASA’s Inaugural Aerospace Expo Ignites America’s Future",
-      "url": "https://www.nasa.gov/general/max-power-nasas-inaugural-aerospace-expo-ignites-americas-future/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-09T16:07:10Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5ef96bda92f480d3b9",
-      "title": "Trump’s 60 Minutes interview touched on AI safety, threat to arrest an AI exec",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1029802/trump-60-minutes-ai",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-09T15:50:38Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "bc64bea0832685bcff",
-      "title": "SpaceX now fundamentally an \"infrastructure company,\" senior official says",
-      "url": "https://arstechnica.com/space/2026/11/spacex-now-fundamentally-an-infrastructure-company-senior-official-says/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-09T15:39:21Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
