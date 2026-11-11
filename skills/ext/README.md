@@ -42,3 +42,20 @@ PersonaLive, OpenHands, MuMuAINovel — скрипты в `scripts/pc/`, стр�
 
 Скопированы только `SKILL.md`, `scripts/`, `references/`, `templates/`, `mcp/` (2 МБ из 47; доки, сайт, демо и тесты не нужны). Скрипты без сети (только stdlib + ffmpeg 6.1+), проверено 01.11. Запуск — `python3 …/scripts/<tool>.py` **без** `-I`.
 Не ставили: ghost-editor (под говорящую голову, ведущего мы убрали), claude-shorts (дублирует `movie-short`; взята только идея рубрики выбора сцены → m1lash-studio §2б), OpenMontage (AGPL, тяжёлый — в `LOCAL_PC_PLAN.md`), Open Higgsfield (интерфейс к платным API).
+
+## Подборка «10 трендовых GitHub-репозиториев для Claude» (11.11.2026)
+
+Код прочитан до установки (клон в карантин, ничего не запускали). Поставлены только текстовые скилы, без хуков и без `npm/pip install`.
+
+| # | Что | Папки | Источник | Зачем нам |
+|---|---|---|---|---|
+| 12 | Diagram Design | diagram-design | cathrynlavery/diagram-design (MIT, коммит f2496ac) | 45 типов схем и графиков (воронка, таймлайн, Sankey, сравнения, дерево) как HTML+SVG: инфографика для объясняющих Shorts через HyperFrames, схемы для сайта студии и отчётов. Сети нет, кроме ссылки на Google Fonts. PNG-экспорт — `scripts/export_png.py` через уже стоящий playwright. При первом запуске спросит про стиль: брать токены бренда M1lash из `site/studio/` |
+| 13 | Ponytail | ponytail, ponytail-review | DietrichGebert/ponytail (MIT, коммит 96608e0) | «Ленивый сеньор»: минимальная правка без лишних абстракций, ревью кода. Для скриптов конвейера и сайта студии. Взяты только 2 SKILL.md; хуки (автоактивация, статус-строка, трекер токенов) **не ставили** |
+| 09 | Humanizer — обновлён 3.1.0 → 4.0.0 | humanizer | blader/humanizer | только `SKILL.md`, местных правок в старой версии не было |
+
+Уже стояли (из той же подборки): humanizer (09), impeccable (05), ui-ux-pro-max (07), scrapling (только справка, runtime не ставили). У impeccable на GitHub версия новее — обновлять отдельно, со сверкой.
+Не ставили:
+- **REA** (morluto/rea) — реверс-инжиниринг приложений и бинарников: MCP-сервер на Node, репо 155 МБ, Ghidra/binwalk/jadx. Каналу не нужен.
+- **Hallmark** (Nutlope/hallmark) — дублирует taste-skill, impeccable, frontend-design, ui-ux-pro-max; генерация картинок только через платный Together AI (`TOGETHER_API_KEY`), есть установщик хуков.
+- **«Onyx» = senlindesign/taste-skill** — подпись и ссылка на картинке не совпадают. По ссылке — скил разбора дизайна сайта по URL (460 звёзд, **без лицензии**, конфликт имени с нашим taste-skill). Настоящий Onyx (onyx-dot-app/onyx) — платформа чата с базами знаний на Docker, не скил.
+- **Last 30 Days** (mvanhorn/last30days-skill) — дублирует Agent Reach (Reddit/X/YouTube уже читаем). Мастер настройки сам ставит CLI и просит читать куки браузера; TikTok/Instagram — только с платным ScrapeCreators.
