@@ -1,10 +1,13 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/astra_sandbag_ru.json",
   "manifest_sha256": "97222097617fa05710b7d6c80c1194991fda4c3830e001ae633452671155f5de",
   "channel": "ru",
-  "publish_at_utc": null,
+  "publish_at_utc": "2026-11-11T18:00:00Z",
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "kyfDKmGDfZo",
-  "video_url": "https://youtu.be/kyfDKmGDfZo"
+  "video_url": "https://youtu.be/kyfDKmGDfZo",
+  "privacy_status": "private",
+  "schedule_confirmed_at": "2026-11-11T08:33:13.515996+00:00",
+  "schedule_request_id": null
 }
