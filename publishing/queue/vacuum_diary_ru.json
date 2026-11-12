@@ -20,5 +20,11 @@
     "made_for_kids": false,
     "contains_synthetic_media": true
   },
-  "publish_at": null
+  "publish_at": null,
+  "source": {
+    "type": "release",
+    "tag": "private-vacuum-diary-ru-5a51c097",
+    "asset": "vacuum_diary_ru.mp4",
+    "sha256": "5a51c097f2a2ed861a188d354342b682ac8367d2aef018d96f2d39c428ae21de"
+  }
 }
