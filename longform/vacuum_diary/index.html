@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Дневник робота-пылесоса</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+html,body{margin:0;background:#000;overflow:hidden;width:1080px;height:1920px}
+canvas{display:block;width:1080px!important;height:1920px!important}
+#sub{position:absolute;left:70px;right:150px;top:1250px;text-align:center;font:800 70px/1.12 Rubik,sans-serif;color:#fff;
+ text-shadow:0 0 2px #120c08,0 4px 0 #120c08,3px 3px 0 #120c08,-3px 3px 0 #120c08,3px -3px 0 #120c08,-3px -3px 0 #120c08,0 8px 18px rgba(0,0,0,.5)}
+#sub b{color:#ffc35a}
+#doc{position:absolute;left:70px;top:210px;opacity:0;transform-origin:0 50%;color:#fff;font:400 150px/1 'Russo One',sans-serif;letter-spacing:2px;
+ text-shadow:0 6px 0 #1b4a57,0 12px 30px rgba(0,0,0,.6)}
+#doc small{display:block;margin-bottom:14px;font:800 46px/1 Rubik,sans-serif;letter-spacing:3px;color:#9fe8ff;text-shadow:0 3px 10px rgba(0,0,0,.7)}
+#doc b{font-weight:400}
+#doc i{display:block;width:0;height:12px;margin-top:20px;background:#ffc35a;border-radius:6px}
+#vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 85% 70% at 50% 45%,rgba(0,0,0,0) 55%,rgba(16,8,0,.42) 100%)}
+#flash{position:absolute;inset:0;pointer-events:none;background:#fff;opacity:0}
+#rec{position:absolute;right:150px;top:170px;font:800 64px Rubik,sans-serif;color:#fff;opacity:0;text-shadow:0 4px 12px rgba(0,0,0,.6)}
+#rec span{display:inline-block;width:40px;height:40px;border-radius:50%;background:#ff3b30;margin-right:14px;vertical-align:-4px}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/addons/"}}</script>
+</head><body><canvas id="c" width="1080" height="1920"></canvas><div id="vig"></div><div id="flash"></div>
+<div id="doc"><small>ДНЕВНИК ПЫЛЕСОСА</small><b></b><i></i></div><div id="sub"></div>
+<script type="module" src="scene.js"></script></body></html>

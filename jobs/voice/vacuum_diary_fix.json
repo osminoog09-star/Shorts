@@ -1,0 +1,12 @@
+{
+  "job_id": "vacuum_diary_fix",
+  "speaker": "denis",
+  "voice_id": "denis-qwen3tts-reference-v1",
+  "utterances": [
+    { "id": "v7a", "text": "Я молчу. Это моя месть.", "rate": 0.95 },
+    { "id": "v7b", "text": "Я молчу. Это моя ме́сть.", "rate": 0.92 },
+    { "id": "v7c", "text": "А я молчу. Это моя месть.", "rate": 0.95 },
+    { "id": "v1a", "text": "День первый. Меня купили, чтобы в доме было чисто.", "rate": 0.97 }
+  ],
+  "test_scope": "private_owner_hearing_only"
+}
