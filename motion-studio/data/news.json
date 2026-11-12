@@ -1,12 +1,129 @@
 {
   "status": "success",
-  "updated_at": "2026-11-12T00:44:26.634711Z",
-  "last_attempt_at": "2026-11-12T00:44:26.634711Z",
+  "updated_at": "2026-11-12T15:14:29.880225Z",
+  "last_attempt_at": "2026-11-12T15:14:29.880225Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "3d14e9acb8c155627b",
+      "title": "Cyberattack on Fireworks AI allowed hackers to access Notion customers’ chat transcripts",
+      "url": "https://techcrunch.com/2026/11/12/cyberattack-on-fireworks-ai-allowed-hackers-to-access-notion-customers-chat-transcripts/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-12T15:02:28Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "38ea5b66d259522356",
+      "title": "Nvidia CEO Jensen Huang has resigned. What happens next?",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-12T15:01:31Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "f890f008ac13960a0c",
+      "title": "Google pushes privacy angle as Gemini-powered smartglasses debut starting at $395",
+      "url": "https://arstechnica.com/google/2026/11/google-pushes-privacy-angle-as-gemini-powered-smartglasses-debut-starting-at-395/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-12T14:50:17Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "07a62a8bb6b160cd51",
+      "title": "The unfolding Jensen Huang scandal: a timeline",
+      "url": "https://techcrunch.com/2026/11/12/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-12T14:30:01Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "412fd95eff74cad8ca",
+      "title": "I reviewed the Apple HomeView, ask me anything",
+      "url": "https://www.theverge.com/tech/1031868/i-reviewed-the-apple-homeview-ask-me-anything",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-12T14:10:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "0ed1017dcace7dac2b",
+      "title": "Nvidia CEO Jensen Huang has resigned",
+      "url": "https://arstechnica.com/gadgets/2026/11/ceo-jensen-huangs-job-is-suddenly-on-the-line-at-nvidia/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-12T14:05:17Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1f60444f0b463fcd99",
+      "title": "Hundreds of streaming services and nothing to watch",
+      "url": "https://arstechnica.com/gadgets/2026/11/hundreds-of-streaming-services-and-nothing-to-watch/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-12T14:00:19Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "40490d91d164baaf14",
+      "title": "Nvidia CEO Jensen Huang resigns amid spy, affair scandals",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1031689/jensen-huang-nvidia-ceo-resigns",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-12T13:53:16Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "49ac9311c7b4233f04",
+      "title": "Nine Korean startups vie for a spot in Disrupt 2027’s Startup Battlefield 200 competition",
+      "url": "https://techcrunch.com/2026/11/12/nine-korean-startups-vie-for-a-spot-in-disrupt-2027s-startup-battlefield-200-competition/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-12T13:26:25Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "814222d0921ad1f69c",
+      "title": "Through NASA’s Lens: Capturing Space Shuttle Endeavour’s Move to LA",
+      "url": "https://www.nasa.gov/centers-and-facilities/armstrong/through-nasas-lens-capturing-space-shuttle-endeavours-move-to-la/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-12T13:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "25ea2e8f15e78e15a0",
+      "title": "Review: Apple's M6 iMac is pricey, but it's still a good choice for a clean desk",
+      "url": "https://arstechnica.com/features/2026/11/review-apples-m6-imac-is-pricey-but-its-still-a-good-choice-for-a-clean-desk/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-12T12:00:37Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d652bf4e1f2db5615f",
+      "title": "New research could lead to faster, trustworthy AI models for climate prediction",
+      "url": "https://news.mit.edu/2026/new-research-could-lead-faster-trustworthy-ai-models-climate-prediction-1112",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-12T05:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "a552875406bb3160c6",
+      "title": "Who could replace Jensen Huang? A highly unscientific list of possible successors",
+      "url": "https://techcrunch.com/2026/11/11/who-could-replace-jensen-huang-a-highly-unscientific-list-of-possible-successors/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-12T03:13:10Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "2c1c14009b34ac8bb9",
       "title": "The unfolding Jensen Huang scandal: a timeline",
@@ -32,15 +149,6 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-11-11T23:17:05Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0ed1017dcace7dac2b",
-      "title": "CEO Jensen Huang's job is suddenly on the line at Nvidia",
-      "url": "https://arstechnica.com/gadgets/2026/11/ceo-jensen-huangs-job-is-suddenly-on-the-line-at-nvidia/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-11T23:10:17Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -617,114 +725,6 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-11-10T14:01:39Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3739b5b6833681c55f",
-      "title": "After challenging Google’s Android with Cyanogen, its co-founder takes aim at Windows for AI era",
-      "url": "https://techcrunch.com/2026/11/10/after-challenging-googles-android-with-cyanogen-its-co-founder-takes-aim-at-windows-for-ai-era/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-10T14:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "90450c1293322385f7",
-      "title": "Spotify’s AI DJ gets new voices, personalities, and an option for less chatter",
-      "url": "https://techcrunch.com/2026/11/10/spotifys-ai-dj-gets-new-voices-personalities-and-an-option-for-less-chatter/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-10T14:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "499cff9552f92642d8",
-      "title": "Adobe is going all in on agentic AI",
-      "url": "https://www.theverge.com/tech/1030593/adobe-max-ai-agents-mcp-firefly-assistant-updates",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-10T14:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e313ab2892aad27b24",
-      "title": "Photoshop, Lightroom, and Premiere are making it easier to remove things",
-      "url": "https://www.theverge.com/tech/1030653/adobe-max-2026-photoshop-premiere-removal-updates",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-10T14:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c7148a5c2c31f47ef0",
-      "title": "Ring, known for its doorbell cameras, launches a home security drone and an enterprise security robot",
-      "url": "https://techcrunch.com/2026/11/10/ring-known-for-its-doorbell-cameras-launches-a-home-security-drone-and-an-enterprise-security-robot/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-10T13:30:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "1d8889c9661cfe547b",
-      "title": "Hands-on with Ring’s new AI drone camera for your home",
-      "url": "https://www.theverge.com/tech/1030601/ring-drone-cam-hands-on-price-release-date-ai-pilot",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-10T13:30:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "697debda975c187536",
-      "title": "Cyberattacks threaten to make open source AI a little less open, Hugging Face exec warns",
-      "url": "https://techcrunch.com/2026/11/10/cyberattacks-threaten-to-make-open-source-ai-a-little-less-open-hugging-face-exec-warns/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-10T13:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "94172b3b33d9078383",
-      "title": "Ukraine’s fiber-optic drones get squeezed by AI data center demand",
-      "url": "https://arstechnica.com/gadgets/2026/11/ukraines-fiber-optic-drones-get-squeezed-by-ai-data-center-demand/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-10T12:15:32Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "8ac477a7a32a1c05e3",
-      "title": "Review: Apple's M6 MacBook Pro is good, but it's missing all the exciting stuff",
-      "url": "https://arstechnica.com/gadgets/2026/11/review-apples-1999-m6-macbook-pro-feels-stuck-in-the-middle/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-10T12:00:21Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "775ac0a390011ca0c2",
-      "title": "Otter AI can now follow conversations across 30+ languages",
-      "url": "https://techcrunch.com/2026/11/09/otter-ai-can-now-follow-conversations-across-30-languages/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-10T07:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ec52a02e1b50c5bf7b",
-      "title": "MIT-led team receives funding to develop next-generation alternatives to modern weed killers",
-      "url": "https://news.mit.edu/2026/mit-led-team-receives-funding-next-generation-alternatives-modern-weed-killers-1110",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-11-10T05:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "8a35af252b32001f77",
-      "title": "Anthropic reportedly plans to move forward with IPO plans",
-      "url": "https://techcrunch.com/2026/11/09/anthropic-reportedly-plans-to-move-forward-with-ipo-plans/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-10T01:27:12Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
