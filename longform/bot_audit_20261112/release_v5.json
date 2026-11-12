@@ -1,0 +1,59 @@
+{
+  "version": "V5",
+  "file": "C:\\M1lash\\Готово\\m1lash_bot_audit_ru_v5.mp4",
+  "sha256": "fd5d01f52c66c0a9e40e21da447cd3341a6b76304a2187c21b587edc65b89a80",
+  "duration_seconds": 1278.507,
+  "resolution": "1920x1080",
+  "fps": 30,
+  "shots": 206,
+  "chapters": [
+    {
+      "chapter": 1,
+      "title": "Отмена смены",
+      "start": 0.0
+    },
+    {
+      "chapter": 2,
+      "title": "Работа, которой нет в отчёте",
+      "start": 153.930125
+    },
+    {
+      "chapter": 3,
+      "title": "Ключ без человека",
+      "start": 310.9867916666667
+    },
+    {
+      "chapter": 4,
+      "title": "Две одинаковые кнопки",
+      "start": 480.3967916666667
+    },
+    {
+      "chapter": 5,
+      "title": "Цена быстрого отчёта",
+      "start": 651.1269583333333
+    },
+    {
+      "chapter": 6,
+      "title": "Кто выключил свет",
+      "start": 802.3903333333333
+    },
+    {
+      "chapter": 7,
+      "title": "Дата окончания работы",
+      "start": 967.2803749999999
+    },
+    {
+      "chapter": 8,
+      "title": "Один капучино",
+      "start": 1117.0904583333333
+    }
+  ],
+  "score": 4.0,
+  "hearing": "pending",
+  "failed_checks": 0,
+  "warnings": [
+    "subtitles",
+    "dropouts"
+  ],
+  "publication": "LOCAL_REVIEW"
+}

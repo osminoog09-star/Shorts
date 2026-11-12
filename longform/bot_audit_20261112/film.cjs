@@ -4,6 +4,8 @@ const HERE=__dirname, OUT=process.env.BOT_AUDIT_WORK || 'C:/M1lash/Работа/
 const staging=JSON.parse(fs.readFileSync(path.join(HERE,'staging.json'),'utf8').replace(/^\uFEFF/,''));
 const envelopePath=path.join(OUT,'voice_envelope.u8');
 const envelope=fs.existsSync(envelopePath)?fs.readFileSync(envelopePath):null;
+const mouthPath=path.join(OUT,'mouth_poses.u8');
+const mouth=fs.existsSync(mouthPath)?fs.readFileSync(mouthPath):null;
 const ease=x=>(x=Math.max(0,Math.min(1,x)),x*x*(3-2*x));
 function rect(c,x,y,w,h,color,r=0){c.beginPath();c.roundRect(x,y,w,h,r);c.fillStyle=color;c.fill()}
 function ellipse(c,x,y,w,h,color){c.beginPath();c.ellipse(x,y,w,h,0,0,Math.PI*2);c.fillStyle=color;c.fill()}
@@ -44,6 +46,7 @@ async function encode(op,shots,start,end,fps,scale,out){
   const t=n/fps;while(i+1<shots.length&&t>=shots[i].end)i++;
   const s=shots[i];
   s.voiceOpen=(envelope?.[Math.round(t*30)]||0)/255;
+  s.mouthPose=mouth?.[Math.round(t*30)]??255;
   frame(cv,c,s,Math.max(0,t-s.start),s.end-s.start,scale);
   if(n%(fps*30)===0)console.log(op,n/fps,'shot',s.id);
   if(!ff.stdin.write(cv.data())) await once(ff.stdin,'drain');
@@ -79,7 +82,7 @@ async function main(){
   const tl=JSON.parse(fs.readFileSync(path.join(OUT,'timeline.json'),'utf8')), ch=op.startsWith('chapter-')?Number(op.split('-')[1]):null;
   const frames=Math.ceil(tl.duration_s*30);
   if(op==='review'){
-   for(const [i,start,stop] of [[1,401,417],[2,718,738],[3,738,764],[4,767,792],[5,1056,1071],[6,1268,1297.44]]){
+   for(const [i,start,stop] of [[1,38,53],[2,223,240],[3,376,400],[4,850,872],[5,1017,1041],[6,1273,1297.44]]){
     await encode('review-'+i,tl.scenes,Math.round(start*30),Math.round(stop*30),30,1,path.join(OUT,'review_'+i+'.mp4'));
    }
   }else if(op==='opening'){
