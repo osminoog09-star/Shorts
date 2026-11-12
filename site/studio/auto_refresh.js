@@ -39,7 +39,18 @@
   function updateHeader() {
     if (!D) return;
     const stamp = D.live?.t, ageMin = stamp ? (Date.now() - timeMs(stamp)) / 60000 : Infinity;
-    const marker = ageMin > 35 ? " · данные устарели" : " · автообновление каждые 15 с";
+    // GitHub runs the scheduled pulse far less often than its cron asks (hours, not 15 min),
+    // so a stale snapshot is refreshed from here: the owner's token dispatches the workflow, at most once per 45 min.
+    let asked = false;
+    if (ageMin > 60 && isVisible() && typeof tok === "function" && tok() && typeof dispatch === "function") {
+      let last = 0; try { last = Number(localStorage.getItem("m1-pulse-auto")) || 0; } catch (e) {}
+      if (Date.now() - last > 45 * 60000) {
+        try { localStorage.setItem("m1-pulse-auto", String(Date.now())); } catch (e) {}
+        dispatch("youtube-pulse.yml").catch(() => {});
+        asked = true;
+      } else if (Date.now() - last < 6 * 60000) asked = true;
+    }
+    const marker = asked ? " · обновляю цифры…" : ageMin > 35 ? " · данные устарели" : " · автообновление каждые 15 с";
     const display = stamp ? "счётчики " + ago(stamp) + " назад" :
       "аналитика по " + dshort(D.analytics_as_of);
     const elem = document.getElementById("asof");
