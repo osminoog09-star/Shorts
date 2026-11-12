@@ -568,6 +568,21 @@
       "title": "ИИ работает вполсилы, когда его проверяют 😳 #shorts",
       "youtube_id": "kyfDKmGDfZo",
       "note": "По донору Dfefoc2iZCX (неоновый граф, S7-D25). 11.11 Денис: «ставь на сегодня… сразу заливай и опубликуй» → 20:00 (Claude)"
+    },
+    {
+      "id": "vacuum_diary_ru",
+      "kind": "short",
+      "author": "Claude",
+      "status": "review",
+      "slot": null,
+      "style": "S9-D3",
+      "mp4": null,
+      "publish_md": "longform/vacuum_diary/SCRIPT.md",
+      "title": "Дневник робота-пылесоса: вот куда пропадают носки 💀 #shorts",
+      "youtube_id": "2g_sQw71z7s",
+      "review_version": "VACUUM_DIARY_V1",
+      "note": "12.11 Денис: «Да, заливай» → PRIVATE YouTube 2g_sQw71z7s, NO DATE. Вечерний скетч 20:00 — дату выбирает Денис. SHA 5a51c097f2a2ed86… (полный — в квитанции).",
+      "private_review_url": "https://studio.youtube.com/video/2g_sQw71z7s/edit"
     }
   ]
 }
