@@ -1,0 +1,13 @@
+{
+ "chapterTitles":["Отмена смены","Работа, которой нет в отчёте","Ключ без человека","Две одинаковые кнопки","Цена быстрого отчёта","Кто выключил свет","Дата окончания работы","Один капучино"],
+ "chapters":[
+ ["coffee/hero/coffee/receipt","office/lida/helmet/reveal","coffee/hero/cup/read","meeting/lida/receipt/read","lobby/auditor/cart/roll","coffee/lida/screen/decide"],
+ ["office/lida/board/lift","office/kolya/papers/read","office/kolya/screen/compare","office/hero/key/discover","office/lida/phone/listen","lobby/kolya/tools/carry"],
+ ["lobby/auditor/cart/roll","street/hero/coffee/walk","court/tamara/phone/greet","entry/kolya/reader/inspect","entry/tamara/key/test","entry/hero/screen/discover"],
+ ["entry/kolya/tools/inspect","court/tamara/cart/brake","entry/lida/screen/compare","entry/hero/key/read","entry/tamara/phone/call","entry/hero/door/open"],
+ ["court/auditor/receipt/roll","entry/lida/door/argue","shop/kolya/cards/discover","shop/lida/phone/call","shop/auditor/screen/compare","shop/tamara/cup/decide"],
+ ["shop/kolya/reader/blackout","dark/lida/flash/search","dark/kolya/cards/compare","dark/hero/coffee/decide","dark/auditor/flash/restore","entry/tamara/key/unlock"],
+ ["entry/auditor/key/test","court/tamara/receipt/confirm","court/kolya/cart/lift","street/lida/cup/walk","lobby/lida/key/open"],
+ ["coffee/lida/receipt/read","office/hero/screen/compare","office/lida/helmet/lift","dusk/tamara/phone/confirm","coffee/hero/cup/heat","coffee/hero/coffee/confirm"]
+ ]
+}

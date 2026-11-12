@@ -1,0 +1,5 @@
+[
+ {"technique":"Хук действием","evidence":"0–3 с, камера и жалюзи","verified_pixels":true,"verified_audio":false,"application":"чек сообщает о проверке при наливе кофе","confidence":"high"},
+ {"technique":"Предмет раскрывает поворот","evidence":"9–15 с, шлем уступает место коробке","verified_pixels":true,"verified_audio":false,"application":"неработающий ключ, карточки и зелёный диод показывают ход решения","confidence":"high"},
+ {"technique":"Повтор реквизита с новым смыслом","evidence":"24–32 с, кофемашина и просьба о капучино","verified_pixels":true,"verified_audio":false,"application":"тот же кофейный чек обозначает проверенный человеком результат","confidence":"high"}
+]
