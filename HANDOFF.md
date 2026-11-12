@@ -1,9 +1,9 @@
-# 12.11 · Claude · Shorts «Дневник робота-пылесоса: вот куда пропадают носки» — PRIVATE 2g_sQw71z7s без даты
+# 12.11 · Claude · Shorts «Дневник робота-пылесоса: вот куда пропадают носки» — 2g_sQw71z7s, выход 13.11 20:00
 
 - Прямая команда Дениса 12.11 («сам придумай стиль, тему, проверь и сделай 1 шортс»). Тема выбрана по журналу цифр: лучшие оригинальные ролики — «бытовая техника против хозяина» в 3D. Формат серийный: дневник вещи от первого лица.
 - Файл: `C:\M1lash\Готово6-11-12_vacuum_diary.mp4` (44,0 с = тело 37,4 + концовка v7 vertical, 1080×1920/30, SHA256 `5a51c097f2a2ed86…`). assemble problems 0, полный decode PASS, check.py 0 FAIL (WARN: цвет, вшитые субтитры), look_sheet просмотрен. Слух — за Денисом.
 - Проект `longform/vacuum_diary/` (SCRIPT.md, scene.js — модели из `vacuum_wild`, новая раскадровка; `mix.py` строит `timeline.json` по голосу). Голос: Денис, локальный Qwen3-TTS, 8 реплик; v1 и v7 перегенерированы (`jobs/voice/vacuum_diary_fix.json`: в первом дубле «месть» ASR слышал как «мист»). Музыка MacLeod «Investigations» 0,08 от голоса, SFX нет.
-- Паспорт `publishing/queue/vacuum_diary_ru.json` без даты. **Залит 12.11 после «Да, заливай» Дениса:** https://youtu.be/2g_sQw71z7s (PRIVATE, publish_at=null), квитанция `publishing/receipts/vacuum_diary_ru.json`, черновик релиза удалён, строка `review` в `publishing/queue.json`. Время (вечерний 20:00) ставит Денис.
+- Паспорт `publishing/queue/vacuum_diary_ru.json` без даты. **Залит 12.11 после «Да, заливай» Дениса:** https://youtu.be/2g_sQw71z7s (PRIVATE, publish_at=null), квитанция `publishing/receipts/vacuum_diary_ru.json`, черновик релиза удалён, строка в `publishing/queue.json`. **Назначен на 13.11 20:00** (Денис: «Да, 13.11 20:00»; schedule run 43280005581 SUCCESS).
 
 # 12.11 · Claude · Журнал цифр заполняется сам (48ч/7д, формат, kind)
 
