@@ -1,3 +1,7 @@
+## 12.11 — Притворись ботом: проверка на человека · Codex
+
+Готово локально: `C:/M1lash/Готово/m1lash_bot_audit_ru.mp4` (21:44.04, 1080p/30), SRT, обложка и паспорт рядом. 8 глав, 207 планов, 102 Qwen Denis ASR PASS, full decode/duration/check PASS, громкость −15.4 LUFS; слух не оценивался. Донор и разбор: reports/research/references/keMWV5guOLw/reference_audit.md; сценарий и сборка longform/bot_audit_20261112. Локальный просмотр, YouTube не менялся.
+
 ## 11.11 — Три кино-Shorts загружены и назначены · Codex
 
 YouTube API подтвердил даты по Таллину: kino_014 (hUTYiTxz42c) 11.11 10:00, kino_012 (9Wzqaq-5-KI) 14.11 10:00, kino_013 (mp0irGtOUzw) 15.11 10:00. По одному кино-Shorts за день, 12–13 утром были заняты. `publishing/queue.json` и квитанции синхронизированы. Две квитанции восстановлены из артефактов исходных upload runs после конфликта записи GitHub; повторной заливки не было. Временные приватные релизы удалены.

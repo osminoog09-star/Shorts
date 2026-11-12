@@ -1,0 +1,73 @@
+{
+  "title": "Притворись ботом: проверка на человека",
+  "file": "C:\\M1lash\\Готово\\m1lash_bot_audit_ru.mp4",
+  "sha256": "f4c1ad98908d3dab0e030ca5630ae8c45a4deb84167392adaa2e272f58cc4f32",
+  "size_bytes": 174311743,
+  "duration_seconds": 1304.0405,
+  "resolution": "1920x1080",
+  "fps": 30,
+  "shots": 207,
+  "chapters": [
+    {
+      "chapter": 1,
+      "title": "Отмена смены",
+      "start": 0.0
+    },
+    {
+      "chapter": 2,
+      "title": "Работа, которой нет в отчёте",
+      "start": 153.930125
+    },
+    {
+      "chapter": 3,
+      "title": "Ключ без человека",
+      "start": 317.820125
+    },
+    {
+      "chapter": 4,
+      "title": "Две одинаковые кнопки",
+      "start": 487.230125
+    },
+    {
+      "chapter": 5,
+      "title": "Цена быстрого отчёта",
+      "start": 657.9602916666666
+    },
+    {
+      "chapter": 6,
+      "title": "Кто выключил свет",
+      "start": 821.8903333333334
+    },
+    {
+      "chapter": 7,
+      "title": "Дата окончания работы",
+      "start": 986.780375
+    },
+    {
+      "chapter": 8,
+      "title": "Один капучино",
+      "start": 1136.5904583333333
+    }
+  ],
+  "locations": 10,
+  "voice_utterances": 102,
+  "voice_seconds": 1276.3205000000003,
+  "check": {
+    "failed": 0,
+    "warnings": [
+      "subtitles",
+      "dropouts"
+    ],
+    "decode": "PASS",
+    "duration": "PASS",
+    "loudness": "-15.4 LUFS"
+  },
+  "actual_mp4_asr": {
+    "head": "Кафемашина выпленула чек длиннее моего галстука. На нем было три строки. Первая двойной капучино. Вторая проверка офиса в 9.0. Третья.",
+    "tail": "Она напечатала последнюю строку и сдвинула стакан ко мне, подтверждено человеком, и в этот раз мы оба знали, кем именно."
+  },
+  "owner_hearing": "pending",
+  "publication": "LOCAL_REVIEW",
+  "visual_review": "All 207 shot midpoints of both animatics reviewed; final official contact sheet, opening, climax, ending and outro reviewed; full actual decode.",
+  "audio_review": "All 102 utterances and actual final opening/ending ASR checked. Hearing not performed. Short between-utterance silences trigger dropout detector."
+}
