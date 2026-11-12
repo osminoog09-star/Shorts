@@ -9,7 +9,7 @@ from urllib.request import Request, urlopen
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import voice_private_io as vp
 
-MIME = {".mp4": "video/mp4", ".json": "application/json", ".jpg": "image/jpeg", ".png": "image/png", ".wav": "audio/wav"}
+MIME = {".mp4": "video/mp4", ".mp3": "audio/mpeg", ".json": "application/json", ".jpg": "image/jpeg", ".png": "image/png", ".wav": "audio/wav"}
 
 
 def upload(parent, path, access):

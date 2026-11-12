@@ -27,15 +27,15 @@
 
 ## Claude
 
-### Трек «Раз-два-три» голосом Дениса · начато 12.11 23:45 · обновлено 12.11 23:45
+### Трек «Раз-два-три» голосом Дениса · начато 12.11 23:45 · обновлено 12.11 23:55
 Цель: короткий фонк-трек (~48 с) с читкой клоном голоса Дениса по его строчке, приватно в Drive на прослушивание. Не ролик, без YouTube.
 Шаги:
 - [ ] 1. Голос: `jobs/voice/track_razdva_1.json` (8 строк) → `denis-voice-tts.yml`.
-- [ ] 2. Бит кодом (§11 «своя процедурная музыка»): `tools/track/phonk_beat.py`.
-- [ ] 3. Сведение в Actions: `voice-track-mix.yml` (голос из artifact run → по тактам → микс → приватный Drive).
+- [x] 2. Бит кодом (§11 «своя процедурная музыка»): `tools/track/make_track.py` + план `tools/track/razdva.json` (130 BPM, 30 тактов, 55 с). Минус отдан Денису на слух.
+- [ ] 3. Сведение в Actions: `voice-track-mix.yml` готов (голос из artifact run → по тактам → микс → приватный Drive); запустить после SUCCESS голоса.
 - [ ] 4. Замеры, ссылка Денису.
-Следующий шаг: запустить `gh api -X POST repos/osminoog09-star/Shorts/actions/workflows/denis-voice-tts.yml/dispatches -f ref=main -f 'inputs[job_path]=jobs/voice/track_razdva_1.json'`.
-Где промежуточное: jobs/voice/track_razdva_1.json; run ID впишу сюда.
+Следующий шаг: дождаться SUCCESS голосового run `43313089012`, затем `gh api -X POST repos/osminoog09-star/Shorts/actions/workflows/voice-track-mix.yml/dispatches -f ref=main -f 'inputs[voice_run]=43313089012'` (artifact живёт 1 день); ссылку Drive взять из annotations check-run (`TRACK_DRIVE`).
+Где промежуточное: jobs/voice/track_razdva_1.json; голос — run 43313089012.
 Ждёт Дениса: нет.
 
 Пусто (блок «Получить ВСЮ передачу от GPT» закрыт 06.11, итог — HANDOFF.md).
