@@ -1,0 +1,23 @@
+{
+  "version": "V2",
+  "file": "C:\\M1lash\\Готово\\m1lash_bot_audit_ru_v2.mp4",
+  "duration_seconds": 1304.0405,
+  "sha256": "df465518ad33512575a3e124f8c88acd40f42299c7848e985b2eae4dd1b63af9",
+  "size_bytes": 189460538,
+  "resolution": "1920x1080",
+  "fps": 30,
+  "shots": 207,
+  "chapters": 8,
+  "audio_compared_utterances": 102,
+  "decode": "PASS",
+  "failed_checks": 0,
+  "warnings": [
+    "subtitles",
+    "dropouts"
+  ],
+  "loudness": "-15.6 LUFS",
+  "true_peak": "-3.2 dBTP",
+  "visual_review": "Watch, sampled all 207 shot midpoints, key sequences and outro",
+  "hearing": "pending",
+  "publication": "LOCAL_REVIEW"
+}

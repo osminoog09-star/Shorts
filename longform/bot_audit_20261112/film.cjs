@@ -2,13 +2,15 @@ const {shot,makeCanvas,type,background}=require('./art.cjs');
 const fs=require('node:fs'), path=require('node:path'), {spawn}=require('node:child_process'), {once}=require('node:events');
 const HERE=__dirname, OUT=process.env.BOT_AUDIT_WORK || 'C:/M1lash/Работа/bot_audit_20261112';
 const staging=JSON.parse(fs.readFileSync(path.join(HERE,'staging.json'),'utf8').replace(/^\uFEFF/,''));
+const envelopePath=path.join(OUT,'voice_envelope.u8');
+const envelope=fs.existsSync(envelopePath)?fs.readFileSync(envelopePath):null;
 const ease=x=>(x=Math.max(0,Math.min(1,x)),x*x*(3-2*x));
 function rect(c,x,y,w,h,color,r=0){c.beginPath();c.roundRect(x,y,w,h,r);c.fillStyle=color;c.fill()}
 function ellipse(c,x,y,w,h,color){c.beginPath();c.ellipse(x,y,w,h,0,0,Math.PI*2);c.fillStyle=color;c.fill()}
 function poly(c,color,...p){c.beginPath();c.moveTo(...p[0]);for(const a of p.slice(1))c.lineTo(...a);c.closePath();c.fillStyle=color;c.fill()}
 function unlock(c,s,t,d,scale){
  const pr=t/d, reach=ease((pr-.12)/.28), ok=pr>.42, open=ease((pr-.48)/.37);
- c.drawImage(background('entry',scale),0,0,1280,720);
+ c.drawImage(background('entry',scale,true),0,0,1280,720);
  rect(c,0,0,1280,720,'#1728399a');
  rect(c,545,64,470,590,'#293d4d',8);
  rect(c,568,83,425,548,'#718a90',4);
@@ -40,7 +42,9 @@ async function encode(op,shots,start,end,fps,scale,out){
  for(let n=start;n<end;n++){
   if(error)throw error;
   const t=n/fps;while(i+1<shots.length&&t>=shots[i].end)i++;
-  const s=shots[i];frame(cv,c,s,Math.max(0,t-s.start),s.end-s.start,scale);
+  const s=shots[i];
+  s.voiceOpen=(envelope?.[Math.round(t*30)]||0)/255;
+  frame(cv,c,s,Math.max(0,t-s.start),s.end-s.start,scale);
   if(n%(fps*30)===0)console.log(op,n/fps,'shot',s.id);
   if(!ff.stdin.write(cv.data())) await once(ff.stdin,'drain');
  }
@@ -74,7 +78,11 @@ async function main(){
  }else{
   const tl=JSON.parse(fs.readFileSync(path.join(OUT,'timeline.json'),'utf8')), ch=op.startsWith('chapter-')?Number(op.split('-')[1]):null;
   const frames=Math.ceil(tl.duration_s*30);
-  if(op==='opening'){
+  if(op==='review'){
+   for(const [i,start,stop] of [[1,0,20],[2,524,539],[3,647,659],[4,827,854],[5,975,987],[6,1273,1297.44]]){
+    await encode('review-'+i,tl.scenes,Math.round(start*30),Math.round(stop*30),30,1,path.join(OUT,'review_'+i+'.mp4'));
+   }
+  }else if(op==='opening'){
    await encode(op,tl.scenes,0,720,30,1.5,path.join(OUT,'opening_silent.mp4'));
   }else if(ch){
    const s=tl.scenes.filter(x=>x.chapter===ch);const start=Math.round(s[0].start*30),end=ch===8?frames:Math.round(s.at(-1).end*30);

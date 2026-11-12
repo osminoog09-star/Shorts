@@ -1,8 +1,8 @@
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-import json,hashlib,subprocess,math
+import json,hashlib,subprocess,math,os
 HERE=Path(__file__).parent.resolve()
-OUT=Path(r'C:\M1lash\Работа\bot_audit_20261112')
+OUT=Path(os.environ.get('BOT_AUDIT_WORK',r'C:\M1lash\Работа\bot_audit_20261112'))
 def guard():
     ps="Get-CimInstance Win32_Process | Where-Object { $_.Name -match 'python|ffmpeg|obs' } | Select-Object Name,CommandLine | ConvertTo-Json -Compress"
     out=subprocess.check_output(['powershell','-NoProfile','-Command',ps],encoding='utf-8',errors='replace')

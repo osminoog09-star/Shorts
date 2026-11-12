@@ -17,3 +17,9 @@
 4. Проверить готовый MP4 по декодированию, длительности, loudness и реальным кадрам. Отдельный SRT генерируется из принятых голосовых реплик. Слуховая оценка отдельна от ASR.
 
 Сценарий: `narration.md`. Постановки: `staging.json`. Разбор: `reports/research/references/keMWV5guOLw/reference_audit.md`. Исходные видео, голос и готовый MP4 хранятся локально.
+
+## Ревизия V2
+
+V2 хранит результаты в отдельном каталоге `BOT_AUDIT_WORK`. В него копируются принятые `timeline.json` и `mix.wav`. Команда `python -X utf8 longform/bot_audit_20261112/voice_envelope.py <narration_raw.wav> <BOT_AUDIT_WORK>` строит огибающую артикуляции с шагом 1/30 с. Это амплитудное открытие рта, без фонемных визем. Речь заново не синтезируется.
+
+`film.cjs review` выводит шесть пробных окон. `film.cjs animatic` выводит полную визуальную пробу. После проверки кадров нужно записать SHA аниматика и решение в `animatic_review.json`, затем выполнить `render_final.py` с тем же `BOT_AUDIT_WORK`. Использовать `tools/assemble_with_outro.py --horizontal` и проверять итог по `check.py --platform youtube --content`, Watch, кадрам каждого плана и сравнительному анализу звука. V1 и V2 — отдельные MP4.
