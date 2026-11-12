@@ -27,6 +27,17 @@
 
 ## Claude
 
+### Трек «Раз-два-три» голосом Дениса · начато 12.11 23:45 · обновлено 12.11 23:45
+Цель: короткий фонк-трек (~48 с) с читкой клоном голоса Дениса по его строчке, приватно в Drive на прослушивание. Не ролик, без YouTube.
+Шаги:
+- [ ] 1. Голос: `jobs/voice/track_razdva_1.json` (8 строк) → `denis-voice-tts.yml`.
+- [ ] 2. Бит кодом (§11 «своя процедурная музыка»): `tools/track/phonk_beat.py`.
+- [ ] 3. Сведение в Actions: `voice-track-mix.yml` (голос из artifact run → по тактам → микс → приватный Drive).
+- [ ] 4. Замеры, ссылка Денису.
+Следующий шаг: запустить `gh api -X POST repos/osminoog09-star/Shorts/actions/workflows/denis-voice-tts.yml/dispatches -f ref=main -f 'inputs[job_path]=jobs/voice/track_razdva_1.json'`.
+Где промежуточное: jobs/voice/track_razdva_1.json; run ID впишу сюда.
+Ждёт Дениса: нет.
+
 Пусто (блок «Получить ВСЮ передачу от GPT» закрыт 06.11, итог — HANDOFF.md).
 
 **06.11 Денис прослушал тест голоса Qwen3 1.7B ICL (run 42101115487, 3 WAV) — «Да ок»: тембр утверждён для production-синтеза.**
