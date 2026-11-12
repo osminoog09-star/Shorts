@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-11T23:32:55.922012+00:00",
+  "checked_at": "2026-11-12T15:28:19.641722+00:00",
   "count": 33,
   "problems": [
     {
@@ -392,8 +392,8 @@
       "receipt_publish_at": "2026-11-12T08:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-12T10:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-12T08:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "Зеркало не меняет лево и право. Проверь рукой #shorts",
       "upload_status": "processed",
       "rejection": null
