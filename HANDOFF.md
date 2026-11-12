@@ -1,3 +1,11 @@
+# 12.11 · Claude · Журнал цифр заполняется сам (48ч/7д, формат, kind)
+
+- По команде Дениса («Журнал цифр») после аудита: в `reports/videos.csv` у всех роликов были пустые `views_48h`/`views_7d`, у 42 — `kind=unknown`, поэтому `tools/analytics/analyze.py` ничего не считал.
+- Новый `tools/analytics/backfill_ages.py` (без сети): берёт счётчик просмотров из ежедневного снимка `reports/youtube/daily/*.json`, ближайшего к возрасту 48 ч (±12 ч) и 7 д (±18 ч), фактический возраст пишет в новые колонки `views_48h_age_h`/`views_7d_age_h`. Заполняет только пустое; нет снимка рядом — остаётся пусто, не ноль. Также дата/время выхода, `kind` (паспорт или #shorts; длиной одной не определяет) и `format` (как на сайте).
+- Подключён в `scripts/youtube_analytics.py` после `update_journal` — дальше работает в ежедневном `youtube-analytics.yml`. Тесты `tests/test_backfill_ages.py` (5) + прежние PASS; `test_popcorn_private_gates` падал и до правок.
+- Итог первого прогона: 48ч — 26 роликов, 7д — 18, kind — 44, формат — 60. Осталось 4 `unknown` и старые ручные форматы (skit, dog, movie-edit) — не трогал. Вывод в `reports/learnings.md`: Shorts набирают почти всё за 48 ч.
+- Работа из отдельного worktree, общее дерево `C:\M1lash\Shorts` не трогал.
+
 ## 12.11 — Притворись ботом: проверка на человека · Codex
 
 Готово локально: `C:/M1lash/Готово/m1lash_bot_audit_ru.mp4` (21:44.04, 1080p/30), SRT, обложка и паспорт рядом. 8 глав, 207 планов, 102 Qwen Denis ASR PASS, full decode/duration/check PASS, громкость −15.4 LUFS; слух не оценивался. Донор и разбор: reports/research/references/keMWV5guOLw/reference_audit.md; сценарий и сборка longform/bot_audit_20261112. Локальный просмотр, YouTube не менялся.

@@ -153,6 +153,16 @@ def update_journal(path, videos, metrics, fetched_at):
     atomic(path, output.getvalue())
 
 
+def load_backfill():
+    """tools/ is not a package and this file runs as a script: load the module by path."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        'backfill_ages', Path(__file__).resolve().parents[1] / 'tools/analytics/backfill_ages.py')
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def period_bounds(today):
     """Latest completed Mon-Sun week and calendar month; refresh lagged data daily."""
     sunday = today if today.weekday() == 6 else today - timedelta(days=today.weekday() + 1)
@@ -211,7 +221,8 @@ def main():
                              unsupported_metrics=traffic_missing),
                 limitations=['Analytics days use Pacific time; data may lag and be revised.',
                              'Missing rows are null, not zero; empty API response is not evidence of zero activity.',
-                             'Exact rolling 48h/7d unavailable: journal age-specific fields are not overwritten.',
+                             'Journal views_48h/views_7d are lifetime counters from the daily snapshot nearest to that age; '
+                             'the actual age in hours is stored in *_age_h. Existing values are not overwritten.',
                              'Data API counters are lifetime snapshots; Analytics metrics use the stated window.',
                              'Shorts type is editorial metadata, never inferred from duration alone.'])
     daily = ROOT / 'reports/youtube/daily'
@@ -223,6 +234,9 @@ def main():
     atomic(daily / f'{today}.md', '# M1lash — ежедневный снимок\n\n' + summary(data, videos))
     save_json(ROOT / 'reports/youtube/latest.json', data)
     update_journal(ROOT / 'reports/videos.csv', videos, data, now.isoformat())
+    # Views at ~48h/7d age come from the saved daily lifetime counters (actual age is stored alongside).
+    filled = load_backfill().backfill(ROOT / 'reports/videos.csv', daily, ROOT)
+    print('Journal backfill:', filled)
     for kind, first, last, label in period_bounds(today):
         # A Sunday/1st report may initially lack recent data. Refresh until API catches up.
         period = period_data(client, first, min(last, end))
