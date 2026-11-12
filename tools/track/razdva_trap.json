@@ -1,0 +1,154 @@
+{
+ "id": "track_razdva_2",
+ "title": "Раз, два, три (жёсткий трэп)",
+ "style": "trap",
+ "bpm": 140,
+ "bars": 28,
+ "seed": 11,
+ "fill": 0.94,
+ "max_tempo": 1.3,
+ "vocal_over_beat": 2.0,
+ "duck": 0.25,
+ "fade_out": 2.5,
+ "drive": 2.0,
+ "vox_drive": 2.4,
+ "sections": [
+  {
+   "name": "intro",
+   "from": 0,
+   "to": 2,
+   "mel": 0.9,
+   "brass": 0.7
+  },
+  {
+   "name": "hook1",
+   "from": 2,
+   "to": 6,
+   "mel": 1.0,
+   "brass": 1.0,
+   "bell": 1.0,
+   "hats": true,
+   "drums": true,
+   "bass": true
+  },
+  {
+   "name": "verse1",
+   "from": 6,
+   "to": 14,
+   "mel": 0.7,
+   "brass": 0.5,
+   "hats": true,
+   "drums": true,
+   "bass": true
+  },
+  {
+   "name": "hook2",
+   "from": 14,
+   "to": 18,
+   "mel": 1.0,
+   "brass": 1.0,
+   "bell": 1.0,
+   "hats": true,
+   "drums": true,
+   "bass": true
+  },
+  {
+   "name": "verse2",
+   "from": 18,
+   "to": 22,
+   "mel": 0.7,
+   "brass": 0.5,
+   "hats": true,
+   "drums": true,
+   "bass": true
+  },
+  {
+   "name": "hook3",
+   "from": 22,
+   "to": 26,
+   "mel": 1.0,
+   "brass": 1.0,
+   "bell": 1.0,
+   "hats": true,
+   "drums": true,
+   "bass": true
+  },
+  {
+   "name": "outro",
+   "from": 26,
+   "to": 28,
+   "mel": 0.9,
+   "brass": 0.7
+  }
+ ],
+ "risers": [
+  1,
+  13,
+  21
+ ],
+ "crashes": [
+  2,
+  14,
+  22
+ ],
+ "cuts": [
+  13,
+  21
+ ],
+ "vocals": [
+  {
+   "id": "v01",
+   "bar": 2,
+   "double": true
+  },
+  {
+   "id": "v01",
+   "bar": 4,
+   "double": true
+  },
+  {
+   "id": "v02",
+   "bar": 6
+  },
+  {
+   "id": "v03",
+   "bar": 8
+  },
+  {
+   "id": "v04",
+   "bar": 10
+  },
+  {
+   "id": "v05",
+   "bar": 12
+  },
+  {
+   "id": "v01",
+   "bar": 14,
+   "double": true
+  },
+  {
+   "id": "v01",
+   "bar": 16,
+   "double": true
+  },
+  {
+   "id": "v06",
+   "bar": 18
+  },
+  {
+   "id": "v07",
+   "bar": 20
+  },
+  {
+   "id": "v08",
+   "bar": 22,
+   "double": true
+  },
+  {
+   "id": "v01",
+   "bar": 24,
+   "double": true
+  }
+ ]
+}

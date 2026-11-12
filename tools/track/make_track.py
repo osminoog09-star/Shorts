@@ -13,6 +13,7 @@ from scipy import signal
 from scipy.io import wavfile
 
 SR = 44100
+VOX_DRIVE = 1.6
 
 
 def db(x):
@@ -193,6 +194,135 @@ def stereo(drums, bassb, mus, fx):
     return np.stack([left, right], axis=1)
 
 
+# ---------- стиль «trap»: жёсткий клубный гангста-трэп (свой рисунок, не копия чужих треков) ----------
+def strings_stab(freqs, dur=0.2):
+    n = int(dur * SR); t = np.arange(n) / SR
+    x = np.zeros(n)
+    for f in freqs:
+        for det in (-0.007, 0.0, 0.008):
+            x += signal.sawtooth(2 * np.pi * f * (1 + det) * t)
+    x = signal.sosfilt(signal.butter(2, [180, 4200], "bandpass", fs=SR, output="sos"), x) / (3 * len(freqs))
+    e = np.minimum(1, t / 0.004) * np.exp(-t / 0.075)
+    return np.tanh(3.0 * x * e)
+
+
+def brass_hit(freqs, dur):
+    n = int(dur * SR); t = np.arange(n) / SR
+    x = np.zeros(n)
+    for f in freqs:
+        for det in (-0.004, 0.005):
+            x += signal.sawtooth(2 * np.pi * f * (1 + det) * t)
+    x /= 2 * len(freqs)
+    bright = filt(x, "lowpass", 2600, 2); dark = filt(x, "lowpass", 700, 2)
+    k = np.exp(-t / 0.25)
+    x = bright * k + dark * (1 - k)
+    e = np.minimum(1, t / 0.02) * np.exp(-t / (dur * 0.45))
+    return np.tanh(2.5 * x * e)
+
+
+def bell(freq, dur=0.5):
+    n = int(dur * SR); t = np.arange(n) / SR
+    x = np.sin(2 * np.pi * freq * t + 1.8 * np.exp(-t / 0.12) * np.sin(2 * np.pi * freq * 3.5 * t))
+    return x * np.exp(-t / 0.16) * 0.5
+
+
+def snare(rng):
+    n = int(0.3 * SR); t = np.arange(n) / SR
+    nz = signal.sosfilt(signal.butter(2, [220, 9000], "bandpass", fs=SR, output="sos"), rng.standard_normal(n))
+    body = np.sin(2 * np.pi * (185 + 90 * np.exp(-t / 0.012)) * t) * np.exp(-t / 0.05)
+    return np.tanh(2.2 * (nz * np.exp(-t / 0.085) * 0.8 + body * 0.9)) * 0.75
+
+
+def kick_hard():
+    n = int(0.22 * SR); t = np.arange(n) / SR
+    f = 46 + 260 * np.exp(-t / 0.016)
+    x = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t / 0.085)
+    click = np.exp(-t / 0.0015) * 0.5
+    return np.tanh(2.6 * (x + click))
+
+
+def bass808_slide(freq, dur, to=None):
+    n = int(dur * SR); t = np.arange(n) / SR
+    f = np.full(n, float(freq))
+    if to:
+        k = np.clip((t - dur * 0.55) / (dur * 0.3), 0, 1)
+        f = freq * (to / freq) ** k
+    f = f * (1 + 1.6 * np.exp(-t / 0.014))
+    x = np.sin(2 * np.pi * np.cumsum(f) / SR)
+    e = np.minimum(1, t / 0.003) * np.exp(-t / max(dur * 1.1, 0.25))
+    m = int(0.012 * SR); e[-m:] *= np.linspace(1, 0, m)
+    return np.tanh(4.5 * x * e) * 0.9
+
+
+T_ROOTS = [0, 0, -4, -5]                                   # C#m, C#m, A, G#
+T_CHORD = [(0, 3, 7), (0, 3, 7), (0, 4, 7), (0, 4, 7)]
+T_KICK = [[0, 6, 10], [0, 3, 10, 11], [0, 6, 10], [0, 3, 7, 10, 14]]
+T_STAB = [[0, 3, 6, 8, 11, 14], [0, 3, 6, 8, 11, 14], [0, 3, 6, 8, 11, 14], [0, 2, 4, 6, 8, 11, 14]]
+T_BELL = [[(0, 7), (3, 8), (6, 7), (10, 3)], [(0, 7), (3, 8), (6, 7), (10, 12)],
+          [(0, 8), (3, 12), (6, 8), (10, 3)], [(0, 7), (3, 11), (6, 14), (10, 11), (14, 8)]]
+T_ROLL = [None, (12, 16, 0.5), (8, 12, 2 / 3), (10, 16, 0.5)]   # (с шага, до шага, размер) — дроби хэтов
+
+
+def build_beat_trap(song, sections):
+    n = song.n
+    drums, bassb, mel, fx = (np.zeros(n) for _ in range(4))
+    duck = np.ones(n)
+    k, sn, cl = kick_hard(), snare(song.rng), clap(song.rng)
+    c3, c1 = 138.59, 34.65 * 2 ** (0 / 12)
+    for bar in range(song.bars):
+        sec = sections[bar]; i = bar % 4; root = T_ROOTS[i]
+        lim = 8 if sec.get("cut") else 16                  # «обрыв» перед хуком: вторая половина такта пустая
+        if sec["mel"] > 0:
+            ch = [semis(c3, root + s) for s in T_CHORD[i]] + [semis(c3, root + 12)]
+            for st in T_STAB[i]:
+                if st < lim:
+                    song.add(mel, song.t(bar, st), strings_stab(ch), sec["mel"] * (1.0 if st % 8 == 0 else 0.8))
+        if sec.get("brass", 0) > 0:
+            lo = [semis(c3 / 2, root), semis(c3 / 2, root + 7), semis(c3, root)]
+            song.add(mel, song.t(bar), brass_hit(lo, song.bar * 0.9), sec["brass"] * 0.9)
+        if sec.get("bell", 0) > 0:
+            for st, sm in T_BELL[i]:
+                if st < lim:
+                    song.add(mel, song.t(bar, st), bell(semis(554.37, sm)), sec["bell"] * 0.6)
+        if sec["bass"]:
+            hits = [h for h in T_KICK[i] if h < lim]
+            for j, st in enumerate(hits):
+                nxt = hits[j + 1] if j + 1 < len(hits) else lim
+                dur = (nxt - st) * song.step * 0.985
+                f0 = semis(c1 * 2, root)                   # C#2 ≈ 69 Гц + гармоники от перегруза
+                to = semis(f0, 12) if (i == 3 and st == hits[-1]) else (semis(f0, 7) if (i == 1 and st == hits[-1]) else None)
+                song.add(bassb, song.t(bar, st), bass808_slide(f0, dur, to))
+                song.add(drums, song.t(bar, st), k, 1.0)
+                p = song.t(bar, st); m = int(0.2 * SR)
+                if p + m < n:
+                    duck[p:p + m] = np.minimum(duck[p:p + m], 0.4 + 0.6 * np.linspace(0, 1, m) ** 1.5)
+        if sec["drums"] and lim == 16:
+            song.add(drums, song.t(bar, 8), sn, 1.0); song.add(drums, song.t(bar, 8), cl, 0.8)
+            if i == 3:
+                song.add(drums, song.t(bar, 15), sn, 0.45)
+        if sec["hats"]:
+            roll = T_ROLL[i]
+            for st in range(0, lim, 2):
+                if roll and roll[0] <= st < roll[1]:
+                    continue
+                song.add(drums, song.t(bar, st), hat(song.rng), 0.85 if st % 4 == 0 else 0.5)
+            if roll and lim == 16:
+                q = roll[0]; j = 0
+                while q < roll[1] - 1e-6:
+                    song.add(drums, song.t(bar, q), hat(song.rng, 0.011), 0.3 + 0.05 * j)
+                    q += roll[2]; j += 1
+            if i in (0, 2) and lim == 16:                  # открытый хэт
+                song.add(drums, song.t(bar, 14), hat(song.rng, 0.09), 0.5)
+        if sec.get("riser"):
+            song.add(fx, song.t(bar), riser(song.rng, song.bar))
+        if sec.get("crash"):
+            song.add(fx, song.t(bar), crash(song.rng))
+            song.add(bassb, song.t(bar), bass808_slide(semis(c1 * 2, root), song.beat * 2), 0.5)
+    # параллельная компрессия барабанов — «мощь»
+    smash = np.tanh(6 * drums) * 0.35
+    return drums + smash, bassb * 0.9, mel * duck * 1.5, fx
+
+
 # ---------- голос ----------
 def load_voice(path):
     sr, x = wavfile.read(str(path))
@@ -269,7 +399,7 @@ def voice_fx(x):
     x = x / (np.abs(x).max() + 1e-9) * 0.8
     x = compress(x)
     x = x + 0.35 * filt(x, "highpass", 3200, 1)            # разборчивость
-    x = np.tanh(1.6 * x) / np.tanh(1.6)                    # лёгкая сатурация, высота не меняется
+    x = np.tanh(VOX_DRIVE * x) / np.tanh(VOX_DRIVE)        # сатурация, высота не меняется
     return x / (np.abs(x).max() + 1e-9)
 
 
@@ -286,10 +416,12 @@ def main():
     ap.add_argument("--plan", default=str(Path(__file__).with_name("razdva.json")))
     a = ap.parse_args()
     plan = json.loads(Path(a.plan).read_text(encoding="utf-8"))
+    global VOX_DRIVE
+    VOX_DRIVE = plan.get("vox_drive", 1.6)
     song = Song(plan["bpm"], plan["bars"], plan.get("seed", 7))
     sections = {}
     for bar in range(song.bars):
-        sec = {"drums": False, "hats": False, "bass": False, "mel": 0.0, "pad": 0.0}
+        sec = {"drums": False, "hats": False, "bass": False, "mel": 0.0, "pad": 0.0, "brass": 0.0, "bell": 0.0}
         for rule in plan["sections"]:
             if rule["from"] <= bar < rule["to"]:
                 sec.update({k: v for k, v in rule.items() if k not in ("from", "to", "name")})
@@ -298,7 +430,10 @@ def main():
         sections[bar]["riser"] = True
     for bar in plan.get("crashes", []):
         sections[bar]["crash"] = True
-    beat = stereo(*build_beat(song, sections))
+    for bar in plan.get("cuts", []):
+        sections[bar]["cut"] = True
+    builder = build_beat_trap if plan.get("style") == "trap" else build_beat
+    beat = stereo(*builder(song, sections))
 
     vox = np.zeros(song.n); vox_wide = np.zeros((song.n, 2)); report = {"lines": []}
     max_len = song.bar * plan.get("fill", 0.93); max_tempo = plan.get("max_tempo", 1.3)
@@ -344,8 +479,9 @@ def main():
 
     def master(x):
         x = signal.sosfilt(sos("highpass", 28, 2), x, axis=0)
+        drive = plan.get("drive", 1.25)
         x = x / (np.percentile(np.abs(x), 99.7) + 1e-9) * 0.80
-        x = np.tanh(1.25 * x) / np.tanh(1.25)
+        x = np.tanh(drive * x) / np.tanh(drive)
         return x / (np.abs(x).max() + 1e-9) * 0.89           # ≈ −1 dBFS
     mix, beat_only = master(mix), master(beat_only)
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
