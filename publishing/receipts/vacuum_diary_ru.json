@@ -1,8 +1,10 @@
 {
-  "status": "reserved",
+  "status": "uploaded",
   "manifest": "publishing/queue/vacuum_diary_ru.json",
   "manifest_sha256": "056535b7a5ea91b3b5643bec3e48ac444876a717d573d5d4cc2e4d1f2e7c9680",
   "channel": "ru",
   "publish_at_utc": null,
-  "note": "A reserved attempt must NEVER be automatically retried."
+  "note": "A reserved attempt must NEVER be automatically retried.",
+  "video_id": "2g_sQw71z7s",
+  "video_url": "https://youtu.be/2g_sQw71z7s"
 }
