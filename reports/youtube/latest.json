@@ -1,10 +1,10 @@
 {
   "start": "2019-02-11",
-  "end": "2026-11-10",
+  "end": "2026-11-11",
   "videos": {
     "XANzL3z9wqY": {
       "video": "XANzL3z9wqY",
-      "views": 6386,
+      "views": 6387,
       "engagedViews": 3972,
       "averageViewPercentage": 58.03,
       "averageViewDuration": 34,
@@ -30,7 +30,7 @@
     },
     "xRwwXYXVxSc": {
       "video": "xRwwXYXVxSc",
-      "views": 1446,
+      "views": 1447,
       "engagedViews": 949,
       "averageViewPercentage": 57.04,
       "averageViewDuration": 31,
@@ -238,7 +238,7 @@
     },
     "wweAPl3P29w": {
       "video": "wweAPl3P29w",
-      "views": 1010,
+      "views": 1011,
       "engagedViews": 612,
       "averageViewPercentage": 38.6,
       "averageViewDuration": 15,
@@ -249,11 +249,24 @@
       "shares": 1,
       "estimatedMinutesWatched": 175
     },
+    "izqrEKmU38g": {
+      "video": "izqrEKmU38g",
+      "views": 1010,
+      "engagedViews": 620,
+      "averageViewPercentage": 56.3,
+      "averageViewDuration": 22,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 12,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 244
+    },
     "dwPNCXCcu24": {
       "video": "dwPNCXCcu24",
-      "views": 997,
-      "engagedViews": 539,
-      "averageViewPercentage": 39.03,
+      "views": 998,
+      "engagedViews": 540,
+      "averageViewPercentage": 38.98,
       "averageViewDuration": 14,
       "subscribersGained": 0,
       "subscribersLost": 0,
@@ -262,9 +275,22 @@
       "shares": 0,
       "estimatedMinutesWatched": 143
     },
+    "bEdC0uFDvl4": {
+      "video": "bEdC0uFDvl4",
+      "views": 993,
+      "engagedViews": 580,
+      "averageViewPercentage": 59.19,
+      "averageViewDuration": 24,
+      "subscribersGained": 1,
+      "subscribersLost": 0,
+      "likes": 16,
+      "comments": 1,
+      "shares": 0,
+      "estimatedMinutesWatched": 251
+    },
     "ACy21tT97a4": {
       "video": "ACy21tT97a4",
-      "views": 974,
+      "views": 976,
       "engagedViews": 539,
       "averageViewPercentage": 46.59,
       "averageViewDuration": 20,
@@ -274,19 +300,6 @@
       "comments": 0,
       "shares": 0,
       "estimatedMinutesWatched": 194
-    },
-    "bEdC0uFDvl4": {
-      "video": "bEdC0uFDvl4",
-      "views": 966,
-      "engagedViews": 564,
-      "averageViewPercentage": 59.43999999999999,
-      "averageViewDuration": 24,
-      "subscribersGained": 1,
-      "subscribersLost": 0,
-      "likes": 14,
-      "comments": 1,
-      "shares": 0,
-      "estimatedMinutesWatched": 245
     },
     "2Ych7OkX1vc": {
       "video": "2Ych7OkX1vc",
@@ -303,16 +316,16 @@
     },
     "uDbIq2IzlzM": {
       "video": "uDbIq2IzlzM",
-      "views": 902,
-      "engagedViews": 432,
-      "averageViewPercentage": 36.94,
+      "views": 903,
+      "engagedViews": 433,
+      "averageViewPercentage": 36.99,
       "averageViewDuration": 21,
       "subscribersGained": 0,
       "subscribersLost": 0,
       "likes": 4,
       "comments": 0,
       "shares": 0,
-      "estimatedMinutesWatched": 166
+      "estimatedMinutesWatched": 167
     },
     "qYSbQisqEpc": {
       "video": "qYSbQisqEpc",
@@ -431,6 +444,19 @@
       "shares": 0,
       "estimatedMinutesWatched": 84
     },
+    "h-fz_lx7bn8": {
+      "video": "h-fz_lx7bn8",
+      "views": 464,
+      "engagedViews": 182,
+      "averageViewPercentage": 39.38,
+      "averageViewDuration": 16,
+      "subscribersGained": 2,
+      "subscribersLost": 0,
+      "likes": 6,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 58
+    },
     "Wn5dNQsrpxk": {
       "video": "Wn5dNQsrpxk",
       "views": 334,
@@ -443,19 +469,6 @@
       "comments": 0,
       "shares": 0,
       "estimatedMinutesWatched": 51
-    },
-    "h-fz_lx7bn8": {
-      "video": "h-fz_lx7bn8",
-      "views": 292,
-      "engagedViews": 107,
-      "averageViewPercentage": 39.43,
-      "averageViewDuration": 16,
-      "subscribersGained": 1,
-      "subscribersLost": 0,
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 34
     },
     "4PYRNmbopwo": {
       "video": "4PYRNmbopwo",
@@ -602,16 +615,29 @@
     },
     "KIGLaVhTlhw": {
       "video": "KIGLaVhTlhw",
-      "views": 64,
-      "engagedViews": 41,
-      "averageViewPercentage": 99.06,
-      "averageViewDuration": 22,
+      "views": 74,
+      "engagedViews": 48,
+      "averageViewPercentage": 92.04,
+      "averageViewDuration": 21,
       "subscribersGained": 0,
       "subscribersLost": 0,
       "likes": 2,
       "comments": 0,
       "shares": 1,
-      "estimatedMinutesWatched": 16
+      "estimatedMinutesWatched": 17
+    },
+    "R0y8D9MZanc": {
+      "video": "R0y8D9MZanc",
+      "views": 65,
+      "engagedViews": 34,
+      "averageViewPercentage": 43.37,
+      "averageViewDuration": 18,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 11
     },
     "UPEDaeR0O_c": {
       "video": "UPEDaeR0O_c",
@@ -652,6 +678,19 @@
       "shares": 1,
       "estimatedMinutesWatched": 23
     },
+    "2suySU6uCGk": {
+      "video": "2suySU6uCGk",
+      "views": 4,
+      "engagedViews": 4,
+      "averageViewPercentage": 25.7,
+      "averageViewDuration": 353,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 23
+    },
     "XqoHjcsdPtQ": {
       "video": "XqoHjcsdPtQ",
       "views": 4,
@@ -664,19 +703,6 @@
       "comments": 0,
       "shares": 1,
       "estimatedMinutesWatched": 2
-    },
-    "2suySU6uCGk": {
-      "video": "2suySU6uCGk",
-      "views": 2,
-      "engagedViews": 2,
-      "averageViewPercentage": 50.73,
-      "averageViewDuration": 698,
-      "subscribersGained": 0,
-      "subscribersLost": 0,
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 23
     },
     "OpMT1DWymCA": {
       "video": "OpMT1DWymCA",
@@ -729,6 +755,18 @@
       "comments": 0,
       "shares": 0,
       "estimatedMinutesWatched": 1
+    },
+    "6KgLv_omqao": {
+      "views": null,
+      "engagedViews": null,
+      "averageViewPercentage": null,
+      "averageViewDuration": null,
+      "subscribersGained": null,
+      "subscribersLost": null,
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "estimatedMinutesWatched": null
     },
     "kyfDKmGDfZo": {
       "views": null,
@@ -802,43 +840,7 @@
       "shares": null,
       "estimatedMinutesWatched": null
     },
-    "R0y8D9MZanc": {
-      "views": null,
-      "engagedViews": null,
-      "averageViewPercentage": null,
-      "averageViewDuration": null,
-      "subscribersGained": null,
-      "subscribersLost": null,
-      "likes": null,
-      "comments": null,
-      "shares": null,
-      "estimatedMinutesWatched": null
-    },
-    "izqrEKmU38g": {
-      "views": null,
-      "engagedViews": null,
-      "averageViewPercentage": null,
-      "averageViewDuration": null,
-      "subscribersGained": null,
-      "subscribersLost": null,
-      "likes": null,
-      "comments": null,
-      "shares": null,
-      "estimatedMinutesWatched": null
-    },
     "iYmh6Fd3LMY": {
-      "views": null,
-      "engagedViews": null,
-      "averageViewPercentage": null,
-      "averageViewDuration": null,
-      "subscribersGained": null,
-      "subscribersLost": null,
-      "likes": null,
-      "comments": null,
-      "shares": null,
-      "estimatedMinutesWatched": null
-    },
-    "6KgLv_omqao": {
       "views": null,
       "engagedViews": null,
       "averageViewPercentage": null,
@@ -890,18 +892,32 @@
   "unsupported_metrics": [],
   "schema_version": 1,
   "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
-  "snapshot_date": "2026-11-11",
-  "fetched_at": "2026-11-11T15:27:31.725034+00:00",
+  "snapshot_date": "2026-11-12",
+  "fetched_at": "2026-11-12T16:04:16.734039+00:00",
   "inventory": [
+    {
+      "video_id": "6KgLv_omqao",
+      "title": "Зеркало не меняет лево и право. Проверь рукой #shorts",
+      "published_at": "2026-11-12T08:00:13Z",
+      "duration": "PT43S",
+      "privacy": "public",
+      "statistics": {
+        "viewCount": "470",
+        "likeCount": "6",
+        "dislikeCount": "0",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
     {
       "video_id": "kyfDKmGDfZo",
       "title": "ИИ работает вполсилы, когда его проверяют 😳 #shorts",
-      "published_at": "2026-11-11T08:31:23Z",
+      "published_at": "2026-11-11T18:00:18Z",
       "duration": "PT59S",
-      "privacy": "private",
+      "privacy": "public",
       "statistics": {
-        "viewCount": "1",
-        "likeCount": "0",
+        "viewCount": "152",
+        "likeCount": "5",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -928,8 +944,8 @@
       "duration": "PT39S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1020",
-        "likeCount": "21",
+        "viewCount": "1060",
+        "likeCount": "22",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -984,8 +1000,8 @@
       "duration": "PT40S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "419",
-        "likeCount": "12",
+        "viewCount": "763",
+        "likeCount": "20",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -998,8 +1014,8 @@
       "duration": "PT42S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "128",
-        "likeCount": "1",
+        "viewCount": "157",
+        "likeCount": "2",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -1054,7 +1070,7 @@
       "duration": "PT42S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1019",
+        "viewCount": "1032",
         "likeCount": "16",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1111,7 +1127,7 @@
       "privacy": "public",
       "statistics": {
         "viewCount": "1019",
-        "likeCount": "22",
+        "likeCount": "23",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "1"
@@ -1194,7 +1210,7 @@
       "duration": "PT56S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1446",
+        "viewCount": "1447",
         "likeCount": "23",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1210,20 +1226,6 @@
       "statistics": {
         "viewCount": "1010",
         "likeCount": "5",
-        "dislikeCount": "0",
-        "favoriteCount": "0",
-        "commentCount": "0"
-      }
-    },
-    {
-      "video_id": "6KgLv_omqao",
-      "title": "Зеркало не меняет лево и право. Проверь рукой #shorts",
-      "published_at": "2026-11-03T14:55:54Z",
-      "duration": "PT43S",
-      "privacy": "private",
-      "statistics": {
-        "viewCount": "0",
-        "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
         "commentCount": "0"
@@ -1306,7 +1308,7 @@
       "duration": "PT23S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "78",
+        "viewCount": "77",
         "likeCount": "3",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1404,7 +1406,7 @@
       "duration": "PT27M4S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "2",
+        "viewCount": "3",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1544,7 +1546,7 @@
       "duration": "PT1M14S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "3249",
+        "viewCount": "3251",
         "likeCount": "191",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1558,7 +1560,7 @@
       "duration": "PT1M3S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1171",
+        "viewCount": "1173",
         "likeCount": "9",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1670,7 +1672,7 @@
       "duration": "PT59S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "6387",
+        "viewCount": "6388",
         "likeCount": "162",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1861,10 +1863,10 @@
     }
   ],
   "channel_statistics": {
-    "viewCount": "46079",
-    "subscriberCount": "43",
+    "viewCount": "48067",
+    "subscriberCount": "44",
     "hiddenSubscriberCount": false,
-    "videoCount": "58"
+    "videoCount": "60"
   },
   "recent_daily_views": [
     {
@@ -1954,13 +1956,18 @@
     {
       "day": "2026-11-08",
       "views": 2619
+    },
+    {
+      "day": "2026-11-09",
+      "views": 1293
     }
   ],
-  "last_observed_view_day": "2026-11-08",
+  "last_observed_view_day": "2026-11-09",
   "traffic": {
-    "start": "2026-10-14",
-    "end": "2026-11-10",
+    "start": "2026-10-15",
+    "end": "2026-11-11",
     "videos": {
+      "6KgLv_omqao": [],
       "kyfDKmGDfZo": [],
       "-l_Xunkg4yg": [],
       "hUTYiTxz42c": [],
@@ -1973,8 +1980,38 @@
           "views": 1
         }
       ],
-      "R0y8D9MZanc": [],
-      "izqrEKmU38g": [],
+      "R0y8D9MZanc": [
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 0
+        },
+        {
+          "insightTrafficSourceType": "SHORTS",
+          "views": 64
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 1
+        }
+      ],
+      "izqrEKmU38g": [
+        {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 0
+        },
+        {
+          "insightTrafficSourceType": "SHORTS",
+          "views": 999
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 5
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 6
+        }
+      ],
       "h-fz_lx7bn8": [
         {
           "insightTrafficSourceType": "NO_LINK_OTHER",
@@ -1982,11 +2019,15 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 283
+          "views": 443
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 2
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 9
+          "views": 19
         }
       ],
       "G4IMzvrv1Zw": [
@@ -2022,7 +2063,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 952
+          "views": 979
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -2046,11 +2087,19 @@
       ],
       "2suySU6uCGk": [
         {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 1
+        },
+        {
           "insightTrafficSourceType": "NO_LINK_OTHER",
           "views": 0
         },
         {
           "insightTrafficSourceType": "NOTIFICATION",
+          "views": 1
+        },
+        {
+          "insightTrafficSourceType": "PLAYLIST",
           "views": 1
         },
         {
@@ -2157,7 +2206,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 5
+          "views": 7
         }
       ],
       "qYSbQisqEpc": [
@@ -2197,7 +2246,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 14
+          "views": 15
         }
       ],
       "wweAPl3P29w": [
@@ -2207,7 +2256,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 980
+          "views": 981
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -2222,7 +2271,6 @@
           "views": 10
         }
       ],
-      "6KgLv_omqao": [],
       "9XeZBiX7Pr8": [],
       "9Bhnbw5bFeE": [
         {
@@ -2306,7 +2354,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 56
+          "views": 66
         }
       ],
       "CmOu0xXc0UI": [
@@ -2630,7 +2678,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 21
+          "views": 22
         }
       ],
       "6wh9nvwtWT0": [
@@ -2678,7 +2726,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 3
+          "views": 4
         }
       ],
       "bpaR4hHC6YU": [
@@ -2946,7 +2994,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 102
+          "views": 103
         }
       ],
       "wmnrIivD1HE": [
@@ -3248,6 +3296,7 @@
       "mLlB8eL1FUE": []
     },
     "unsupported_metrics": {
+      "6KgLv_omqao": [],
       "kyfDKmGDfZo": [],
       "-l_Xunkg4yg": [],
       "hUTYiTxz42c": [],
@@ -3271,7 +3320,6 @@
       "qYSbQisqEpc": [],
       "xRwwXYXVxSc": [],
       "wweAPl3P29w": [],
-      "6KgLv_omqao": [],
       "9XeZBiX7Pr8": [],
       "9Bhnbw5bFeE": [],
       "oMhef8NQg1s": [],
