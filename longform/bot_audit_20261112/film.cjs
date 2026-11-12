@@ -79,7 +79,7 @@ async function main(){
   const tl=JSON.parse(fs.readFileSync(path.join(OUT,'timeline.json'),'utf8')), ch=op.startsWith('chapter-')?Number(op.split('-')[1]):null;
   const frames=Math.ceil(tl.duration_s*30);
   if(op==='review'){
-   for(const [i,start,stop] of [[1,0,20],[2,524,539],[3,647,659],[4,827,854],[5,975,987],[6,1273,1297.44]]){
+   for(const [i,start,stop] of [[1,401,417],[2,718,738],[3,738,764],[4,767,792],[5,1056,1071],[6,1268,1297.44]]){
     await encode('review-'+i,tl.scenes,Math.round(start*30),Math.round(stop*30),30,1,path.join(OUT,'review_'+i+'.mp4'));
    }
   }else if(op==='opening'){

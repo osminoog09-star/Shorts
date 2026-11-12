@@ -1,0 +1,19 @@
+{
+  "version": "V3",
+  "file": "C:\\M1lash\\Готово\\m1lash_bot_audit_ru_v3.mp4",
+  "sha256": "ff222a1d6e8afa289b22ebe962db0ae7cdf319459d4dffc67e6d304c6590219a",
+  "duration_seconds": 1304.0405,
+  "resolution": "1920x1080",
+  "fps": 30,
+  "shots": 207,
+  "chapters": 8,
+  "score": 3.7,
+  "hearing": "pending",
+  "failed_checks": 0,
+  "warnings": [
+    "subtitles",
+    "dropouts"
+  ],
+  "audio_stream_matches_v2": true,
+  "publication": "LOCAL_REVIEW"
+}
