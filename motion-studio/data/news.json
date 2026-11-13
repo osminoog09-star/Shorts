@@ -1,12 +1,206 @@
 {
-  "status": "success",
-  "updated_at": "2026-11-13T14:34:34.724965Z",
-  "last_attempt_at": "2026-11-13T14:34:34.724965Z",
-  "feeds_ok": 7,
-  "feeds_failed": 0,
-  "errors": [],
+  "status": "partial",
+  "updated_at": "2026-11-13T23:33:37.454592Z",
+  "last_attempt_at": "2026-11-13T23:33:37.454592Z",
+  "feeds_ok": 6,
+  "feeds_failed": 1,
+  "errors": [
+    {
+      "source": "NASA Technology",
+      "error_type": "HTTPError"
+    }
+  ],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "ffcde67cd55e39ddfc",
+      "title": "FAA orders third nationwide ground stop in its history",
+      "url": "https://arstechnica.com/tech-policy/2026/11/faa-orders-third-nationwide-ground-stop-in-its-history/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-13T23:17:38Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "a53b6d6797d1d8cee9",
+      "title": "Jensen Huang’s departure blasts big hole in AI startup funding, VCs and founders say",
+      "url": "https://techcrunch.com/2026/11/13/jensen-huangs-departure-blasts-big-hole-in-ai-startup-funding-vcs-and-founders-say/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-13T22:43:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c628f8ad3420da2b0e",
+      "title": "Millions of Americans are not taking their GLP-1 drugs as prescribed",
+      "url": "https://arstechnica.com/health/2026/11/millions-in-us-use-unapproved-glp-1s-and-use-them-in-unapproved-ways/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-13T21:59:01Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d594c39e97738b7d88",
+      "title": "FAA expands AI advice to manage air traffic congestion across entire US airspace",
+      "url": "https://arstechnica.com/features/2026/11/faa-expands-ai-advice-to-manage-air-traffic-congestion-across-entire-us-airspace/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-13T21:20:47Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "754f24889ed9e00a6d",
+      "title": "ChatGPT Wallet lets OpenAI’s Dots agents make purchases for you",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1033425/openai-chatgpt-wallet",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-13T20:45:10Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "6abca871feff91044c",
+      "title": "In elephants, the resilience of communities has its limits",
+      "url": "https://arstechnica.com/science/2026/11/in-elephants-the-resilience-of-communities-has-its-limits/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-13T20:03:13Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8766e57338b8c46afe",
+      "title": "Kalshi ditches Trump Jr. as advisor; CEO admitted \"optics\" weren't good",
+      "url": "https://arstechnica.com/tech-policy/2026/11/trump-jr-out-as-kalshi-advisor-after-his-firms-big-investment-in-polymarket/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-13T19:49:16Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b96c8f1ce3eaba55d8",
+      "title": "AI agent startup LangChain hits $3B valuation",
+      "url": "https://techcrunch.com/2026/11/13/ai-agent-startup-langchain-hits-3b-valuation/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-13T19:37:57Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "6669a4d19d8d972242",
+      "title": "Export-banned Nvidia chips are behind China’s most powerful AI models — uh-oh, Jensen!",
+      "url": "https://techcrunch.com/2026/11/13/export-banned-nvidia-chips-are-behind-chinas-most-powerful-ai-models-uh-oh-jensen/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-13T18:40:30Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "41e004efa98b79552e",
+      "title": "Video Friday: NASA PROMISEs a New Moon Rover",
+      "url": "https://spectrum.ieee.org/video-friday-moon-rover-promise",
+      "category": "robotics",
+      "source": "IEEE Spectrum Robotics",
+      "published_at": "2026-11-13T17:30:03Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4b4e88316cc177ddab",
+      "title": "OpenAI board member worries an AI \"takeover\" of society could be months away",
+      "url": "https://arstechnica.com/ai/2026/11/ai-is-the-most-likely-reason-youll-die-openai-board-member-warns/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-13T17:25:45Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e714212c469467e26a",
+      "title": "Outbursts from a Massive Star",
+      "url": "https://www.nasa.gov/image-article/outbursts-from-a-massive-star/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-13T16:39:33Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "07f85e55f4eee7c30b",
+      "title": "Windows 0-day dropped by disgruntled researcher hands hackers System rights",
+      "url": "https://arstechnica.com/security/2026/11/windows-0-day-dropped-by-disgruntled-researcher-hands-hackers-system-rights/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-13T16:26:32Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "43fbd5f391f2a6654b",
+      "title": "Gemini Astronaut Photos Inspired Early Earth Observation Program",
+      "url": "https://www.nasa.gov/image-article/gemini-astronaut-photos-inspired-early-earth-observation-program/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-13T16:05:54Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "cd336cbdb7962f39cc",
+      "title": "ChatGPT’s new Wallet lets AI agents shop and check out for you",
+      "url": "https://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-shop-and-check-out-for-you/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-13T16:00:12Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "73b823aa24f5b8c88e",
+      "title": "The unfolding Jensen Huang scandal: a timeline",
+      "url": "https://techcrunch.com/2026/11/13/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-13T15:58:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ff0fe521bc7a37901e",
+      "title": "Microsoft’s global outage may be worse than Amazon's or CrowdStrike's, expert says",
+      "url": "https://arstechnica.com/tech-policy/2026/11/microsoft-blames-failed-server-health-checks-not-hackers-for-global-outage/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-13T15:26:53Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "2cab0dde83e80826e9",
+      "title": "It's the end of the world as we know it, per a physicist's 1960 prediction",
+      "url": "https://arstechnica.com/science/2026/11/its-the-end-of-the-world-as-we-know-it-per-a-physicists-1960-prediction/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-13T15:09:39Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4815b0b06c43310323",
+      "title": "What’s really at stake in the Jensen Huang saga",
+      "url": "https://www.theverge.com/podcast/1032866/jensen-huang-nvidia-china-trump-vergecast",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-13T14:47:16Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4e81a99ee4df1e0f31",
+      "title": "Screenless GPS: Slate Auto says, \"Remember the road atlas\"",
+      "url": "https://arstechnica.com/culture/2026/11/screenless-gps-slate-auto-says-remember-the-road-atlas/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-13T14:45:04Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "69a4be7aab7399d4f5",
+      "title": "ElevenLabs’ new app combines meeting note-taking and dictation for teams",
+      "url": "https://techcrunch.com/2026/11/13/elevenlabs-new-app-combines-meeting-note-taking-and-dictation-for-teams/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-13T14:44:48Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "87debc719bf2c2f376",
       "title": "Scientists warn 1.5°C climate change threshold could arrive by 2029",
@@ -536,195 +730,6 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-12T12:00:37Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d652bf4e1f2db5615f",
-      "title": "New research could lead to faster, trustworthy AI models for climate prediction",
-      "url": "https://news.mit.edu/2026/new-research-could-lead-faster-trustworthy-ai-models-climate-prediction-1112",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-11-12T05:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "a552875406bb3160c6",
-      "title": "Who could replace Jensen Huang? A highly unscientific list of possible successors",
-      "url": "https://techcrunch.com/2026/11/11/who-could-replace-jensen-huang-a-highly-unscientific-list-of-possible-successors/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T03:13:10Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "2c1c14009b34ac8bb9",
-      "title": "The unfolding Jensen Huang scandal: a timeline",
-      "url": "https://techcrunch.com/2026/11/11/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-11T23:50:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c80b16c4f3bf86c6aa",
-      "title": "Nvidia’s stock drops as board reportedly preps to oust CEO Jensen Huang",
-      "url": "https://techcrunch.com/2026/11/11/nvidias-stock-drops-as-board-reportedly-preps-to-oust-ceo-jensen-huang/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-11T23:28:45Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b908c072a557d814ce",
-      "title": "Jensen Huang accused of having another affair — with an Nvidia exec",
-      "url": "https://techcrunch.com/2026/11/11/jensen-huang-accused-of-having-another-affair-with-a-nvidia-exec/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-11T23:17:05Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "a6547f8cea67f8f660",
-      "title": "Nvidia is reportedly preparing to fire Jensen Huang",
-      "url": "https://www.theverge.com/tech/1031652/jensen-huang-rumor",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-11T22:44:36Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3c4a130ff1dbafc38d",
-      "title": "United won’t let your AI agent book your flight",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1031623/united-unauthorized-ai-agents",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-11T21:54:21Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f54430acdba3329627",
-      "title": "T-Mobile illegally imposed 50GB cap on low-income home Internet plan, NY says",
-      "url": "https://arstechnica.com/tech-policy/2026/11/t-mobile-illegally-imposed-50-gb-cap-on-low-income-home-internet-plan-ny-says/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-11T20:32:21Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ffcb46619fa0cfe84b",
-      "title": "Anduril says its first satellite can see adversaries maneuver in orbital night",
-      "url": "https://arstechnica.com/space/2026/11/anduril-demos-night-vision-sensor-for-tracking-satellites-in-darkness/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-11T20:22:03Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "351392b31b9f8e2235",
-      "title": "Why the data center you dread might never even be built",
-      "url": "https://techcrunch.com/video/why-the-data-center-you-dread-might-never-even-be-built/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-11T20:15:15Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "364092bc196c049bd0",
-      "title": "Meta is losing its longtime head of infrastructure",
-      "url": "https://techcrunch.com/2026/11/11/meta-is-losing-its-longtime-head-of-infrastructure/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-11T20:12:01Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "fe5a008bd23712d197",
-      "title": "How backlash and red tape continue to slow data centers post-Blue Wave",
-      "url": "https://techcrunch.com/podcast/how-backlash-and-red-tape-continue-to-slow-data-centers-post-blue-wave/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-11T20:02:14Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e4e9565de9f6f79762",
-      "title": "CoreWeave turns to customer prepayments, shorter contracts to fund AI growth",
-      "url": "https://techcrunch.com/2026/11/11/coreweave-turns-to-customer-prepayments-shorter-contracts-to-fund-ai-growth/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-11T19:54:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "22d6799f13a3486d45",
-      "title": "With $720M round, Britain’s Fractile gets a leg up in the race for AI chips",
-      "url": "https://techcrunch.com/2026/11/11/with-720m-round-britains-fractile-gets-a-leg-up-in-the-race-for-ai-chips/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-11T19:34:55Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "86409c70a4f047e99a",
-      "title": "Congress to call Jensen Huang in to answer for alleged Chinese spy affair",
-      "url": "https://techcrunch.com/2026/11/11/congress-to-call-jensen-huang-in-to-answer-for-alleged-chinese-spy-affair/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-11T19:22:22Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "6883bfc3372cae86fe",
-      "title": "NASA's secret weapon in the lunar space race may be ... procurement reform?",
-      "url": "https://arstechnica.com/space/2026/11/nasa-takes-an-all-hands-on-deck-approach-in-its-return-to-the-moon/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-11T19:00:26Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5fb859151deb400339",
-      "title": "Taiwan’s chipmaking giant TSMC to invest $1B in Anthropic, OpenAI",
-      "url": "https://arstechnica.com/ai/2026/11/taiwans-chipmaking-giant-tsmc-to-invest-1b-in-anthropic-openai/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-11T18:16:40Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b8716dd929edea5332",
-      "title": "Trump admin loses fight to spy on random journalists’ LinkedIn DMs",
-      "url": "https://arstechnica.com/tech-policy/2026/11/trump-admin-loses-fight-to-spy-on-random-journalists-linkedin-dms/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-11T18:05:26Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5e08e87b87fd5b69eb",
-      "title": "Big Walk used AI to fix a bug. Now the indie gaming world is having a reckoning.",
-      "url": "https://arstechnica.com/gaming/2026/11/big-walk-used-ai-to-fix-a-bug-now-the-indie-gaming-world-is-having-a-reckoning/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-11T17:37:32Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "2288e8744b897e9556",
-      "title": "Apple is shuttering its 28-year-old online community forum",
-      "url": "https://arstechnica.com/gadgets/2026/11/apple-is-shuttering-its-28-year-old-online-community-forum/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-11T17:04:26Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3419fb86b36d862410",
-      "title": "IBM to offer access to a dual-processor quantum system in 2027",
-      "url": "https://arstechnica.com/science/2026/11/ibm-to-offer-access-to-a-dual-processor-quantum-system-in-2027/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-11T16:33:08Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
