@@ -21,6 +21,12 @@
 - Итог первого прогона: 48ч — 26 роликов, 7д — 18, kind — 44, формат — 60. Осталось 4 `unknown` и старые ручные форматы (skit, dog, movie-edit) — не трогал. Вывод в `reports/learnings.md`: Shorts набирают почти всё за 48 ч.
 - Работа из отдельного worktree, общее дерево `C:\M1lash\Shorts` не трогал.
 
+## 13.11 08:30 — Claude: трек «Раз-два-три» сведён (приватно)
+- Голос Дениса: run 43315278844 SUCCESS (первый 43313089012 упал на ASR цифр — добавлены варианты написания). Бит: `tools/track/make_track.py` + `tools/track/razdva.json` (trap 140 BPM). Сведение: `voice-track-mix.yml` run 43377835458 SUCCESS.
+- MP3 в приватном Drive: https://drive.google.com/file/d/1mRtR6nvwceFDB0djSFY37xVcITwsxiMz/view (папка 1mylELL_JflrKpbogOYIJj8Pa5H71l8-t). 55.4 с, −12.2 LUFS, пик −1.0 dBFS, голос над битом +3 dB.
+- Замечание: all_fit=False — строки v01.1, v02.1, v08.1 ускорены до ×1.3 и всё равно длиннее такта; v03.1/v07.1 ×1.16–1.24. Нужна слуховая оценка Дениса; если «тараторит» — укоротить строки или дать им по 2 такта в плане.
+- Не ролик, YouTube не трогали. Ждёт: слух Дениса.
+
 ## 12.11 — Притворись ботом: проверка на человека · Codex
 
 Готово локально: `C:/M1lash/Готово/m1lash_bot_audit_ru.mp4` (21:44.04, 1080p/30), SRT, обложка и паспорт рядом. 8 глав, 207 планов, 102 Qwen Denis ASR PASS, full decode/duration/check PASS, громкость −15.4 LUFS; слух не оценивался. Донор и разбор: reports/research/references/keMWV5guOLw/reference_audit.md; сценарий и сборка longform/bot_audit_20261112. Локальный просмотр, YouTube не менялся.
