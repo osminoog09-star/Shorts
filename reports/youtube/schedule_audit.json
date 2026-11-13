@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-12T22:47:55.701078+00:00",
+  "checked_at": "2026-11-13T14:45:04.574557+00:00",
   "count": 34,
   "problems": [
     {
@@ -405,8 +405,8 @@
       "receipt_publish_at": "2026-11-13T08:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-13T10:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-13T08:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "На МКС почти земная гравитация. Почему все летают? #shorts",
       "upload_status": "processed",
       "rejection": null
