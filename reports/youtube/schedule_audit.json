@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-13T22:44:25.808220+00:00",
+  "checked_at": "2026-11-14T13:41:33.775756+00:00",
   "count": 34,
   "problems": [
     {
@@ -288,8 +288,8 @@
       "receipt_publish_at": "2026-11-14T08:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-14T10:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-14T08:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "Он хотел положить трубку. Незнакомец запретил ☎️ #shorts",
       "upload_status": "processed",
       "rejection": null
@@ -353,8 +353,8 @@
       "receipt_publish_at": "2026-11-14T13:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-14T15:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-14T13:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "Оумуамуа: гость, который не должен был ускоряться",
       "upload_status": "processed",
       "rejection": null
