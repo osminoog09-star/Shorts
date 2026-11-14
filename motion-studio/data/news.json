@@ -1,20 +1,60 @@
 {
-  "status": "partial",
-  "updated_at": "2026-11-13T23:33:37.454592Z",
-  "last_attempt_at": "2026-11-13T23:33:37.454592Z",
-  "feeds_ok": 6,
-  "feeds_failed": 1,
-  "errors": [
-    {
-      "source": "NASA Technology",
-      "error_type": "HTTPError"
-    }
-  ],
+  "status": "success",
+  "updated_at": "2026-11-14T13:30:25.319511Z",
+  "last_attempt_at": "2026-11-14T13:30:25.319511Z",
+  "feeds_ok": 7,
+  "feeds_failed": 0,
+  "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
     {
+      "id": "e35aa7ccdff70a95e0",
+      "title": "James Webb telescope finds ice older than the star it orbits",
+      "url": "https://arstechnica.com/science/2026/11/james-webb-telescope-finds-ice-older-than-the-star-it-orbits/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-14T12:15:48Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c87a05052d82387166",
+      "title": "Winemakers are learning that conservation can be good for business",
+      "url": "https://arstechnica.com/science/2026/11/winemakers-are-learning-that-conservation-can-be-good-for-business/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-14T12:05:51Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "f88fcfa12fe4eda6ca",
+      "title": "Jensen Huang and the decline of the visionary showman founder CEO",
+      "url": "https://www.theverge.com/tech/1033781/nvidia-jensen-huang-last-visionary-showman-founder-ceo",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-14T12:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7b8ef8b8b9e124b339",
+      "title": "Starship flight 15 powers to orbit—setting up a possible catch on Saturday",
+      "url": "https://arstechnica.com/space/2026/11/starship-flight-15-powers-to-orbit-setting-up-a-possible-catch-on-saturday/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-14T00:49:13Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "96048276e5de0ccf8c",
+      "title": "Amazon has a plan to index the world’s online shopping data",
+      "url": "https://www.theverge.com/tech/1033697/amazon-world-product-graph-ai-search",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-13T23:49:11Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
       "id": "ffcde67cd55e39ddfc",
-      "title": "FAA orders third nationwide ground stop in its history",
+      "title": "FAA has lifted its third-ever nationwide ground stop",
       "url": "https://arstechnica.com/tech-policy/2026/11/faa-orders-third-nationwide-ground-stop-in-its-history/",
       "category": "technology",
       "source": "Ars Technica",
@@ -685,51 +725,6 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-12T14:05:17Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "1f60444f0b463fcd99",
-      "title": "Hundreds of streaming services and nothing to watch",
-      "url": "https://arstechnica.com/gadgets/2026/11/hundreds-of-streaming-services-and-nothing-to-watch/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-12T14:00:19Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "40490d91d164baaf14",
-      "title": "Nvidia CEO Jensen Huang resigns amid spy, affair scandals",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1031689/jensen-huang-nvidia-ceo-resigns",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-12T13:53:16Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "49ac9311c7b4233f04",
-      "title": "Nine Korean startups vie for a spot in Disrupt 2027’s Startup Battlefield 200 competition",
-      "url": "https://techcrunch.com/2026/11/12/nine-korean-startups-vie-for-a-spot-in-disrupt-2027s-startup-battlefield-200-competition/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T13:26:25Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "814222d0921ad1f69c",
-      "title": "Through NASA’s Lens: Capturing Space Shuttle Endeavour’s Move to LA",
-      "url": "https://www.nasa.gov/centers-and-facilities/armstrong/through-nasas-lens-capturing-space-shuttle-endeavours-move-to-la/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-12T13:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "25ea2e8f15e78e15a0",
-      "title": "Review: Apple's M6 iMac is pricey, but it's still a good choice for a clean desk",
-      "url": "https://arstechnica.com/features/2026/11/review-apples-m6-imac-is-pricey-but-its-still-a-good-choice-for-a-clean-desk/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-12T12:00:37Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
