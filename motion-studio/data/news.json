@@ -1,12 +1,48 @@
 {
   "status": "success",
-  "updated_at": "2026-11-14T22:24:19.148300Z",
-  "last_attempt_at": "2026-11-14T22:24:19.148300Z",
+  "updated_at": "2026-11-15T13:55:46.508191Z",
+  "last_attempt_at": "2026-11-15T13:55:46.508191Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "13482003797f2776b7",
+      "title": "An overview of Jensen Huang’s messy days",
+      "url": "https://www.theverge.com/column/1033943/jensen-huang-nvidia-china-spying-scandal-resignation",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-15T13:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "f6f01a754c7cef1351",
+      "title": "How the world’s fires changed while humanity hit pause",
+      "url": "https://arstechnica.com/science/2026/11/how-the-worlds-fires-changed-while-humanity-hit-pause/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-15T12:07:34Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "f6b407f900ecc6757f",
+      "title": "SpaceX returned its Starship rocket on Saturday—but there's a catch",
+      "url": "https://arstechnica.com/space/2026/11/with-starship-catch-spacex-still-shows-it-can-dazzle-the-world/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-15T00:40:59Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "a8381ccf0f4a6c2675",
+      "title": "Where was Nvidia’s security team?",
+      "url": "https://techcrunch.com/2026/11/14/where-was-nvidias-security-team/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-15T00:08:07Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "e86112d5f8734949cf",
       "title": "Elon Musk, other tech execs sign petition calling on Nvidia to reinstate Jensen Huang",
@@ -689,42 +725,6 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-11-12T16:12:44Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4c2abdf66c9c702a8d",
-      "title": "Read Nvidia’s internal emails about the ‘extraordinarily difficult period’ amid CEO shakeup",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1032028/read-nvidias-internal-emails-jensen-huang",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-12T15:48:12Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b2e35daf8642042c56",
-      "title": "Jensen Huang is out at Nvidia — who is Colette Kress, his interim replacement?",
-      "url": "https://techcrunch.com/2026/11/12/jensen-huang-is-out-at-nvidia-who-is-colette-kress-his-interim-replacement/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T15:37:29Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7c091be54b73fa0eb6",
-      "title": "Norwest pushes deeper into AI with new $4B fund",
-      "url": "https://techcrunch.com/2026/11/12/norwest-pushes-deeper-into-ai-with-new-4b-fund/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T15:18:14Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3d14e9acb8c155627b",
-      "title": "Cyberattack on Fireworks AI allowed hackers to access Notion customers’ chat transcripts",
-      "url": "https://techcrunch.com/2026/11/12/cyberattack-on-fireworks-ai-allowed-hackers-to-access-notion-customers-chat-transcripts/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T15:02:28Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
