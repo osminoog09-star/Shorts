@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-14T21:37:05.650155+00:00",
+  "checked_at": "2026-11-15T14:09:27.535494+00:00",
   "count": 34,
   "problems": [
     {
@@ -23,6 +23,20 @@
       "receipt_publish_at": "2026-11-10T08:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-10T10:00:00+02:00",
+      "live_privacy": null,
+      "live_publishAt": null,
+      "title": null,
+      "upload_status": null,
+      "rejection": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
+    },
+    {
+      "slug": "moto_dogs_remake_ru",
+      "video_id": "KIGLaVhTlhw",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-01T18:00:00Z",
+      "queue": null,
+      "queue_slot": null,
       "live_privacy": null,
       "live_publishAt": null,
       "title": null,
@@ -301,8 +315,8 @@
       "receipt_publish_at": "2026-11-15T08:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-15T10:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-15T08:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "Она назвала его чужим именем 🚆 #shorts",
       "upload_status": "processed",
       "rejection": null
@@ -340,11 +354,12 @@
       "receipt_publish_at": "2026-11-01T18:00:00Z",
       "queue": null,
       "queue_slot": null,
-      "live_privacy": "public",
+      "live_privacy": null,
       "live_publishAt": null,
-      "title": "Пёс-байкер уходит от погони 💀 #shorts",
-      "upload_status": "processed",
-      "rejection": null
+      "title": null,
+      "upload_status": null,
+      "rejection": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
     },
     {
       "slug": "oumuamua_ru",
