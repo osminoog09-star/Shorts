@@ -41,19 +41,6 @@
       "shares": 0,
       "estimatedMinutesWatched": 477
     },
-    "xyGpIVUBWd8": {
-      "video": "xyGpIVUBWd8",
-      "views": 1320,
-      "engagedViews": 463,
-      "averageViewPercentage": 126.27,
-      "averageViewDuration": 8,
-      "subscribersGained": 2,
-      "subscribersLost": 0,
-      "likes": 21,
-      "comments": 2,
-      "shares": 1,
-      "estimatedMinutesWatched": 84
-    },
     "F5-BqfTnA_w": {
       "video": "F5-BqfTnA_w",
       "views": 1300,
@@ -66,19 +53,6 @@
       "comments": 0,
       "shares": 2,
       "estimatedMinutesWatched": 278
-    },
-    "nxFUh8vQiSM": {
-      "video": "nxFUh8vQiSM",
-      "views": 1261,
-      "engagedViews": 338,
-      "averageViewPercentage": 113.47,
-      "averageViewDuration": 12,
-      "subscribersGained": 3,
-      "subscribersLost": 0,
-      "likes": 19,
-      "comments": 1,
-      "shares": 0,
-      "estimatedMinutesWatched": 93
     },
     "wmnrIivD1HE": {
       "video": "wmnrIivD1HE",
@@ -183,19 +157,6 @@
       "comments": 1,
       "shares": 0,
       "estimatedMinutesWatched": 207
-    },
-    "FTq9Ohgh0VU": {
-      "video": "FTq9Ohgh0VU",
-      "views": 1115,
-      "engagedViews": 231,
-      "averageViewPercentage": 71.43,
-      "averageViewDuration": 13,
-      "subscribersGained": 1,
-      "subscribersLost": 0,
-      "likes": 7,
-      "comments": 1,
-      "shares": 0,
-      "estimatedMinutesWatched": 70
     },
     "dwPNCXCcu24": {
       "video": "dwPNCXCcu24",
@@ -499,6 +460,6 @@
   },
   "unsupported_metrics": [],
   "requested_end": "2026-10-31",
-  "fetched_at": "2026-11-14T14:19:10.446995+00:00",
+  "fetched_at": "2026-11-15T14:51:42.818860+00:00",
   "provisional": true
 }
