@@ -1,12 +1,57 @@
 {
   "status": "success",
-  "updated_at": "2026-11-15T13:55:46.508191Z",
-  "last_attempt_at": "2026-11-15T13:55:46.508191Z",
+  "updated_at": "2026-11-15T22:48:27.217203Z",
+  "last_attempt_at": "2026-11-15T22:48:27.217203Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "9bfb2ab667837ec0af",
+      "title": "Is bad news for Jensen Huang also bad news for the AI industry?",
+      "url": "https://techcrunch.com/2026/11/15/is-bad-news-for-jensen-huang-also-bad-news-for-the-ai-industry/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-15T21:56:35Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7310523931ec31d7ed",
+      "title": "Jensen Huang might be plotting a return and more of the latest Nvidia drama",
+      "url": "https://www.theverge.com/tech/1033999/jensen-huang-return-nvidia-megaspeed",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-15T20:43:49Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e13a4bd95b8b6ac7a5",
+      "title": "SNL gathers all the tech tycoons for a lesson in dating and spycraft",
+      "url": "https://techcrunch.com/2026/11/15/snl-gathers-all-the-tech-tycoons-for-a-lesson-in-dating-and-spycraft/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-15T20:20:57Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "6c2c64409dfbba0f00",
+      "title": "Congress wants to tighten export rules on AI chips after Nvidia spy scandal",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1033984/congress-export-rules-ai-chips-china",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-15T19:15:43Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ce0e608d17d6e92e02",
+      "title": "Why Skydio Built a Lopsided Drone",
+      "url": "https://spectrum.ieee.org/skydio-f10-lightrunner-asymmetrical-drone",
+      "category": "robotics",
+      "source": "IEEE Spectrum Robotics",
+      "published_at": "2026-11-15T14:00:02Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "13482003797f2776b7",
       "title": "An overview of Jensen Huang’s messy days",
@@ -680,51 +725,6 @@
       "category": "ai",
       "source": "The Verge AI",
       "published_at": "2026-11-12T17:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "889dda614b5244142f",
-      "title": "More game developers are starting to use generative AI",
-      "url": "https://www.theverge.com/games/1032085/gdc-festival-of-gaming-annual-survey-ai-layoffs",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-12T17:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "548fe94a79cba56aec",
-      "title": "Jensen Huang agrees to testify before Congress",
-      "url": "https://techcrunch.com/2026/11/12/jensen-huang-agrees-to-testify-before-congress/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T16:36:37Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c32c9bb4ff06b22c45",
-      "title": "Five ways Jensen Huang’s ouster from Nvidia could damage the AI industry",
-      "url": "https://techcrunch.com/2026/11/12/five-ways-jensen-huangs-ouster-from-nvidia-could-damage-the-ai-industry/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T16:32:33Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d533790e4d2bd7ed50",
-      "title": "Jensen Huang is out. What did China want from him?",
-      "url": "https://www.theverge.com/podcast/1031260/nvidia-jensen-huang-resign-china-spy-scandal-ai-chips-trump",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-12T16:30:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "17107c7279fd1016c5",
-      "title": "Trump floats Apple chairman Tim Cook as Jensen Huang’s successor",
-      "url": "https://techcrunch.com/2026/11/12/trump-floats-apple-chairman-tim-cook-as-jensen-huangs-successor/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T16:12:44Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
