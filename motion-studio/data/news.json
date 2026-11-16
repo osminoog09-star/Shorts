@@ -1,12 +1,156 @@
 {
   "status": "success",
-  "updated_at": "2026-11-15T22:48:27.217203Z",
-  "last_attempt_at": "2026-11-15T22:48:27.217203Z",
+  "updated_at": "2026-11-16T15:44:51.325395Z",
+  "last_attempt_at": "2026-11-16T15:44:51.325395Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "b7edde03a56702f6ff",
+      "title": "Contractor to Civil Servant: NASA Welcomes Jim Mirandy",
+      "url": "https://www.nasa.gov/centers-and-facilities/stennis/contractor-to-civil-servant-jim-mirandy/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-16T15:22:09Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4d97827545be2fe98d",
+      "title": "US tightens AI chip export controls to deter Chinese companies from accessing compute remotely",
+      "url": "https://techcrunch.com/2026/11/16/us-tightens-ai-chip-export-controls-to-deter-chinese-companies-from-accessing-compute-remotely/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-16T15:02:34Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "6ed560a012284b199d",
+      "title": "Google Maps can now build trip itineraries with real-time details about each stop",
+      "url": "https://techcrunch.com/2026/11/16/google-maps-can-now-build-trip-itineraries-with-real-time-details-about-each-stop/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-16T14:48:13Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b0dd6261a508b93991",
+      "title": "Jensen Huang allies build a \"war room\" to get him back at Nvidia",
+      "url": "https://arstechnica.com/ai/2026/11/jensen-huang-allies-build-a-war-room-to-get-him-back-at-nvidia/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-16T14:06:16Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c989c4b5508109ed8a",
+      "title": "Mercedes' clever new driving assist handles complex traffic like a champ",
+      "url": "https://arstechnica.com/cars/2026/11/mercedes-clever-new-driving-assist-handles-complex-traffic-like-a-champ/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-16T14:00:05Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "5f4244f5edf262b44d",
+      "title": "Can Robots Bring Stroke Surgery to Remote Hospitals?",
+      "url": "https://spectrum.ieee.org/telesurgery-stroke",
+      "category": "robotics",
+      "source": "IEEE Spectrum Robotics",
+      "published_at": "2026-11-16T14:00:02Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4c34a0e3e605a03cc9",
+      "title": "Audible is trying to make it easier to find audiobooks you’ll actually like",
+      "url": "https://www.theverge.com/tech/1034083/audible-audio-discovery-ai-feature-availability",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-16T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "2fdf48c7e9e85e8a89",
+      "title": "Google Maps can now create trip itineraries for you",
+      "url": "https://www.theverge.com/tech/1034110/google-ask-maps-ai-trip-planning",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-16T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "a0243e3626ac649675",
+      "title": "The Nvidia scandal isn’t slowing down",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1031740/jensen-huang-nvidia-scandal-isnt-slowing-down",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-16T13:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "67067103992ebfe085",
+      "title": "Freshworks alums raise $53M to take on Salesforce, HubSpot with AI-native CRM",
+      "url": "https://techcrunch.com/2026/11/16/freshworks-alums-raise-53m-to-take-on-salesforce-hubspot-with-ai-native-crm/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-16T12:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c1ec6d95408e04b2ba",
+      "title": "Delivery drones are coming. For some with PTSD, that's a terrifying prospect.",
+      "url": "https://arstechnica.com/gadgets/2026/11/the-drone-delivery-boom-could-be-a-nightmare-for-people-traumatized-by-war/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-16T12:00:57Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "39d06ac9951051ce17",
+      "title": "28 Zero-Day Findings in Under Two Days. Is Robotics Security Keeping Pace?",
+      "url": "https://spectrum.ieee.org/zero-day-robotics-vulnerabilities-vicone-security",
+      "category": "robotics",
+      "source": "IEEE Spectrum Robotics",
+      "published_at": "2026-11-16T10:00:01Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "a22318abd9f9f94718",
+      "title": "Apple launches new app to study how people use AI for health",
+      "url": "https://techcrunch.com/2026/11/15/apple-launches-new-app-to-study-how-people-use-ai-for-health/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-16T01:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c57d5fdb338c13ebb4",
+      "title": "Apple’s new study looks to improve the effectiveness of AI health tools",
+      "url": "https://www.theverge.com/tech/1033355/apples-new-study-looks-to-improve-the-effectiveness-of-ai-health-tools",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-16T01:26:56Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "04196bef9b67627d8c",
+      "title": "Indian chip startup Bharat Semi lands $24M seed round as it eyes global AI sensor market",
+      "url": "https://techcrunch.com/2026/11/15/indian-chip-startup-bharat-semi-lands-24m-seed-round-as-it-eyes-global-ai-sensor-market/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-15T23:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "2bc3d8d01ae5971453",
+      "title": "Vulcan rocket fails during launch, dealing major blow to SpaceX competitors",
+      "url": "https://arstechnica.com/space/2026/11/vulcan-rocket-fails-during-launch-dealing-major-blow-to-spacex-competitors/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-15T23:11:54Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "9bfb2ab667837ec0af",
       "title": "Is bad news for Jensen Huang also bad news for the AI industry?",
@@ -581,150 +725,6 @@
       "category": "space",
       "source": "NASA News",
       "published_at": "2026-11-12T19:12:49Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5e287749a052919098",
-      "title": "Nectar launches an AI agent to automate creator discovery and outreach for brands",
-      "url": "https://techcrunch.com/2026/11/12/nectar-launches-an-ai-agent-to-automate-creator-discovery-and-outreach-for-brands/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T19:11:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "90fe3ddc7fcfdbeeb5",
-      "title": "Ukraine says it can’t stop Russian strikes because Starshield is limited again",
-      "url": "https://arstechnica.com/tech-policy/2026/11/ukraine-says-spacex-starshield-is-restricted-again-spacex-claims-it-isnt/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-12T19:09:57Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "bcd74023a99fbd1f22",
-      "title": "Google faces calls for AI moratoriums in schools after Gemini pilot backlash",
-      "url": "https://arstechnica.com/tech-policy/2026/11/families-fight-to-keep-googles-disturbing-ai-off-school-issued-chromebooks/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-12T18:57:45Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "bd79903a17a4b8df7f",
-      "title": "Jensen Huang’s exit puts Nvidia’s support for open source in question",
-      "url": "https://techcrunch.com/2026/11/12/jensen-huangs-exit-puts-nvidias-support-for-open-source-in-question/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T18:39:23Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c4fd060896ac1c215c",
-      "title": "Netflix releases new trailer for Ray Gunn",
-      "url": "https://arstechnica.com/culture/2026/11/netflix-releases-new-trailer-for-ray-gunn/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-12T18:38:38Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ea7f3d9bcac7e604a2",
-      "title": "Building a rocket is hard. AST SpaceMobile thinks it's \"simple.\"",
-      "url": "https://arstechnica.com/space/2026/11/building-a-rocket-is-hard-ast-spacemobile-thinks-its-simple/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-12T18:28:22Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "25a808556232eda5f8",
-      "title": "Man's secret use of synthetic testosterone for cows nearly destroyed his heart",
-      "url": "https://arstechnica.com/health/2026/11/mans-secret-use-of-synthetic-testosterone-for-cows-nearly-destroyed-his-heart/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-12T18:17:19Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "648ab3e5a06f7ebf2d",
-      "title": "Oh, Palantir is ‘progressive’ now, is it?",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1032126/alex-baby-you-were-recorded-on-video",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-12T18:06:54Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4c4249a6d228ba8455",
-      "title": "NASA Ames Stars of the Month: November 2026",
-      "url": "https://www.nasa.gov/general/nasa-ames-stars-of-the-month-november-2026/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-12T17:54:32Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ce1eab2bbb5c79a9e4",
-      "title": "The Jensen Huang scandal is hardly over",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1032069/jensen-huang-resignation-affair-chips-smuggling",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-12T17:44:33Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "cf8aede2b245e7bec2",
-      "title": "Hugging Face CEO vows to keep fighting for open source AI after Jensen Huang’s exit",
-      "url": "https://techcrunch.com/2026/11/12/hugging-face-ceo-vows-to-keep-fighting-for-open-source-ai-after-jensen-huangs-exit/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T17:36:40Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "937d80c2161fff2143",
-      "title": "The amazing disappearing exoplanet",
-      "url": "https://arstechnica.com/science/2026/11/the-amazing-disappearing-exoplanet/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-12T17:18:10Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0544f18fda8e323256",
-      "title": "United Airlines blocks AI agents from booking flights, citing cybersecurity risks",
-      "url": "https://techcrunch.com/2026/11/12/united-airlines-blocks-ai-agents-from-booking-flights-citing-cybersecurity-risks/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T17:17:58Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0039716ebb4ac156c6",
-      "title": "SoftBank’s billion-dollar loss may have put a cap on AI’s natural gas ambitions",
-      "url": "https://techcrunch.com/2026/11/12/softbanks-billion-dollar-loss-may-have-put-a-cap-on-ais-natural-gas-ambitions/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T17:00:52Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "62853baff9e5dea322",
-      "title": "Phota Labs uses AI to turn everyday photos into professional-looking shots",
-      "url": "https://techcrunch.com/2026/11/12/phota-labs-uses-ai-to-turn-everyday-photos-into-professional-looking-shots/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-12T17:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "64a6f20ebcc4dac132",
-      "title": "AI chatbots are recommending fake retail websites, study finds",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1032020/gemini-chatgpt-perplexity-shopping-test-risky-fake-websites-citations",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-12T17:00:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
