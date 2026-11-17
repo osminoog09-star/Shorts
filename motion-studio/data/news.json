@@ -1,12 +1,111 @@
 {
   "status": "success",
-  "updated_at": "2026-11-17T01:51:48.546313Z",
-  "last_attempt_at": "2026-11-17T01:51:48.546313Z",
+  "updated_at": "2026-11-17T15:59:26.626531Z",
+  "last_attempt_at": "2026-11-17T15:59:26.626531Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "04f5872f54d9cc0ac7",
+      "title": "House Democrats promise a US return to global climate talks",
+      "url": "https://arstechnica.com/tech-policy/2026/11/house-democrats-promise-a-us-return-to-global-climate-talks/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-17T15:32:43Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d4774d28d264a29f63",
+      "title": "Ars Live: What do drone strikes on data centers mean for the future? Talk at 1 pm EST today",
+      "url": "https://arstechnica.com/gadgets/2026/11/ars-live-can-the-cloud-survive-drone-strikes-on-data-centers/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-17T15:28:59Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4ec6ed4a696566010a",
+      "title": "Voyage Labs raises $12 million for a specialized AI travel assistant",
+      "url": "https://techcrunch.com/2026/11/17/voyage-labs-raises-12-million-for-a-specialized-ai-travel-assistant/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-17T15:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c4b7e80cb7863d47f1",
+      "title": "Isomorphic Labs raises $5B as it looks to take drug candidates to clinical trials",
+      "url": "https://techcrunch.com/2026/11/17/isomorphic-labs-raises-5b-as-it-looks-to-take-drug-candidates-to-clinical-trials/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-17T14:50:58Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e9039490fe49125234",
+      "title": "Science Corporation’s brain tech is worth $3.5 billion after new funding",
+      "url": "https://techcrunch.com/2026/11/17/science-corporations-brain-tech-is-worth-3-5-billion-after-new-funding/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-17T14:26:46Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e15ff8b935a63483f5",
+      "title": "Nvidia’s first big move after Jensen Huang’s exit targets national security",
+      "url": "https://techcrunch.com/2026/11/17/nvidias-first-big-move-after-jensen-huangs-exit-targets-national-security/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-17T14:05:30Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "0de6aadc71dab2031f",
+      "title": "Grok Bot took unapproved actions, ignored orders to stop, and then denied it",
+      "url": "https://arstechnica.com/security/2026/11/grok-bot-took-unapproved-actions-ignored-orders-to-stop-and-then-denied-it/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-17T14:00:29Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "627115a4f71c40ea53",
+      "title": "Spotify’s new tool aims to stop deepfakes from being attributed to real artists",
+      "url": "https://techcrunch.com/2026/11/17/spotifys-new-tool-aims-to-stop-deepfakes-from-being-attributed-to-real-artists/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-17T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "619719b3299c0cc03f",
+      "title": "Artist brings old Space Shuttle tank back to life",
+      "url": "https://arstechnica.com/space/2026/11/how-an-artist-gave-shape-to-a-space-shuttles-new-towering-exhibit/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-17T12:15:54Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "685512f6ef114dea76",
+      "title": "Q&A: Why building math muscles remains important in the AI era",
+      "url": "https://news.mit.edu/2026/qa-why-building-math-muscles-remains-important-ai-era-1117",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-17T05:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c294f20baa0eb95281",
+      "title": "Learning the language of machine learning",
+      "url": "https://news.mit.edu/2026/learning-language-of-machine-learning-jacob-andreas-1117",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-17T05:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "24baf68da2c147d656",
       "title": "Cybersecurity AI startup Corma reaches $1B valuation in about 3 months",
@@ -626,105 +725,6 @@
       "category": "ai",
       "source": "The Verge AI",
       "published_at": "2026-11-13T20:45:10Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "6abca871feff91044c",
-      "title": "In elephants, the resilience of communities has its limits",
-      "url": "https://arstechnica.com/science/2026/11/in-elephants-the-resilience-of-communities-has-its-limits/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-13T20:03:13Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "8766e57338b8c46afe",
-      "title": "Kalshi ditches Trump Jr. as advisor; CEO admitted \"optics\" weren't good",
-      "url": "https://arstechnica.com/tech-policy/2026/11/trump-jr-out-as-kalshi-advisor-after-his-firms-big-investment-in-polymarket/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-13T19:49:16Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b96c8f1ce3eaba55d8",
-      "title": "AI agent startup LangChain hits $3B valuation",
-      "url": "https://techcrunch.com/2026/11/13/ai-agent-startup-langchain-hits-3b-valuation/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-13T19:37:57Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "6669a4d19d8d972242",
-      "title": "Export-banned Nvidia chips are behind China’s most powerful AI models — uh-oh, Jensen!",
-      "url": "https://techcrunch.com/2026/11/13/export-banned-nvidia-chips-are-behind-chinas-most-powerful-ai-models-uh-oh-jensen/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-13T18:40:30Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "41e004efa98b79552e",
-      "title": "Video Friday: NASA PROMISEs a New Moon Rover",
-      "url": "https://spectrum.ieee.org/video-friday-moon-rover-promise",
-      "category": "robotics",
-      "source": "IEEE Spectrum Robotics",
-      "published_at": "2026-11-13T17:30:03Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4b4e88316cc177ddab",
-      "title": "OpenAI board member worries an AI \"takeover\" of society could be months away",
-      "url": "https://arstechnica.com/ai/2026/11/ai-is-the-most-likely-reason-youll-die-openai-board-member-warns/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-13T17:25:45Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e714212c469467e26a",
-      "title": "Outbursts from a Massive Star",
-      "url": "https://www.nasa.gov/image-article/outbursts-from-a-massive-star/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-13T16:39:33Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "07f85e55f4eee7c30b",
-      "title": "Windows 0-day dropped by disgruntled researcher hands hackers System rights",
-      "url": "https://arstechnica.com/security/2026/11/windows-0-day-dropped-by-disgruntled-researcher-hands-hackers-system-rights/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-13T16:26:32Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "43fbd5f391f2a6654b",
-      "title": "Gemini Astronaut Photos Inspired Early Earth Observation Program",
-      "url": "https://www.nasa.gov/image-article/gemini-astronaut-photos-inspired-early-earth-observation-program/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-13T16:05:54Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "cd336cbdb7962f39cc",
-      "title": "ChatGPT’s new Wallet lets AI agents shop and check out for you",
-      "url": "https://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-shop-and-check-out-for-you/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-13T16:00:12Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "73b823aa24f5b8c88e",
-      "title": "The unfolding Jensen Huang scandal: a timeline",
-      "url": "https://techcrunch.com/2026/11/13/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-13T15:58:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
