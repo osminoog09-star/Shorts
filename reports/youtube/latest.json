@@ -1,6 +1,6 @@
 {
   "start": "2019-02-11",
-  "end": "2026-11-15",
+  "end": "2026-11-16",
   "videos": {
     "XANzL3z9wqY": {
       "video": "XANzL3z9wqY",
@@ -17,7 +17,7 @@
     },
     "bpaR4hHC6YU": {
       "video": "bpaR4hHC6YU",
-      "views": 3255,
+      "views": 3256,
       "engagedViews": 2253,
       "averageViewPercentage": 65.07,
       "averageViewDuration": 48,
@@ -67,6 +67,19 @@
       "shares": 2,
       "estimatedMinutesWatched": 283
     },
+    "XtSnXx4nVq8": {
+      "video": "XtSnXx4nVq8",
+      "views": 1245,
+      "engagedViews": 697,
+      "averageViewPercentage": 54.39000000000001,
+      "averageViewDuration": 27,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 22,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 333
+    },
     "wmnrIivD1HE": {
       "video": "wmnrIivD1HE",
       "views": 1245,
@@ -79,19 +92,6 @@
       "comments": 0,
       "shares": 0,
       "estimatedMinutesWatched": 255
-    },
-    "XtSnXx4nVq8": {
-      "video": "XtSnXx4nVq8",
-      "views": 1242,
-      "engagedViews": 696,
-      "averageViewPercentage": 54.37,
-      "averageViewDuration": 27,
-      "subscribersGained": 0,
-      "subscribersLost": 0,
-      "likes": 22,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 332
     },
     "7l4EOB02DSg": {
       "video": "7l4EOB02DSg",
@@ -184,18 +184,31 @@
       "shares": 1,
       "estimatedMinutesWatched": 284
     },
+    "9Wzqaq-5-KI": {
+      "video": "9Wzqaq-5-KI",
+      "views": 1099,
+      "engagedViews": 646,
+      "averageViewPercentage": 45.94,
+      "averageViewDuration": 14,
+      "subscribersGained": 1,
+      "subscribersLost": 0,
+      "likes": 10,
+      "comments": 0,
+      "shares": 1,
+      "estimatedMinutesWatched": 173
+    },
     "hUTYiTxz42c": {
       "video": "hUTYiTxz42c",
-      "views": 1061,
-      "engagedViews": 683,
-      "averageViewPercentage": 56.49999999999999,
+      "views": 1066,
+      "engagedViews": 687,
+      "averageViewPercentage": 56.43,
       "averageViewDuration": 22,
       "subscribersGained": 0,
       "subscribersLost": 0,
       "likes": 22,
       "comments": 0,
       "shares": 0,
-      "estimatedMinutesWatched": 263
+      "estimatedMinutesWatched": 264
     },
     "bEdC0uFDvl4": {
       "video": "bEdC0uFDvl4",
@@ -251,7 +264,7 @@
     },
     "dwPNCXCcu24": {
       "video": "dwPNCXCcu24",
-      "views": 1002,
+      "views": 1003,
       "engagedViews": 540,
       "averageViewPercentage": 38.98,
       "averageViewDuration": 14,
@@ -262,11 +275,24 @@
       "shares": 0,
       "estimatedMinutesWatched": 144
     },
+    "2g_sQw71z7s": {
+      "video": "2g_sQw71z7s",
+      "views": 1000,
+      "engagedViews": 637,
+      "averageViewPercentage": 53.87,
+      "averageViewDuration": 23,
+      "subscribersGained": 6,
+      "subscribersLost": 0,
+      "likes": 18,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 263
+    },
     "ACy21tT97a4": {
       "video": "ACy21tT97a4",
-      "views": 977,
-      "engagedViews": 540,
-      "averageViewPercentage": 46.51,
+      "views": 982,
+      "engagedViews": 541,
+      "averageViewPercentage": 46.53,
       "averageViewDuration": 20,
       "subscribersGained": 1,
       "subscribersLost": 0,
@@ -368,9 +394,9 @@
     },
     "G4IMzvrv1Zw": {
       "video": "G4IMzvrv1Zw",
-      "views": 861,
-      "engagedViews": 562,
-      "averageViewPercentage": 46.27,
+      "views": 863,
+      "engagedViews": 563,
+      "averageViewPercentage": 46.3,
       "averageViewDuration": 20,
       "subscribersGained": 0,
       "subscribersLost": 0,
@@ -509,19 +535,6 @@
       "shares": 0,
       "estimatedMinutesWatched": 62
     },
-    "2g_sQw71z7s": {
-      "video": "2g_sQw71z7s",
-      "views": 251,
-      "engagedViews": 151,
-      "averageViewPercentage": 48.59,
-      "averageViewDuration": 21,
-      "subscribersGained": 1,
-      "subscribersLost": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 56
-    },
     "UTvk61Gos1M": {
       "video": "UTvk61Gos1M",
       "views": 242,
@@ -602,7 +615,7 @@
     },
     "R0y8D9MZanc": {
       "video": "R0y8D9MZanc",
-      "views": 158,
+      "views": 160,
       "engagedViews": 85,
       "averageViewPercentage": 39.14,
       "averageViewDuration": 16,
@@ -680,9 +693,9 @@
     },
     "9XeZBiX7Pr8": {
       "video": "9XeZBiX7Pr8",
-      "views": 11,
-      "engagedViews": 7,
-      "averageViewPercentage": 68.74,
+      "views": 13,
+      "engagedViews": 8,
+      "averageViewPercentage": 67.29,
       "averageViewDuration": 28,
       "subscribersGained": 0,
       "subscribersLost": 0,
@@ -745,19 +758,6 @@
     },
     "-l_Xunkg4yg": {
       "video": "-l_Xunkg4yg",
-      "views": 1,
-      "engagedViews": 0,
-      "averageViewPercentage": 0,
-      "averageViewDuration": 0,
-      "subscribersGained": 0,
-      "subscribersLost": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 0
-    },
-    "9Wzqaq-5-KI": {
-      "video": "9Wzqaq-5-KI",
       "views": 1,
       "engagedViews": 0,
       "averageViewPercentage": 0,
@@ -859,8 +859,8 @@
   "unsupported_metrics": [],
   "schema_version": 1,
   "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
-  "snapshot_date": "2026-11-16",
-  "fetched_at": "2026-11-16T17:11:36.876961+00:00",
+  "snapshot_date": "2026-11-17",
+  "fetched_at": "2026-11-17T16:57:54.189250+00:00",
   "inventory": [
     {
       "video_id": "mp0irGtOUzw",
@@ -897,7 +897,7 @@
       "duration": "PT32S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1100",
+        "viewCount": "1099",
         "likeCount": "10",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -911,7 +911,7 @@
       "duration": "PT44S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1024",
+        "viewCount": "1017",
         "likeCount": "18",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -925,7 +925,7 @@
       "duration": "PT42S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "17",
+        "viewCount": "18",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -939,7 +939,7 @@
       "duration": "PT43S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "966",
+        "viewCount": "964",
         "likeCount": "10",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -967,7 +967,7 @@
       "duration": "PT43S",
       "privacy": "private",
       "statistics": {
-        "viewCount": "1",
+        "viewCount": "0",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -981,7 +981,7 @@
       "duration": "PT39S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1066",
+        "viewCount": "1065",
         "likeCount": "22",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1163,7 +1163,7 @@
       "duration": "PT54S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "887",
+        "viewCount": "888",
         "likeCount": "15",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1191,7 +1191,7 @@
       "duration": "PT41S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "894",
+        "viewCount": "895",
         "likeCount": "8",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1317,7 +1317,7 @@
       "duration": "PT1M4S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "242",
+        "viewCount": "243",
         "likeCount": "3",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1345,7 +1345,7 @@
       "duration": "PT48S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "936",
+        "viewCount": "934",
         "likeCount": "10",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1387,7 +1387,7 @@
       "duration": "PT51S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1340",
+        "viewCount": "1339",
         "likeCount": "9",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1401,7 +1401,7 @@
       "duration": "PT45S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1446",
+        "viewCount": "1445",
         "likeCount": "15",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1443,7 +1443,7 @@
       "duration": "PT54S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1130",
+        "viewCount": "1131",
         "likeCount": "7",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1457,7 +1457,7 @@
       "duration": "PT50S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1245",
+        "viewCount": "1244",
         "likeCount": "22",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1471,7 +1471,7 @@
       "duration": "PT36S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1004",
+        "viewCount": "1003",
         "likeCount": "2",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1499,7 +1499,7 @@
       "duration": "PT58S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "905",
+        "viewCount": "903",
         "likeCount": "4",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1639,7 +1639,7 @@
       "duration": "PT59S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "6393",
+        "viewCount": "6395",
         "likeCount": "162",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1667,7 +1667,7 @@
       "duration": "PT9M56S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "8",
+        "viewCount": "10",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1681,7 +1681,7 @@
       "duration": "PT45S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1129",
+        "viewCount": "1128",
         "likeCount": "17",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1788,16 +1788,12 @@
     }
   ],
   "channel_statistics": {
-    "viewCount": "48546",
+    "viewCount": "48570",
     "subscriberCount": "48",
     "hiddenSubscriberCount": false,
     "videoCount": "61"
   },
   "recent_daily_views": [
-    {
-      "day": "2026-10-12",
-      "views": 1
-    },
     {
       "day": "2026-10-15",
       "views": 1
@@ -1897,19 +1893,39 @@
     {
       "day": "2026-11-13",
       "views": 286
+    },
+    {
+      "day": "2026-11-14",
+      "views": 1868
     }
   ],
-  "last_observed_view_day": "2026-11-13",
+  "last_observed_view_day": "2026-11-14",
   "traffic": {
-    "start": "2026-10-19",
-    "end": "2026-11-15",
+    "start": "2026-10-20",
+    "end": "2026-11-16",
     "videos": {
       "mp0irGtOUzw": [],
       "iYmh6Fd3LMY": [],
       "9Wzqaq-5-KI": [
         {
+          "insightTrafficSourceType": "NO_LINK_OTHER",
+          "views": 0
+        },
+        {
+          "insightTrafficSourceType": "SHORTS",
+          "views": 1085
+        },
+        {
           "insightTrafficSourceType": "YT_CHANNEL",
           "views": 1
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 4
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 9
         }
       ],
       "2g_sQw71z7s": [
@@ -1919,15 +1935,19 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 245
+          "views": 982
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
-          "views": 1
+          "views": 3
+        },
+        {
+          "insightTrafficSourceType": "YT_OTHER_PAGE",
+          "views": 3
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 5
+          "views": 12
         }
       ],
       "9XeZBiX7Pr8": [
@@ -1938,6 +1958,10 @@
         {
           "insightTrafficSourceType": "SHORTS",
           "views": 11
+        },
+        {
+          "insightTrafficSourceType": "YT_SEARCH",
+          "views": 2
         }
       ],
       "6KgLv_omqao": [
@@ -1997,7 +2021,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 1041
+          "views": 1044
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -2009,7 +2033,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 8
+          "views": 10
         }
       ],
       "5yZu11PYoc4": [],
@@ -2054,7 +2078,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 2
+          "views": 4
         }
       ],
       "izqrEKmU38g": [
@@ -2116,7 +2140,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 4
+          "views": 6
         }
       ],
       "bEdC0uFDvl4": [
@@ -2256,7 +2280,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 964
+          "views": 969
         },
         {
           "insightTrafficSourceType": "SOUND_PAGE",
@@ -2691,7 +2715,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 16
+          "views": 19
         }
       ],
       "dwPNCXCcu24": [
@@ -2721,7 +2745,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 25
+          "views": 26
         }
       ],
       "6wh9nvwtWT0": [
@@ -2803,7 +2827,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 69
+          "views": 70
         }
       ],
       "bZkIDNIRoxo": [
