@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/wardogs_short_give_me_driver.json",
+  "manifest_sha256": "6dcc6690e294b47a05227314b9979f704ddb9c3471946bf3fbc9c1357b87b47a",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
