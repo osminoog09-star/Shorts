@@ -1,3 +1,9 @@
+# 18.11 · Claude · Игровой отдел: Wardogs — серия + 5 Shorts опубликованы, рецепт G1 записан
+
+- Из 3,5 ч записи OBS (17.11, Wardogs с друзьями из Discord) смонтированы серия 22:52 и 5 Shorts; все FINISH_OK. Серия опубликована 18.11 ~12:50 (Денис: «щас»), Shorts: 18.11 12:00 и 20:00, 19, 20, 22.11 в 20:00. Превью, плейлист «Wardogs — прохождения с друзьями», «Видео по теме» у всех Shorts → серия.
+- ID: серия A6pjLh4MnBw; Shorts EMrsQE5J1-k, GCqGnZYqyeI, _FZeP_gpyHg, 7rkj5AGS3Y8, k9BkSWFMeEI. Квитанции в publishing/receipts/wardogs_*.json. Манифест серии в queue — со старым временем 17:00 (на YouTube опубликовано раньше вручную).
+- Рецепт и все грабли: skills/game-edit/SKILL.md (+ 
+ecipe.json для сайта), движок 	ools/game_edit/session/, музыка NCS — media/music/ncs/README.md (mp3 не в git). Уроки — в skills/m1lash-studio → «Новые».
 # 15.11 · Claude · Подстраховка: делать нечего по правилам
 
 - GPT/Codex не коммитил с 13.11; запас на будущие слоты — 3 ролика (≈1,7 дн.: 18.11 15:00, 21.11 15:00 и 20:00). Вечерние скетчи 15–20.11 и все утренние кино-слоты пустые.

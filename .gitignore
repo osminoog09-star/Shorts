@@ -24,3 +24,4 @@ agents/bridge.log
 agents/.budget.json
 agents/local_model.txt
 agents/local_llm_bench.json
+media/music/ncs/*.mp3
