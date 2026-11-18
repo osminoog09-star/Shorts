@@ -1,0 +1,29 @@
+{
+  "channel": "ru",
+  "metadata": {
+    "type": "short",
+    "title": "Шесть хитов в спину. Другу. 💀 #wardogs #shorts",
+    "description": "Он просто вышел пикнуть…\n\nTrack: Emin Nilsen - BANE [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/bane\n\n#shorts #wardogs #m1lash",
+    "tags": [
+      "wardogs",
+      "wardogs игра",
+      "wardogs геймплей",
+      "тактический шутер",
+      "смешные моменты",
+      "приколы в играх",
+      "с друзьями",
+      "M1lash",
+      "shorts"
+    ],
+    "category_id": "20",
+    "made_for_kids": false,
+    "contains_synthetic_media": false
+  },
+  "publish_at": null,
+  "source": {
+    "type": "release",
+    "tag": "private-wardogs-short-friendly-fire-eaa80ba9",
+    "asset": "wardogs_short_friendly_fire.mp4",
+    "sha256": "eaa80ba95a878d09be5cfec93cc789aec0f91c26115910d0ae1689a0b9ab30bb"
+  }
+}
