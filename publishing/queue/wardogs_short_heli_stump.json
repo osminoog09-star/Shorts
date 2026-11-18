@@ -1,0 +1,29 @@
+{
+  "channel": "ru",
+  "metadata": {
+    "type": "short",
+    "title": "Вертушка против пня: 0:1 #wardogs #shorts",
+    "description": "Посадка на 5 баллов. Из 100.\n\nTrack: 1$K1 - GODSLAYER [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/godslayer\n\n#shorts #wardogs #m1lash",
+    "tags": [
+      "wardogs",
+      "wardogs игра",
+      "wardogs геймплей",
+      "тактический шутер",
+      "смешные моменты",
+      "приколы в играх",
+      "с друзьями",
+      "M1lash",
+      "shorts"
+    ],
+    "category_id": "20",
+    "made_for_kids": false,
+    "contains_synthetic_media": false
+  },
+  "publish_at": null,
+  "source": {
+    "type": "release",
+    "tag": "private-wardogs-short-heli-stump-3076b1e7",
+    "asset": "wardogs_short_heli_stump.mp4",
+    "sha256": "3076b1e732ad69ad696b91677b405c92218f69ee85cb2d8e386d6872684edf1e"
+  }
+}
