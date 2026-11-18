@@ -3,11 +3,11 @@
   "manifest": "publishing/queue/wardogs_short_alisa.json",
   "manifest_sha256": "564b825b4115f9f8f99b31656fab1112a3b6f259786a72dd7c5eccc6499db8e9",
   "channel": "ru",
-  "publish_at_utc": "2026-11-23T18:00:00Z",
+  "publish_at_utc": "2026-11-20T18:00:00Z",
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "7rkj5AGS3Y8",
   "video_url": "https://youtu.be/7rkj5AGS3Y8",
   "privacy_status": "private",
-  "schedule_confirmed_at": "2026-11-18T07:42:58.792157+00:00",
+  "schedule_confirmed_at": "2026-11-18T07:53:04.604257+00:00",
   "schedule_request_id": null
 }
