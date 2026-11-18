@@ -1,12 +1,111 @@
 {
   "status": "success",
-  "updated_at": "2026-11-18T00:57:47.097447Z",
-  "last_attempt_at": "2026-11-18T00:57:47.097447Z",
+  "updated_at": "2026-11-18T15:39:51.931098Z",
+  "last_attempt_at": "2026-11-18T15:39:51.931098Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "6cfc94ddb254b0cdb0",
+      "title": "Tesla’s $30,000 Cybercab comes with a $299 monthly catch",
+      "url": "https://arstechnica.com/cars/2026/11/tesla-will-sell-you-a-cybercab-for-30000-then-charge-299-a-month-to-use-it/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T14:01:45Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ddf152f6d3b592a40c",
+      "title": "Will Wright’s next game uses AI to map your memories",
+      "url": "https://www.theverge.com/games/1036140/will-wright-mymems-ai-game-interview",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-18T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "fcf93c416202eb38a4",
+      "title": "Nvidia isn’t selling any more AI chips to China",
+      "url": "https://www.theverge.com/tech/1036445/nvidia-h200-ai-chips-china-stop-selling",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-18T13:01:05Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "92c4470851babd486b",
+      "title": "Nvidia clarifies when it will — and won’t —keep financing neoclouds",
+      "url": "https://techcrunch.com/2026/11/18/nvidia-clarifies-when-it-will-and-wont-keep-financing-neoclouds/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T13:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ae1db953e351ae5b2a",
+      "title": "Voyager 1 at one light-day: Historian revisits Golden Record's forgotten details",
+      "url": "https://arstechnica.com/space/2026/11/voyager-1-at-one-light-day-historian-revisits-golden-records-forgotten-details/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T12:15:44Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "00b7a83010aaeca9a8",
+      "title": "Felicis leads $7.5M bet on Unsiloed AI to make enterprise documents usable by AI agents",
+      "url": "https://techcrunch.com/2026/11/18/felicis-leads-7-5m-bet-on-unsiloed-ai-to-make-enterprise-documents-usable-by-ai-agents/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T12:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7910f56b348bc37fcb",
+      "title": "India’s Humyn Labs raises $47M to feed U.S. robotics companies the data they need",
+      "url": "https://techcrunch.com/2026/11/18/accel-backs-indias-humyn-labs-to-supply-training-data-needed-by-u-s-robotics-ai-developers/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T11:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "942518637ca001c7d1",
+      "title": "Suno now lets you make AI videos for your AI music",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1036415/suno-visuals-ai-generated-video-images-feature",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-18T11:16:53Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "a5b5fadce5f65fb8cd",
+      "title": "Grand Theft Auto VI: The Ars Technica review",
+      "url": "https://arstechnica.com/gaming/2026/11/grand-theft-auto-vi-the-ars-technica-review/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T11:00:27Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "55cafb7085284a5343",
+      "title": "Helping AI text detectors keep up with changing conditions",
+      "url": "https://news.mit.edu/2026/helping-ai-text-detectors-keep-up-with-changing-conditions-1118",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-18T05:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b330164a6f0ccccf33",
+      "title": "Nvidia’s startup stakes ballooned to $65B, but Huang’s exit puts future deals in doubt",
+      "url": "https://techcrunch.com/2026/11/17/nvidias-startup-stakes-ballooned-to-65b-but-huangs-exit-puts-future-deals-in-doubt/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T01:44:21Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "26a444a0aabf92a2fc",
       "title": "Copilot is \"the new OS for work,\" and now Office runs inside of it",
@@ -626,105 +725,6 @@
       "category": "ai",
       "source": "The Verge AI",
       "published_at": "2026-11-16T19:23:45Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "bc7ebba22aa2697ebd",
-      "title": "Trump says ex-Nvidia CEO Jensen Huang’s affair with an alleged Chinese spy did not threaten national security",
-      "url": "https://techcrunch.com/2026/11/16/trump-says-ex-nvidia-ceo-jensen-huangs-affair-with-an-alleged-chinese-spy-did-not-threaten-national-security/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-16T19:12:02Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3ac344c50cc66ad727",
-      "title": "US moves to cut China’s remote access to AI chips",
-      "url": "https://arstechnica.com/tech-policy/2026/11/us-moves-to-cut-chinas-remote-access-to-ai-chips/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-16T19:10:09Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f43b098f1551916a0e",
-      "title": "Nvidia’s board is reportedly ‘not considering’ hiring Jensen Huang back",
-      "url": "https://www.theverge.com/tech/1034501/nvidia-board-jensen-huang-not-bringing-back",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-16T18:43:35Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "fec4adae7029caf998",
-      "title": "Thunderbirds in Formation",
-      "url": "https://www.nasa.gov/image-article/thunderbirds-in-formation/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-16T18:34:47Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5a338c56f325da9cb4",
-      "title": "Sam Altman on Nvidia without Jensen Huang: The industry will be ‘fine’",
-      "url": "https://techcrunch.com/2026/11/16/sam-altman-on-nvidia-without-jensen-huang-the-industry-will-be-fine/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-16T18:11:10Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "04075f0baa85bb63e6",
-      "title": "FBI says Artex AI open source hacking tool used to breach networks in ‘under three hours’",
-      "url": "https://techcrunch.com/2026/11/16/fbi-says-artex-ai-open-source-hacking-tool-used-to-breach-networks-in-under-three-hours/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-16T17:36:43Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b6e5102dfbebd3a448",
-      "title": "Jordan Belfort’s new AI voice startup, Tone, wants to sell like the ‘Wolf of Wall Street’",
-      "url": "https://techcrunch.com/2026/11/16/jordan-belforts-new-ai-voice-startup-tone-wants-to-sell-like-the-wolf-of-wall-street/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-16T17:10:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5240671d3470b87855",
-      "title": "OpenAI will embed safety researchers to investigate AI subversion",
-      "url": "https://techcrunch.com/2026/11/16/openai-will-embed-apollo-researchers-to-investigate-ai-subversion/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-16T17:02:43Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e298f85c1f86572d0f",
-      "title": "OpenAI releases a new image classifier and ChatGPT warnings to combat CSAM",
-      "url": "https://techcrunch.com/2026/11/16/openai-releases-a-new-image-classifier-and-chatgpt-warnings-to-combat-csam/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-16T17:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7720de90bd41ba460f",
-      "title": "US now \"comfortable\" with children dying of measles as death toll hits 10",
-      "url": "https://arstechnica.com/health/2026/11/us-now-comfortable-with-children-dying-of-measles-as-death-toll-hits-10/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-16T16:39:29Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "acee8b481f0ba8b2e9",
-      "title": "Audible turns to AI to help users discover audiobooks",
-      "url": "https://techcrunch.com/2026/11/16/audible-turns-to-ai-to-help-users-discover-audiobooks/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-16T15:52:19Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
