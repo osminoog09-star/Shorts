@@ -1,8 +1,10 @@
 {
-  "status": "reserved",
+  "status": "uploaded",
   "manifest": "publishing/queue/wardogs_short_heli_stump.json",
   "manifest_sha256": "1a62ac7d4d23b88d87ce778cf8915726a2971c342da1a541c0dbd01532c77ba5",
   "channel": "ru",
   "publish_at_utc": null,
-  "note": "A reserved attempt must NEVER be automatically retried."
+  "note": "A reserved attempt must NEVER be automatically retried.",
+  "video_id": "_FZeP_gpyHg",
+  "video_url": "https://youtu.be/_FZeP_gpyHg"
 }
