@@ -4,7 +4,7 @@
   "videos": {
     "9Wzqaq-5-KI": {
       "video": "9Wzqaq-5-KI",
-      "views": 1099,
+      "views": 1100,
       "engagedViews": 646,
       "averageViewPercentage": 45.94,
       "averageViewDuration": 14,
@@ -17,7 +17,7 @@
     },
     "hUTYiTxz42c": {
       "video": "hUTYiTxz42c",
-      "views": 1066,
+      "views": 1067,
       "engagedViews": 687,
       "averageViewPercentage": 56.43,
       "averageViewDuration": 22,
@@ -28,11 +28,24 @@
       "shares": 0,
       "estimatedMinutesWatched": 264
     },
+    "2g_sQw71z7s": {
+      "video": "2g_sQw71z7s",
+      "views": 1022,
+      "engagedViews": 651,
+      "averageViewPercentage": 53.620000000000005,
+      "averageViewDuration": 23,
+      "subscribersGained": 6,
+      "subscribersLost": 0,
+      "likes": 18,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 268
+    },
     "izqrEKmU38g": {
       "video": "izqrEKmU38g",
-      "views": 1014,
-      "engagedViews": 623,
-      "averageViewPercentage": 56.3,
+      "views": 1017,
+      "engagedViews": 626,
+      "averageViewPercentage": 56.11000000000001,
       "averageViewDuration": 22,
       "subscribersGained": 0,
       "subscribersLost": 0,
@@ -40,19 +53,6 @@
       "comments": 0,
       "shares": 0,
       "estimatedMinutesWatched": 245
-    },
-    "2g_sQw71z7s": {
-      "video": "2g_sQw71z7s",
-      "views": 1000,
-      "engagedViews": 637,
-      "averageViewPercentage": 53.87,
-      "averageViewDuration": 23,
-      "subscribersGained": 6,
-      "subscribersLost": 0,
-      "likes": 18,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 263
     },
     "6KgLv_omqao": {
       "video": "6KgLv_omqao",
@@ -66,6 +66,19 @@
       "comments": 0,
       "shares": 0,
       "estimatedMinutesWatched": 204
+    },
+    "mp0irGtOUzw": {
+      "video": "mp0irGtOUzw",
+      "views": 906,
+      "engagedViews": 594,
+      "averageViewPercentage": 56.09,
+      "averageViewDuration": 15,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 15,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 165
     },
     "keMWV5guOLw": {
       "video": "keMWV5guOLw",
@@ -82,7 +95,7 @@
     },
     "kyfDKmGDfZo": {
       "video": "kyfDKmGDfZo",
-      "views": 200,
+      "views": 204,
       "engagedViews": 92,
       "averageViewPercentage": 171.96,
       "averageViewDuration": 101,
@@ -134,16 +147,29 @@
     },
     "9XeZBiX7Pr8": {
       "video": "9XeZBiX7Pr8",
-      "views": 13,
-      "engagedViews": 8,
-      "averageViewPercentage": 67.29,
+      "views": 16,
+      "engagedViews": 10,
+      "averageViewPercentage": 68.69,
       "averageViewDuration": 28,
       "subscribersGained": 0,
       "subscribersLost": 0,
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "estimatedMinutesWatched": 3
+      "estimatedMinutesWatched": 4
+    },
+    "bpaR4hHC6YU": {
+      "video": "bpaR4hHC6YU",
+      "views": 9,
+      "engagedViews": 2,
+      "averageViewPercentage": 52.7,
+      "averageViewDuration": 39,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": -1,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 1
     },
     "ACy21tT97a4": {
       "video": "ACy21tT97a4",
@@ -158,25 +184,12 @@
       "shares": 0,
       "estimatedMinutesWatched": 0
     },
-    "bpaR4hHC6YU": {
-      "video": "bpaR4hHC6YU",
-      "views": 8,
-      "engagedViews": 2,
-      "averageViewPercentage": 52.7,
-      "averageViewDuration": 39,
-      "subscribersGained": 0,
-      "subscribersLost": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 1
-    },
     "XANzL3z9wqY": {
       "video": "XANzL3z9wqY",
-      "views": 6,
-      "engagedViews": 4,
-      "averageViewPercentage": 55.1,
-      "averageViewDuration": 32,
+      "views": 7,
+      "engagedViews": 5,
+      "averageViewPercentage": 50.45,
+      "averageViewDuration": 29,
       "subscribersGained": 0,
       "subscribersLost": 0,
       "likes": 0,
@@ -186,9 +199,9 @@
     },
     "dwPNCXCcu24": {
       "video": "dwPNCXCcu24",
-      "views": 6,
-      "engagedViews": 1,
-      "averageViewPercentage": 7.719999999999999,
+      "views": 7,
+      "engagedViews": 2,
+      "averageViewPercentage": 6.19,
       "averageViewDuration": 2,
       "subscribersGained": 0,
       "subscribersLost": 0,
@@ -223,6 +236,19 @@
       "shares": 0,
       "estimatedMinutesWatched": 0
     },
+    "3YjkmOrxDLA": {
+      "video": "3YjkmOrxDLA",
+      "views": 3,
+      "engagedViews": 2,
+      "averageViewPercentage": 18.3,
+      "averageViewDuration": 8,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 0
+    },
     "bZkIDNIRoxo": {
       "video": "bZkIDNIRoxo",
       "views": 3,
@@ -235,6 +261,32 @@
       "comments": 0,
       "shares": 0,
       "estimatedMinutesWatched": 0
+    },
+    "bp0jSmKuudA": {
+      "video": "bp0jSmKuudA",
+      "views": 3,
+      "engagedViews": 1,
+      "averageViewPercentage": 17.66,
+      "averageViewDuration": 8,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 0
+    },
+    "s7YVEyinxDE": {
+      "video": "s7YVEyinxDE",
+      "views": 3,
+      "engagedViews": 2,
+      "averageViewPercentage": 45.29,
+      "averageViewDuration": 269,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 9
     },
     "uDbIq2IzlzM": {
       "video": "uDbIq2IzlzM",
@@ -262,19 +314,6 @@
       "shares": 0,
       "estimatedMinutesWatched": 0
     },
-    "3YjkmOrxDLA": {
-      "video": "3YjkmOrxDLA",
-      "views": 2,
-      "engagedViews": 1,
-      "averageViewPercentage": 24.09,
-      "averageViewDuration": 10,
-      "subscribersGained": 0,
-      "subscribersLost": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 0
-    },
     "G4IMzvrv1Zw": {
       "video": "G4IMzvrv1Zw",
       "views": 2,
@@ -284,19 +323,6 @@
       "subscribersGained": 0,
       "subscribersLost": 0,
       "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 0
-    },
-    "bp0jSmKuudA": {
-      "video": "bp0jSmKuudA",
-      "views": 2,
-      "engagedViews": 1,
-      "averageViewPercentage": 17.66,
-      "averageViewDuration": 8,
-      "subscribersGained": 0,
-      "subscribersLost": 0,
-      "likes": 1,
       "comments": 0,
       "shares": 0,
       "estimatedMinutesWatched": 0
@@ -366,6 +392,19 @@
       "shares": 0,
       "estimatedMinutesWatched": 0
     },
+    "FxIlxGWVCuw": {
+      "video": "FxIlxGWVCuw",
+      "views": 1,
+      "engagedViews": 0,
+      "averageViewPercentage": 0,
+      "averageViewDuration": 0,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 0
+    },
     "KAhupG0LgRo": {
       "video": "KAhupG0LgRo",
       "views": 1,
@@ -405,19 +444,6 @@
       "shares": 0,
       "estimatedMinutesWatched": 0
     },
-    "s7YVEyinxDE": {
-      "video": "s7YVEyinxDE",
-      "views": 1,
-      "engagedViews": 0,
-      "averageViewPercentage": 0,
-      "averageViewDuration": 0,
-      "subscribersGained": 0,
-      "subscribersLost": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 0
-    },
     "wweAPl3P29w": {
       "video": "wweAPl3P29w",
       "views": 1,
@@ -434,6 +460,6 @@
   },
   "unsupported_metrics": [],
   "requested_end": "2026-11-15",
-  "fetched_at": "2026-11-17T16:57:54.189250+00:00",
+  "fetched_at": "2026-11-18T16:34:23.242144+00:00",
   "provisional": true
 }
