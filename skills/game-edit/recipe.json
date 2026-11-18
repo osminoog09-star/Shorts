@@ -4,14 +4,14 @@
   "code": "G1",
   "format": "Серия 20–30 мин + 5 Shorts из записи OBS",
   "approved": "2026-11-18",
-  "summary": "3+ часа записи игры с друзьями из Discord → хук, главы по матчам, ручные титры по пословной расшифровке, ускорения под фонк NCS, без экранов смерти. Shorts: тизер до серии и ссылкой «видео по теме» на неё.",
+  "summary": "3+ часа записи игры с друзьями из Discord → хук, главы по матчам, ручные титры по пословной расшифровке, ускорения под музыку NCS, подобранную под каждую сцену, без экранов смерти. Shorts: тизер до серии и ссылкой «видео по теме» на неё.",
   "example": {"title": "Я РАССТРЕЛЯЛ ДРУГА, УГНАЛ УРАЛ И РАЗБИЛ ВЕРТУШКУ О ПЕНЬ — Wardogs", "youtube_id": "A6pjLh4MnBw", "duration": "22:52"},
   "image": "i/recipes/game-edit.jpg",
   "thumb": "i/recipes/game-edit_thumb.jpg",
   "tools": ["OBS (4 дорожки)", "faster-whisper", "ffmpeg + NVENC", "NCS (ncs.io)", "YouTube Studio через Chrome"],
   "links": {
     "skill": "https://github.com/osminoog09-star/Shorts/blob/main/skills/game-edit/SKILL.md",
-    "music": "https://ncs.io/free-music?g=Phonk&g=Brazilian+Phonk&sort=pop",
+    "music": "https://ncs.io/free-music?vocals=none&sort=pop",
     "project": "https://github.com/osminoog09-star/Shorts/tree/main/tools/game_edit/session"
   },
   "how_to_order": "Скажи Claude: «вот мои записи <папка>, сделай как про» — он возьмёт этот рецепт."

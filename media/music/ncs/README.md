@@ -7,8 +7,10 @@ MP3 сюда **не коммитим** (публичный репо = перер
 Скачать трек: `curl -L -o media/music/ncs/<slug>.mp3 https://ncs.io/api/download/<slug>`
 (slug — последняя часть адреса страницы трека: `https://ncs.io/bane` → `bane`).
 
-Удобные фильтры: `https://ncs.io/free-music?g=Phonk&g=Brazilian+Phonk&sort=pop`,
-настроение `&m=Heavy&m=Dark&m=Suspense&m=Chasing`, без вокала `&vocals=none`.
+**Подбирать под сцену, а не по одному жанру** (Денис, 18.11): сначала настроение сцены, потом жанр.
+Фильтры: настроение `https://ncs.io/free-music?m=Suspense&m=Chasing` (Suspense, Sneaking, Dark, Heavy, Epic,
+Chasing, Running, Floating, Dreamy, Quirky, Happy, Sad, Euphoric…), жанр `&g=Drum+%26+Bass` / `&g=Phonk` / `&g=Dubstep`…,
+без вокала `&vocals=none`, популярные `&sort=pop`. Карта «сцена → настроение → жанр» — в `skills/game-edit/SKILL.md` §4.
 
 ## Используется (Wardogs, 18.11.2026)
 | slug | трек | где |

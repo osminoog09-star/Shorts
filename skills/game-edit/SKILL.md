@@ -42,11 +42,22 @@ OBS (`C:\Users\osmin\Videos\Gameplay\Recordings`, профиль YouTube_Recordi
 - Плашка сверху (`top=`), титры из ep1 подтягиваются автоматически по окну, тихая подложка NCS (`mus=0.6`).
 - Лучшие форматы: «момент + реакция» (дружественный огонь), ругань в войсе, фейл техники, бытовой юмор (Алиса).
 
-## 4. Музыка — только NCS, подходящая (решение Дениса 18.11)
+## 4. Музыка — NCS, **под сцену, а не один жанр** (решение Дениса 18.11)
 Источник: **https://ncs.io/free-music** (NoCopyrightSounds; бесплатно для YouTube/Shorts, нужен кредит; спонсорка/реклама — только с лицензией).
-- Фильтры в URL: `?g=Phonk&g=Brazilian+Phonk&sort=pop` (жанр), `&m=Heavy&m=Dark&m=Suspense&m=Chasing` (настроение), `&vocals=none` (без вокала).
-  Плейлисты: `ncs.io/playlist/ascension-phonk`, `/gaming-music-2026`, `/drum-run`.
-- Денис выбрал **фонк**, но **не заезженный** (хиты Mortals Funk / Royalty Funk / Sky High — мимо). Брать треки со 100 тыс.–2 млн прослушиваний.
+- **Главное правило:** трек подбирается под настроение конкретной сцены/главы, жанр — любой. Фонк — не правило, а один из вариантов (в Wardogs взяли его только потому, что сцены были агрессивные/мемные).
+  Сначала описать сцену одним словом (напряжение, погоня, перестрелка, фейл/кринж, смешной диалог, полёт/пейзаж, грусть/поражение, победа, стройка/лут), потом искать по настроению.
+- Карта «сцена → настроение NCS (`&m=`) → жанры (`&g=`)»:
+  | сцена | настроение | жанры-кандидаты |
+  |---|---|---|
+  | подкрадывание, ночь, снайперы | Suspense, Sneaking, Mysterious, Dark | Midtempo Bass, Trap, Witch House |
+  | перестрелка, штурм, оборона | Heavy, Angry, Epic | Dubstep, Drumstep, Phonk, Neurofunk |
+  | погоня, езда, вертушка на скорости | Chasing, Running | Drum & Bass, Phonk, Future Bass |
+  | полёт, пейзаж, затишье | Floating, Dreamy, Peaceful | Chill Bass, Liquid, Melodic House |
+  | фейл, кринж, смешной войс | Quirky, Eccentric, Happy | Brazilian Phonk, Glitch Hop, Electro House |
+  | поражение, «ну конечно» | Sad, Sentimental | Chill, Ambient, Lofi |
+  | победа, удачный момент | Euphoric, Epic, Hopeful | Future House, Melodic Dubstep, Hardstyle |
+- Фильтры в URL: `?m=<настроение>&m=<…>` + `&g=<жанр>` + `&vocals=none` (без вокала под речь) + `&sort=pop`. Комбинировать 2 настроения = «или».
+- Избегать заезженных хитов (Mortals Funk, Royalty Funk, Sky High…) — брать треки со 100 тыс.–2 млн прослушиваний. Под речь друзей — только инструментал.
 - Скачивание (официально): `curl -L -o media/music/ncs/<slug>.mp3 https://ncs.io/api/download/<slug>` (slug = путь страницы трека, напр. `ncs.io/bane` → `bane`). Файлы в git НЕ коммитим (см. `media/music/ncs/README.md`).
 - Кредит в описание — на каждый трек:
   ```
@@ -54,7 +65,7 @@ OBS (`C:\Users\osmin\Videos\Gameplay\Recordings`, профиль YouTube_Recordi
   Music provided by NoCopyrightSounds
   Free Download/Stream: http://ncs.io/<slug>
   ```
-- Свой трек на главу (`TRACKS` в ep1.py по глобальному времени), музыка только в m/f-кусках; трек продолжает играть с места остановки.
+- Трек на главу/сцену: `TRACKS` в ep1.py по глобальному времени или `trk=` прямо в сегменте (для отдельной сцены внутри главы). Музыка только в m/f-кусках и тихой подложкой в Shorts; трек продолжает играть с места остановки.
 - Claude треки не слышит — честно говорить, подбирать по жанру/настроению/популярности; если Денис бракует — предложить ему самому выбрать на ncs.io.
 
 ## 5. Сборка и QA
