@@ -1,0 +1,29 @@
+{
+  "channel": "ru",
+  "metadata": {
+    "type": "short",
+    "title": "«Это мой Урал, и я на нём еду!» #wardogs #shorts",
+    "description": "Угон века.\n\nTrack: HXDES, DYNAMIS - Kapoeira Phonk [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/kapoeiraphonk\n\n#shorts #wardogs #m1lash",
+    "tags": [
+      "wardogs",
+      "wardogs игра",
+      "wardogs геймплей",
+      "тактический шутер",
+      "смешные моменты",
+      "приколы в играх",
+      "с друзьями",
+      "M1lash",
+      "shorts"
+    ],
+    "category_id": "20",
+    "made_for_kids": false,
+    "contains_synthetic_media": false
+  },
+  "publish_at": null,
+  "source": {
+    "type": "release",
+    "tag": "private-wardogs-short-ural-9e4a1ecd",
+    "asset": "wardogs_short_ural.mp4",
+    "sha256": "9e4a1ecd4e196c27e660ec6696760fd0be0d267e17221f4e1d0412b9aead6e4b"
+  }
+}
