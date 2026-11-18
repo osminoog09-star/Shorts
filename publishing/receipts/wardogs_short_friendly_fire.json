@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/wardogs_short_friendly_fire.json",
+  "manifest_sha256": "ae2f28488eb1e54201fd17d1fa6f007c2cdf877238b63759c6ad74ebfe901660",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
