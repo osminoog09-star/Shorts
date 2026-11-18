@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-11-17T23:53:55.738371+00:00",
-  "count": 34,
+  "checked_at": "2026-11-18T15:52:45.753785+00:00",
+  "count": 40,
   "problems": [
     {
       "slug": "kino_010",
@@ -479,14 +479,92 @@
       "rejection": null
     },
     {
+      "slug": "wardogs_ep1",
+      "video_id": "A6pjLh4MnBw",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-18T15:00:00Z",
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Я РАССТРЕЛЯЛ ДРУГА, УГНАЛ УРАЛ И РАЗБИЛ ВЕРТУШКУ О ПЕНЬ — Wardogs",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "wardogs_short_alisa",
+      "video_id": "7rkj5AGS3Y8",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-20T18:00:00Z",
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-20T18:00:00Z",
+      "title": "Алиса, выключи свет. АЛИСА. #wardogs #shorts",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "wardogs_short_friendly_fire",
+      "video_id": "EMrsQE5J1-k",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-18T10:00:00Z",
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "public",
+      "live_publishAt": null,
+      "title": "Шесть хитов в спину. Другу. 💀 #wardogs #shorts",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "wardogs_short_give_me_driver",
+      "video_id": "GCqGnZYqyeI",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-18T18:00:00Z",
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-18T18:00:00Z",
+      "title": "Give me driver. GIVE ME DRIVER. #wardogs #shorts",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "wardogs_short_heli_stump",
+      "video_id": "_FZeP_gpyHg",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-19T18:00:00Z",
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-19T18:00:00Z",
+      "title": "Вертушка против пня: 0:1 #wardogs #shorts",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "wardogs_short_ural",
+      "video_id": "k9BkSWFMeEI",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-22T18:00:00Z",
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-22T18:00:00Z",
+      "title": "«Это мой Урал, и я на нём еду!» #wardogs #shorts",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
       "slug": "weather_bureau",
       "video_id": "uxS6DACvQGY",
       "receipt": "scheduled",
       "receipt_publish_at": "2026-11-18T13:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-18T15:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-18T13:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "POV: ты работаешь в городе, где продают погоду",
       "upload_status": "processed",
       "rejection": null
