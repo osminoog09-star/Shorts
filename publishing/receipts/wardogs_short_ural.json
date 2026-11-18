@@ -1,8 +1,10 @@
 {
-  "status": "reserved",
+  "status": "uploaded",
   "manifest": "publishing/queue/wardogs_short_ural.json",
   "manifest_sha256": "79a5dc6e71f40be9be2e3c44f2a6ca8d63f113fe4fce80af941206c2c2fe9864",
   "channel": "ru",
   "publish_at_utc": null,
-  "note": "A reserved attempt must NEVER be automatically retried."
+  "note": "A reserved attempt must NEVER be automatically retried.",
+  "video_id": "k9BkSWFMeEI",
+  "video_url": "https://youtu.be/k9BkSWFMeEI"
 }
