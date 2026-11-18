@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/wardogs_short_heli_stump.json",
+  "manifest_sha256": "1a62ac7d4d23b88d87ce778cf8915726a2971c342da1a541c0dbd01532c77ba5",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
