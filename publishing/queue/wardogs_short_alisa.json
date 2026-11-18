@@ -1,0 +1,29 @@
+{
+  "channel": "ru",
+  "metadata": {
+    "type": "short",
+    "title": "Алиса, выключи свет. АЛИСА. #wardogs #shorts",
+    "description": "Умный дом против геймера.\n\nTrack: MUPP - X2 [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/muppx2\n\n#shorts #wardogs #m1lash",
+    "tags": [
+      "wardogs",
+      "wardogs игра",
+      "wardogs геймплей",
+      "тактический шутер",
+      "смешные моменты",
+      "приколы в играх",
+      "с друзьями",
+      "M1lash",
+      "shorts"
+    ],
+    "category_id": "20",
+    "made_for_kids": false,
+    "contains_synthetic_media": false
+  },
+  "publish_at": null,
+  "source": {
+    "type": "release",
+    "tag": "private-wardogs-short-alisa-19ed3fb8",
+    "asset": "wardogs_short_alisa.mp4",
+    "sha256": "19ed3fb8c32823d3e4bcab57328eee3737d4fad6dad8b569210599933ad05af0"
+  }
+}
