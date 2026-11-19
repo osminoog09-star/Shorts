@@ -1,12 +1,332 @@
 {
-  "status": "success",
-  "updated_at": "2026-11-18T15:39:51.931098Z",
-  "last_attempt_at": "2026-11-18T15:39:51.931098Z",
-  "feeds_ok": 7,
-  "feeds_failed": 0,
-  "errors": [],
+  "status": "partial",
+  "updated_at": "2026-11-19T00:22:23.101156Z",
+  "last_attempt_at": "2026-11-19T00:22:23.101156Z",
+  "feeds_ok": 6,
+  "feeds_failed": 1,
+  "errors": [
+    {
+      "source": "NASA News",
+      "error_type": "ValueError"
+    }
+  ],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "afb1f8fc849417dafc",
+      "title": "Amidst fears of AI cyberattacks, Satya Nadella says lots of critical infrastructure is ‘unpatchable’",
+      "url": "https://techcrunch.com/2026/11/18/amidst-fears-of-ai-cyberattacks-satya-nadella-says-lots-of-critical-infrastructure-is-unpatchable/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T23:45:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e78487095dd3723203",
+      "title": "Elon Musk says ousting Jensen Huang is like ‘kicking Michael Jordan off your team’",
+      "url": "https://techcrunch.com/2026/11/18/elon-musk-says-ousting-jensen-huang-is-like-kicking-michael-jordan-off-your-team/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T23:25:17Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "db088048514cc80c7f",
+      "title": "Ted Cruz-led committee approves Trump FCC nominee 15-0 as Democrats boycott vote",
+      "url": "https://arstechnica.com/tech-policy/2026/11/ted-cruz-led-committee-approves-trump-fcc-nominee-15-0-as-democrats-boycott-vote/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T23:25:04Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d8ba4398191c3d4681",
+      "title": "The nation’s largest school districts consider ditching Google Search",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1037151/school-districts-ditching-google",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-18T23:18:35Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d442346cc5e57a2674",
+      "title": "Microsoft CEO Satya Nadella remains confident in Nvidia after Huang’s exit",
+      "url": "https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-remains-confident-in-nvidia-after-huangs-exit/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T23:17:28Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "9b116527054fca2a1b",
+      "title": "Ukraine blew up Putin’s bridge using relay drones to bypass Starlink limits",
+      "url": "https://arstechnica.com/gadgets/2026/11/ukraine-blew-up-putins-bridge-using-relay-drones-to-bypass-starlink-limits/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T23:10:39Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "49ff21afd78ef9de5e",
+      "title": "Satya Nadella predicts AI agents will reshuffle the economics of the web",
+      "url": "https://techcrunch.com/2026/11/18/satya-nadella-predicts-ai-agents-will-reshuffle-the-economics-of-the-web/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T22:58:11Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "aed3ea0dfc61854d1c",
+      "title": "Anthropic reportedly prices IPO at $83 a share, above projected range",
+      "url": "https://techcrunch.com/2026/11/18/anthropic-reportedly-prices-ipo-at-83-a-share-above-projected-range/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T22:11:15Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "796de02486a1d6a9b6",
+      "title": "Trump abandons his FDA nominee, and Senate scraps vote on his NSF pick",
+      "url": "https://arstechnica.com/health/2026/11/trump-abandons-his-fda-nominee-and-senate-scraps-vote-on-his-nsf-pick/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T22:08:57Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "80bdab190c6dbdb4d3",
+      "title": "Nvidia created a weird bit of intrigue by not filing a routine SEC report",
+      "url": "https://techcrunch.com/2026/11/18/nvidia-created-a-weird-bit-of-intrigue-by-not-filing-a-routine-sec-report/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T21:57:40Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "734339654a32d098c3",
+      "title": "Palmer Luckey warns AI-powered cyberattacks are outpacing defenses: ‘It’s time to start running’",
+      "url": "https://techcrunch.com/2026/11/18/palmer-luckey-warns-ai-powered-cyberattacks-are-outpacing-defenses-its-time-to-start-running/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T21:34:13Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4546d2f009c0f33e9f",
+      "title": "Palmer Luckey thinks China is ‘thrilled to have Jensen out,’ so he wants the ousted Nvidia CEO reinstated",
+      "url": "https://techcrunch.com/2026/11/18/palmer-luckey-thinks-china-is-thrilled-to-have-jensen-out-so-he-wants-the-ousted-nvidia-ceo-reinstated/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T21:31:21Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1e970c62dff0b514fe",
+      "title": "Netflix CEO admits app may bury stuff you want to watch under stuff you don’t",
+      "url": "https://arstechnica.com/gadgets/2026/11/netflix-ceo-admits-app-may-bury-stuff-you-want-to-watch-under-stuff-you-dont/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T21:29:24Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "5a73299e3f4f96d22c",
+      "title": "Windows Server 2028 trades compatibility for out-of-the-box security",
+      "url": "https://arstechnica.com/gadgets/2026/11/windows-server-2028-public-preview-bets-on-a-security-first-approach/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T20:41:12Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "388adedcc584c5bf9c",
+      "title": "Sam Altman says his life is so weird that he’s unfazed by Andrew Garfield portraying him in upcoming movie",
+      "url": "https://techcrunch.com/2026/11/18/sam-altman-says-his-life-is-so-weird-that-hes-unfazed-by-andrew-garfield-portraying-him-in-upcoming-movie/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T20:07:01Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "53453b71f99b11c73b",
+      "title": "Snapchat now lets developers build AR Lenses with AI assistants like Claude Code and Cursor",
+      "url": "https://techcrunch.com/2026/11/18/snapchat-now-lets-developers-build-ar-lenses-with-ai-coding-assistants-like-claude-code-and-cursor/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T19:56:39Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d023ba6fde32bc2f03",
+      "title": "Trump’s latest land grab is an AI hub in the Philippines",
+      "url": "https://www.theverge.com/policy/1036749/trump-ai-chip-data-center-us-philippines-pax-silica",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-18T19:40:36Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4c88cec5c836926e3a",
+      "title": "Best Buy sells Blu-rays online and in-store again",
+      "url": "https://arstechnica.com/gadgets/2026/11/best-buy-sells-blu-rays-again-after-quitting-the-business-in-2024/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T19:31:17Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ddb45fad21371efcf8",
+      "title": "Nvidia’s rise, visualized",
+      "url": "https://www.theverge.com/tech/1035924/nvidia-visualized-revenue-profit-earnings-after-huang",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-18T19:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "77b871659814b03471",
+      "title": "Muse privacy invasions are freaking out Meta staffers, internal chats show",
+      "url": "https://arstechnica.com/tech-policy/2026/11/muse-privacy-invasions-are-freaking-out-meta-staffers-internal-chats-show/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T19:19:33Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b99d3925f7eef8109c",
+      "title": "Tech lawsuits defined 2026 — and lawmakers want more",
+      "url": "https://www.theverge.com/policy/1036935/congress-forced-arbitration-deepfakes-defiance-act",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-18T19:07:29Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "f4d5cc76792a20c67b",
+      "title": "This featherweight, flying robot carries its own sensors and computers",
+      "url": "https://news.mit.edu/2026/featherweight-flying-robot-carries-its-own-sensors-and-computers-1118",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-18T19:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e5783290f07783e6c2",
+      "title": "Trump admin orders Kalshi to halt wagers on what words Trump will say",
+      "url": "https://arstechnica.com/tech-policy/2026/11/trump-admin-orders-kalshi-to-halt-wagers-on-what-words-trump-will-say/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T18:46:08Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7132415e461f71d944",
+      "title": "What is Nvidia without AI’s sugar daddy in charge?",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1036776/nvidia-earnings-kress-jensen-huang-petition",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-18T18:34:15Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "f5445eec6c3e2750af",
+      "title": "The \"shameful\" measles data that lost the US its elimination status",
+      "url": "https://arstechnica.com/health/2026/11/the-shameful-measles-data-that-lost-the-us-its-elimination-status/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T18:30:23Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d25de4f029966643c1",
+      "title": "Will Wright's next simulation will use AI to mine content from your memories",
+      "url": "https://arstechnica.com/gaming/2026/11/will-wrights-next-simulation-will-use-ai-to-mine-content-from-your-memories/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T18:10:33Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "13feb5a0d5b21e6a12",
+      "title": "Google’s AI feature in Search gets its own incognito mode",
+      "url": "https://techcrunch.com/2026/11/18/googles-ai-feature-in-search-gets-its-own-incognito-mode/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T18:04:05Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8ae8cc950dbe1bb7fe",
+      "title": "It shouldn’t be this easy to pedal 25 mph: Specialized’s Turbo Vado 3 Evo",
+      "url": "https://arstechnica.com/gadgets/2026/11/it-shouldnt-be-this-easy-to-pedal-25-mph-specializeds-turbo-vado-3-evo/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T17:53:59Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "120da5d8476ca5b48f",
+      "title": "Disney’s new Star Wars animatronics interact with guests using AI",
+      "url": "https://www.theverge.com/tech/1036729/disney-star-wars-anzellans-animatronic-amazon-aws-cloud-ai",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-18T17:50:57Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "663072a237570232a4",
+      "title": "More banks say customers using AI agents are on their own — even if they get hacked",
+      "url": "https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T17:32:10Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d83fee4011ac317b0a",
+      "title": "Sam Altman warns against a future where AI, not humans, calls the shots",
+      "url": "https://techcrunch.com/2026/11/18/sam-altman-warns-against-a-future-where-ai-not-humans-calls-the-shots/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T16:59:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7e951cdca9bc19bccc",
+      "title": "Vulcan failure caused by inadequate fuel supply to engines, ULA says",
+      "url": "https://arstechnica.com/space/2026/11/vulcan-failure-caused-by-inadequate-fuel-supply-to-engines-ula-says/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T16:58:32Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "eabe4f8cd0327c7965",
+      "title": "Waymo has stopped its robotaxis from driving on the freeway—here’s why",
+      "url": "https://arstechnica.com/cars/2026/11/waymo-suspends-freeway-driving-after-california-construction-zone-complaint/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-18T16:24:34Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "eaeb1e564c509a5a9a",
+      "title": "OpenAI CEO Sam Altman says it’s ‘hard to imagine the AI industry without Jensen’",
+      "url": "https://techcrunch.com/2026/11/18/openai-ceo-sam-altman-says-its-hard-to-imagine-the-ai-industry-without-jensen/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-18T16:14:09Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4270e297502a029b32",
+      "title": "Remember the frontier AI pause? Chip companies don’t either",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1036549/nvidia-amd-earnings-fall-2026-chips-pause-frontier-models",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-18T15:44:02Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "6cfc94ddb254b0cdb0",
       "title": "Tesla’s $30,000 Cybercab comes with a $299 monthly catch",
@@ -36,7 +356,7 @@
     },
     {
       "id": "92c4470851babd486b",
-      "title": "Nvidia clarifies when it will — and won’t —keep financing neoclouds",
+      "title": "Nvidia clarifies when it will — and won’t — keep financing neoclouds",
       "url": "https://techcrunch.com/2026/11/18/nvidia-clarifies-when-it-will-and-wont-keep-financing-neoclouds/",
       "category": "ai",
       "source": "TechCrunch AI",
@@ -63,7 +383,7 @@
     },
     {
       "id": "7910f56b348bc37fcb",
-      "title": "India’s Humyn Labs raises $47M to feed U.S. robotics companies the data they need",
+      "title": "India’s Humyn Labs raises $47M to feed US robotics companies the data they need",
       "url": "https://techcrunch.com/2026/11/18/accel-backs-indias-humyn-labs-to-supply-training-data-needed-by-u-s-robotics-ai-developers/",
       "category": "ai",
       "source": "TechCrunch AI",
@@ -410,321 +730,6 @@
       "category": "space",
       "source": "NASA News",
       "published_at": "2026-11-17T16:51:14Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7fbdbfd5cb782bea37",
-      "title": "Google makes it easier to use Gemini without training AI on your data",
-      "url": "https://arstechnica.com/ai/2026/11/google-will-let-you-opt-out-of-ai-training-in-gemini-without-losing-your-history/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-17T16:50:10Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "6fbd9862eca578a215",
-      "title": "Jensen Huang says he would be ‘honored’ if allowed to return as Nvidia CEO",
-      "url": "https://techcrunch.com/2026/11/17/jensen-huang-says-he-would-be-honored-if-allowed-to-return-as-nvidia-ceo/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T16:44:15Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "1cdd7a082303f93b19",
-      "title": "Daydream’s new AI agent acts as your personal stylist — and can shop for you, too",
-      "url": "https://techcrunch.com/2026/11/17/daydreams-new-ai-agent-acts-as-your-personal-stylist-and-can-shop-for-you-too/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T16:32:55Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "825618225fbb1ec86e",
-      "title": "The DOJ says it’s investigating Megaspeed",
-      "url": "https://www.theverge.com/policy/1035410/doj-megaspeed-nvidia-investigation-update",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-17T16:19:03Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "327034ed1b49f420bf",
-      "title": "Jensen Huang says he’s willing to return as Nvidia CEO",
-      "url": "https://www.theverge.com/tech/1035420/jensen-huang-nvidia-return-as-ceo-statement",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-17T16:09:57Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "04f5872f54d9cc0ac7",
-      "title": "House Democrats promise a US return to global climate talks",
-      "url": "https://arstechnica.com/tech-policy/2026/11/house-democrats-promise-a-us-return-to-global-climate-talks/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-17T15:32:43Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d4774d28d264a29f63",
-      "title": "Ars Live: What do drone strikes on data centers mean for the future? Talk at 1 pm EST today",
-      "url": "https://arstechnica.com/gadgets/2026/11/ars-live-can-the-cloud-survive-drone-strikes-on-data-centers/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-17T15:28:59Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4ec6ed4a696566010a",
-      "title": "Voyage Labs raises $12 million for a specialized AI travel assistant",
-      "url": "https://techcrunch.com/2026/11/17/voyage-labs-raises-12-million-for-a-specialized-ai-travel-assistant/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T15:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c4b7e80cb7863d47f1",
-      "title": "Isomorphic Labs raises $5B as it looks to take drug candidates to clinical trials",
-      "url": "https://techcrunch.com/2026/11/17/isomorphic-labs-raises-5b-as-it-looks-to-take-drug-candidates-to-clinical-trials/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T14:50:58Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e9039490fe49125234",
-      "title": "Science Corporation’s brain tech is worth $3.5 billion after new funding",
-      "url": "https://techcrunch.com/2026/11/17/science-corporations-brain-tech-is-worth-3-5-billion-after-new-funding/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T14:26:46Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e15ff8b935a63483f5",
-      "title": "Nvidia’s first big move after Jensen Huang’s exit targets national security",
-      "url": "https://techcrunch.com/2026/11/17/nvidias-first-big-move-after-jensen-huangs-exit-targets-national-security/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T14:05:30Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0de6aadc71dab2031f",
-      "title": "Grok Bot took unapproved actions, ignored orders to stop, and then denied it",
-      "url": "https://arstechnica.com/security/2026/11/grok-bot-took-unapproved-actions-ignored-orders-to-stop-and-then-denied-it/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-17T14:00:29Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "627115a4f71c40ea53",
-      "title": "Spotify’s new tool aims to stop deepfakes from being attributed to real artists",
-      "url": "https://techcrunch.com/2026/11/17/spotifys-new-tool-aims-to-stop-deepfakes-from-being-attributed-to-real-artists/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T14:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "619719b3299c0cc03f",
-      "title": "Artist brings old Space Shuttle tank back to life",
-      "url": "https://arstechnica.com/space/2026/11/how-an-artist-gave-shape-to-a-space-shuttles-new-towering-exhibit/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-17T12:15:54Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "685512f6ef114dea76",
-      "title": "Q&A: Why building math muscles remains important in the AI era",
-      "url": "https://news.mit.edu/2026/qa-why-building-math-muscles-remains-important-ai-era-1117",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-11-17T05:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c294f20baa0eb95281",
-      "title": "Learning the language of machine learning",
-      "url": "https://news.mit.edu/2026/learning-language-of-machine-learning-jacob-andreas-1117",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-11-17T05:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "24baf68da2c147d656",
-      "title": "Cybersecurity AI startup Corma reaches $1B valuation in about 3 months",
-      "url": "https://techcrunch.com/2026/11/16/cybersecurity-ai-startup-corma-reaches-1b-valuation-in-about-3-months/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-16T23:32:32Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ae3d9685f670ac125f",
-      "title": "Tech leaders are convinced that Jensen Huang’s exit was a plot against him",
-      "url": "https://www.theverge.com/tech/1035027/tech-leaders-nvidia-jensen-huang-theories",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-16T23:17:34Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5672c177889c4ac2f2",
-      "title": "Robo-soldier startup backed by Eric Trump misses payroll, may collapse",
-      "url": "https://arstechnica.com/ai/2026/11/robo-soldier-startup-backed-by-eric-trump-misses-payroll-may-collapse/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-16T22:58:27Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4f20b6480ffff64be1",
-      "title": "All the questions Nvidia should answer on Tuesday — but probably won’t",
-      "url": "https://techcrunch.com/2026/11/16/all-the-questions-nvidia-should-answer-on-tuesday-but-probably-wont/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-16T22:03:02Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f9e088df974669b191",
-      "title": "Three small failures combined to take down Microsoft 365",
-      "url": "https://arstechnica.com/gadgets/2026/11/microsoft-details-how-three-problems-combined-for-a-global-outage/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-16T21:56:39Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0e75ab5e7553ce11a9",
-      "title": "Hyperscale data centers use 2% of US electricity",
-      "url": "https://arstechnica.com/science/2026/11/hyperscale-data-centers-use-2-of-us-electricity/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-16T20:52:10Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5eb97c34dc0bb01759",
-      "title": "California sues OpenAI over rogue AI hacking incidents",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1034815/california-openai-hugging-face-lawsuit",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-16T20:46:01Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0f46466adfdb934eab",
-      "title": "Sam Altman says he wants everyone ‘to have a lot of RAM’",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1034787/sam-altman-ram-shortage-semafor",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-16T20:41:28Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "04167c90a9937daf0c",
-      "title": "Shareholders sue Intel, its CEO, and CFO after stock drops 28.6 percent in one day",
-      "url": "https://arstechnica.com/tech-policy/2026/11/shareholders-sue-intel-its-ceo-and-cfo-after-stock-drops-28-6-percent-in-one-day/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-16T20:37:47Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "9cb60120da34165ea9",
-      "title": "NASA Receives 16th Consecutive ‘Clean’ Financial Audit Opinion",
-      "url": "https://www.nasa.gov/news-release/nasa-receives-16th-consecutive-clean-financial-audit-opinion/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-16T20:30:40Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ea2b45bbfe30aab130",
-      "title": "Big Nuclear isn’t worried about the Democrats stopping data centers",
-      "url": "https://www.theverge.com/science/1034694/nuclear-energy-constellation-earnings-data-centers-democrats",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-16T20:29:37Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "fe19cb68392bd9e9cc",
-      "title": "Comcast's \"fiber-powered Wi-Fi\" is just cable, AT&T says in false advertising case",
-      "url": "https://arstechnica.com/tech-policy/2026/11/comcast-falsely-advertises-cable-internet-as-fiber-powered-att-lawsuit-says/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-16T20:27:58Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "616d362bf0f56a202f",
-      "title": "US data centers now burn more electricity than a midsized country",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1034668/data-centers-electricity-climate-pollution-study-harvard",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-16T20:27:58Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "57cc1ea3d3bbd2bf57",
-      "title": "California state AG sues OpenAI over rogue agent incidents",
-      "url": "https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-16T20:07:13Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0a50f7f4110eec2871",
-      "title": "Supreme Court keeps injunction against DEI grant defunding in place",
-      "url": "https://arstechnica.com/science/2026/11/supreme-court-keeps-injunction-against-dei-grant-defunding-in-place/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-16T19:54:21Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "fab832f05aef162f67",
-      "title": "When will humans actually fly on Starship?",
-      "url": "https://arstechnica.com/space/2026/11/when-will-humans-actually-fly-on-starship/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-16T19:46:08Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "8fd70935dca0c06fa4",
-      "title": "Meet the new James Bond: Robert Pattinson",
-      "url": "https://arstechnica.com/culture/2026/11/meet-the-new-james-bond-robert-pattinson/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-16T19:36:25Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c358f6a12927d5b0c7",
-      "title": "Apple is testing daily usage limits for more complex Siri AI interactions",
-      "url": "https://www.theverge.com/tech/1034581/apple-intelligence-siri-ai-daily-usage-limits-icloud-subscription",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-16T19:24:40Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "019849ec10d9fd5ab0",
-      "title": "OpenAI wants to stop deepfakes from overwhelming child abuse tiplines",
-      "url": "https://www.theverge.com/policy/1034527/openai-csam-classifier",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-16T19:23:45Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
