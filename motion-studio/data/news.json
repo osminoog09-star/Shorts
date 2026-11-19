@@ -1,17 +1,111 @@
 {
-  "status": "partial",
-  "updated_at": "2026-11-19T00:22:23.101156Z",
-  "last_attempt_at": "2026-11-19T00:22:23.101156Z",
-  "feeds_ok": 6,
-  "feeds_failed": 1,
-  "errors": [
-    {
-      "source": "NASA News",
-      "error_type": "ValueError"
-    }
-  ],
+  "status": "success",
+  "updated_at": "2026-11-19T15:44:04.982805Z",
+  "last_attempt_at": "2026-11-19T15:44:04.982805Z",
+  "feeds_ok": 7,
+  "feeds_failed": 0,
+  "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "ddb4b8e8befa63e494",
+      "title": "Anthropic’s IPO puts AI’s circular financing boom to the test",
+      "url": "https://techcrunch.com/2026/11/19/anthropics-ipo-puts-ais-circular-financing-boom-to-the-test/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-19T14:54:39Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4ed2e9bef49fec0c23",
+      "title": "NASA Conducts Latest RS-25 Engine Test in Support of Future Artemis Missions",
+      "url": "https://www.nasa.gov/image-article/latest-rs-25-engine-test-in-support-of-future-artemis-missions/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-19T14:44:39Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b71681db2cca441f2d",
+      "title": "NASA’s Voyager 1 Makes History Reaching One Light-Day From Earth",
+      "url": "https://www.nasa.gov/news-release/nasas-voyager-1-makes-history-reaching-one-light-day-from-earth/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-19T14:31:15Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "528d4c8e9cd7caa955",
+      "title": "Mouse fight club might explain why we like to watch violent things",
+      "url": "https://arstechnica.com/science/2026/11/watching-mouse-fight-club-teaches-the-critters-how-to-fight/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-19T14:04:38Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "91089de2fc64468c9b",
+      "title": "Superhuman pushes its Go assistant everywhere",
+      "url": "https://techcrunch.com/2026/11/19/superhuman-pushes-its-go-assistant-everywhere/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-19T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "6bdfccb498eb826a94",
+      "title": "Study reveals data centers’ long-distance damage to air quality",
+      "url": "https://news.mit.edu/2026/study-reveals-data-centers-long-distance-damage-air-quality-1119",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-19T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1551bd5df4073a9eaa",
+      "title": "NASA's new Moon plans have a problem: Orion wasn't designed to fly this way",
+      "url": "https://arstechnica.com/space/2026/11/to-make-moon-landings-easier-nasa-is-making-life-harder-for-orion/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-19T13:40:02Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b5b2890766e5da552e",
+      "title": "I let Apple’s always-listening AI summarize my life for two weeks",
+      "url": "https://www.theverge.com/tech/1037100/apple-siri-recap-audio-intelligence-hands-on",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-19T13:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c263b280fabbf4887d",
+      "title": "Canva adds an AI ‘off’ button",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1037126/canva-ai-features-off-button",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-19T12:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c03674636ed4a8f1e3",
+      "title": "How to tell a cyberattack from a plain old outage",
+      "url": "https://arstechnica.com/security/2026/11/how-to-tell-a-cyberattack-from-a-plain-old-outage/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-19T11:13:01Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "108d95f376814446ed",
+      "title": "Microsoft CEO Satya Nadella explains why he asked 60K employees to quit",
+      "url": "https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-19T00:42:56Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "afb1f8fc849417dafc",
       "title": "Amidst fears of AI cyberattacks, Satya Nadella says lots of critical infrastructure is ‘unpatchable’",
@@ -76,8 +170,17 @@
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
+      "id": "162c5c6a72fe29aa97",
+      "title": "NASA Sets Coverage for Northrop Grumman CRS-25 Launch, Prelaunch",
+      "url": "https://www.nasa.gov/news-release/nasa-sets-coverage-for-northrop-grumman-crs-25-launch-prelaunch/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-18T22:19:17Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
       "id": "aed3ea0dfc61854d1c",
-      "title": "Anthropic reportedly prices IPO at $83 a share, above projected range",
+      "title": "Anthropic prices IPO at $83 a share, above projected range",
       "url": "https://techcrunch.com/2026/11/18/anthropic-reportedly-prices-ipo-at-83-a-share-above-projected-range/",
       "category": "ai",
       "source": "TechCrunch AI",
@@ -211,6 +314,15 @@
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
+      "id": "9d57f4dbe2e389059c",
+      "title": "MAF EAP – Holidays – How to manage the BAH HUMBUG that tries to sneak in",
+      "url": "https://www.nasa.gov/centers-and-facilities/michoud/maf-eap/maf-eap-holidays-how-to-manage-the-bah-humbug-that-tries-to-sneak-in/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-18T18:58:27Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
       "id": "e5783290f07783e6c2",
       "title": "Trump admin orders Kalshi to halt wagers on what words Trump will say",
       "url": "https://arstechnica.com/tech-policy/2026/11/trump-admin-orders-kalshi-to-halt-wagers-on-what-words-trump-will-say/",
@@ -235,6 +347,15 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-18T18:30:23Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "946586051f9fd3c7ee",
+      "title": "NASA Announces Mid-Power Electric Rocket Challenge for US Companies",
+      "url": "https://www.nasa.gov/directorates/stmd/prizes-challenges-crowdsourcing-program/nasa-announces-mid-power-electric-rocket-challenge-for-us-companies/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-18T18:12:32Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -271,6 +392,24 @@
       "category": "ai",
       "source": "The Verge AI",
       "published_at": "2026-11-18T17:50:57Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "0cb2e3ffdc8f4c218d",
+      "title": "Empire State Building Goes Gold for Voyager",
+      "url": "https://www.nasa.gov/image-article/empire-state-building-goes-gold-for-voyager/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-18T17:50:26Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "413bc2a06dfb5939b0",
+      "title": "What Is the Moon Base?",
+      "url": "https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-the-moon-base/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-18T17:36:03Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -586,150 +725,6 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-17T19:45:25Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "372bb734ba1d0b31e5",
-      "title": "Model ML raises $250M to automate investment banking grunt work",
-      "url": "https://techcrunch.com/2026/11/17/model-ml-raises-250m-to-automate-investment-banking-grunt-work/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T19:32:11Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f7f34b27e3ae136b6d",
-      "title": "NASA to Cover 35th SpaceX Resupply Mission Space Station Departure",
-      "url": "https://www.nasa.gov/news-release/nasa-to-cover-35th-spacex-resupply-mission-space-station-departure/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-17T19:16:22Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "534361927951e2d99a",
-      "title": "Google expands access to Gemini Tasks, which can help with calls, purchases",
-      "url": "https://techcrunch.com/2026/11/17/google-expands-access-to-gemini-tasks-which-can-help-with-calls-purchases/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T19:02:20Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "20774146b79ca78127",
-      "title": "Google’s Spark AI agent becomes ‘Tasks’ — and now it’s free",
-      "url": "https://www.theverge.com/tech/1035756/google-spark-ai-tasks-free",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-17T18:58:01Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f6980f92e029130a7b",
-      "title": "Google to keep Gemini chats for 2 months, up from 72 hours, even with history off",
-      "url": "https://techcrunch.com/2026/11/17/google-to-keep-gemini-chats-for-two-months-up-from-72-hours-even-with-history-off/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T18:48:23Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "313cc1cdf80efa6888",
-      "title": "Humanity braces for an alien invasion in 3 Body Problem S2 teaser",
-      "url": "https://arstechnica.com/culture/2026/11/humanity-braces-for-an-alien-invasion-in-3-body-problem-s2-teaser/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-17T18:26:26Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ab512ff5041d7997c7",
-      "title": "NICER Status Updates",
-      "url": "https://www.nasa.gov/missions/station/nicer-status-updates/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-17T18:18:16Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "22ef49cb99a0bcf048",
-      "title": "OpenAI sued by California after admitting to 80 loss-of-control incidents",
-      "url": "https://arstechnica.com/tech-policy/2026/11/california-sues-openai-to-stop-public-nuisance-of-out-of-control-ai-agents/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-17T18:13:34Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ecf8c81cb5048aa02c",
-      "title": "As decision model use skyrockets, is customization the next frontier?",
-      "url": "https://techcrunch.com/2026/11/17/as-decision-model-use-skyrockets-is-customization-is-the-next-frontier/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T18:10:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "837c136c3245c58a01",
-      "title": "Pedestal AI raises $4.7 million to agentify the supply chain",
-      "url": "https://techcrunch.com/2026/11/17/pedestal-ai-raises-4-7-million-to-agentify-the-supply-chain/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T18:04:16Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e4193279e2147efd68",
-      "title": "The data is very preliminary, but Vulcan failure may not be due to BE-4 engines",
-      "url": "https://arstechnica.com/features/2026/11/sources-vulcan-launch-anomaly-investigation-is-complex/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-17T18:00:51Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e17e376e57102864b3",
-      "title": "Proton’s Lumo, a privacy-focused alternative to ChatGPT and Claude, arrives on desktop",
-      "url": "https://techcrunch.com/2026/11/17/protons-lumo-a-privacy-focused-alternative-to-chatgpt-and-claude-arrives-on-desktop/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T17:32:25Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "597ba1940b56481d20",
-      "title": "AI models can be tricked into identifying civilians as military targets by telling them it’s a game",
-      "url": "https://techcrunch.com/2026/11/17/ai-models-can-be-tricked-into-identifying-civilians-as-military-targets-by-telling-them-its-a-game/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-17T17:20:41Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ec7a3b45638121f812",
-      "title": "NASA to Conduct Low-Altitude Flights Over Texas Farmland",
-      "url": "https://www.nasa.gov/general/nasa-to-conduct-low-altitude-flights-over-texas-farmland/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-17T17:12:20Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "6ce8a8b2fa0cf8c55a",
-      "title": "NASA Invites Media, Public to View Roman Telescope’s First Images",
-      "url": "https://www.nasa.gov/news-release/nasa-invites-media-public-to-view-roman-telescopes-first-images/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-17T17:00:29Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "9ec024039839e374ab",
-      "title": "Space Selfie",
-      "url": "https://www.nasa.gov/image-article/space-selfie-2/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-17T16:51:14Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
