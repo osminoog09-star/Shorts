@@ -1,10 +1,13 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/wardogs2_short_heli_license.json",
   "manifest_sha256": "00acbbbb7834247403318d99327b3ddef5541c6b984c2558f3163932e1b5aa03",
   "channel": "ru",
-  "publish_at_utc": null,
+  "publish_at_utc": "2026-11-23T18:00:00Z",
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "gJD5USTvhmw",
-  "video_url": "https://youtu.be/gJD5USTvhmw"
+  "video_url": "https://youtu.be/gJD5USTvhmw",
+  "privacy_status": "private",
+  "schedule_confirmed_at": "2026-11-20T16:14:57.817363+00:00",
+  "schedule_request_id": null
 }
