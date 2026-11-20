@@ -1,12 +1,206 @@
 {
-  "status": "success",
-  "updated_at": "2026-11-20T15:27:27.883259Z",
-  "last_attempt_at": "2026-11-20T15:27:27.883259Z",
-  "feeds_ok": 7,
-  "feeds_failed": 0,
-  "errors": [],
+  "status": "partial",
+  "updated_at": "2026-11-20T23:59:12.531461Z",
+  "last_attempt_at": "2026-11-20T23:59:12.531461Z",
+  "feeds_ok": 6,
+  "feeds_failed": 1,
+  "errors": [
+    {
+      "source": "NASA Technology",
+      "error_type": "HTTPError"
+    }
+  ],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "d1a52d7504aa62549e",
+      "title": "Trump FCC declares California isn't allowed to enforce phone service rules",
+      "url": "https://arstechnica.com/tech-policy/2026/11/fcc-orders-california-to-stop-enforcing-phone-service-rules-against-att/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T22:28:24Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "9cc228f9e09fc4158b",
+      "title": "SpaceX's Starshield troubles in Ukraine could threaten its broader military business",
+      "url": "https://arstechnica.com/space/2026/11/incoming-house-chair-threatens-spacex-funding-over-ukraine-controversy/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T22:16:51Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ae5a204aaba705d52a",
+      "title": "Google rolls out new search homepage with AI chat history and no search button",
+      "url": "https://arstechnica.com/ai/2026/11/googles-latest-search-page-redesign-drops-the-search-button-adds-ai-sidebar/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T21:58:29Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "85d0c5a4a983edfbbc",
+      "title": "Meta reconsiders 2030 net-zero goal amid record emissions from AI data centers",
+      "url": "https://arstechnica.com/ai/2026/11/meta-reconsiders-2030-net-zero-goal-amid-record-emissions-from-ai-data-centers/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T21:47:10Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "35c2239500f319c9d3",
+      "title": "Q&A: Enabling more human-like interactions and understanding in multimodal foundation models",
+      "url": "https://news.mit.edu/2026/qa-enabling-more-human-interactions-understanding-multimodal-foundation-models-1120",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-20T21:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "cc88c546d1214b6505",
+      "title": "Researcher plants 2m canaries into the AI supply chain. A privacy disaster surfaced.",
+      "url": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T20:59:08Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ace204e07fc03ce412",
+      "title": "New NASA Seed Funding Primes Small Businesses for Innovation",
+      "url": "https://www.nasa.gov/directorates/rtmd/new-nasa-seed-funding-primes-small-businesses-for-innovation/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-20T20:46:14Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "fe2d58aadc7c226193",
+      "title": "Watching as a giant star swallowed its neighbor and exploded",
+      "url": "https://arstechnica.com/science/2026/11/astronomers-watched-a-star-spiral-to-its-death-inside-a-giant-companion/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T20:41:17Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "da3aafb18139140ed8",
+      "title": "NASA’s new Moon plan is taking shape, but some big questions remain",
+      "url": "https://arstechnica.com/space/2026/11/nasas-new-moon-plan-is-taking-shape-but-some-big-questions-remain/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T20:26:33Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b2926e8e7f4e634ac8",
+      "title": "New approach enables physically consistent AI models of chaotic systems",
+      "url": "https://news.mit.edu/new-approach-enables-physically-consistent-ai-models-chaotic-systems-1120",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-20T20:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "05d06a2ae37185a155",
+      "title": "Daniel Ek backs AI researcher’s fusion power startup. Here’s what they’re building.",
+      "url": "https://techcrunch.com/2026/11/20/daniel-ek-backs-ai-researchers-fusion-power-startup-heres-what-theyre-building/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-20T19:53:41Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7393f8d24cf3fb1a77",
+      "title": "Prisons get OK to jam contraband phones. CTIA says nearby phones will be jammed too.",
+      "url": "https://arstechnica.com/tech-policy/2026/11/prisons-get-ok-to-jam-contraband-phones-ctia-says-nearby-phones-will-be-jammed-too/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T19:52:59Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "81e856d23e6ca94086",
+      "title": "AI claimed a solution to the 167-year-old Riemann hypothesis — and a human did, too",
+      "url": "https://techcrunch.com/2026/11/20/ai-claimed-a-solution-to-the-167-year-old-riemann-hypothesis-and-a-human-did-too/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-20T19:32:08Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "3d2e8ae68cb17a84da",
+      "title": "Army delays detonating \"catastrophically hazardous\" lead azide amid fear, anger",
+      "url": "https://arstechnica.com/science/2026/11/outrage-questions-swirl-as-army-delays-blowing-up-stockpile-of-toxic-lead-azide/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T19:21:50Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "3afdf5a7b1a6fd8a24",
+      "title": "Trump threatens ‘tremendous tax’ for moving AI data centers outside the US",
+      "url": "https://www.theverge.com/policy/1038892/trump-foreign-data-centers-tax",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-20T18:50:19Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "fc059eec5b023eb859",
+      "title": "Chips can survive the space environment — can their financing?",
+      "url": "https://techcrunch.com/2026/11/20/chips-can-survive-the-space-environment-can-their-financing/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-20T17:40:01Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "59c71dfeced9f249bd",
+      "title": "Video Friday: Drone Squeezes Itself to Fit Through Tight Spaces",
+      "url": "https://spectrum.ieee.org/video-friday-morphing-robots-quadrotor",
+      "category": "robotics",
+      "source": "IEEE Spectrum Robotics",
+      "published_at": "2026-11-20T17:30:03Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "675650dffca0c9d459",
+      "title": "Anthropic mathematician claims to have solved prestigious Millennium Prize problem with Claude",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-20T16:34:13Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "668a9e048b9e72134c",
+      "title": "NASA Honor Awards Ceremony Recognizes Employees at Stennis Space Center",
+      "url": "https://www.nasa.gov/centers-and-facilities/stennis/honor-awards-ceremony-at-stennis/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-20T16:27:46Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c014b32dbc57e19cde",
+      "title": "Valve says it might have to raise the price of supply-limited Steam Machines",
+      "url": "https://arstechnica.com/gaming/2026/11/valve-says-it-might-have-to-raise-the-price-of-supply-limited-steam-machines/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T16:11:21Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "90af90b972375528e6",
+      "title": "NASA’s Curiosity Mars Rover Collects Samples",
+      "url": "https://www.nasa.gov/image-article/nasas-curiosity-mars-rover-collects-samples/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-20T15:53:24Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "29c6398dc2aba28f7e",
       "title": "Following the “mathocalypse,” mathematicians consider the future",
@@ -536,195 +730,6 @@
       "category": "space",
       "source": "NASA News",
       "published_at": "2026-11-18T22:19:17Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "aed3ea0dfc61854d1c",
-      "title": "Anthropic prices IPO at $83 a share, above projected range",
-      "url": "https://techcrunch.com/2026/11/18/anthropic-reportedly-prices-ipo-at-83-a-share-above-projected-range/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T22:11:15Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "796de02486a1d6a9b6",
-      "title": "Trump abandons his FDA nominee, and Senate scraps vote on his NSF pick",
-      "url": "https://arstechnica.com/health/2026/11/trump-abandons-his-fda-nominee-and-senate-scraps-vote-on-his-nsf-pick/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T22:08:57Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "80bdab190c6dbdb4d3",
-      "title": "Nvidia created a weird bit of intrigue by not filing a routine SEC report",
-      "url": "https://techcrunch.com/2026/11/18/nvidia-created-a-weird-bit-of-intrigue-by-not-filing-a-routine-sec-report/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T21:57:40Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "734339654a32d098c3",
-      "title": "Palmer Luckey warns AI-powered cyberattacks are outpacing defenses: ‘It’s time to start running’",
-      "url": "https://techcrunch.com/2026/11/18/palmer-luckey-warns-ai-powered-cyberattacks-are-outpacing-defenses-its-time-to-start-running/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T21:34:13Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4546d2f009c0f33e9f",
-      "title": "Palmer Luckey thinks China is ‘thrilled to have Jensen out,’ so he wants the ousted Nvidia CEO reinstated",
-      "url": "https://techcrunch.com/2026/11/18/palmer-luckey-thinks-china-is-thrilled-to-have-jensen-out-so-he-wants-the-ousted-nvidia-ceo-reinstated/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T21:31:21Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "1e970c62dff0b514fe",
-      "title": "Netflix CEO admits app may bury stuff you want to watch under stuff you don’t",
-      "url": "https://arstechnica.com/gadgets/2026/11/netflix-ceo-admits-app-may-bury-stuff-you-want-to-watch-under-stuff-you-dont/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T21:29:24Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5a73299e3f4f96d22c",
-      "title": "Windows Server 2028 trades compatibility for out-of-the-box security",
-      "url": "https://arstechnica.com/gadgets/2026/11/windows-server-2028-public-preview-bets-on-a-security-first-approach/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T20:41:12Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "388adedcc584c5bf9c",
-      "title": "Sam Altman says his life is so weird that he’s unfazed by Andrew Garfield portraying him in upcoming movie",
-      "url": "https://techcrunch.com/2026/11/18/sam-altman-says-his-life-is-so-weird-that-hes-unfazed-by-andrew-garfield-portraying-him-in-upcoming-movie/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T20:07:01Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "53453b71f99b11c73b",
-      "title": "Snapchat now lets developers build AR Lenses with AI assistants like Claude Code and Cursor",
-      "url": "https://techcrunch.com/2026/11/18/snapchat-now-lets-developers-build-ar-lenses-with-ai-coding-assistants-like-claude-code-and-cursor/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T19:56:39Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d023ba6fde32bc2f03",
-      "title": "Trump’s latest land grab is an AI hub in the Philippines",
-      "url": "https://www.theverge.com/policy/1036749/trump-ai-chip-data-center-us-philippines-pax-silica",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-18T19:40:36Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4c88cec5c836926e3a",
-      "title": "Best Buy sells Blu-rays online and in-store again",
-      "url": "https://arstechnica.com/gadgets/2026/11/best-buy-sells-blu-rays-again-after-quitting-the-business-in-2024/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T19:31:17Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ddb45fad21371efcf8",
-      "title": "Nvidia’s rise, visualized",
-      "url": "https://www.theverge.com/tech/1035924/nvidia-visualized-revenue-profit-earnings-after-huang",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-18T19:30:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "77b871659814b03471",
-      "title": "Muse privacy invasions are freaking out Meta staffers, internal chats show",
-      "url": "https://arstechnica.com/tech-policy/2026/11/muse-privacy-invasions-are-freaking-out-meta-staffers-internal-chats-show/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T19:19:33Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b99d3925f7eef8109c",
-      "title": "Tech lawsuits defined 2026 — and lawmakers want more",
-      "url": "https://www.theverge.com/policy/1036935/congress-forced-arbitration-deepfakes-defiance-act",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-18T19:07:29Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f4d5cc76792a20c67b",
-      "title": "This featherweight, flying robot carries its own sensors and computers",
-      "url": "https://news.mit.edu/2026/featherweight-flying-robot-carries-its-own-sensors-and-computers-1118",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-11-18T19:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "9d57f4dbe2e389059c",
-      "title": "MAF EAP – Holidays – How to manage the BAH HUMBUG that tries to sneak in",
-      "url": "https://www.nasa.gov/centers-and-facilities/michoud/maf-eap/maf-eap-holidays-how-to-manage-the-bah-humbug-that-tries-to-sneak-in/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-18T18:58:27Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e5783290f07783e6c2",
-      "title": "Trump admin orders Kalshi to halt wagers on what words Trump will say",
-      "url": "https://arstechnica.com/tech-policy/2026/11/trump-admin-orders-kalshi-to-halt-wagers-on-what-words-trump-will-say/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T18:46:08Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7132415e461f71d944",
-      "title": "What is Nvidia without AI’s sugar daddy in charge?",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1036776/nvidia-earnings-kress-jensen-huang-petition",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-18T18:34:15Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f5445eec6c3e2750af",
-      "title": "The \"shameful\" measles data that lost the US its elimination status",
-      "url": "https://arstechnica.com/health/2026/11/the-shameful-measles-data-that-lost-the-us-its-elimination-status/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T18:30:23Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "946586051f9fd3c7ee",
-      "title": "NASA Announces Mid-Power Electric Rocket Challenge for US Companies",
-      "url": "https://www.nasa.gov/directorates/stmd/prizes-challenges-crowdsourcing-program/nasa-announces-mid-power-electric-rocket-challenge-for-us-companies/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-18T18:12:32Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d25de4f029966643c1",
-      "title": "Will Wright's next simulation will use AI to mine content from your memories",
-      "url": "https://arstechnica.com/gaming/2026/11/will-wrights-next-simulation-will-use-ai-to-mine-content-from-your-memories/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T18:10:33Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
