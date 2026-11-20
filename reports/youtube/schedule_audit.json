@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-11-20T15:39:07.880959+00:00",
-  "count": 40,
+  "checked_at": "2026-11-20T23:13:55.793970+00:00",
+  "count": 44,
   "problems": [
     {
       "slug": "kino_010",
@@ -479,6 +479,58 @@
       "rejection": null
     },
     {
+      "slug": "wardogs2_ep",
+      "video_id": "PM9ry5Y10_o",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-22T13:00:00Z",
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-22T13:00:00Z",
+      "title": "МНЕ ОТОБРАЛИ ПРАВА НА ВЕРТОЛЁТ — Wardogs",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "wardogs2_short_heli_license",
+      "video_id": "gJD5USTvhmw",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-23T18:00:00Z",
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-23T18:00:00Z",
+      "title": "Не умеешь — не садись за вертолёт 🚁 #wardogs #shorts",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "wardogs2_short_high_drop",
+      "video_id": "8FPw2oKcldI",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-25T18:00:00Z",
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-25T18:00:00Z",
+      "title": "Высадка с огромной высоты: план vs реальность #wardogs #shorts",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
+      "slug": "wardogs2_short_minigun",
+      "video_id": "AtrbxGBNn7M",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-24T18:00:00Z",
+      "queue": null,
+      "queue_slot": null,
+      "live_privacy": "private",
+      "live_publishAt": "2026-11-24T18:00:00Z",
+      "title": "Как перезаряжать миниган? Никак. #wardogs #shorts",
+      "upload_status": "processed",
+      "rejection": null
+    },
+    {
       "slug": "wardogs_ep1",
       "video_id": "A6pjLh4MnBw",
       "receipt": "scheduled",
@@ -498,8 +550,8 @@
       "receipt_publish_at": "2026-11-20T18:00:00Z",
       "queue": null,
       "queue_slot": null,
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-20T18:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "Алиса, выключи свет. АЛИСА. #wardogs #shorts",
       "upload_status": "processed",
       "rejection": null
