@@ -1,6 +1,6 @@
 {
   "start": "2019-02-11",
-  "end": "2026-11-18",
+  "end": "2026-11-19",
   "videos": {
     "XANzL3z9wqY": {
       "video": "XANzL3z9wqY",
@@ -160,7 +160,7 @@
     },
     "dsp3ZOrwTkc": {
       "video": "dsp3ZOrwTkc",
-      "views": 1130,
+      "views": 1131,
       "engagedViews": 583,
       "averageViewPercentage": 37.09,
       "averageViewDuration": 20,
@@ -238,29 +238,29 @@
     },
     "izqrEKmU38g": {
       "video": "izqrEKmU38g",
-      "views": 1017,
-      "engagedViews": 626,
-      "averageViewPercentage": 56.11000000000001,
+      "views": 1019,
+      "engagedViews": 628,
+      "averageViewPercentage": 56.06,
       "averageViewDuration": 22,
       "subscribersGained": 0,
       "subscribersLost": 0,
       "likes": 14,
       "comments": 0,
       "shares": 0,
-      "estimatedMinutesWatched": 245
+      "estimatedMinutesWatched": 246
     },
     "2g_sQw71z7s": {
       "video": "2g_sQw71z7s",
       "views": 1013,
-      "engagedViews": 649,
-      "averageViewPercentage": 53.620000000000005,
+      "engagedViews": 651,
+      "averageViewPercentage": 53.68999999999999,
       "averageViewDuration": 23,
       "subscribersGained": 6,
       "subscribersLost": 0,
-      "likes": 18,
+      "likes": 19,
       "comments": 0,
       "shares": 0,
-      "estimatedMinutesWatched": 266
+      "estimatedMinutesWatched": 267
     },
     "wweAPl3P29w": {
       "video": "wweAPl3P29w",
@@ -329,8 +329,8 @@
     },
     "mp0irGtOUzw": {
       "video": "mp0irGtOUzw",
-      "views": 907,
-      "engagedViews": 595,
+      "views": 903,
+      "engagedViews": 594,
       "averageViewPercentage": 56.11000000000001,
       "averageViewDuration": 15,
       "subscribersGained": 0,
@@ -338,7 +338,7 @@
       "likes": 15,
       "comments": 0,
       "shares": 0,
-      "estimatedMinutesWatched": 166
+      "estimatedMinutesWatched": 165
     },
     "uDbIq2IzlzM": {
       "video": "uDbIq2IzlzM",
@@ -381,8 +381,8 @@
     },
     "3YjkmOrxDLA": {
       "video": "3YjkmOrxDLA",
-      "views": 879,
-      "engagedViews": 564,
+      "views": 878,
+      "engagedViews": 563,
       "averageViewPercentage": 42.13,
       "averageViewDuration": 18,
       "subscribersGained": 0,
@@ -719,7 +719,7 @@
     },
     "s7YVEyinxDE": {
       "video": "s7YVEyinxDE",
-      "views": 9,
+      "views": 10,
       "engagedViews": 8,
       "averageViewPercentage": 41.46,
       "averageViewDuration": 247,
@@ -728,7 +728,7 @@
       "likes": 0,
       "comments": 0,
       "shares": 1,
-      "estimatedMinutesWatched": 32
+      "estimatedMinutesWatched": 33
     },
     "XqoHjcsdPtQ": {
       "video": "XqoHjcsdPtQ",
@@ -755,6 +755,84 @@
       "comments": 0,
       "shares": 0,
       "estimatedMinutesWatched": 4
+    },
+    "A6pjLh4MnBw": {
+      "video": "A6pjLh4MnBw",
+      "views": 2,
+      "engagedViews": 2,
+      "averageViewPercentage": 39.53,
+      "averageViewDuration": 545,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 18
+    },
+    "7rkj5AGS3Y8": {
+      "video": "7rkj5AGS3Y8",
+      "views": 1,
+      "engagedViews": 1,
+      "averageViewPercentage": 79.5,
+      "averageViewDuration": 31,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 0
+    },
+    "EMrsQE5J1-k": {
+      "video": "EMrsQE5J1-k",
+      "views": 1,
+      "engagedViews": 1,
+      "averageViewPercentage": 89.49,
+      "averageViewDuration": 52,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 0
+    },
+    "GCqGnZYqyeI": {
+      "video": "GCqGnZYqyeI",
+      "views": 1,
+      "engagedViews": 1,
+      "averageViewPercentage": 76.57,
+      "averageViewDuration": 26,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 0
+    },
+    "_FZeP_gpyHg": {
+      "video": "_FZeP_gpyHg",
+      "views": 1,
+      "engagedViews": 1,
+      "averageViewPercentage": 7.8,
+      "averageViewDuration": 4,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 0
+    },
+    "k9BkSWFMeEI": {
+      "video": "k9BkSWFMeEI",
+      "views": 1,
+      "engagedViews": 1,
+      "averageViewPercentage": 50.73,
+      "averageViewDuration": 20,
+      "subscribersGained": 0,
+      "subscribersLost": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "estimatedMinutesWatched": 0
     },
     "oTe1dEelJPs": {
       "video": "oTe1dEelJPs",
@@ -808,7 +886,7 @@
       "shares": null,
       "estimatedMinutesWatched": null
     },
-    "kGKZgAoiNgk": {
+    "8FPw2oKcldI": {
       "views": null,
       "engagedViews": null,
       "averageViewPercentage": null,
@@ -820,7 +898,43 @@
       "shares": null,
       "estimatedMinutesWatched": null
     },
-    "GCqGnZYqyeI": {
+    "AtrbxGBNn7M": {
+      "views": null,
+      "engagedViews": null,
+      "averageViewPercentage": null,
+      "averageViewDuration": null,
+      "subscribersGained": null,
+      "subscribersLost": null,
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "estimatedMinutesWatched": null
+    },
+    "gJD5USTvhmw": {
+      "views": null,
+      "engagedViews": null,
+      "averageViewPercentage": null,
+      "averageViewDuration": null,
+      "subscribersGained": null,
+      "subscribersLost": null,
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "estimatedMinutesWatched": null
+    },
+    "PM9ry5Y10_o": {
+      "views": null,
+      "engagedViews": null,
+      "averageViewPercentage": null,
+      "averageViewDuration": null,
+      "subscribersGained": null,
+      "subscribersLost": null,
+      "likes": null,
+      "comments": null,
+      "shares": null,
+      "estimatedMinutesWatched": null
+    },
+    "kGKZgAoiNgk": {
       "views": null,
       "engagedViews": null,
       "averageViewPercentage": null,
@@ -892,66 +1006,6 @@
       "shares": null,
       "estimatedMinutesWatched": null
     },
-    "A6pjLh4MnBw": {
-      "views": null,
-      "engagedViews": null,
-      "averageViewPercentage": null,
-      "averageViewDuration": null,
-      "subscribersGained": null,
-      "subscribersLost": null,
-      "likes": null,
-      "comments": null,
-      "shares": null,
-      "estimatedMinutesWatched": null
-    },
-    "EMrsQE5J1-k": {
-      "views": null,
-      "engagedViews": null,
-      "averageViewPercentage": null,
-      "averageViewDuration": null,
-      "subscribersGained": null,
-      "subscribersLost": null,
-      "likes": null,
-      "comments": null,
-      "shares": null,
-      "estimatedMinutesWatched": null
-    },
-    "k9BkSWFMeEI": {
-      "views": null,
-      "engagedViews": null,
-      "averageViewPercentage": null,
-      "averageViewDuration": null,
-      "subscribersGained": null,
-      "subscribersLost": null,
-      "likes": null,
-      "comments": null,
-      "shares": null,
-      "estimatedMinutesWatched": null
-    },
-    "7rkj5AGS3Y8": {
-      "views": null,
-      "engagedViews": null,
-      "averageViewPercentage": null,
-      "averageViewDuration": null,
-      "subscribersGained": null,
-      "subscribersLost": null,
-      "likes": null,
-      "comments": null,
-      "shares": null,
-      "estimatedMinutesWatched": null
-    },
-    "_FZeP_gpyHg": {
-      "views": null,
-      "engagedViews": null,
-      "averageViewPercentage": null,
-      "averageViewDuration": null,
-      "subscribersGained": null,
-      "subscribersLost": null,
-      "likes": null,
-      "comments": null,
-      "shares": null,
-      "estimatedMinutesWatched": null
-    },
     "iYmh6Fd3LMY": {
       "views": null,
       "engagedViews": null,
@@ -1004,9 +1058,79 @@
   "unsupported_metrics": [],
   "schema_version": 1,
   "channel_id": "UC919eyHbOIgjsnH8z70pmZw",
-  "snapshot_date": "2026-11-19",
-  "fetched_at": "2026-11-19T16:39:43.479452+00:00",
+  "snapshot_date": "2026-11-20",
+  "fetched_at": "2026-11-20T16:15:00.000435+00:00",
   "inventory": [
+    {
+      "video_id": "8FPw2oKcldI",
+      "title": "Высадка с огромной высоты: план vs реальность #wardogs #shorts",
+      "published_at": "2026-11-20T16:11:39Z",
+      "duration": "PT57S",
+      "privacy": "private",
+      "statistics": {
+        "viewCount": "0",
+        "likeCount": "0",
+        "dislikeCount": "0",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "video_id": "AtrbxGBNn7M",
+      "title": "Как перезаряжать миниган? Никак. #wardogs #shorts",
+      "published_at": "2026-11-20T16:09:46Z",
+      "duration": "PT46S",
+      "privacy": "private",
+      "statistics": {
+        "viewCount": "0",
+        "likeCount": "0",
+        "dislikeCount": "0",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "video_id": "gJD5USTvhmw",
+      "title": "Не умеешь — не садись за вертолёт 🚁 #wardogs #shorts",
+      "published_at": "2026-11-20T16:08:06Z",
+      "duration": "PT53S",
+      "privacy": "private",
+      "statistics": {
+        "viewCount": "0",
+        "likeCount": "0",
+        "dislikeCount": "0",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "video_id": "PM9ry5Y10_o",
+      "title": "МНЕ ОТОБРАЛИ ПРАВА НА ВЕРТОЛЁТ — Wardogs",
+      "published_at": "2026-11-20T16:06:32Z",
+      "duration": "PT12M40S",
+      "privacy": "private",
+      "statistics": {
+        "viewCount": "0",
+        "likeCount": "0",
+        "dislikeCount": "0",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "video_id": "_FZeP_gpyHg",
+      "title": "Вертушка против пня: 0:1 #wardogs #shorts",
+      "published_at": "2026-11-19T18:00:31Z",
+      "duration": "PT59S",
+      "privacy": "public",
+      "statistics": {
+        "viewCount": "42",
+        "likeCount": "0",
+        "dislikeCount": "0",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
     {
       "video_id": "kGKZgAoiNgk",
       "title": "Новичок в Active Matter: дуэль с другом, статуя и первый выживший рейд",
@@ -1028,7 +1152,7 @@
       "duration": "PT35S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "98",
+        "viewCount": "111",
         "likeCount": "1",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1084,7 +1208,7 @@
       "duration": "PT48S",
       "privacy": "private",
       "statistics": {
-        "viewCount": "1",
+        "viewCount": "0",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1126,7 +1250,7 @@
       "duration": "PT22M59S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "2",
+        "viewCount": "0",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1140,7 +1264,7 @@
       "duration": "PT59S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "21",
+        "viewCount": "25",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1154,7 +1278,7 @@
       "duration": "PT41S",
       "privacy": "private",
       "statistics": {
-        "viewCount": "1",
+        "viewCount": "0",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1168,21 +1292,7 @@
       "duration": "PT40S",
       "privacy": "private",
       "statistics": {
-        "viewCount": "1",
-        "likeCount": "0",
-        "dislikeCount": "0",
-        "favoriteCount": "0",
-        "commentCount": "0"
-      }
-    },
-    {
-      "video_id": "_FZeP_gpyHg",
-      "title": "Вертушка против пня: 0:1 #wardogs #shorts",
-      "published_at": "2026-11-18T05:27:59Z",
-      "duration": "PT59S",
-      "privacy": "private",
-      "statistics": {
-        "viewCount": "1",
+        "viewCount": "0",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1196,7 +1306,7 @@
       "duration": "PT28S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "905",
+        "viewCount": "906",
         "likeCount": "15",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1224,7 +1334,7 @@
       "duration": "PT32S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1097",
+        "viewCount": "1098",
         "likeCount": "10",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1252,7 +1362,7 @@
       "duration": "PT42S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "20",
+        "viewCount": "19",
         "likeCount": "0",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1308,7 +1418,7 @@
       "duration": "PT39S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1063",
+        "viewCount": "1064",
         "likeCount": "22",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1546,7 +1656,7 @@
       "duration": "PT52S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1136",
+        "viewCount": "1137",
         "likeCount": "32",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1574,7 +1684,7 @@
       "duration": "PT53S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "848",
+        "viewCount": "847",
         "likeCount": "10",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1630,7 +1740,7 @@
       "duration": "PT1M4S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "243",
+        "viewCount": "244",
         "likeCount": "3",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1658,7 +1768,7 @@
       "duration": "PT48S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "934",
+        "viewCount": "935",
         "likeCount": "10",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1798,7 +1908,7 @@
       "duration": "PT41S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "501",
+        "viewCount": "500",
         "likeCount": "2",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -1994,7 +2104,7 @@
       "duration": "PT45S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "1128",
+        "viewCount": "1132",
         "likeCount": "17",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -2036,7 +2146,7 @@
       "duration": "PT31S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "871",
+        "viewCount": "870",
         "likeCount": "10",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -2050,7 +2160,7 @@
       "duration": "PT34S",
       "privacy": "public",
       "statistics": {
-        "viewCount": "502",
+        "viewCount": "501",
         "likeCount": "3",
         "dislikeCount": "0",
         "favoriteCount": "0",
@@ -2101,16 +2211,12 @@
     }
   ],
   "channel_statistics": {
-    "viewCount": "48578",
-    "subscriberCount": "48",
+    "viewCount": "48729",
+    "subscriberCount": "47",
     "hiddenSubscriberCount": false,
-    "videoCount": "65"
+    "videoCount": "67"
   },
   "recent_daily_views": [
-    {
-      "day": "2026-10-15",
-      "views": 1
-    },
     {
       "day": "2026-10-20",
       "views": 1
@@ -2181,11 +2287,11 @@
     },
     {
       "day": "2026-11-07",
-      "views": 1334
+      "views": 1322
     },
     {
       "day": "2026-11-08",
-      "views": 2619
+      "views": 2608
     },
     {
       "day": "2026-11-09",
@@ -2213,31 +2319,69 @@
     },
     {
       "day": "2026-11-15",
-      "views": 948
+      "views": 941
     },
     {
       "day": "2026-11-16",
       "views": 29
+    },
+    {
+      "day": "2026-11-17",
+      "views": 13
     }
   ],
-  "last_observed_view_day": "2026-11-16",
+  "last_observed_view_day": "2026-11-17",
   "traffic": {
-    "start": "2026-10-22",
-    "end": "2026-11-18",
+    "start": "2026-10-23",
+    "end": "2026-11-19",
     "videos": {
+      "8FPw2oKcldI": [],
+      "AtrbxGBNn7M": [],
+      "gJD5USTvhmw": [],
+      "PM9ry5Y10_o": [],
+      "_FZeP_gpyHg": [
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 1
+        }
+      ],
       "kGKZgAoiNgk": [],
-      "GCqGnZYqyeI": [],
+      "GCqGnZYqyeI": [
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 1
+        }
+      ],
       "uxS6DACvQGY": [],
       "xSzrMYhY270": [],
       "kE5AwcjUIGs": [],
       "I6o9cQgfFAA": [],
       "G3otK6G2aWk": [],
       "RVK7-_8J23w": [],
-      "A6pjLh4MnBw": [],
-      "EMrsQE5J1-k": [],
-      "k9BkSWFMeEI": [],
-      "7rkj5AGS3Y8": [],
-      "_FZeP_gpyHg": [],
+      "A6pjLh4MnBw": [
+        {
+          "insightTrafficSourceType": "EXT_URL",
+          "views": 2
+        }
+      ],
+      "EMrsQE5J1-k": [
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 1
+        }
+      ],
+      "k9BkSWFMeEI": [
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 1
+        }
+      ],
+      "7rkj5AGS3Y8": [
+        {
+          "insightTrafficSourceType": "YT_CHANNEL",
+          "views": 1
+        }
+      ],
       "mp0irGtOUzw": [
         {
           "insightTrafficSourceType": "NO_LINK_OTHER",
@@ -2282,7 +2426,7 @@
         },
         {
           "insightTrafficSourceType": "SHORTS",
-          "views": 988
+          "views": 990
         },
         {
           "insightTrafficSourceType": "YT_CHANNEL",
@@ -2414,7 +2558,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 11
+          "views": 13
         }
       ],
       "h-fz_lx7bn8": [
@@ -2981,7 +3125,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 71
+          "views": 72
         }
       ],
       "XtSnXx4nVq8": [
@@ -3409,7 +3553,7 @@
         },
         {
           "insightTrafficSourceType": "YT_SEARCH",
-          "views": 5
+          "views": 6
         }
       ],
       "DfhrXx_10FM": [
@@ -3585,6 +3729,11 @@
       "mLlB8eL1FUE": []
     },
     "unsupported_metrics": {
+      "8FPw2oKcldI": [],
+      "AtrbxGBNn7M": [],
+      "gJD5USTvhmw": [],
+      "PM9ry5Y10_o": [],
+      "_FZeP_gpyHg": [],
       "kGKZgAoiNgk": [],
       "GCqGnZYqyeI": [],
       "uxS6DACvQGY": [],
@@ -3597,7 +3746,6 @@
       "EMrsQE5J1-k": [],
       "k9BkSWFMeEI": [],
       "7rkj5AGS3Y8": [],
-      "_FZeP_gpyHg": [],
       "mp0irGtOUzw": [],
       "iYmh6Fd3LMY": [],
       "9Wzqaq-5-KI": [],
