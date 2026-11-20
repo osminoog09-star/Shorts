@@ -1,0 +1,30 @@
+{
+    "channel":  "ru",
+    "metadata":  {
+                     "type":  "short",
+                     "title":  "Высадка с огромной высоты: план vs реальность #wardogs #shorts",
+                     "description":  "«Они так высоко не смотрят».\n\nTrack: Dosi, Aisake - Cruising [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/cruising\n\n#shorts #wardogs #m1lash",
+                     "tags":  [
+                                  "wardogs",
+                                  "wardogs игра",
+                                  "wardogs вертолёт",
+                                  "тактический шутер",
+                                  "смешные моменты",
+                                  "приколы в играх",
+                                  "с друзьями",
+                                  "вертолёт",
+                                  "M1lash",
+                                  "shorts"
+                              ],
+                     "category_id":  "20",
+                     "made_for_kids":  false,
+                     "contains_synthetic_media":  false
+                 },
+    "publish_at":  null,
+    "source":  {
+                   "type":  "release",
+                   "tag":  "private-wardogs2-short-high-drop-76d0af30",
+                   "asset":  "wardogs2_short_high_drop.mp4",
+                   "sha256":  "76d0af30f8d84a3f3287f4a1293d71a25e6d4a8d5bfdcb671f268551dfc5056a"
+               }
+}

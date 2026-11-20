@@ -1,0 +1,30 @@
+{
+    "channel":  "ru",
+    "metadata":  {
+                     "type":  "short",
+                     "title":  "Не умеешь — не садись за вертолёт 🚁 #wardogs #shorts",
+                     "description":  "На следующий день я всё равно сел за штурвал.\n\nTrack: T-Mass - Ignoring My Heart [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/ignoringmyheart\n\n#shorts #wardogs #m1lash",
+                     "tags":  [
+                                  "wardogs",
+                                  "wardogs игра",
+                                  "wardogs вертолёт",
+                                  "тактический шутер",
+                                  "смешные моменты",
+                                  "приколы в играх",
+                                  "с друзьями",
+                                  "вертолёт",
+                                  "M1lash",
+                                  "shorts"
+                              ],
+                     "category_id":  "20",
+                     "made_for_kids":  false,
+                     "contains_synthetic_media":  false
+                 },
+    "publish_at":  null,
+    "source":  {
+                   "type":  "release",
+                   "tag":  "private-wardogs2-short-heli-license-2c529942",
+                   "asset":  "wardogs2_short_heli_license.mp4",
+                   "sha256":  "2c52994237417ebece6aad79b30d08f8bdbbf3b23ec9a2671cb53c57d0a9bf42"
+               }
+}

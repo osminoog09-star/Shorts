@@ -1,0 +1,30 @@
+{
+    "channel":  "ru",
+    "metadata":  {
+                     "type":  "short",
+                     "title":  "Как перезаряжать миниган? Никак. #wardogs #shorts",
+                     "description":  "Бесконечная лента. Почти.\n\nTrack: Jensation - Joystick [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/jenjoystick\n\n#shorts #wardogs #m1lash",
+                     "tags":  [
+                                  "wardogs",
+                                  "wardogs игра",
+                                  "wardogs вертолёт",
+                                  "тактический шутер",
+                                  "смешные моменты",
+                                  "приколы в играх",
+                                  "с друзьями",
+                                  "вертолёт",
+                                  "M1lash",
+                                  "shorts"
+                              ],
+                     "category_id":  "20",
+                     "made_for_kids":  false,
+                     "contains_synthetic_media":  false
+                 },
+    "publish_at":  null,
+    "source":  {
+                   "type":  "release",
+                   "tag":  "private-wardogs2-short-minigun-05c61df2",
+                   "asset":  "wardogs2_short_minigun.mp4",
+                   "sha256":  "05c61df2939f5e3e46f0b7ac9b3f00c5be438441d10c58661adc5207c9a7840d"
+               }
+}
