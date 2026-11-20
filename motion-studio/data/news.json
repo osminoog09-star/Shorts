@@ -1,12 +1,129 @@
 {
   "status": "success",
-  "updated_at": "2026-11-20T00:37:05.798323Z",
-  "last_attempt_at": "2026-11-20T00:37:05.798323Z",
+  "updated_at": "2026-11-20T15:27:27.883259Z",
+  "last_attempt_at": "2026-11-20T15:27:27.883259Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "29c6398dc2aba28f7e",
+      "title": "Following the “mathocalypse,” mathematicians consider the future",
+      "url": "https://news.mit.edu/2026/following-mathocalypse-mathematicians-consider-future-1120",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-20T15:20:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "bbcc1ed9f7950c3b2e",
+      "title": "The fallout from Nvidia’s Jensen Huang scandal continues",
+      "url": "https://techcrunch.com/podcast/the-fallout-from-nvidias-jensen-huang-scandal-continues/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-20T14:55:44Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b17f9c57d6b944dd9b",
+      "title": "US will soon announce root cause behind FAA nationwide ground stop",
+      "url": "https://arstechnica.com/gadgets/2026/11/how-faa-can-modernize-us-national-airspace-system-without-emergency-ground-stops/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T14:52:51Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "490e0e485391ca171e",
+      "title": "SpaceX lenders don’t want Elon Musk launching their collateral into space",
+      "url": "https://arstechnica.com/space/2026/11/spacex-lenders-dont-want-elon-musk-launching-their-collateral-into-space/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T14:15:21Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b3a746945a8955db5b",
+      "title": "The week everything fell apart",
+      "url": "https://www.theverge.com/podcast/1038419/outage-outlook-ground-stop-tech-failure-vergecast",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-20T14:06:59Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "4d2d20d171989c2fb3",
+      "title": "Six AI-powered gadgets that could make your home office smarter",
+      "url": "https://techcrunch.com/2026/11/20/6-ai-powered-gadgets-that-could-make-your-home-office-smarter/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-20T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "5f7d0ca01fa2eb175b",
+      "title": "Rocket Report: A weekend of ups and downs; Stoke celebrates engine milestone",
+      "url": "https://arstechnica.com/space/2026/11/rocket-report-a-weekend-of-ups-and-downs-stoke-celebrates-engine-milestone/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T13:35:45Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "af7d30f58230f92314",
+      "title": "Signal is blocking Gemini and Siri AI from reading your screen",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-20T12:30:47Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8211625ad39f4f6f99",
+      "title": "Only the Seminole Tribe can offer online gambling in Florida—and they're furious at DraftKings",
+      "url": "https://arstechnica.com/tech-policy/2026/11/seminole-tribe-tries-to-stop-draftkings-illegal-gambling-in-florida/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T12:30:29Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "0d74ac30d7a5e2cfa9",
+      "title": "Science has a home here at Ars—please help keep it that way",
+      "url": "https://arstechnica.com/staff/2026/11/science-has-a-home-here-at-ars-please-help-keep-it-that-way/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T12:15:36Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7f09e25508c5a415e1",
+      "title": "Trump admin still won't let Wi-Fi giant TP-Link sell its latest routers in US",
+      "url": "https://arstechnica.com/tech-policy/2026/11/trump-admin-still-wont-let-wi-fi-giant-tp-link-sell-its-latest-routers-in-us/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-20T12:00:43Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8288c457eabd246477",
+      "title": "Apple may be developing its own AI agent that runs your Mac",
+      "url": "https://techcrunch.com/2026/11/19/apple-may-be-developing-its-own-ai-agent-that-runs-your-mac/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-20T00:56:01Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "327354b7a28e2854b8",
+      "title": "Anthropic’s 7 founders cashed out nearly $2B in record-breaking IPO",
+      "url": "https://techcrunch.com/2026/11/19/anthropics-7-founders-cashed-out-nearly-2b-in-record-breaking-ipo/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-20T00:43:50Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "f8133dc16aac0ad50d",
       "title": "Apple is hiring engineers to build its own AI agent",
@@ -608,123 +725,6 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-18T18:10:33Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "13feb5a0d5b21e6a12",
-      "title": "Google’s AI feature in Search gets its own incognito mode",
-      "url": "https://techcrunch.com/2026/11/18/googles-ai-feature-in-search-gets-its-own-incognito-mode/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T18:04:05Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "8ae8cc950dbe1bb7fe",
-      "title": "It shouldn’t be this easy to pedal 25 mph: Specialized’s Turbo Vado 3 Evo",
-      "url": "https://arstechnica.com/gadgets/2026/11/it-shouldnt-be-this-easy-to-pedal-25-mph-specializeds-turbo-vado-3-evo/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T17:53:59Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "120da5d8476ca5b48f",
-      "title": "Disney’s new Star Wars animatronics interact with guests using AI",
-      "url": "https://www.theverge.com/tech/1036729/disney-star-wars-anzellans-animatronic-amazon-aws-cloud-ai",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-18T17:50:57Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0cb2e3ffdc8f4c218d",
-      "title": "Empire State Building Goes Gold for Voyager",
-      "url": "https://www.nasa.gov/image-article/empire-state-building-goes-gold-for-voyager/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-18T17:50:26Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "413bc2a06dfb5939b0",
-      "title": "What Is the Moon Base?",
-      "url": "https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-the-moon-base/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-18T17:36:03Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "663072a237570232a4",
-      "title": "More banks say customers using AI agents are on their own — even if they get hacked",
-      "url": "https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T17:32:10Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d83fee4011ac317b0a",
-      "title": "Sam Altman warns against a future where AI, not humans, calls the shots",
-      "url": "https://techcrunch.com/2026/11/18/sam-altman-warns-against-a-future-where-ai-not-humans-calls-the-shots/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T16:59:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7e951cdca9bc19bccc",
-      "title": "Vulcan failure caused by inadequate fuel supply to engines, ULA says",
-      "url": "https://arstechnica.com/space/2026/11/vulcan-failure-caused-by-inadequate-fuel-supply-to-engines-ula-says/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T16:58:32Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "eabe4f8cd0327c7965",
-      "title": "Waymo has stopped its robotaxis from driving on the freeway—here’s why",
-      "url": "https://arstechnica.com/cars/2026/11/waymo-suspends-freeway-driving-after-california-construction-zone-complaint/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T16:24:34Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "eaeb1e564c509a5a9a",
-      "title": "OpenAI CEO Sam Altman says it’s ‘hard to imagine the AI industry without Jensen’",
-      "url": "https://techcrunch.com/2026/11/18/openai-ceo-sam-altman-says-its-hard-to-imagine-the-ai-industry-without-jensen/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T16:14:09Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4270e297502a029b32",
-      "title": "Remember the frontier AI pause? Chip companies don’t either",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1036549/nvidia-amd-earnings-fall-2026-chips-pause-frontier-models",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-18T15:44:02Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "6cfc94ddb254b0cdb0",
-      "title": "Tesla’s $30,000 Cybercab comes with a $299 monthly catch",
-      "url": "https://arstechnica.com/cars/2026/11/tesla-will-sell-you-a-cybercab-for-30000-then-charge-299-a-month-to-use-it/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T14:01:45Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ddf152f6d3b592a40c",
-      "title": "Will Wright’s next game uses AI to map your memories",
-      "url": "https://www.theverge.com/games/1036140/will-wright-mymems-ai-game-interview",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-18T14:00:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
