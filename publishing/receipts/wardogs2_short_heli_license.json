@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/wardogs2_short_heli_license.json",
+  "manifest_sha256": "00acbbbb7834247403318d99327b3ddef5541c6b984c2558f3163932e1b5aa03",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
