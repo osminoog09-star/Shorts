@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-21T14:49:57.523753+00:00",
+  "checked_at": "2026-11-21T22:15:16.043899+00:00",
   "count": 44,
   "problems": [
     {
@@ -446,8 +446,8 @@
       "receipt_publish_at": "2026-11-21T18:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-21T20:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-21T18:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "Ей позвонила мама. Только мама заперта в больнице 😨 #shorts",
       "upload_status": "processed",
       "rejection": null
