@@ -1,12 +1,75 @@
 {
   "status": "success",
-  "updated_at": "2026-11-21T14:38:59.105829Z",
-  "last_attempt_at": "2026-11-21T14:38:59.105829Z",
+  "updated_at": "2026-11-21T23:15:12.317430Z",
+  "last_attempt_at": "2026-11-21T23:15:12.317430Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "080f5b44a05a8e4afe",
+      "title": "Review: Godzilla Minus Zero joins the list of truly stellar sequels",
+      "url": "https://arstechnica.com/culture/2026/11/review-godzilla-minus-zero-is-everything-we-could-want-in-a-sequel/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-21T22:12:41Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7289e21f33e265e97a",
+      "title": "Signal restricts mobile screenshots as it confronts ‘existential threat’ of AI surveillance",
+      "url": "https://techcrunch.com/2026/11/21/signal-restricts-mobile-screenshots-as-it-confronts-existential-threat-of-ai-surveillance/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-21T21:37:10Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8ed913cfa76c678b69",
+      "title": "A tale of two Nvidias",
+      "url": "https://techcrunch.com/2026/11/21/a-tale-of-two-nvidias/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-21T21:07:42Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ec8e761e0eb8542f51",
+      "title": "The UN fails to agree on rules regulating ‘killer robots’",
+      "url": "https://www.theverge.com/tech/1039554/un-regulations-killer-robots",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-21T20:03:37Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d15566b2aef3b46030",
+      "title": "Here are the top AI agents that can live in your text messages",
+      "url": "https://techcrunch.com/2026/11/21/all-the-ai-agents-that-can-live-in-your-text-messages/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-21T17:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "53e893a48ca02ab229",
+      "title": "Is selling an AI version of your face to this microdrama startup the future of Hollywood?",
+      "url": "https://techcrunch.com/2026/11/21/is-selling-an-ai-version-of-your-face-to-this-microdrama-startup-the-future-of-hollywood/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-21T16:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "3298713995b153167b",
+      "title": "Can Anthropic afford to put safety first?",
+      "url": "https://www.theverge.com/podcast/1038701/anthropic-ipo-ai-safety-openai-nvidia-structure",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-21T15:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "0a3e8c674a4c46f69d",
       "title": "Chess.com’s next move is a new hub for classic games, from mahjong to sudoku",
@@ -611,20 +674,20 @@
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
-      "id": "91089de2fc64468c9b",
-      "title": "Superhuman pushes its Go assistant everywhere",
-      "url": "https://techcrunch.com/2026/11/19/superhuman-pushes-its-go-assistant-everywhere/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-19T14:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
       "id": "6bdfccb498eb826a94",
       "title": "Study reveals data centers’ long-distance damage to air quality",
       "url": "https://news.mit.edu/2026/study-reveals-data-centers-long-distance-damage-air-quality-1119",
       "category": "ai",
       "source": "MIT AI",
+      "published_at": "2026-11-19T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "91089de2fc64468c9b",
+      "title": "Superhuman pushes its Go assistant everywhere",
+      "url": "https://techcrunch.com/2026/11/19/superhuman-pushes-its-go-assistant-everywhere/",
+      "category": "ai",
+      "source": "TechCrunch AI",
       "published_at": "2026-11-19T14:00:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
@@ -662,69 +725,6 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-19T11:13:01Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "108d95f376814446ed",
-      "title": "Microsoft CEO Satya Nadella explains why he asked 60K employees to quit",
-      "url": "https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-19T00:42:56Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "afb1f8fc849417dafc",
-      "title": "Amidst fears of AI cyberattacks, Satya Nadella says lots of critical infrastructure is ‘unpatchable’",
-      "url": "https://techcrunch.com/2026/11/18/amidst-fears-of-ai-cyberattacks-satya-nadella-says-lots-of-critical-infrastructure-is-unpatchable/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T23:45:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e78487095dd3723203",
-      "title": "Elon Musk says ousting Jensen Huang is like ‘kicking Michael Jordan off your team’",
-      "url": "https://techcrunch.com/2026/11/18/elon-musk-says-ousting-jensen-huang-is-like-kicking-michael-jordan-off-your-team/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T23:25:17Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "db088048514cc80c7f",
-      "title": "Ted Cruz-led committee approves Trump FCC nominee 15-0 as Democrats boycott vote",
-      "url": "https://arstechnica.com/tech-policy/2026/11/ted-cruz-led-committee-approves-trump-fcc-nominee-15-0-as-democrats-boycott-vote/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T23:25:04Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d8ba4398191c3d4681",
-      "title": "The nation’s largest school districts consider ditching Google Search",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1037151/school-districts-ditching-google",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-18T23:18:35Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d442346cc5e57a2674",
-      "title": "Microsoft CEO Satya Nadella remains confident in Nvidia after Huang’s exit",
-      "url": "https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-remains-confident-in-nvidia-after-huangs-exit/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T23:17:28Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "9b116527054fca2a1b",
-      "title": "Ukraine blew up Putin’s bridge using relay drones to bypass Starlink limits",
-      "url": "https://arstechnica.com/gadgets/2026/11/ukraine-blew-up-putins-bridge-using-relay-drones-to-bypass-starlink-limits/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-18T23:10:39Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
