@@ -1,17 +1,30 @@
 {
-  "status": "partial",
-  "updated_at": "2026-11-20T23:59:12.531461Z",
-  "last_attempt_at": "2026-11-20T23:59:12.531461Z",
-  "feeds_ok": 6,
-  "feeds_failed": 1,
-  "errors": [
-    {
-      "source": "NASA Technology",
-      "error_type": "HTTPError"
-    }
-  ],
+  "status": "success",
+  "updated_at": "2026-11-21T14:38:59.105829Z",
+  "last_attempt_at": "2026-11-21T14:38:59.105829Z",
+  "feeds_ok": 7,
+  "feeds_failed": 0,
+  "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "0a3e8c674a4c46f69d",
+      "title": "Chess.com’s next move is a new hub for classic games, from mahjong to sudoku",
+      "url": "https://www.theverge.com/games/1038099/chess-classic-games-expansion-ai",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-21T14:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "248395301e19c16d8d",
+      "title": "“Race realism” isn’t realistic—and it isn’t good science",
+      "url": "https://arstechnica.com/science/2026/11/race-realism-isnt-realistic-and-it-isnt-good-science/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-21T12:01:13Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "d1a52d7504aa62549e",
       "title": "Trump FCC declares California isn't allowed to enforce phone service rules",
@@ -712,24 +725,6 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-18T23:10:39Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "49ff21afd78ef9de5e",
-      "title": "Satya Nadella predicts AI agents will reshuffle the economics of the web",
-      "url": "https://techcrunch.com/2026/11/18/satya-nadella-predicts-ai-agents-will-reshuffle-the-economics-of-the-web/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-18T22:58:11Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "162c5c6a72fe29aa97",
-      "title": "NASA Sets Coverage for Northrop Grumman CRS-25 Launch, Prelaunch",
-      "url": "https://www.nasa.gov/news-release/nasa-sets-coverage-for-northrop-grumman-crs-25-launch-prelaunch/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-18T22:19:17Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
