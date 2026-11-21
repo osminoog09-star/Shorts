@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-20T23:13:55.793970+00:00",
+  "checked_at": "2026-11-21T14:49:57.523753+00:00",
   "count": 44,
   "problems": [
     {
@@ -433,8 +433,8 @@
       "receipt_publish_at": "2026-11-21T13:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-21T15:00:00+02:00",
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-21T13:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "20 правил, если все умные устройства выйдут из-под контроля",
       "upload_status": "processed",
       "rejection": null
