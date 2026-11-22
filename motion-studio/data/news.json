@@ -1,17 +1,57 @@
 {
-  "status": "partial",
-  "updated_at": "2026-11-22T14:34:06.932617Z",
-  "last_attempt_at": "2026-11-22T14:34:06.932617Z",
-  "feeds_ok": 6,
-  "feeds_failed": 1,
-  "errors": [
-    {
-      "source": "NASA Technology",
-      "error_type": "HTTPError"
-    }
-  ],
+  "status": "success",
+  "updated_at": "2026-11-22T23:36:55.231247Z",
+  "last_attempt_at": "2026-11-22T23:36:55.231247Z",
+  "feeds_ok": 7,
+  "feeds_failed": 0,
+  "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "7d27fffa3906bd9ac7",
+      "title": "We haven’t seen the last of the major tech outages",
+      "url": "https://www.theverge.com/tech/1039851/major-tech-outages",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-22T22:48:02Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "90468db0d5a9c8d333",
+      "title": "OpenAI’s chief scientist has thoughts on how to limit AI development",
+      "url": "https://techcrunch.com/2026/11/22/openais-chief-scientist-has-thoughts-on-how-to-limit-ai-development/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-22T21:14:07Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "c7c3f2d60795dbcaa9",
+      "title": "65 Years of Human Spaceflight at NASA Johnson",
+      "url": "https://www.nasa.gov/centers-and-facilities/johnson/65-years-of-human-spaceflight-at-nasa-johnson/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-22T19:13:25Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b51af88d58d8138dec",
+      "title": "Why data centers are at the center of the Big Tech backlash",
+      "url": "https://techcrunch.com/2026/11/22/why-data-centers-are-at-the-center-of-the-big-tech-backlash/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-22T18:08:43Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "28c764e2cf8a36efd0",
+      "title": "Binding of Isaac developer removes AI music from Repentance Plus",
+      "url": "https://www.theverge.com/games/1039770/binding-of-isaac-ai-music",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-22T17:25:20Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "e8029993afd719ae83",
       "title": "The vibe-coding revolution is coming to all the gadgets",
@@ -685,51 +725,6 @@
       "category": "ai",
       "source": "The Verge AI",
       "published_at": "2026-11-19T14:25:37Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "528d4c8e9cd7caa955",
-      "title": "Mouse fight club might explain why we like to watch violent things",
-      "url": "https://arstechnica.com/science/2026/11/watching-mouse-fight-club-teaches-the-critters-how-to-fight/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-19T14:04:38Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "6bdfccb498eb826a94",
-      "title": "Study reveals data centers’ long-distance damage to air quality",
-      "url": "https://news.mit.edu/2026/study-reveals-data-centers-long-distance-damage-air-quality-1119",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-11-19T14:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "91089de2fc64468c9b",
-      "title": "Superhuman pushes its Go assistant everywhere",
-      "url": "https://techcrunch.com/2026/11/19/superhuman-pushes-its-go-assistant-everywhere/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-19T14:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "1551bd5df4073a9eaa",
-      "title": "NASA's new Moon plans have a problem: Orion wasn't designed to fly this way",
-      "url": "https://arstechnica.com/space/2026/11/to-make-moon-landings-easier-nasa-is-making-life-harder-for-orion/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-19T13:40:02Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b5b2890766e5da552e",
-      "title": "I let Apple’s always-listening AI summarize my life for two weeks",
-      "url": "https://www.theverge.com/tech/1037100/apple-siri-recap-audio-intelligence-hands-on",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-19T13:00:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
