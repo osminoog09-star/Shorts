@@ -1,12 +1,35 @@
 {
-  "status": "success",
-  "updated_at": "2026-11-21T23:15:12.317430Z",
-  "last_attempt_at": "2026-11-21T23:15:12.317430Z",
-  "feeds_ok": 7,
-  "feeds_failed": 0,
-  "errors": [],
+  "status": "partial",
+  "updated_at": "2026-11-22T14:34:06.932617Z",
+  "last_attempt_at": "2026-11-22T14:34:06.932617Z",
+  "feeds_ok": 6,
+  "feeds_failed": 1,
+  "errors": [
+    {
+      "source": "NASA Technology",
+      "error_type": "HTTPError"
+    }
+  ],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "e8029993afd719ae83",
+      "title": "The vibe-coding revolution is coming to all the gadgets",
+      "url": "https://www.theverge.com/column/1039139/vibe-coding-gadgets-tv-camera",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-22T13:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "5c6fa1fd04f2c4143e",
+      "title": "GLP-1 drugs could have a surprisingly large environmental payoff",
+      "url": "https://arstechnica.com/health/2026/11/glp-1-drugs-could-have-a-surprisingly-large-environmental-payoff/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-22T12:07:41Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "080f5b44a05a8e4afe",
       "title": "Review: Godzilla Minus Zero joins the list of truly stellar sequels",
@@ -707,24 +730,6 @@
       "category": "ai",
       "source": "The Verge AI",
       "published_at": "2026-11-19T13:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c263b280fabbf4887d",
-      "title": "Canva adds an AI ‘off’ button",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1037126/canva-ai-features-off-button",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-19T12:30:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c03674636ed4a8f1e3",
-      "title": "How to tell a cyberattack from a plain old outage",
-      "url": "https://arstechnica.com/security/2026/11/how-to-tell-a-cyberattack-from-a-plain-old-outage/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-19T11:13:01Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
