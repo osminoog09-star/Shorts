@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-21T22:15:16.043899+00:00",
+  "checked_at": "2026-11-22T14:45:24.460405+00:00",
   "count": 44,
   "problems": [
     {
@@ -485,8 +485,8 @@
       "receipt_publish_at": "2026-11-22T13:00:00Z",
       "queue": null,
       "queue_slot": null,
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-22T13:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "МНЕ ОТОБРАЛИ ПРАВА НА ВЕРТОЛЁТ — Wardogs",
       "upload_status": "processed",
       "rejection": null
