@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/wardogs3_short_pilot.json",
+  "manifest_sha256": "d6999dcd1a0e2ec299a222a7038fb6aacc04e3666974b0272ce7cc9c44b1acb4",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
