@@ -1,10 +1,13 @@
 {
-  "status": "uploaded",
+  "status": "scheduled",
   "manifest": "publishing/queue/wardogs3_short_emo.json",
   "manifest_sha256": "f4b39afd9f269346f7f8839500ef5810c526f692b9c1af1d1dd8e83f173e4975",
   "channel": "ru",
-  "publish_at_utc": null,
+  "publish_at_utc": "2026-11-25T18:00:00Z",
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "ihVQaRmsC4k",
-  "video_url": "https://youtu.be/ihVQaRmsC4k"
+  "video_url": "https://youtu.be/ihVQaRmsC4k",
+  "privacy_status": "private",
+  "schedule_confirmed_at": "2026-11-23T15:56:33.519609+00:00",
+  "schedule_request_id": null
 }
