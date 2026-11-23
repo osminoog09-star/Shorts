@@ -1,0 +1,8 @@
+{
+  "status": "reserved",
+  "manifest": "publishing/queue/wardogs3_short_emo.json",
+  "manifest_sha256": "f4b39afd9f269346f7f8839500ef5810c526f692b9c1af1d1dd8e83f173e4975",
+  "channel": "ru",
+  "publish_at_utc": null,
+  "note": "A reserved attempt must NEVER be automatically retried."
+}
