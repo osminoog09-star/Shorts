@@ -1,0 +1,30 @@
+{
+    "channel":  "ru",
+    "metadata":  {
+                     "type":  "short",
+                     "title":  "«Тебя я могу только типом назвать» #wardogs #shorts",
+                     "description":  "Ник себе поставь — иероглифы никто читать не умеет.\n\nTrack: HXDES, DYNAMIS - Kapoeira Phonk [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/kapoeiraphonk\n\n#shorts #wardogs #m1lash",
+                     "tags":  [
+                                  "wardogs",
+                                  "wardogs игра",
+                                  "тактический шутер",
+                                  "хедшоты",
+                                  "смешные моменты",
+                                  "приколы в играх",
+                                  "с друзьями",
+                                  "вертолёт",
+                                  "M1lash",
+                                  "shorts"
+                              ],
+                     "category_id":  "20",
+                     "made_for_kids":  false,
+                     "contains_synthetic_media":  false
+                 },
+    "publish_at":  null,
+    "source":  {
+                   "type":  "release",
+                   "tag":  "private-wardogs3-short-nick-030dfe5c",
+                   "asset":  "wardogs3_short_nick.mp4",
+                   "sha256":  "030dfe5cbc7915f16d749c8b33238bf52b4753aa1d7edb8e21a655257854e503"
+               }
+}

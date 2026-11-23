@@ -1,0 +1,29 @@
+{
+    "channel":  "ru",
+    "metadata":  {
+                     "type":  "long",
+                     "title":  "ОЧЕНЬ ЭМОЦИОНАЛЬНЫЙ ИГРОК — Wardogs с друзьями",
+                     "description":  "Неделя в Wardogs с пацанами: хедшоты, один больше не летает после первого вертолёта, второй впервые садится за штурвал и обещает научиться, а Бист орёт на всех — потому что он просто очень эмоциональный игрок. И добрый самый.\n\n0:00 Хук\n0:27 Разминка\n1:13 Глава 1 · «Я не пилот»\n2:38 Глава 2 · Заходит Бист\n7:25 Глава 3 · «Я научусь»\n10:14 Глава 4 · Лучшее за неделю\n\nМузыка:\nTrack: HXDES, DYNAMIS - Kapoeira Phonk [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/kapoeiraphonk\n\nTrack: 1$K1 - GODSLAYER [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/godslayer\n\nTrack: Dosi, Aisake - Cruising [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/cruising\n\nTrack: Jensation - Joystick [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/jenjoystick\n\nTrack: Anikdote - Turn It Up [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/turnitup\n\nTrack: T-Mass - Ignoring My Heart [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/ignoringmyheart\n\nTrack: ANIZYZ - THE REDEEMER [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/theredeemer\n\n#wardogs #m1lash",
+                     "tags":  [
+                                  "wardogs",
+                                  "wardogs игра",
+                                  "тактический шутер",
+                                  "хедшоты",
+                                  "смешные моменты",
+                                  "приколы в играх",
+                                  "с друзьями",
+                                  "вертолёт",
+                                  "M1lash"
+                              ],
+                     "category_id":  "20",
+                     "made_for_kids":  false,
+                     "contains_synthetic_media":  false
+                 },
+    "publish_at":  null,
+    "source":  {
+                   "type":  "release",
+                   "tag":  "private-wardogs3-ep-43830b0e",
+                   "asset":  "wardogs3_ep.mp4",
+                   "sha256":  "43830b0e5dacd789b3d9cbe81e5c5c8913082f22ca81041d7a147104d5fe3086"
+               }
+}

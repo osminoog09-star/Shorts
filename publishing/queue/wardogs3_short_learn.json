@@ -1,0 +1,30 @@
+{
+    "channel":  "ru",
+    "metadata":  {
+                     "type":  "short",
+                     "title":  "«Я научусь летать на этой штуке» #wardogs #shorts",
+                     "description":  "Первый полёт друга: «он очень инертный».\n\nTrack: T-Mass - Ignoring My Heart [NCS Release]\nMusic provided by NoCopyrightSounds\nFree Download/Stream: http://ncs.io/ignoringmyheart\n\n#shorts #wardogs #m1lash",
+                     "tags":  [
+                                  "wardogs",
+                                  "wardogs игра",
+                                  "тактический шутер",
+                                  "хедшоты",
+                                  "смешные моменты",
+                                  "приколы в играх",
+                                  "с друзьями",
+                                  "вертолёт",
+                                  "M1lash",
+                                  "shorts"
+                              ],
+                     "category_id":  "20",
+                     "made_for_kids":  false,
+                     "contains_synthetic_media":  false
+                 },
+    "publish_at":  null,
+    "source":  {
+                   "type":  "release",
+                   "tag":  "private-wardogs3-short-learn-d19612da",
+                   "asset":  "wardogs3_short_learn.mp4",
+                   "sha256":  "d19612dad5fa4396ca8d4d83c343d026b9fbc4d704f6c43b3a5d0531bfc5a433"
+               }
+}
