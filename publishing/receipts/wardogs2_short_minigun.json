@@ -3,11 +3,11 @@
   "manifest": "publishing/queue/wardogs2_short_minigun.json",
   "manifest_sha256": "a9e1e6b00dfa48fa7438f6f4bfa9fca4392022f470c3123b60d9b52bec4257b7",
   "channel": "ru",
-  "publish_at_utc": "2026-11-24T18:00:00Z",
+  "publish_at_utc": "2026-11-24T08:00:00Z",
   "note": "A reserved attempt must NEVER be automatically retried.",
   "video_id": "AtrbxGBNn7M",
   "video_url": "https://youtu.be/AtrbxGBNn7M",
   "privacy_status": "private",
-  "schedule_confirmed_at": "2026-11-20T16:15:55.813391+00:00",
+  "schedule_confirmed_at": "2026-11-23T14:20:44.431186+00:00",
   "schedule_request_id": null
 }
