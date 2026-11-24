@@ -327,19 +327,6 @@
       "shares": 0,
       "estimatedMinutesWatched": 34
     },
-    "E5MsBkrW94s": {
-      "video": "E5MsBkrW94s",
-      "views": 162,
-      "engagedViews": 46,
-      "averageViewPercentage": 45.46,
-      "averageViewDuration": 24,
-      "subscribersGained": 0,
-      "subscribersLost": 0,
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 21
-    },
     "-xjlegO4ZzQ": {
       "video": "-xjlegO4ZzQ",
       "views": 108,
@@ -366,45 +353,6 @@
       "shares": 0,
       "estimatedMinutesWatched": 10
     },
-    "UPEDaeR0O_c": {
-      "video": "UPEDaeR0O_c",
-      "views": 29,
-      "engagedViews": 17,
-      "averageViewPercentage": 13.19,
-      "averageViewDuration": 91,
-      "subscribersGained": 0,
-      "subscribersLost": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 1,
-      "estimatedMinutesWatched": 26
-    },
-    "3XxxiR2Zxb8": {
-      "video": "3XxxiR2Zxb8",
-      "views": 9,
-      "engagedViews": 7,
-      "averageViewPercentage": 9.67,
-      "averageViewDuration": 158,
-      "subscribersGained": 0,
-      "subscribersLost": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 18
-    },
-    "s7YVEyinxDE": {
-      "video": "s7YVEyinxDE",
-      "views": 4,
-      "engagedViews": 4,
-      "averageViewPercentage": 58.85,
-      "averageViewDuration": 350,
-      "subscribersGained": 1,
-      "subscribersLost": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 1,
-      "estimatedMinutesWatched": 23
-    },
     "CmOu0xXc0UI": {
       "video": "CmOu0xXc0UI",
       "views": 1,
@@ -417,49 +365,10 @@
       "comments": 0,
       "shares": 0,
       "estimatedMinutesWatched": 0
-    },
-    "OpMT1DWymCA": {
-      "video": "OpMT1DWymCA",
-      "views": 1,
-      "engagedViews": 1,
-      "averageViewPercentage": 3.8,
-      "averageViewDuration": 61,
-      "subscribersGained": 0,
-      "subscribersLost": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 1
-    },
-    "XqoHjcsdPtQ": {
-      "video": "XqoHjcsdPtQ",
-      "views": 1,
-      "engagedViews": 0,
-      "averageViewPercentage": 0,
-      "averageViewDuration": 0,
-      "subscribersGained": 0,
-      "subscribersLost": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 0
-    },
-    "oTe1dEelJPs": {
-      "video": "oTe1dEelJPs",
-      "views": 1,
-      "engagedViews": 1,
-      "averageViewPercentage": 0.29,
-      "averageViewDuration": 4,
-      "subscribersGained": 0,
-      "subscribersLost": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "estimatedMinutesWatched": 0
     }
   },
   "unsupported_metrics": [],
   "requested_end": "2026-10-31",
-  "fetched_at": "2026-11-23T19:20:58.084722+00:00",
+  "fetched_at": "2026-11-24T18:58:18.424101+00:00",
   "provisional": true
 }
