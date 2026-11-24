@@ -1,7 +1,7 @@
 {
   "status": "partial",
-  "updated_at": "2026-11-24T03:57:49.327222Z",
-  "last_attempt_at": "2026-11-24T03:57:49.327222Z",
+  "updated_at": "2026-11-24T17:44:32.928838Z",
+  "last_attempt_at": "2026-11-24T17:44:32.928838Z",
   "feeds_ok": 6,
   "feeds_failed": 1,
   "errors": [
@@ -12,6 +12,159 @@
   ],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "e612b5415dc5213a76",
+      "title": "Tidal will ban fully AI-generated music on December 9",
+      "url": "https://arstechnica.com/ai/2026/11/tidal-will-ban-fully-ai-generated-music-on-december-9/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T17:34:34Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "09e62d6e11167de49a",
+      "title": "Tidal will start banning AI-generated music next month",
+      "url": "https://www.theverge.com/entertainment/1041362/tidal-ai-music-ban",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-24T17:17:09Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "08a6094b9f24b3f937",
+      "title": "Meta brings its Muse AI assistant directly into Instagram DMs",
+      "url": "https://techcrunch.com/2026/11/24/meta-brings-its-muse-ai-assistant-directly-into-instagram-dms/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-24T17:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "372f138a352563b509",
+      "title": "Porsche 718 Boxster prototype drive: This electric roadster is real",
+      "url": "https://arstechnica.com/cars/2026/11/fake-gears-and-real-911-dna-driving-porsches-electric-718-boxster/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T16:58:20Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "022f717aafc7a3a3d2",
+      "title": "Tidal to ban and remove millions of AI-generated tracks as AI slop inundates music streaming",
+      "url": "https://techcrunch.com/2026/11/24/tidal-to-ban-and-remove-millions-of-ai-generated-tracks-as-ai-slop-inundates-music-streaming/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-24T16:46:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "9b7f0538ab9342259f",
+      "title": "Jensen Huang deepfakes are the hot new AI slop",
+      "url": "https://www.theverge.com/tech/1041222/jensen-huang-nvidia-scandal-deepfakes",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-24T16:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8f94c03d42bb8a390e",
+      "title": "No more heated seat subscriptions for cars in New York from 2027",
+      "url": "https://arstechnica.com/cars/2026/11/new-york-says-no-more-subscriptions-for-in-car-features-or-does-it/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T16:20:37Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d153a6cb5c99a964a2",
+      "title": "NASA may get $2 billion boost as White House seeks to accelerate Artemis",
+      "url": "https://arstechnica.com/space/2026/11/nasa-may-get-2-billion-boost-as-white-house-seeks-to-accelerate-artemis/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T16:12:46Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b6f91c10121e3db79f",
+      "title": "Why a Crusoe investor is betting on solar and batteries to power future AI data centers",
+      "url": "https://techcrunch.com/2026/11/24/why-a-crusoe-investor-is-betting-on-solar-and-batteries-to-power-future-ai-data-centers/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-24T16:10:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1bfb90103b3c1d8e3d",
+      "title": "The New York Times warns photographers not to update Photoshop over AI features",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1041227/the-new-york-times-warns-photographers-not-to-update-photoshop-over-ai-features",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-24T16:09:23Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "22cc1bf342d89ca2fd",
+      "title": "Pinterest will now let parents limit the AI-generated content their teens see",
+      "url": "https://techcrunch.com/2026/11/24/pinterest-will-now-let-parents-limit-the-ai-generated-content-their-teens-see/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-24T16:02:37Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "66f282829dbe563653",
+      "title": "Homo erectus lived in the rainforest alongside Denisovans",
+      "url": "https://arstechnica.com/science/2026/11/homo-erectus-lived-in-the-rainforest-alongside-denisovans/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T16:01:19Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "352ca41f41cfcf5a0a",
+      "title": "Amazon’s Decart acquisition is a bet on using software to narrow the silicon gap with Nvidia",
+      "url": "https://techcrunch.com/2026/11/24/amazons-decart-acquisition-is-a-bet-on-using-software-to-narrow-the-gap-with-nvidia-in-the-ai-chip-race/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-24T15:51:07Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1881b895e965b0335c",
+      "title": "How Trump and Silicon Valley forced Nvidia to take Jensen Huang back",
+      "url": "https://arstechnica.com/tech-policy/2026/11/how-trump-and-silicon-valley-forced-nvidia-to-take-jensen-huang-back/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T14:56:50Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e97dd56116f464d70d",
+      "title": "Amazon says hackers' AI agents found and exploited 0-day with little human input",
+      "url": "https://arstechnica.com/security/2026/11/amazon-says-hackers-ai-agents-found-and-exploited-0-day-with-little-human-input/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T12:30:05Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "cdfc9e5c7e2cd8a175",
+      "title": "One terminal command gave my forgotten Android device a desk job",
+      "url": "https://arstechnica.com/gadgets/2026/11/one-terminal-command-gave-my-forgotten-android-device-a-desk-job/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T12:15:38Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "2bc78ae7f9f73ae17c",
+      "title": "Ukraine sinks Russian warship, strikes cargo ships from Mediterranean to Baltic",
+      "url": "https://arstechnica.com/gadgets/2026/11/ukraines-sea-drones-blow-up-russian-warship-in-benghazi-operation/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T12:00:57Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "fa9136539de5ecb7ea",
       "title": "Trump engineered a risky comeback for Jensen Huang",
@@ -577,159 +730,6 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-20T20:59:08Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ace204e07fc03ce412",
-      "title": "New NASA Seed Funding Primes Small Businesses for Innovation",
-      "url": "https://www.nasa.gov/directorates/rtmd/new-nasa-seed-funding-primes-small-businesses-for-innovation/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-20T20:46:14Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "fe2d58aadc7c226193",
-      "title": "Watching as a giant star swallowed its neighbor and exploded",
-      "url": "https://arstechnica.com/science/2026/11/astronomers-watched-a-star-spiral-to-its-death-inside-a-giant-companion/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-20T20:41:17Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "da3aafb18139140ed8",
-      "title": "NASA’s new Moon plan is taking shape, but some big questions remain",
-      "url": "https://arstechnica.com/space/2026/11/nasas-new-moon-plan-is-taking-shape-but-some-big-questions-remain/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-20T20:26:33Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b2926e8e7f4e634ac8",
-      "title": "New approach enables physically consistent AI models of chaotic systems",
-      "url": "https://news.mit.edu/new-approach-enables-physically-consistent-ai-models-chaotic-systems-1120",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-11-20T20:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "05d06a2ae37185a155",
-      "title": "Daniel Ek backs AI researcher’s fusion power startup. Here’s what they’re building.",
-      "url": "https://techcrunch.com/2026/11/20/daniel-ek-backs-ai-researchers-fusion-power-startup-heres-what-theyre-building/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-20T19:53:41Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7393f8d24cf3fb1a77",
-      "title": "Prisons get OK to jam contraband phones. CTIA says nearby phones will be jammed too.",
-      "url": "https://arstechnica.com/tech-policy/2026/11/prisons-get-ok-to-jam-contraband-phones-ctia-says-nearby-phones-will-be-jammed-too/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-20T19:52:59Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "81e856d23e6ca94086",
-      "title": "AI claimed a solution to the 167-year-old Riemann hypothesis — and a human did, too",
-      "url": "https://techcrunch.com/2026/11/20/ai-claimed-a-solution-to-the-167-year-old-riemann-hypothesis-and-a-human-did-too/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-20T19:32:08Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3d2e8ae68cb17a84da",
-      "title": "Army delays detonating \"catastrophically hazardous\" lead azide amid fear, anger",
-      "url": "https://arstechnica.com/science/2026/11/outrage-questions-swirl-as-army-delays-blowing-up-stockpile-of-toxic-lead-azide/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-20T19:21:50Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3afdf5a7b1a6fd8a24",
-      "title": "Trump threatens ‘tremendous tax’ for moving AI data centers outside the US",
-      "url": "https://www.theverge.com/policy/1038892/trump-foreign-data-centers-tax",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-20T18:50:19Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "fc059eec5b023eb859",
-      "title": "Chips can survive the space environment — can their financing?",
-      "url": "https://techcrunch.com/2026/11/20/chips-can-survive-the-space-environment-can-their-financing/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-20T17:40:01Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "59c71dfeced9f249bd",
-      "title": "Video Friday: Drone Squeezes Itself to Fit Through Tight Spaces",
-      "url": "https://spectrum.ieee.org/video-friday-morphing-robots-quadrotor",
-      "category": "robotics",
-      "source": "IEEE Spectrum Robotics",
-      "published_at": "2026-11-20T17:30:03Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "675650dffca0c9d459",
-      "title": "Anthropic mathematician claims to have solved prestigious Millennium Prize problem with Claude",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-20T16:34:13Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "668a9e048b9e72134c",
-      "title": "NASA Honor Awards Ceremony Recognizes Employees at Stennis Space Center",
-      "url": "https://www.nasa.gov/centers-and-facilities/stennis/honor-awards-ceremony-at-stennis/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-20T16:27:46Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c014b32dbc57e19cde",
-      "title": "Valve says it might have to raise the price of supply-limited Steam Machines",
-      "url": "https://arstechnica.com/gaming/2026/11/valve-says-it-might-have-to-raise-the-price-of-supply-limited-steam-machines/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-20T16:11:21Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "90af90b972375528e6",
-      "title": "NASA’s Curiosity Mars Rover Collects Samples",
-      "url": "https://www.nasa.gov/image-article/nasas-curiosity-mars-rover-collects-samples/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-20T15:53:24Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "29c6398dc2aba28f7e",
-      "title": "Following the “mathocalypse,” mathematicians consider the future",
-      "url": "https://news.mit.edu/2026/following-mathocalypse-mathematicians-consider-future-1120",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-11-20T15:20:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "bbcc1ed9f7950c3b2e",
-      "title": "The fallout from Nvidia’s Jensen Huang scandal continues",
-      "url": "https://techcrunch.com/podcast/the-fallout-from-nvidias-jensen-huang-scandal-continues/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-20T14:55:44Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
