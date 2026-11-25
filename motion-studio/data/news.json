@@ -1,20 +1,213 @@
 {
-  "status": "partial",
-  "updated_at": "2026-11-24T17:44:32.928838Z",
-  "last_attempt_at": "2026-11-24T17:44:32.928838Z",
-  "feeds_ok": 6,
-  "feeds_failed": 1,
-  "errors": [
-    {
-      "source": "NASA News",
-      "error_type": "ValueError"
-    }
-  ],
+  "status": "success",
+  "updated_at": "2026-11-25T02:27:40.979722Z",
+  "last_attempt_at": "2026-11-25T02:27:40.979722Z",
+  "feeds_ok": 7,
+  "feeds_failed": 0,
+  "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
     {
+      "id": "11304642d4ef0ee9b5",
+      "title": "Yale’s Sonnenfeld: Nvidia is a ‘detriment’ to U.S. industrial might — not a champion",
+      "url": "https://techcrunch.com/2026/11/24/yales-sonnenfeld-nvidia-is-a-detriment-to-u-s-industrial-might-not-a-champion/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-25T00:12:02Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "85a1920569177742d0",
+      "title": "Half of NASA's aging Mars fleet knocked offline by technical issues",
+      "url": "https://arstechnica.com/space/2026/11/half-of-nasas-aging-mars-fleet-knocked-offline-by-technical-issues/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T22:50:11Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "6a53219e0430636a11",
+      "title": "Microsoft's historic cloud outage exposed an engineering “fog of war”",
+      "url": "https://arstechnica.com/gadgets/2026/11/microsofts-historic-cloud-outage-exposed-an-engineering-fog-of-war/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T22:36:28Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "3f66369c8927dc1a5f",
+      "title": "Jensen Huang still thinks a succession plan creates unnecessary hierarchy",
+      "url": "https://techcrunch.com/2026/11/24/jensen-huang-still-thinks-a-succession-plan-creates-unnecessary-hierarchy/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-24T22:27:52Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "a919734a680de1b27c",
+      "title": "In all-hands meeting, Jensen Huang thanks White House and says he’s in therapy",
+      "url": "https://techcrunch.com/2026/11/24/in-all-hands-meeting-jensen-huang-thanks-white-house-and-says-hes-in-therapy/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-24T21:48:27Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ddf5f5e1e3a03a6460",
+      "title": "Even the best AI agents struggle with everyday life",
+      "url": "https://techcrunch.com/2026/11/24/even-the-best-ai-agents-struggle-with-everyday-life/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-24T21:33:29Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "a18f6caa7fc18d5b78",
+      "title": "Walmart teams up with Meta to bring Black Friday deals to AI agent Muse",
+      "url": "https://techcrunch.com/2026/11/24/walmart-teams-up-with-meta-to-bring-black-friday-deals-to-ai-agent-muse/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-24T21:32:38Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "9fd8a5bde39c37e278",
+      "title": "Maple raises $5.3M to build AI products that protect your data, even from itself",
+      "url": "https://techcrunch.com/2026/11/24/maple-raises-5-3m-to-build-ai-products-that-protect-your-data-even-from-itself/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-24T21:19:52Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d85898925b10dda15c",
+      "title": "NASA+ Content Coming to Big Screen at Greenbelt, Maryland Cinema",
+      "url": "https://www.nasa.gov/nasa/nasa-content-coming-to-big-screen-at-greenbelt-maryland-cinema/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-24T21:14:36Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ecbc64e7d02a7a4428",
+      "title": "Teams Lock in Mission Architecture for NASA’s SR-1 Freedom",
+      "url": "https://www.nasa.gov/general/nasa-locks-in-sr1-freedom-mission-architecture/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-24T21:04:32Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d0e234682f9b6d75ce",
+      "title": "What's going on with the Riemann hypothesis?",
+      "url": "https://arstechnica.com/ai/2026/11/whats-going-on-with-the-riemann-hypothesis/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T20:34:53Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "555529a69b5d605cd2",
+      "title": "Jensen Huang reportedly tells Nvidia staff it’s ‘not true’ Trump got him rehired",
+      "url": "https://www.theverge.com/tech/1041571/jensen-huang-all-hands-nvidia-apology",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-24T20:02:03Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ba433feb62053ad4b9",
+      "title": "Back-to-back measles deaths is our new reality; US tally now at 14",
+      "url": "https://arstechnica.com/health/2026/11/measles-death-toll-rises-to-14-as-national-case-tally-nears-6000/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T20:00:18Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "15de07f0ce6e60833b",
+      "title": "Agentic system personalizes physical controls to help users “DJ their art”",
+      "url": "https://news.mit.edu/2026/tangimap-agentic-system-personalizes-physical-controls-help-users-dj-their-art-1124",
+      "category": "ai",
+      "source": "MIT AI",
+      "published_at": "2026-11-24T19:30:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "5257e4b96b7100c003",
+      "title": "NASA’s Northrop Grumman CRS-25 Mission Overview",
+      "url": "https://www.nasa.gov/missions/station/nasas-northrop-grumman-crs-25-mission-overview/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-24T19:09:16Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "949a815f425dc11c13",
+      "title": "Amazon drone crashes on garage after delivering shampoo, draws FAA probe",
+      "url": "https://arstechnica.com/gadgets/2026/11/faa-opens-probe-after-amazon-delivery-drone-clips-cable-crashes-into-garage/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T18:47:57Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "b68502d162ee9e06f7",
+      "title": "Anthropic shares fall below IPO price, a worrying sign for AI startups",
+      "url": "https://techcrunch.com/2026/11/24/anthropic-shares-fall-below-ipo-price-a-worrying-sign-for-ai-startups/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-24T18:30:42Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "48f2a5e1206d5c0661",
+      "title": "Amazon discovers Falcon 9 and Ariane 6 can deliver when nobody else can",
+      "url": "https://arstechnica.com/space/2026/11/amazon-surges-launches-with-rival-spacex-after-ula-fails-to-deliver/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T18:30:36Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "131a5534762c7eb512",
+      "title": "How brewers can protect beers from smoke-tainted hops",
+      "url": "https://arstechnica.com/science/2026/11/how-brewers-can-protect-beers-from-smoke-tainted-hops/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T18:18:37Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ee49075fab924212ef",
+      "title": "David Fincher is being dragged for suspected use of AI in his latest film",
+      "url": "https://www.theverge.com/entertainment/1041417/david-fincher-netflix-cliff-booth-ai-interpositive",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-24T18:15:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "84a94c9fa6cddfa049",
+      "title": "Kalshi makes “difficult decision” to halt Utah trading after losing court fights",
+      "url": "https://arstechnica.com/tech-policy/2026/11/kalshi-makes-difficult-decision-to-halt-utah-trading-after-losing-court-fights/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-24T18:03:58Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "a15f266d5fa6e5a5fe",
+      "title": "UK warns AI-driven cyberattacks are exposing years of weak security",
+      "url": "https://techcrunch.com/2026/11/24/uk-warns-ai-driven-cyberattacks-are-exposing-years-of-weak-security/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-24T18:02:59Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
       "id": "e612b5415dc5213a76",
-      "title": "Tidal will ban fully AI-generated music on December 9",
+      "title": "Tidal announces ban on AI-generated music; 27 million tracks will be deleted",
       "url": "https://arstechnica.com/ai/2026/11/tidal-will-ban-fully-ai-generated-music-on-december-9/",
       "category": "technology",
       "source": "Ars Technica",
@@ -46,6 +239,15 @@
       "category": "technology",
       "source": "Ars Technica",
       "published_at": "2026-11-24T16:58:20Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "7e146f3772423b4d38",
+      "title": "Webb Reveals New Details in Supernova Remnant",
+      "url": "https://www.nasa.gov/image-article/webb-reveals-new-details-in-supernova-remnant/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-24T16:51:27Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     },
     {
@@ -523,213 +725,6 @@
       "category": "ai",
       "source": "MIT AI",
       "published_at": "2026-11-23T05:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "04e5e033b7998e4feb",
-      "title": "How Notable Capital, GIC, and Baillie Gifford bet big on Anthropic before its IPO",
-      "url": "https://techcrunch.com/2026/11/22/how-notable-capital-gic-and-baillie-gifford-bet-big-on-anthropic-before-its-ipo/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-23T01:25:53Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7d27fffa3906bd9ac7",
-      "title": "We haven’t seen the last of the major tech outages",
-      "url": "https://www.theverge.com/tech/1039851/major-tech-outages",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-22T22:48:02Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "90468db0d5a9c8d333",
-      "title": "OpenAI’s chief scientist has thoughts on how to limit AI development",
-      "url": "https://techcrunch.com/2026/11/22/openais-chief-scientist-has-thoughts-on-how-to-limit-ai-development/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-22T21:14:07Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "c7c3f2d60795dbcaa9",
-      "title": "65 Years of Human Spaceflight at NASA Johnson",
-      "url": "https://www.nasa.gov/centers-and-facilities/johnson/65-years-of-human-spaceflight-at-nasa-johnson/",
-      "category": "space",
-      "source": "NASA News",
-      "published_at": "2026-11-22T19:13:25Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b51af88d58d8138dec",
-      "title": "Why data centers are at the center of the Big Tech backlash",
-      "url": "https://techcrunch.com/2026/11/22/why-data-centers-are-at-the-center-of-the-big-tech-backlash/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-22T18:08:43Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "28c764e2cf8a36efd0",
-      "title": "Binding of Isaac developer removes AI music from Repentance Plus",
-      "url": "https://www.theverge.com/games/1039770/binding-of-isaac-ai-music",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-22T17:25:20Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e8029993afd719ae83",
-      "title": "The vibe-coding revolution is coming to all the gadgets",
-      "url": "https://www.theverge.com/column/1039139/vibe-coding-gadgets-tv-camera",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-22T13:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5c6fa1fd04f2c4143e",
-      "title": "GLP-1 drugs could have a surprisingly large environmental payoff",
-      "url": "https://arstechnica.com/health/2026/11/glp-1-drugs-could-have-a-surprisingly-large-environmental-payoff/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-22T12:07:41Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "080f5b44a05a8e4afe",
-      "title": "Review: Godzilla Minus Zero joins the ranks of truly stellar sequels",
-      "url": "https://arstechnica.com/culture/2026/11/review-godzilla-minus-zero-is-everything-we-could-want-in-a-sequel/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-21T22:12:41Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7289e21f33e265e97a",
-      "title": "Signal restricts mobile screenshots as it confronts ‘existential threat’ of AI surveillance",
-      "url": "https://techcrunch.com/2026/11/21/signal-restricts-mobile-screenshots-as-it-confronts-existential-threat-of-ai-surveillance/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-21T21:37:10Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "8ed913cfa76c678b69",
-      "title": "A tale of two Nvidias",
-      "url": "https://techcrunch.com/2026/11/21/a-tale-of-two-nvidias/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-21T21:07:42Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ec8e761e0eb8542f51",
-      "title": "The UN fails to agree on rules regulating ‘killer robots’",
-      "url": "https://www.theverge.com/tech/1039554/un-regulations-killer-robots",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-21T20:03:37Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d15566b2aef3b46030",
-      "title": "Here are the top AI agents that can live in your text messages",
-      "url": "https://techcrunch.com/2026/11/21/all-the-ai-agents-that-can-live-in-your-text-messages/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-21T17:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "53e893a48ca02ab229",
-      "title": "Is selling an AI version of your face to this microdrama startup the future of Hollywood?",
-      "url": "https://techcrunch.com/2026/11/21/is-selling-an-ai-version-of-your-face-to-this-microdrama-startup-the-future-of-hollywood/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-21T16:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "3298713995b153167b",
-      "title": "Can Anthropic afford to put safety first?",
-      "url": "https://www.theverge.com/podcast/1038701/anthropic-ipo-ai-safety-openai-nvidia-structure",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-21T15:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0a3e8c674a4c46f69d",
-      "title": "Chess.com’s next move is a new hub for classic games, from mahjong to sudoku",
-      "url": "https://www.theverge.com/games/1038099/chess-classic-games-expansion-ai",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-21T14:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "248395301e19c16d8d",
-      "title": "“Race realism” isn’t realistic—and it isn’t good science",
-      "url": "https://arstechnica.com/science/2026/11/race-realism-isnt-realistic-and-it-isnt-good-science/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-21T12:01:13Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d1a52d7504aa62549e",
-      "title": "Trump FCC declares California isn't allowed to enforce phone service rules",
-      "url": "https://arstechnica.com/tech-policy/2026/11/fcc-orders-california-to-stop-enforcing-phone-service-rules-against-att/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-20T22:28:24Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "9cc228f9e09fc4158b",
-      "title": "SpaceX's Starshield troubles in Ukraine could threaten its broader military business",
-      "url": "https://arstechnica.com/space/2026/11/incoming-house-chair-threatens-spacex-funding-over-ukraine-controversy/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-20T22:16:51Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "ae5a204aaba705d52a",
-      "title": "Google rolls out new search homepage with AI chat history and no search button",
-      "url": "https://arstechnica.com/ai/2026/11/googles-latest-search-page-redesign-drops-the-search-button-adds-ai-sidebar/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-20T21:58:29Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "85d0c5a4a983edfbbc",
-      "title": "Meta reconsiders 2030 net-zero goal amid record emissions from AI data centers",
-      "url": "https://arstechnica.com/ai/2026/11/meta-reconsiders-2030-net-zero-goal-amid-record-emissions-from-ai-data-centers/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-20T21:47:10Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "35c2239500f319c9d3",
-      "title": "Q&A: Enabling more human-like interactions and understanding in multimodal foundation models",
-      "url": "https://news.mit.edu/2026/qa-enabling-more-human-interactions-understanding-multimodal-foundation-models-1120",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-11-20T21:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "cc88c546d1214b6505",
-      "title": "Researcher plants 2m canaries into the AI supply chain. A privacy disaster surfaced.",
-      "url": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-20T20:59:08Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
