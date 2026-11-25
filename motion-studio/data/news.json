@@ -1,15 +1,141 @@
 {
   "status": "success",
-  "updated_at": "2026-11-25T02:27:40.979722Z",
-  "last_attempt_at": "2026-11-25T02:27:40.979722Z",
+  "updated_at": "2026-11-25T17:12:43.592997Z",
+  "last_attempt_at": "2026-11-25T17:12:43.592997Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
     {
+      "id": "4378329187ef56e635",
+      "title": "Childhood, Career Come Full Circle for Budget Analyst at NASA Goddard",
+      "url": "https://www.nasa.gov/centers-and-facilities/goddard/childhood-career-come-full-circle-for-budget-analyst-at-nasa-goddard/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-25T16:47:29Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "361ff3dcd8aee7d010",
+      "title": "Ars Live recap: Don’t expect military attacks on data centers to stop",
+      "url": "https://arstechnica.com/gadgets/2026/11/ars-live-recap-dont-expect-military-attacks-on-data-centers-to-stop/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-25T16:47:14Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "bd85725bcde7fc6d83",
+      "title": "Guilty: Huawei faces steep penalties for stealing T-Mobile, Cisco trade secrets",
+      "url": "https://arstechnica.com/tech-policy/2026/11/jury-convicts-huawei-of-stealing-us-trade-secrets-evading-iran-sanctions/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-25T16:33:45Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "310c482d5e04f45d85",
+      "title": "Eye of the Sahara",
+      "url": "https://www.nasa.gov/image-article/eye-of-the-sahara/",
+      "category": "space",
+      "source": "NASA News",
+      "published_at": "2026-11-25T16:21:04Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "927dd6b10beb1b9592",
+      "title": "Nothing offers a full look at its AI earbuds and charging case",
+      "url": "https://www.theverge.com/gadgets/1042162/nothing-ear-note-ai-earbuds-reveal",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-25T16:00:59Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "ef02d096cf97eadcf1",
+      "title": "AI data centers are becoming harder to build, and neoclouds are feeling it",
+      "url": "https://techcrunch.com/podcast/ai-data-centers-are-becoming-harder-to-build-and-neoclouds-are-feeling-it/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-25T15:41:43Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "83a906aa5894b936bc",
+      "title": "Lead azide detonation sends clouds over Iowa as questions of health risks swirl",
+      "url": "https://arstechnica.com/health/2026/11/army-detonates-tons-of-lead-azide-as-local-residents-brace-for-toxic-plume/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-25T15:35:17Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d67bccbea50f4f846b",
+      "title": "How DARPA Challenged Teams to Bring Robots Into Disaster Triage",
+      "url": "https://spectrum.ieee.org/darpa-triage-challenge-final-robots",
+      "category": "robotics",
+      "source": "IEEE Spectrum Robotics",
+      "published_at": "2026-11-25T15:00:03Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1a604d5c888534c5e5",
+      "title": "A familiar Iranian hacking group has found a new way to cause chaos",
+      "url": "https://arstechnica.com/security/2026/11/a-familiar-iranian-hacking-group-has-found-a-new-way-to-cause-chaos/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-25T14:29:43Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "8309588c20e1138eb4",
+      "title": "Amazon is reportedly in talks to end Muse AI shopping block",
+      "url": "https://www.theverge.com/tech/1042071/meta-amazon-muse-ai-shopping-discussions",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-25T14:12:33Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "9d204a99ce77317cf5",
+      "title": "Amazon and Meta reportedly in talks to lift blockade on AI agent Muse",
+      "url": "https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-25T14:10:18Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "5f2a9faee9c0f0d02f",
+      "title": "The questions Jensen Huang and Nvidia will still have to answer about Megaspeed",
+      "url": "https://techcrunch.com/2026/11/25/the-questions-jensen-huang-and-nvidia-will-still-have-to-answer-about-megaspeed/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-25T13:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "d7f8df890f989b59e6",
+      "title": "Has vibe coding made open source the new normal for synths?",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1040081/vibe-coding-open-source-music-firmware",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-25T13:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "5f071a5fc3a63b13a3",
+      "title": "AI may soon change what it means to be a theoretical physicist",
+      "url": "https://arstechnica.com/ai/2026/11/ai-can-do-the-calculations-physicists-are-figuring-out-what-comes-next/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-25T12:00:28Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
       "id": "11304642d4ef0ee9b5",
-      "title": "Yale’s Sonnenfeld: Nvidia is a ‘detriment’ to U.S. industrial might — not a champion",
+      "title": "Yale’s Sonnenfeld: Nvidia is a ‘detriment’ to US industrial might — not a champion",
       "url": "https://techcrunch.com/2026/11/24/yales-sonnenfeld-nvidia-is-a-detriment-to-u-s-industrial-might-not-a-champion/",
       "category": "ai",
       "source": "TechCrunch AI",
@@ -599,132 +725,6 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-11-23T16:39:10Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f5ab5067ad25840d0a",
-      "title": "White House brags that Trump was ‘totally involved’ in getting Jensen reinstated",
-      "url": "https://www.theverge.com/policy/1040096/trump-nvidia-jensen-huang-reinstated",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-23T16:30:11Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "54b870a4c86e13f83c",
-      "title": "Tech leaders are celebrating Jensen Huang’s return",
-      "url": "https://www.theverge.com/tech/1040069/jensen-huang-return-elon-musk-sam-altman-yay",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-23T16:14:04Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "4d311cc43bc2894169",
-      "title": "Marvel crams every superhero ever into Avengers: Doomsday final trailer",
-      "url": "https://arstechnica.com/culture/2026/11/marvel-crams-every-superhero-ever-into-avengers-doomsday-final-trailer/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-23T15:55:12Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "20cfb07f132dd65d49",
-      "title": "Jensen Huang reinstated as Nvidia CEO, board chair",
-      "url": "https://arstechnica.com/ai/2026/11/jensen-huang-reinstated-as-nvidia-ceo-board-chair/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-23T15:46:18Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "aad6f2d81e7b34da01",
-      "title": "COP31 ends in failure as countries split over fossil fuels, climate finance",
-      "url": "https://arstechnica.com/science/2026/11/cop31-ends-in-failure-as-countries-split-over-fossil-fuels-climate-finance/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-23T15:23:26Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "5876b76a766d77a51f",
-      "title": "Trump endorses Jensen Huang’s return to Nvidia, says US has no evidence of wrongdoing",
-      "url": "https://techcrunch.com/2026/11/23/trump-endorses-jensen-huangs-return-to-nvidia-says-us-has-no-evidence-of-wrongdoing/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-23T15:04:01Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "10ed8c9647ecbbfb2c",
-      "title": "Sierra doubles valuation to $30B within six months as demand for AI in CX takes off",
-      "url": "https://techcrunch.com/2026/11/23/sierra-doubles-valuation-to-30b-within-six-months-as-demand-for-ai-in-cx-takes-off/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-23T14:43:03Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "0affd11db18d863015",
-      "title": "Nvidia reverses course and brings Jensen Huang back as CEO",
-      "url": "https://techcrunch.com/2026/11/23/nvidia-reverses-course-and-brings-jensen-huang-back-as-ceo/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-23T14:21:59Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "1edc217fe1ccf60b8a",
-      "title": "Jensen Huang is back as Nvidia’s CEO",
-      "url": "https://www.theverge.com/tech/1039937/nvidia-ceo-jensen-huang-reinstated",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-23T14:04:24Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "19e0ad3fe0850214d2",
-      "title": "F1 in Las Vegas: You've never seen an F1 race like this before",
-      "url": "https://arstechnica.com/cars/2026/11/f1-in-las-vegas-youve-never-seen-an-f1-race-like-this-before/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-23T13:54:22Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "7b55e88540fcc1a567",
-      "title": "Tri-screen portable monitors aren’t for the faint of heart",
-      "url": "https://arstechnica.com/gadgets/2026/11/a-triple-screen-portable-monitor-means-more-pixels-and-more-bulk/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-23T12:15:16Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d76321c82e0f0e3575",
-      "title": "Review: The Asus ProArt P16 offers a glimpse of a future powered by local AI",
-      "url": "https://arstechnica.com/reviews/2026/11/review-the-asus-proart-p16-offers-a-glimpse-of-a-future-powered-by-local-ai/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-23T12:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "599ec3a9c12f02c6cc",
-      "title": "Meta Muse can do your Black Friday shopping at Walmart",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1039874/walmart-agent-gateway-meta-muse-black-friday",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-23T11:00:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "e652a8cea996485194",
-      "title": "AI-driven technique could help engineers design analog chips faster and with less expense",
-      "url": "https://news.mit.edu/2026/ai-driven-technique-could-help-engineers-design-analog-chips-faster-and-less-expensive-1123",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-11-23T05:00:00Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
