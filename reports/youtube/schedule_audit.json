@@ -1,7 +1,21 @@
 {
-  "checked_at": "2026-11-24T17:59:25.561804+00:00",
+  "checked_at": "2026-11-25T17:27:44.193589+00:00",
   "count": 51,
   "problems": [
+    {
+      "slug": "ai_levels_ru",
+      "video_id": "2suySU6uCGk",
+      "receipt": "uploaded",
+      "receipt_publish_at": null,
+      "queue": "published",
+      "queue_slot": null,
+      "live_privacy": null,
+      "live_publishAt": null,
+      "title": null,
+      "upload_status": null,
+      "rejection": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
+    },
     {
       "slug": "ai_news_2026_11_03",
       "video_id": "oMhef8NQg1s",
@@ -57,6 +71,48 @@
       "upload_status": null,
       "rejection": null,
       "problem": "видео не найдено на канале (удалено или нет доступа)"
+    },
+    {
+      "slug": "oumuamua_ru",
+      "video_id": "iYmh6Fd3LMY",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-14T13:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-14T15:00:00+02:00",
+      "live_privacy": null,
+      "live_publishAt": null,
+      "title": null,
+      "upload_status": null,
+      "rejection": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
+    },
+    {
+      "slug": "smart_revolt_ru",
+      "video_id": "5yZu11PYoc4",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-21T13:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-21T15:00:00+02:00",
+      "live_privacy": null,
+      "live_publishAt": null,
+      "title": null,
+      "upload_status": null,
+      "rejection": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
+    },
+    {
+      "slug": "weather_bureau",
+      "video_id": "uxS6DACvQGY",
+      "receipt": "scheduled",
+      "receipt_publish_at": "2026-11-18T13:00:00Z",
+      "queue": "scheduled",
+      "queue_slot": "2026-11-18T15:00:00+02:00",
+      "live_privacy": null,
+      "live_publishAt": null,
+      "title": null,
+      "upload_status": null,
+      "rejection": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
     }
   ],
   "rows": [
@@ -93,11 +149,12 @@
       "receipt_publish_at": null,
       "queue": "published",
       "queue_slot": null,
-      "live_privacy": "public",
+      "live_privacy": null,
       "live_publishAt": null,
-      "title": "Ты прошёл 8 уровней искусственного интеллекта",
-      "upload_status": "processed",
-      "rejection": null
+      "title": null,
+      "upload_status": null,
+      "rejection": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
     },
     {
       "slug": "ai_news_2026_11_03",
@@ -383,11 +440,12 @@
       "receipt_publish_at": "2026-11-14T13:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-14T15:00:00+02:00",
-      "live_privacy": "public",
+      "live_privacy": null,
       "live_publishAt": null,
-      "title": "Оумуамуа: гость, который не должен был ускоряться",
-      "upload_status": "processed",
-      "rejection": null
+      "title": null,
+      "upload_status": null,
+      "rejection": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
     },
     {
       "slug": "pretend_bot3_gpt",
@@ -448,11 +506,12 @@
       "receipt_publish_at": "2026-11-21T13:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-21T15:00:00+02:00",
-      "live_privacy": "public",
+      "live_privacy": null,
       "live_publishAt": null,
-      "title": "20 правил, если все умные устройства выйдут из-под контроля",
-      "upload_status": "processed",
-      "rejection": null
+      "title": null,
+      "upload_status": null,
+      "rejection": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
     },
     {
       "slug": "smart_revolt_short_ru",
@@ -526,8 +585,8 @@
       "receipt_publish_at": "2026-11-25T08:00:00Z",
       "queue": null,
       "queue_slot": null,
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-25T08:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "Высадка с огромной высоты: план vs реальность #wardogs #shorts",
       "upload_status": "processed",
       "rejection": null
@@ -552,8 +611,8 @@
       "receipt_publish_at": "2026-11-25T13:00:00Z",
       "queue": null,
       "queue_slot": null,
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-25T13:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "ОЧЕНЬ ЭМОЦИОНАЛЬНЫЙ ИГРОК — Wardogs с друзьями",
       "upload_status": "processed",
       "rejection": null
@@ -578,8 +637,8 @@
       "receipt_publish_at": "2026-11-24T18:00:00Z",
       "queue": null,
       "queue_slot": null,
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-24T18:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "Хедшот за хедшотом 🎯 #wardogs #shorts",
       "upload_status": "processed",
       "rejection": null
@@ -721,11 +780,12 @@
       "receipt_publish_at": "2026-11-18T13:00:00Z",
       "queue": "scheduled",
       "queue_slot": "2026-11-18T15:00:00+02:00",
-      "live_privacy": "public",
+      "live_privacy": null,
       "live_publishAt": null,
-      "title": "POV: ты работаешь в городе, где продают погоду",
-      "upload_status": "processed",
-      "rejection": null
+      "title": null,
+      "upload_status": null,
+      "rejection": null,
+      "problem": "видео не найдено на канале (удалено или нет доступа)"
     }
   ]
 }
