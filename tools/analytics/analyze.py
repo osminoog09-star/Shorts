@@ -40,10 +40,10 @@ def main():
         r["_v"] = num(r.get("views_7d")) or num(r.get("views_48h"))
         r["_age"] = "7д" if num(r.get("views_7d")) else "48ч" if num(r.get("views_48h")) else "—"
         L, avd = num(r.get("length_s")), num(r.get("avd_s"))
-        r["_apv"] = (avd / L * 100) if L and avd else None
+        r["_apv"] = (avd / L * 100) if L and avd else num(r.get("yt_averageViewPercentage"))
         v = r["_v"]
-        r["_like"] = (num(r.get("likes")) or 0) / v * 100 if v else None
-        r["_share"] = (num(r.get("shares")) or 0) / v * 100 if v else None
+        r["_like"] = (num(r.get("likes")) or num(r.get("yt_likes")) or 0) / v * 100 if v else None
+        r["_share"] = (num(r.get("shares")) or num(r.get("yt_shares")) or 0) / v * 100 if v else None
         tok = num((r.get("tokens") or "").lstrip("~"))
         r["_eff"] = v / tok * 1e5 if (v and tok) else None   # просмотры на 100 тыс. токенов
 
