@@ -1,12 +1,48 @@
 {
   "status": "success",
-  "updated_at": "2026-11-26T01:46:53.981596Z",
-  "last_attempt_at": "2026-11-26T01:46:53.981596Z",
+  "updated_at": "2026-11-26T16:53:27.023467Z",
+  "last_attempt_at": "2026-11-26T16:53:27.023467Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
+    {
+      "id": "b81da0547893b26212",
+      "title": "As Anthropic IPOs, Grand Theft Auto VI proves why efficiency isn’t a virtue",
+      "url": "https://techcrunch.com/2026/11/26/as-anthropic-ipos-grand-theft-auto-vi-proves-why-efficiency-isnt-a-virtue/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-26T16:00:00Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "193535c3d6a203120e",
+      "title": "Draining peatlands is responsible for a few percent of our global warming",
+      "url": "https://arstechnica.com/science/2026/11/draining-peatlands-is-responsible-for-a-few-percent-of-our-global-warming/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-26T12:15:42Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "1fb96d1f02355e3a06",
+      "title": "From minimalist to maximalist: Ars staffers show off their home offices",
+      "url": "https://arstechnica.com/features/2026/11/from-minimalist-to-maximalist-ars-staffers-show-off-their-home-offices/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-26T12:00:14Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "e51b021662e92d6081",
+      "title": "42 state AGs are trying to stop Character.AI from selling users’ chats",
+      "url": "https://www.theverge.com/policy/1042620/character-ai-sale-state-ags-block-selling-users-chats",
+      "category": "ai",
+      "source": "The Verge AI",
+      "published_at": "2026-11-26T09:54:40Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
     {
       "id": "d7b28b808e94d82809",
       "title": "S&P considers Nvidia credit downgrade over governance and ‘key man’ risks",
@@ -689,42 +725,6 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-11-23T21:47:41Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f323d7562d6653aad5",
-      "title": "States sue SpaceX to stop Grok from generating child sex images, revenge porn",
-      "url": "https://arstechnica.com/tech-policy/2026/11/states-sue-spacex-to-stop-grok-from-generating-child-sex-images-revenge-porn/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-23T21:30:44Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "bcef4e5640ff9cf531",
-      "title": "Megaspeed, the company at the center of the Jensen Huang scandal, appears headed for a US blacklist",
-      "url": "https://techcrunch.com/2026/11/23/megaspeed-the-company-at-the-center-of-the-jensen-huang-scandal-appears-headed-for-a-u-s-blacklist/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-23T21:25:42Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "dfa0b937d567023b29",
-      "title": "Many languages, one common neural code",
-      "url": "https://news.mit.edu/2026/many-languages-one-common-neural-code-1123",
-      "category": "ai",
-      "source": "MIT AI",
-      "published_at": "2026-11-23T21:15:00Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "b6aa410db677fb5659",
-      "title": "AI data centers throw another wrench into chaotic UN climate talks",
-      "url": "https://www.theverge.com/science/1040497/ai-data-centers-electricity-un-climate-summit",
-      "category": "ai",
-      "source": "The Verge AI",
-      "published_at": "2026-11-23T21:09:37Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
