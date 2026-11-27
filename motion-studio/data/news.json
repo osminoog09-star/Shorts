@@ -1,15 +1,33 @@
 {
   "status": "success",
-  "updated_at": "2026-11-26T16:53:27.023467Z",
-  "last_attempt_at": "2026-11-26T16:53:27.023467Z",
+  "updated_at": "2026-11-27T01:43:38.693625Z",
+  "last_attempt_at": "2026-11-27T01:43:38.693625Z",
   "feeds_ok": 7,
   "feeds_failed": 0,
   "errors": [],
   "scope": "source headlines only; articles, primary statements and claims need independent verification",
   "items": [
     {
+      "id": "979e22972f743c1451",
+      "title": "Nvidia hits pause on chip shipments to Southeast Asia",
+      "url": "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/",
+      "category": "ai",
+      "source": "TechCrunch AI",
+      "published_at": "2026-11-26T20:03:54Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
+      "id": "cd2ffd2be57f1654c1",
+      "title": "Ford unveils the GT41 as it hopes to win Le Mans again",
+      "url": "https://arstechnica.com/cars/2026/11/ford-unveils-the-gt41-as-it-hopes-to-win-le-mans-again/",
+      "category": "technology",
+      "source": "Ars Technica",
+      "published_at": "2026-11-26T18:00:29Z",
+      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
+    },
+    {
       "id": "b81da0547893b26212",
-      "title": "As Anthropic IPOs, Grand Theft Auto VI proves why efficiency isn’t a virtue",
+      "title": "Grand Theft Auto VI proves why efficiency isn’t a virtue",
       "url": "https://techcrunch.com/2026/11/26/as-anthropic-ipos-grand-theft-auto-vi-proves-why-efficiency-isnt-a-virtue/",
       "category": "ai",
       "source": "TechCrunch AI",
@@ -707,24 +725,6 @@
       "category": "ai",
       "source": "TechCrunch AI",
       "published_at": "2026-11-23T22:02:05Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "f2f0a76fa1d8608cd1",
-      "title": "Trump halts Iowa detonation, says new governor to blame if it blows accidentally",
-      "url": "https://arstechnica.com/health/2026/11/trump-halts-iowa-detonation-says-new-governor-to-blame-if-it-blows-accidentally/",
-      "category": "technology",
-      "source": "Ars Technica",
-      "published_at": "2026-11-23T21:58:34Z",
-      "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
-    },
-    {
-      "id": "d4f79d2af1d5e9d787",
-      "title": "Elon Musk and others rejoice as Jensen Huang is reinstated at Nvidia amid scandal",
-      "url": "https://techcrunch.com/2026/11/23/elon-musk-and-others-rejoice-as-jensen-huang-is-reinstated-at-nvidia-amid-scandal/",
-      "category": "ai",
-      "source": "TechCrunch AI",
-      "published_at": "2026-11-23T21:47:41Z",
       "status": "SOURCE_TITLE_NOT_FACT_CHECKED"
     }
   ]
