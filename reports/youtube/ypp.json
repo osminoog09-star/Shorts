@@ -1,18 +1,13 @@
 {
- "as_of": "2026-11-23",
- "built": "2026-11-26T17:48:00.445521+00:00",
+ "as_of": "2026-11-24",
+ "built": "2026-11-27T17:33:00.597575+00:00",
  "engaged_views": true,
  "pace": {
-  "subs_per_day": 0.64,
-  "shorts_views_per_day": 155,
+  "subs_per_day": 0.5,
+  "shorts_views_per_day": 238,
   "long_hours_per_day": 0.0
  },
  "shorts_daily_90": [
-  {
-   "day": "2026-08-26",
-   "views": 0,
-   "all": 0
-  },
   {
    "day": "2026-08-27",
    "views": 0,
@@ -450,13 +445,18 @@
   },
   {
    "day": "2026-11-22",
-   "views": 116,
-   "all": 228
+   "views": 115,
+   "all": 227
   },
   {
    "day": "2026-11-23",
    "views": 142,
    "all": 238
+  },
+  {
+   "day": "2026-11-24",
+   "views": 585,
+   "all": 1076
   }
  ],
  "tiers": [
@@ -469,19 +469,19 @@
     "target": 500,
     "unit": "подп.",
     "pct": 9.8,
-    "eta_days": 702,
-    "eta_date": "2028-10-28",
+    "eta_days": 902,
+    "eta_date": "2029-05-17",
     "need": "нужно ~16/день, чтобы за месяц"
    },
    "uploads": {
-    "current": 18,
+    "current": 20,
     "target": 3,
     "ok": true
    },
    "paths": [
     {
      "name": "3 млн просмотров Shorts / 90 дн",
-     "current": 29835,
+     "current": 30419,
      "target": 3000000,
      "unit": "просм.",
      "pct": 1.0,
@@ -512,14 +512,14 @@
     "target": 1000,
     "unit": "подп.",
     "pct": 4.9,
-    "eta_days": 1480,
-    "eta_date": "2030-12-15",
+    "eta_days": 1902,
+    "eta_date": "2032-02-11",
     "need": "нужно ~32/день, чтобы за месяц"
    },
    "paths": [
     {
      "name": "10 млн просмотров Shorts / 90 дн",
-     "current": 29835,
+     "current": 30419,
      "target": 10000000,
      "unit": "просм.",
      "pct": 0.3,
