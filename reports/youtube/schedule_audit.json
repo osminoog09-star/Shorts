@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-27T01:04:37.115592+00:00",
+  "checked_at": "2026-11-27T16:51:52.687956+00:00",
   "count": 51,
   "problems": [
     {
@@ -1038,8 +1038,8 @@
       "receipt_publish_at": "2026-11-27T08:00:00Z",
       "queue": null,
       "queue_slot": null,
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-27T08:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "«Я научусь летать на этой штуке» #wardogs #shorts",
       "upload_status": "processed",
       "rejection": null
