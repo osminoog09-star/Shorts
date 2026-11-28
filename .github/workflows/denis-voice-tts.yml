@@ -140,6 +140,15 @@ jobs:
             --model-dir "$QWEN_LOCAL_PATH" \
             --output "$VOICE_RESULT_DIR"
           test -s "$VOICE_RESULT_DIR/manifest.json"
+      - name: Reuse verified private voice lines for five-tricks retry
+        if: success() && env.VOICE_JOB_ID == 'shopping_tricks_20261128_v3'
+        env:
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ secrets.YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+        run: python shorts/shopping_tricks_20261128_v3/reuse_voice.py "$VOICE_RESULT_DIR"
       - name: Store synthesized files in owner-private Google Drive voice_out
         env:
           GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
@@ -159,7 +168,7 @@ jobs:
           print('Uploaded files:',len(j['files']),'(no voice reference, no embedding)')
           PY
       - name: Assemble three-shopping-tricks Short (no outro, owner-private review only)
-        if: success() && (env.VOICE_JOB_ID == 'shopping_tricks_20261128' || env.VOICE_JOB_ID == 'shopping_tricks_20261128_v2')
+        if: success() && (env.VOICE_JOB_ID == 'shopping_tricks_20261128' || env.VOICE_JOB_ID == 'shopping_tricks_20261128_v2' || env.VOICE_JOB_ID == 'shopping_tricks_20261128_v3')
         env:
           GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
           YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
@@ -173,7 +182,7 @@ jobs:
           OUT="$RUNNER_TEMP/shopping-tricks-review"
           case "$VOICE_JOB_ID" in
             shopping_tricks_20261128) VIDEO=M1lash_3_tricks_ru.mp4 ;;
-            shopping_tricks_20261128_v2) VIDEO=M1lash_5_tricks_ru.mp4 ;;
+            shopping_tricks_20261128_v2|shopping_tricks_20261128_v3) VIDEO=M1lash_5_tricks_ru.mp4 ;;
             *) exit 1 ;;
           esac
           python "shorts/$VOICE_JOB_ID/render.py" --voice-dir "$VOICE_RESULT_DIR" --out "$OUT"
