@@ -8,12 +8,15 @@ on:
         description: 'jobs/voice/<id>.json in this repository'
         type: string
         required: true
-  # push-trigger test_claude removed 06.11 after run 42101115487 SUCCESS (ASR 3/3, Drive PASS)
+  # Owner approved 2026-11-28: one newly added voice job per push on main.
+  push:
+    branches: [main]
+    paths: ['jobs/voice/*.json']
 
 permissions:
   contents: read
 concurrency:
-  group: denis-voice-${{ github.event_name == 'push' && 'test_claude' || inputs.job_path }}
+  group: denis-voice-${{ github.event_name == 'push' && 'auto' || inputs.job_path }}
   cancel-in-progress: false
 
 jobs:
@@ -29,9 +32,24 @@ jobs:
       OMP_NUM_THREADS: '2'
       MKL_NUM_THREADS: '2'
       TRANSFORMERS_NO_ADVISORY_WARNINGS: '1'
-      JOB_FILE: ${{ github.event_name == 'push' && 'jobs/voice/test_claude.json' || inputs.job_path }}
+      JOB_FILE: ${{ inputs.job_path }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Resolve exactly one new voice job on main (automatic pushes only)
+        if: github.event_name == 'push'
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+          # Single-commit pushes only; fail closed on multi-commit pushes or missing base.
+          test "$(git rev-parse HEAD^ )" = "$BEFORE_SHA" || { echo '::error::Automatic voice jobs require one commit per push'; exit 1; }
+          mapfile -t added < <(git diff --name-only --diff-filter=A "$BEFORE_SHA" HEAD -- jobs/voice/)
+          test "${#added[@]}" -eq 1 || { echo '::error::Expected exactly one newly added voice job; use manual dispatch for edits'; exit 1; }
+          [[ "${added[0]}" =~ ^jobs/voice/[a-zA-Z0-9_-]+\.json$ ]] || { echo '::error::Invalid voice job path'; exit 1; }
+          printf 'JOB_FILE=%s\n' "${added[0]}" >> "$GITHUB_ENV"
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
       - name: Verify job allowlist, metadata and unit tests (without reading private voice)
@@ -140,8 +158,9 @@ jobs:
           print('PRIVATE VOICE RESULT:',j['folder_url'])
           print('Uploaded files:',len(j['files']),'(no voice reference, no embedding)')
           PY
-      - name: Upload audio/manifest/ASR/Drive receipts for owner private QA (1 day)
-        if: success()
+      - name: Upload audio/manifest/ASR/Drive receipts for legacy manual QA (1 day)
+        # Automated runs keep synthesized audio in owner-private Drive only.
+        if: success() && github.event_name == 'workflow_dispatch'
         uses: actions/upload-artifact@v4
         with:
           name: denis-voice-${{ env.VOICE_JOB_ID }}
