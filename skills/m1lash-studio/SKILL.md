@@ -80,6 +80,8 @@ Claude может запускать производство личного г�
 
 **Исходные private данные:** `M1lash/_studio/voice/` на Google Drive: WAV (10.72с, 24kHz mono), exact ref_text.txt и params.json из последнего рабочего Qwen ICL. В публичном репозитории хранится **только** `tools/voice/approved.json` с SHA256/Drive ID, voice_id `denis-qwen3tts-reference-v1`. Embedding строится в оперативной памяти GitHub runner и не сохраняется ни в публичный Git, ни в артефакт. После синтеза runner удаляет private reference; GitHub `media/voice/` игнорируется.
 
+**Автозапуск из чата (решение владельца 28.11.2026):** добавление ровно одного нового `jobs/voice/<id>.json` отдельным коммитом в `main` запускает `denis-voice-tts.yml` автоматически. Изменения существующих заданий не синтезируются повторно; для этого создать новый ID. Автоматический запуск хранит синтез только в owner-private Google Drive, без аудио-артефакта Actions. Ручной workflow_dispatch сохранён. Проверить фактический run, ASR и Drive receipt; коммит не равен готовому голосу. YouTube не затрагивается.
+
 **Как запустить Claude:** создать `jobs/voice/<id>.json` с `job_id` (совпадает с именем файла), `speaker: denis`, `voice_id: denis-qwen3tts-reference-v1`, `utterances: [{id,text,rate}]`. До **8 реплик по 5–220 символов**, id латиницей, `rate` от 0.85 до 1.15 (1.0 = без ускорения). Затем выполнить:
 ```bash
 gh workflow run denis-voice-tts.yml --ref main -f job_path=jobs/voice/<id>.json
