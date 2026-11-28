@@ -159,7 +159,7 @@ jobs:
           print('Uploaded files:',len(j['files']),'(no voice reference, no embedding)')
           PY
       - name: Assemble three-shopping-tricks Short (no outro, owner-private review only)
-        if: success() && env.VOICE_JOB_ID == 'shopping_tricks_20261128'
+        if: success() && (env.VOICE_JOB_ID == 'shopping_tricks_20261128' || env.VOICE_JOB_ID == 'shopping_tricks_20261128_v2')
         env:
           GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
           YOUTUBE_OAUTH_CLIENT_ID: ${{ secrets.YOUTUBE_OAUTH_CLIENT_ID }}
@@ -171,8 +171,13 @@ jobs:
           sudo apt-get install -y -qq libcairo2 fonts-dejavu-core
           python -m pip install -q cairosvg==2.7.1
           OUT="$RUNNER_TEMP/shopping-tricks-review"
-          python shorts/shopping_tricks_20261128/render.py --voice-dir "$VOICE_RESULT_DIR" --out "$OUT"
-          python scripts/drive_private_upload.py --folder "shopping_tricks_review_${{ github.run_number }}" "$OUT/M1lash_3_tricks_ru.mp4" "$OUT/qa.json"
+          case "$VOICE_JOB_ID" in
+            shopping_tricks_20261128) VIDEO=M1lash_3_tricks_ru.mp4 ;;
+            shopping_tricks_20261128_v2) VIDEO=M1lash_5_tricks_ru.mp4 ;;
+            *) exit 1 ;;
+          esac
+          python "shorts/$VOICE_JOB_ID/render.py" --voice-dir "$VOICE_RESULT_DIR" --out "$OUT"
+          python scripts/drive_private_upload.py --folder "${VOICE_JOB_ID}_review_${{ github.run_number }}" "$OUT/$VIDEO" "$OUT/qa.json"
       - name: Upload audio/manifest/ASR/Drive receipts for legacy manual QA (1 day)
         # Automated runs keep synthesized audio in owner-private Drive only.
         if: success() && github.event_name == 'workflow_dispatch'
