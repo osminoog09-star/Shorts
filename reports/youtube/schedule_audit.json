@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-27T16:51:52.687956+00:00",
+  "checked_at": "2026-11-28T00:37:02.942783+00:00",
   "count": 51,
   "problems": [
     {
@@ -1025,8 +1025,8 @@
       "receipt_publish_at": "2026-11-27T18:00:00Z",
       "queue": null,
       "queue_slot": null,
-      "live_privacy": "private",
-      "live_publishAt": "2026-11-27T18:00:00Z",
+      "live_privacy": "public",
+      "live_publishAt": null,
       "title": "«Я вообще не злой. Я добрый самый» #wardogs #shorts",
       "upload_status": "processed",
       "rejection": null
